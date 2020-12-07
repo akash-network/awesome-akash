@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   web:
-    image: scriptmoney/uniswap:v2
+    image: halw001/uniswap:v2
     expose:
       - port: 80
         as: 80
