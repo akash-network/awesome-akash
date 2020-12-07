@@ -33,3 +33,5 @@ Awesome DeFi apps you can deploy on Akash
 - [Tetris](tetris)
 
 ### Continuous Integration
+
+- [Jenkins](jenkins)
