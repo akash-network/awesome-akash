@@ -24,6 +24,8 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Blogging
 
+- [Ghost](ghost)
+
 ### Chat
 
 ### Video Conferencing
