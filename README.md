@@ -37,3 +37,25 @@ Awesome DeFi apps you can deploy on Akash
 - [Pac-Man](pacman)
 
 ### Continuous Integration
+ID 81ow3i7lnhnivs9: Deployed Uniswap
+akash provider lease-status:
+
+{
+  "services": {
+    "web": {
+      "name": "web",
+      "available": 1,
+      "total": 1,
+      "uris": [
+        "mt60bmuka993hbirvq0fis7ubk.provider4.akashdev.net"
+      ],
+      "observed-generation": 0,
+      "replicas": 0,
+      "updated-replicas": 0,
+      "ready-replicas": 0,
+      "available-replicas": 0
+    }
+  },
+  "forwarded-ports": {}
+}
+
