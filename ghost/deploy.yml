@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  ghost:
+    image: ghost
+    expose:
+      - port: 2368
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    ghost:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        ghost: 
+          denom: uakt
+          amount: 2000
+
+deployment:
+  ghost:
+    westcoast:
+      profile: ghost
+      count: 1
