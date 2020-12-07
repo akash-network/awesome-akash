@@ -13,6 +13,10 @@ Also, join our [discord](https://discord.akash.network) if you have questions or
 
 ### DeFi
 
+Awesome DeFi apps you can deploy on Akash
+
+- [Serum DEX UI](https://github.com/ovrclk/serum-on-akash)
+
 ### Blogging
 
 ### Chat
