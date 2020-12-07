@@ -19,6 +19,8 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Blogging
 
+- [How to deploy uniswap via akash](https://www.jianshu.com/p/351e4be235d9)
+
 ### Chat
 
 ### Video Conferencing
