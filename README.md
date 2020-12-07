@@ -37,6 +37,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Tetris](tetris)
 - [Pac-Man](pacman)
+- [Minesweeper](minesweeper)
 
 ### Continuous Integration
 
