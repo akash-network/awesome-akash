@@ -23,6 +23,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Uniswap](uniswap)
 
 ### Blogging
+- [SteemCN](steemcn)
 
 ### Chat
 
