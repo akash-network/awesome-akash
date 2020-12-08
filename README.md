@@ -64,6 +64,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
+- [tronwallet](tronwallet)
 
 ### Built with Cosmos-SDK
 - [Dharani](Dharani)
