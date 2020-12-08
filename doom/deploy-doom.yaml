@@ -20,9 +20,9 @@ profiles:
         cpu:
           units: 1
         memory:
-          size: 1Gi
+          size: 0.5Gi
         storage:
-          size: 5Gi
+          size: 1Gi
   placement:
     westcoast:
       attributes:
