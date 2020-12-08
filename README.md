@@ -62,6 +62,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Tools
 - [DEGO Stats](dego-stats)
+- [microbox](microbox)
 - [Mintr](mintr)
 
 ### Wallet
