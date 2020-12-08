@@ -47,7 +47,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [pgAdmin](pgadmin4)
 - [mongoDB](mongoDB)
-
+- [postgresSQL](postgres)
 ### Hosting
 
 - [Caddy](caddy)
