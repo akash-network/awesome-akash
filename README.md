@@ -37,3 +37,5 @@ Awesome DeFi apps you can deploy on Akash
 - [Pac-Man](pacman)
 
 ### Continuous Integration
+
+- [Jenkins](jenkins)
