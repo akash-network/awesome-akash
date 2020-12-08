@@ -41,6 +41,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Databases and Administration
 
 - [pgAdmin](pgadmin4)
+- [mongoDB](mongoDB)
 
 ### Continuous Integration
 ID 81ow3i7lnhnivs9: Deployed Uniswap
@@ -66,4 +67,3 @@ akash provider lease-status:
   },
   "forwarded-ports": {}
 }
-
