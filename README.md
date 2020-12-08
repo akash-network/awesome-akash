@@ -24,13 +24,14 @@ Awesome DeFi apps you can deploy on Akash
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
 - [Bancor](Bancor)
+- [Balancer](Balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](SushiSwap)
 
 ### Blogging
 - [SteemCN](steemcn)
-
 - [Ghost](ghost)
+- [Wordpress](wordpress)
 
 ### Chat
 
@@ -61,9 +62,13 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Tools
 - [DEGO Stats](dego-stats)
+- [authsteem](authsteem)
+- [microbox](microbox)
+- [Mintr](mintr)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
+- [tronwallet](tronwallet)
 
 ### Built with Cosmos-SDK
 - [Dharani](Dharani)
