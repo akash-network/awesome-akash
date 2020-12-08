@@ -23,6 +23,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Uniswap](uniswap)
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
+- [Bancor](Bancor)
 - [Luaswap](luaswap)
 - [SushiSwap](SushiSwap)
 
