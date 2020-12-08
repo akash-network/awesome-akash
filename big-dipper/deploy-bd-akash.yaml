@@ -1,0 +1,74 @@
+---
+version: "2.0"
+
+services:
+  mongo:
+    image: mongo:latest
+    command:
+      - "docker-entrypoint.sh"
+    args:
+      - "--storageEngine=wiredTiger"
+    expose:
+      - port: 27017
+        as: 27017
+        to:
+          - service: mongo
+  web:
+    image: raviforbole/bigdipper:akash
+    depends-on:
+      - mongo
+    env:
+      - "ROOT_URL=http://localhost"
+      - "MONGO_URL=mongodb://mongo:27017/meteor"
+      - "PORT=3000"
+      - 'METEOR_SETTINGS={"public":{"chainName":"Akash Edgenet","chainId":"akash-edgenet-1","gtm":false,"slashingWindow":10000,"uptimeWindow":250,"initialPageSize":30,"secp256k1":false,"bech32PrefixAccAddr":"akash","bech32PrefixAccPub":"akashpub","bech32PrefixValAddr":"akashvaloper","bech32PrefixValPub":"akashvaloperpub","bech32PrefixConsAddr":"akashvalcons","bech32PrefixConsPub":"akashvalconspub","bondDenom":"uakt","powerReduction":1000000,"coins":[{"denom":"uakt","displayName":"AKT","fraction":1000000}],"modules":{"supply":true,"minting":false,"gov":true},"gasPrice":0.02,"coingeckoId":false},"remote":{"rpc":"https://rpc.edgenet.akash.forbole.com:443","lcd":"https://api.edgenet.akash.forbole.com:443"},"debug":{"startTimer":true},"params":{"startHeight":0,"defaultBlockTime":5000,"validatorUpdateWindow":300,"blockInterval":15000,"consensusInterval":1000,"statusInterval":7500,"signingInfoInterval":1800000,"proposalInterval":5000,"missedBlocksInterval":60000,"delegationInterval":900000}}'
+    expose:
+      - port: 3000
+        as: 80
+        accept:
+          - "edgenet.decloud.bigdipper.live"
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 0.6
+        memory:
+          size: 512Mi
+        storage:
+          size: 5Gi
+    mongo:
+      resources:
+        cpu:
+          units: 0.4
+        memory:
+          size: 512Mi
+        storage:
+          size: 5Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        web:
+          denom: uakt
+          amount: 100
+        mongo: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  web:
+    westcoast:
+      profile: web
+      count: 1
+  mongo:
+    westcoast:
+      profile: mongo
+      count: 1
