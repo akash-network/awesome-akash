@@ -43,6 +43,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Supermario](supermario)
 - [Minesweeper](minesweeper)
 - [Tetris2](tetris2)
+- [DOOM](doom)
 
 ### Databases and Administration
 
