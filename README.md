@@ -21,7 +21,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Serum DEX UI](https://github.com/ovrclk/serum-on-akash)
 - [Uniswap](uniswap)
-
+- [Yearn.finance](https://github.com/iearn-finance/iearn-finance)
 ### Blogging
 
 ### Chat
