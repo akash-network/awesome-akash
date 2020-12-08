@@ -27,7 +27,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Balancer](Balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](SushiSwap)
-- [Yearn.finance](https://github.com/ovrclk/awesome-akash/tree/master/Yearn.finance)
+- [Yearn.finance](Yearn.finance)
 
 ### Blogging
 - [SteemCN](steemcn)
