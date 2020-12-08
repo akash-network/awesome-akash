@@ -24,6 +24,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
 - [Bancor](Bancor)
+- [Balancer](Balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](SushiSwap)
 
@@ -42,6 +43,8 @@ Awesome DeFi apps you can deploy on Akash
 - [Pac-Man](pacman)
 - [Supermario](supermario)
 - [Minesweeper](minesweeper)
+- [Tetris2](tetris2)
+- [DOOM](doom)
 
 ### Databases and Administration
 
@@ -60,6 +63,13 @@ Awesome DeFi apps you can deploy on Akash
 ### Tools
 - [DEGO Stats](dego-stats)
 - [authsteem](authsteem)
+- [microbox](microbox)
+- [Mintr](mintr)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
+- [tronwallet](tronwallet)
+
+### Built with Cosmos-SDK
+- [Dharani](Dharani)
+- [Big Dipper](big-dipper)
