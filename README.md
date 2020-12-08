@@ -35,6 +35,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Tetris](tetris)
 - [Pac-Man](pacman)
+- [Supermario](supermario)
 
 ### Continuous Integration
 ID 81ow3i7lnhnivs9: Deployed Uniswap
