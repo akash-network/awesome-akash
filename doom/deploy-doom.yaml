@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  web:
+    image: raviforbole/doom:akash
+    env:
+      - "VNC_USER=akash"
+      - "VNC_PW=decloud"
+    expose:
+      - port: 8443
+        as: 8443
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        web:
+          denom: uakt
+          amount: 100
+
+deployment:
+  web:
+    westcoast:
+      profile: web
+      count: 1
