@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  caddy:
+    image: stefanprodan/caddy 
+    expose:
+      - port: 80 
+        to:
+          - global: true
+profiles:
+  compute:
+    caddy:
+      resources:
+        cpu:
+          units: 1 
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        caddy: 
+          denom: uakt
+          amount: 3000
+
+deployment:
+  caddy:
+    westcoast:
+      profile: caddy
+      count: 1 

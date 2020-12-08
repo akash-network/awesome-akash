@@ -39,7 +39,17 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Tetris](tetris)
 - [Pac-Man](pacman)
+- [Supermario](supermario)
 - [Minesweeper](minesweeper)
+
+### Databases and Administration
+
+- [pgAdmin](pgadmin4)
+- [mongoDB](mongoDB)
+
+### Hosting
+
+- [Caddy](caddy)
 
 ### Continuous Integration
 
