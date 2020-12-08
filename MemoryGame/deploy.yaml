@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   web:
-    image: thanhphongcpt/Akash_flipflopgame
+    image: thanhphongcpt/memorygame:latest
     expose:
       - port: 3000
         as: 80
