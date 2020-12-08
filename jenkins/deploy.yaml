@@ -1,0 +1,41 @@
+---
+version: "2.0"
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+      - port: 50000
+        to:
+          - global: true
+profiles:
+  compute:
+    jenkins:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        jenkins:
+          denom: uakt
+          amount: 2000
+
+deployment:
+  jenkins:
+    westcoast:
+      profile: jenkins
+      count: 1

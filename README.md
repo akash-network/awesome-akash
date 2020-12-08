@@ -22,8 +22,11 @@ Awesome DeFi apps you can deploy on Akash
 - [Serum DEX UI](https://github.com/ovrclk/serum-on-akash)
 - [Uniswap](uniswap)
 - [Pancake Swap](pancake-swap)
+- [Augur](augur)
 
 ### Blogging
+
+- [Ghost](ghost)
 
 ### Chat
 
@@ -35,3 +38,5 @@ Awesome DeFi apps you can deploy on Akash
 - [Pac-Man](pacman)
 
 ### Continuous Integration
+
+- [Jenkins](jenkins)
