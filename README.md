@@ -25,6 +25,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Augur](augur)
 
 ### Blogging
+- [SteemCN](steemcn)
 
 - [Ghost](ghost)
 
