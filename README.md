@@ -21,8 +21,17 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Serum DEX UI](https://github.com/ovrclk/serum-on-akash)
 - [Uniswap](uniswap)
+- [Pancake Swap](pancake-swap)
+- [Augur](augur)
+- [Bancor](Bancor)
+- [Luaswap](luaswap)
+- [SushiSwap](SushiSwap)
 - [Yearn.finance](https://github.com/iearn-finance/iearn-finance)
+
 ### Blogging
+- [SteemCN](steemcn)
+
+- [Ghost](ghost)
 
 ### Chat
 
@@ -31,5 +40,27 @@ Awesome DeFi apps you can deploy on Akash
 ### Games
 
 - [Tetris](tetris)
+- [Pac-Man](pacman)
+- [Supermario](supermario)
+- [Minesweeper](minesweeper)
+
+### Databases and Administration
+
+- [pgAdmin](pgadmin4)
+- [mongoDB](mongoDB)
+- [postgresSQL](postgres)
+### Hosting
+
+- [Caddy](caddy)
+- [Grafana](grafana)
 
 ### Continuous Integration
+
+- [Jenkins](jenkins)
+
+### Tools
+- [DEGO Stats](dego-stats)
+
+### Wallet
+- [MyetherWallet](MyetherWallet)
+
