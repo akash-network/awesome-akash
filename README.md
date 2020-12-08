@@ -50,6 +50,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Hosting
 
 - [Caddy](caddy)
+- [Grafana](grafana)
 
 ### Continuous Integration
 
