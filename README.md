@@ -55,3 +55,6 @@ Awesome DeFi apps you can deploy on Akash
 ### Continuous Integration
 
 - [Jenkins](jenkins)
+
+### Tools
+- [DEGO Stats](dego-stats)
