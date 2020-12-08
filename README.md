@@ -37,6 +37,11 @@ Awesome DeFi apps you can deploy on Akash
 - [Pac-Man](pacman)
 - [Supermario](supermario)
 
+
+### Databases and Administration
+
+- [pgAdmin](pgadmin4)
+
 ### Continuous Integration
 ID 81ow3i7lnhnivs9: Deployed Uniswap
 http://mt60bmuka993hbirvq0fis7ubk.provider4.akashdev.net/#/swap
