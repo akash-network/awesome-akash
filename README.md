@@ -30,6 +30,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Uma Protocol](uma-protocol)
 - [Yearn.finance](Yearn.finance)
 - [ThorChain BEPSwap](Thorchain-BEPSwap)
+- [Curve](curve)
 
 ### Blogging
 - [SteemCN](steemcn)
