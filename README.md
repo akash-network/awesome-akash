@@ -31,6 +31,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Yearn.finance](Yearn.finance)
 - [ThorChain BEPSwap](Thorchain-BEPSwap)
 - [Curve](curve)
+- [Synthetix.Exchange](synthetix.exchange)
 
 ### Blogging
 - [SteemCN](steemcn)
