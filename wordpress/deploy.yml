@@ -2,41 +2,35 @@
 version: "2.0"
 
 services:
-  web:
-    image: raviforbole/doom:akash
-    env:
-      - "VNC_USER=akash"
-      - "VNC_PW=decloud"
+  wordpress:
+    image: wordpress 
     expose:
-      - port: 8443
-        as: 8443
+      - port: 80
         to:
           - global: true
 
 profiles:
   compute:
-    web:
+    wordpress:
       resources:
         cpu:
           units: 1
         memory:
-          size: 0.5Gi
-        storage:
           size: 1Gi
+        storage:
+          size: 2Gi
   placement:
     westcoast:
-      attributes:
-        organization: ovrclk.com
       signedBy:
         anyOf:
           - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
       pricing:
-        web:
+        wordpress: 
           denom: uakt
-          amount: 100
+          amount: 5000
 
 deployment:
-  web:
+  wordpress:
     westcoast:
-      profile: web
+      profile: wordpress
       count: 1
