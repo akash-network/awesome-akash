@@ -14,11 +14,11 @@ profiles:
     curve:
       resources:
         cpu:
-          units: 1 
+          units: 0.1 
         memory:
-          size: 1Gi
-        storage:
           size: 512Mi
+        storage:
+          size: 2.5Gi
   placement:
     westcoast:
       attributes:
