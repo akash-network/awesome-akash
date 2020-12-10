@@ -69,6 +69,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Continuous Integration
 
 - [Jenkins](jenkins)
+- [Bitbucket](bitbucket)
 
 ### Project Management
 - [Jira Software](jira)
