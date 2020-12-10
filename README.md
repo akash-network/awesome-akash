@@ -66,6 +66,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Caddy](caddy)
 - [Grafana](grafana)
+- [owncloud](owncloud)
 
 ### Continuous Integration
 
@@ -81,7 +82,6 @@ Awesome DeFi apps you can deploy on Akash
 - [microbox](microbox)
 - [Mintr](mintr)
 - [Folding@home](folding-at-home)
-- [owncloud](owncloud)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
