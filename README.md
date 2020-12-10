@@ -32,6 +32,7 @@ Awesome DeFi apps you can deploy on Akash
 - [ThorChain BEPSwap](Thorchain-BEPSwap)
 - [Curve](curve)
 - [Synthetix.Exchange](synthetix.exchange)
+- [Ren Protocol](Ren Protocol)
 
 ### Blogging
 - [SteemCN](steemcn)
