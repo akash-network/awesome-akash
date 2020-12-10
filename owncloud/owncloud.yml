@@ -1,0 +1,36 @@
+---
+version: "2.0"
+
+services:
+  owncloud:
+    image: owncloud 
+    expose:
+      - port: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    owncloud:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 2Gi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        owncloud: 
+          denom: uakt
+          amount: 5000
+
+deployment:
+  owncloud:
+    westcoast:
+      profile: owncloud
+      count: 1
