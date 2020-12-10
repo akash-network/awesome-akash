@@ -81,6 +81,7 @@ Awesome DeFi apps you can deploy on Akash
 - [microbox](microbox)
 - [Mintr](mintr)
 - [Folding@home](folding-at-home)
+- [owncloud](owncloud)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
