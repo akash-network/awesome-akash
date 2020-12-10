@@ -89,3 +89,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Built with Cosmos-SDK
 - [Dharani](Dharani)
 - [Big Dipper](big-dipper)
+
+### Media
+- [FreeFlix Nucleus](freeflix-nucleus)
+
