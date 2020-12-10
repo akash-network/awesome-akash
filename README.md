@@ -27,6 +27,11 @@ Awesome DeFi apps you can deploy on Akash
 - [Balancer](Balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](SushiSwap)
+- [Uma Protocol](uma-protocol)
+- [Yearn.finance](Yearn.finance)
+- [ThorChain BEPSwap](Thorchain-BEPSwap)
+- [Curve](curve)
+- [Synthetix.Exchange](synthetix.exchange)
 
 ### Blogging
 - [SteemCN](steemcn)
@@ -45,12 +50,16 @@ Awesome DeFi apps you can deploy on Akash
 - [Minesweeper](minesweeper)
 - [Tetris2](tetris2)
 - [DOOM](doom)
+- [Snake Game](snake-game)
 
 ### Databases and Administration
 
 - [pgAdmin](pgadmin4)
 - [mongoDB](mongoDB)
 - [postgresSQL](postgres)
+- [adminer](adminer)
+- [MySQL](MySQL)
+
 ### Hosting
 
 - [Caddy](caddy)
@@ -59,6 +68,9 @@ Awesome DeFi apps you can deploy on Akash
 ### Continuous Integration
 
 - [Jenkins](jenkins)
+
+### Project Management
+- [Jira Software](jira)
 
 ### Tools
 - [DEGO Stats](dego-stats)
