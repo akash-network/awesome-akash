@@ -64,6 +64,7 @@ Awesome DeFi apps you can deploy on Akash
 - [adminer](adminer)
 - [MySQL](MySQL)
 - [CouchDB](couchdb)
+- [InfluxDB](influxdb)
 
 ### Hosting
 
