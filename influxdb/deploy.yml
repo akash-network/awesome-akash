@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  influxdb:
+    image: influxdb 
+    env:
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=password
+    expose:
+      - port: 8086
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    influxdb:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        influxdb: 
+          denom: uakt
+          amount: 3000
+
+deployment:
+  influxdb:
+    westcoast:
+      profile: influxdb
+      count: 1
