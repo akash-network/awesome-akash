@@ -6,7 +6,7 @@ services:
     image: evns/grav
     expose:
       - port: 80
-        as: 48080
+        as: 80
         to:
           - global: true
 profiles:
