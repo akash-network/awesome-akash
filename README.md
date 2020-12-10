@@ -19,7 +19,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 Awesome DeFi apps you can deploy on Akash
 
-- [Serum DEX UI](https://github.com/ovrclk/serum-on-akash)
+- [Serum DEX UI](serum)
 - [Uniswap](uniswap)
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
