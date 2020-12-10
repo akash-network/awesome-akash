@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  grav:
+    image: evns/grav
+    expose:
+      - port: 80
+        as: 48080
+        to:
+          - global: true
+profiles:
+  compute:
+    grav:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        grav:
+          denom: uakt
+          amount: 300
+
+deployment:
+  grav:
+    westcoast:
+      profile: grav
+      count: 1
