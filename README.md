@@ -69,6 +69,9 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Jenkins](jenkins)
 
+### Project Management
+- [Jira Software](jira)
+
 ### Tools
 - [DEGO Stats](dego-stats)
 - [authsteem](authsteem)
