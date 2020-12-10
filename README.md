@@ -39,6 +39,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Ghost](ghost)
 - [Wordpress](wordpress)
 - [Confluence](confluence)
+- [Grav](Grav)
 
 ### Chat
 
