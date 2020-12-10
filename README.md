@@ -37,6 +37,7 @@ Awesome DeFi apps you can deploy on Akash
 - [SteemCN](steemcn)
 - [Ghost](ghost)
 - [Wordpress](wordpress)
+- [Confluence](confluence)
 
 ### Chat
 
