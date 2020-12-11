@@ -33,6 +33,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Curve](curve)
 - [Synthetix.Exchange](synthetix.exchange)
 - [Ren Protocol](renprotocol)
+- [yfii](yfii)
 
 ### Blogging
 
