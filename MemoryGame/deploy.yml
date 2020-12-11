@@ -3,13 +3,12 @@ version: "2.0"
 
 services:
   web:
-    image: thanhphongcpt/memorygame:latest
+    image: jungpilyu/memorygame
     expose:
-      - port: 3000
+      - port: 80
         as: 80
         to:
           - global: true
-
 profiles:
   compute:
     web:
@@ -19,18 +18,18 @@ profiles:
         memory:
           size: 512Mi
         storage:
-          size: 512Mi
+          size: 2Gi
   placement:
     westcoast:
       attributes:
-        organization: thanhphong
+        organization: ovrclk.com
       signedBy:
         anyOf:
           - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
       pricing:
         web: 
           denom: uakt
-          amount: 1000
+          amount: 9000
 
 deployment:
   web:
