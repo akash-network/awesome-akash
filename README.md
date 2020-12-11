@@ -97,5 +97,6 @@ Awesome DeFi apps you can deploy on Akash
 - [FreeFlix Nucleus](freeflix-nucleus)
 
 ### Chat
+- [Mattermost](mattermost)
 
 ### Video Conferencing
