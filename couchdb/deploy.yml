@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  couchdb:
+    image: couchdb 
+    env:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+    expose:
+      - port: 5984
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    couchdb:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        couchdb: 
+          denom: uakt
+          amount: 5000
+
+deployment:
+  couchdb:
+    westcoast:
+      profile: couchdb
+      count: 1

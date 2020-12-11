@@ -63,6 +63,7 @@ Awesome DeFi apps you can deploy on Akash
 - [postgresSQL](postgres)
 - [adminer](adminer)
 - [MySQL](MySQL)
+- [CouchDB](couchdb)
 
 ### Hosting
 
