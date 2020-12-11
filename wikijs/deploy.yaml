@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  wiki:
+    image: requarks/wiki:2
+    env:
+      - DB_TYPE=sqlite
+      - DB_FILEPATH=/wiki/app.db
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    
+profiles:
+  compute:
+    wiki:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        wiki: 
+          denom: uakt
+          amount: 1000
+
+deployment:
+  wiki:
+    westcoast:
+      profile: wiki
+      count: 1

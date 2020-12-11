@@ -42,6 +42,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Wordpress](wordpress)
 - [Confluence](confluence)
 - [Drupal](drupal)
+- [Wiki.js](wikijs)
 
 ### Games
 
