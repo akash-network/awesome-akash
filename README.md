@@ -21,6 +21,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Serum DEX UI](serum)
 - [Uniswap](uniswap)
+- [dFed](dfed)
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
 - [Bancor](Bancor)
@@ -34,6 +35,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Synthetix.Exchange](synthetix.exchange)
 - [Ren Protocol](renprotocol)
 - [yfii](yfii)
+
 
 ### Blogging
 
@@ -87,6 +89,7 @@ Awesome DeFi apps you can deploy on Akash
 - [owncloud](owncloud)
 - [Quill editor](quill-editor)
 - [Periodic Table Creator](Periodic-Table-Creator)
+- [dart-hello](dart)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
