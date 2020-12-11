@@ -1,0 +1,36 @@
+---
+version: "2.0"
+
+services:
+  drupal:
+    image: drupal 
+    expose:
+      - port: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    drupal:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        drupal: 
+          denom: uakt
+          amount: 5000
+
+deployment:
+  drupal:
+    westcoast:
+      profile: drupal
+      count: 1

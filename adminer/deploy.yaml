@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  adminer:
+    image: adminer
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    adminer:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        adminer:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  adminer:
+    westcoast:
+      profile: adminer
+      count: 1
