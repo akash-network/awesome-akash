@@ -86,6 +86,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Mintr](mintr)
 - [Folding@home](folding-at-home)
 - [owncloud](owncloud)
+- [dart-hello](dart)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
