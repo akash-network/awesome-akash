@@ -1,0 +1,67 @@
+version: "2.0"
+
+services:
+  db:
+    image: mysql:5.7
+    env:
+        - MYSQL_ROOT_PASSWORD=12345
+        - MYSQL_DATABASE=redmine
+    expose:
+      - port: 3306
+        as: 3306
+        to:
+          - service: db
+  
+  redmine:
+    image: redmine
+    depends-on:
+        - db
+    env:
+        - REDMINE_DB_MYSQL=db
+        - REDMINE_DB_USERNAME=root
+        - REDMINE_DB_PASSWORD=12345
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    db:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    
+    redmine:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+          
+  placement:
+    westcoast:    
+      pricing:
+        db: 
+          denom: uakt
+          amount: 5000
+        redmine: 
+          denom: uakt
+          amount: 5000
+
+deployment:
+  db:
+    westcoast:
+      profile: db
+      count: 1
+  redmine:
+    westcoast:
+      profile: redmine
+      count: 1
