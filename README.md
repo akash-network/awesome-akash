@@ -86,6 +86,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Folding@home](folding-at-home)
 - [owncloud](owncloud)
 - [Quill editor](quill-editor)
+- [Periodic Table Creator](Periodic-Table-Creator)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
