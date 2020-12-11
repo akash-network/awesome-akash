@@ -32,19 +32,16 @@ Awesome DeFi apps you can deploy on Akash
 - [ThorChain BEPSwap](Thorchain-BEPSwap)
 - [Curve](curve)
 - [Synthetix.Exchange](synthetix.exchange)
-- [Ren Protocol](Ren Protocol)
+- [Ren Protocol](renprotocol)
 
 ### Blogging
+
 - [SteemCN](steemcn)
 - [Ghost](ghost)
 - [Grav](Grav)
 - [Wordpress](wordpress)
 - [Confluence](confluence)
 - [Drupal](drupal)
-
-### Chat
-
-### Video Conferencing
 
 ### Games
 
@@ -99,3 +96,6 @@ Awesome DeFi apps you can deploy on Akash
 ### Media
 - [FreeFlix Nucleus](freeflix-nucleus)
 
+### Chat
+
+### Video Conferencing
