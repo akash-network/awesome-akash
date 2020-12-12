@@ -104,6 +104,9 @@ Awesome DeFi apps you can deploy on Akash
 ### Media
 - [FreeFlix Nucleus](freeflix-nucleus)
 
+### Data Visualization
+- [UFO Sightings](ufo-data-vis)
+
 ### Chat
 - [Mattermost](mattermost)
 
