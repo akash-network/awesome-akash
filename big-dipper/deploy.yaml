@@ -39,7 +39,7 @@ profiles:
         memory:
           size: 512Mi
         storage:
-          size: 5Gi
+          size: 1Gi
     mongo:
       resources:
         cpu:
@@ -47,7 +47,7 @@ profiles:
         memory:
           size: 512Mi
         storage:
-          size: 5Gi
+          size: 2Gi
   placement:
     westcoast:
       attributes:
