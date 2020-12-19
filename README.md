@@ -110,4 +110,9 @@ Awesome DeFi apps you can deploy on Akash
 ### Chat
 - [Mattermost](mattermost)
 
+### Machine Learning
+- [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
+- [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
+- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+
 ### Video Conferencing
