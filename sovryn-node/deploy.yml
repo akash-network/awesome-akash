@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  web:
+    image: nrm55/sovryn-node:latest
+    env:
+      - WHICHNET=
+      - KEYPW=
+      - LIQUIDATOR_ADDRESS=
+      - LIQUIDATOR_PRIVATE_KEY=
+      - ROLLOVER_ADDRESS=
+      - ROLLOVER_PRIVATE_KEY=
+      - ARBITRAGE_ADDRESS=
+      - ARBITRAGE_PRIVATE_KEY=
+      - TELEGRAM_BOT_KEY=
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      pricing:
+        web:
+          denom: uakt
+          amount: 5000
+
+deployment:
+  web:
+    westcoast:
+      profile: web
+      count: 1
