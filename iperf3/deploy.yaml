@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  iperf:
+    image: networkstatic/iperf3
+    args: ["-s"]
+    expose:
+      - port: 5201
+        as: 5201
+        to:
+          - global: true
+      - port: 5201
+        as: 5201
+        to:
+          - global: true
+        proto: udp
+
+profiles:
+  compute:
+    iperf:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 16Mi
+        storage:
+          size: 128Mi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      pricing:
+        iperf: 
+          denom: uakt
+          amount: 1000
+
+deployment:
+  iperf:
+    westcoast:
+      profile: iperf
+      count: 1
