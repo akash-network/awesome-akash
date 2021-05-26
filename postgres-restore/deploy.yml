@@ -1,0 +1,62 @@
+---
+version: "2.0"
+
+services:
+  cron:
+    image: ghcr.io/ovrclk/akash-postgres-restore:v0.0.4
+    env:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DATABASE=akash_postgres
+      - BACKUP_PATH=mybucket/backups
+      - BACKUP_KEY=KEY
+      - BACKUP_SECRET=SECRET
+      - BACKUP_PASSPHRASE=passphrase
+    depends_on:
+      - service: postgres
+  postgres:
+    image: postgres:12.6
+    env:
+      - POSTGRES_PASSWORD=password
+    expose:
+      - port: 5432
+        to:
+          - global: true
+          - service: cron
+
+profiles:
+  compute:
+    cron:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    postgres:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        cron:
+          denom: uakt
+          amount: 10
+        postgres:
+          denom: uakt
+          amount: 10
+
+deployment:
+  cron:
+    dcloud:
+      profile: cron
+      count: 1
+  postgres:
+    dcloud:
+      profile: postgres
+      count: 1
