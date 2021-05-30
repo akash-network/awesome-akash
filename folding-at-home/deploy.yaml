@@ -1,0 +1,46 @@
+---
+version: "2.0"
+
+services:
+  folding-at-home:
+    image: yurinnick/folding-at-home:latest
+    args:
+      - "--allow=0/0"
+      - "--web-allow=0/0"
+    env:
+      - "TEAM=0"
+      - "ENABLE_GPU=false"
+      - "ENABLE_SMP=true"
+    expose:
+      - port: 7396
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    folding-at-home:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        folding-at-home:
+          denom: uakt
+          amount: 100
+
+deployment:
+  folding-at-home:
+    westcoast:
+      profile: folding-at-home
+      count: 1

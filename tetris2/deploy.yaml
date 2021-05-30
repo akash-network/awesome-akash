@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  tetris:
+    image: uzyexe/tetris
+    expose:
+      - port: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    tetris:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        tetris:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  tetris:
+    westcoast:
+      profile: tetris
+      count: 1

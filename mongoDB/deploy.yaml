@@ -1,0 +1,41 @@
+---
+version: "2.0"
+
+services:
+  mongo:
+    image: mongo:latest 
+    expose:
+      - port: 27017 
+        to:
+          - global: true
+    env:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+
+profiles:
+  compute:
+    mongo:
+      resources:
+        cpu:
+          units: 1 
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+      pricing:
+        mongo: 
+          denom: uakt
+          amount: 3000
+
+deployment:
+  mongo:
+    westcoast:
+      profile: mongo
+      count: 1 
