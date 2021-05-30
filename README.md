@@ -81,6 +81,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Project Management
 - [Jira Software](jira)
 - [Redmine](redmine)
+- [Kanboard](kanboard)
 
 ### Tools
 - [DEGO Stats](dego-stats)
