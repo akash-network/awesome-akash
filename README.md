@@ -92,6 +92,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Quill editor](quill-editor)
 - [Periodic Table Creator](Periodic-Table-Creator)
 - [dart-hello](dart)
+- [Matomo](matomo)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
