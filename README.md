@@ -4,8 +4,7 @@ Awesome Akash is a curated list of awesome resources people can use to familiari
 
 Instructions on how to deploy the SDL files in this repository can be found [here](//docs.akash.network/guides/deploy).
 
-
-Join our [discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
+Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
 ## Table of Contents
