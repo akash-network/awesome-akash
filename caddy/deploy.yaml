@@ -24,7 +24,7 @@ profiles:
         organization: ovrclk.com
       signedBy:
         anyOf:
-          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         caddy: 
           denom: uakt
