@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  zammad:
+    image: zammad/zammad:5.0.0-147
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    zammad:
+      resources:
+        cpu:
+          units: 0.7
+        memory:
+          size: 4Gi
+        storage:
+          size: 2Gi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        zammad: 
+          denom: uakt
+          amount: 1000
+
+deployment:
+  zammad:
+    westcoast:
+      profile: zammad
+      count: 1

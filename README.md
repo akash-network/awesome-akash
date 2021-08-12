@@ -71,6 +71,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Caddy](caddy)
 - [Grafana](grafana)
+- [IPFS](ipfs)
 
 ### Continuous Integration
 
@@ -93,6 +94,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Periodic Table Creator](Periodic-Table-Creator)
 - [dart-hello](dart)
 - [Matomo](matomo)
+- [Zammad](zammad)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
