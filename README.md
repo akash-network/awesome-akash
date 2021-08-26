@@ -107,6 +107,10 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Whoogle Search](whoogle-search)
 
+### Mining
+
+- [Monero](monero)
+
 ### Project Management
 
 - [Jira Software](jira)
