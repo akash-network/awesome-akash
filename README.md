@@ -111,4 +111,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Chat
 - [Mattermost](mattermost)
 
+### Mining
+- [PKT Miner](pkt-miner)
+
 ### Video Conferencing
