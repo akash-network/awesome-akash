@@ -48,6 +48,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Games
 
+- [Minecraft](minecraft)
 - [Tetris](tetris)
 - [Pac-Man](pacman)
 - [Supermario](supermario)
