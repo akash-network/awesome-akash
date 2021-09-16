@@ -1,0 +1,49 @@
+---
+version: "2.0"
+
+services:
+  web:
+    image: linuxserver/ipfs:version-v2.12.4
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 4001
+        as: 4001
+        to:
+          - global: true
+      - port: 5001
+        as: 5001
+        to:
+          - global: true
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        web:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  web:
+    westcoast:
+      profile: web
+      count: 1
