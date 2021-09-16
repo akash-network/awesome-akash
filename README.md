@@ -111,4 +111,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Chat
 - [Mattermost](mattermost)
 
+### Metasearch Engine
+- [Whoogle Search](whoogle-search)
+
 ### Video Conferencing
