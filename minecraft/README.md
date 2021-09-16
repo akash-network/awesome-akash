@@ -4,6 +4,8 @@ Launch a Minecraft server on the Akash blockchain. It can be easily configured w
 
 A default vanilla configuration is included, and this is ready to run out-of-the-box.
 
+For an even easier one-liner deployment, see the deployment script repository at https://github.com/slowriot/akash_minecraft.
+
 # Configuration
 ## deploy.yaml
 The simplest way to configure your Minecraft server is through environment variables; just edit `deploy.yaml` prior to deploying, looking at the `env` block: https://github.com/slowriot/akash_minecraft/blob/master/deploy.yaml#
