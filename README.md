@@ -23,8 +23,8 @@ Awesome DeFi apps you can deploy on Akash
 - [dFed](dfed)
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
-- [Bancor](Bancor)
-- [Balancer](Balancer)
+- [Bancor](bancor)
+- [Balancer](balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](sushiswap)
 - [Uma Protocol](uma-protocol)
@@ -48,12 +48,13 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Games
 
+- [Minecraft](minecraft)
 - [Tetris](tetris)
 - [Pac-Man](pacman)
 - [Supermario](supermario)
 - [Minesweeper](minesweeper)
 - [Tetris2](tetris2)
-- [MemoryGame](Memorygame)
+- [MemoryGame](MemoryGame)
 - [DOOM](doom)
 - [Snake Game](snake-game)
 
