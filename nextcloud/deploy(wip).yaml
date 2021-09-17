@@ -1,0 +1,101 @@
+---
+version: "2.0"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - db:/var/lib/postgresql/data
+    env:
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+    expose:
+      - port: 3306
+        to:
+          - service: nextcloud
+  nextcloud:
+    depends-on:
+      - db
+    image: nextcloud
+    restart: always
+    volumes:
+      - nextcloud:/var/www/html 
+    env:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+    expose:
+      - port: 80
+        to:
+          - global: true
+  cron:
+    image: nextcloud
+    restart: always
+    volumes:
+      - nextcloud:/var/www/html
+    entrypoint: /cron.sh
+    depends_on:
+      - db
+volumes:
+  db:
+  nextcloud:      
+profiles:
+  compute:
+    nextcloud:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 2Gi
+    db:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    cron:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi            
+  placement:
+    dcloud:
+      attributes:
+        datacenter: equinix-metal-ewr1
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        nextcloud: 
+          denom: uakt
+          amount: 1000
+        db: 
+          denom: uakt
+          amount: 1000
+        cron: 
+          denom: uakt
+          amount: 1000
+deployment:
+  nextcloud:
+    dcloud:
+      profile: nextcloud
+      count: 1 
+  db:
+    dcloud:
+      profile: db
+      count: 1
+  cron:
+    dcloud:
+      profile: db
+      count: 1    
