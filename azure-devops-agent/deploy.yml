@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  web:
+    image: odiovock/akash-azure-devops-agent
+    env:
+      - "AZP_URL=<Your_Azure_URL>"
+      - "AZP_TOKEN=<Your_Azure_Token>"
+      - "AZP_AGENT_NAME=<Agent_Name>"
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        web:
+          denom: uakt
+          amount: 100
+
+deployment:
+  web:
+    dcloud:
+      profile: web
+      count: 1
