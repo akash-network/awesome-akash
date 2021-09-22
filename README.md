@@ -57,6 +57,7 @@ Awesome DeFi apps you can deploy on Akash
 - [MemoryGame](MemoryGame)
 - [DOOM](doom)
 - [Snake Game](snake-game)
+- [Rock-Paper-Scissor game](web game)
 
 ### Databases and Administration
 
