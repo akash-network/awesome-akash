@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Rock-Paper-Scissors</title>
+</head>
+<body>
+
+    <form>
+
+        <input type="radio" id="rock-rock" name="rock-paper-scissors">
+        <input type="radio" id="rock-paper" name="rock-paper-scissors">
+        <input type="radio" id="rock-scissors" name="rock-paper-scissors">
+        <input type="radio" id="paper-rock" name="rock-paper-scissors">
+        <input type="radio" id="paper-paper" name="rock-paper-scissors">
+        <input type="radio" id="paper-scissors" name="rock-paper-scissors">
+        <input type="radio" id="scissors-rock" name="rock-paper-scissors">
+        <input type="radio" id="scissors-paper" name="rock-paper-scissors">
+        <input type="radio" id="scissors-scissors" name="rock-paper-scissors">
+      
+        <div>
+          
+          <a href="https://en.wikipedia.org/wiki/Red">
+            Akash -
+          </a>
+          <a href="https://en.wikipedia.org/wiki/Green">
+            Rock
+          </a>
+          <a href="https://en.wikipedia.org/wiki/Orange_(colour)">
+            Paper
+          </a>
+          <a href="https://en.wikipedia.org/wiki/Blue">
+            scissors
+          </a>
+
+          <div id="hands">
+            <div class="hand" id="computer-hand">
+              <div class="fist"></div>
+              <div class="finger finger-1"></div>
+              <div class="finger finger-2"></div>
+              <div class="finger finger-3"></div>
+              <div class="finger finger-4"></div>
+              <div class="thumb"></div>
+              <div class="arm"></div>
+            </div>
+      
+            <div class="hand" id="user-hand">
+              <div class="fist"></div>
+              <div class="finger finger-1"></div>
+              <div class="finger finger-2"></div>
+              <div class="finger finger-3"></div>
+              <div class="finger finger-4"></div>
+              <div class="thumb"></div>
+              <div class="arm"></div>
+            </div>
+            
+            <div id="icons">
+              <div>
+                <label for="rock-rock">✊</label>
+                <label for="paper-rock">✊</label>
+                <label for="scissors-rock">✊</label>
+              </div>
+              <div>
+                <label for="rock-paper">🖐️</label>
+                <label for="paper-paper">🖐️</label>
+                <label for="scissors-paper">🖐️</label>
+              </div>
+              <div>
+                <label for="rock-scissors">✌</label>
+                <label for="paper-scissors">✌</label>
+                <label for="scissors-scissors">✌</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div id="message">
+          <h2></h2>
+          <input type="reset" value="Refresh Round" />
+        </div>
+      
+      </form>
+    
+</body>
+</html>
+
+
+
+<style>
+
+
+    @import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+    
+    @keyframes changeOrder {
+      from { z-index: 9;}
+      to { z-index: 1; }
+    }
+    
+    @keyframes handShake {
+      0%,100% { transform: rotate(10deg); }
+      50% { transform: rotate(-10deg); }
+    }
+    
+    @keyframes handShake2 {
+      0%,100% { transform: rotateY(180deg) rotate(10deg); }
+      50% { transform: rotateY(180deg) rotate(-10deg); }
+    }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      line-height: 1;
+      font-family: Acme, Arial, sans-serif;
+    
+    background-color: #222222;
+      background: repeating-linear-gradient(
+          45deg,
+          #2b2b2b 0%,
+          #2b2b2b 10%,
+          #222222 0%,
+          #222222 50%
+        )
+        0 / 15px 15px;
+    
+    }
+    
+    form {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    
+    #hands {
+      text-align: center;
+    }
+    
+    input:checked ~ div .hand {
+      animation: none !important;
+    }
+    
+    .hand {
+      margin: 20px;
+      width: 200px;
+      height: 200px;
+      position: relative;
+      transform: rotate(10deg);
+      display: inline-block;
+      animation: handShake 2s infinite;
+    }
+    
+    .hand > div {
+      position: absolute;
+      box-sizing: border-box;
+      border: 2px solid black;
+      background: gold;
+      transition: all 0.1s;
+    }
+    
+    .fist {
+      height: 110px;
+      left: 40px;
+      top: 50px;
+      width: 90px;
+      border-radius: 20px 0 0 20px;
+    }
+    
+    .finger {
+      width: 70px;
+      height: 30px;
+      border-radius: 20px;
+      left: 80px;
+      transform-origin: 0 50%;
+    }
+    
+    .finger-1 { top: 50px; --dif: 0px; }
+    .finger-2 { top: 78px; left: 84px; --dif: 4px; }
+    .finger-3 { top: 106px; --dif: 0px; }
+    .finger-4 { top: 134px; height: 26px; left: 76px; --dif: -8px; }
+    
+    div.thumb {
+      width: 35px;
+      height: 70px;
+      
+      border-radius: 0 20px 20px 20px;
+      top: 50px;
+      left: 80px;
+      border-left: 0 solid;
+      box-shadow: -17px 6px 0 -15px black;
+    }
+    
+    div.arm {
+      width: 22px;
+      height: 70px;
+      left: 20px;
+      top: 70px;
+      border: 0;
+      border-top: 2px solid black;
+      border-bottom: 2px solid black;
+    }
+    
+    #user-hand {
+      transform: rotateY(180deg);
+      animation: handShake2 2s infinite;
+      position: relative;
+    }
+    
+    input[type="radio"] {
+      position: absolute;
+      top: -1000in;
+      left: -1000in;
+    }
+    
+    input[id$="scissors"]:checked ~ div #user-hand .finger-1,
+    input[id^="scissors"]:checked ~ div #computer-hand .finger-1 {
+      width: 130px;
+      transform:rotate(-5deg);
+    }
+    
+    input[id$="scissors"]:checked ~ div #user-hand .finger-2,
+    input[id^="scissors"]:checked ~ div #computer-hand .finger-2 {
+      width: 130px;
+      transform:rotate(5deg);
+    }
+    
+    input[id$="paper"]:checked ~ div #user-hand .finger-1,
+    input[id$="paper"]:checked ~ div #user-hand .finger-2,
+    input[id$="paper"]:checked ~ div #user-hand .finger-3,
+    input[id$="paper"]:checked ~ div #user-hand .finger-4,
+    input[id^="paper"]:checked ~ div #computer-hand .finger-1,
+    input[id^="paper"]:checked ~ div #computer-hand .finger-2,
+    input[id^="paper"]:checked ~ div #computer-hand .finger-3,
+    input[id^="paper"]:checked ~ div #computer-hand .finger-4 {
+      left: 124px;
+      left: calc(124px + var(--dif));
+      width: 80px;
+      border-left: 0;
+      border-radius: 0 20px 20px 0;
+    }
+    
+    #rock-rock:checked ~ div h2::before,
+    #paper-paper:checked ~ div h2::before,
+    #scissors-scissors:checked ~ div h2::before {
+      content: "You Tied!"
+    }
+    #rock-paper:checked ~ div h2::before,
+    #paper-scissors:checked ~ div h2::before,
+    #scissors-rock:checked ~ div h2::before {
+      content: "You Win!"
+    }
+    #rock-scissors:checked ~ div h2::before,
+    #paper-rock:checked ~ div h2::before,
+    #scissors-paper:checked ~ div h2::before {
+      content: "Computer Wins!"
+    }
+    
+    #message {
+      text-align: center;
+      display: none;
+    }
+    
+    input:checked ~ #message {
+      display: block;
+    }
+    
+    #hands {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #icons {
+      width: 30px;
+      height: 200px;
+      display: inline-flex;
+      flex-direction: column;
+    }
+    
+    #icons > div {
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    
+    label:active {
+      position:static; 
+      margin-left: 60px;
+    }
+    
+    label:active::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      z-index: 10;
+      height: 60px;
+    }
+    
+    
+    label {
+      animation: changeOrder 0.45s infinite linear;
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      cursor: pointer;
+      display: block;
+      height: 60px;
+      width: 60px;
+      line-height: 60px;
+      font-size: 2rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      user-select: none;
+    }
+    
+    label:nth-of-type(1) { animation-delay: -0.00s; }
+    label:nth-of-type(2) { animation-delay: -0.15s; }
+    label:nth-of-type(3) { animation-delay: -0.30s; }
+    
+
+    /*Neon*/
+a {
+  text-align: center;
+  font-size: 4em;
+  margin-bottom: 0;
+  margin-top: 0;
+  line-height: 1;
+  text-decoration: none;
+  color: #fff;
+}
+
+a:nth-child(1) {
+  font-family: Monoton;
+  animation: neon1 1.5s ease-in-out infinite alternate;
+}
+
+a:nth-child(2) {
+  font-family: Iceland;
+  animation: neon2 1.5s ease-in-out infinite alternate;
+}
+
+a:nth-child(3) {
+  font-family: Pacifico;
+  animation: neon3 1.5s ease-in-out infinite alternate;
+}
+
+a:nth-child(4) {
+  font-family: "Press Start 2P";
+  animation: neon4 1.5s ease-in-out infinite alternate;
+}
+
+a:nth-child(5) {
+  font-family: Audiowide;
+  animation: neon5 1.5s ease-in-out infinite alternate;
+}
+
+a:nth-child(6) {
+  font-family: Vampiro One;
+  animation: neon6 1.5s ease-in-out infinite alternate;
+}
+
+/*glow*/
+
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}
+
+@keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228dff,
+      0 0 70px #228dff, 0 0 80px #228dff, 0 0 100px #228dff, 0 0 150px #228dff;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228dff,
+      0 0 35px #228dff, 0 0 40px #228dff, 0 0 50px #228dff, 0 0 75px #228dff;
+  }
+}
+
+@keyframes neon3 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ffdd1b,
+      0 0 70px #ffdd1b, 0 0 80px #ffdd1b, 0 0 100px #ffdd1b, 0 0 150px #ffdd1b;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ffdd1b,
+      0 0 35px #ffdd1b, 0 0 40px #ffdd1b, 0 0 50px #ffdd1b, 0 0 75px #ffdd1b;
+  }
+}
+
+@keyframes neon4 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #b6ff00,
+      0 0 70px #b6ff00, 0 0 80px #b6ff00, 0 0 100px #b6ff00, 0 0 150px #b6ff00;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #b6ff00,
+      0 0 35px #b6ff00, 0 0 40px #b6ff00, 0 0 50px #b6ff00, 0 0 75px #b6ff00;
+  }
+}
+
+@keyframes neon5 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff9900,
+      0 0 70px #ff9900, 0 0 80px #ff9900, 0 0 100px #ff9900, 0 0 150px #ff9900;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff9900,
+      0 0 35px #ff9900, 0 0 40px #ff9900, 0 0 50px #ff9900, 0 0 75px #ff9900;
+  }
+}
+
+@keyframes neon6 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de,
+      0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de,
+      0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+  }
+}
+/*Make stuff responsive*/
+
+@media (max-width: 650px) {
+  p {
+    font-size: 3.5em;
+  }
+}
+   
+
+</style>
