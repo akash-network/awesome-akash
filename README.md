@@ -35,6 +35,9 @@ Awesome DeFi apps you can deploy on Akash
 - [Ren Protocol](renprotocol)
 - [yfii](yfii)
 
+### Blockchain
+
+- [Substrate Node](substrate-node)
 
 ### Blogging
 
