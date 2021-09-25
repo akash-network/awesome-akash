@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  jekyll:
+    image: jekyll/builder
+    expose:
+      - as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    jekyll:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        jekyll: 
+          denom: uakt
+          amount: 1000
+
+deployment:
+  jekyll:
+    westcoast:
+      profile: jekyll
+      count: 1
