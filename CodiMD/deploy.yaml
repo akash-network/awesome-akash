@@ -60,10 +60,10 @@ profiles:
           amount: 5000
 
 deployment:
-    db:
-  westcoast: 
-      profile: db
-    count: 1
+   db:
+      westcoast: 
+        profile: db
+        count: 1
   codimd:
     westcoast:
       profile: codimd
