@@ -3,11 +3,16 @@ version: "2.0"
 
 services:
   web:
-    image: odiovock/akash-azure-devops-agent
+    image: odiovock/akash-azure-devops-agent:0.1.1
     env:
       - "AZP_URL=<Your_Azure_URL>"
       - "AZP_TOKEN=<Your_Azure_Token>"
       - "AZP_AGENT_NAME=<Agent_Name>"
+    expose:
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
 
 profiles:
   compute:

@@ -7,6 +7,8 @@ An azure devops agent can be used in azure devops pipelines to build and deploy 
 Here is the docker image used by the template:
 https://github.com/Odiovock/akash-azure-devops-agent
 
+The port `3000` is not really needed. It was added because the providers were giving this error otherwise: `invalid manifest: zero global services`
+
 ## Environment Variables
 
 These environment variables can be set in the `env` section of the SDL file.
