@@ -111,4 +111,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Chat
 - [Mattermost](mattermost)
 
+### Machine Learning
+- [Jupyter Notebook](jupyter)
+
 ### Video Conferencing
