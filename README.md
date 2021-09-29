@@ -105,6 +105,9 @@ Awesome DeFi apps you can deploy on Akash
 ### Media
 - [FreeFlix Nucleus](freeflix-nucleus)
 
+### Peer-to-peer File Sharing
+- [qBittorrent](qbittorrent)
+
 ### Data Visualization
 - [UFO Sightings](ufo-data-vis)
 
