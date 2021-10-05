@@ -14,6 +14,48 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
+### Peer-to-peer File Sharing
+
+- [qBittorrent](qbittorrent)
+
+### Blogging
+
+- [SteemCN](steemcn)
+- [Ghost](ghost)
+- [Grav](Grav)
+- [Wordpress](wordpress)
+- [Confluence](confluence)
+- [Drupal](drupal)
+- [Wiki.js](wikijs)
+
+### Built with Cosmos-SDK
+
+- [Dharani](Dharani)
+- [Big Dipper](big-dipper)
+
+### Chat
+
+- [Mattermost](mattermost)
+
+### Continuous Integration
+
+- [Jenkins](jenkins)
+- [Bitbucket](bitbucket)
+
+### Data Visualization
+
+- [UFO Sightings](ufo-data-vis)
+
+### Databases and Administration
+
+- [pgAdmin](pgadmin4)
+- [mongoDB](mongoDB)
+- [postgresSQL](postgres)
+- [adminer](adminer)
+- [MySQL](MySQL)
+- [CouchDB](couchdb)
+- [InfluxDB](influxdb)
+
 ### DeFi
 
 Awesome DeFi apps you can deploy on Akash
@@ -35,17 +77,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Ren Protocol](renprotocol)
 - [yfii](yfii)
 
-
-### Blogging
-
-- [SteemCN](steemcn)
-- [Ghost](ghost)
-- [Grav](Grav)
-- [Wordpress](wordpress)
-- [Confluence](confluence)
-- [Drupal](drupal)
-- [Wiki.js](wikijs)
-
 ### Games
 
 - [Minecraft](minecraft)
@@ -58,33 +89,32 @@ Awesome DeFi apps you can deploy on Akash
 - [DOOM](doom)
 - [Snake Game](snake-game)
 
-### Databases and Administration
-
-- [pgAdmin](pgadmin4)
-- [mongoDB](mongoDB)
-- [postgresSQL](postgres)
-- [adminer](adminer)
-- [MySQL](MySQL)
-- [CouchDB](couchdb)
-- [InfluxDB](influxdb)
-
 ### Hosting
 
 - [Caddy](caddy)
 - [Grafana](grafana)
 - [IPFS](ipfs)
 
-### Continuous Integration
+### Machine Learning
 
-- [Jenkins](jenkins)
-- [Bitbucket](bitbucket)
+- [Jupyter Notebook](jupyter)
+
+### Media
+
+- [FreeFlix Nucleus](freeflix-nucleus)
+
+### Metasearch Engine
+
+- [Whoogle Search](whoogle-search)
 
 ### Project Management
+
 - [Jira Software](jira)
 - [Redmine](redmine)
 - [Kanboard](kanboard)
 
 ### Tools
+
 - [DEGO Stats](dego-stats)
 - [authsteem](authsteem)
 - [microbox](microbox)
@@ -97,30 +127,11 @@ Awesome DeFi apps you can deploy on Akash
 - [Matomo](matomo)
 - [Zammad](zammad)
 
+### Video Conferencing
+
+- Your project can be the first!
+
 ### Wallet
+
 - [MyetherWallet](MyetherWallet)
 - [tronwallet](tronwallet)
-
-### Built with Cosmos-SDK
-- [Dharani](Dharani)
-- [Big Dipper](big-dipper)
-
-### Media
-- [FreeFlix Nucleus](freeflix-nucleus)
-
-### Peer-to-peer File Sharing
-- [qBittorrent](qbittorrent)
-
-### Data Visualization
-- [UFO Sightings](ufo-data-vis)
-
-### Chat
-- [Mattermost](mattermost)
-
-### Machine Learning
-- [Jupyter Notebook](jupyter)
-
-### Metasearch Engine
-- [Whoogle Search](whoogle-search)
-
-### Video Conferencing
