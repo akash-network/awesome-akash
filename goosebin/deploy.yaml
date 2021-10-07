@@ -1,0 +1,57 @@
+---
+version: "2.0"
+
+services:
+  goosebin:
+    image: ghcr.io/ovrclk/goosebin:20210902b
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+  redis:
+    image: redis:6.2.5
+    expose:
+      - port: 6379
+    
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 128Mi
+        storage:
+          size: 128Mi
+    storage:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 128Mi
+  placement:
+    akash-verified:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        web: 
+          denom: uakt
+          amount: 3000
+        storage:
+          denom: uakt
+          amount: 3000
+
+deployment:
+  goosebin:
+    akash-verified:
+      profile: web
+      count: 1
+  redis:
+    akash-verified:
+      profile: storage
+      count: 1
