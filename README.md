@@ -78,6 +78,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Jenkins](jenkins)
 - [Bitbucket](bitbucket)
+- [Azure Devops Agent](azure-devops-agent)
 
 ### Project Management
 - [Jira Software](jira)
