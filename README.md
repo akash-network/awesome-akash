@@ -130,6 +130,7 @@ Awesome DeFi apps you can deploy on Akash
 - [dart-hello](dart)
 - [Matomo](matomo)
 - [Zammad](zammad)
+- [KnowYourDeFi](knowyourdefi)
 
 ### Video Conferencing
 
