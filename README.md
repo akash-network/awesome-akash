@@ -77,6 +77,21 @@ Awesome DeFi apps you can deploy on Akash
 - [Ren Protocol](renprotocol)
 - [yfii](yfii)
 
+### Blockchain
+
+- [Substrate Node](substrate-node)
+
+### Blogging
+
+- [SteemCN](steemcn)
+- [Ghost](ghost)
+- [Grav](Grav)
+- [Wordpress](wordpress)
+- [Confluence](confluence)
+- [Drupal](drupal)
+- [Wiki.js](wikijs)
+
+
 ### Games
 
 - [Minecraft](minecraft)
