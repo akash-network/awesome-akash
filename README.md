@@ -67,6 +67,7 @@ Awesome DeFi apps you can deploy on Akash
 - [MySQL](MySQL)
 - [CouchDB](couchdb)
 - [InfluxDB](influxdb)
+- [Php-Phymyadmin-Mysql](https://github.com/Developer-piyush/awesome-akash/tree/master/secret-message-Frontend-backend)
 
 ### Hosting
 
