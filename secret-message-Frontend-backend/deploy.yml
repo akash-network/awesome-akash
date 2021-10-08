@@ -11,7 +11,7 @@ services:
       - "MYSQL_USER=root"
       - "MYSQL_PASSWORD=pass"
       - "MYSQL_DB=moe_db"
-      - "dom=Put_your_domain_here_and_update"
+      - "dom=Put_your_akash_uri_here_and_update"
     expose:
       - port: 80
         as: 80
