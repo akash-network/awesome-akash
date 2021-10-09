@@ -96,6 +96,7 @@ Awesome DeFi apps you can deploy on Akash
 - [dart-hello](dart)
 - [Matomo](matomo)
 - [Zammad](zammad)
+- [Code-Server](code-server)
 
 ### Wallet
 - [MyetherWallet](MyetherWallet)
