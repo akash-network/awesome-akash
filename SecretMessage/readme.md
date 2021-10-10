@@ -12,9 +12,7 @@
 
 # Youtube: [click here](https://youtu.be/0tRC5VwLqAU)
 
-# App link: [Click here](http://vfns3fm5lpb0na9vqqkrl4lns0.ingress.provider-0.prod.sjc1.akash.pub/)
-
-# Send me anonymous message: [click here](http://vfns3fm5lpb0na9vqqkrl4lns0.ingress.provider-0.prod.sjc1.akash.pub//message.php?name=0x20f19cdd7d89a2b9113d6a4ce29189f94259cdda)
+# Code: [Click here](https://github.com/Developer-piyush/SecretWeb3)
 
 # Step by step deploy:
 1) copy paste deploy.yml file on akash cloud
