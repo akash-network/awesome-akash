@@ -146,6 +146,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Matomo](matomo)
 - [Zammad](zammad)
 - [KnowYourDeFi](knowyourdefi)
+- [Code-Server](code-server)
 
 ### Video Conferencing
 
