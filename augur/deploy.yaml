@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  augur:
     image: augurproject/augur
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    augur:
       resources:
         cpu:
           units: 0.1
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        augur: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  augur:
     akash:
-      profile: web
+      profile: augur
       count: 1

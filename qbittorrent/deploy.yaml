@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  qbittorrent:
     image: ghcr.io/spacepotahto/qbittorrent:1.0.0
     expose:
       - port: 8080
@@ -20,7 +20,7 @@ services:
 
 profiles:
   compute:
-    web:
+    qbittorrent:
       resources:
         cpu:
           units: 1.0
@@ -32,12 +32,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        qbittorrent: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  qbittorrent:
     akash:
-      profile: web
+      profile: qbittorrent
       count: 1

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  dharani:
     image: saisunkari19/dharani:1.0
     expose:
       - port: 80
@@ -14,7 +14,7 @@ services:
 
 profiles:
   compute:
-    web:
+    dharani:
       resources:
         cpu:
           units: 1.0
@@ -25,12 +25,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        dharani: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  dharani:
     akash:
-      profile: web
+      profile: dharani
       count: 1

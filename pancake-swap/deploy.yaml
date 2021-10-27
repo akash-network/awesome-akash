@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  pancakeswap:
     image: yuravorobei/pancake-swap
     expose:
       - port: 8080
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    pancakeswap:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        pancakeswap: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  pancakeswap:
     akash:
-      profile: web
+      profile: pancakeswap
       count: 1

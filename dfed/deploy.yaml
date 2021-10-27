@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  dfed:
     image: jiananxu/dfed:v1
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    dfed:
       resources:
         cpu:
           units: 0.1
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        dfed: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  dfed:
     akash:
-      profile: web
+      profile: dfed
       count: 1

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  authsteem:
     image: steemfans/authsteem
     expose:
       - port: 8080
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    authsteem:
       resources:
         cpu:
           units: 0.1
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        authsteem:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  authsteem:
     akash:
-      profile: web
+      profile: authsteem
       count: 1

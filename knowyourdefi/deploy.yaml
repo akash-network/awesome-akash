@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  knowyourdefi:
     image: minatofund/knowyourdefi:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    knowyourdefi:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        knowyourdefi: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  knowyourdefi:
     akash:
-      profile: web
+      profile: knowyourdefi
       count: 1 

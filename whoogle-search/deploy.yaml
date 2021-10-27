@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  whoogle:
     image: benbusby/whoogle-search:latest
     # See https://github.com/benbusby/whoogle-search for full list of supported environment variables
     env:
@@ -16,7 +16,7 @@ services:
 
 profiles:
   compute:
-    web:
+    whoogle:
       resources:
         cpu:
           units: 1.0
@@ -27,12 +27,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        whoogle: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  whoogle:
     akash:
-      profile: web
+      profile: whoogle
       count: 1

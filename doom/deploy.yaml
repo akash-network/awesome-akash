@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  doom:
     image: raviforbole/doom:akash
     env:
       - "VNC_USER=akash"
@@ -15,7 +15,7 @@ services:
 
 profiles:
   compute:
-    web:
+    doom:
       resources:
         cpu:
           units: 1.0
@@ -26,12 +26,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        doom:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  doom:
     akash:
-      profile: web
+      profile: doom
       count: 1

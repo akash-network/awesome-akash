@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  ipfs:
     image: linuxserver/ipfs:version-v2.12.4
     expose:
       - port: 80
@@ -24,7 +24,7 @@ services:
 
 profiles:
   compute:
-    web:
+    ipfs:
       resources:
         cpu:
           units: 2.0
@@ -35,12 +35,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        ipfs:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  ipfs:
     akash:
-      profile: web
+      profile: ipfs
       count: 1

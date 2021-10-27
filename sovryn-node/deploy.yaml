@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  sovryn:
     image: nrm55/sovryn-node:latest
     env:
       - WHICHNET=
@@ -22,7 +22,7 @@ services:
 
 profiles:
   compute:
-    web:
+    sovryn:
       resources:
         cpu:
           units: 1.0
@@ -33,12 +33,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        sovryn:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  sovryn:
     akash:
-      profile: web
+      profile: sovryn
       count: 1

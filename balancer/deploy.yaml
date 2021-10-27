@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  balancer:
     image: stephendefi/balancer:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    balancer:
       resources:
         cpu:
           units: 0.1
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        balancer:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  balancer:
     akash:
-      profile: web
+      profile: balancer
       count: 1

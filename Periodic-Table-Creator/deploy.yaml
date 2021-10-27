@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  perio:
     image: perioo/perio:v1
     expose:
       - port: 8501
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    perio:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        perio:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  perio:
     akash:
-      profile: web
+      profile: perio
       count: 1

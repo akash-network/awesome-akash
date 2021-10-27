@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  ufoweb:
     image: wlouie1/ufo-data-vis:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    ufoweb:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        ufoweb: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  ufoweb:
     akash:
-      profile: web
+      profile: ufoweb
       count: 1

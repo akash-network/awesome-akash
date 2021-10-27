@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  sushiswap:
     image: fishflyhuang/sushiswap:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    sushiswap:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        sushiswap:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  sushiswap:
     akash:
-      profile: web
+      profile: sushiswap
       count: 1

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  mintr:
     image: yykpk0923/mintr:v2
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    mintr:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        mintr: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  mintr:
     akash:
-      profile: web
+      profile: mintr
       count: 1

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  synthetix:
     image: selchenkov/synthetix.exchange:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    synthetix:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        synthetix:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  synthetix:
     akash:
-      profile: web
+      profile: synthetix
       count: 1

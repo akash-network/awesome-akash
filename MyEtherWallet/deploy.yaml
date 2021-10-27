@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  myetherwallet:
     image: jialei12138/myetherwallet:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    myetherwallet:
       resources:
         cpu:
           units: 1.0
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        myetherwallet: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  myetherwallet:
     akash:
-      profile: web
+      profile: myetherwallet
       count: 1

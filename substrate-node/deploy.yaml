@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  substrate:
     image: ubinix5warun/substrate-node:v3-dev
     expose:
       - port: 9944
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    substrate:
       resources:
         cpu:
           units: 1.0
@@ -28,7 +28,7 @@ profiles:
           amount: 100
 
 deployment:
-  web:
+  substrate:
     akash:
-      profile: web
+      profile: substrate
       count: 1

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  serumui:
     image: ovrclk/serum-dex-ui
     expose:
       - port: 5000
@@ -14,7 +14,7 @@ services:
 
 profiles:
   compute:
-    web:
+    serumui:
       resources:
         cpu:
           units: 1.0
@@ -25,12 +25,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        serumui: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  serumui:
     akash:
-      profile: web
+      profile: serumui
       count: 1

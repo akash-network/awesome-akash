@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  bancor:
     image: sueinz/bancor:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    bancor:
       resources:
         cpu:
           units: 0.1
@@ -23,12 +23,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web:
+        bancor:
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  bancor:
     akash:
-      profile: web
+      profile: bancor
       count: 1

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  ffnucleus:
     image: harish1551/ff_nucleus:latest
     expose:
       - port: 80
@@ -14,7 +14,7 @@ services:
 
 profiles:
   compute:
-    web:
+    ffnucleus:
       resources:
         cpu:
           units: 0.1
@@ -25,13 +25,13 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        ffnucleus: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  ffnucleus:
     akash:
-      profile: web
+      profile: ffnucleus
       count: 1
 

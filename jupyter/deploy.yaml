@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  jupyter:
     # There are many other Jupyter images you can choose from here: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
     image: jupyter/tensorflow-notebook
     expose:
@@ -13,7 +13,7 @@ services:
 
 profiles:
   compute:
-    web:
+    jupyter:
       resources:
         cpu:
           units: 2.0
@@ -24,12 +24,12 @@ profiles:
   placement:
     akash:
       pricing:
-        web: 
+        jupyter: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
+  jupyter:
     akash:
-      profile: web
+      profile: jupyter
       count: 1
