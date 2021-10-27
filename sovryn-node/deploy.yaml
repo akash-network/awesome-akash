@@ -32,6 +32,9 @@ profiles:
           size: 512Mi
   placement:
     akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         sovryn:
           denom: uakt
