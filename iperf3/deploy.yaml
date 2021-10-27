@@ -21,22 +21,20 @@ profiles:
     iperf:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 16Mi
         storage:
           size: 128Mi
   placement:
-    westcoast:
-      attributes:
-        host: akash
+    akash:
       pricing:
         iperf: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
   iperf:
-    westcoast:
+    akash:
       profile: iperf
       count: 1

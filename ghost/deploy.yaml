@@ -3,36 +3,35 @@ version: "2.0"
 
 services:
   ghost:
-    image: ghost
+    image: ghost:4.20.4
     expose:
       - port: 2368
         as: 80
         to:
           - global: true
+        accept:
+          - mysite123.com
+    env:
+      - "url=http://mysite123.com"
 profiles:
   compute:
     ghost:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 5Gi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         ghost: 
           denom: uakt
-          amount: 2000
+          amount: 100
 
 deployment:
   ghost:
-    westcoast:
+    akash:
       profile: ghost
       count: 1

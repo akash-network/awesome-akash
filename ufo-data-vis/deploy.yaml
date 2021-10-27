@@ -15,25 +15,20 @@ profiles:
     web:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         web: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
   web:
-    westcoast:
+    akash:
       profile: web
       count: 1

@@ -30,39 +30,34 @@ profiles:
     db:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
-          size: 256Mi
+          size: 512Mi
         storage:
           size: 512Mi
     matomo:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
-          size: 256Mi
+          size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         db:
           denom: uakt
-          amount: 1000
+          amount: 100
         matomo:
           denom: uakt
-          amount: 1000
+          amount: 100
 deployment:
   db:
-    westcoast:
+    akash:
       profile: db
       count: 1
   matomo:
-    westcoast:
+    akash:
       profile: matomo
       count: 1

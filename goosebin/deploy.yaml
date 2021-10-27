@@ -34,24 +34,21 @@ profiles:
         storage:
           size: 128Mi
   placement:
-    akash-verified:
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         web: 
           denom: uakt
-          amount: 3000
+          amount: 100
         storage:
           denom: uakt
-          amount: 3000
+          amount: 100
 
 deployment:
   goosebin:
-    akash-verified:
+    akash:
       profile: web
       count: 1
   redis:
-    akash-verified:
+    akash:
       profile: storage
       count: 1

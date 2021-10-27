@@ -3,9 +3,9 @@ version: "2.0"
 
 services:
   web:
-    image: yykpk0923/mintr:v2
+    image: google/dart-hello
     expose:
-      - port: 80
+      - port: 8080
         as: 80
         to:
           - global: true
@@ -21,19 +21,15 @@ profiles:
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         web: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
   web:
-    westcoast:
+    akash:
       profile: web
       count: 1
+

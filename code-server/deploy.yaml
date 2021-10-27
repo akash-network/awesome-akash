@@ -18,25 +18,20 @@ profiles:
     codeserver:
       resources:
         cpu:
-          units: 2
+          units: 2.0
         memory:
           size: 4Gi
         storage:
           size: 1Gi
   placement:
-    westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+    akash:
       pricing:
         codeserver:
           denom: uakt
-          amount: 8000
+          amount: 100
 deployment:
   codeserver:
-    westcoast:
+    akash:
       profile: codeserver
       count: 1
 

@@ -18,23 +18,20 @@ profiles:
     couchdb:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 1Gi
   placement:
-    westcoast:
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         couchdb: 
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
   couchdb:
-    westcoast:
+    akash:
       profile: couchdb
       count: 1

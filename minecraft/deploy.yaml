@@ -28,19 +28,14 @@ profiles:
         storage:
           size: 8Gi
   placement:
-    westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         web:
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
   web:
-    westcoast:
+    akash:
       profile: web
       count: 1

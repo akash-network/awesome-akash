@@ -49,12 +49,7 @@ profiles:
         storage:
           size: 2Gi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    akash:
       pricing:
         web:
           denom: uakt
@@ -65,10 +60,10 @@ profiles:
 
 deployment:
   web:
-    westcoast:
+    akash:
       profile: web
       count: 1
   mongo:
-    westcoast:
+    akash:
       profile: mongo
       count: 1

@@ -28,7 +28,7 @@ profiles:
     cron:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 1Gi
         storage:
@@ -36,27 +36,27 @@ profiles:
     postgres:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 1Gi
   placement:
-    dcloud:
+    akash:
       pricing:
         cron:
           denom: uakt
-          amount: 10
+          amount: 100
         postgres:
           denom: uakt
-          amount: 10
+          amount: 100
 
 deployment:
   cron:
-    dcloud:
+    akash:
       profile: cron
       count: 1
   postgres:
-    dcloud:
+    akash:
       profile: postgres
       count: 1

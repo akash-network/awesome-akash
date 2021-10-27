@@ -15,26 +15,20 @@ profiles:
     web:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        host: akash
-        # datacenter: equinix-metal-ewr1
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63" # cant change it!
+    akash:
       pricing:
         substrate: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
   web:
-    westcoast:
+    akash:
       profile: web
       count: 1

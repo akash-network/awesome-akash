@@ -25,20 +25,20 @@ profiles:
     web:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
+    akash:
       pricing:
         web:
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
   web:
-    westcoast:
+    akash:
       profile: web
       count: 1
