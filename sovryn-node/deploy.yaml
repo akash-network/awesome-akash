@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  sovryn:
     image: nrm55/sovryn-node:latest
     env:
       - WHICHNET=
@@ -22,23 +22,26 @@ services:
 
 profiles:
   compute:
-    web:
+    sovryn:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        sovryn:
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  sovryn:
+    akash:
+      profile: sovryn
       count: 1

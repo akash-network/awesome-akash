@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  ipfs:
     image: linuxserver/ipfs:version-v2.12.4
     expose:
       - port: 80
@@ -24,26 +24,26 @@ services:
 
 profiles:
   compute:
-    web:
+    ipfs:
       resources:
         cpu:
-          units: 2
+          units: 2.0
         memory:
           size: 4Gi
         storage:
           size: 1Gi
   placement:
-    westcoast:
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        ipfs:
           denom: uakt
-          amount: 10000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  ipfs:
+    akash:
+      profile: ipfs
       count: 1

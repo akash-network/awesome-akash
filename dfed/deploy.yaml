@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  dfed:
     image: jiananxu/dfed:v1
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    dfed:
       resources:
         cpu:
           units: 0.1
@@ -21,19 +21,17 @@ profiles:
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        dfed: 
           denom: uakt
-          amount: 3000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  dfed:
+    akash:
+      profile: dfed
       count: 1

@@ -4,8 +4,8 @@ Check out the [Project site](https://github.com/DistributedCollective/Sovryn-Nod
 
 The `deploy.yaml` uses an [unofficial Docker image](https://hub.docker.com/r/nrm55/sovryn-node) at-the-moment. Please read below for tips on deploying to Akash. There is a video of me running through this process [here](https://youtu.be/Iinsjgolmu8).
 
-### First: Setup envrionment variables first, edit deploy.yml's env block:
-Your `env:` block in `deploy.yml` should look much like this. Addresses need to be properly checksummed, and wallets are web3keyfiles.
+### First: Setup envrionment variables first, edit deploy.yaml's env block:
+Your `env:` block in `deploy.yaml` should look much like this. Addresses need to be properly checksummed, and wallets are web3keyfiles.
 ```
       - WHICHNET=test
       - KEYPW=T3stS0vryn
@@ -22,7 +22,7 @@ Your `env:` block in `deploy.yml` should look much like this. Addresses need to 
 Please watch the video if any of these steps are confusing. Refer to Akash for missing stuff, you'll need to create your cert, get some envrionment variables setup (AKASH_NODE, AKASH_CHAIN_ID, KEY_NAME, KEY_BACKEND, ...)
 1. create deployment, get DSEQ into $DSEQ
 ```
-akash tx deployment create akash-deploy.yml --from $KEY_NAME --keyring-backend $KEYRING_BACKEND --node $AKASH_NODE --chain-id $AKASH_CHAIN_ID -y --fees 5000uakt
+akash tx deployment create akash-deploy.yaml --from $KEY_NAME --keyring-backend $KEYRING_BACKEND --node $AKASH_NODE --chain-id $AKASH_CHAIN_ID -y --fees 5000uakt
 ```
 2. check bids
 ```
@@ -38,7 +38,7 @@ akash query market lease list --owner $ACCOUNT_ADDRESS --node $AKASH_NODE --dseq
 ```
 5. upload our manifest, wait for spinup
 ```
-akash provider send-manifest akash-deploy.yml --keyring-backend $KEYRING_BACKEND --node $AKASH_NODE --from=$KEY_NAME --provider=$PROVIDER --dseq $DSEQ --log_level=info --home ~/.akash
+akash provider send-manifest akash-deploy.yaml --keyring-backend $KEYRING_BACKEND --node $AKASH_NODE --from=$KEY_NAME --provider=$PROVIDER --dseq $DSEQ --log_level=info --home ~/.akash
 ```
 6. check the lease status
 ```

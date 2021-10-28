@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  bancor:
     image: sueinz/bancor:latest
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    bancor:
       resources:
         cpu:
           units: 0.1
@@ -21,19 +21,17 @@ profiles:
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        bancor:
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  bancor:
+    akash:
+      profile: bancor
       count: 1

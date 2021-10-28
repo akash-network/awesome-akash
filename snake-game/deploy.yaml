@@ -28,7 +28,7 @@ profiles:
     snake:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 512Mi
         storage:
@@ -36,32 +36,30 @@ profiles:
     mongo:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 128Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         snake: 
           denom: uakt
-          amount: 9000
+          amount: 100
         mongo: 
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
   snake:
-    westcoast:
+    akash:
       profile: snake
       count: 1
   mongo:
-    westcoast:
+    akash:
       profile: mongo
       count: 1

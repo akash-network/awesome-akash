@@ -2,41 +2,36 @@
 version: "2.0"
 
 services:
-  web:
-    image: raviforbole/doom:akash
-    env:
-      - "VNC_USER=akash"
-      - "VNC_PW=decloud"
+  kanboard:
+    image: kanboard/kanboard:v1.2.8
     expose:
-      - port: 8443
-        as: 8443
+      - port: 80
+        as: 80
         to:
           - global: true
 
 profiles:
   compute:
-    web:
+    kanboard:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
-          size: 0.5Gi
+          size: 512Mi
         storage:
-          size: 1Gi
+          size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        kanboard: 
           denom: uakt
           amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  kanboard:
+    akash:
+      profile: kanboard
       count: 1

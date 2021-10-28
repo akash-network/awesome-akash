@@ -14,25 +14,23 @@ profiles:
     grav:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         grav:
           denom: uakt
-          amount: 300
+          amount: 100
 
 deployment:
   grav:
-    westcoast:
+    akash:
       profile: grav
       count: 1

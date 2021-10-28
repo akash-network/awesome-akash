@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  whoogle:
     image: benbusby/whoogle-search:latest
     # See https://github.com/benbusby/whoogle-search for full list of supported environment variables
     env:
@@ -16,28 +16,26 @@ services:
 
 profiles:
   compute:
-    web:
+    whoogle:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 1Gi
   placement:
-    westcoast:
-      attributes:
-        host: akash
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        whoogle: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  whoogle:
+    akash:
+      profile: whoogle
       count: 1

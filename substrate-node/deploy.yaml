@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  substrate:
     image: ubinix5warun/substrate-node:v3-dev
     expose:
       - port: 9944
@@ -12,29 +12,26 @@ services:
 
 profiles:
   compute:
-    web:
+    substrate:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        host: akash
-        # datacenter: equinix-metal-ewr1
+    akash:
       signedBy:
         anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63" # cant change it!
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         substrate: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  substrate:
+    akash:
+      profile: substrate
       count: 1

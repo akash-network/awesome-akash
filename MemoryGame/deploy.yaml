@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  memorygame:
     image: jungpilyu/memorygame
     expose:
       - port: 80
@@ -11,28 +11,26 @@ services:
           - global: true
 profiles:
   compute:
-    web:
+    memorygame:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 2Gi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        memorygame: 
           denom: uakt
-          amount: 9000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  memorygame:
+    akash:
+      profile: memorygame
       count: 1
