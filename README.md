@@ -45,6 +45,8 @@ Awesome DeFi apps you can deploy on Akash
 - [Confluence](confluence)
 - [Drupal](drupal)
 - [Wiki.js](wikijs)
+- [Jekyll](jekyll)
+- [Nextjs](Nextjs)
 
 ### Games
 
