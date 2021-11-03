@@ -13,7 +13,7 @@ services:
     expose:
       - port: 3306
         to:
-          - servcie: matomo
+          - service: matomo
   matomo:
     image: matomo:apache
     depends-on:
