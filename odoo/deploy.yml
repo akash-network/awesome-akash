@@ -1,0 +1,67 @@
+---
+version: "2.0"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+      
+  odoo:
+    image: odoo
+    depends_on:
+      - db
+    expose:
+      - port: 8069
+        to:
+          - global: true
+    tty: true
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+
+profiles:
+  compute:
+    db:
+      resources:
+        cpu:
+          units: 1 
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    odoo:
+      resources:
+        cpu:
+          units: 1 
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      attributes:
+        organization: ovrclk.com
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        db: 
+          denom: uakt
+          amount: 5000
+        odoo: 
+          denom: uakt
+          amount: 5000
+
+deployment:
+  db:
+    westcoast:
+      profile: db
+      count: 1 
+  odoo:
+    westcoast:
+      profile: odoo
+      count: 1 
