@@ -1,0 +1,59 @@
+---
+version: "2.0"
+
+services:
+  chia:
+    image: ghcr.io/chia-network/chia:latest
+    expose:
+      - port: 8444
+        as: 8444
+        proto: tcp
+        to:
+          - global: true
+#    env:
+      # Farmer Only
+#     - farmer=true
+      # Harvester Only
+#     - harvester=true
+#     - farmer_address=192.168.0.10 
+#     - farmer_port=8447
+#     - ca=/path/in/container
+#     - keys=copy
+      # Harvester Only END
+      # If you would like to add keys manually via mnemonic file
+#     - keys=/path/in/container
+      # OR
+      # Disable key generation on start
+#     - keys=
+#     - TZ=${TZ}
+      # Enable UPnP
+#     - upnp=true
+      # Enable log file generation
+#     - log_to_file=true
+
+profiles:
+  compute:
+    chia:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 4096Mi
+#Chia blockchain is currently ~40gb as of November 2021
+        storage:
+          size: 64Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        chia:
+          denom: uakt
+          amount: 100
+
+deployment:
+  chia:
+    akash:
+      profile: chia
+      count: 1
