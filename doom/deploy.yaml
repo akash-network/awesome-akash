@@ -2,35 +2,39 @@
 version: "2.0"
 
 services:
-  owncloud:
-    image: owncloud 
+  doom:
+    image: raviforbole/doom:akash
+    env:
+      - "VNC_USER=akash"
+      - "VNC_PW=decloud"
     expose:
-      - port: 80
+      - port: 8443
+        as: 8443
         to:
           - global: true
 
 profiles:
   compute:
-    owncloud:
+    doom:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
-          size: 1Gi
+          size: 0.5Gi
         storage:
-          size: 2Gi
+          size: 1Gi
   placement:
-    westcoast:
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        owncloud: 
+        doom:
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
-  owncloud:
-    westcoast:
-      profile: owncloud
+  doom:
+    akash:
+      profile: doom
       count: 1

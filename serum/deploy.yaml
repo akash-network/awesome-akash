@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  serumui:
     image: ovrclk/serum-dex-ui
     expose:
       - port: 5000
@@ -14,28 +14,26 @@ services:
 
 profiles:
   compute:
-    web:
+    serumui:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        serumui: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  serumui:
+    akash:
+      profile: serumui
       count: 1

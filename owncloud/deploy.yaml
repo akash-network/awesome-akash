@@ -1,0 +1,36 @@
+---
+version: "2.0"
+
+services:
+  owncloud:
+    image: owncloud 
+    expose:
+      - port: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    owncloud:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 2Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        owncloud: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  owncloud:
+    akash:
+      profile: owncloud
+      count: 1

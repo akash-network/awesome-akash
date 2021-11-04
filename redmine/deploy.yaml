@@ -31,7 +31,7 @@ profiles:
     db:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 512Mi
         storage:
@@ -40,28 +40,31 @@ profiles:
     redmine:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 1Gi
           
   placement:
-    westcoast:    
+    akash:    
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         db: 
           denom: uakt
-          amount: 5000
+          amount: 100
         redmine: 
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
   db:
-    westcoast:
+    akash:
       profile: db
       count: 1
   redmine:
-    westcoast:
+    akash:
       profile: redmine
       count: 1

@@ -2,8 +2,8 @@
 version: "2.0"
 
 services:
-  web:
-    image: kanboard/kanboard:v1.2.8
+  knowyourdefi:
+    image: minatofund/knowyourdefi:latest
     expose:
       - port: 80
         as: 80
@@ -12,28 +12,26 @@ services:
 
 profiles:
   compute:
-    web:
+    knowyourdefi:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        datacenter: equinix-metal-ewr1
+    akash:
       signedBy:
         anyOf:
-           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        knowyourdefi: 
           denom: uakt
-          amount: 10
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
-      count: 1
+  knowyourdefi:
+    akash:
+      profile: knowyourdefi
+      count: 1 

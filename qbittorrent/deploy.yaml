@@ -1,0 +1,46 @@
+---
+version: "2.0"
+
+services:
+  qbittorrent:
+    image: ghcr.io/spacepotahto/qbittorrent:1.0.0
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+      - port: 6881
+        as: 6881
+        to:
+          - global: true
+      - port: 5000
+        as: 5000
+        to:
+          - global: true
+
+profiles:
+  compute:
+    qbittorrent:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          # Specify [<Expected Total Files Download Size> + 1]Gi
+          size: 2Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        qbittorrent: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  qbittorrent:
+    akash:
+      profile: qbittorrent
+      count: 1

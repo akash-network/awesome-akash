@@ -2,17 +2,17 @@
 version: "2.0"
 
 services:
-  web:
-    image: edouardl/thorchain-bepswap-web-ui
+  dart:
+    image: google/dart-hello
     expose:
-      - port: 5000
+      - port: 8080
         as: 80
         to:
           - global: true
 
 profiles:
   compute:
-    web:
+    dart:
       resources:
         cpu:
           units: 0.1
@@ -21,19 +21,18 @@ profiles:
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        dart:
           denom: uakt
-          amount: 3000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  dart:
+    akash:
+      profile: dart
       count: 1
+

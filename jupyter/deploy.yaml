@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  jupyter:
+    # There are many other Jupyter images you can choose from here: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
+    image: jupyter/tensorflow-notebook
+    expose:
+      - port: 8888
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    jupyter:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 10Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        jupyter: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  jupyter:
+    akash:
+      profile: jupyter
+      count: 1

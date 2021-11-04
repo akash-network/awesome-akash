@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  dharani:
+    image: saisunkari19/dharani:1.0
+    expose:
+      - port: 80
+        as: 80
+        accept:
+          - "dcloud.dharani.multiverse.tk"
+        to:
+          - global: true
+
+profiles:
+  compute:
+    dharani:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        dharani: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  dharani:
+    akash:
+      profile: dharani
+      count: 1

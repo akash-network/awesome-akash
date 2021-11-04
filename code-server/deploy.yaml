@@ -1,42 +1,40 @@
----
-version: "2.0"
-
+version: '2.0'
 services:
-  web:
-    image: raviforbole/doom:akash
+  codeserver:
+    image: ghcr.io/linuxserver/code-server
     env:
-      - "VNC_USER=akash"
-      - "VNC_PW=decloud"
+      - PUID=1000
+      - PGID=1000
+      - PASSWORD=password 
+      - SUDO_PASSWORD=password
+
     expose:
       - port: 8443
-        as: 8443
+        as: 80
         to:
           - global: true
-
 profiles:
   compute:
-    web:
+    codeserver:
       resources:
         cpu:
-          units: 1
+          units: 2.0
         memory:
-          size: 0.5Gi
+          size: 4Gi
         storage:
           size: 1Gi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        codeserver:
           denom: uakt
           amount: 100
-
 deployment:
-  web:
-    westcoast:
-      profile: web
+  codeserver:
+    akash:
+      profile: codeserver
       count: 1
+

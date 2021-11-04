@@ -14,23 +14,23 @@ profiles:
     wordpress:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 2Gi
   placement:
-    westcoast:
+    akash:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         wordpress: 
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
   wordpress:
-    westcoast:
+    akash:
       profile: wordpress
       count: 1

@@ -12,8 +12,8 @@ services:
       - BACKUP_SECRET=SECRET
       - BACKUP_PASSPHRASE=passphrase
     depends_on:
-      - service: postgres
-  postgres:
+      - service: postgres-restore
+  postgres-restore:
     image: postgres:12.6
     env:
       - POSTGRES_PASSWORD=password
@@ -28,35 +28,38 @@ profiles:
     cron:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 1Gi
-    postgres:
+    postgres-restore:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 1Gi
   placement:
-    dcloud:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         cron:
           denom: uakt
-          amount: 10
-        postgres:
+          amount: 100
+        postgres-restore:
           denom: uakt
-          amount: 10
+          amount: 100
 
 deployment:
   cron:
-    dcloud:
+    akash:
       profile: cron
       count: 1
-  postgres:
-    dcloud:
-      profile: postgres
+  postgres-restore:
+    akash:
+      profile: postgres-restore
       count: 1
