@@ -1,0 +1,70 @@
+---
+version: "2.0"
+
+services:
+  db:
+    image: postgres:11.6-alpine
+    env:
+      - POSTGRES_USER=codimd
+      - POSTGRES_PASSWORD=change_password
+      - POSTGRES_DB=codimd
+    expose:
+        - port: 3306
+          as: 3306
+        to: 
+            - service: db
+  codimd:
+    image: hackmdio/hackmd:2.4.1
+    env:
+      - CMD_DB_URL=postgres://codimd:change_password@database/codimd
+      - CMD_USECDN=false
+    depends-on:
+      - db
+    expose: 
+        - port: 3000
+          as: 3000
+        to:
+            - global: true
+
+profiles:
+  compute:
+      db:
+        resources:
+          cpu:
+            units: 0.5
+        memory:
+            size: 512Mi
+        storage:
+            size: 512Mi
+    codimd:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+          db:
+            denom: uakt
+          amount: 5000
+        codimd: 
+          denom: uakt
+          amount: 5000
+
+deployment:
+   db:
+      westcoast: 
+        profile: db
+        count: 1
+  codimd:
+    westcoast:
+      profile: codimd
+      count: 1
