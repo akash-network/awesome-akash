@@ -1,0 +1,96 @@
+---
+version: "2.0"
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    env:
+      - POSTGRES_USER=discourse_user
+      - POSTGRES_PASSWORD=your_preferred_password
+      - POSTGRES_DB=discourse
+
+    expose:
+      - port: 5432
+        to:
+          - service: discourse
+  redis:
+    image: "redis:alpine"
+    command: redis-server
+
+    expose:
+      - port: 6379
+        to:
+          - service: discourse
+  discourse:
+    image: spiritbro1/discourse
+    depends-on:
+        - postgres
+        - redis
+    env:
+      - smtp_address=in-v3.mailjet.com
+      - smtp_port=587
+      - smtp_username=<your smtp username you get from mailjet>
+      - smtp_password=<your smtp username you get from mailjet>
+      - db_name=discourse
+      - db_username=discourse_user
+      - db_password=your_preferred_password
+      - developer_emails=<your email account to be used as an admin for discourse>
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+      
+
+
+profiles:
+  compute:
+    postgres:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    redis:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    discourse:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 5Gi
+  placement:
+    akash:
+      pricing:
+        postgres:
+          denom: uakt
+          amount: 100
+        discourse:
+          denom: uakt
+          amount: 100
+        redis:
+          denom: uakt
+          amount: 100
+deployment:
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
+  discourse:
+    akash:
+      profile: discourse
+      count: 1
+  redis:
+    akash:
+      profile: redis
+      count: 1
