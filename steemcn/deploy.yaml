@@ -27,7 +27,6 @@ profiles:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash1nxq8gmsw2vlz3m68qvyvcf3kh6q269ajvqw6y0"
       pricing:
         steemcn:
           denom: uakt
