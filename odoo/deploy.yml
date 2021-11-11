@@ -44,7 +44,7 @@ profiles:
   placement:
     westcoast:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
