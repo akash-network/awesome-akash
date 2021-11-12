@@ -3,22 +3,27 @@ version: "2.0"
 
 services:
   db:
-    image: postgres
-    environment:
+    image: postgres:latest
+    expose:
+      - port: 5432
+        proto: tcp
+        to:
+          - service: odoo
+    env:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - POSTGRES_DB=postgres
       
   odoo:
-    image: odoo
+    image: odoo:latest
     depends_on:
       - db
     expose:
       - port: 8069
         to:
           - global: true
-    tty: true
-    environment:
+    # tty: true
+    env:
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
@@ -51,10 +56,10 @@ profiles:
       pricing:
         db: 
           denom: uakt
-          amount: 5000
+          amount: 100
         odoo: 
           denom: uakt
-          amount: 5000
+          amount: 100
 
 deployment:
   db:

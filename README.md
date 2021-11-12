@@ -14,6 +14,10 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
+### Social
+
+- [Discourse](discourse)
+
 ### Peer-to-peer File Sharing
 
 - [qBittorrent](qbittorrent)
