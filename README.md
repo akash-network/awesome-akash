@@ -106,19 +106,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Snake Game](snake-game)
 
 
-### Databases and Administration
-
-- [pgAdmin](pgadmin4)
-- [mongoDB](mongoDB)
-- [postgresSQL](postgres)
-- [adminer](adminer)
-- [MySQL](MySQL)
-- [CouchDB](couchdb)
-- [InfluxDB](influxdb)
-- [SecretMessage](SecretMessage)
-
-=======
-
 ### Hosting
 
 - [Caddy](caddy)
