@@ -1,0 +1,36 @@
+---
+version: "2.0"
+
+services:
+  raptoreum:
+    image: cryptoandcoffee/cpu-cpuminer-gr-avx2
+    expose:
+      - port: 4048
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    command: "-a gr -o stratum+tcps://us.flockpool.com:5555 -u RMB251ZucvCNyX1yoQqsSC2wwJ3s7fHx3b.east -p x --tune-full --donation=0"
+
+profiles:
+  compute:
+    raptoreum:
+      resources:
+        cpu:
+          units: 10.0
+        memory:
+          size: 128Mi
+        storage:
+          size: 256Mi
+  placement:
+    akash:
+      pricing:
+        raptoreum:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  raptoreum:
+    akash:
+      profile: raptoreum
+      count: 10
