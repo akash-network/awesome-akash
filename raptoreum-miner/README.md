@@ -44,7 +44,7 @@ After your deployment has finished tuning or is displaying results on the pool y
 
 We recommend you check MiningPoolStats for the most up-to-date list of mining pools.
 
-[https://miningpoolstats.stream/raptoreum](https://miningpoolstats.stream/raptoreum)
+[Mining Pool Stats](https://miningpoolstats.stream/raptoreum)
 
 # Windows and Mac Users :
 
