@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   raptoreum:
-    image: cryptoandcoffee/cpu-cpuminer-gr-avx2
+    image: cryptoandcoffee/cpu-akash-cpuminer-gr-avx2:1
     expose:
       - port: 4048
         as: 80
@@ -21,9 +21,9 @@ profiles:
     raptoreum:
       resources:
         cpu:
-          units: 6.0
+          units: 1.0
         memory:
-          size: 32Mi
+          size: 256Mi
         storage:
           size: 128Mi
   placement:
@@ -31,7 +31,7 @@ profiles:
       pricing:
         raptoreum:
           denom: uakt
-          amount: 25
+          amount: 10
 
 deployment:
   raptoreum:
