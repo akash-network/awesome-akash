@@ -6,6 +6,18 @@ Welcome Raptoreum miners! Akash offers a global marketplace of compute with thou
 
 You must change the wallet address in `env` variables in deploy.yaml.  Additional settings like TUNE and DONATION are available as well.
 
+# Windows and Mac Users :
+
+1. [Follow our Quick Start Guide](https://docs.akash.network/guides/deploy)
+2. Edit the deploy.yaml file with your wallet address.
+3. Deploy and manage your deployment with [Akashlytics](https://akashlytics.com/deploy)
+
+# Linux Users
+
+1.  Follow our [Bootstrap Start Guide](https://github.com/ovrclk/akash-wallet-handler)
+2.  Edit the deploy.yaml file with your wallet address.
+3.  Deploy and manage your deployment with [Akashlytics](https://akashlytics.com/deploy)
+
 # How to speed up mining?
 
 ## Change the `TUNE=no-tune` variable in deploy..yaml to `TUNE=full-tune`
@@ -38,7 +50,8 @@ deployment:
 # Check your profitability
 
 After your deployment has finished tuning or is displaying results on the pool you can check your profitability by inputing your hashrate from the log file.
-[https://minerstat.com/coin/RTM](Minerstat profitability calculator)
+
+[Minerstat profitability calculator](https://minerstat.com/coin/RTM)
 
 # What is the best pool? Where do I solo mine?
 
@@ -46,14 +59,3 @@ We recommend you check MiningPoolStats for the most up-to-date list of mining po
 
 [Mining Pool Stats](https://miningpoolstats.stream/raptoreum)
 
-# Windows and Mac Users :
-
-1. [Follow our Quick Start Guide](https://docs.akash.network/guides/deploy)
-2. Edit the deploy.yaml file with your wallet address.
-3. Deploy and manage your deployment with [Akashlytics](https://akashlytics.com/deploy)
-
-# Linux Users
-
-1.  Follow our [Bootstrap Start Guide](https://github.com/ovrclk/akash-wallet-handler)
-2.  Edit the deploy.yaml file with your wallet address.
-3.  Deploy and manage your deployment with [Akashlytics](https://akashlytics.com/deploy)
