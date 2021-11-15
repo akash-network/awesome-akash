@@ -20,7 +20,9 @@ You must change the wallet address in `env` variables in deploy.yaml.  Additiona
 
 # How to speed up mining?
 
-## Change the `TUNE=no-tune` variable in deploy..yaml to `TUNE=full-tune`
+## Change the tuning option
+
+`TUNE=no-tune` variable in deploy.yaml to `TUNE=full-tune`
 
 No tune will start mining right away - with no performance tuning of the container.  Without this expect a lower hashrate.
 Be warned, tuning can take at least 3 hours before mining begins - so do not expect to see hashrate on the pool immediately.
