@@ -1,6 +1,6 @@
-## How to mine Raptoreum (RTM) on Akash Network
+# How to mine Raptoreum (RTM) on Akash Network
 
-### deploy.yaml
+![AkashMiningRTM](https://user-images.githubusercontent.com/19512127/142096150-971db969-59db-43d0-a570-017f6801813a.png)
 
 Welcome Raptoreum miners! Akash offers a global marketplace of compute with thousands of CPU's ready for small and large deployments.
 
