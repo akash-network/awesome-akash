@@ -38,7 +38,7 @@ profiles:
         cpu:
           units: 4.0
         memory:
-          size: 4096Mi
+          size: 6Gi
 #Chia blockchain is currently ~40gb as of November 2021
         storage:
           size: 64Gi
