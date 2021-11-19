@@ -42,6 +42,48 @@ Once you have setup your Keplr wallet and imported the address to Akashlytics yo
 
 When prompted to `Choose Template` select `Empty` as we will copy-and-paste the deploy.yaml file from this repository.
 Choose `Empty` for the template and paste the `deploy.yaml` file from this repository adjusting your wallet address and pool variables.
+```
+---
+version: "2.0"
+
+services:
+  raptoreum:
+    image: cryptoandcoffee/cpu-akash-cpuminer-gr-avx2:1
+    expose:
+      - port: 4048
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - "ADDRESS=RMB251ZucvCNyX1yoQqsSC2wwJ3s7fHx3b"
+      - "POOL=us.flockpool.com:5555"
+      - "WORKER=akash"
+      - "TUNE=no-tune"
+      - "DONATION=0"
+profiles:
+  compute:
+    raptoreum:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 256Mi
+        storage:
+          size: 128Mi
+  placement:
+    akash:
+      pricing:
+        raptoreum:
+          denom: uakt
+          amount: 10
+
+deployment:
+  raptoreum:
+    akash:
+      profile: raptoreum
+      count: 1
+```
 
 # Choosing a provider
 
