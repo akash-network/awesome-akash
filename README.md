@@ -132,9 +132,10 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Mining
 
+- [Chia](chia)
 - [Monero](monero)
-- [Raptoreum](raptoreum-miner)
 - [pkt.cash](https://github.com/ovrclk/pkt-miner)
+- [Raptoreum](raptoreum-miner)
 
 ### Project Management
 
