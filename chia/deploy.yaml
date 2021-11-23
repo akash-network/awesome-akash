@@ -15,8 +15,8 @@ services:
       - FARMERKEY=
       - REMOTE_HOST=changeme.com #SSH upload location
       - REMOTE_PORT=22 #SSH upload port
-      - REMOTE_PASS=changme #SSH upload password
       - REMOTE_USER=changeme #SSH upload user
+      - REMOTE_PASS=changme #SSH upload password
       - PLOTTER=madmax #Choose your plotter software - madmax/blade
 profiles:
   compute:
