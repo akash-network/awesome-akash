@@ -9,7 +9,7 @@ echo "Found CORES: $cores"
 
 mkdir -p /root/chia/final ; mkdir -p /root/chia/tmp2 ; mkdir -p /root/chia/tmp
 
-apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git ssh sshpass rsync screen
+apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git ssh sshpass rsync screen sudo
 rm -rf chia-blockchain
 git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules ; cd chia-blockchain
 sh install.sh ; . ./activate
@@ -28,7 +28,7 @@ ssh-keyscan -p ${REMOTE_PORT} ${REMOTE_HOST} >> ~/.ssh/known_hosts
 if [ ! -z $PLOTTER ]; then
 while :
 do
-sshpass -p "${REMOTE_PASS}" rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" root@${REMOTE_HOST}:/root/raid/plots
+sshpass -p "${REMOTE_PASS}" rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:/root/raid/plots
 if [[ ${PLOTTER} == "madmax" ]]; then
 chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
 elif [[ ${PLOTTER} == "blade" ]]; then
