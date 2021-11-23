@@ -1,7 +1,5 @@
 ## Chia on Akash
 
-![AkashMiningRTM](https://user-images.githubusercontent.com/19512127/142097004-8c662e9a-e52a-4c36-a4dd-28b9b2bc3795.png)
-
 # Why use Akash?
 
 Welcome [Chia](https://chia.com/) community! We are excited to announce support for Chia on the [Akash](https://akash.network) network!  You can now run farmers and plotters on our marketplace of compute.  Below you will find details on how to configure your deployment for different use cases.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
