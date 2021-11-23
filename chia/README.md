@@ -2,7 +2,7 @@
 
 # Why use Akash?
 
-Welcome [Chia](https://chia.com/) community! We are excited to announce support for Chia on the [Akash](https://akash.network) network!  You can now run farmers and plotters on our marketplace of compute.  Below you will find details on how to configure your deployment for different use cases.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
+Welcome [Chia](https://www.chia.net/) community! We are excited to announce support for Chia on the [Akash](https://akash.network) network!  You can now run farmers and plotters on our marketplace of compute.  Below you will find details on how to configure your deployment for different use cases.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
 
 # Windows/Linux/Mac Users
 
