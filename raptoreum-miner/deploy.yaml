@@ -12,7 +12,7 @@ services:
           - global: true
     env:
       - "ADDRESS=RMB251ZucvCNyX1yoQqsSC2wwJ3s7fHx3b"
-      - "POOL=supernova"
+      - "POOL=suprnova"
       - "WORKER=akash"
       - "TUNE=no-tune"
       - "DONATION=0"
