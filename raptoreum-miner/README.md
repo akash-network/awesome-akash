@@ -30,10 +30,13 @@ To fund your deployment you will need AKT in your account.  The fastest way to d
 
 ## Swap from `ATOM` to `AKT`
 1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en)
-2. Send 10 ATOM to your new Cosmos wallet address (this address will start with `cosmos`)
-3. Goto https://app.osmosis.zone/assets > next to `Cosmos Hub - ATOM` click on `Deposit`
-4. Now go back to https://app.osmosis.zone/ and select `ATOM > AKT` to complete the swap
-5. Return to the https://app.osmosis.zone/assets page to withdraw your AKT to your Keplr wallet
+2. Send 10 ATOM to your new Cosmos wallet address inside Keplr (this address will start with `cosmos`)
+3. Goto [Osmosis Assets](https://app.osmosis.zone/assets) > next to `Cosmos Hub - ATOM` click on `Deposit`
+   This step deposits ATOM from your Keplr wallet onto the Osmosis platform.
+5. Now go back to [Osmosis Homepage](https://app.osmosis.zone/assets) and select `ATOM > AKT` to complete the swap
+   This step swaps your ATOM you deposited onto the Osmosis platform into any other supported coin.
+7. Return to the [Osmosis Assets](https://app.osmosis.zone/assets) page to withdraw your AKT to your Keplr wallet
+   This step withdraws AKT from the Osmosis platform back into your Keplr wallet.  You can now send AKT to Akashlytics.
 
 Have more questions? Find our team in [Discord](https://discord.com/invite/DxftX67) and [Telegram](https://t.me/AkashNW)
 
