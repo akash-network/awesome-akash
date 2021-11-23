@@ -34,7 +34,7 @@ profiles:
       pricing:
         chia:
           denom: uakt
-          amount: 50
+          amount: 100
 
 deployment:
   chia:
