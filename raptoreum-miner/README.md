@@ -9,7 +9,7 @@ Welcome [Raptoreum](https://raptoreum.com/) miners! [Akash](https://akash.networ
 # Windows/Linux/Mac Users
 
 1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en) wallet as a browser plugin
-2. Install [Akashlytics](https://akashlytics.com/deploy) and import your AKT wallet address from Keplr. 
+2. Install [Akashlytics](https://akashlytics.com/deploy) and import your AKT wallet address from Keplr.
 3. [Fund your wallet](#Quickest-way-to-get-more-AKT)
 
 For additional help we recommend you [follow our full deployment guide](https://docs.akash.network/guides/deploy) in parallel with this guide.
@@ -52,7 +52,7 @@ version: "2.0"
 
 services:
   raptoreum:
-    image: cryptoandcoffee/cpu-akash-cpuminer-gr-avx2:1
+    image: cryptoandcoffee/cpu-akash-cpuminer-gr-avx2:2
     expose:
       - port: 4048
         as: 80
@@ -61,7 +61,7 @@ services:
           - global: true
     env:
       - "ADDRESS=RMB251ZucvCNyX1yoQqsSC2wwJ3s7fHx3b"
-      - "POOL=us.flockpool.com:5555"
+      - "POOL=supernova" #You can enter custom pool here, otherwise suprnova nearest location will be used
       - "WORKER=akash"
       - "TUNE=no-tune"
       - "DONATION=0"
