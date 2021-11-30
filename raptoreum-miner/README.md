@@ -61,7 +61,7 @@ services:
           - global: true
     env:
       - "ADDRESS=RMB251ZucvCNyX1yoQqsSC2wwJ3s7fHx3b"
-      - "POOL=supernova" #You can enter custom pool here, otherwise suprnova nearest location will be used
+      - "POOL=suprnova" #You can enter custom pool here, otherwise suprnova nearest location will be used
       - "WORKER=akash"
       - "TUNE=no-tune"
       - "DONATION=0"
@@ -80,7 +80,7 @@ profiles:
       pricing:
         raptoreum:
           denom: uakt
-          amount: 10
+          amount: 2
 
 deployment:
   raptoreum:
@@ -94,6 +94,10 @@ deployment:
 Akash is a marketplace of compute.  Providers set their own prices for compute resources.  We recommend you try different providers and check your logs after deployment to determine the hashrate.
 
 ![AkashlyticsBids](https://user-images.githubusercontent.com/19512127/142057801-5091473e-a9c3-4994-9e13-f1b1b1658491.png)
+
+# Not getting any bids?
+
+Akash providers bid in real-time on your deployment.  If the default of `amount: 2` UAKT is not producing any bids, consider adjusting it to something higher like `amount: 10` to get new bids from providers.
 
 # How to speed up mining?
 

@@ -31,7 +31,7 @@ profiles:
       pricing:
         raptoreum:
           denom: uakt
-          amount: 10
+          amount: 2
 
 deployment:
   raptoreum:
