@@ -62,6 +62,8 @@ services:
       - "POOL=pool.hashvault.pro:80"
       - "RANDOMX_MODE=auto" #accepts auto-fast-light
       - "RANDOMX_1GB=true"
+      - "TLS=true" #If supported by pool
+      - "TLS_FINGERPRINT=420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14" #Can be blank
 profiles:
   compute:
     xmrig:
@@ -69,9 +71,9 @@ profiles:
         cpu:
           units: 1.0
         memory:
-          size: 512Mi
+          size: 1Gi
         storage:
-          size: 256Mi
+          size: 1Gi
   placement:
     akash:
       pricing:
