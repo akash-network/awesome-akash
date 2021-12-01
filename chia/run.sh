@@ -28,10 +28,11 @@ ssh-keyscan -p ${REMOTE_PORT} ${REMOTE_HOST} >> ~/.ssh/known_hosts
 if [ ! -z $PLOTTER ]; then
 while :
 do
-sshpass -p "${REMOTE_PASS}" rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:/root/raid/plots
+sshpass -p ${REMOTE_PASS} rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_LOCATION}
 if [[ ${PLOTTER} == "madmax" ]]; then
 chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
 elif [[ ${PLOTTER} == "blade" ]]; then
+apt-get install -y libgmp3-dev
 chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
 else
 chia plots create -k $SIZE -n $COUNT -r $THREADS -b $MEMORY -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR

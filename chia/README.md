@@ -55,13 +55,14 @@ services:
         to:
           - global: true
     env:
-      - CONTRACT=
-      - FARMERKEY=
-      - REMOTE_HOST=changeme.com #SSH upload location
-      - REMOTE_PORT=22 #SSH upload port
-      - REMOTE_USER=changeme #SSH upload user
-      - REMOTE_PASS=changme #SSH upload password
-      - PLOTTER=madmax #Choose your plotter software - madmax/blade
+    - CONTRACT=
+    - FARMERKEY=
+    - REMOTE_HOST=changeme.com #SSH upload host
+    - REMOTE_LOCATION=changeme #SSH upload location like /root/plots
+    - REMOTE_PORT=22 #SSH upload port
+    - REMOTE_USER=changeme #SSH upload user
+    - REMOTE_PASS=changme #SSH upload password
+    - PLOTTER=madmax #Choose your plotter software - madmax/blade
 profiles:
   compute:
     chia:

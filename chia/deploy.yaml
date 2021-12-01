@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:4
+    image: cryptoandcoffee/akash-chia:5
     expose:
       - port: 8444
         as: 8444
@@ -13,7 +13,8 @@ services:
     env:
       - CONTRACT=
       - FARMERKEY=
-      - REMOTE_HOST=changeme.com #SSH upload location
+      - REMOTE_HOST=changeme.com #SSH upload host
+      - REMOTE_LOCATION=changeme #SSH upload location like /root/plots
       - REMOTE_PORT=22 #SSH upload port
       - REMOTE_USER=changeme #SSH upload user
       - REMOTE_PASS=changme #SSH upload password
