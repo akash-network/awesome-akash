@@ -1,8 +1,6 @@
-## [How to mine Monero on Akash Network](https://nixaid.com/mine-monero-akash)
-
 # Why use Akash?
 
-Welcome [xmrig](https://xmrig.com/) and [Monero](https://getmonero.org)miners! [Akash](https://akash.network) is a decentralized marketplace of compute with thousands of CPU's ready for small and large deployments.  xmrig mining can be deployed on the network successfully using this guide.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
+Welcome [xmrig](https://xmrig.com/) and [Monero](https://getmonero.org) miners! [Akash](https://akash.network) is a decentralized marketplace of compute with thousands of CPU's ready for small and large deployments.  xmrig mining can be deployed on the network successfully using this guide.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
 
 # Windows/Linux/Mac Users
 
@@ -140,9 +138,9 @@ Or increase the replica count from `count: 1` to `count: 2`.
 
 ```
 deployment:
-  raptoreum:
+  xmrig:
     akash:
-      profile: raptoreum
+      profile: xmrig
       count: 1 # Multiplier for cpu:units
 ```
 
@@ -166,3 +164,7 @@ After your deployment has finished tuning or is displaying results on the pool y
 We recommend you check MiningPoolStats for the most up-to-date list of mining pools.
 
 [Mining Pool Stats](https://miningpoolstats.stream/monero)
+
+# Additional guides
+
+[How to mine Monero on Akash Network](https://nixaid.com/mine-monero-akash)
