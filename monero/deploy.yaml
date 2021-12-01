@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   xmrig:
-    image: andrey01/xmrig:latest
+    image: cryptoandcoffee/akash-xmrig:1
     expose:
       - port: 8080
         as: 80
@@ -11,32 +11,28 @@ services:
         to:
           - global: true
     env:
-      - "ADDRESS=4Aw4WuWPUvjgiZA11EMJUjQciyR38VcY2WKvLqjwX1r8DAb2YB3UmC3aUHUg8A8PhudPyexVdGpqbjA5dswkPU5NAAMa2cw"
-      - "POOL=pool.minexmr.com:443"
-      - "MODE=light"
-
+      - "ADDRESS=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
+      - "POOL=pool.hashvault.pro:80"
+      - "RANDOMX_MODE=auto" #accepts auto-fast-light
+      - "RANDOMX_1GB=true"
+      - "TLS=true" #If supported by pool
+      - "TLS_FINGERPRINT=420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14" #Can be blank
 profiles:
   compute:
     xmrig:
       resources:
         cpu:
-          units: 4.0
+          units: 1.0
         memory:
-          size: 512Mi
+          size: 1Gi
         storage:
-          size: 256Mi
+          size: 1Gi
   placement:
     akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         xmrig:
           denom: uakt
-          amount: 100
-
+          amount: 2
 deployment:
   xmrig:
     akash:
