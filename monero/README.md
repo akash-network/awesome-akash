@@ -1,11 +1,13 @@
 # Why use Akash?
 
-Welcome [xmrig](https://xmrig.com/) and [Monero](https://getmonero.org) miners! [Akash](https://akash.network) is a decentralized marketplace of compute with thousands of CPU's ready for small and large deployments.  xmrig mining can be deployed on the network successfully using this guide.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
+# Why use Akash?
+
+Welcome [xmrig](https://xmrig.com/) and [Monero](https://getmonero.org)miners! [Akash](https://akash.network) is a decentralized marketplace of compute with thousands of CPU's ready for small and large deployments.  xmrig mining can be deployed on the network successfully using this guide.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
 
 # Windows/Linux/Mac Users
 
 1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en) wallet as a browser plugin
-2. Install [Cloudmos](https://cloudmos.io/cloud-deploy) and import your AKT wallet address from Keplr.
+2. Install [Akashlytics](https://akashlytics.com/deploy) and import your AKT wallet address from Keplr.
 3. [Fund your wallet](#Quickest-way-to-get-more-AKT)
 
 For additional help we recommend you [follow our full deployment guide](https://docs.akash.network/guides/deploy) in parallel with this guide.
@@ -32,13 +34,13 @@ To fund your deployment you will need AKT in your account.  The fastest way to d
 5. Now go back to [Osmosis Homepage](https://app.osmosis.zone/assets) and select `ATOM > AKT` to complete the swap
    This step swaps your ATOM you deposited onto the Osmosis platform into any other supported coin.
 7. Return to the [Osmosis Assets](https://app.osmosis.zone/assets) page to withdraw your AKT to your Keplr wallet
-   This step withdraws AKT from the Osmosis platform back into your Keplr wallet.  You can now send AKT to Cloudmos.
+   This step withdraws AKT from the Osmosis platform back into your Keplr wallet.  You can now send AKT to Akashlytics.
 
 Have more questions? Find our team in [Discord](https://discord.com/invite/DxftX67) and [Telegram](https://t.me/AkashNW)
 
 # Deploying on Akash
 
-Once you have setup your Keplr wallet and imported the address to Cloudmos you are ready to create your first deployment.  Follow the instructions in Cloudmos to create a certificate, then click on `Create Deployment`
+Once you have setup your Keplr wallet and imported the address to Akashlytics you are ready to create your first deployment.  Follow the instructions in Akashlytics to create a certificate, then click on `Create Deployment`
 
 When prompted to `Choose Template` select `Empty` as we will copy-and-paste the deploy.yaml file from this repository.
 Choose `Empty` for the template and paste the `deploy.yaml` file from this repository adjusting your wallet address and pool variables.
@@ -60,8 +62,6 @@ services:
       - "POOL=pool.hashvault.pro:80"
       - "RANDOMX_MODE=auto" #accepts auto-fast-light
       - "RANDOMX_1GB=true"
-      - "TLS=true" #If supported by pool
-      - "TLS_FINGERPRINT=420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14" #Can be blank
 profiles:
   compute:
     xmrig:
@@ -69,9 +69,9 @@ profiles:
         cpu:
           units: 1.0
         memory:
-          size: 1Gi
+          size: 512Mi
         storage:
-          size: 1Gi
+          size: 256Mi
   placement:
     akash:
       pricing:
@@ -89,7 +89,7 @@ deployment:
 
 Akash is a marketplace of compute.  Providers set their own prices for compute resources.  We recommend you try different providers and check your logs after deployment to determine the hashrate.
 
-![Cloudmos Bids](https://user-images.githubusercontent.com/19512127/142057801-5091473e-a9c3-4994-9e13-f1b1b1658491.png)
+![AkashlyticsBids](https://user-images.githubusercontent.com/19512127/142057801-5091473e-a9c3-4994-9e13-f1b1b1658491.png)
 
 # How to speed up mining?
 
@@ -138,9 +138,9 @@ Or increase the replica count from `count: 1` to `count: 2`.
 
 ```
 deployment:
-  xmrig:
+  raptoreum:
     akash:
-      profile: xmrig
+      profile: raptoreum
       count: 1 # Multiplier for cpu:units
 ```
 
@@ -164,7 +164,3 @@ After your deployment has finished tuning or is displaying results on the pool y
 We recommend you check MiningPoolStats for the most up-to-date list of mining pools.
 
 [Mining Pool Stats](https://miningpoolstats.stream/monero)
-
-# Additional guides
-
-[How to mine Monero on Akash Network](https://nixaid.com/mine-monero-akash)
