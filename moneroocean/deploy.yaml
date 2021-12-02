@@ -1,0 +1,35 @@
+---
+version: "2.0"
+
+services:
+  xmrig:
+    image: cryptoandcoffee/akash-moneroocean:1
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - "WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
+profiles:
+  compute:
+    xmrig:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 256Mi
+  placement:
+    akash:
+      pricing:
+        xmrig:
+          denom: uakt
+          amount: 5
+deployment:
+  xmrig:
+    akash:
+      profile: xmrig
+      count: 1
