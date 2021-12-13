@@ -1,0 +1,35 @@
+---
+version: "2.0"
+
+services:
+  moneroocean:
+    image: cryptoandcoffee/akash-moneroocean:2
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K
+profiles:
+  compute:
+    moneroocean:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 4Gi
+        storage:
+          size: 4Gi
+placement:
+  akash:
+    pricing:
+      moneroocean:
+        denom: uakt
+        amount: 25
+deployment:
+  moneroocean:
+    akash:
+      profile: moneroocean
+      count: 1
