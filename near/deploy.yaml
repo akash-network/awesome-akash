@@ -1,0 +1,47 @@
+---
+version: "2.0"
+
+services:
+  nearup:
+    image: nearprotocol/nearup
+    args:
+      - run
+      # Validators should use the account ID of the account you want to stake with. leave empty if not going to be a validator
+      - --account-id=
+      # Types of network: mainnet, testnet, betanet, guildnet, localnet
+      - mainnet
+    expose:
+      - port: 3030
+        as: 3030
+        to:
+          - global: true
+
+profiles:
+  compute:
+    nearup:
+      resources:
+        # Near Nodes Minimal Hardware Specifications: 8 physical cores AND 8GB DDR4 RAM
+        cpu:
+          # Max cpu units is 10 on Akash
+          units: 8
+        memory:
+          size: 8Gi
+        storage:
+          size: 256Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        nearup:
+          denom: uakt
+          amount: 100
+
+deployment:
+  nearup:
+    akash:
+      profile: nearup
+      count: 1
