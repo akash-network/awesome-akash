@@ -1,10 +1,6 @@
-## How to mine Raptoreum (RTM) on Akash Network
-
-![AkashMiningRTM](https://user-images.githubusercontent.com/19512127/142097004-8c662e9a-e52a-4c36-a4dd-28b9b2bc3795.png)
-
 # Why use Akash?
 
-Welcome [Raptoreum](https://raptoreum.com/) miners! [Akash](https://akash.network) is a decentralized marketplace of compute with thousands of CPU's ready for small and large deployments.  Raptoreum mining can be deployed on the network successfully using this guide.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
+Welcome [MoneroOcean](https://moneroocean.stream/) and [Monero](https://getmonero.org) miners! This repository uses the default auto-switching installer from MoneroOcean, available [here](https://raw.githubusercontent.com/MoneroOcean/xmrig_setup/master/setup_moneroocean_miner.sh).  [Akash](https://akash.network) is a decentralized marketplace of compute with thousands of CPU's ready for small and large deployments.  MoneroOcean mining can be deployed on the network successfully using this guide.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
 
 # Windows/Linux/Mac Users
 
@@ -15,7 +11,7 @@ Welcome [Raptoreum](https://raptoreum.com/) miners! [Akash](https://akash.networ
 For additional help we recommend you [follow our full deployment guide](https://docs.akash.network/guides/deploy) in parallel with this guide.
 
 # How does this work?
-Akash uses its blockchain to manage your container deployment and accounting.  To deploy on Akash you will need to fund your wallet with at least 10 AKT (~$20)  Each time you create a deployment, 5 AKT will be used for escrow and to fund the deployment.  If the deployment is cancelled the balance of the escrow is returned to you.  You can spin up deployments without worrying about any long term contracts and you can cancel anytime.
+Akash uses its blockchain to manage your container deployment and accounting.  To deploy on Akash you will need to fund your wallet with at least 10 AKT (~$20)  Each time you create a deployment, 5 AKT will be used for escrow and to fund the deployment.  If the deployment is canceled the balance of the escrow is returned to you.  You can spin up deployments without worrying about any long term contracts and you can cancel anytime.
 
 # Default wallet
 Akash uses [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en) as the desktop wallet.  Advanced users can follow the [CLI instructions](https://docs.akash.network/guides/cli)
@@ -51,41 +47,36 @@ Choose `Empty` for the template and paste the `deploy.yaml` file from this repos
 version: "2.0"
 
 services:
-  raptoreum:
-    image: cryptoandcoffee/cpu-akash-cpuminer-gr-avx2:2
+  xmrig:
+    image: cryptoandcoffee/akash-moneroocean:1
     expose:
-      - port: 4048
+      - port: 8080
         as: 80
         proto: tcp
         to:
           - global: true
     env:
-      - "ADDRESS=RMB251ZucvCNyX1yoQqsSC2wwJ3s7fHx3b"
-      - "POOL=suprnova" #You can enter custom pool here, otherwise suprnova nearest location will be used
-      - "WORKER=akash"
-      - "TUNE=no-tune"
-      - "DONATION=0"
+      - "WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
 profiles:
   compute:
-    raptoreum:
+    xmrig:
       resources:
         cpu:
           units: 1.0
         memory:
-          size: 256Mi
+          size: 1Gi
         storage:
-          size: 128Mi
+          size: 256Mi
   placement:
     akash:
       pricing:
-        raptoreum:
+        xmrig:
           denom: uakt
-          amount: 2
-
+          amount: 5
 deployment:
-  raptoreum:
+  xmrig:
     akash:
-      profile: raptoreum
+      profile: xmrig
       count: 1
 ```
 
@@ -95,24 +86,20 @@ Akash is a marketplace of compute.  Providers set their own prices for compute r
 
 ![AkashlyticsBids](https://user-images.githubusercontent.com/19512127/142057801-5091473e-a9c3-4994-9e13-f1b1b1658491.png)
 
-# Not getting any bids?
+# Configure MoneroOcean options
 
-Akash providers bid in real-time on your deployment.  If the default of `amount: 2` UAKT is not producing any bids, consider adjusting it to something higher like `amount: 10` to get new bids from providers.
+You only need to configure your wallet address to use the MoneroOcean miner.  
+
+Here are all available variables:
+```
+WALLET=
+```
 
 # How to speed up mining?
-
-## Change the tuning option
-
-`TUNE=no-tune` variable in deploy.yaml to `TUNE=full-tune`
-
-No tune will start mining right away - with no performance tuning of the container.  Without this expect a lower hashrate.
-Be warned, tuning can take at least 3 hours before mining begins - so do not expect to see hashrate on the pool immediately.
-You can always check your logs in Akashlytics.
 
 ## Increase the deployment size on Akash
 
 You can deploy more CPU or more replicas to mine faster.
-
 
 ```
 cpu:
@@ -124,20 +111,26 @@ Or increase the replica count from `count: 1` to `count: 2`.
 
 ```
 deployment:
-  raptoreum:
+  xmrig:
     akash:
-      profile: raptoreum
+      profile: xmrig
       count: 1 # Multiplier for cpu:units
 ```
+
+### Check your miner's status
+
+Just enter your deployment URI at http://workers.xmrig.info
+
+### Check your miner's stats in the MoneroOcean pool
+
+Enter your Monero address to see the stats at https://moneroocean.stream/
 
 # Check your profitability
 
 After your deployment has finished tuning or is displaying results on the pool you can check your profitability by inputing your hashrate from the log file.
 
-[Minerstat profitability calculator](https://minerstat.com/coin/RTM)
+[Minerstat profitability calculator](https://minerstat.com/coin/XMR)
 
-# What is the best pool? Where do I solo mine?
+# Additional guides
 
-We recommend you check MiningPoolStats for the most up-to-date list of mining pools.
-
-[Mining Pool Stats](https://miningpoolstats.stream/raptoreum)
+[How to mine Monero on Akash Network](https://nixaid.com/mine-monero-akash)
