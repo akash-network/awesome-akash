@@ -47,7 +47,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:4
+    image: cryptoandcoffee/akash-chia:12
     expose:
       - port: 8444
         as: 8444
@@ -55,14 +55,14 @@ services:
         to:
           - global: true
     env:
-    - CONTRACT=
-    - FARMERKEY=
-    - REMOTE_HOST=changeme.com #SSH upload host
-    - REMOTE_LOCATION=changeme #SSH upload location like /root/plots
-    - REMOTE_PORT=22 #SSH upload port
-    - REMOTE_USER=changeme #SSH upload user
-    - REMOTE_PASS=changme #SSH upload password
-    - PLOTTER=madmax #Choose your plotter software - madmax/blade
+      - CONTRACT=
+      - FARMERKEY=
+      - REMOTE_HOST=changeme.com #SSH upload host
+      - REMOTE_LOCATION=changeme #SSH upload location like /root/plots
+      - REMOTE_PORT=22 #SSH upload port
+      - REMOTE_USER=changeme #SSH upload user
+      - REMOTE_PASS=changme #SSH upload password
+      - PLOTTER=madmax #Choose your plotter software - madmax/blade
 profiles:
   compute:
     chia:
@@ -79,7 +79,7 @@ profiles:
       pricing:
         chia:
           denom: uakt
-          amount: 50
+          amount: 100
 
 deployment:
   chia:
