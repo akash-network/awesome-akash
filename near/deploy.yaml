@@ -1,0 +1,48 @@
+---
+version: "2.0"
+
+services:
+  near:
+    image: nearprotocol/nearup
+    args:
+      # nearup instructions: https://github.com/near/nearup#using-the-official-binary
+      - run
+      # Leave account-id blank if you only want to run a regular chain node and *not* a validator
+      - --account-id=
+      # Choose one of available networks: 'mainnet', 'testnet', 'betanet', 'guildnet', 'localnet'
+      - localnet
+    expose:
+      # default near port
+      - port: 3030
+        as: 3030
+        to:
+          - global: true
+
+profiles:
+  compute:
+    near:
+      resources:
+        # Minimal Hardware Specifications: https://docs.near.org/docs/develop/node/rpc/hardware-rpc
+        cpu:
+          units: 8
+        memory:
+          size: 8Gi
+        storage:
+          size: 512Gi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        nearup:
+          denom: uakt
+          amount: 8
+
+deployment:
+  near:
+    westcoast:
+      profile: near
+      count: 1
