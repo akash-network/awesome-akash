@@ -6,8 +6,8 @@ services:
     image: spiritbro1/near-validator:testnet
     env:
       - NEAR_ENV=testnet
-      - SSH_PASS=youcantseeme
-      - ACCOUNT_ID=youcantseeme
+      - SSH_PASS=secret
+      - ACCOUNT_ID=spiritbro.pool.f863973.m0
     expose:
       - port: 3030
         as: 3030
@@ -23,11 +23,11 @@ profiles:
     near:
       resources:
         cpu:
-          units: 8
+          units: 4
         memory:
-          size: 8Gi
+          size: 16Gi
         storage:
-          size: 512Gi
+          size: 200Gi
   placement:
     westcoast:
       attributes:
@@ -35,7 +35,7 @@ profiles:
       pricing:
         near:
           denom: uakt
-          amount: 1
+          amount: 5000
 
 deployment:
   near:
