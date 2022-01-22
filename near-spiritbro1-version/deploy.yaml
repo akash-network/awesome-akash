@@ -7,8 +7,8 @@ services:
     env:
       - NEAR_ENV=testnet
       - SSH_PASS=youcantseeme
+      - ACCOUNT_ID=youcantseeme
     expose:
-      # default near port
       - port: 3030
         as: 3030
         to:
@@ -33,7 +33,7 @@ profiles:
       attributes:
         host: akash
       pricing:
-        nearup:
+        near:
           denom: uakt
           amount: 1
 
