@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  near:
+    image: spiritbro1/near-validator:testnet
+    env:
+      - NEAR_ENV=testnet
+      - SSH_PASS=youcantseeme
+    expose:
+      # default near port
+      - port: 3030
+        as: 3030
+        to:
+          - global: true
+      - port: 22
+        as: 22
+        to:
+          - global: true
+
+profiles:
+  compute:
+    near:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 8Gi
+        storage:
+          size: 512Gi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      pricing:
+        nearup:
+          denom: uakt
+          amount: 1
+
+deployment:
+  near:
+    westcoast:
+      profile: near
+      count: 1

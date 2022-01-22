@@ -85,6 +85,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Blockchain
 
 - [Substrate Node](substrate-node)
+- [Near Validator Node + RPC node spiritbro1 version](near-spiritbro1-version)
 
 ### Blogging
 
