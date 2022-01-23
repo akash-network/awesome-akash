@@ -5,9 +5,9 @@ services:
   near:
     image: spiritbro1/near-validator:testnet
     env:
-      - NEAR_ENV=testnet
-      - SSH_PASS=secret
-      - ACCOUNT_ID=spiritbro.pool.f863973.m0
+      - NEAR_ENV=testnet # change this to either guildnet or testnet
+      - SSH_PASS=cantseemee # change this to a more secure pass
+      - ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract
     expose:
       - port: 3030
         as: 3030
@@ -27,7 +27,7 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          size: 200Gi
+          size: 300Gi
   placement:
     westcoast:
       attributes:
