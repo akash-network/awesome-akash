@@ -3,11 +3,11 @@ version: "2.0"
 
 services:
   near:
-    image: spiritbro1/near-validator:testnet
+    image: spiritbro1/near-validator:mainnet
     env:
-      - NEAR_ENV=testnet # change this to either guildnet or testnet
-      - SSH_PASS=cantseemee # change this to a more secure pass
-      - ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract
+      - NEAR_ENV=mainnet # this is optional
+      - SSH_PASS=cantseemee # change this to a more secure pass default secret
+      - ACCOUNT_ID=**.poolv1.near # change ** to your desired name for staking pool contract default none
     expose:
       - port: 3030
         as: 3030

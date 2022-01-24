@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  near:
+    image: spiritbro1/near-validator:testnet
+    env:
+      - NEAR_ENV=testnet # change this to either guildnet or testnet 
+      - SSH_PASS=cantseemee # change this to a more secure pass default secret
+      - ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract default none
+    expose:
+      - port: 3030
+        as: 3030
+        to:
+          - global: true
+      - port: 22
+        as: 22
+        to:
+          - global: true
+
+profiles:
+  compute:
+    near:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gi
+        storage:
+          size: 300Gi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      pricing:
+        near:
+          denom: uakt
+          amount: 5000
+
+deployment:
+  near:
+    westcoast:
+      profile: near
+      count: 1
