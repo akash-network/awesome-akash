@@ -94,7 +94,7 @@ Where `NEAR_ENV` can be filled with either `guildnet` or `testnet`, and `SSH_PAS
 
 Where `NEAR_ENV` is optional default mainnet, and the other is the same as on testnet. Two open port is `3030` and `22`, port `3030` is for opening RPC node you can open that later by opening in browser `<your provider url>:<port>/status` and you can see your RPC just like when you see [testnet RPC](https://rpc.testnet.near.org/status), and port `22` basically used for two things:
 
-- First is when your node is fully synced, you need to check whether your validator key is the same as your staking key later, and using ssh you can easily stop any process so you don't need to redeploy your akash instance, and to finish the setup like `near login` we need to ssh to our instance.
+- First is when your node is fully synced, you need to check whether your validator key is the same as your staking key, and by using ssh you can easily stop any process so you don't need to redeploy your akash instance, and to finish the setup like `near login` we need to ssh to our instance.
 
 - Second reason is if you stuck and you got an error you can ask me or some admin in [openshard alliance](https://discord.com/invite/t9Kgbvf) or [near official discord channel](http://near.chat/) for assistance. But be careful you need to make sure that the person you ask for help has admin role on it.
 
@@ -107,7 +107,7 @@ Where `NEAR_ENV` is optional default mainnet, and the other is the same as on te
           size: 300Gi
 ```
 
-For this one basically wrong because in official documentation [here](https://docs.near.org/docs/develop/node/validator/hardware) you need to have at least 8 core CPU, 8 GB RAM, and 500 GB SSD, i change it to 4 core CPU, 16 GB RAM and 300 GB SSD is because i didn't get any bid, so if you really want to deploy this to mainnet later i suggest you change that to official recommended spec, because right now we gonna demo it, so this is spec basically sufficient. And after that click `Create Deployment` to deploy in akashlytic.
+For this one basically wrong, and i do this so i can demo it to you, because in official documentation [here](https://docs.near.org/docs/develop/node/validator/hardware) you need to have at least 8 core CPU, 8 GB RAM, and 500 GB SSD, i change it to 4 core CPU, 16 GB RAM and 300 GB SSD because i didn't get any bid, so if you really want to deploy this to mainnet later i suggest you change that to official recommended spec, because right now we gonna demo it, so this is spec basically sufficient. And after that click `Create Deployment` to deploy in akashlytic.
 
 <img align="center" src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ppm5y81cq3fjbzi36xxz.png"/>
 
