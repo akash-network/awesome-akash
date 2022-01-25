@@ -218,7 +218,7 @@ And that means congratulations, you're successfully running validator node and R
 
 ## Conclusion 
 
-Now after you learn how to run validator node and RPC node on akash, you can try it on mainnet, don't forget to always try it in testnet first before put it on the mainnet. You can also find all of the docker image that i use here on [here](https://github.com/spiritbro1/near-docker-image)
+Now after you learn how to run validator node and RPC node on akash, you can try it on mainnet, don't forget to always try it in testnet first before put it on the mainnet. You can also find all of the docker image that i use here on [here](https://github.com/spiritbro1/near-docker-image), to be honest i never run it on mainnet yet but obviously the step to deploy it similiar again if you not have any confidence on doing it please ask the expert first, before you do something wrong, i'm not responsible for any wrongdoing that you may had if you do something wrong always ask expert before going mainnet.
 
 ## References
 
