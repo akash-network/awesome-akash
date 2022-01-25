@@ -70,12 +70,12 @@ deployment:
       count: 1
 ```
 
-The image for this `deploy.yaml` file is `image: spiritbro1/near-validator:testnet` testnet, why? because when i first try to deploy it i saw an update in [official validator telegram channel](https://t.me/near_validators/4669) at first i use version 1.23.1 but after the update the testnet is now version 1.24.1 you can check that respectively in their rpc for testnet https://rpc.testnet.near.org/status and for mainnet https://rpc.mainnet.near.org/status and see the `version` value. There is two tag for our validator docker image:
+The image for this `deploy.yaml` file is `image: spiritbro1/near-validator:testnet` testnet, why? because when i first try to deploy it i saw an update in [official validator telegram channel](https://t.me/near_validators/4669) at first i use version 1.23.1 but after the update the testnet is now version 1.24.0 you can check that respectively in their rpc for testnet https://rpc.testnet.near.org/status and for mainnet https://rpc.mainnet.near.org/status and see the `version` value. There is two tag for our validator docker image:
 
 - spiritbro1/near-validator:testnet
 - spiritbro1/near-validator:mainnet
 
-And for respective image has it's own value that you need to fill, in order for our validator node to run flawlessly,
+And both of the image has it's own value that you need to fill, in order for our validator node to run flawlessly,
 so for `spiritbro1/near-validator:testnet` docker image you need to pass value like this :
 
 ```
