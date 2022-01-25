@@ -23,12 +23,12 @@ fi
 #Upload prep
 mkdir -p /root/.ssh/
 touch /root/.ssh/known_hosts
-ssh-keyscan -p ${REMOTE_PORT} ${REMOTE_HOST} >> ~/.ssh/known_hosts
+ssh-keyscan -p "${REMOTE_PORT}" "${REMOTE_HOST}" >> ~/.ssh/known_hosts
 
 if [ ! -z $PLOTTER ]; then
 while :
 do
-sshpass -p ${REMOTE_PASS} rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_LOCATION}
+sshpass -p "${REMOTE_PASS}" rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}"
 if [[ ${PLOTTER} == "madmax" ]]; then
 chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
 elif [[ ${PLOTTER} == "blade" ]]; then

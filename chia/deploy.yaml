@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:5
+    image: cryptoandcoffee/akash-chia:12
     expose:
       - port: 8444
         as: 8444
