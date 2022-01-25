@@ -141,7 +141,7 @@ Then that means your snapshot data is being downloaded total snapshot data since
 
 <img src="https://user-images.githubusercontent.com/62529025/150729872-8038d8e2-fcb2-460b-a416-1c22bf2ede26.png" align="center"/>
 
-As you can see it said "Downloading" which means that it will continue to download block that is still not being able to be covered in snapshot data if we don't see any "Downloading" text that means that our node is fully sync with all of the other node. If that's the case, now we can finally be able to be a staking validator, and list our node on [testnet explorer](https://explorer.testnet.near.org/nodes/validators) you need to also have [testnet id](https://wallet.testnet.near.org/) first we need to ssh to our akash deployment use this command to ssh to your akash deployment :
+As you can see it said "Downloading" which means that it will continue to download block that is still not being able to be covered in snapshot data if we don't see any "Downloading" text that means that our node is fully sync with all of the other node. If that's the case, now we can finally be able to be a staking validator, and list our node on [testnet explorer](https://explorer.testnet.near.org/nodes/validators), you need to also have [testnet id](https://wallet.testnet.near.org/) first we need to ssh to our akash deployment, use this command to ssh to your akash deployment :
 
 ```bash
 ssh -p <forwarded port> root@<provider url>
@@ -175,7 +175,7 @@ If it says `true` at the bottom then you're successfully creating staking pool c
 
 <img src="https://user-images.githubusercontent.com/62529025/150732026-eb2b4bc4-f29b-4d20-88d4-8b26be356080.png" align="center">
 
-You need to show that public key in staking pool and in you `validator-key.json` is equal one way to do that is to issue both of these command respectively:
+You need to show that public key in staking pool and in you `validator-key.json` is equal, one way to do that is to issue both of these command respectively:
 
 ```bash
 near view spiritbro.pool.f863973.m0 get_staking_key '{}'
@@ -188,13 +188,13 @@ Then copy paste the result of that command to `#testnet-token` channel and someb
 
 <img src="https://user-images.githubusercontent.com/62529025/150732770-ed3f7d65-af3c-44bf-9a0f-c554ef97a388.png" align="center"/>
 
-If you got that now you can ping your contract issue this command in your ssh:
+If you got that now you can ping your contract, issue this command in your ssh:
 
 ```
 near call <staking pool id> ping '{}' --accountId <accountId> --gas=300000000000000
 ```
 
-To make sure our node will always be in testnet explorer validator list we need to ping it every epoch, 1 epoch is equal 12 hours so let's make cronjob in our ssh issue this command:
+To make sure our node will always be in testnet explorer validator list we need to ping it every epoch, 1 epoch is equal 12 hours so let's make cronjob in our ssh, issue this command:
 
 ```bash
 crontab -e
