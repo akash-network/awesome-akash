@@ -6,6 +6,10 @@ In this tutorial i'm gonna show you how to run Near validator node and RPC node 
 
 ## Video Demo
 
+https://www.youtube.com/watch?v=fZQe3xY-Q_8
+
+## Video Tutorial
+
 https://www.youtube.com/watch?v=Gl6phYYUfHQ
 
 ## Prerequisites
