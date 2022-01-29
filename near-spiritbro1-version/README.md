@@ -31,7 +31,7 @@ services:
   near:
     image: spiritbro1/near-validator:testnet # there is two tag for this testnet 
     env:
-      - NEAR_ENV=testnet # change this to either guildnet or testnet or mainnet
+      - NEAR_ENV=testnet # change this to either guildnet or testnet 
       - SSH_PASS=cantseemee # change this to a more secure pass
       - ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract
     expose:
