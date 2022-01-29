@@ -125,7 +125,7 @@ You will see something like `30768:3030` which is the forwarded port for our RPC
 
 It means that our rpc node is fully run. 
 
-Step 2 - List our validator node on testnet explorer
+## Step 2 - List our validator node on testnet explorer
 
 We need to see now if our validator node is fully setup this is the step on how we can check if our node is fully setup :
 
