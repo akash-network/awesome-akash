@@ -23,11 +23,11 @@ profiles:
     near:
       resources:
         cpu:
-          units: 4
+          units: 8
         memory:
-          size: 16Gi
+          size: 8Gi
         storage:
-          size: 300Gi
+          size: 500Gi
   placement:
     westcoast:
       attributes:
