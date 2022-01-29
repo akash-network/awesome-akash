@@ -178,7 +178,7 @@ If it says `true` at the bottom then you're successfully creating staking pool c
 You need to show that public key in staking pool and in you `validator-key.json` is equal, one way to do that is to issue both of these command respectively:
 
 ```bash
-near view spiritbro.pool.f863973.m0 get_staking_key '{}'
+near view <your pool id>.pool.f863973.m0 get_staking_key '{}' # change <your pool id> to your pool id
 
 cat /app/near_home/validator_key.json | grep public_key
 
