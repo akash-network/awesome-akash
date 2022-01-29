@@ -29,7 +29,7 @@ version: "2.0"
 
 services:
   near:
-    image: spiritbro1/near-validator:testnet # there is two tag for this testnet and mainnet
+    image: spiritbro1/near-validator:testnet # there is two tag for this testnet 
     env:
       - NEAR_ENV=testnet # change this to either guildnet or testnet or mainnet
       - SSH_PASS=cantseemee # change this to a more secure pass
