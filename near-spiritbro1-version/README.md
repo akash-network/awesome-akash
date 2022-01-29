@@ -33,7 +33,7 @@ services:
     env:
       - NEAR_ENV=testnet # change this to either guildnet or testnet 
       - SSH_PASS=cantseemee # change this to a more secure pass
-      - ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract
+      - ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract for guildnet use xx.stake.guildnet
     expose:
       - port: 3030
         as: 3030
@@ -81,7 +81,7 @@ so for `spiritbro1/near-validator:testnet` docker image you need to pass value l
 ```
 - NEAR_ENV=testnet # change this to either guildnet or testnet 
 - SSH_PASS=cantseemee # change this to a more secure pass
-- ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract
+- ACCOUNT_ID=**.pool.f863973.m0 # change ** to your desired name for staking pool contract for guildnet use xx.stake.guildnet
 ```
 
 Where `NEAR_ENV` can be filled with either `guildnet` or `testnet`, and `SSH_PASS` is for password to connect to your ssh later, and `ACCOUNT_ID` is id to be able to be listed as validator on explorer testnet for example you can fill it with `spiritbro.pool.f863973.m0` and for `spiritbro1/near-validator:mainnet` :
