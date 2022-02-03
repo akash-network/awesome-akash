@@ -21,9 +21,10 @@ RUN apk update && apk add git jq && sh ./setenv && cat .githubenv
 RUN set -a && . .githubenv && cd ./ui && \
     yarn install --frozen-lockfile --silent
 
-## WORKAROUND (up to 3f38dd27): fix RewardSection.tsx
-RUN set -a && . .githubenv && cd ./ui && \
-    yarn prettier -w --config .prettierrc -c 'app/src/views/RewardsPage/components/RewardSection.tsx'
+# Fixed in the master 168db086, but gonna keep commented just in case.
+## WORKAROUND: fix RewardSection.tsx
+#RUN set -a && . .githubenv && cd ./ui && \
+#    yarn prettier -w --config .prettierrc -c 'app/src/views/RewardsPage/components/RewardSection.tsx'
 
 RUN set -a && . .githubenv && cd ./ui && \
     yarn build --tag $BRANCH_NAME --no-setup

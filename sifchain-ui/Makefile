@@ -2,7 +2,7 @@
 ns := andrey01
 branch := master
 # commit: optional
-commit := 3f38dd27
+commit := 168db086
 repo := https://github.com/Sifchain/sifchain-ui.git
 date := $(shell date --rfc-3339=date)
 # since Akash agressively caches the images...
@@ -27,6 +27,6 @@ test:
 debug:
 	docker run --rm -ti -p8080:80 -p8443:443 --entrypoint sh $(image_last_tag)
 clean:
-	docker images --format "{{.Repository}}:{{.Tag}}" --filter "reference=$(image)" |  sort -nr -k2,2 | awk 'NR>2' | xargs -r docker rmi 2>/dev/null || true
+	docker images --format "{{.Repository}}:{{.Tag}}" --filter "reference=$(image)" | awk 'NR>2' | xargs -r docker rmi 2>/dev/null || true
 
 .PHONY: build
