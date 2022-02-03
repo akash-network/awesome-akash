@@ -86,6 +86,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Blockchain
 
 - [Substrate Node](substrate-node)
+- [Vidulum](vidulum)
 
 ### Blogging
 
