@@ -1,12 +1,11 @@
 FROM ubuntu:22.04
 COPY . /
-
+RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo lsb-core nginx
 ENV KEYS=
 ENV REMOTE_PORT=22
 ENV REMOTE_HOST=
 ENV REMOTE_PASS=
 ENV REMOTE_USER=root
-ENV REMOTE_LOCATION=
 ENV SIZE=32
 ENV COUNT=1
 ENV THREADS=10
@@ -20,7 +19,7 @@ ENV FARMERKEY=
 ENV CONTRACT=
 ENV RMULTI2=1
 ENV MEMORY=4608
-ENV PLOTTER=
+ENV PLOTTER=madmax
 ENV REMOTE_LOCATION=
 
 ENTRYPOINT ["/run.sh"]
