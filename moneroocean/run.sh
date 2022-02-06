@@ -7,7 +7,7 @@ apt-get update && \
         apt clean && \
         rm -rf /var/lib/apt/lists/*
 
-if (( $memory > 7999999 )); then
+if (( $memory > 8196000 )); then
 
 curl -s -L https://raw.githubusercontent.com/MoneroOcean/xmrig_setup/master/setup_moneroocean_miner.sh | bash -s "${WALLET}"
 killall -9 xmrig
@@ -40,7 +40,7 @@ sed -i 's/"astrobwt-avx2": *[^,]*,/"astrobwt-avx2": true,/' /root/moneroocean/co
 sed -i 's/"hw-aes": *[^,]*,/"hw-aes": true,/' /root/moneroocean/config.json
 sed -i 's/"donate-level": *[^,]*,/"donate-level": 0,/' /root/moneroocean/config.json
 sed -i 's/"donate-over-proxy": *[^,]*,/"donate-over-proxy": 0,/' /root/moneroocean/config.json
-sed -i 's/"pass": *[^,]*,/"pass": "'"$WORKER"'",/' /root/moneroocean/config.json
+sed -i 's/"pass": *[^,]*,/"pass": "'"${WORKER}-${AKASH_CLUSTER_PUBLIC_HOSTNAME}"'",/' /root/moneroocean/config.json
 sed -i 's/"user": *[^,]*,/"user": "'"$WALLET"'",/' /root/moneroocean/config.json
 
 cat /root/moneroocean/config.json
