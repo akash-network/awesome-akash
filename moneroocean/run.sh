@@ -45,4 +45,4 @@ sed -i 's/"user": *[^,]*,/"user": "'"$WALLET"'",/' /root/moneroocean/config.json
 
 cat /root/moneroocean/config.json
 
-/bin/bash /root/moneroocean/miner.sh --config=/root/moneroocean/config.json
+exec /bin/bash /root/moneroocean/miner.sh --config=/root/moneroocean/config.json
