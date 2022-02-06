@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   miner-moneroocean:
-    image: cryptoandcoffee/akash-moneroocean:2
+    image: cryptoandcoffee/akash-moneroocean:39
     expose:
       - port: 8080
         as: 80
