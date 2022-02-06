@@ -48,7 +48,7 @@ version: "2.0"
 
 services:
   xmrig:
-    image: cryptoandcoffee/akash-moneroocean:1
+    image: cryptoandcoffee/akash-moneroocean:39
     expose:
       - port: 8080
         as: 80
@@ -56,7 +56,8 @@ services:
         to:
           - global: true
     env:
-      - "WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
+      - WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K
+      - WORKER=akash
 profiles:
   compute:
     xmrig:
