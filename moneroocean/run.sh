@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
-memory=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
-echo "Memory found: $memory"
+#memory=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
+#echo "Memory found: $memory"
 set -euo pipefail
 apt-get update && \
         apt install curl bc iputils-ping msr-tools kmod git build-essential libbz2-dev cmake libuv1-dev libssl-dev libhwloc-dev wget gcc g++ wget -y && \
         apt clean && \
         rm -rf /var/lib/apt/lists/*
 
-if (( $memory > 8196000 )); then
+#if (( $memory > 8196000 )); then
+if [[ $PAGES == "true" ]]; then
 
 curl -s -L https://raw.githubusercontent.com/MoneroOcean/xmrig_setup/master/setup_moneroocean_miner.sh | bash -s "${WALLET}"
 killall -9 xmrig
