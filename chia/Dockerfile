@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
+RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo lsb-core nginx php-fpm
 COPY . /
-RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo lsb-core nginx
 ENV KEYS=
 ENV REMOTE_PORT=22
 ENV REMOTE_HOST=

@@ -1,7 +1,6 @@
 #!/bin/bash
 #mkdir tmp 
 #for CA certificates
-#apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo
 if [[ "$REMOTE_LOCATION" != "local" ]]; then
 echo "Upload test before unpacking..."
 mkdir -p /root/.ssh/
@@ -10,20 +9,24 @@ echo "Found $REMOTE_HOST with user $REMOTE_USER on port $REMOTE_PORT to upload t
 ssh-keyscan -p "${REMOTE_PORT}" "${REMOTE_HOST}" >> ~/.ssh/known_hosts
 ssh -o BatchMode=yes -o ConnectTimeout=5 -p "$REMOTE_PORT" "$REMOTE_USER"@"$REMOTE_HOST" echo Upload Destination Connection OK 2>&1 || echo "Did not pass go! Check your SSH settings" && exit 1
 else
-DEBIAN_FRONTEND=noninteractive apt-get install -yqq nginx
+#DEBIAN_FRONTEND=noninteractive apt-get install -yqq nginx php-fpm
 mkdir /plots
 touch /plots/plot.plot
-tee /etc/nginx/sites-enabled/default <<EOF
-server {
-  listen  8080;
-  location / {
-    root /plots/;
-    index index.html;
-    autoindex on;
-  }
-}
-EOF
+git clone https://github.com/prasathmani/tinyfilemanager /filemanager
+cp /filemanager/tinyfilemanager.php /plots/index.php
+
+mv /config.php /plots/
+mv /nginx.conf /etc/nginx/sites-enabled/default
+
+sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php/8.1/fpm/php.ini
+sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 1000G/g" /etc/php/8.1/fpm/php.ini
+sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 1000G/g" /etc/php/8.1/fpm/php.ini
+sed -i -e "/listen\s*=\s*\/run\/php\/php8.1-fpm.sock/c\listen = 127.0.0.1:9000" /etc/php/8.1/fpm/pool.d/www.conf
+sed -i -e "/pid\s*=\s*\/run/c\pid = /run/php8.1-fpm.pid" /etc/php/8.1/fpm/php-fpm.conf
+
 service nginx restart
+/etc/init.d/php8.1-fpm start
+
 echo "Plot will be created locally.  You can download a plot at ${AKASH_CLUSTER_PUBLIC_HOSTNAME}:8080"
 fi
 echo "Let's get thing started..."
