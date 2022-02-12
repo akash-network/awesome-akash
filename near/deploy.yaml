@@ -1,0 +1,47 @@
+---
+version: "2.0"
+
+services:
+  near:
+    image: nickyharpor/akash-near:latest
+    expose:
+      - port: 3030
+        as: 3030
+        proto: tcp
+        to:
+          - global: true
+      - port: 24567
+        as: 24567
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - CHAIN_ID= # available options: mainnet (default) / testnet / localnet
+      - ACCOUNT_ID= # your staking pool account name if this is a validator node (leave it empty otherwise)
+      - DISABLE_RPC= # set to 'true' if you want to disable RPC (leave it empty otherwise)
+      - ARCHIVE= # set to 'true' if this is an archive node (leave it empty otherwise)
+      - INIT= # custom init command (don't customize unless you know exactly what you're doing)
+      - TELEMETRY_URL= # custom telemetry (don't customize unless you know exactly what you're doing)
+      - BOOT_NODES= # custom boot nodes (don't customize unless you know exactly what you're doing)
+profiles:
+  compute:
+    near:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          size: 480Gi
+  placement:
+    akash:
+      pricing:
+        near:
+          denom: uakt
+          amount: 50
+
+deployment:
+  near:
+    akash:
+      profile: near
+      count: 1
