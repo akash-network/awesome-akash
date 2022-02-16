@@ -11,7 +11,8 @@ ssh -o BatchMode=yes -o ConnectTimeout=5 -p "$REMOTE_PORT" "$REMOTE_USER"@"$REMO
 else
 #DEBIAN_FRONTEND=noninteractive apt-get install -yqq nginx php-fpm
 mkdir /plots
-touch /plots/plot.plot
+#touch /plots/plot.plot
+chmod 777 /plots -R
 git clone https://github.com/prasathmani/tinyfilemanager /filemanager
 cp /filemanager/tinyfilemanager.php /plots/index.php
 
@@ -58,7 +59,7 @@ fi
 if [ ! -z $PLOTTER ]; then
 while :
 do
-
+chmod 777 /plots -R
 if [[ "$REMOTE_LOCATION" != "local" ]]; then
 
 sshpass -p "${REMOTE_PASS}" rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}"
