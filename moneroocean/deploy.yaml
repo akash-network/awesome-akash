@@ -22,12 +22,12 @@ profiles:
           size: 4Gi
         storage:
           size: 4Gi
-placement:
-  akash:
-    pricing:
-      moneroocean:
-        denom: uakt
-        amount: 25
+  placement:
+    akash:
+      pricing:
+        moneroocean:
+          denom: uakt
+          amount: 25
 deployment:
   moneroocean:
     akash:
