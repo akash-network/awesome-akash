@@ -24,11 +24,30 @@ sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 1000G/g" /etc/ph
 sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 1000G/g" /etc/php/8.1/fpm/php.ini
 sed -i -e "/listen\s*=\s*\/run\/php\/php8.1-fpm.sock/c\listen = 127.0.0.1:9000" /etc/php/8.1/fpm/pool.d/www.conf
 sed -i -e "/pid\s*=\s*\/run/c\pid = /run/php8.1-fpm.pid" /etc/php/8.1/fpm/php-fpm.conf
+#Adjusting app name
+sed -i -e "s/File Manager/Chia Plot Manager/g" /plots/index.php
+sed -i -e "s/Tiny Chia Plot Manager/Chia Plot Manager/g" /plots/index.php
 
-service nginx restart
+#service nginx restart
+/etc/init.d/nginx start
 /etc/init.d/php8.1-fpm start
 
-echo "Plot will be created locally.  You can download a plot at ${AKASH_CLUSTER_PUBLIC_HOSTNAME}:8080"
+
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "Plots will be created locally.  You can access your plots at : ${AKASH_CLUSTER_PUBLIC_HOSTNAME}"
+echo "Plots will only appear after creation.  Please be patient for your first plot to appear."
+echo "Sleeping 30 seconds before starting..."
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+
+sleep 30
 fi
 echo "Let's get thing started..."
 ram=$(free -m | grep -oP '\d+' | head -n 1)
@@ -38,6 +57,9 @@ cores=$(grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}' )
 echo "Found RAM: $ram"
 echo "Found THREADS: $threads"
 echo "Found CORES: $cores"
+
+#Max out threads
+THREADS=$threads
 
 mkdir -p /root/chia/final ; mkdir -p /root/chia/tmp2 ; mkdir -p /root/chia/tmp
 
@@ -75,7 +97,7 @@ fi
 else
 
 if [[ ${PLOTTER} == "madmax" ]]; then
-chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -D -d /plots/
+chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d /plots/
 elif [[ ${PLOTTER} == "blade" ]]; then
 apt-get install -y libgmp3-dev
 chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d /plots/
