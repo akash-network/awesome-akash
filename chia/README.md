@@ -47,7 +47,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:60
+    image: cryptoandcoffee/akash-chia:71
     expose:
       - port: 8080
         as: 80
@@ -78,13 +78,13 @@ profiles:
           size: 6Gi
 #Chia blockchain is currently ~40gb as of November 2021 / if you are plotting please use at least 256Gi
         storage:
-          size: 256Gi
+          size: 1Ti
   placement:
     akash:
       pricing:
         chia:
           denom: uakt
-          amount: 1000
+          amount: 10000
 deployment:
   chia:
     akash:
