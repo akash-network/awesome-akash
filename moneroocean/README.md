@@ -47,8 +47,8 @@ Choose `Empty` for the template and paste the `deploy.yaml` file from this repos
 version: "2.0"
 
 services:
-  xmrig:
-    image: cryptoandcoffee/akash-moneroocean:39
+  miner-moneroocean:
+    image: cryptoandcoffee/akash-moneroocean:81
     expose:
       - port: 8080
         as: 80
@@ -56,29 +56,33 @@ services:
         to:
           - global: true
     env:
-      - WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K
-      - WORKER=akash
+      - WALLET=
+      - PAGES=false #Only enable true if using more than 8Gi of RAM
 profiles:
   compute:
-    xmrig:
+    miner-moneroocean:
       resources:
-        cpu:
-          units: 1.0
-        memory:
-          size: 1Gi
-        storage:
-          size: 256Mi
+        cpu:     # Max 10vCPU
+          units: 4.0
+        memory:  # Min 3Gi for moneroocean because of multi-algo up to 16Gi
+          size:  3Gi
+        storage: # Max 1Ti
+          size:  768Mi
   placement:
     akash:
       pricing:
-        xmrig:
+        miner-moneroocean:
           denom: uakt
-          amount: 5
+          amount: 10000 #Keep high to show all bids
 deployment:
-  xmrig:
+  miner-moneroocean:
     akash:
-      profile: xmrig
+      profile: miner-moneroocean
       count: 1
+
+##Total deployment size cannot exceed 20vCPU / 32Gi / 1Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: 2vCPU and count: 10 will show more bids than 10vcpu and count:2
 ```
 
 # Choosing a provider
