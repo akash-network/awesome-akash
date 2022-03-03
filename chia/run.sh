@@ -9,9 +9,7 @@ echo "Found $REMOTE_HOST with user $REMOTE_USER on port $REMOTE_PORT to upload t
 ssh-keyscan -p "${REMOTE_PORT}" "${REMOTE_HOST}" >> ~/.ssh/known_hosts
 ssh -o BatchMode=yes -o ConnectTimeout=5 -p "$REMOTE_PORT" "$REMOTE_USER"@"$REMOTE_HOST" echo Upload Destination Connection OK 2>&1 || echo "Did not pass go! Check your SSH settings" && exit 1
 else
-#DEBIAN_FRONTEND=noninteractive apt-get install -yqq nginx php-fpm
 mkdir /plots
-#touch /plots/plot.plot
 chmod 777 /plots -R
 git clone https://github.com/prasathmani/tinyfilemanager /filemanager
 cp /filemanager/tinyfilemanager.php /plots/index.php
@@ -28,7 +26,6 @@ sed -i -e "/pid\s*=\s*\/run/c\pid = /run/php8.1-fpm.pid" /etc/php/8.1/fpm/php-fp
 sed -i -e "s/File Manager/Chia Plot Manager/g" /plots/index.php
 sed -i -e "s/Tiny Chia Plot Manager/Chia Plot Manager/g" /plots/index.php
 
-#service nginx restart
 /etc/init.d/nginx start
 /etc/init.d/php8.1-fpm start
 

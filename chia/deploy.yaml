@@ -13,13 +13,13 @@ services:
     env:
       - CONTRACT=
       - FARMERKEY=
-      - REMOTE_LOCATION=local 
-        #Choose local to access finished plots through web interface or upload finished plots to SSH destination path like /root/plots
+      - REMOTE_LOCATION=local
+        #Choose local to access finished plots through web interface or set to upload and finished plots will be sent to SSH destination path like /root/plots
       - PLOTTER=madmax
-      - THREADS=8 #Must match CPU count
+      - THREADS=8 #Must match CPU units
         #Choose your plotter software - madmax or blade (testnet only)
 ###################################################################
-# Remote Upload Variables / Only enable if REMOTE_LOCATION != local
+# Uncomment the variables below and set REMOTE_LOCATION=upload to enable remote uploading
 #      - REMOTE_HOST=changeme.com #SSH upload host
 #      - REMOTE_LOCATION=changeme #SSH upload location like /root/plots
 #      - REMOTE_PORT=22 #SSH upload port
