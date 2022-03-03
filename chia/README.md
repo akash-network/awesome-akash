@@ -41,13 +41,14 @@ Once you have setup your Keplr wallet and imported the address to Akashlytics yo
 
 When prompted to `Choose Template` select `Empty` as we will copy-and-paste the deploy.yaml file from this repository.
 Choose `Empty` for the template and paste the `deploy.yaml` file from this repository adjusting your wallet address and pool variables.
+
 ```
 ---
 version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:71
+    image: cryptoandcoffee/akash-chia:72
     expose:
       - port: 8080
         as: 80
@@ -60,6 +61,7 @@ services:
       - REMOTE_LOCATION=local
         #Choose local to access finished plots through web interface or upload finished plots to SSH destination path like /root/plots
       - PLOTTER=madmax
+      - THREADS=8 #Must match CPU count
         #Choose your plotter software - madmax or blade (testnet only)
 ###################################################################
 # Remote Upload Variables / Only enable if REMOTE_LOCATION != local
@@ -73,7 +75,7 @@ profiles:
     chia:
       resources:
         cpu:
-          units: 10.0
+          units: 8.0
         memory:
           size: 6Gi
 #Chia blockchain is currently ~40gb as of November 2021 / if you are plotting please use at least 256Gi
@@ -81,10 +83,12 @@ profiles:
           size: 1Ti
   placement:
     akash:
+      attributes:
+        chia-plotting: true 
       pricing:
         chia:
           denom: uakt
-          amount: 10000
+          amount: 100000
 deployment:
   chia:
     akash:
