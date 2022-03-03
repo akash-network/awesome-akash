@@ -84,7 +84,7 @@ profiles:
   placement:
     akash:
       attributes:
-        chia-plotting: true 
+        chia-plotting: "true"
       pricing:
         chia:
           denom: uakt
