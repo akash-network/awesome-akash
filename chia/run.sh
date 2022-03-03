@@ -59,7 +59,7 @@ echo "Found THREADS: $threads"
 echo "Found CORES: $cores"
 
 #Max out threads
-THREADS=$threads
+echo Using $THREADS as defined by user
 
 mkdir -p /root/chia/final ; mkdir -p /root/chia/tmp2 ; mkdir -p /root/chia/tmp
 
