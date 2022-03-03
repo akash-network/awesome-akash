@@ -35,16 +35,16 @@ echo "##########################################################################
 echo "###################################################################################################"
 echo "###################################################################################################"
 echo "###################################################################################################"
-echo "Plots will be created locally.  You can access your plots at : ${AKASH_CLUSTER_PUBLIC_HOSTNAME}"
-echo "Plots will only appear after creation.  Please be patient for your first plot to appear."
-echo "Sleeping 30 seconds before starting..."
+echo "Plots will be created locally.  Please check Akashlytics for the Uri - you can find this on the"
+echo "deployment details page.  Plots will only appear after creation.  Please be patient for your first"
+echo "plots to appear.  Sleeping 60 seconds before starting..."
 echo "###################################################################################################"
 echo "###################################################################################################"
 echo "###################################################################################################"
 echo "###################################################################################################"
 echo "###################################################################################################"
 
-sleep 30
+sleep 60
 fi
 echo "Let's get thing started..."
 ram=$(free -m | grep -oP '\d+' | head -n 1)
@@ -69,11 +69,6 @@ if [ ! -z $KEYS ]; then
 echo "Foud KEYS variable set, importing"
 echo ${KEYS} > keys.txt ; chia keys add -f ./keys.txt ; rm keys.txt ; chia keys show
 fi
-
-#Upload prep
-#mkdir -p /root/.ssh/
-#touch /root/.ssh/known_hosts
-#ssh-keyscan -p "${REMOTE_PORT}" "${REMOTE_HOST}" >> ~/.ssh/known_hosts
 
 if [ ! -z $PLOTTER ]; then
 while :
