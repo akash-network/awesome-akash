@@ -9,9 +9,6 @@ services:
         as: 80
         to:
           - global: true
-      - port: 443
-        to:
-          - global: true
 
 profiles:
   compute:
