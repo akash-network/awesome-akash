@@ -2,7 +2,7 @@
 ns := andrey01
 branch := master
 # commit: optional
-commit := 168db086
+commit := 5bb44c67
 repo := https://github.com/Sifchain/sifchain-ui.git
 date := $(shell date --rfc-3339=date)
 # since Akash agressively caches the images...
