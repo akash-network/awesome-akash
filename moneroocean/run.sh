@@ -36,9 +36,8 @@ echo "Mining will be slower than normal, increase memory size."
 fi
 
 sed -i 's/"cn\/0": *[^,]*,/"cn\/0": true,/' /root/moneroocean/config.json
-sed -i 's/"cn-lite\/0": *[^,]*,/"cn-lite\/0": true,/' /root/moneroocean/config.json
-sed -i 's/"astrobwt-avx2": *[^,]*,/"astrobwt-avx2": true,/' /root/moneroocean/config.json
-sed -i 's/"hw-aes": *[^,]*,/"hw-aes": true,/' /root/moneroocean/config.json
+sed -i 's/"cn-lite\/0": false/"cn-lite\/0": true/' /root/moneroocean/config.json
+sed -i 's/"hw-aes": *[^,]*,/"hw-aes": null,/' /root/moneroocean/config.json
 sed -i 's/"donate-level": *[^,]*,/"donate-level": 0,/' /root/moneroocean/config.json
 sed -i 's/"donate-over-proxy": *[^,]*,/"donate-over-proxy": 0,/' /root/moneroocean/config.json
 sed -i 's/"pass": *[^,]*,/"pass": "'"${WORKER}-${AKASH_CLUSTER_PUBLIC_HOSTNAME}"'",/' /root/moneroocean/config.json
