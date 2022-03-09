@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  mongo:
+    image: mongo:latest 
+    expose:
+      - port: 27017 
+        to:
+          - global: true
+    env:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=toor
+
+profiles:
+  compute:
+    mongo:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 5Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        mongo: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  mongo:
+    akash:
+      profile: mongo
+      count: 1 
