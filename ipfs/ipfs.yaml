@@ -1,0 +1,48 @@
+---
+version: "2.0"
+
+services:
+  ipfs:
+    image: linuxserver/ipfs:version-v2.12.4
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 4001
+        as: 4001
+        to:
+          - global: true
+      - port: 5001
+        as: 5001
+        to:
+          - global: true
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+
+profiles:
+  compute:
+    ipfs:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 6Gi
+        storage:
+          size: 2Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        ipfs:
+          denom: uakt
+          amount: 200
+
+deployment:
+  ipfs:
+    akash:
+      profile: ipfs
+      count: 1
