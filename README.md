@@ -98,7 +98,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Drupal](drupal)
 - [Wiki.js](wikijs)
 
-### Bussiness
+### Business
 
  - [Odoo](odoo)
 

@@ -11,13 +11,14 @@ RUN sed -i -e 's/\(const defaultNetworkEnv = \)\(.*\)/\1NetworkEnv.MAINNET;/' ui
 
 # 2. Build sifchain-ui
 ##
-FROM node:17-alpine as build
+FROM node:14-alpine as build
 ARG BRANCH=master
 ARG COMMIT
 COPY --from=source /root/sifchain-ui /root/sifchain-ui
 WORKDIR /root/sifchain-ui
 COPY setenv .
-RUN apk update && apk add git jq && sh ./setenv && cat .githubenv
+RUN apk update && apk add musl-dev gcc g++ make python2 git jq
+RUN sh ./setenv && cat .githubenv
 RUN set -a && . .githubenv && cd ./ui && \
     yarn install --frozen-lockfile --silent
 
