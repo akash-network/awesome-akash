@@ -89,7 +89,7 @@ fi
 else
 
 if [[ ${PLOTTER} == "madmax" ]]; then
-chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d /plots/
+chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d /plots/
 elif [[ ${PLOTTER} == "blade" ]]; then
 apt-get install -y libgmp3-dev
 chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d /plots/

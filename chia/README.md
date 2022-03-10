@@ -48,7 +48,8 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:72
+    image: cryptoandcoffee/akash-chia:latest
+    imagePullPolicy: Always
     expose:
       - port: 8080
         as: 80
