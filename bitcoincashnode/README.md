@@ -5,3 +5,7 @@ Bitcoin Cash is a digital currency that enables instant payments to anyone, anyw
 What is Bitcoin Cash Node?
 --------------------------
 Bitcoin Cash Node is the name of open-source software which enables the use of Bitcoin Cash. It is a descendant of the Bitcoin Core and Bitcoin ABC software projects.
+
+Using This Image
+----------------
+* To access JSON-RPC server, you must provide a valid username and password. This image is using `bitcoincash` as username and `cash` as password. You may change it to your own by changing `-rpcauth` value and then rebuilding the image.
