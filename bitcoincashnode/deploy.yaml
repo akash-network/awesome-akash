@@ -1,0 +1,32 @@
+---
+version: "2.0"
+
+services:
+  bcash:
+    image: ghcr.io/ubunteroz/akash-bitcoincashnode:mainnet-6
+    expose:
+      - port: 8332
+        as: 8332
+        to:
+          - global: true
+profiles:
+  compute:
+    bcash-profile:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 16Gi
+        storage:
+          size: 128Gi
+  placement:
+    westcoast:
+      pricing:
+        bcash-profile:
+          denom: uakt
+          amount: 1000
+deployment:
+  bcash:
+    westcoast:
+      profile: bcash-profile
+      count: 1
