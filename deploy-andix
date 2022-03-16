@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  banano:
+    image: bananocoin/banano
+    expose:
+      - port: 7071
+        as: 7071
+        to:
+          - global: true
+      - port: 7072
+        as: 7072
+        to:
+          - global: true
+      - port: 7074
+        as: 7074
+        to:
+          - global: true
+profiles:
+  compute:
+    banano-profile:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 32Gi
+  placement:
+    westcoast:
+      pricing:
+        banano-profile:
+          denom: uakt
+          amount: 1000
+deployment:
+  banano:
+    westcoast:
+      profile: banano-profile
+      count: 1
