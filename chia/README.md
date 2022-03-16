@@ -58,7 +58,7 @@ services:
     env:
       - CONTRACT=
       - FARMERKEY=
-      - REMOTE_LOCATION=local   
+      - REMOTE_LOCATION=local
         #Choose local to access finished plots through web interface or set to upload and finished plots will be sent to SSH destination path like /root/plots
       - PLOTTER=madmax
       - THREADS=8 #Must match CPU units
@@ -83,6 +83,9 @@ profiles:
           size: 1Ti
   placement:
     akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       attributes:
         chia-plotting: "true"
       pricing:
