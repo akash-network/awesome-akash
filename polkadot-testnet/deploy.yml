@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  polkadot:
+    image: changsheng12/polkadot:testnet
+    expose:
+      - port: 30333
+        as: 30333
+        to:
+          - global: true
+      - port: 9933
+        as: 9933
+        to:
+          - global: true
+      - port: 9944
+        as: 9944
+        to:
+          - global: true
+profiles:
+  compute:
+    polkadot-profile:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 8Gi
+        storage:
+          size: 64Gi
+  placement:
+    westcoast:
+      pricing:
+        polkadot-profile:
+          denom: uakt
+          amount: 1000
+deployment:
+  polkadot:
+    westcoast:
+      profile: polkadot-profile
+      count: 1
