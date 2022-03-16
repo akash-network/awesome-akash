@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:latest
+    image: cryptoandcoffee/akash-chia:72
     expose:
       - port: 8080
         as: 80
@@ -38,6 +38,9 @@ profiles:
           size: 1Ti
   placement:
     akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       attributes:
         chia-plotting: "true"
       pricing:
