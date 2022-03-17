@@ -1,0 +1,45 @@
+---
+version: "2.0"
+
+services:
+  polkadot:
+    image: parity/polkadot
+    expose:
+      - port: 30333
+        as: 30333
+        to:
+          - global: true
+      - port: 9933
+        as: 9933
+        to:
+          - global: true
+      - port: 9944
+        as: 9944
+        to:
+          - global: true
+    args:
+    - "--chain=polkadot"
+    - "--ws-external"
+    - "--rpc-external"
+    - "--rpc-cors=*"
+profiles:
+  compute:
+    polkadot-profile:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 64Gi
+        storage:
+          size: 128Gi
+  placement:
+    westcoast:
+      pricing:
+        polkadot-profile:
+          denom: uakt
+          amount: 1000
+deployment:
+  polkadot:
+    westcoast:
+      profile: polkadot-profile
+      count: 1
