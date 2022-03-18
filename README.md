@@ -162,6 +162,7 @@ Awesome DeFi apps you can deploy on Akash
 - [CodiMD](CodiMD)
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
+- [Hashicorp Vault](hashicorp-vault)
 
 ### Video Conferencing
 
