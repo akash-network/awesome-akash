@@ -26,10 +26,12 @@ profiles:
         memory:
           size: 4Gi
         storage:
-          size: 20Gi
-        attributes:
-          persistent: true
-          class: beta2
+          - size: 5Gi
+          - name: data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta2
   placement:
     westcoast:
       pricing:
