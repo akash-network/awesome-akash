@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  mattermost:
+  hashicorp-vault:
     image: vault
     env:
       - VAULT_DEV_ROOT_TOKEN_ID=mysecrettoken
@@ -36,7 +36,7 @@ profiles:
           amount: 100
 
 deployment:
-  mattermost:
+  hashicorp-vault:
     akash:
       profile: hashicorp-vault
       count: 1
