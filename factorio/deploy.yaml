@@ -1,0 +1,44 @@
+version: "2.0"
+
+services:
+  game:
+    image: factoriotools/factorio
+    expose:
+      - port: 34197
+        as: 34197
+        to:
+          - global: true
+      - port: 27015
+        as: 27015
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /opt/factorio
+      
+profiles:
+  compute:
+    game:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          size: 20Gi
+        attributes:
+          persistent: true
+          class: beta2
+  placement:
+    westcoast:
+      pricing:
+        game:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  game:
+    westcoast:
+      profile: game
+      count: 1
