@@ -132,6 +132,10 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Whoogle Search](whoogle-search)
 
+### Search Engine
+
+- [YaCy][yacy]
+
 ### Mining
 
 - [xmrig](monero)
