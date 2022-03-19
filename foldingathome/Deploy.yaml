@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  foldingathome:
+    image: linuxserver/foldingathome
+    expose:
+      - port: 7396
+        as: 7396
+        to:
+          - global: true
+      - port: 36330
+        as: 36330
+        to:
+          - global: true
+    
+profiles:
+  compute:
+    foldingathome-profile:
+      resources:
+        cpu:
+          units: 32.0
+        memory:
+          size: 32Gi
+        storage:
+            size: 64Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    westcoast:
+      pricing:
+        foldingathome-profile:
+          denom: uakt
+          amount: 1000.1
+deployment:
+  foldingathome:
+    westcoast:
+      profile: foldingathome-profile
+      count: 1
