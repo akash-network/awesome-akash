@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  solana:
+    image: solanalabs/solana:edge
+    expose:
+      - port: 8899 
+        as: 8899 
+        to:
+          - global: true
+      - port: 8900
+        as: 8900
+        to:
+          - global: true
+profiles:
+  compute:
+    solana-profile:
+      resources:
+        cpu:
+          units: 2.8
+        memory:
+          size: 128Gi
+        storage:
+          size: 128Gi
+          attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    westcoast:
+      pricing:
+        solana-profile:
+          denom: uakt
+          amount: 1000
+deployment:
+  solana:
+    westcoast:
+      profile: solana-profile
+      count: 1
