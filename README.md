@@ -134,7 +134,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Search Engine
 
-- [YaCy][yacy]
+- [YaCy](yacy)
 
 ### Mining
 
