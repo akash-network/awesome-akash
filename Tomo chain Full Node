@@ -1,0 +1,65 @@
+version: "2.0"
+
+services:
+  web:
+    image: tomochain/node:stable
+    expose:
+      - port: 30303
+        as: 30303
+        to:
+          - global: true
+      - port: 30303
+        as: 30303
+        proto: udp
+        to:
+          - global: true
+      - port: 8545
+        as: 8545
+        to:
+          - global: true
+      - port: 3001
+        as: 3001
+        to:
+          - global: true
+      - port: 6000
+        as: 6000
+        to:
+          - global: true
+
+    environment:
+      - IDENTITY: $MASTERNODE_NAME
+      - PRIVATE_KEY: $MASTERNODE_PK
+      - BOOTNODES: $BOOTNODES
+      - NETSTATS_HOST: stats.tomochain.com
+      - NETSTATS_PORT: 443
+      - WS_SECRET: alfset
+
+    volumes:
+      -chaindata:/tomochain/data
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 32
+        memory:
+          size: 64Gi
+        storage:
+          size: 1T
+          attributes:
+            persistent: true
+            class: beta3
+  placement:
+    westcoast:
+      pricing:
+        web:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  web:
+    westcoast:
+      profile: web
+      count: 1
+ 
