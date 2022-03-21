@@ -3,7 +3,15 @@ version: "2.0"
 
 services:
   bcash:
-    image: ghcr.io/ubunteroz/akash-bitcoincashnode:mainnet-6
+    image: ghcr.io/ubunteroz/akash-bitcoincashnode:latest
+    args:
+      - "-server"               # Enable RPC
+      - "-rest"                 # Enable REST
+      - "-rpcallowip=0.0.0.0/0" # DO NOT CHANGE THIS LINE
+      - "-rpcbind=0.0.0.0:8332" # DO NOT CHANGE THIS LINE
+      - "-rpcuser=bitcoincash"  # Set RPC user
+      - "-rpcpassword=cash"     # Set RPC password
+      - "-prune=100000"         # Prune blockchain data to keep storage below xxx MB
     expose:
       - port: 8332
         as: 8332
@@ -14,19 +22,24 @@ profiles:
     bcash-profile:
       resources:
         cpu:
-          units: 4.0
+          units: 4.0  # You can change this to higher/lower value
         memory:
-          size: 16Gi
+          size: 16Gi  # You can change this to higher/lower value
         storage:
-          size: 128Gi
+          size: 128Gi # If you change this, make sure to adjust -prune argument above
   placement:
-    westcoast:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         bcash-profile:
           denom: uakt
-          amount: 1000
+          amount: 100000
 deployment:
   bcash:
-    westcoast:
+    akash:
       profile: bcash-profile
       count: 1
