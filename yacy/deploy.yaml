@@ -29,13 +29,18 @@ profiles:
               persistent: true
               class: beta3
   placement:
-    westcoast:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         yacy-profile:
           denom: uakt
-          amount: 1000
+          amount: 100000
 deployment:
   yacy:
-    westcoast:
+    akash:
       profile: yacy-profile
       count: 1
