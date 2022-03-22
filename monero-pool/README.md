@@ -25,3 +25,7 @@ Environment Variables
 | `MONERO_POOL_WALLET` | (Mandatory) Wallet address which will be used to distribute mining rewards. | `9tRe6v9cHk...KURJ3AxUNH` |
 | `MONERO_POOL_WALLET_SEED` | (Mandatory) Mnemonic seed of `MONERO_POOL_WALLET`. | swept upper silk slackens ... alkaline sapling simplest upper |
 | `MONERO_FEE_WALLET` | (Mandatory) Wallet address which will be used to receive mining pool's fee. Must be different from `MONERO_POOL_WALLET`. | `9unzQP9GZK...CNXNk45NDv` |
+
+Build Your Own Image
+--------------------
+This sample SDL is using unofficial, untrusted Docker image built by [ubunteroz](https://github.com/ubunteroz). Building your own image is highly encouraged to ensure that no malicious programs/files is included in the image.
