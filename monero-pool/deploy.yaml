@@ -1,0 +1,49 @@
+---
+version: "2.0"
+
+services:
+  monero-pool:
+    image: ghcr.io/ubunteroz/monero-pool:0.17-3
+    expose:
+      # Mining pool port
+      - port: 4242
+        as: 4242
+        to:
+          - global: true
+      # monero-pool web UI
+      - port: 4243
+        as: 80
+        to:
+          - global: true
+      # monerod restricted RPC
+      - port: 28092
+        as: 28092
+        to:
+          - global: true
+    env:
+      - MONERO_ARGS=<additional monerod arguments>                   # Optional, can be blank.
+      - MONERO_WALLET_ARGS=<additional monero-wallet-rpc arguments>  # Optional, can be blank.
+      - MONERO_POOL_WALLET=<pool wallet address>                     # Mandatory, fill with wallet address which will be used to distribute rewards to miners.
+      - MONERO_POOL_WALLET_SEED=<pool wallet address mnemonic seed>  # Mandatory, fill with wallet's mnemonic seed.
+      - MONERO_FEE_WALLET=<fee wallet address>                       # Mandatory, wallet address which will be used to receive pool fee. Must be different from pool wallet address.
+profiles:
+  compute:
+    monero-pool-profile:
+      resources:
+        cpu:
+          units: 8.0
+        memory:
+          size:  16Gi
+        storage:
+          size:  100Gi
+  placement:
+    akash:
+      pricing:
+        monero-pool-profile:
+          denom: uakt
+          amount: 1000
+deployment:
+  monero-pool:
+    akash:
+      profile: monero-pool-profile
+      count: 1
