@@ -6,9 +6,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Environment variables
 ENV MONERO_ARGS="--testnet"
 ENV MONERO_WALLET_ARGS="--testnet"
-ENV MONERO_POOL_WALLET="9tRe6v9cHkX7LZTS4hampTAai5kT1rLzddNkKKAiTAg1cg3GHB8zVkv8pBjQ9uzWpwQMZgxn99BDtR3Fy5HRGKURJ3AxUNH"
-ENV MONERO_POOL_WALLET_SEED="swept upper silk slackens oval nostril narrate dude match pledge inwardly cuisine point soothe excess drunk mouth upgrade zero friendly catch alkaline sapling simplest upper"
-ENV MONERO_FEE_WALLET="9unzQP9GZKKWgdHPkQwMFVhHMdr9EPFw4eN4gm9E58mWLorVXSLKAWkQhBSxckQwNsdnBczkeC2XBDEfgJMW2CNXNk45NDv"
+ENV POOL_WALLET="9tRe6v9cHkX7LZTS4hampTAai5kT1rLzddNkKKAiTAg1cg3GHB8zVkv8pBjQ9uzWpwQMZgxn99BDtR3Fy5HRGKURJ3AxUNH"
+ENV POOL_WALLET_SEED="swept upper silk slackens oval nostril narrate dude match pledge inwardly cuisine point soothe excess drunk mouth upgrade zero friendly catch alkaline sapling simplest upper"
+ENV FEE_WALLET="9unzQP9GZKKWgdHPkQwMFVhHMdr9EPFw4eN4gm9E58mWLorVXSLKAWkQhBSxckQwNsdnBczkeC2XBDEfgJMW2CNXNk45NDv"
+ENV POOL_FEE="0.01"
+ENV PAYMENT_THRESHOLD="0.33"
 
 RUN apt-get update
 
