@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   monero-pool:
-    image: ghcr.io/ubunteroz/monero-pool:0.17-3
+    image: ghcr.io/ubunteroz/monero-pool:0.17-4
     expose:
       # Mining pool port
       - port: 4242
@@ -21,11 +21,13 @@ services:
         to:
           - global: true
     env:
-      - MONERO_ARGS=<additional monerod arguments>                   # Optional, can be blank.
-      - MONERO_WALLET_ARGS=<additional monero-wallet-rpc arguments>  # Optional, can be blank.
-      - MONERO_POOL_WALLET=<pool wallet address>                     # Mandatory, fill with wallet address which will be used to distribute rewards to miners.
-      - MONERO_POOL_WALLET_SEED=<pool wallet address mnemonic seed>  # Mandatory, fill with wallet's mnemonic seed.
-      - MONERO_FEE_WALLET=<fee wallet address>                       # Mandatory, wallet address which will be used to receive pool fee. Must be different from pool wallet address.
+      - MONERO_ARGS=<additional monerod arguments>
+      - MONERO_WALLET_ARGS=<additional monero-wallet-rpc arguments>
+      - POOL_WALLET=<pool wallet address>
+      - POOL_WALLET_SEED=<pool wallet address mnemonic seed>
+      - FEE_WALLET=<fee wallet address>
+      - POOL_FEE=<set pool fee percentage in decimal>
+      - PAYMENT_THRESHOLD=<set minimum payout in XMR>
 profiles:
   compute:
     monero-pool-profile:
