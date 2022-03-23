@@ -8,11 +8,14 @@ DATA_POOL=/data/pool
 set -x
 
 echo Updating monero-pool config...
-sed -i "s/wallet-rpc-port\(.*\)/wallet-rpc-port = 28088/"              /usr/local/etc/pool.conf
-sed -i "s/pool-wallet\(.*\)/pool-wallet = $MONERO_POOL_WALLET/"        /usr/local/etc/pool.conf
-sed -i "s/pool-fee-wallet\(.*\)/pool-fee-wallet = $MONERO_FEE_WALLET/" /usr/local/etc/pool.conf
-sed -i "s/block-notified\(.*\)/block-notified = 0/"                    /usr/local/etc/pool.conf
-sed -i "s/data-dir\(.*\)/data-dir = \/data\/pool/"                     /usr/local/etc/pool.conf
+sed -i "s/wallet-rpc-port =\(.*\)/wallet-rpc-port = 28088/"                  /usr/local/etc/pool.conf
+sed -i "s/pool-wallet =\(.*\)/pool-wallet = $POOL_WALLET/"                   /usr/local/etc/pool.conf
+sed -i "s/pool-fee-wallet =\(.*\)/pool-fee-wallet = $FEE_WALLET/"            /usr/local/etc/pool.conf
+sed -i "s/pool-fee =\(.*\)/pool-fee = $POOL_FEE/"                            /usr/local/etc/pool.conf
+sed -i "s/payment-threshold =\(.*\)/payment-threshold = $PAYMENT_THRESHOLD/" /usr/local/etc/pool.conf
+sed -i "s/block-notified =\(.*\)/block-notified = 0/"                        /usr/local/etc/pool.conf
+sed -i "s/data-dir =\(.*\)/data-dir = \/data\/pool/"                         /usr/local/etc/pool.conf
+sed -i "s/log-file =\(.*\)/log-file = \/data\/pool.log/"                     /usr/local/etc/pool.conf
 
 echo Running Monero daemon...
 mkdir -p $DATA_MONERO
@@ -33,7 +36,7 @@ sleep 10
 
 echo Restoring wallet from mnemonic seed...
 curl http://127.0.0.1:28088/json_rpc -d \
-    "{\"jsonrpc\":\"2.0\", \"id\":\"0\", \"method\":\"restore_deterministic_wallet\", \"params\":{\"filename\":\"pool_wallet\", \"password\":\"\", \"seed\":\"$MONERO_POOL_WALLET_SEED\"}}" \
+    "{\"jsonrpc\":\"2.0\", \"id\":\"0\", \"method\":\"restore_deterministic_wallet\", \"params\":{\"filename\":\"pool_wallet\", \"password\":\"\", \"seed\":\"$POOL_WALLET_SEED\"}}" \
     -H "Content-Type: application/json"
 echo Sleeping for 10 secs...
 sleep 10
