@@ -1,5 +1,5 @@
-monero-pool
-===========
+⛏ monero-pool ⛏
+=================
 
 A Monero mining pool server written in C.
 
@@ -20,12 +20,20 @@ Environment Variables
 
 | Variable | Description | Default value |
 |----------|-------------|---------------|
-| `MONERO_ARGS` | (Optional) Additional arguments for `monerod`. | `--testnet` |
-| `MONERO_WALLET_ARGS` | (Optional) Additional arguments for `monero-wallet-rpc`. | `--testnet` |
-| `MONERO_POOL_WALLET` | (Mandatory) Wallet address which will be used to distribute mining rewards. | `9tRe6v9cHk...KURJ3AxUNH` |
-| `MONERO_POOL_WALLET_SEED` | (Mandatory) Mnemonic seed of `MONERO_POOL_WALLET`. | swept upper silk slackens ... alkaline sapling simplest upper |
-| `MONERO_FEE_WALLET` | (Mandatory) Wallet address which will be used to receive mining pool's fee. Must be different from `MONERO_POOL_WALLET`. | `9unzQP9GZK...CNXNk45NDv` |
+| `MONERO_ARGS` | (🟡 Optional) Additional arguments for `monerod`. | `--testnet` |
+| `MONERO_WALLET_ARGS` | (🟡 Optional) Additional arguments for `monero-wallet-rpc`. | `--testnet` |
+| `POOL_WALLET` | (🟢 Mandatory) Wallet address which will be used to distribute mining rewards. | `9tRe6v9cHk...KURJ3AxUNH` |
+| `POOL_WALLET_SEED` | (🟢 Mandatory) Mnemonic seed of `POOL_WALLET`. | swept upper silk slackens ... alkaline sapling simplest upper |
+| `FEE_WALLET` | (🟢 Mandatory) Wallet address which will be used to receive mining pool fee. Must be different from `POOL_WALLET`. | `9unzQP9GZK...CNXNk45NDv` |
+| `POOL_FEE` | (🟡 Optional) Pool fee percentage (in decimal) | 0.01 |
+| `PAYMENT_THRESHOLD` | (🟡 Optional) Payout threshold (in XMR) | 0.33 |
 
-Build Your Own Image
---------------------
+Persistent Storage
+------------------
+
+Blockchain data, wallet data, and log files are stored in `/data`. It is recommended to mount this directory to persistent volume to avoid data loss when container is restarted.
+
+
+⚠️ Build Your Own Image ⚠️
+--------------------------
 This sample SDL is using unofficial, untrusted Docker image built by [ubunteroz](https://github.com/ubunteroz). Building your own image is highly encouraged to ensure that no malicious programs/files is included in the image.
