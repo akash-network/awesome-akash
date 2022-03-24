@@ -24,7 +24,7 @@ services:
     expose:
       - port: 3306
         to:
-          - wordpress
+          - service: wordpress
 
 profiles:
   compute:
@@ -38,11 +38,11 @@ profiles:
           size: 2Gi
     db:
       resources:
-        cpu: 
+        cpu:
           units: 0.5
         memory:
           size: "256Mi"
-        storage: 
+        storage:
           size: "1Gi"
   placement:
     akash:
@@ -52,7 +52,10 @@ profiles:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        wordpress: 
+        wordpress:
+          denom: uakt
+          amount: 100
+        db:
           denom: uakt
           amount: 100
 
