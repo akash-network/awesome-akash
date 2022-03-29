@@ -171,3 +171,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [MyetherWallet](MyetherWallet)
 - [tronwallet](tronwallet)
+
+### Web Frameworks
+
+- [NextJS](nextjs)
