@@ -88,6 +88,11 @@ fi
 
 else
 
+if [[ $(ls -la /plots/*.plot | wc -l) > 6 ]]; then
+echo "Deployment is full, please delete plots to make room for plotting! Sleeping for 60 seconds before checking for free space."
+sleep 60
+fi
+
 if [[ ${PLOTTER} == "madmax" ]]; then
 chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d /plots/
 elif [[ ${PLOTTER} == "blade" ]]; then
