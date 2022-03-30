@@ -1,13 +1,9 @@
 # ns: Set to your login at https://hub.docker.com
 ns := andrey01
-branch := master
-# commit: optional
-commit := 5bb44c67
-repo := https://github.com/Sifchain/sifchain-ui.git
 date := $(shell date --rfc-3339=date)
 # since Akash agressively caches the images...
 unixtimestamp := $(shell date +%s)
-tag := $(or $(commit),$(branch))-$(date)-$(unixtimestamp)
+tag := $(date)-$(unixtimestamp)
 image := $(ns)/sifchain-ui
 image_tag := $(image):$(tag)
 
@@ -16,7 +12,7 @@ image_last_tag := $(shell docker images --format "{{.Repository}}:{{.Tag}}" --fi
 all: build push update-sdl clean
 
 build:
-	docker build --build-arg COMMIT=$(commit) --build-arg BRANCH=$(branch) --build-arg REPO=$(repo) --build-arg DATE=$(date) -t $(image_tag) .
+	docker build --build-arg DATE=$(date) -t $(image_tag) .
 	$(eval image_last_tag := $(image_tag))
 push:
 	docker push $(image_last_tag)

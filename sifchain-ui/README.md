@@ -12,6 +12,8 @@ And then it helps its decentralization! :-)
 
 - [Dockerfile](./Dockerfile) produces a tiny 47MB image which is super quick to deploy;
 - [Makefile](./Makefile) lets you quickly test and use the image locally!
+- The image is self auto-updating:
+  - it checks for a new release at https://github.com/Sifchain/sifchain-ui/releases every 2 hours and updates itself;
 
 ## Notes on TLS
 
