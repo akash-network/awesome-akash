@@ -1,14 +1,20 @@
 #!/bin/bash
-#mkdir tmp 
-#for CA certificates
+
+#SSH Test if required
 if [[ "$REMOTE_LOCATION" != "local" ]]; then
-echo "Upload test before unpacking..."
+echo "SSH connection test before unpacking..."
 mkdir -p /root/.ssh/
 touch /root/.ssh/known_hosts
 echo "Found $REMOTE_HOST with user $REMOTE_USER on port $REMOTE_PORT to upload to"
-ssh-keyscan -p "${REMOTE_PORT}" "${REMOTE_HOST}" >> ~/.ssh/known_hosts
-ssh -o BatchMode=yes -o ConnectTimeout=5 -p "$REMOTE_PORT" "$REMOTE_USER"@"$REMOTE_HOST" echo Upload Destination Connection OK 2>&1 || echo "Did not pass go! Check your SSH settings" && exit 1
-else
+ssh-keyscan -p "${REMOTE_PORT}" "${REMOTE_HOST}" >> ~/.ssh/known_hosts ; export SSHPASS=${REMOTE_PASS}
+
+sshpass -e ssh -o ConnectTimeout=5 -p $REMOTE_PORT $REMOTE_USER@$REMOTE_HOST exit
+if [ $? != "0" ]; then
+    echo "SSH Connection failed - please check your settings"
+    exit
+fi
+fi
+
 mkdir /plots
 chmod 777 /plots -R
 git clone https://github.com/prasathmani/tinyfilemanager /filemanager
@@ -29,7 +35,7 @@ sed -i -e "s/Tiny Chia Plot Manager/Chia Plot Manager/g" /plots/index.php
 /etc/init.d/nginx start
 /etc/init.d/php8.1-fpm start
 
-
+if [[ "$REMOTE_LOCATION" == "local" ]]; then
 echo "###################################################################################################"
 echo "###################################################################################################"
 echo "###################################################################################################"
@@ -43,9 +49,25 @@ echo "##########################################################################
 echo "###################################################################################################"
 echo "###################################################################################################"
 echo "###################################################################################################"
-
 sleep 60
+else
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "Plots will be uploaded to $REMOTE_LOCATION on $REMOTE_HOST.                                        "
+echo "After the plot is succesfully uploaded it will be deleted automatically from the deployment        "
+echo "Sleeping 10 seconds before starting...                                                             "
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+echo "###################################################################################################"
+sleep 10
 fi
+
+
 echo "Let's get thing started..."
 ram=$(free -m | grep -oP '\d+' | head -n 1)
 threads=$(grep -c ^processor /proc/cpuinfo)
@@ -74,9 +96,15 @@ if [ ! -z $PLOTTER ]; then
 while :
 do
 chmod 777 /plots -R
-if [[ "$REMOTE_LOCATION" != "local" ]]; then
 
-sshpass -p "${REMOTE_PASS}" rsync -av --remove-source-files --progress /root/chia/final/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}"
+#Always check if full first
+if [[ $(ls -la /plots/*.plot | wc -l) > 6 ]]; then
+echo "Deployment is full, please delete plots to make room for plotting! Sleeping for 60 seconds before checking for free space."
+sleep 60
+fi
+
+if [[ "$REMOTE_LOCATION" != "local" ]]; then
+sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}"
 if [[ ${PLOTTER} == "madmax" ]]; then
 chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
 elif [[ ${PLOTTER} == "blade" ]]; then
@@ -88,18 +116,14 @@ fi
 
 else
 
-if [[ $(ls -la /plots/*.plot | wc -l) > 6 ]]; then
-echo "Deployment is full, please delete plots to make room for plotting! Sleeping for 60 seconds before checking for free space."
-sleep 60
-fi
 
 if [[ ${PLOTTER} == "madmax" ]]; then
-chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d /plots/
+chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR
 elif [[ ${PLOTTER} == "blade" ]]; then
 apt-get install -y libgmp3-dev
-chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d /plots/
+chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
 else
-chia plots create -k $SIZE -n $COUNT -r $THREADS -b $MEMORY -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d /plots/
+chia plots create -k $SIZE -n $COUNT -r $THREADS -b $MEMORY -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
 fi
 
 
@@ -107,3 +131,4 @@ fi
 
 done
 fi
+
