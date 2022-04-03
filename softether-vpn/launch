@@ -1,0 +1,100 @@
+#!/bin/sh
+
+CONFIG=vpn_server.config
+
+cd /opt/softether/vpnserver
+
+./vpncmd /TOOLS /CMD Check
+
+if ! test -f "$CONFIG"; then
+  ./vpnserver start
+  
+  # wait for the initial config to get generated after the first run
+  sleep 2s
+
+  ./vpnserver stop
+  echo "Disabling Dynamic DNS function ..."
+  line=$(grep -A 19 -n DDnsClient $CONFIG | grep -m1 -B19 "}" | grep "bool Disabled" | awk -F "-" '{print $1}')
+  sed -i $line's/false/true/' $CONFIG
+  
+  echo "Disabling the embedded web server and JSON-RPC server ..."
+  line=$(grep -n DisableJsonRpcWebApi $CONFIG |awk -F ":" '{print $1}')
+  sed -i $line's/false/true/' $CONFIG
+  ./vpnserver start
+
+  sleep 2s
+
+  ADMINPASS=$(goxkcdpwgen -n 2 -c -d "-")
+  HUBPASS=$(goxkcdpwgen -n 2 -c -d "-")
+  USER=$(goxkcdpwgen -n 1)
+  USERPASS=$(goxkcdpwgen -n 2 -c -d "-")
+  PSKPASS=$(openssl rand -hex 4)
+  
+  ./vpncmd /SERVER 127.0.0.1 /CMD SstpEnable no
+  ./vpncmd /SERVER 127.0.0.1 /CMD SyslogDisable
+  ./vpncmd /SERVER 127.0.0.1 /CMD ServerCipherSet ECDHE-RSA-AES128-GCM-SHA256
+  
+  ./vpncmd /SERVER 127.0.0.1 /HUB:DEFAULT /CMD SecureNatEnable
+  ./vpncmd /SERVER 127.0.0.1 /HUB:DEFAULT /CMD LogDisable packet
+  
+  ./vpncmd /SERVER 127.0.0.1 /HUB:DEFAULT /CMD UserCreate $USER /GROUP:none /REALNAME:none /NOTE:none
+  { echo $USERPASS; echo $USERPASS; } | ./vpncmd /SERVER 127.0.0.1 /HUB:DEFAULT /CMD UserPasswordSet $USER
+  
+  # To enable Anonymous mode (any user password will work):
+  #./vpncmd /SERVER 127.0.0.1 /HUB:DEFAULT /CMD UserAnonymousSet $USER
+  
+  # specify the default hub so you don't need to specify "user@<hub name>"
+  ./vpncmd /SERVER 127.0.0.1 /CMD IPsecEnable /L2TP:yes /L2TPRAW:no /ETHERIP:no /PSK:$PSKPASS /DEFAULTHUB:DEFAULT
+
+  { echo $ADMINPASS; echo $ADMINPASS; } | ./vpncmd /SERVER 127.0.0.1 /ADMINHUB:DEFAULT /CMD ServerPasswordSet
+  { echo $HUBPASS; echo $HUBPASS; } | ./vpncmd /SERVER 127.0.0.1 /HUB:DEFAULT /CMD SetHubPassword
+
+  # OpenVPN config
+  ./vpncmd /SERVER /PASSWORD:$ADMINPASS localhost /CMD OpenVpnMakeConfig openvpn
+  unzip openvpn.zip '*_openvpn_remote_access_l3.ovpn'
+
+  echo ""
+  echo "================================================================"
+  echo "Save the following data somewhere safe."
+  echo "================================================================"
+  echo ""
+  echo "===================== OpenVPN VPN =============================="
+  echo "Your OpenVPN config (save it as vpn.ovpn file):"
+  echo "# --------------------- CUT HERE -------------------------------"
+  cat *_openvpn_remote_access_l3.ovpn | \
+    grep -Ev '^\#|^;' | strings | \
+    sed 's/^remote .*/remote <SET YOUR AKASH INGRESS URI HERE> <SET YOUR AKASH PORT MAPPED TO 443>/g' | \
+    sed 's/^proto udp/proto tcp/g' | \
+    sed 's/^cipher .*/cipher AES-256-CBC/g'
+  echo "# --------------------- CUT HERE -------------------------------"
+  rm -vf -- openvpn.zip *_openvpn_remote_access_l3.ovpn >/dev/null
+
+  echo ""
+  echo "=================== SoftEther VPN =============================="
+  echo "SoftEther VPN Server Administrator Password: $ADMINPASS"
+  echo "SoftEther VPN DEFAULT Hub Password: $HUBPASS"
+  echo ""
+  echo "=================== L2TP/IPSec VPN ============================="
+  echo "L2TP PSK (Pre-shared key) is: $PSKPASS"
+  echo "L2TP IPSec Options"
+  echo "Phase 1 Algorithms: aes128-sha1-modp2048"
+  echo "Phase 2 Algorithms: aes128-sha1"
+  echo ""
+  echo "============ Username & Password for VPN authentication ========"
+  echo "Username: $USER"
+  echo "Password: $USERPASS"
+  echo ""
+else
+  ./vpnserver start
+
+  echo "$CONFIG file already exists! Skipping the configuration."
+  echo "Delete that file should you want to reset your configuration."
+fi
+
+echo ""
+echo "Connect to VPN Server as admin: ./vpncmd /SERVER <host>"
+echo "Connect to VPN DEFAULT Hub: ./vpncmd /SERVER /HUB:DEFAULT <host>"
+
+echo "Enjoy SoftEther VPN!"
+
+sleep infinity
