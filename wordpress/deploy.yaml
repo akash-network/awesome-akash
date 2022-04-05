@@ -9,6 +9,12 @@ services:
       - WORDPRESS_DB_USER=exampleuser
       - WORDPRESS_DB_PASSWORD=examplepass
       - WORDPRESS_DB_NAME=exampledb
+    command:
+      - "sh"
+      - "-c"
+    args:
+      - 'grep -q upload_max_filesize || { echo "php_value upload_max_filesize 64M\nphp_value post_max_size 64M\nphp_value max_execution_time 300\nphp_value max_input_time 300" | tee -a /var/www/html/.htaccess; };
+      exec docker-entrypoint.sh apache2-foreground'
     expose:
       - port: 80
         http_options:
