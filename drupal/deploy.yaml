@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  drupal:
+    image: drupal 
+    expose:
+      - port: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    drupal:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        drupal: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  drupal:
+    akash:
+      profile: drupal
+      count: 1

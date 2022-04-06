@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  mintr:
+    image: yykpk0923/mintr:v2
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    mintr:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        mintr: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  mintr:
+    akash:
+      profile: mintr
+      count: 1

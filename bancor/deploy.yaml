@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  bancor:
+    image: sueinz/bancor:latest
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    bancor:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        bancor:
+          denom: uakt
+          amount: 100
+
+deployment:
+  bancor:
+    akash:
+      profile: bancor
+      count: 1

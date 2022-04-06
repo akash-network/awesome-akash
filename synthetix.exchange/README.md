@@ -12,4 +12,4 @@ First of all you need to create docker image and push it to docker hub.
     * `npm run build`
 2. Make a container and an image based on `nginx:stable-alpine`
 3. Push to the docker hub
-4. Modify `deploy.yml` to use your image
+4. Modify `deploy.yaml` to use your image

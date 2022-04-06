@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4 
+    expose:
+      - port: 80 
+        as: 80 
+        to:
+          - global: true
+    env:
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+
+profiles:
+  compute:
+    pgadmin:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        pgadmin: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  pgadmin:
+    akash:
+      profile: pgadmin
+      count: 1 

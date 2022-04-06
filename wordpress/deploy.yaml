@@ -1,0 +1,70 @@
+---
+version: "2.0"
+
+services:
+  wordpress:
+    image: wordpress 
+    env:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=exampleuser
+      - WORDPRESS_DB_PASSWORD=examplepass
+      - WORDPRESS_DB_NAME=exampledb
+    expose:
+      - port: 80
+        to:
+          - global: true
+
+  db:
+    image: mysql:5.7
+    env:
+      - MYSQL_DATABASE=exampledb
+      - MYSQL_USER=exampleuser
+      - MYSQL_PASSWORD=examplepass
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+    expose:
+      - port: 3306
+        to:
+          - service: wordpress
+
+profiles:
+  compute:
+    wordpress:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 2Gi
+    db:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: "256Mi"
+        storage:
+          size: "1Gi"
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        wordpress:
+          denom: uakt
+          amount: 100
+        db:
+          denom: uakt
+          amount: 100
+
+deployment:
+  wordpress:
+    akash:
+      profile: wordpress
+      count: 1
+  db:
+    akash:
+      profile: db
+      count: 1

@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  dart:
+    image: google/dart-hello
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    dart:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        dart:
+          denom: uakt
+          amount: 100
+
+deployment:
+  dart:
+    akash:
+      profile: dart
+      count: 1
+

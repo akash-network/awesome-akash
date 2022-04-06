@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  onetimepad:
+    image: jenkinsplc/onetimepad
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    onetimepad:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        onetimepad: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  onetimepad:
+    akash:
+      profile: onetimepad
+      count: 1

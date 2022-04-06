@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  jira:
     image: atlassian/jira-software:latest
     expose:
       - port: 8080
@@ -12,28 +12,28 @@ services:
 
 profiles:
   compute:
-    web:
+    jira:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 1Gi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
-          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        jira: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  jira:
+    akash:
+      profile: jira
       count: 1

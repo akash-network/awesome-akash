@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  steemcn:
+    image: ericet/steem-buzz:latest
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    steemcn:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1024Mi
+        storage:
+          size: 1024Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        steemcn:
+          denom: uakt
+          amount: 100
+
+deployment:
+  steemcn:
+    akash:
+      profile: steemcn
+      count: 1

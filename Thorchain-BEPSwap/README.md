@@ -150,10 +150,10 @@ docker push $IMAGE
 
 ## Create the Deployment
 
-Create a deployment configuration [thorchain.yml](deploy.yml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://docs.akash.network/documentation/sdl):
+Create a deployment configuration [thorchain.yaml](deploy.yaml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://docs.akash.network/documentation/sdl):
 
 ```sh
-cat > thorchain.yml <<EOF
+cat > thorchain.yaml <<EOF
 ---
 version: "2.0"
 
@@ -171,26 +171,24 @@ profiles:
     web:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
-      attributes:
-        organization: ovrclk.com
+    akash:
       signedBy:
         anyOf:
-          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         web:
           denom: uakt
-          amount: 3000
+          amount: 100
 
 deployment:
   web:
-    westcoast:
+    akash:
       profile: web
       count: 1
 
@@ -208,7 +206,7 @@ Please note if you are running on the testnet, you are limited in the amount of 
 To deploy on Akash, run:
 
 ```sh
-akash tx deployment create thorchain.yml --from $KEY_NAME --node $AKASH_NODE --chain-id $AKASH_CHAIN_ID --fees 5000uakt -y
+akash tx deployment create thorchain.yaml --from $KEY_NAME --node $AKASH_NODE --chain-id $AKASH_CHAIN_ID --fees 5000uakt -y
 ```
 
 In this step, you post your deployment, the Akash marketplace matches you with a provider via auction. To create a deployment use akash deployment. The syntax for the deployment is `akash tx deployment create <config-path> --from <key-name>`.
@@ -262,7 +260,7 @@ akash1uu8wfvxscqt7ax89hjkxral0r2k73c6ee97dzn 160398 1 1
 Upload the manifest using the values from above step:
 
 ```sh
-akash provider send-manifest thorchain.yml --node $AKASH_NODE --dseq $DSEQ --oseq $OSEQ --gseq $GSEQ --owner $ACCOUNT_ADDRESS --provider $PROVIDER
+akash provider send-manifest thorchain.yaml --node $AKASH_NODE --dseq $DSEQ --oseq $OSEQ --gseq $GSEQ --owner $ACCOUNT_ADDRESS --provider $PROVIDER
 ```
 
 Your image is now deployed, once you uploaded the manifest. You can retrieve the access details by running the below:

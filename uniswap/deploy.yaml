@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  uniswap:
+    image: scriptmoney/uniswap:v2
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    uniswap:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        uniswap: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  uniswap:
+    akash:
+      profile: uniswap
+      count: 1

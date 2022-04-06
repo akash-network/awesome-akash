@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  tronwallet:
+    image: maiyude/tronmoney:v1
+    expose:
+      - port: 8501
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    tronwallet:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 1500Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        tronwallet: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  tronwallet:
+    akash:
+      profile: tronwallet
+      count: 1

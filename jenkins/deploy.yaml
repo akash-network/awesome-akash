@@ -17,25 +17,25 @@ profiles:
     jenkins:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           size: 5Gi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
-          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         jenkins:
           denom: uakt
-          amount: 2000
+          amount: 100
 
 deployment:
   jenkins:
-    westcoast:
+    akash:
       profile: jenkins
       count: 1

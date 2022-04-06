@@ -1,0 +1,41 @@
+---
+version: "2.0"
+
+services:
+  sifchain-ui:
+    image: andrey01/sifchain-ui:2022-03-29-1648584226
+    expose:
+      - port: 80
+        as: 80
+        accept:
+          - sifchain.akash.pro
+        to:
+          - global: true
+
+profiles:
+  compute:
+    sifchain-ui:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        sifchain-ui:
+          denom: uakt
+          amount: 100
+
+deployment:
+  sifchain-ui:
+    akash:
+      profile: sifchain-ui
+      count: 1

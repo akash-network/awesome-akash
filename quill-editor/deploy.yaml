@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  quill:
+    image: akashquill/quill:v1
+    expose:
+      - port: 8501
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    quill:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 1512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        quill:
+          denom: uakt
+          amount: 100
+
+deployment:
+  quill:
+    akash:
+      profile: quill
+      count: 1

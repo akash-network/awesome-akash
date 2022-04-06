@@ -20,19 +20,19 @@ profiles:
         storage:
           size: 512Mi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
-          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         adminer:
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
   adminer:
-    westcoast:
+    akash:
       profile: adminer
       count: 1

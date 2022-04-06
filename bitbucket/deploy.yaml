@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  bitbucket:
     image: atlassian/bitbucket-server:latest
     expose:
       - port: 7990
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    bitbucket:
       resources:
         cpu:
           units: 0.8
@@ -21,19 +21,19 @@ profiles:
         storage:
           size: 2Gi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
-          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        bitbucket: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  bitbucket:
+    akash:
+      profile: bitbucket
       count: 1

@@ -1,0 +1,72 @@
+version: "2.0"
+
+services:
+  db:
+    image: mysql:5.7
+    env:
+        - MYSQL_ROOT_PASSWORD=12345
+        - MYSQL_DATABASE=redmine
+    expose:
+      - port: 3306
+        as: 3306
+        to:
+          - service: db
+  
+  redmine:
+    image: redmine
+    depends-on:
+        - db
+    env:
+        - REDMINE_DB_MYSQL=db
+        - REDMINE_DB_USERNAME=root
+        - REDMINE_DB_PASSWORD=12345
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    db:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    
+    redmine:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+          
+  placement:
+    akash:    
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        db: 
+          denom: uakt
+          amount: 100
+        redmine: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  db:
+    akash:
+      profile: db
+      count: 1
+  redmine:
+    akash:
+      profile: redmine
+      count: 1

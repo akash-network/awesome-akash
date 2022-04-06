@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  wiki:
+    image: requarks/wiki:2
+    env:
+      - DB_TYPE=sqlite
+      - DB_FILEPATH=/wiki/app.db
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    
+profiles:
+  compute:
+    wiki:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        wiki: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  wiki:
+    akash:
+      profile: wiki
+      count: 1

@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  lunielight:
+    image: ovrclk/lunie-light
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    lunielight:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        lunielight: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  lunielight:
+    akash:
+      profile: lunielight
+      count: 1

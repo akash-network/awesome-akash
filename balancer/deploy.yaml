@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  balancer:
+    image: stephendefi/balancer:latest
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    balancer:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        balancer:
+          denom: uakt
+          amount: 100
+
+deployment:
+  balancer:
+    akash:
+      profile: balancer
+      count: 1

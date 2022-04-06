@@ -1,0 +1,38 @@
+---
+version: "2.0"
+
+services:
+  minesweeper:
+    image: creepto/minesweeper
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    minesweeper:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        minesweeper: 
+          denom: uakt
+          amount: 100
+
+deployment:
+  minesweeper:
+    akash:
+      profile: minesweeper
+      count: 1

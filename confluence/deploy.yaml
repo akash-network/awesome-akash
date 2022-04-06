@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  confluence:
     image: atlassian/confluence-server:latest
     expose:
       - port: 8090
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    confluence:
       resources:
         cpu:
           units: 0.1
@@ -21,19 +21,19 @@ profiles:
         storage:
           size: 2Gi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
-          - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web: 
+        confluence: 
           denom: uakt
-          amount: 1000
+          amount: 100
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  confluence:
+    akash:
+      profile: confluence
       count: 1
