@@ -1,5 +1,5 @@
-FROM ubuntu:22.04
-RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo lsb-core nginx php-fpm
+FROM debian:bookworm
+RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release 
 COPY . /
 ENV KEYS=
 ENV REMOTE_PORT=22
