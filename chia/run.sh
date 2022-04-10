@@ -82,6 +82,10 @@ echo Using $THREADS as defined by user
 
 mkdir -p /root/chia/final ; mkdir -p /root/chia/tmp2 ; mkdir -p /root/chia/tmp
 
+if [[ "$UPLOAD_BACKGROUND" == "true" ]]; then
+screen -dmS sync bash ./sync.sh
+fi
+
 rm -rf chia-blockchain
 git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules ; cd chia-blockchain
 sh install.sh ; . ./activate
@@ -105,9 +109,7 @@ fi
 
 if [[ "$REMOTE_LOCATION" != "local" ]]; then
 
-if [[ "$UPLOAD_BACKGROUND" == "true" ]]; then
-nohup sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}" >> /plots/rsync.log 2>&1 &
-else
+if [[ "$UPLOAD_BACKGROUND" == "false" ]]; then
 sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}"
 fi
 
