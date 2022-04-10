@@ -104,7 +104,13 @@ sleep 60
 fi
 
 if [[ "$REMOTE_LOCATION" != "local" ]]; then
+
+if [[ "$UPLOAD_BACKGROUND" == "true" ]]; then
+nohup sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}" >> /plots/rsync.log 2>&1 &
+else
 sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}"
+fi
+
 if [[ ${PLOTTER} == "madmax" ]]; then
 chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
 elif [[ ${PLOTTER} == "blade" ]]; then
