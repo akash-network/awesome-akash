@@ -101,12 +101,6 @@ while :
 do
 chmod 777 /plots -R
 
-#Always check if full first
-if [[ $(ls -la /plots/*.plot | wc -l) > 6 ]]; then
-echo "Deployment is full, please delete plots to make room for plotting! Sleeping for 60 seconds before checking for free space."
-sleep 60
-fi
-
 if [[ "$REMOTE_LOCATION" != "local" ]]; then
 
 if [[ "$UPLOAD_BACKGROUND" == "false" ]]; then
@@ -114,28 +108,34 @@ sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p $
 fi
 
 if [[ ${PLOTTER} == "madmax" ]]; then
-chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
+chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
 elif [[ ${PLOTTER} == "blade" ]]; then
 apt-get install -y libgmp3-dev
 chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
 else
-chia plots create -k $SIZE -n $COUNT -r $THREADS -b $MEMORY -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
+chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
 fi
 
 else
 
 
 if [[ ${PLOTTER} == "madmax" ]]; then
-chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR
+chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
 elif [[ ${PLOTTER} == "blade" ]]; then
 apt-get install -y libgmp3-dev
 chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
 else
-chia plots create -k $SIZE -n $COUNT -r $THREADS -b $MEMORY -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 $TMPDIR2 -d $FINALDIR
+chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
 fi
 
 
 fi
+
+until (( $(ls -la /plots/*.plot | wc -l) < 6 )); do
+echo "Deployment is full, please download and delete plots to make room for plotting! Sleeping for 60 seconds before checking for free space."
+sleep 10
+done
+
 
 done
 fi

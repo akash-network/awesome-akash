@@ -48,7 +48,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:72
+    image: cryptoandcoffee/akash-chia:88
     expose:
       - port: 8080
         as: 80
@@ -61,8 +61,11 @@ services:
       - REMOTE_LOCATION=local
         #Choose local to access finished plots through web interface or set to upload and finished plots will be sent to SSH destination path like /root/plots
       - PLOTTER=madmax
-      - THREADS=8 #Must match CPU units
         #Choose your plotter software - madmax or blade (testnet only)
+      - THREADS=8 
+        #Must match CPU units
+      - UPLOAD_BACKGROUND=true 
+        #Change to true to enable multiple background uploading of plots, this is the best option to use use 100% of your bandwidth.
 ###################################################################
 # Uncomment the variables below and set REMOTE_LOCATION=upload to enable remote uploading
 #      - REMOTE_HOST=changeme.com #SSH upload host
@@ -77,10 +80,9 @@ profiles:
         cpu:
           units: 8.0
         memory:
-          size: 6Gi
-#Chia blockchain is currently ~40gb as of November 2021 / if you are plotting please use at least 256Gi
+          size: 8Gi
         storage:
-          size: 1Ti
+          size: 915Gi
   placement:
     akash:
       signedBy:
