@@ -1,10 +1,10 @@
 --
 version: "2.0"
 services:
-  miner:
-    image: cryptoandcoffee/akash-pkt-miner:3
+  pkt-miner:
+    image: cryptoandcoffee/akash-pkt-miner:5
     env:
-      - WALLET_ADDR=pkt1qqhl7pyywvjtht9lhk3fjruepazpkgaqz0spfcy
+      - WALLET_ADDR=
       - POOL1=http://pool.pkteer.com
       - POOL2=http://pool.pkt.world
       - POOL3=http://pool.pktpool.io
@@ -14,10 +14,9 @@ services:
         as: 80
         to:
           - global: true
-
 profiles:
   compute:
-    miner:
+    pkt-miner:
       resources:
         cpu:
           units: 1
@@ -26,19 +25,17 @@ profiles:
         storage:
           size: 1Gi
   placement:
-    miner:
-      attributes:
-        host: akash
+    pkt-miner:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        miner:
+        pkt-miner:
           denom: uakt
           amount: 1000
 
 deployment:
-  miner:
-    miner:
-      profile: miner
+  pkt-miner:
+    pkt-miner:
+      profile: pkt-miner
       count: 1

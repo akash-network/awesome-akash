@@ -20,4 +20,4 @@ fi
 
 echo "using pools ${pools[*]}..."
 
-exec ./packetcrypt ann --paymentaddr "$WALLET_ADDR" "${pools[@]}"
+./packetcrypt ann --paymentaddr "$WALLET_ADDR" "${pools[@]}"
