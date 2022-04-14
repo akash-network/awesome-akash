@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# check sifchain-ui is available and working
+# if not -> rollback to a previously working version

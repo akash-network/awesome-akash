@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "${PWD##*/}: started."
+
+set -e
+set -x
+exec nginx -g 'daemon off;' 2>&1
