@@ -20,6 +20,8 @@ services:
         proto: tcp
         to:
           - global: true
+    env:
+      - PROFILE=release
 profiles:
   compute:
     nodle-node:
