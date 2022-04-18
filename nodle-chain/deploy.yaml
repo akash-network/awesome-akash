@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  nodle-node:
+    image: cryptoandcoffee/akash-nodle-node:1
+    expose:
+      - port: 9944
+        as: 9944
+        proto: tcp
+        to:
+          - global: true
+      - port: 9933
+        as: 9933
+        proto: tcp
+        to:
+          - global: true
+      - port: 30333
+        as: 30333
+        proto: tcp
+        to:
+          - global: true
+profiles:
+  compute:
+    nodle-node:
+      resources:
+        cpu:     # Min 10vCPU
+          units: 10
+        memory:  # Min 64Gi
+          size:  16Gi
+        storage: # Min 256Gi
+          size:  256Gi
+  placement:
+    akash:
+      pricing:
+        nodle-node:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  nodle-node:
+    akash:
+      profile: nodle-node
+      count: 1
