@@ -1,6 +1,6 @@
 # What is Nodle?
 
-A crowdsourced decentralized IoT network.  The Nodle network harnesses the power of [https://www.nodle.com/products/cash_app](smartphones).  Earn crypto with the [https://www.nodle.com/products/sdk](Nodle SDK).
+A crowdsourced decentralized IoT network.  The Nodle network harnesses the power of [smartphones](https://www.nodle.com/products/cash_app).  Earn crypto with the [Nodle SDK](https://www.nodle.com/products/sdk).
 
 # Nodle on Akash
 
@@ -8,7 +8,7 @@ Welcome [Nodle](https://nodle.com/) node runners! You can easily run the latest 
 
 # Runtime options
 
-Change the `PROFILE=release` variable to change the build version.  The [https://github.com/NodleCode/chain/](latest release) will be built by default.
+Change the `PROFILE=release` variable to change the build version.  The [latest release](https://github.com/NodleCode/chain/) will be built by default.
 
 # Accessing your Nodle node
 
