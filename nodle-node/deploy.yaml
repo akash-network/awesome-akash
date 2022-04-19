@@ -21,7 +21,16 @@ services:
         to:
           - global: true
     env:
-      - PROFILE=release
+      - PROFILE=release #Build version
+      - MODE=archive #Leave blank for pruning
+      - NAME="Akash Network" #Name of your Nodle node
+        #Node name should not contain invalid chars such as '.' and '@'.
+      - PRUNING= #Use archive to enable archival node
+      - CHAIN=main
+        #We specify which chain to sync with via --chain main, if you wanted to sync with our test 
+        #network you could replace it with --chain arcadia. When running a parachain collator 
+        #you will be able to use --chain eden.
+      - STARTUP="--rpc-external --ws-external --wasm-execution compiled  --prometheus-external"
 profiles:
   compute:
     nodle-node:

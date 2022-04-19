@@ -17,4 +17,8 @@ mv /usr/share/ca* /tmp &&
   rm -rf /usr/lib/python* &&
   curl https://raw.githubusercontent.com/paritytech/polkadot/08c200f6540f67c16846d3152de50f0fbbc2a73d/node/service/res/rococo.json >/rococo.json
 
-exec nodle-parachain
+if [[ $PRUNING == "" ]]; then
+exec nodle-parachain --name $NAME --chain $CHAIN $STARTUP
+else
+exec nodle-parachain --name $NAME --chain $CHAIN --pruning $PRUNING $STARTUP
+fi
