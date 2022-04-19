@@ -163,6 +163,10 @@ Awesome DeFi apps you can deploy on Akash
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
 
+### Network
+
+- [SoftEther VPN](softether-vpn)
+
 ### Video Conferencing
 
 - Your project can be the first!
