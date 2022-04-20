@@ -2,7 +2,7 @@ FROM ubuntu
 ENV PROFILE=release
 ENV MODE=release
 ENV NAME="akash.network"
-ENV CHAIN=main
+ENV CHAIN=eden
 ENV PRUNING=
 ENV STARTUP="--rpc-external --ws-external --rpc-cors all --wasm-execution compiled"
 
