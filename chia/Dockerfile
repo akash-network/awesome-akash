@@ -1,5 +1,5 @@
 FROM debian:bookworm
-RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release 
+RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release python3.9-venv
 COPY . /
 ENV KEYS=
 ENV REMOTE_PORT=22
