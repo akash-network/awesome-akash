@@ -1,0 +1,36 @@
+---
+version: "2.0"
+
+services:
+  geekbench:
+    image: cryptoandcoffee/akash-geekbench:1
+    expose:
+      - port: 80
+        to:
+          - global: true
+    env:
+      - GEEKBENCH_VERSION=5.4.4 #Supports any version of 5.0
+      - UPLOAD #Replace with NO_UPLOAD to disable uploading results to the Geekbench Browser
+      #- EMAIL= #Unlock Geekbench using EMAIL and KEY
+      #- KEY= #Required if email is present
+profiles:
+  compute:
+    geekbench:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 2Gi #2Gi required
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      pricing:
+        geekbench:
+          denom: uakt
+          amount: 10000
+deployment:
+  geekbench:
+    akash:
+      profile: geekbench
+      count: 1
