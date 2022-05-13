@@ -5,7 +5,7 @@ services:
   speedtest-tracker:
     image: henrywhitaker3/speedtest-tracker
     expose:
-      - port: 80
+      - port: 8765
         as: 80
         to:
           - global: true

@@ -82,7 +82,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Geekbench 5](geekbench)
 - [Speedtest Tracker](speedtest-tracker)
 - [Librespeed](librespeed)
-- [OpenSpeedTest](openspeedtest)
+- [OpenSpeedTest](open-speed-test)
 
 ### Blockchain
 

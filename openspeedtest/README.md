@@ -1,3 +1,5 @@
+![](https://github.com/ovrclk/awesome-akash/raw/benchmarking/openspeedtest/openspeedtest-logo.jpg)
+
 # Why OpenSpeedTest?
 
 Secure by Design.

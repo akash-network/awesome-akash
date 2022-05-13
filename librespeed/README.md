@@ -1,8 +1,8 @@
-![LibreSpeed Logo](https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true)
+![](https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true)
 
 # LibreSpeed
 
-No Flash, No Java, No Websocket, No Bullshit.
+Test your connection speed to a provider.  No Flash, No Java, No Websocket.
 
 This is a very lightweight Speedtest implemented in Javascript, using XMLHttpRequest and Web Workers.
 
