@@ -81,7 +81,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Fast.com by Netflix](fast)
 - [Geekbench 5](geekbench)
 - [Speedtest Tracker](speedtest-tracker)
-- [Librespeed](librespeed)
+- [LibreSpeed](librespeed)
 - [OpenSpeedTest](openspeedtest)
 
 ### Blockchain
