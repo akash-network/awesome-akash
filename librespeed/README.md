@@ -1,10 +1,8 @@
-![](https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true)
-
 # LibreSpeed
 
-Test your connection speed to a provider.  No Flash, No Java, No Websocket.
+![](https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true)
 
-This is a very lightweight Speedtest implemented in Javascript, using XMLHttpRequest and Web Workers.
+Test your connection speed to a provider.  No Flash, No Java, No Websocket.  This is a very lightweight Speedtest implemented in Javascript, using XMLHttpRequest and Web Workers.
 
 ## Compatibility
 All modern browsers are supported: IE11, latest Edge, latest Chrome, latest Firefox, latest Safari.  
