@@ -14,14 +14,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
-### Social
-
-- [Discourse](discourse)
-
-### Peer-to-peer File Sharing
-
-- [qBittorrent](qbittorrent)
-
 ### Blogging
 
 - [SteemCN](steemcn)
@@ -83,6 +75,15 @@ Awesome DeFi apps you can deploy on Akash
 - [yfii](yfii)
 - [Sifchain DEX](sifchain-ui)
 
+### Benchmarking
+
+- [Speedtest by Ookla](speedtest-cli)
+- [Fast.com by Netflix](fast)
+- [Geekbench 5](geekbench)
+- [Speedtest Tracker](speedtest-tracker)
+- [Librespeed](librespeed)
+- [OpenSpeedTest](openspeedtest)
+
 ### Blockchain
 
 - [Substrate Node](substrate-node)
@@ -140,11 +141,19 @@ Awesome DeFi apps you can deploy on Akash
 - [Raptoreum](raptoreum-miner)
 - [pkt.cash](pkt-miner)
 
+### Peer-to-peer File Sharing
+
+- [qBittorrent](qbittorrent)
+
 ### Project Management
 
 - [Jira Software](jira)
 - [Redmine](redmine)
 - [Kanboard](kanboard)
+
+### Social
+
+- [Discourse](discourse)
 
 ### Tools
 
