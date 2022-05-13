@@ -1,0 +1,32 @@
+---
+version: "2.0"
+
+services:
+  openspeedtest:
+    image: openspeedtest/latest
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    openspeedtest:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      pricing:
+        openspeedtest:
+          denom: uakt
+          amount: 10000
+deployment:
+  openspeedtest:
+    akash:
+      profile: openspeedtest
+      count: 1
