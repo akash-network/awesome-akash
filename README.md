@@ -83,6 +83,11 @@ Awesome DeFi apps you can deploy on Akash
 - [Speedtest Tracker](speedtest-tracker)
 - [LibreSpeed](librespeed)
 - [OpenSpeedTest](openspeedtest)
+- [MonkeyTest](monkeytest)
+- [Cross Platform Disk Test](cross-platform-disk-test)
+- [Serverbench](serverbench)
+- [Flexible IO Tester](fio)
+- [Phoronix](phoronix)
 
 ### Blockchain
 

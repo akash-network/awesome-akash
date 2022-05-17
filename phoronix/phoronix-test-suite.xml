@@ -1,0 +1,11 @@
+<BatchMode>
+<SaveResults>FALSE</SaveResults>
+<OpenBrowser>FALSE</OpenBrowser>
+<UploadResults>FALSE</UploadResults>
+<PromptForTestIdentifier>FALSE</PromptForTestIdentifier>
+<PromptForTestDescription>FALSE</PromptForTestDescription>
+<PromptSaveName>FALSE</PromptSaveName>
+<RunAllTestCombinations>TRUE</RunAllTestCombinations>
+<Configured>TRUE</Configured>
+</BatchMode>
+
