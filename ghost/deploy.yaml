@@ -9,10 +9,6 @@ services:
         as: 80
         to:
           - global: true
-        accept:
-          - mysite123.com
-    env:
-      - "url=http://mysite123.com"
 profiles:
   compute:
     ghost:
