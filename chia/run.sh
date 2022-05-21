@@ -1,7 +1,9 @@
 #!/bin/bash
 
 #SSH Test if required
-if [[ "$REMOTE_LOCATION" != "local" ]]; then
+K32_SIZE=108
+
+if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
 	echo "SSH connection test before unpacking..."
 	mkdir -p /root/.ssh/
 	touch /root/.ssh/known_hosts
@@ -12,9 +14,94 @@ if [[ "$REMOTE_LOCATION" != "local" ]]; then
 	sshpass -e ssh -o ConnectTimeout=5 -p $REMOTE_PORT $REMOTE_USER@$REMOTE_HOST exit
 	if [ $? != 0 ]; then
 		echo "SSH Connection failed - please check your settings"
+    sleep 300
 		exit
 	fi
 fi
+
+if [[ -z "$CPU_UNITS" || -z "$MEMORY_UNITS" || -z "$STORAGE_UNITS" ]]; then
+  echo "CPU_UNITS, MEMORY_UNITS, STORAGE_UNITS variables not set - please check your settings"
+  sleep 300
+  exit
+else
+
+	echo "Found the following deployment compute settings, please verify these values match your SDL."
+  echo "Using $CPU_UNITS threads, $MEMORY_UNITS memory, and $STORAGE_UNITS for storage."
+
+	STORAGE_UNITS=$(echo $STORAGE_UNITS | sed 's/[^0-9]//g') #Remove Gi from variable
+	MEMORY_UNITS=$(echo $MEMORY_UNITS | sed 's/[^0-9]//g') #Remove Gi from variable
+
+	STORAGE_MIN=364 #Required for Madmax 256Gb + 1 Plot
+	STORAGE_MAX=$(echo "${STORAGE_UNITS}-${STORAGE_MIN}" | bc -l)
+	STORAGE_PLOTS=$(echo "${STORAGE_MAX}/${K32_SIZE}" | bc -l | awk '{print int($1+0.5)}') #Round down
+
+  echo Found $STORAGE_UNITS Storage units
+	echo Found $MEMORY_UNITS Memory units
+	echo Found $STORAGE_MIN Storage min units
+	echo Found $STORAGE_MAX Storage max units
+	echo Found $STORAGE_PLOTS Storage plots
+
+	if (( $STORAGE_UNITS < 364 )); then
+		echo "${STORAGE_UNITS}Gi is not enough disk space to create a plot with.  Please use at least 364Gi."
+	  sleep 300
+		exit
+	fi
+
+	if (( $MEMORY_UNITS < 6 )); then
+		echo "${MEMORY_UNITS}Gi is not enough memory to create a plot with.  Please use at least 6Gi."
+	  sleep 300
+		exit
+	fi
+
+	if (( $STORAGE_PLOTS < 1 )); then
+		echo "${STORAGE_MAX}Gi is not enough storage to create a plot with.  Please use at least 364Gi."
+	  sleep 300
+		exit
+	fi
+
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+  echo "This deployment can create a total of $STORAGE_PLOTS plots on ${STORAGE_UNITS}Gi available storage "
+	echo "requested without stopping. If this number doesn\'t look right - you need to update the CPU_UNITS, "
+	echo "MEMORY_UNITS, STORAGE_UNITS to match the units requested in the SDL. Sleeping 30 seconds.          "
+  sleep 30
+fi
+
+if [[ "$FINAL_LOCATION" == "local" ]]; then
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "Plots will be created locally.  Please check Akashlytics for the Uri - you can find this on the   "
+	echo "deployment details page.  Plots will only appear after creation.  Please be patient for your first"
+	echo "plots to appear.  Starting in 15 seconds.                                                          "
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	sleep 15
+else
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "Plots will be uploaded to $FINAL_LOCATION on $REMOTE_HOST.                                         "
+	echo "After the plot is succesfully uploaded it will be deleted automatically from the deployment        "
+	echo "Starting in 15 seconds.                                                                            "
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	echo "###################################################################################################"
+	sleep 15
+fi
+
 
 mkdir /plots
 chmod 777 /plots -R
@@ -36,64 +123,57 @@ sed -i -e "s/Tiny Chia Plot Manager/Chia Plot Manager/g" /plots/index.php
 /etc/init.d/nginx start
 /etc/init.d/php8.1-fpm start
 
-if [[ "$REMOTE_LOCATION" == "local" ]]; then
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "Plots will be created locally.  Please check Akashlytics for the Uri - you can find this on the"
-	echo "deployment details page.  Plots will only appear after creation.  Please be patient for your first"
-	echo "plots to appear.  Sleeping 60 seconds before starting..."
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	sleep 60
-else
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "Plots will be uploaded to $REMOTE_LOCATION on $REMOTE_HOST.                                        "
-	echo "After the plot is succesfully uploaded it will be deleted automatically from the deployment        "
-	echo "Sleeping 10 seconds before starting...                                                             "
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	echo "###################################################################################################"
-	sleep 10
-fi
-
-echo "Let's get thing started..."
-ram=$(free -m | grep -oP '\d+' | head -n 1)
-threads=$(grep -c ^processor /proc/cpuinfo)
-cores=$(grep ^cpu\\scores /proc/cpuinfo | uniq | awk '{print $4}')
-
-echo "Found RAM: $ram"
-echo "Found THREADS: $threads"
-echo "Found CORES: $cores"
-
-#Max out threads
-echo Using $THREADS as defined by user
-
 mkdir -p /root/chia/final
 mkdir -p /root/chia/tmp2
 mkdir -p /root/chia/tmp
 
-if [[ "$UPLOAD_BACKGROUND" == "true" ]]; then
+if [[ $RCLONE == true ]]; then
+#  git clone https://github.com/dutchcoders/transfer.sh
+#	cd transfer.sh
+#	go build -o RCLONE main.go
+#	cd /
+#apt-get install -y rclone
+wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
+dpkg -i rclone-current-linux-amd64.deb
+fi
+
+if [[ GOOGLE_DRIVE_JSON != "" ]]; then
+mkdir -p /root/.config/rclone/
+echo -e $GOOGLE_DRIVE_JSON > /root/.config/rclone/rclone.conf
+sed -i 's/ //' /root/.config/rclone/rclone.conf
+fi
+
+if [[ ${PLOTTER} == "bladebit-disk" ]]; then
+git clone https://github.com/Chia-Network/bladebit.git && cd bladebit && git checkout $BLADEBIT_VERSION
+mkdir -p build && cd build
+cmake ..
+cmake --build . --target bladebit --config Release -j $(nproc)
+cd ..
+cp ./build/bladebit /usr/local/bin/
+cd /
+else
+	rm -rf chia-blockchain
+	git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules
+	cd chia-blockchain ; git checkout $VERSION
+	sh install.sh
+	. ./activate
+	chia init
+fi
+
+if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
 	screen -dmS sync bash ./sync.sh
 fi
 
-rm -rf chia-blockchain
-git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules
-cd chia-blockchain
-sh install.sh
-. ./activate
-chia init
+if [[ "$RCLONE" == "true" ]]; then
+echo Found RCLONE
+#screen -dmS sync bash ./sync-rclone.sh
+nohup ./sync-rclone.sh >>rclone-sync.log 2>&1 &
+fi
+
+if [[ $SPECIAL_ORDER == "1" ]]; then
+cat rclone_dropbox.conf | grep "\[" | sort | uniq | shuf | tail -n1
+
+fi
 
 if [ ! -z $KEYS ]; then
 	echo "Foud KEYS variable set, importing"
@@ -107,36 +187,55 @@ if [ ! -z $PLOTTER ]; then
 	while :; do
 		chmod 777 /plots -R
 
-		if [[ "$REMOTE_LOCATION" != "local" ]]; then
+		if [[ "$FINAL_LOCATION" != "local" ]]; then
 
-			if [[ "$UPLOAD_BACKGROUND" == "false" ]]; then
-				sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}"
+#      if [[ $RCLONE == "true" ]]; then
+#				#go run /transfer.sh/main.go --provider gdrive --basedir /plots/ --gdrive-client-json-filepath /gdrive.json --gdrive-local-config-path /gdrive_config
+#			nohup rclone --log-file=plots.log --progress --drive-chunk-size 512M move /plots/*.plot google:/rclone/ >> plots.log
+#			fi
+			if [[ "$UPLOAD_BACKGROUND" == "false" && $RCLONE == "false" ]]; then
+				sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${FINAL_LOCATION}"
+			fi
+			if [[ "$UPLOAD_BACKGROUND" == "false" && $RCLONE == "true" ]]; then
+				rclone --rc-web-gui --progress --rc-web-gui-update --buffer-size=64M --drive-chunk-size 256M --dropbox-chunk-size 256M move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
 			fi
 
 			if [[ ${PLOTTER} == "madmax" ]]; then
-				chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
-			elif [[ ${PLOTTER} == "blade" ]]; then
-				apt-get install -y libgmp3-dev
-				chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+				chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+			elif [[ ${PLOTTER} == "bladebit" ]]; then
+				chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+                        elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
+				bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -t1 $TMPDIR --cache $RAMCACHE $FINALDIR
+
+#                      You need about 192GiB(+|-) for high-frequency I/O Phase 1 calculations
+#                      to be completely in-memory.
+#				bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot --b 128 --cache $RAMCACHE -t1 $TMPDIR --f1-threads 3 --fp-threads 16 --c-threads 8 --p2-threads 12 --p3-threads 8 $FINALDIR
+                                #chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY diskplot --cache $RAMCACHE -d $FINALDIR
+
+                                #chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
 			else
-				chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+				chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
 			fi
 
 		else
 
 			if [[ ${PLOTTER} == "madmax" ]]; then
-				chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
-			elif [[ ${PLOTTER} == "blade" ]]; then
-				apt-get install -y libgmp3-dev
-				chia plotters bladebit -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+				chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+			elif [[ ${PLOTTER} == "bladebit" ]]; then
+				chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+                        elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
+                                chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
 			else
-				chia plotters madmax -k $SIZE -n $COUNT -r $THREADS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+				chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
 			fi
 
 		fi
 
-		until (($(ls -la /plots/*.plot | wc -l) < 6)); do
-			echo "Deployment is full, please download and delete plots to make room for plotting! Sleeping for 60 seconds before checking for free space."
+    STORAGE_CURRENT=$(du -sh --apparent-size --block-size=1 /plots | awk '{print $1/1024/1024/1024}') #Checks plots folder size and returns in GB
+    echo "Currently using ${STORAGE_CURRENT}Gi of total allocatable ${STORAGE_MAX}Gi"
+
+		until (( $(ls -la /plots/*.plot | wc -l) < $STORAGE_PLOTS )); do
+			echo "Deployment is full, please download and delete plots to make room for plotting! Sleeping for 10 seconds before checking for free space."
 			sleep 10
 		done
 
