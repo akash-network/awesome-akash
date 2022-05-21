@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "Check this every 15 seconds"
 for (( ; ; )); do
 
@@ -19,9 +21,17 @@ for (( ; ; )); do
 #works
 #    nohup rclone --progress --buffer-size=64M --drive-chunk-size 512M move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
     if [[ $RCLONE_EXTRA != "" ]]; then
-		nohup rclone --rc-web-gui --rc-web-gui-update --progress $RCLONE_EXTRA move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
-	  else
-		nohup rclone --rc-web-gui --rc-web-gui-update --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
+		nohup rclone --no-check-dest --rc-web-gui --rc-web-gui-update --progress $RCLONE_EXTRA move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
+  	elif [[ $ALPHA == true ]]; then
+
+			DIRS=( JM_1 JM_2 JM_3 JM_4 JM_5 )
+      ENDPOINT_DIR=$(shuf -n1 -e "${DIRS[@]}")
+  		ENDPOINT_LOCATION=$(cat /root/.config/rclone/rclone.conf | grep "\[" | sort | uniq | shuf | tail -n1)
+
+			nohup rclone --no-check-dest --dropbox-chunk-size 256M --drive-chunk-size 256M --rc-web-gui --rc-web-gui-update --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
+
+		else
+		nohup rclone --no-check-dest --dropbox-chunk-size 256M --drive-chunk-size 256M --rc-web-gui --rc-web-gui-update --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
 	  fi
 
 		echo $i >>/plots/pending.log

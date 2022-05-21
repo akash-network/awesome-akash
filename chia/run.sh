@@ -3,6 +3,9 @@
 #SSH Test if required
 K32_SIZE=108
 
+
+
+
 if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
 	echo "SSH connection test before unpacking..."
 	mkdir -p /root/.ssh/
@@ -103,6 +106,26 @@ else
 fi
 
 
+if [[ $RCLONE_JSON != "" ]]; then
+mkdir -p /root/.config/rclone/
+echo -e $RCLONE_JSON > /root/.config/rclone/rclone.conf
+sed -i 's/ //' /root/.config/rclone/rclone.conf
+fi
+
+if [[ $RCLONE == "true" ]]; then
+echo Found RCLONE
+wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
+dpkg -i rclone-current-linux-amd64.deb
+screen -dmS sync bash sync_rclone.sh
+screen -ls
+if ! screen -list | grep -q "sync"; then
+	echo "Rclone is not running!"
+	sleep 60
+	exit
+fi
+
+fi
+
 mkdir /plots
 chmod 777 /plots -R
 git clone https://github.com/prasathmani/tinyfilemanager /filemanager
@@ -127,21 +150,8 @@ mkdir -p /root/chia/final
 mkdir -p /root/chia/tmp2
 mkdir -p /root/chia/tmp
 
-if [[ $RCLONE == true ]]; then
-#  git clone https://github.com/dutchcoders/transfer.sh
-#	cd transfer.sh
-#	go build -o RCLONE main.go
-#	cd /
-#apt-get install -y rclone
-wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
-dpkg -i rclone-current-linux-amd64.deb
-fi
 
-if [[ GOOGLE_DRIVE_JSON != "" ]]; then
-mkdir -p /root/.config/rclone/
-echo -e $GOOGLE_DRIVE_JSON > /root/.config/rclone/rclone.conf
-sed -i 's/ //' /root/.config/rclone/rclone.conf
-fi
+
 
 if [[ ${PLOTTER} == "bladebit-disk" ]]; then
 git clone https://github.com/Chia-Network/bladebit.git && cd bladebit && git checkout $BLADEBIT_VERSION
@@ -160,20 +170,15 @@ else
 	chia init
 fi
 
+
+
 if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
 	screen -dmS sync bash ./sync.sh
 fi
 
-if [[ "$RCLONE" == "true" ]]; then
-echo Found RCLONE
-#screen -dmS sync bash ./sync-rclone.sh
-nohup ./sync-rclone.sh >>rclone-sync.log 2>&1 &
-fi
 
-if [[ $SPECIAL_ORDER == "1" ]]; then
-cat rclone_dropbox.conf | grep "\[" | sort | uniq | shuf | tail -n1
 
-fi
+
 
 if [ ! -z $KEYS ]; then
 	echo "Foud KEYS variable set, importing"
@@ -197,8 +202,10 @@ if [ ! -z $PLOTTER ]; then
 				sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${FINAL_LOCATION}"
 			fi
 			if [[ "$UPLOAD_BACKGROUND" == "false" && $RCLONE == "true" ]]; then
-				rclone --rc-web-gui --progress --rc-web-gui-update --buffer-size=64M --drive-chunk-size 256M --dropbox-chunk-size 256M move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
+				#rclone --rc-web-gui --progress --rc-web-gui-update --buffer-size=64M --drive-chunk-size 256M --dropbox-chunk-size 256M move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
+        rclone --no-check-dest --dropbox-chunk-size 256M --drive-chunk-size 256M --transfers 1 --fast-list --tpslimit 1 --rc-web-gui --progress --rc-web-gui-update move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
 			fi
+#			Invoke-Expression "$PSScriptRoot\$rclone_version\rclone.exe move $k adriancardo10_${n}:JM_1 --config=$PSScriptRoot\$rclone_version\rclone_dropbox.conf -P --dropbox-chunk-size=150M --drive-chunk-size 150M --transfers 1 --fast-list --tpslimit 1 --bwlimit 1000000000000000000000000000"
 
 			if [[ ${PLOTTER} == "madmax" ]]; then
 				chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS

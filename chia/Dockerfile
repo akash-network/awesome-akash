@@ -1,6 +1,6 @@
 FROM debian:bookworm
 RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release python3.9-venv jq bc libgmp3-dev build-essential cmake libboost-all-dev libnuma-dev wget
-COPY sync-rclone.sh /
+COPY sync_rclone.sh /
 COPY run.sh /
 COPY sync.sh /
 COPY nginx.conf /
@@ -31,7 +31,7 @@ ENV FINAL_LOCATION=local
 ENV UPLOAD_BACKGROUND=true
 ENV RAMCACHE=1G
 ENV BLADEBIT_VERSION=v2.0.0-alpha1
-ENV GOOGLE_DRIVE_JSON=
+ENV RCLONE_JSON=
 ENV ENDPOINT_LOCATION=google
 ENV ENDPOINT_DIR=JM_1
 ENV RCLONE=false
