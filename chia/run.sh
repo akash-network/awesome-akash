@@ -1,18 +1,17 @@
 #!/bin/bash
 
 #SSH Test if required
-K32_SIZE=108
-
 
 if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-  CHECK_PLOTS=$(curl sfo.mello.at:42121/plots | jq '.[-1].id')
-	echo "Found $CHECK_PLOTS on the API"
+CHECK_PLOTS=$(curl $JSON_SERVER | jq '.[-1].id')
+echo "Found $CHECK_PLOTS on $JSON_SERVER"
 
-		if (( $CHECK_PLOTS >= $TOTAL_PLOTS )); then
-			echo "Plotting order is complete."
-			sleep 10
-			exit
-		fi
+until (( $CHECK_PLOTS < $TOTAL_PLOTS )); do
+	echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
+	sleep 10
+	exit
+done
+
 fi
 
 if [[ $JSON_RCLONE != "" ]]; then
@@ -204,16 +203,16 @@ if [ ! -z $PLOTTER ]; then
 		chmod 777 /plots -R
 
 		if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-    CHECK_PLOTS=$(curl sfo.mello.at:42121/plots | jq '.[-1].id')
-		echo "Found $CHECK_PLOTS on the API"
+		CHECK_PLOTS=$(curl $JSON_SERVER | jq '.[-1].id')
+		echo "Found $CHECK_PLOTS on $JSON_SERVER"
 
 		until (( $CHECK_PLOTS < $TOTAL_PLOTS )); do
-			echo "Plotting order is complete."
+			echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
 			sleep 10
 			exit
 		done
 
-	  fi
+		fi
 
 		if [[ "$FINAL_LOCATION" != "local" ]]; then
 

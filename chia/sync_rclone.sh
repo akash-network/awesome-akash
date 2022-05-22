@@ -32,17 +32,17 @@ for (( ; ; )); do
         elif [[ $ALPHA == true ]]; then
 
                         DIRS=( JM_1 JM_2 JM_3 JM_4 JM_5 )
-      ENDPOINT_DIR=$(shuf -n1 -e "${DIRS[@]}")
-                ENDPOINT_LOCATION=$(cat /root/.config/rclone/rclone.conf | grep "\[" | sort | uniq | shuf | tail -n1)
+      									ENDPOINT_DIR=$(shuf -n1 -e "${DIRS[@]}")
+                				ENDPOINT_LOCATION=$(cat /root/.config/rclone/rclone.conf | grep "\[" | sort | uniq | shuf | tail -n1)
 
                         nohup rclone --no-check-dest --dropbox-chunk-size 256M --drive-chunk-size 256M --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
-      START_TIME=$(date +%s)
-                        curl -d "filename=$i" -d "endpoint_location=$ENDPOINT_LOCATION" -d "endpoint_directory=$ENDPOINT_DIR" -d "start_time=$START_TIME" -X POST sfo.mello.at:42121/plots >>$i.log
+      									START_TIME=$(date +%s)
+                        curl -d "filename=$i" -d "endpoint_location=$ENDPOINT_LOCATION" -d "endpoint_directory=$ENDPOINT_DIR" -d "start_time=$START_TIME" -X POST $JSON_SERVER >>$i.log
 
                 else
                 nohup rclone --no-check-dest --dropbox-chunk-size 256M --drive-chunk-size 256M --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
                 START_TIME=$(date +%s)
-                curl -d "filename=$i" -d "endpoint_location=$ENDPOINT_LOCATION" -d "endpoint_directory=$ENDPOINT_DIR" -d "start_time=$START_TIME" -X POST sfo.mello.at:42121/plots >>$i.log
+                curl -d "filename=$i" -d "endpoint_location=$ENDPOINT_LOCATION" -d "endpoint_directory=$ENDPOINT_DIR" -d "start_time=$START_TIME" -X POST $JSON_SERVER >>$i.log
 
           fi
 
@@ -86,7 +86,7 @@ echo "Checking speed"
 
 
   id=$(cat $i.log | grep id | awk '{print $2}')
-  curl -d "filename=$i" -d "progress=$progress" -d "speed=$speed" -X PATCH sfo.mello.at:42121/plots/$id
+  curl -d "filename=$i" -d "progress=$progress" -d "speed=$speed" -X PATCH $JSON_SERVER/$id
 
 
 done
