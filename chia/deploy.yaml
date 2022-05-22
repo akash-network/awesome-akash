@@ -37,6 +37,7 @@ services:
         #Used only for PLOTTER=bladebit-disk, you must increase the memory resources requested below with this additional cache size.
 ###################################################################
       - RCLONE=true
+      - TOTAL_PLOTS=1000
 ###################################################################
 # Uncomment the variables below when set FINAL_LOCATION=upload to enable remote uploading
 #      - REMOTE_HOST=changeme.com #SSH upload host

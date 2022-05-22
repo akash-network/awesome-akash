@@ -4,7 +4,36 @@
 K32_SIZE=108
 
 
+if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
+  CHECK_PLOTS=$(curl sfo.mello.at:42121/plots | jq '.[-1].id')
+	echo "Found $CHECK_PLOTS on the API"
 
+		if (( $CHECK_PLOTS >= $TOTAL_PLOTS )); then
+			echo "Plotting order is complete."
+			sleep 10
+			exit
+		fi
+fi
+
+if [[ $JSON_RCLONE != "" ]]; then
+mkdir -p /root/.config/rclone/
+echo -e "$JSON_RCLONE" > /root/.config/rclone/rclone.conf
+sed -i 's/ //' /root/.config/rclone/rclone.conf
+fi
+
+if [[ $RCLONE == "true" ]]; then
+echo Found RCLONE
+wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
+dpkg -i rclone-current-linux-amd64.deb
+screen -dmS sync bash sync_rclone.sh
+screen -ls
+if ! screen -list | grep -q "sync"; then
+	echo "Rclone is not running!"
+	sleep 60
+	exit
+fi
+
+fi
 
 if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
 	echo "SSH connection test before unpacking..."
@@ -106,25 +135,7 @@ else
 fi
 
 
-if [[ $RCLONE_JSON != "" ]]; then
-mkdir -p /root/.config/rclone/
-echo -e $RCLONE_JSON > /root/.config/rclone/rclone.conf
-sed -i 's/ //' /root/.config/rclone/rclone.conf
-fi
 
-if [[ $RCLONE == "true" ]]; then
-echo Found RCLONE
-wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
-dpkg -i rclone-current-linux-amd64.deb
-screen -dmS sync bash sync_rclone.sh
-screen -ls
-if ! screen -list | grep -q "sync"; then
-	echo "Rclone is not running!"
-	sleep 60
-	exit
-fi
-
-fi
 
 mkdir /plots
 chmod 777 /plots -R
@@ -191,6 +202,18 @@ fi
 if [ ! -z $PLOTTER ]; then
 	while :; do
 		chmod 777 /plots -R
+
+		if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
+    CHECK_PLOTS=$(curl sfo.mello.at:42121/plots | jq '.[-1].id')
+		echo "Found $CHECK_PLOTS on the API"
+
+		until (( $CHECK_PLOTS < $TOTAL_PLOTS )); do
+			echo "Plotting order is complete."
+			sleep 10
+			exit
+		done
+
+	  fi
 
 		if [[ "$FINAL_LOCATION" != "local" ]]; then
 
