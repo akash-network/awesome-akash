@@ -3,13 +3,12 @@
 #SSH Test if required
 
 if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-CHECK_PLOTS=$(curl $JSON_SERVER | jq '.[-1].id')
+CHECK_PLOTS=$(curl -s $JSON_SERVER | jq '.[-1].id')
 echo "Found $CHECK_PLOTS on $JSON_SERVER"
 
 until (( $CHECK_PLOTS < $TOTAL_PLOTS )); do
-	echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
+	echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
 	sleep 10
-	exit
 done
 
 fi
@@ -203,13 +202,12 @@ if [ ! -z $PLOTTER ]; then
 		chmod 777 /plots -R
 
 		if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-		CHECK_PLOTS=$(curl $JSON_SERVER | jq '.[-1].id')
+		CHECK_PLOTS=$(curl -s $JSON_SERVER | jq '.[-1].id')
 		echo "Found $CHECK_PLOTS on $JSON_SERVER"
 
 		until (( $CHECK_PLOTS < $TOTAL_PLOTS )); do
-			echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
+			echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
 			sleep 10
-			exit
 		done
 
 		fi
