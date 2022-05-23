@@ -67,22 +67,8 @@ for i in $pending; do
 #  fi
 #  id=$(cat $i.log | grep id | awk '{print $2}')
 #  curl -d "filename=$i.log" -d "progress=$progress" -X PATCH sfo.mello.at:42121/plots/$id
-echo "Checking progress"
-        progress=$(cat $i.log | grep \* | tail -n2 | head -n1 | awk '{print $3}' | rev | cut -c 2- | rev)
-  if [[ $progress == *"/"* ]]; then
-          progress=$(cat $i.log | grep \* | tail -n2 | head -n1 | awk '{print $11}' | rev | cut -c 3- | rev)
-  fi
-echo "Checking speed"
-
-  speed=$(cat $i.log | grep \* | tail -n2 | head -n1 | awk '{print $4}' | rev | cut -c 2- | rev)
-  if [[ $progress == "100" ]]; then
-  speed=$(cat $i.log | grep \* | tail -n2 | head -n1 | awk '{print $12$13}')
-  #elif [[ $progress == "0" ]]; then
-  #speed=$(cat $i.log | grep \* | tail -n2 | head -n1 | awk '{print $13$14}')
-  else
-  speed=$(cat $i.log | grep \* | tail -n2 | head -n1 | awk '{print $13$14}')
-  fi
-
+progress=$(cat $i.log | grep -o -P '(?<=GiB, ).*(?=%,)' | tail -n1)
+speed=$(cat $i.log | grep -o -P '(?<=%, ).*(?= ETA)' | tail -n1 | sed 's/.$//')
 
   id=$(cat $i.log | grep id\" | awk '{print $2}')
   curl -d "filename=$i" -d "progress=$progress" -d "speed=$speed" -X PATCH $JSON_SERVER/$id
