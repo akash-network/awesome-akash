@@ -3,7 +3,7 @@
 #SSH Test if required
 
 if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-CHECK_PLOTS=$(curl -s $JSON_SERVER | jq '.[-1].id')
+CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
 echo "Found $CHECK_PLOTS on $JSON_SERVER"
 
 until (( $CHECK_PLOTS < $TOTAL_PLOTS )); do
@@ -202,7 +202,7 @@ if [ ! -z $PLOTTER ]; then
 		chmod 777 /plots -R
 
 		if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-		CHECK_PLOTS=$(curl -s $JSON_SERVER | jq '.[-1].id')
+		CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
 		echo "Found $CHECK_PLOTS on $JSON_SERVER"
 
 		until (( $CHECK_PLOTS < $TOTAL_PLOTS )); do
