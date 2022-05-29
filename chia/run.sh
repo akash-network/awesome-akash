@@ -8,7 +8,8 @@ if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
 
   until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
     echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-    sleep 10
+    sleep 15
+    CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
   done
 
 fi
@@ -196,7 +197,8 @@ if [ ! -z $PLOTTER ]; then
 
       until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
         echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-        sleep 10
+        sleep 15
+        CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
       done
 
     fi
