@@ -1,0 +1,59 @@
+---
+version: "2.0"
+
+services:
+  chia:
+    image: cryptoandcoffee/akash-chia:197
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - CONTRACT=xch16txqvdlh67m9stvwmx848xzpgesd60swqxll3rrnnafunuluflds03jkt4
+      - FARMERKEY=847b826e653279b9e54ce66a1c55cbfdb1ddc4118e70038cdfbaa7e5cb0a785087bc3a6f055f01bbbf84a2c6a3be4a97
+      - REMOTE_LOCATION=local
+      - CPU_UNITS=10
+      - MEMORY_UNITS=32Gi
+      - STORAGE_UNITS=2000Gi
+      - RAMCACHE=22G
+        #Choose local to access finished plots through web interface or set to upload and finished plots will be sent to SSH destination path like /root/plots
+      - PLOTTER=bladebit-disk
+        #Choose your plotter software - madmax or blade (testnet only)
+      - UPLOAD_BACKGROUND=false
+        #Change to true to enable multiple background uploading of plots, this is the best option to use use 100% of your bandwidth.
+###################################################################
+# Uncomment the variables below and set REMOTE_LOCATION=upload to enable remote uploading
+#      - REMOTE_HOST=changeme.com #SSH upload host
+#      - REMOTE_LOCATION=changeme #SSH upload location like /root/plots
+#      - REMOTE_PORT=22 #SSH upload port
+#      - REMOTE_USER=changeme #SSH upload user
+#      - REMOTE_PASS=changme #SSH upload password
+profiles:
+  compute:
+    chia:
+      resources:
+        cpu:
+          units: 10
+        memory:
+          size: 32Gi
+        storage:
+          size: 2000Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      attributes:
+        chia-plotting: "true"
+      pricing:
+        chia:
+          denom: uakt
+          amount: 100000
+deployment:
+  chia:
+    akash:
+      profile: chia
+      count: 1
+

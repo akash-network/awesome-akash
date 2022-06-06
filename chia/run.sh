@@ -242,7 +242,7 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "bladebit" ]]; then
         chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -t1 $TMPDIR --cache $RAMCACHE $FINALDIR
       else
         chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
       fi
