@@ -62,10 +62,10 @@ profiles:
       pricing:
         wordpress:
           denom: uakt
-          amount: 100
+          amount: 10000
         db:
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   wordpress:

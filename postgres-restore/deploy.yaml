@@ -51,10 +51,10 @@ profiles:
       pricing:
         cron:
           denom: uakt
-          amount: 100
+          amount: 10000
         postgres-restore:
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   cron:

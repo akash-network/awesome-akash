@@ -126,16 +126,16 @@ profiles:
       pricing:
         postgresql: 
           denom: uakt
-          amount: 100
+          amount: 10000
         redis: 
           denom: uakt
-          amount: 100
+          amount: 10000
         discourse: 
           denom: uakt
-          amount: 100
+          amount: 10000
         sidekiq: 
           denom: uakt
-          amount: 100
+          amount: 10000
 
 
 deployment:
