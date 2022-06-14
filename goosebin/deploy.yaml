@@ -43,10 +43,10 @@ profiles:
       pricing:
         web: 
           denom: uakt
-          amount: 9000
+          amount: 10000
         storage:
           denom: uakt
-          amount: 9000
+          amount: 10000
 
 deployment:
   goosebin:

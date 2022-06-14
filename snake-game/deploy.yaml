@@ -49,10 +49,10 @@ profiles:
       pricing:
         snake: 
           denom: uakt
-          amount: 9000
+          amount: 10000
         mongo: 
           denom: uakt
-          amount: 9000
+          amount: 10000
 
 deployment:
   snake:
