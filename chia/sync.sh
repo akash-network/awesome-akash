@@ -13,7 +13,7 @@ for (( ; ; )); do
 		if grep -q $i /plots/pending.log; then
 			echo "Skipping $i - alreading uploading!"
 		else
-			nohup sshpass -e rsync -av --remove-source-files --progress $i -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${FINAL_LOCATION}" >>/plots/rsync.log 2>&1 &
+			nohup sshpass -e rsync -av --remove-source-files --progress $i -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${REMOTE_LOCATION}" >>/plots/rsync.log 2>&1 &
 			echo $i >>/plots/pending.log
 		fi
 
