@@ -4,51 +4,42 @@
 
 Welcome [Chia](https://www.chia.net/) community! We are excited to announce support for Chia on the [Akash](https://akash.network) network!  You can now run farmers and plotters on our marketplace of compute.  Below you will find details on how to configure your deployment for different use cases.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
 
-# Windows/Linux/Mac Users
+# Chia on Akash Summer Sale! $0.10/plot until July 16th 2022.
 
-1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en) wallet as a browser plugin
-2. Install [Akashlytics](https://akashlytics.com/deploy) and import your AKT wallet address from Keplr.
-3. [Fund your wallet](#Quickest-way-to-get-more-AKT)
+For the following providers who are participating in the sale, expect to see these prices! Each provider has been benchmarked and tested to create a $0.10/plot!  Please wait up to 60 seconds to see bids from all the providers.
+```
+### bigtractorplotting.com :
 
-For additional help we recommend you [follow our full deployment guide](https://docs.akash.network/guides/deploy) in parallel with this guide.
+Bladebit @ $556/month for 8 Minute Plots
+MadMax @ $59/month for 71 Minute Plots
 
-# How does this work?
-Akash uses its blockchain to manage your container deployment and accounting.  To deploy on Akash you will need to fund your wallet with at least 10 AKT (~$20)  Each time you create a deployment, 5 AKT will be used for escrow and to fund the deployment.  If the deployment is canceled the balance of the escrow is returned to you.  You can spin up deployments without worrying about any long term contracts and you can cancel anytime.
+### xch.computer:
 
-# Default wallet
-Akash uses [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en) as the desktop wallet.  Advanced users can follow the [CLI instructions](https://docs.akash.network/guides/cli)
+Bladebit @ $363/month for 12 Minute Plots
+MadMax @ $44/month for 95 Minute Plots
 
-# Quickest way to get more AKT
-To fund your deployment you will need AKT in your account.  The fastest way to do that is as follows:
+### akash.world:
 
-## Buy on an Exchange
-1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en)
-2. Buy AKT on an [exchange](https://www.coingecko.com/en/coins/akash-network#markets)
-3. Withdraw your AKT to your Keplr wallet.
+Bladebit @ $174/month for 24 Minute Plots
+MadMax @ $42/month for 99 Minute Plots
 
-## Swap from `ATOM` to `AKT`
-1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en)
-2. Send 10 ATOM to your new Cosmos wallet address (this address will start with `cosmos`)
-3. Goto https://app.osmosis.zone/assets > next to `Cosmos Hub - ATOM` click on `Deposit`
-4. Now go back to https://app.osmosis.zone/ and select `ATOM > AKT` to complete the swap
-5. Return to the https://app.osmosis.zone/assets page to withdraw your AKT to your Keplr wallet
+```
 
-Have more questions? Find our team in [Discord](https://discord.com/invite/DxftX67) and [Telegram](https://t.me/AkashNW)
+Copy and Paste the Following SDL based :
+[Bladebit Summer Sale SDL](#bladebit-summer-sale-sdl)
+[MadMax Summer Sale SDL](#madmax-summer-sale-sdl)
 
-# Deploying Chia Plotting on Akash
+For a complete guide on how to customize the SDL, including configuring rclone and ssh destinations please see [Chia on Akash](https://docs.akash.network/integrations/chia-on-akash/)
 
-Once you have setup your Keplr wallet and imported the address to Akashlytics you are ready to create your first deployment.  Follow the instructions in Akashlytics to create a certificate, then click on `Create Deployment`
-
-When prompted to `Choose Template` select `Empty` as we will copy-and-paste the deploy.yaml file from this repository.
-Choose `Empty` for the template and paste the `deploy.yaml` file from this repository adjusting your wallet address and pool variables.
-
+# Bladebit Summer Sale SDL
+Copy this now and Paste into the text editor after you click Deploy.  Be sure to update your contract and farmer key!
 ```
 ---
 version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:88
+    image: cryptoandcoffee/akash-chia:196
     expose:
       - port: 8080
         as: 80
@@ -56,33 +47,57 @@ services:
         to:
           - global: true
     env:
+    #############################REQUIRED##############################
+      - VERSION=1.3.5
+     #Always check https://github.com/Chia-Network/chia-blockchain/releases
       - CONTRACT=
       - FARMERKEY=
-      - REMOTE_LOCATION=local
-        #Choose local to access finished plots through web interface or set to upload and finished plots will be sent to SSH destination path like /root/plots
-      - PLOTTER=madmax
-        #Choose your plotter software - madmax or blade (testnet only)
-      - THREADS=8 
-        #Must match CPU units
-      - UPLOAD_BACKGROUND=true 
-        #Change to true to enable multiple background uploading of plots, this is the best option to use use 100% of your bandwidth.
-###################################################################
-# Uncomment the variables below and set REMOTE_LOCATION=upload to enable remote uploading
-#      - REMOTE_HOST=changeme.com #SSH upload host
-#      - REMOTE_LOCATION=changeme #SSH upload location like /root/plots
-#      - REMOTE_PORT=22 #SSH upload port
-#      - REMOTE_USER=changeme #SSH upload user
-#      - REMOTE_PASS=changme #SSH upload password
+      - PLOTTER=bladebit
+     #Choose your plotter software - madmax, bladebit, bladebit-disk
+      - FINAL_LOCATION=local
+     #Set to "local" to access finished plots through web interface.
+     #Set to "upload" and finished plots will be uploaded to a SSH destination like user@ip:/home/user/plots
+      - CPU_UNITS=32
+      - MEMORY_UNITS=430Gi
+      - STORAGE_UNITS=715Gi
+     #Must match CPU/Memory/Storage units defined in resources.
+    #############################OPTIONAL##############################
+     #Uncomment the variables below when set FINAL_LOCATION=upload to enable remote uploading
+      #- REMOTE_HOST=changeme.com #SSH upload host
+      #- REMOTE_LOCATION=changeme #SSH upload location like /root/plots
+      #- REMOTE_PORT=22 #SSH upload port
+      #- REMOTE_USER=changeme #SSH upload user
+      #- REMOTE_PASS=changme #SSH upload password
+      #- UPLOAD_BACKGROUND=true
+     #Change to true to enable multiple background uploading of plots, this is the best option to use use 100% of your bandwidth.
+      #- RAMCACHE=32G
+      #Used only for PLOTTER=bladebit-disk, you must increase the memory resources requested below with this additional cache size.
+      #- RCLONE=false
+     #When true must also update JSON_RCLONE and add any destination in same format.
+      #- TOTAL_UPLOADS=1000
+     #Set the total number of parallel uploads allowed to an rclone destination
+      #- ENDPOINT_LOCATION=
+     #Only used for RCLONE=true
+      #- ENDPOINT_DIR=
+     #Only used for RCLONE=true
+      #- JSON_RCLONE=
+      #  [storj]\n
+      #  type = storj\n
+      #  api_key = replaceme\n
+      #  passphrase = replaceme\n
+      #  satellite_address = x@us-central-1.tardigrade.io:7777\n
+      #  access_grant = replaceme
+     #Example of STORJ config for RCLONE=true.  If you want to use your own endpoint please escape each line with a backslash n, like in the example.
 profiles:
   compute:
     chia:
       resources:
         cpu:
-          units: 8.0
+          units: 32.0
         memory:
-          size: 8Gi
+          size: 430Gi
         storage:
-          size: 915Gi
+          size: 715Gi
   placement:
     akash:
       signedBy:
@@ -101,46 +116,89 @@ deployment:
       count: 1
 ```
 
-# Choosing a provider
 
-Akash is a marketplace of compute.  Providers set their own prices for compute resources.  We recommend you try different providers and check your logs after deployment.
 
-![AkashlyticsBids](https://user-images.githubusercontent.com/19512127/142057801-5091473e-a9c3-4994-9e13-f1b1b1658491.png)
-
-# How to speed up plotting?
-
-## Use only providers with the `chia-plotting` attribute
-
-To limit the selection of providers to those with fast storage that meets the requirements for plotting, we recommend you add the `chia-plotting` attribute to the placement section of deploy.yaml file.
-
+# Chia Summer Sale SDL
+Copy and Paste this after you click Deploy.  Be sure to update your contract and farmer key!
 ```
-placement:
-  akash:
-    attributes:
-      chia-plotting: "true"
-    pricing:
-      chia:
-        denom: uakt
-        amount: 25
-```
+---
+version: "2.0"
 
-## Increase the deployment size on Akash
-
-You can deploy more than one instance of plotting.
-
-
-```
-cpu:
-  units: 1.0 # Max cpu units is 10
-
-```
-
-Or increase the replica count from `count: 1` to `count: 2`.
-
-```
+services:
+  chia:
+    image: cryptoandcoffee/akash-chia:196
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+    #############################REQUIRED##############################
+      - VERSION=1.3.5
+     #Always check https://github.com/Chia-Network/chia-blockchain/releases
+      - CONTRACT=
+      - FARMERKEY=
+      - PLOTTER=madmax
+     #Choose your plotter software - madmax, bladebit, bladebit-disk
+      - FINAL_LOCATION=local
+     #Set to "local" to access finished plots through web interface.
+     #Set to "upload" and finished plots will be uploaded to a SSH destination like user@ip:/home/user/plots
+      - CPU_UNITS=8
+      - MEMORY_UNITS=6Gi
+      - STORAGE_UNITS=715Gi
+     #Must match CPU/Memory/Storage units defined in resources.
+    #############################OPTIONAL##############################
+     #Uncomment the variables below when set FINAL_LOCATION=upload to enable remote uploading
+      #- REMOTE_HOST=changeme.com #SSH upload host
+      #- REMOTE_LOCATION=changeme #SSH upload location like /root/plots
+      #- REMOTE_PORT=22 #SSH upload port
+      #- REMOTE_USER=changeme #SSH upload user
+      #- REMOTE_PASS=changme #SSH upload password
+      #- UPLOAD_BACKGROUND=true
+     #Change to true to enable multiple background uploading of plots, this is the best option to use use 100% of your bandwidth.
+      #- RAMCACHE=32G
+      #Used only for PLOTTER=bladebit-disk, you must increase the memory resources requested below with this additional cache size.
+      #- RCLONE=false
+     #When true must also update JSON_RCLONE and add any destination in same format.
+      #- TOTAL_UPLOADS=1000
+     #Set the total number of parallel uploads allowed to an rclone destination
+      #- ENDPOINT_LOCATION=
+     #Only used for RCLONE=true
+      #- ENDPOINT_DIR=
+     #Only used for RCLONE=true
+      #- JSON_RCLONE=
+      #  [storj]\n
+      #  type = storj\n
+      #  api_key = replaceme\n
+      #  passphrase = replaceme\n
+      #  satellite_address = x@us-central-1.tardigrade.io:7777\n
+      #  access_grant = replaceme
+     #Example of STORJ config for RCLONE=true.  If you want to use your own endpoint please escape each line with a backslash n, like in the example.
+profiles:
+  compute:
+    chia:
+      resources:
+        cpu:
+          units: 8.0
+        memory:
+          size: 6Gi
+        storage:
+          size: 715Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      attributes:
+        chia-plotting: "true"
+      pricing:
+        chia:
+          denom: uakt
+          amount: 100000
 deployment:
   chia:
     akash:
       profile: chia
-      count: 1 # Multiplier for cpu:units
+      count: 1
 ```

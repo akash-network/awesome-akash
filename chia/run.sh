@@ -5,13 +5,13 @@
 if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
   CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
   echo "Found $CHECK_PLOTS on $JSON_SERVER"
-
-  until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
-    echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-    sleep 15
-    CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
-  done
-
+  if [[ $JSON_SERVER != "" ]]; then
+    until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
+      echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
+      sleep 15
+      CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
+    done
+  fi
 fi
 
 if [[ $JSON_RCLONE != "" ]]; then
@@ -194,13 +194,13 @@ if [ ! -z $PLOTTER ]; then
     if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
       CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
       echo "Found $CHECK_PLOTS on $JSON_SERVER"
-
-      until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
-        echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-        sleep 15
-        CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
-      done
-
+      if [[ $JSON_SERVER != "" ]]; then
+        until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
+          echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
+          sleep 15
+          CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
+        done
+      fi
     fi
 
     if [[ "$FINAL_LOCATION" != "local" ]]; then
