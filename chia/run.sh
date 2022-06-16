@@ -1,37 +1,8 @@
 #!/bin/bash
-
-#SSH Test if required
-
-if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-  CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
-  echo "Found $CHECK_PLOTS on $JSON_SERVER"
-  if [[ $JSON_SERVER != "" ]]; then
-    until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
-      echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-      sleep 15
-      CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
-    done
-  fi
-fi
-
-if [[ $JSON_RCLONE != "" ]]; then
-  mkdir -p /root/.config/rclone/
-  echo -e "$JSON_RCLONE" >/root/.config/rclone/rclone.conf
-  sed -i 's/ //' /root/.config/rclone/rclone.conf
-fi
-
-if [[ $RCLONE == "true" ]]; then
-  echo Found RCLONE
-  wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
-  dpkg -i rclone-current-linux-amd64.deb
-  screen -dmS sync bash sync_rclone.sh
-  screen -ls
-  if ! screen -list | grep -q "sync"; then
-    echo "Rclone is not running!"
-    sleep 60
-    exit
-  fi
-
+if [[ -z "$CONTRACT" || -z "$FARMERKEY" ]]; then
+  echo "CONTRACT or FARMERKEY not set - please check your settings"
+  sleep 300
+  exit
 fi
 
 if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
@@ -132,6 +103,40 @@ else
   echo "###################################################################################################"
   sleep 15
 fi
+
+if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
+  CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
+  echo "Found $CHECK_PLOTS on $JSON_SERVER"
+  if [[ $JSON_SERVER != "" ]]; then
+    until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
+      echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
+      sleep 15
+      CHECK_PLOTS=$(curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 0 --retry-max-time 40 $JSON_SERVER | jq '.[-1].id')
+    done
+  fi
+fi
+
+if [[ $JSON_RCLONE != "" ]]; then
+  mkdir -p /root/.config/rclone/
+  echo -e "$JSON_RCLONE" >/root/.config/rclone/rclone.conf
+  sed -i 's/ //' /root/.config/rclone/rclone.conf
+fi
+
+if [[ $RCLONE == "true" ]]; then
+  echo Found RCLONE
+  wget https://downloads.rclone.org/rclone-current-linux-amd64.deb
+  dpkg -i rclone-current-linux-amd64.deb
+  screen -dmS sync bash sync_rclone.sh
+  screen -ls
+  if ! screen -list | grep -q "sync"; then
+    echo "Rclone is not running!"
+    sleep 60
+    exit
+  fi
+
+fi
+
+
 
 mkdir /plots
 chmod 777 /plots -R

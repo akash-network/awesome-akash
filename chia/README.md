@@ -1,32 +1,26 @@
-## Chia on Akash
-
 # Why use Akash?
 
 Welcome [Chia](https://www.chia.net/) community! We are excited to announce support for Chia on the [Akash](https://akash.network) network!  You can now run farmers and plotters on our marketplace of compute.  Below you will find details on how to configure your deployment for different use cases.  Akash is a part of the [Cosmos](https://cosmos.network/) ecosystem of blockchains.
 
-# Chia on Akash Summer Sale! $0.10/plot until July 16th 2022.
+## Summer Sale
+
+![](https://raw.githubusercontent.com/ovrclk/docs/master/.gitbook/assets/Summer%20Sale%20for%20Chia%20Plots%205.png)
 
 For the following providers who are participating in the sale, expect to see these prices! Each provider has been benchmarked and tested to create a $0.10/plot!  Please wait up to 60 seconds to see bids from all the providers.
-```
-### bigtractorplotting.com :
+### Providers
 
-Bladebit @ $556/month for 8 Minute Plots
-MadMax @ $59/month for 71 Minute Plots
+For the following providers who are participating in the sale, expect to see these prices in Akashlytics! Each provider has been benchmarked and tested to create a $0.10/plot. &#x20;
 
-### xch.computer:
+| On-Sale Providers      | BladeBit Price / Month   | MadMax Price  / Month  |
+| ---------------------- | ------------------------ | ---------------------- |
+| bigtractorplotting.com | $556 \| 8 Minute Plots   | $59 \| 71 Minute Plots |
+| xch.computer           | $363 \| 12 Minute Plots  | $44 \| 95 Minute Plots |
+| akash.world            | $174  \| 24 Minute Plots | $42 \| 99 Minute Plots |
 
-Bladebit @ $363/month for 12 Minute Plots
-MadMax @ $44/month for 95 Minute Plots
+Copy and Paste the Following SDL :
 
-### akash.world:
-
-Bladebit @ $174/month for 24 Minute Plots
-MadMax @ $42/month for 99 Minute Plots
-
-```
-
-Copy and Paste the Following SDL based :
 [Bladebit Summer Sale SDL](#bladebit-summer-sale-sdl)
+
 [MadMax Summer Sale SDL](#madmax-summer-sale-sdl)
 
 For a complete guide on how to customize the SDL, including configuring rclone and ssh destinations please see [Chia on Akash](https://docs.akash.network/integrations/chia-on-akash/)
@@ -39,7 +33,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:196
+    image: cryptoandcoffee/akash-chia:200
     expose:
       - port: 8080
         as: 80
@@ -59,7 +53,7 @@ services:
      #Set to "upload" and finished plots will be uploaded to a SSH destination like user@ip:/home/user/plots
       - CPU_UNITS=32
       - MEMORY_UNITS=430Gi
-      - STORAGE_UNITS=715Gi
+      - STORAGE_UNITS=1200Gi
      #Must match CPU/Memory/Storage units defined in resources.
     #############################OPTIONAL##############################
      #Uncomment the variables below when set FINAL_LOCATION=upload to enable remote uploading
@@ -97,7 +91,7 @@ profiles:
         memory:
           size: 430Gi
         storage:
-          size: 715Gi
+          size: 1200Gi
   placement:
     akash:
       signedBy:
@@ -118,7 +112,7 @@ deployment:
 
 
 
-# Chia Summer Sale SDL
+# MadMax Summer Sale SDL
 Copy and Paste this after you click Deploy.  Be sure to update your contract and farmer key!
 ```
 ---
@@ -126,7 +120,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:196
+    image: cryptoandcoffee/akash-chia:200
     expose:
       - port: 8080
         as: 80
@@ -146,7 +140,7 @@ services:
      #Set to "upload" and finished plots will be uploaded to a SSH destination like user@ip:/home/user/plots
       - CPU_UNITS=8
       - MEMORY_UNITS=6Gi
-      - STORAGE_UNITS=715Gi
+      - STORAGE_UNITS=815Gi
      #Must match CPU/Memory/Storage units defined in resources.
     #############################OPTIONAL##############################
      #Uncomment the variables below when set FINAL_LOCATION=upload to enable remote uploading
@@ -184,7 +178,7 @@ profiles:
         memory:
           size: 6Gi
         storage:
-          size: 715Gi
+          size: 815Gi
   placement:
     akash:
       signedBy:
