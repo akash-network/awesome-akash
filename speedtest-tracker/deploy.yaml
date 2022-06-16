@@ -1,0 +1,48 @@
+---
+version: "2.0"
+
+services:
+  speedtest-tracker:
+    image: henrywhitaker3/speedtest-tracker
+    expose:
+      - port: 8765
+        as: 80
+        to:
+          - global: true
+    env:
+      -  OOKLA_EULA_GDPR=true 
+      #Set to true to accept the Ookla EULA and privacy agreement. If this is not set, the container will not start
+      -  AUTH=false
+      #Default credentials with AUTH=true are admin@admin.com / password
+      #When enabled, unauthenticated users will only be able to see the graphs and tests table.
+      #-  SLACK_WEBHOOK= 
+      #Put a slack webhook here to get slack notifications when a speedtest is run. To use discord webhooks, just append /slack to the end of your discord webhook URL
+      #-  TELEGRAM_BOT_TOKEN=
+      #Telegram bot API token.
+      #-  TELEGRAM_CHAT_ID=
+      #Telegram chat ID.
+      #-  INFLUXDB_RETENTION=30d
+      #Sets the InfluxDB retention period, defaults to 30d
+      #-  INFLUXDB_HOST_TAG=speedtest
+      #Sets the InfluxDB host tag value, defaults to speedtest
+profiles:
+  compute:
+    speedtest-tracker:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      pricing:
+        speedtest-tracker:
+          denom: uakt
+          amount: 10000
+deployment:
+  speedtest-tracker:
+    akash:
+      profile: speedtest-tracker
+      count: 1
