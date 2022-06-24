@@ -8,7 +8,7 @@ version: "2.0"
 
 services:
   presearch:
-    image: presearch/node:0.10.1-testnet
+    image: presearch/node:1.0.2-testnet
     env:
       - 'REGISTRATION_CODE=<YOUR_REGISTRATION_CODE_HERE>'
     # need to expose at least 1 port otherwise "Error: invalid manifest: zero global services"
