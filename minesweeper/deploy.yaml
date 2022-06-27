@@ -29,7 +29,7 @@ profiles:
       pricing:
         minesweeper: 
           denom: uakt
-          amount: 9000
+          amount: 10000
 
 deployment:
   minesweeper:
