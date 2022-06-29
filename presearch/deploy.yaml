@@ -1,8 +1,3 @@
-# Presearch-Akash
-Go to https://nodes.presearch.org to learn more about nodes and create an account.
-Go go https://nodes.presearch.org/ to grab your registration code
-replace <YOUR_REGISTRATION_CODE_HERE> in your deploy.yaml file:
-deploy.yaml:
 ---
 version: "2.0"
 
@@ -39,20 +34,10 @@ profiles:
       pricing:
         presearch:
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   presearch:
     akash:
       profile: presearch
       count: 1
-Refs.
-
-https://hub.docker.com/r/presearch/node
-https://docs.presearch.org/nodes/setup#hardware-specification
-https://docs.presearch.org/nodes/vps-setup/linux-vps
-https://discord.com/channels/747885925232672829/771909909335506955/960640579992191016
-When akash v0.15 gets released, you can leverage the persistent storage for /app/node mount point.
-
-When migrating the node, make sure to copy /app/node/.keys directory over to the new one.
-

@@ -129,9 +129,10 @@ Awesome DeFi apps you can deploy on Akash
 
 - [FreeFlix Nucleus](freeflix-nucleus)
 
-### Metasearch Engine
+### Search Engines
 
 - [Whoogle Search](whoogle-search)
+- [Presearch](presearch)
 
 ### Mining
 
