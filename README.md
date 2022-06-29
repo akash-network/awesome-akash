@@ -124,6 +124,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Machine Learning
 
 - [Jupyter Notebook](jupyter)
+- [Doccano](doccano)
 
 ### Media
 
@@ -177,6 +178,10 @@ Awesome DeFi apps you can deploy on Akash
 ### Network
 
 - [SoftEther VPN](softether-vpn)
+
+### Databases
+
+- [redis](redis)
 
 ### Video Conferencing
 
