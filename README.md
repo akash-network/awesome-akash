@@ -124,14 +124,16 @@ Awesome DeFi apps you can deploy on Akash
 ### Machine Learning
 
 - [Jupyter Notebook](jupyter)
+- [Doccano](doccano)
 
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
 
-### Metasearch Engine
+### Search Engines
 
 - [Whoogle Search](whoogle-search)
+- [Presearch](presearch)
 
 ### Mining
 
@@ -171,10 +173,15 @@ Awesome DeFi apps you can deploy on Akash
 - [CodiMD](CodiMD)
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
+- [Hashicorp Vault](hashicorp-vault)
 
 ### Network
 
 - [SoftEther VPN](softether-vpn)
+
+### Databases
+
+- [redis](redis)
 
 ### Video Conferencing
 

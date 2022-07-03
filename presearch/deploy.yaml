@@ -2,31 +2,28 @@
 version: "2.0"
 
 services:
-  web:
-    image: slowriot/minecraft-server
+  presearch:
+    image: presearch/node:1.0.2
+    env:
+      - 'REGISTRATION_CODE=<YOUR_REGISTRATION_CODE_HERE>'
+    # need to expose at least 1 port otherwise "Error: invalid manifest: zero global services"
     expose:
-      - port: 25565
+      - port: 8080
+        as: 80
         proto: tcp
         to:
           - global: true
-    env:
-      - FORCE_REDOWNLOAD=true
-      - EULA=TRUE
-      - VERSION=1.17
-      - SERVER_NAME=AkashMinecraft
-      - MEMORY=4G
-      - MAX_PLAYERS=10
 
 profiles:
   compute:
-    web:
+    presearch:
       resources:
         cpu:
-          units: 1.5
+          units: 1.0
         memory:
-          size: 5Gi
+          size: 512Mi
         storage:
-          size: 8Gi
+          size: 1Gi
   placement:
     akash:
       attributes:
@@ -35,12 +32,12 @@ profiles:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        presearch:
           denom: uakt
           amount: 10000
 
 deployment:
-  web:
+  presearch:
     akash:
-      profile: web
+      profile: presearch
       count: 1

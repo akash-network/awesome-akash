@@ -2,31 +2,27 @@
 version: "2.0"
 
 services:
-  web:
-    image: slowriot/minecraft-server
-    expose:
-      - port: 25565
-        proto: tcp
-        to:
-          - global: true
+  redis:
+    image: redis:latest
     env:
-      - FORCE_REDOWNLOAD=true
-      - EULA=TRUE
-      - VERSION=1.17
-      - SERVER_NAME=AkashMinecraft
-      - MEMORY=4G
-      - MAX_PLAYERS=10
+      - REDIS_AOF_ENABLED=no
+      - ALLOW_EMPTY_PASSWORD=no
+      - REDIS_PASSWORD=rootpassword
+    expose:
+      - port: 6379        
+        to:
+          - global: true       
 
 profiles:
   compute:
-    web:
+    redis:
       resources:
         cpu:
-          units: 1.5
+          units: 1.0
         memory:
-          size: 5Gi
+          size: 1Gi
         storage:
-          size: 8Gi
+          size: 1Gi
   placement:
     akash:
       attributes:
@@ -35,12 +31,13 @@ profiles:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        redis: 
           denom: uakt
           amount: 10000
 
+
 deployment:
-  web:
+  redis:
     akash:
-      profile: web
+      profile: redis
       count: 1

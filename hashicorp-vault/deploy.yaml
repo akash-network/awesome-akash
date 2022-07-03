@@ -2,31 +2,27 @@
 version: "2.0"
 
 services:
-  web:
-    image: slowriot/minecraft-server
+  hashicorp-vault:
+    image: vault
+    env:
+      - VAULT_DEV_ROOT_TOKEN_ID=mysecrettoken
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
     expose:
-      - port: 25565
-        proto: tcp
+      - port: 8200
+        as: 80
         to:
           - global: true
-    env:
-      - FORCE_REDOWNLOAD=true
-      - EULA=TRUE
-      - VERSION=1.17
-      - SERVER_NAME=AkashMinecraft
-      - MEMORY=4G
-      - MAX_PLAYERS=10
 
 profiles:
   compute:
-    web:
+    hashicorp-vault:
       resources:
         cpu:
-          units: 1.5
+          units: 1.0
         memory:
-          size: 5Gi
+          size: 512Mi
         storage:
-          size: 8Gi
+          size: 1Gi
   placement:
     akash:
       attributes:
@@ -35,12 +31,13 @@ profiles:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        web:
+        hashicorp-vault: 
           denom: uakt
           amount: 10000
 
 deployment:
-  web:
+  hashicorp-vault:
     akash:
-      profile: web
+      profile: hashicorp-vault
       count: 1
+
