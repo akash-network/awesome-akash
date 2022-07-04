@@ -5,7 +5,7 @@ if [[ -z "$CONTRACT" || -z "$FARMERKEY" ]]; then
   exit
 fi
 
-if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
+if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" != "true" ]]; then
   echo "SSH connection test before unpacking..."
   mkdir -p /root/.ssh/
   touch /root/.ssh/known_hosts
@@ -180,7 +180,7 @@ else
   chia init
 fi
 
-if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
+if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE" != "true" ]]; then
   screen -dmS sync bash ./sync.sh
 fi
 
