@@ -219,7 +219,7 @@ if [ ! -z $PLOTTER ]; then
       fi
       if [[ "$UPLOAD_BACKGROUND" == "false" && $RCLONE == "true" ]]; then
         #rclone --rc-web-gui --progress --rc-web-gui-update --buffer-size=64M --drive-chunk-size 256M --dropbox-chunk-size 256M move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
-        rclone --no-check-dest --dropbox-chunk-size 256M --drive-chunk-size 256M --transfers 1 --fast-list --tpslimit 1 --rc-web-gui --progress --rc-web-gui-update move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
+        rclone --no-check-dest --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --drive-chunk-size 256M --progress move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
       fi
       #			Invoke-Expression "$PSScriptRoot\$rclone_version\rclone.exe move $k adriancardo10_${n}:JM_1 --config=$PSScriptRoot\$rclone_version\rclone_dropbox.conf -P --dropbox-chunk-size=150M --drive-chunk-size 150M --transfers 1 --fast-list --tpslimit 1 --bwlimit 1000000000000000000000000000"
 

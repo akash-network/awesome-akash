@@ -24,7 +24,7 @@ for (( ; ; )); do
       if (("$(ps -aux | grep move | grep -v grep | wc -l)" >= "$TOTAL_UPLOADS")); then
         echo "Count is too high...waiting for uploads to complete"
       elif [[ $RCLONE_EXTRA != "" ]]; then
-        nohup rclone --rc-web-gui --rc-web-gui-update --progress $RCLONE_EXTRA move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
+        nohup rclone --progress $RCLONE_EXTRA move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
       elif [[ $ALPHA == true ]]; then
         #DIRS=(JM_1 JM_2 JM_3 JM_4 JM_5)
         DIRS=(NEWDEMONIC_1 NEWDEMONIC_2 NEWDEMONIC_3 NEWDEMONIC_4 NEWDEMONIC_5 NEWDEMONIC_6 NEWDEMONIC_7 NEWDEMONIC_8 NEWDEMONIC_9 NEWDEMONIC_10 NEWDEMONIC_11 NEWDEMONIC_12 NEWDEMONIC_13 NEWDEMONIC_14 NEWDEMONIC_15 NEWDEMONIC_16 NEWDEMONIC_17 NEWDEMONIC_18 NEWDEMONIC_19 NEWDEMONIC_20)
@@ -34,7 +34,7 @@ for (( ; ; )); do
         START_TIME=$(date +%s)
         curl -d "filename=$i" -d "endpoint_location=$ENDPOINT_LOCATION" -d "endpoint_directory=$ENDPOINT_DIR" -d "start_time=$START_TIME" -d "provider=$AKASH_CLUSTER_PUBLIC_HOSTNAME" -X POST $JSON_SERVER >>$i.log
       else
-        nohup rclone --retries 99 --dropbox-chunk-size 256M --drive-chunk-size 256M --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
+        nohup rclone --retries 99 --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --drive-chunk-size 256M --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
         START_TIME=$(date +%s)
         if [[ $JSON_SERVER != "" ]]; then
           curl -d "filename=$i" -d "endpoint_location=$ENDPOINT_LOCATION" -d "endpoint_directory=$ENDPOINT_DIR" -d "start_time=$START_TIME" -d "provider=$AKASH_CLUSTER_PUBLIC_HOSTNAME" -X POST $JSON_SERVER >>$i.log
