@@ -105,13 +105,13 @@ else
 fi
 
 if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-  CHECK_PLOTS=$(curl --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
+  CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
   echo "Found $CHECK_PLOTS on $JSON_SERVER"
   if [[ $JSON_SERVER != "" ]]; then
     until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
       echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
       sleep 15
-      CHECK_PLOTS=$(curl --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
+      CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
     done
   fi
 fi
@@ -197,13 +197,13 @@ if [ ! -z $PLOTTER ]; then
     chmod 777 /plots -R
 
     if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-      CHECK_PLOTS=$(curl --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
+      CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
       echo "Found $CHECK_PLOTS on $JSON_SERVER"
       if [[ $JSON_SERVER != "" ]]; then
         until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
           echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
           sleep 15
-          CHECK_PLOTS=$(curl --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
+          CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
         done
       fi
     fi
