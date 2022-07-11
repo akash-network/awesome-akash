@@ -5,6 +5,7 @@ COPY run.sh /
 COPY sync.sh /
 COPY nginx.conf /
 COPY config.php /
+COPY cleanup.sh /
 ENV CPU_UNITS=
 ENV MEMORY_UNITS=
 ENV STORAGE_UNITS=

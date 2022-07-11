@@ -5,6 +5,26 @@ if [[ -z "$CONTRACT" || -z "$FARMERKEY" ]]; then
   exit
 fi
 
+
+if [[ $RCLONE == "true" && $JSON_SERVER != "" ]]; then
+  CHECK_PLOTS=$(curl --retry-all-errors --retry 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
+  echo "Found $CHECK_PLOTS total plots"
+  if [[ $CHECK_PLOTS > $TOTAL_PLOTS ]]; then
+    echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
+    exit
+  else
+    echo "Plotting order found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
+  fi
+  #if [[ $JSON_SERVER != "" ]]; then
+    #until [ "$CHECK_PLOTS" -lt "$TOTAL_PLOTS" ]; do
+  #  while (($CHECK_PLOTS > $TOTAL_PLOTS)); do
+  #    echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
+  #    sleep 15
+  #    CHECK_PLOTS=$(curl --retry-all-errors --retry 300 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
+  #  done
+  #fi
+fi
+
 if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
   echo "SSH connection test before unpacking..."
   mkdir -p /root/.ssh/
@@ -104,17 +124,6 @@ else
   sleep 15
 fi
 
-if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-  CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
-  echo "Found $CHECK_PLOTS on $JSON_SERVER"
-  if [[ $JSON_SERVER != "" ]]; then
-    until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
-      echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-      sleep 15
-      CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
-    done
-  fi
-fi
 
 if [[ $JSON_RCLONE != "" ]]; then
   mkdir -p /root/.config/rclone/
@@ -184,6 +193,10 @@ if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE
   screen -dmS sync bash ./sync.sh
 fi
 
+if [[ $PLOTTER == "madmax-ramdrive" ]]; then
+  mount -t tmpfs -o size=110G tmpfs /mnt/ram/
+fi
+
 if [ ! -z $KEYS ]; then
   echo "Foud KEYS variable set, importing"
   echo ${KEYS} >keys.txt
@@ -197,14 +210,13 @@ if [ ! -z $PLOTTER ]; then
     chmod 777 /plots -R
 
     if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
-      CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
-      echo "Found $CHECK_PLOTS on $JSON_SERVER"
-      if [[ $JSON_SERVER != "" ]]; then
-        until (($CHECK_PLOTS < $TOTAL_PLOTS)); do
-          echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-          sleep 15
-          CHECK_PLOTS=$(curl --retry-all-errors --connect-timeout 3 --retry 300 --retry-delay 3 $JSON_SERVER | jq '.[-1].id')
-        done
+      CHECK_PLOTS=$(curl --retry-all-errors --retry 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
+      echo "Found $CHECK_PLOTS total plots"
+      if [[ $CHECK_PLOTS > $TOTAL_PLOTS ]]; then
+        echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
+        exit
+      else
+        echo "Plotting order found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
       fi
     fi
 
@@ -227,6 +239,8 @@ if [ ! -z $PLOTTER ]; then
         chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
       elif [[ ${PLOTTER} == "bladebit" ]]; then
         chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+      elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
+        chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
         bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -t1 $TMPDIR --cache $RAMCACHE $FINALDIR
 
@@ -256,7 +270,7 @@ if [ ! -z $PLOTTER ]; then
 
     STORAGE_CURRENT=$(du -sh --apparent-size --block-size=1 /plots | awk '{print $1/1024/1024/1024}') #Checks plots folder size and returns in GB
     echo "Currently using ${STORAGE_CURRENT}Gi of total allocatable ${STORAGE_MAX}Gi"
-
+    sleep 15
     until (($(ls -la /plots/*.plot | wc -l) < $STORAGE_PLOTS)); do
       echo "Deployment is full, please download and delete plots to make room for plotting! Sleeping for 10 seconds before checking for free space."
       sleep 10
