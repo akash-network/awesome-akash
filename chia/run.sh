@@ -194,6 +194,7 @@ if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE
 fi
 
 if [[ $PLOTTER == "madmax-ramdrive" ]]; then
+  mkdir -p /mnt/ram
   mount -t tmpfs -o size=110G tmpfs /mnt/ram/
 fi
 
