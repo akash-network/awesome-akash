@@ -38,9 +38,9 @@ for (( ; ; )); do
         ENDPOINT_LOCATION=$(cat /root/.config/rclone/rclone.conf | grep "\[" | sort | uniq | shuf | tail -n1 | sed 's/[][]//g')
         nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
       elif [[ $SHUFFLE_RCLONE_DIR == true ]]; then
-        #DIRS=(JM_1 JM_2 JM_3 JM_4 JM_5)
+        ENDPOINT_DIR="plotz-1 plotz-2 plotz-3 plotz-4 plotz-5"
         DIRS=($ENDPOINT_DIR)
-        ENDPOINT_DIR=$(shuf -n1 -e "${ENDPOINT_DIR[@]}")
+        ENDPOINT_DIR=$(shuf -n1 -e "${DIRS[@]}")
         nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
       else
         nohup rclone --retries 99 --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --drive-chunk-size 256M --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
@@ -56,7 +56,7 @@ for (( ; ; )); do
   done
 
   sleep 15
-
+  if [[ $ALPHA == true ]]; then
   for i in $pending; do
     progress=$(cat $i.log | grep -o -P '(?<=GiB, ).*(?=%,)' | tail -n1)
     speed=$(cat $i.log | grep -o -P '(?<=%, ).*(?= ETA)' | tail -n1 | sed 's/.$//')
@@ -66,5 +66,6 @@ for (( ; ; )); do
       curl --connect-timeout 3 --retry 10 --retry-delay 3 -d "filename=$i" -d "progress=$progress" -d "speed=$speed" -X PATCH $JSON_SERVER/$id
     fi
   done
+  fi
 
 done
