@@ -27,12 +27,21 @@ for (( ; ; )); do
         nohup rclone --progress $RCLONE_EXTRA move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
       elif [[ $ALPHA == true ]]; then
         #DIRS=(JM_1 JM_2 JM_3 JM_4 JM_5)
-        DIRS=(NEWDEMONIC_1 NEWDEMONIC_2 NEWDEMONIC_3 NEWDEMONIC_4 NEWDEMONIC_5 NEWDEMONIC_6 NEWDEMONIC_7 NEWDEMONIC_8 NEWDEMONIC_9 NEWDEMONIC_10 NEWDEMONIC_11 NEWDEMONIC_12 NEWDEMONIC_13 NEWDEMONIC_14 NEWDEMONIC_15 NEWDEMONIC_16 NEWDEMONIC_17 NEWDEMONIC_18 NEWDEMONIC_19 NEWDEMONIC_20)
+        DIRS=(NEWDEMONIC_11 NEWDEMONIC_12 NEWDEMONIC_13 NEWDEMONIC_14 NEWDEMONIC_15 NEWDEMONIC_16 NEWDEMONIC_17 NEWDEMONIC_18 NEWDEMONIC_19 NEWDEMONIC_20)
         ENDPOINT_DIR=$(shuf -n1 -e "${DIRS[@]}")
         ENDPOINT_LOCATION=$(cat /root/.config/rclone/rclone.conf | grep "\[" | sort | uniq | shuf | tail -n1 | sed 's/[][]//g')
         nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
         START_TIME=$(date +%s)
         curl --retry-all-errors --retry 5 -d "filename=$i" -d "endpoint_location=$ENDPOINT_LOCATION" -d "endpoint_directory=$ENDPOINT_DIR" -d "start_time=$START_TIME" -d "provider=$AKASH_CLUSTER_PUBLIC_HOSTNAME" -X POST $JSON_SERVER >>$i.log
+      elif [[ $SHUFFLE_RCLONE_ENDPOINT == true ]]; then
+        #Uses same directory name
+        ENDPOINT_LOCATION=$(cat /root/.config/rclone/rclone.conf | grep "\[" | sort | uniq | shuf | tail -n1 | sed 's/[][]//g')
+        nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
+      elif [[ $SHUFFLE_RCLONE_DIR == true ]]; then
+        #DIRS=(JM_1 JM_2 JM_3 JM_4 JM_5)
+        DIRS=($ENDPOINT_DIR)
+        ENDPOINT_DIR=$(shuf -n1 -e "${ENDPOINT_DIR[@]}")
+        nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
       else
         nohup rclone --retries 99 --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --drive-chunk-size 256M --progress move $i $ENDPOINT_LOCATION:/$ENDPOINT_DIR >>$i.log 2>&1 &
         START_TIME=$(date +%s)
