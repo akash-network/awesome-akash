@@ -36,7 +36,18 @@ for (( ; ; )); do
       elif [[ $SHUFFLE_RCLONE_ENDPOINT == true ]]; then
         #Uses same directory name
         ENDPOINT_LOCATION=$(cat /root/.config/rclone/rclone.conf | grep "\[" | sort | uniq | shuf | tail -n1 | sed 's/[][]//g')
-        nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
+
+          if [[ $SHUFFLE_RCLONE_IMPERSONATE == true ]]; then
+          #IMPERSONATE=(gdrive1@resolver.io gdrive2@resolver.io gdrive3@resolver.io gdrive4@resolver.io)
+          ENDPOINT_IMPERSONATE=$(shuf -n1 -e "${IMPERSONATE[@]}")
+          nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress --drive-chunk-size 512M --fast-list --tpslimit 5 --drive-pacer-min-sleep 5ms --drive-pacer-burst 2000 --drive-impersonate $ENDPOINT_IMPERSONATE move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
+          else
+          nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress --drive-impersonate $IMPERSONATE move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
+          fi
+
+        echo $i >>/plots/pending.log
+          sleep 5
+ #        nohup rclone --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --progress move $i $ENDPOINT_LOCATION:$ENDPOINT_DIR >>$i.log 2>&1 &
       elif [[ $SHUFFLE_RCLONE_DIR == true ]]; then
         ENDPOINT_DIR="plotz-1 plotz-2 plotz-3 plotz-4 plotz-5"
         DIRS=($ENDPOINT_DIR)
@@ -50,7 +61,6 @@ for (( ; ; )); do
         fi
       fi
 
-      echo $i >>/plots/pending.log
     fi
 
   done
