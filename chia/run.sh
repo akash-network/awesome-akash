@@ -206,9 +206,21 @@ if [ ! -z $KEYS ]; then
   chia keys show
 fi
 
+COUNT=0
+
+if [[ NODE == true ]]; then
+
+
 if [ ! -z $PLOTTER ]; then
   while :; do
     chmod 777 /plots -R
+    COUNT=$((COUNT + 1))
+    if [[ $COUNT > $TOTAL_PLOTS ]]; then
+      echo "Plotting order is complete! Found $COUNT / $TOTAL_PLOTS requested. Please kill this deployment or update TOTAL_PLOTS"
+      exit
+    else
+      echo "Plotting order found $COUNT / $TOTAL_PLOTS requested."
+    fi
 
     if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
       CHECK_PLOTS=$(curl --retry-all-errors --retry 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
