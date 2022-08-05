@@ -1,0 +1,49 @@
+---
+version: "2.0"
+
+services:
+  fiohistory:
+    image: ghcr.io/blockpane/fio-docker:v3.4.0-alpha1-hf2
+    params:
+      storage:
+        data:
+          mount: /var/lib/fio
+    expose:
+      - port: 8888
+        as: 80
+        to:
+          - global: true
+      - port: 3856
+        as: 9876
+        to:
+          - global: true
+
+profiles:
+  compute:
+    fiohistory:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 12Gi
+        storage:
+          - size: 256Mi
+          - name: data
+            size: 100Gi
+            attributes:
+              persistent: true
+              class: beta2
+
+  placement:
+    dcloud:
+      pricing:
+        fiohistory:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  fiohistory:
+    dcloud:
+      profile: fiohistory
+      count: 1
+
