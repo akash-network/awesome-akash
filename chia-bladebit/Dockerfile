@@ -1,5 +1,5 @@
-FROM debian:bookworm
-RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release python3.9-venv jq bc libgmp3-dev build-essential cmake libboost-all-dev libnuma-dev wget curl nano python3.10-venv
+FROM ubuntu:22.04
+RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release jq bc libgmp3-dev build-essential cmake libboost-all-dev libnuma-dev wget curl nano python3.10-venv
 COPY sync_rclone.sh /
 COPY run.sh /
 COPY sync.sh /
