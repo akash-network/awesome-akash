@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia-bladebit-disk:1
+    image: cryptoandcoffee/akash-chia:254
     expose:
       - port: 8080
         as: 80
