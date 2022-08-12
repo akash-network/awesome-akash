@@ -3,7 +3,7 @@
 A fast RAM-only, k32-only, Chia plotter.
 
 ## Requirements
-**416 GiB of RAM are required** to run it, plus a few more megabytes for stack space and small allocations.
+416 GiB of RAM are required to run it, plus a few more megabytes for stack space and small allocations.
 
 ## Providers
 
