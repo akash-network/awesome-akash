@@ -138,7 +138,9 @@ Awesome DeFi apps you can deploy on Akash
 ### Mining
 
 - [xmrig](monero)
-- [Chia](chia)
+- [Chia Bladebit](chia-bladebit)
+- [Chia Bladebit Disk](chia-bladebit-disk)
+- [Chia Madmax](chia-madmax)
 - [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
 - [Raptoreum](raptoreum-miner)
 - [pkt.cash](pkt-miner)

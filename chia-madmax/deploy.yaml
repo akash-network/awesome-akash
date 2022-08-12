@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:200
+    image: cryptoandcoffee/akash-chia-madmax:1
     expose:
       - port: 8080
         as: 80
@@ -12,7 +12,7 @@ services:
           - global: true
     env:
     #############################REQUIRED##############################
-      - VERSION=1.3.5
+      - VERSION=1.5.0
      #Always check https://github.com/Chia-Network/chia-blockchain/releases
       - CONTRACT=
       - FARMERKEY=
