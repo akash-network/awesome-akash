@@ -205,20 +205,27 @@ if [ ! -z $KEYS ]; then
   rm keys.txt
   chia keys show
 fi
+
 COUNT=0
+
+if [[ NODE == true ]]; then
+
 
 if [ ! -z $PLOTTER ]; then
   while :; do
     chmod 777 /plots -R
-    if [[ $TOTAL_PLOTS != "" ]]; then
-    if [[ $COUNT > $TOTAL_PLOTS ]]; then
-      echo "Plotting order is complete! Found $COUNT / $TOTAL_PLOTS requested. Please kill this deployment or update TOTAL_PLOTS"
-      exit
-    else
-      echo "Plotting order found $COUNT / $TOTAL_PLOTS requested."
+    COUNT=$((COUNT + 1))
+
+    if [[ $TOTAL_PLOTS != "" ]]; then #If user has set TOTAL_PLOTS
+      if [[ $COUNT > $TOTAL_PLOTS ]]; then
+        echo "Plotting order is complete! Found $COUNT / $TOTAL_PLOTS requested. Please kill this deployment or update TOTAL_PLOTS"
+        exit
+      else
+        echo "Plotting order found $COUNT / $TOTAL_PLOTS requested."
+      fi
     fi
-    fi
-    if [[ $RCLONE == "true" && $TOTAL_PLOTS != "" ]]; then
+
+    if [[ $JSON_SERVER != "" && $TOTAL_PLOTS != "" ]]; then
       CHECK_PLOTS=$(curl --retry-all-errors --retry 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
       echo "Found $CHECK_PLOTS total plots"
       if [[ $CHECK_PLOTS > $TOTAL_PLOTS ]]; then
@@ -251,7 +258,7 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b 64 -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -t1 $TMPDIR --cache $RAMCACHE $FINALDIR
 
         #                      You need about 192GiB(+|-) for high-frequency I/O Phase 1 calculations
         #                      to be completely in-memory.
@@ -270,7 +277,7 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "bladebit" ]]; then
         chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b 64 -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -t1 $TMPDIR --cache $RAMCACHE $FINALDIR
       else
         chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
       fi
