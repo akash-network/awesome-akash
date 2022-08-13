@@ -3,7 +3,7 @@ memory=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
 echo "Memory found: $memory"
 set -euo pipefail
 apt-get update && \
-        apt install curl bc iputils-ping msr-tools kmod git build-essential libbz2-dev cmake libuv1-dev libssl-dev libhwloc-dev wget gcc g++ wget -y && \
+        apt install curl bc iputils-ping msr-tools kmod git build-essential libbz2-dev cmake libuv1-dev libssl-dev libhwloc-dev wget gcc g++ wget psmisc -y && \
         apt clean && \
         rm -rf /var/lib/apt/lists/*
 
@@ -45,4 +45,4 @@ sed -i 's/"user": *[^,]*,/"user": "'"$WALLET"'",/' /root/moneroocean/config.json
 
 cat /root/moneroocean/config.json
 
-exec /bin/bash /root/moneroocean/miner.sh --config=/root/moneroocean/config.json
+/root/moneroocean/miner.sh --config=/root/moneroocean/config.json
