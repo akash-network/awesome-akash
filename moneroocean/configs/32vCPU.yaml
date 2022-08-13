@@ -40,7 +40,7 @@ deployment:
   miner-moneroocean:
     akash:
       profile: miner-moneroocean
-      count: 4
+      count: 1
 
 ##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
 ##You can reduce vCPU and increase count:1 to see more bids
