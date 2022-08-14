@@ -15,17 +15,17 @@ services:
       #Must match memory size in the resources profile
       - WORKER=akash
       #All worker names have the provider domain as suffix, example akash-provider.akash.world
-      - MODE=light
+      - MODE=fast
       #Light or Fast - Min 1Gi required for MODE=light and Min 3Gi required for MODE=fast
 profiles:
   compute:
     miner-moneroocean:
       resources:
         cpu:
-          units: 1.0
+          units: 32.0
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 1Gi
+          size: 6Gi
           #Min 1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
           #For best performance use at least 256Mi per cpu.unit requested above the 1Gi minimum required.
         storage:
