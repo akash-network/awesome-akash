@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   miner-moneroocean:
-    image: cryptoandcoffee/akash-moneroocean:110
+    image: cryptoandcoffee/akash-moneroocean:112
     expose:
       - port: 80
         to:
@@ -11,7 +11,7 @@ services:
     env:
       - WALLET=
       #Your Monero Wallet Address
-      - MEMORY_SIZE=6Gi
+      - MEMORY_SIZE=32Gi
       #Must match memory size in the resources profile
       - WORKER=akash
       #All worker names have the provider domain as suffix, example akash-provider.akash.world
@@ -25,10 +25,11 @@ profiles:
           units: 32.0
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size:  6Gi
+          size: 6Gi
           #Min 1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
+          #For best performance use at least 256Mi per cpu.unit requested above the 1Gi minimum required.
         storage:
-          size:  16Mi
+          size: 16Mi
           #Min 16Gi / Max 32Ti
   placement:
     akash:
