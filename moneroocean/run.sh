@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#memory=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
+#echo "Memory found: $memory"
 set -euo pipefail
 
 if [ -z $WALLET ]; then

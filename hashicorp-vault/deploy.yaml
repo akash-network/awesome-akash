@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  hashicorp-vault:
+    image: vault
+    env:
+      - VAULT_DEV_ROOT_TOKEN_ID=mysecrettoken
+      - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
+    expose:
+      - port: 8200
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    hashicorp-vault:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        hashicorp-vault: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  hashicorp-vault:
+    akash:
+      profile: hashicorp-vault
+      count: 1
+

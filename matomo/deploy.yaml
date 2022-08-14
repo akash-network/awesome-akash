@@ -53,10 +53,10 @@ profiles:
       pricing:
         db:
           denom: uakt
-          amount: 100
+          amount: 10000
         matomo:
           denom: uakt
-          amount: 100
+          amount: 10000
 deployment:
   db:
     akash:

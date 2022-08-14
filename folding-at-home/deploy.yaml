@@ -37,7 +37,7 @@ profiles:
       pricing:
         folding-at-home:
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   folding-at-home:

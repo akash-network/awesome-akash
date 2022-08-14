@@ -56,10 +56,10 @@ profiles:
       pricing:
         db: 
           denom: uakt
-          amount: 100
+          amount: 10000
         redmine: 
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   db:

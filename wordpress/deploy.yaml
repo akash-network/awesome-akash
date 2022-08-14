@@ -3,11 +3,36 @@ version: "2.0"
 
 services:
   wordpress:
-    image: wordpress 
+    image: wordpress:5.9.2-apache
+    env:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=exampleuser
+      - WORDPRESS_DB_PASSWORD=examplepass
+      - WORDPRESS_DB_NAME=exampledb
+    command:
+      - "sh"
+      - "-c"
+    args:
+      - 'grep -q upload_max_filesize || { echo "php_value upload_max_filesize 64M\nphp_value post_max_size 64M\nphp_value max_execution_time 300\nphp_value max_input_time 300" | tee -a /var/www/html/.htaccess; };
+      exec docker-entrypoint.sh apache2-foreground'
     expose:
       - port: 80
+        http_options:
+          max_body_size: 104857600
         to:
           - global: true
+
+  db:
+    image: mysql:8.0.28-debian
+    env:
+      - MYSQL_DATABASE=exampledb
+      - MYSQL_USER=exampleuser
+      - MYSQL_PASSWORD=examplepass
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+    expose:
+      - port: 3306
+        to:
+          - service: wordpress
 
 profiles:
   compute:
@@ -19,6 +44,14 @@ profiles:
           size: 1Gi
         storage:
           size: 2Gi
+    db:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
   placement:
     akash:
       attributes:
@@ -27,12 +60,19 @@ profiles:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        wordpress: 
+        wordpress:
           denom: uakt
-          amount: 100
+          amount: 10000
+        db:
+          denom: uakt
+          amount: 10000
 
 deployment:
   wordpress:
     akash:
       profile: wordpress
+      count: 1
+  db:
+    akash:
+      profile: db
       count: 1

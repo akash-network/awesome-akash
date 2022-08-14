@@ -14,7 +14,7 @@ profiles:
     minesweeper:
       resources:
         cpu:
-          units: 1.0
+          units: 0.1
         memory:
           size: 512Mi
         storage:
@@ -22,14 +22,14 @@ profiles:
   placement:
     akash:
       attributes:
-        host: akash
+        organization: akash.network
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         minesweeper: 
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   minesweeper:
