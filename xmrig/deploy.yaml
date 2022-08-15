@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   miner-xmrig:
-    image: cryptoandcoffee/akash-xmrig:15
+    image: cryptoandcoffee/akash-xmrig:16
     expose:
       - port: 8080
         as: 80
