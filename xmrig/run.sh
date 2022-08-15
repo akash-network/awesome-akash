@@ -41,7 +41,7 @@ else
 fi
 
 MIN_MEMORY_LIGHT_MODE=0.1 #No less to run MoneroOcean
-MIN_MEMORY_FAST_MODE=4.75  #No less to run FAST mode single NUMA node
+MIN_MEMORY_FAST_MODE=4.75 #No less to run FAST mode single NUMA node
 
 if [[ $RANDOMX_MODE == fast ]]; then
     if (($(echo "$MEMORY_SIZE < $MIN_MEMORY_FAST_MODE" | bc -l))); then
@@ -106,13 +106,14 @@ fi
 
 WORKER=$(echo ${WORKER}-${AKASH_CLUSTER_PUBLIC_HOSTNAME})
 
-cd /xmrig ; echo "Using POOL: ${POOL} WALLET: ${WALLET}  WORKER: ${WORKER} TLS: ${TLS} TLS_FINGERPRINT: ${TLS_FINGERPRINT}"
+cd /xmrig
+echo "Using POOL: ${POOL} WALLET: ${WALLET}  WORKER: ${WORKER} TLS: ${TLS} TLS_FINGERPRINT: ${TLS_FINGERPRINT}"
 CUSTOM_OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$CUSTOM_OPTIONS") #Remove quotes
 
 if [[ ${TLS_FINGERPRINT} != "" && ${TLS} == "true" ]]; then
-  ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --tls-fingerprint ${TLS_FINGERPRINT} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_UNITS $CUSTOM_OPTIONS
+    ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --tls-fingerprint ${TLS_FINGERPRINT} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_UNITS $CUSTOM_OPTIONS
 elif [[ ${TLS_FINGERPRINT} == "" && ${TLS} == "true" ]]; then
-  ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_UNITS $CUSTOM_OPTIONS
+    ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_UNITS $CUSTOM_OPTIONS
 else
-  ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_UNITS $CUSTOM_OPTIONS
+    ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_UNITS $CUSTOM_OPTIONS
 fi
