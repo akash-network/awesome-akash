@@ -1,0 +1,65 @@
+---
+version: "2.0"
+
+services:
+  miner-xmrig:
+    image: cryptoandcoffee/akash-xmrig:15
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - ALGO=rx/0
+      #Set the algorithm you want xmrig to use.
+      - POOL=pool.hashvault.pro:443
+      #The mining pool you want to connect to.
+      - WALLET=
+      #Your Monero Wallet Address for the default pool, otherwise any other wallet address for another pool/coin.
+      - WORKER=akash
+      #All worker names have the provider domain as suffix, example akash-provider.akash.world
+      - PASS=x
+      #Most pools do not require a password.  Only change this if you need to set a password.
+      - CPU_UNITS=4
+      #You must set the CPU_UNITS= to match the cpu.units requested otherwise mining will be slowed.
+      - MEMORY_SIZE=4.75Gi
+      #Must match memory size in the resources profile
+      - TLS=true
+      #Protect your shares by choosing pools that support encryption!
+      - TLS_FINGERPRINT=420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+      #Use a TLS_FINGERPRINT if required.  Can be left blank.
+      - RANDOMX_MODE=fast
+      #Light or Fast - Min 0.1Gi required for MODE=light and Min 4.75Gi required for MODE=fast
+      - CUSTOM_OPTIONS=""
+      #Customize the command line options of xmrig.  Full list of command available here:
+      #https://xmrig.com/docs/miner/command-line-options
+profiles:
+  compute:
+    miner-xmrig:
+      resources:
+        cpu:
+          units: 4
+          #Min 0.01 / Max 256 CPU's.
+        memory:
+          size: 4.75Gi
+          #Min 128Mi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
+          #For best performance use at least 256Mi per cpu.unit requested above the 128Mi minimum required.
+        storage:
+          size: 8Mi
+          #Min 8Mi / Max 32Ti
+  placement:
+    akash:
+      pricing:
+        miner-xmrig:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  miner-xmrig:
+    akash:
+      profile: miner-xmrig
+      count: 1
+
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
