@@ -6,11 +6,12 @@ Welcome [xmrig](https://xmrig.com/) and [Monero](https://getmonero.org) miners! 
 
 The biggest factor to control speed of mining is using RANDOMX_MODE=fast or RANDOMX_MODE=light.
 
-Set `RANDOMX_MODE=fast` to maximize your speed and use the most amount of resources possible/expensive.
-Requires at least 4.5Gi of Memory for providers with > 1 NUMA node.
+Set `RANDOMX_MODE=fast` to maximize your speed and use the most amount of resources possible / highest price.
+Requires at least 3Gi of Memory for providers with = 1 NUMA node.
+Requires at least 4.75Gi of Memory for providers with > 1 NUMA node.
 
-Set `RANDOMX_MODE=light` to use the smallest amount of resources possible/cheapest.
-Use as little as 0.01 and 128Mi of Memory for a deployment
+Set `RANDOMX_MODE=light` to use the smallest amount of resources / lowest price.
+Requires at least 0.1Gi of Memory for all providers.
 
 ## Configure xmrig options
 
@@ -20,19 +21,24 @@ Here are all available variables:
 ```
 POOL=
 WALLET=
-PASSWORD=
+PASS=x
 WORKER=
 TLS=
 TLS_FINGERPRINT=
 ALGO=
 DONATE_LEVEL=
 RANDOMX_MODE=
-RANDOMX_1GB=
+CUSTOM_OPTIONS=
 ```
 
 ## Default pools
 
-The default pool is [Hashvault](https://monero.hashvault.pro/en/dashboard).  Input your Monero wallet address in the `WALLET=` variable.
+The default pool is [Hashvault](https://monero.hashvault.pro/en/dashboard).  
+Input your Monero wallet address in the `WALLET=` variable.
+
+## Solo mining
+
+To enable solo mining on Hashvault, use `WALLET=solo:yourmoneroaddress` replacing yourmoneroaddress with your Monero wallet address.
 
 ## Changing the pool
 

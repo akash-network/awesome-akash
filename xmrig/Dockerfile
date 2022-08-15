@@ -10,8 +10,6 @@ ENV ALGO=rx/0
 ENV DONATE_LEVEL=0
 ENV RANDOMX_MODE=
 ENV CUSTOM_OPTIONS=
-ENV CPU_UNITS=
-ENV MEMORY_SIZE=
 
 RUN apk --no-cache upgrade && \
     apk --no-cache add \

@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   miner-xmrig:
-    image: cryptoandcoffee/akash-xmrig:16
+    image: cryptoandcoffee/akash-xmrig:22
     expose:
       - port: 8080
         as: 80
@@ -15,16 +15,12 @@ services:
       #Set the algorithm you want xmrig to use.
       - POOL=pool.hashvault.pro:443
       #The mining pool you want to connect to.
-      - WALLET=
+      - WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K
       #Your Monero Wallet Address for the default pool, otherwise any other wallet address for another pool/coin.
       - WORKER=akash
       #All worker names have the provider domain as suffix, example akash-provider.akash.world
       - PASS=x
       #Most pools do not require a password.  Only change this if you need to set a password.
-      - CPU_UNITS=4
-      #You must set the CPU_UNITS= to match the cpu.units requested otherwise mining will be slowed.
-      - MEMORY_SIZE=4.75Gi
-      #Must match memory size in the resources profile
       - TLS=true
       #Protect your shares by choosing pools that support encryption!
       - TLS_FINGERPRINT=420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
@@ -42,8 +38,8 @@ profiles:
           units: 4
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 4.75Gi
-          #Min 128Mi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
+          size: 3Gi
+          #Min 0.1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
           #For best performance use at least 256Mi per cpu.unit requested above the 128Mi minimum required.
         storage:
           size: 8Mi
