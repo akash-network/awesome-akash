@@ -1,4 +1,0 @@
-#!/bin/sh
-
-echo "${PWD##*/}: Exitted with $1 (signal: $2)"
-[ $1 -ne 0 ] && ( echo "${PWD##*/}: rc != 0, sleeping for 5 seconds ..."; sleep 5 )

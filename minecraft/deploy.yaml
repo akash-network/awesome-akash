@@ -12,7 +12,7 @@ services:
     env:
       - FORCE_REDOWNLOAD=true
       - EULA=TRUE
-      - VERSION=LATEST
+      - VERSION=1.17
       - SERVER_NAME=AkashMinecraft
       - MEMORY=4G
       - MAX_PLAYERS=10
@@ -37,7 +37,7 @@ profiles:
       pricing:
         web:
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   web:

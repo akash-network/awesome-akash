@@ -20,15 +20,13 @@ services:
         as: 80
         to:
           - global: true
-        accept:
-          - snakegame.smartwave.tk
 
 profiles:
   compute:
     snake:
       resources:
         cpu:
-          units: 1.0
+          units: 0.25
         memory:
           size: 512Mi
         storage:
@@ -36,7 +34,7 @@ profiles:
     mongo:
       resources:
         cpu:
-          units: 1.0
+          units: 0.25
         memory:
           size: 512Mi
         storage:
@@ -44,17 +42,17 @@ profiles:
   placement:
     akash:
       attributes:
-        host: akash
+        organization: akash.network
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         snake: 
           denom: uakt
-          amount: 100
+          amount: 10000
         mongo: 
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   snake:

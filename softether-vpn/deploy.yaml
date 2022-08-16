@@ -1,0 +1,64 @@
+---
+version: "2.0"
+
+services:
+  softether:
+    image: andrey01/softether:4.38-9760-2
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 443
+        as: 443
+        to:
+          - global: true
+      - port: 992
+        as: 992
+        to:
+          - global: true
+      - port: 5555
+        as: 5555
+        to:
+          - global: true
+      - port: 1194
+        as: 1194
+        proto: udp
+        to:
+          - global: true
+      - port: 500
+        as: 500
+        proto: udp
+        to:
+          - global: true
+      - port: 4500
+        as: 4500
+        proto: udp
+        to:
+          - global: true
+
+profiles:
+  compute:
+    softether:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        softether:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  softether:
+    akash:
+      profile: softether
+      count: 1

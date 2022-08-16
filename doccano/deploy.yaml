@@ -1,0 +1,45 @@
+---
+version: "2.0"
+
+services:
+  doccano:
+    image: doccano/doccano
+    expose:
+      - port: 8000
+        as : 8000
+        to:
+          - global: true
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    env :
+      - ADMIN_USERNAME=admin
+      - ADMIN_EMAIL=admin@example.com
+      - ADMIN_PASSWORD=password
+profiles:
+  compute:
+    doccano:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 2048Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        doccano: 
+          denom: uakt
+          amount: 10000
+deployment:
+  doccano:
+    akash:
+      profile: doccano
+      count: 1 

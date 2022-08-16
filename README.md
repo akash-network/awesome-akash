@@ -14,14 +14,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
-### Social
-
-- [Discourse](discourse)
-
-### Peer-to-peer File Sharing
-
-- [qBittorrent](qbittorrent)
-
 ### Blogging
 
 - [SteemCN](steemcn)
@@ -83,6 +75,15 @@ Awesome DeFi apps you can deploy on Akash
 - [yfii](yfii)
 - [Sifchain DEX](sifchain-ui)
 
+### Benchmarking
+
+- [Speedtest by Ookla](speedtest-cli)
+- [Fast.com by Netflix](fast)
+- [Geekbench 5](geekbench)
+- [Speedtest Tracker](speedtest-tracker)
+- [LibreSpeed](librespeed)
+- [OpenSpeedTest](openspeedtest)
+
 ### Blockchain
 
 - [Substrate Node](substrate-node)
@@ -123,28 +124,40 @@ Awesome DeFi apps you can deploy on Akash
 ### Machine Learning
 
 - [Jupyter Notebook](jupyter)
+- [Doccano](doccano)
 
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
 
-### Metasearch Engine
+### Search Engines
 
 - [Whoogle Search](whoogle-search)
+- [Presearch](presearch)
 
 ### Mining
 
 - [xmrig](monero)
-- [Chia](chia)
+- [Chia Bladebit](chia-bladebit)
+- [Chia Bladebit Disk](chia-bladebit-disk)
+- [Chia Madmax](chia-madmax)
 - [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
 - [Raptoreum](raptoreum-miner)
 - [pkt.cash](pkt-miner)
+
+### Peer-to-peer File Sharing
+
+- [qBittorrent](qbittorrent)
 
 ### Project Management
 
 - [Jira Software](jira)
 - [Redmine](redmine)
 - [Kanboard](kanboard)
+
+### Social
+
+- [Discourse](discourse)
 
 ### Tools
 
@@ -162,6 +175,15 @@ Awesome DeFi apps you can deploy on Akash
 - [CodiMD](CodiMD)
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
+- [Hashicorp Vault](hashicorp-vault)
+
+### Network
+
+- [SoftEther VPN](softether-vpn)
+
+### Databases
+
+- [redis](redis)
 
 ### Video Conferencing
 

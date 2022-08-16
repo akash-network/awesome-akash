@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  redis:
+    image: redis:latest
+    env:
+      - REDIS_AOF_ENABLED=no
+      - ALLOW_EMPTY_PASSWORD=no
+      - REDIS_PASSWORD=rootpassword
+    expose:
+      - port: 6379        
+        to:
+          - global: true       
+
+profiles:
+  compute:
+    redis:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        redis: 
+          denom: uakt
+          amount: 10000
+
+
+deployment:
+  redis:
+    akash:
+      profile: redis
+      count: 1

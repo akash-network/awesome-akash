@@ -9,10 +9,11 @@ services:
         as: 80
         to:
           - global: true
-        accept:
-          - mysite123.com
-    env:
-      - "url=http://mysite123.com"
+        # change mysite123.com to yours
+        #accept:
+          #- mysite123.com
+    #env:
+      #- "url=http://mysite123.com"
 profiles:
   compute:
     ghost:
@@ -33,7 +34,7 @@ profiles:
       pricing:
         ghost: 
           denom: uakt
-          amount: 100
+          amount: 10000
 
 deployment:
   ghost:

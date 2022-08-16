@@ -54,10 +54,10 @@ profiles:
       pricing:
           db:
             denom: uakt
-          amount: 5000
+          amount: 10000
         codimd: 
           denom: uakt
-          amount: 5000
+          amount: 10000
 
 deployment:
    db:

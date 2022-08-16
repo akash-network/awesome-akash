@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  presearch:
+    image: presearch/node:1.0.2
+    env:
+      - 'REGISTRATION_CODE=<YOUR_REGISTRATION_CODE_HERE>'
+    # need to expose at least 1 port otherwise "Error: invalid manifest: zero global services"
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+
+profiles:
+  compute:
+    presearch:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        presearch:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  presearch:
+    akash:
+      profile: presearch
+      count: 1
