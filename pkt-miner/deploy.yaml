@@ -1,8 +1,9 @@
---
+---
 version: "2.0"
+
 services:
   pkt-miner:
-    image: cryptoandcoffee/akash-pkt-miner:5
+    image: cryptoandcoffee/akash-pkt-miner:6
     env:
       - WALLET_ADDR=
       - POOL1=http://pool.pkteer.com
@@ -10,8 +11,7 @@ services:
       - POOL3=http://pool.pktpool.io
       - POOL4=https://stratum.zetahash.com
     expose:
-      - port: 3000
-        as: 80
+      - port: 80
         to:
           - global: true
 profiles:
@@ -32,8 +32,7 @@ profiles:
       pricing:
         pkt-miner:
           denom: uakt
-          amount: 1000
-
+          amount: 10000
 deployment:
   pkt-miner:
     pkt-miner:

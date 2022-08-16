@@ -4,7 +4,7 @@ Deploy a https://pkt.cash miner on https://akash.network
 
 ## Version
 
-packetcrypt-v0.5.1
+packetcrypt-v0.5.2
 
 ## Pool configuration
 
