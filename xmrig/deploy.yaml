@@ -35,12 +35,15 @@ profiles:
     miner-xmrig:
       resources:
         cpu:
-          units: 4
-          #Min 0.01 / Max 256 CPU's.
+          units: 6
+          #Min 0.01 / Max 256 cpu.units
         memory:
-          size: 3Gi
-          #Min 0.1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
-          #For best performance use at least 256Mi per cpu.unit requested above the 128Mi minimum required.
+          size: 4.75Gi
+          #Min 0.1Gi and MODE=light (Cheapest/slowest/economical)
+          #Min 3Gi and MODE=fast with single NUMA nodes (Only works on single NUMA node/limited compatibility)
+          #Min 4.75Gi MODE=fast with > 2 NUMA nodes (Best compatibility/fastest)
+          #Max 512Gi
+          #For best performance use at least 256Mi per cpu.unit requested above the 0.1Gi minimum required.
         storage:
           size: 8Mi
           #Min 8Mi / Max 32Ti

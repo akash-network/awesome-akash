@@ -58,8 +58,10 @@ if [[ $(lscpu | grep "NUMA" | head -n1 | awk '{print $3}') > 1 ]]; then
             echo "This provider has $(lscpu | grep "NUMA" | head -n1 | awk '{print $3}') NUMA nodes"
             echo "Increase the requested memory for this deployment to >= 4.75Gi"
             echo "You must close this deployment to change the memory requested."
-            sleep 300
-            exit
+            echo "------------------------------------------"
+            echo "Deployment will continue in SLOW mode after 30 seconds, setting RANDOMX_MODE=light."
+            sleep 30
+            RANDOMX_MODE=light
         fi
 
     fi
@@ -92,8 +94,11 @@ else
             echo "This provider has $(lscpu | grep "NUMA" | head -n1 | awk '{print $3}') NUMA nodes"
             echo "Increase the requested memory for this deployment to >= 3Gi"
             echo "You must close this deployment to change the memory requested."
-            sleep 300
-            exit
+            echo "If you don't want to close this deployment, please switch to RANDOMX_MODE=light and update the deployment."
+            echo "------------------------------------------"
+            echo "Deployment will continue in SLOW mode after 30 seconds, setting RANDOMX_MODE=light."
+            sleep 30
+            RANDOMX_MODE=light
         fi
 
     fi
