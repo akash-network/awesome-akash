@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   miner-xmrig:
-    image: cryptoandcoffee/akash-xmrig:22
+    image: cryptoandcoffee/akash-xmrig:27
     expose:
       - port: 8080
         as: 80
@@ -15,7 +15,7 @@ services:
       #Set the algorithm you want xmrig to use.
       - POOL=pool.hashvault.pro:443
       #The mining pool you want to connect to.
-      - WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K
+      - WALLET=
       #Your Monero Wallet Address for the default pool, otherwise any other wallet address for another pool/coin.
       - WORKER=akash
       #All worker names have the provider domain as suffix, example akash-provider.akash.world
@@ -35,7 +35,7 @@ profiles:
     miner-xmrig:
       resources:
         cpu:
-          units: 6
+          units: 4
           #Min 0.01 / Max 256 cpu.units
         memory:
           size: 4.75Gi
