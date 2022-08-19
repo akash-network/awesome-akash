@@ -1,0 +1,49 @@
+---
+version: "2.0"
+
+services:
+  iproyal-pawns:
+    image: iproyal/pawns-cli
+    expose:
+      - port: 80
+        to:
+          - global: true
+
+    command:
+       - "/pawns-cli"
+       - "-accept-tos"
+       - "-device-name"
+       - "REPLACE_ME"
+       - "-email"
+       - "REPLACE_ME"
+       - "-password"
+       - "REPLACE_ME"
+profiles:
+  compute:
+    iproyal-pawns:
+      resources:
+        cpu:
+          units: 1
+          #Min 0.01 / Max 256 CPU's.
+        memory:
+          size: 256Mi
+          #Min 1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
+          #For best performance use at least 256Mi per cpu.unit requested above the 1Gi minimum required.
+        storage:
+          size: 8Mi
+          #Min 16Gi / Max 32Ti
+  placement:
+    akash:
+      pricing:
+        iproyal-pawns:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  iproyal-pawns:
+    akash:
+      profile: iproyal-pawns
+      count: 1
+
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
