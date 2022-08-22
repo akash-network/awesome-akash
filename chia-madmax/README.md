@@ -4,7 +4,7 @@ This is a new implementation of a chia plotter which is designed as a processing
 
 ## Providers
 
-For the following providers expect to see these prices in Akashlytics! Each provider has been benchmarked and tested to create a $0.15/plot. &#x20;
+For the following providers expect to see these prices in Cloudmos! Each provider has been benchmarked and tested to create a $0.15/plot. &#x20;
 
 | Providers      | MadMax Price  / Month  |
 | ---------------------- | ---------------------- |
