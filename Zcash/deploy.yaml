@@ -1,0 +1,69 @@
+---
+version: "2.0"
+
+services:
+  app:
+    image: ubuntu:latest
+
+    params:
+      storage:
+        data:
+          mount: /root/.zcash/
+
+    env:
+      - "my_root_password=YourSuperGreatPasswordNumber_DO_NOT_USE_THIS_OR_YOU_WILL_GET_ROBBED_385593" # root password for ssh connection.
+    
+    command:
+      - "bash"
+      - "-c"
+      
+    args:
+      - 'apt-get update ; apt-get upgrade -y ; apt-get install -y  curl ; curl -s https://raw.githubusercontent.com/nfl0/zcashd-akash/main/start.sh | bash ; sleep infinity'   
+    
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 22
+        as: 22
+        to:
+          - global: true
+      - port: 8232
+        as: 8232
+        to:
+          - global: true
+      - port: 8233
+        as: 8233
+        to:
+          - global: true
+           
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 3Gi
+        storage:
+          - size: 10Gi
+          - name: data
+            size: 150Gi
+            attributes:
+                persistent: true
+                class: beta2
+         
+  placement:
+    akash: 
+      attributes:
+            
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1 
