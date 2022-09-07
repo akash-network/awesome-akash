@@ -1,0 +1,93 @@
+---
+version: "2.0"
+
+services:
+  ghost:
+    image: ghost:5.12.3
+    expose:
+      - port: 2368
+        as: 80
+        to:
+          - global: true
+        accept:
+          - changeme.com
+    env:
+      - NODE_ENV=production
+      - url=http://changeme.com
+      #Change NODE_ENV=production when using a production database
+      #see https://ghost.org/docs/config/#configuration-options
+      - database__connection__host=mysql
+      - database__connection__host=db
+      - database__connection__user=changeme
+      - database__connection__password=changeme
+      - database__connection__database=ghost
+    params:
+      storage:
+        blog_data:
+          mount: /var/lib/ghost/content
+  db:
+    image: mysql:8.0.30-debian
+    env:
+      - MYSQL_DATABASE=ghost
+      - MYSQL_USER=changeme
+      - MYSQL_PASSWORD=changeme
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+    expose:
+      - port: 3306
+        to:
+          - service: ghost
+    params:
+      storage:
+        db_data:
+          mount: /var/lib/mysql
+profiles:
+  compute:
+    ghost:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+          name: blog_data
+          attributes:
+            persistent: true
+            class: beta2
+    db:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+          name: db_data
+          attributes:
+            persistent: true
+            class: beta2
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        ghost:
+          denom: uakt
+          amount: 10000
+        db:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  ghost:
+    akash:
+      profile: ghost
+      count: 1
+  db:
+    akash:
+      profile: db
+      count: 1

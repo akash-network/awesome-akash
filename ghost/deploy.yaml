@@ -12,26 +12,10 @@ services:
         accept:
           - changeme.com
     env:
-      - NODE_ENV=production
       - url=http://changeme.com
-      #Change NODE_ENV=production when using a production database
-      #see https://ghost.org/docs/config/#configuration-options
-      - database__connection__host=mysql
-      - database__connection__host=db
-      - database__connection__user=changeme
-      - database__connection__password=changeme
-      - database__connection__database=ghost
-  db:
-    image: mysql:8.0.28-debian
-    env:
-      - MYSQL_DATABASE=ghost
-      - MYSQL_USER=changeme
-      - MYSQL_PASSWORD=changeme
-      - MYSQL_RANDOM_ROOT_PASSWORD=true
-    expose:
-      - port: 3306
-        to:
-          - service: ghost
+      - NODE_ENV=production
+      - database__client=sqlite3
+      - database__connection__filename=content/data/ghost.db
 
 profiles:
   compute:
@@ -43,14 +27,6 @@ profiles:
           size: 1Gi
         storage:
           size: 5Gi
-    db:
-      resources:
-        cpu:
-          units: 1.0
-        memory:
-          size: 1Gi
-        storage:
-          size: 1Gi
   placement:
     akash:
       attributes:
@@ -63,16 +39,9 @@ profiles:
         ghost:
           denom: uakt
           amount: 10000
-        db:
-          denom: uakt
-          amount: 10000
 
 deployment:
   ghost:
     akash:
       profile: ghost
-      count: 1
-  db:
-    akash:
-      profile: db
       count: 1
