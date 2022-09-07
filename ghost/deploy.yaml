@@ -14,6 +14,7 @@ services:
     env:
       - url=http://changeme.com
       - NODE_ENV=production
+      # ref. https://ghost.org/docs/config/#configuration-options
       - database__client=sqlite3
       - database__connection__filename=content/data/ghost.db
 

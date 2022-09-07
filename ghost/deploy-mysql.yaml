@@ -12,10 +12,9 @@ services:
         accept:
           - changeme.com
     env:
-      - NODE_ENV=production
       - url=http://changeme.com
-      #Change NODE_ENV=production when using a production database
-      #see https://ghost.org/docs/config/#configuration-options
+      - NODE_ENV=production
+      # ref. https://ghost.org/docs/config/#configuration-options
       - database__connection__host=mysql
       - database__connection__host=db
       - database__connection__user=changeme
