@@ -120,6 +120,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Caddy](caddy)
 - [Grafana](grafana)
 - [IPFS](ipfs)
+- [Flame](flame)
 
 ### Machine Learning
 
