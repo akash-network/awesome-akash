@@ -189,8 +189,19 @@ else
   chia init
 fi
 
-if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
-  screen -dmS sync bash ./sync.sh
+
+if [[ "${UPLOAD_BACKGROUND}" == "true" && "${FINAL_LOCATION}" != "local" && "${RCLONE}" == "false" ]]; then
+
+  echo "Starting rsync in background and logging to rsync_log.log..."
+  screen -dmS rsync bash /sync.sh
+  screen -ls
+  if ! screen -list | grep -q "rsync"; then
+    echo "rsync is not running!"
+    sleep 60
+    exit
+  fi
+
+
 fi
 
 if [[ $PLOTTER == "madmax-ramdrive" ]]; then
