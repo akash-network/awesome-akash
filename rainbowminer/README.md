@@ -1,4 +1,4 @@
-#Profitable Multipool Mining
+# Profitable Multipool Mining
 ![](https://raw.githubusercontent.com/RainbowMiner/miner-binaries/master/rainbowminerhome.png "RainbowMiner Web GUI")
 
 GPU/CPU Mining script with intelligent auto-switching between different miningpools, algorithm, miner programs using all possible combinations of devices (NVIDIA, AMD, INTEL and CPU), optionally including cost of electricity into profit calculations and  stop mining, if no longer profitable.
