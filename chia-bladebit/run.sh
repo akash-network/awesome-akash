@@ -98,7 +98,7 @@ if [[ "$FINAL_LOCATION" == "local" ]]; then
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
-  echo "Plots will be created locally.  Please check Akashlytics for the Uri - you can find this on the   "
+  echo "Plots will be created locally.  Please check Cloudmos for the Uri - you can find this on the   "
   echo "deployment details page.  Plots will only appear after creation.  Please be patient for your first"
   echo "plots to appear.  Starting in 15 seconds.                                                          "
   echo "###################################################################################################"

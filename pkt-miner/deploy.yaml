@@ -1,17 +1,19 @@
---
+---
 version: "2.0"
+
 services:
   pkt-miner:
-    image: cryptoandcoffee/akash-pkt-miner:5
+    image: cryptoandcoffee/akash-pkt-miner:17
     env:
       - WALLET_ADDR=
       - POOL1=http://pool.pkteer.com
       - POOL2=http://pool.pkt.world
       - POOL3=http://pool.pktpool.io
       - POOL4=https://stratum.zetahash.com
+      - VERSION=v0.5.2
+      #Check for the latest version here : https://github.com/cjdelisle/packetcrypt_rs/releases
     expose:
-      - port: 3000
-        as: 80
+      - port: 80
         to:
           - global: true
 profiles:
@@ -19,23 +21,30 @@ profiles:
     pkt-miner:
       resources:
         cpu:
-          units: 1
+          units: 4
+          #Min 0.01 / Max 256 CPU's.
         memory:
           size: 1Gi
+          #Min 256Mi / Max 512Gi.
         storage:
-          size: 1Gi
+          size: 32Mi
+          #packet-crypt is currently 20Mi in size
+          #Min 32Mi / Max 32Ti
   placement:
     pkt-miner:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
         pkt-miner:
           denom: uakt
           amount: 10000
-
 deployment:
   pkt-miner:
     pkt-miner:
       profile: pkt-miner
       count: 1
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
