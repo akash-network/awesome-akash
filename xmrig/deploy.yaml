@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   miner-xmrig:
-    image: cryptoandcoffee/akash-xmrig:27
+    image: cryptoandcoffee/akash-xmrig:33
     expose:
       - port: 8080
         as: 80
@@ -13,7 +13,7 @@ services:
     env:
       - ALGO=rx/0
       #Set the algorithm you want xmrig to use.
-      - POOL=pool.hashvault.pro:443
+      - POOL=gulf.moneroocean.stream:20128
       #The mining pool you want to connect to.
       - WALLET=
       #Your Monero Wallet Address for the default pool, otherwise any other wallet address for another pool/coin.
@@ -23,11 +23,11 @@ services:
       #Most pools do not require a password.  Only change this if you need to set a password.
       - TLS=true
       #Protect your shares by choosing pools that support encryption!
-      - TLS_FINGERPRINT=420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
+      - TLS_FINGERPRINT=
       #Use a TLS_FINGERPRINT if required.  Can be left blank.
       - RANDOMX_MODE=fast
       #Light or Fast - Min 0.1Gi required for MODE=light and Min 4.75Gi required for MODE=fast
-      - CUSTOM_OPTIONS=""
+      - CUSTOM_OPTIONS=
       #Customize the command line options of xmrig.  Full list of command available here:
       #https://xmrig.com/docs/miner/command-line-options
 profiles:
@@ -45,10 +45,21 @@ profiles:
           #Max 512Gi
           #For best performance use at least 256Mi per cpu.unit requested above the 0.1Gi minimum required.
         storage:
-          size: 8Mi
-          #Min 8Mi / Max 32Ti
+          size: 6Mi
+          #Min 6Mi / Max 32Ti
   placement:
     akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         miner-xmrig:
           denom: uakt

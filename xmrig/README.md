@@ -33,16 +33,34 @@ CUSTOM_OPTIONS=
 
 ## Default pools
 
-The default pool is [Hashvault](https://monero.hashvault.pro/en/dashboard).  
+The default pool is [MoneroOcean](moneroocean.stream/).  
 Input your Monero wallet address in the `WALLET=` variable.
+
+You can also set `POOL=herominers` or `POOL=hashvault`.  This will attempt to auto-select the nearest pool to your deployment.
 
 ## Solo mining
 
-To enable solo mining on Hashvault, use `WALLET=solo:yourmoneroaddress` replacing yourmoneroaddress with your Monero wallet address.
+To enable solo mining use `POOL=herominers` and `WALLET=solo:yourmoneroaddress`. This will attempt to auto-select the nearest Herominers pool to your deployment.
+
+If you know the location of the provider, please manually define the `POOL=`
+
+Central Europe (Germany ): de.monero.herominers.com:1111
+Northern Europe (Finland ): fi.monero.herominers.com:1111
+Eastern Europe (Russia ): ru.monero.herominers.com:1111
+North America - East (Canada ): ca.monero.herominers.com:1111
+North America - West (USA ): us.monero.herominers.com:1111
+North America - East (USA ): us2.monero.herominers.com:1111
+South America (Brazil ): br.monero.herominers.com:1111
+Asia (HongKong ): hk.monero.herominers.com:1111
+Asia (South Korea ): kr.monero.herominers.com:1111
+South Asia (India ): in.monero.herominers.com:1111
+SouthEast Asia (Singapore ): sg.monero.herominers.com:1111
+Western Asia (Turkey ): tr.monero.herominers.com:1111
+Oceania (Australia ): au.monero.herominers.com:1111
 
 ## Changing the pool
 
-We recommend you use Hashvault for a reliable pool, however if you need to change it feel free using the `POOL=` and configure `WALLET=` and `PASSWORD=`.
+We recommend you use HeroMiners for a reliable pool, however if you need to change it feel free using the `POOL=` and configure `WALLET=` and `PASSWORD=`.
 
 ## Disabling TLS
 
