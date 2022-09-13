@@ -24,6 +24,8 @@ Pawns.app enables you to make money instantly. All you need to do to start gener
 # Limitations
 
 You will get an error if you try to deploy on a provider that does not have a residential IP address.  Try another provider and check the attributes for any IP information.
+
+
 iproyal: {"happened_at":"2022-09-13T22:57:43Z","name":"not_running","parameters":{"error":"non_residential_ip","message":"ip is non residential"}}
 
 
@@ -59,8 +61,6 @@ It’s essential for our clients to have a good ping from the IPRoyal network. T
 Level Up
 
 Join the Pawns.app Discord for news and updates on everything Pawns.app, and meet the community.
-
-https://discord.com/invite/bA8ZKtJd7v
 
 
 # More info
