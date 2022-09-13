@@ -98,7 +98,7 @@ if [[ "$FINAL_LOCATION" == "local" ]]; then
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
-  echo "Plots will be created locally.  Please check Akashlytics for the Uri - you can find this on the   "
+  echo "Plots will be created locally.  Please check Cloudmos for the Uri - you can find this on the   "
   echo "deployment details page.  Plots will only appear after creation.  Please be patient for your first"
   echo "plots to appear.  Starting in 15 seconds.                                                          "
   echo "###################################################################################################"
@@ -189,8 +189,19 @@ else
   chia init
 fi
 
-if [[ "$UPLOAD_BACKGROUND" == "true" && "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
-  screen -dmS sync bash ./sync.sh
+
+if [[ "${UPLOAD_BACKGROUND}" == "true" && "${FINAL_LOCATION}" != "local" && "${RCLONE}" == "false" ]]; then
+
+  echo "Starting rsync in background and logging to rsync_log.log..."
+  screen -dmS rsync bash /sync.sh
+  screen -ls
+  if ! screen -list | grep -q "rsync"; then
+    echo "rsync is not running!"
+    sleep 60
+    exit
+  fi
+
+
 fi
 
 if [[ $PLOTTER == "madmax-ramdrive" ]]; then

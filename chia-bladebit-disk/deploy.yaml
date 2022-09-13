@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:254
+    image: cryptoandcoffee/akash-chia:262
     expose:
       - port: 8080
         as: 80
@@ -12,7 +12,7 @@ services:
           - global: true
     env:
     #############################REQUIRED##############################
-      - VERSION=1.5.0
+      - VERSION=1.5.1
      #Always check https://github.com/Chia-Network/chia-blockchain/releases
       - CONTRACT=
       - FARMERKEY=
@@ -66,6 +66,7 @@ profiles:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       attributes:
         chia-plotting: "true"
       pricing:
