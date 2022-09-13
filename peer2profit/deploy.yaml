@@ -16,9 +16,10 @@ profiles:
       resources:
         cpu:
           units: 0.05
+          #Check below : count is set to 9 by default.
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 48Mi
+          size: 64Mi
         storage:
           size: 6Mi
           #Min 6Mi / Max 32Ti
@@ -43,8 +44,10 @@ deployment:
   peer2profit:
     akash:
       profile: peer2profit
-      count: 1
+      count: 9
       #Warning* Do not use more than 9 count per IP or expect disconnects.
+      #The provider must have more than 1 node each with a unique IP to use > 9.
+      #Max count is 50
 
 ##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
 ##You can reduce vCPU and increase count:1 to see more bids
