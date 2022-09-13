@@ -43,7 +43,7 @@ deployment:
   peer2profit:
     akash:
       profile: peer2profit
-      count: 9
+      count: 1
       #Warning* Do not use more than 9 count per IP or expect disconnects.
 
 ##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
