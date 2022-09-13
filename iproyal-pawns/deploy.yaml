@@ -13,7 +13,7 @@ services:
        - "/pawns-cli"
        - "-accept-tos"
        - "-device-name"
-       - "REPLACE_ME"
+       - "akash"
        - "-email"
        - "REPLACE_ME"
        - "-password"
@@ -23,17 +23,27 @@ profiles:
     iproyal-pawns:
       resources:
         cpu:
-          units: 1
+          units: 0.25
+          #Check below : count is set to 9 by default.
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 256Mi
-          #Min 1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
-          #For best performance use at least 256Mi per cpu.unit requested above the 1Gi minimum required.
+          size: 64Mi
         storage:
-          size: 8Mi
-          #Min 16Gi / Max 32Ti
+          size: 6Mi
+          #Min 6Mi / Max 32Ti
   placement:
     akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         iproyal-pawns:
           denom: uakt
@@ -43,6 +53,7 @@ deployment:
     akash:
       profile: iproyal-pawns
       count: 1
+      #Warning* Do not use more than 1 count per IP or expect disconnects.
 
 ##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
 ##You can reduce vCPU and increase count:1 to see more bids
