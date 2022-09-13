@@ -1,9 +1,9 @@
----
+# Write or paste your SDL here!---
 version: "2.0"
 
 services:
   rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:22
+    image: cryptoandcoffee/akash-rainbowminer:26
     expose:
       - port: 4000
         as: 80
@@ -14,28 +14,44 @@ services:
       - XMR_WALLET=
       - DOGE_WALLET=
       - RVN_WALLET=
-      - POOLS=BlockMasters,Hashcryptos,ZergPool,Zpool,Icemining,Flexpool,C3pool,HeroMiners,MiningDutch,unMineable,MoneroOcean
+      - XTZ_WALLET=
+      - AECurrency=BTC
+      #Auto-exchange currency
+      - POOLS=C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
+      #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
 profiles:
   compute:
     rainbowminer:
       resources:
         cpu:
-          units: 8
+          units: 4
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 4.75Gi
-          #Min 1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
-          #For best performance use at least 256Mi per cpu.unit requested above the 1Gi minimum required.
+          size: 2.5Gi
+          #Min 2.5Gi-8Gi for RainbowMiner depending on total cpu units.
+          #For best performance use at least 256Mi per cpu.unit requested above the 2.5Gi minimum required.
         storage:
-          size: 120Gi
-          #Min 16Gi / Max 32Ti
+          size: 2Gi
+          #Min 2Gi / Max 32Ti
 
   placement:
     akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:                                             
+        anyOf:                                              
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"  
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         rainbowminer:
           denom: uakt
           amount: 10000 #Keep high to show all bids
+
 deployment:
   rainbowminer:
     akash:
