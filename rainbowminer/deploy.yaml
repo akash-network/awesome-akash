@@ -1,0 +1,63 @@
+# Write or paste your SDL here!---
+version: "2.0"
+
+services:
+  rainbowminer:
+    image: cryptoandcoffee/akash-rainbowminer:26
+    expose:
+      - port: 4000
+        as: 80
+        to:
+          - global: true
+    env:
+      - BTC_WALLET=
+      - XMR_WALLET=
+      - DOGE_WALLET=
+      - RVN_WALLET=
+      - XTZ_WALLET=
+      - AECurrency=BTC
+      #Auto-exchange currency
+      - POOLS=C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
+      #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
+profiles:
+  compute:
+    rainbowminer:
+      resources:
+        cpu:
+          units: 4
+          #Min 0.01 / Max 256 CPU's.
+        memory:
+          size: 2.5Gi
+          #Min 2.5Gi-8Gi for RainbowMiner depending on total cpu units.
+          #For best performance use at least 256Mi per cpu.unit requested above the 2.5Gi minimum required.
+        storage:
+          size: 2Gi
+          #Min 2Gi / Max 32Ti
+
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:                                             
+        anyOf:                                              
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"  
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        rainbowminer:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+
+deployment:
+  rainbowminer:
+    akash:
+      profile: rainbowminer
+      count: 1
+
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
