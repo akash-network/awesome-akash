@@ -7,9 +7,9 @@ Expected income from one device is about $2 to $15 per month, depending on locat
 # How to?
 
 1.  Sign up on https://peer2profit.io/
-2.  Click Deploy and enter the email used for peer2profit in `P2P_EMAIL=`
+2.  Click Deploy and enter the email used for Peer2Profit in `P2P_EMAIL=`
 3.  Deploy and choose an Akash provider.  Try not to repeat using the same provider or you may get an IP error.
-4.  After a succesful deployment check "My network" tab in the peer2profit dashboard.
+4.  After a succesful deployment check "My network" tab in the Peer2Profit dashboard.
 5.  Share your referral code and recommend Akash to friends!
 
 # Payment Rates : September 2022
