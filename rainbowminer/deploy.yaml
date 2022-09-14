@@ -28,11 +28,11 @@ profiles:
           #Min 0.01 / Max 256 CPU's.
         memory:
           size: 4.75Gi
-          #Min 3Gi-8Gi for RainbowMiner depending on total cpu units.
+          #Min 4.75Gi-8Gi for RainbowMiner depending on total cpu units.
           #For best performance use at least 256Mi per cpu.unit requested above the 2.5Gi minimum required.
         storage:
           size: 3Gi
-          #Min 2Gi / Max 32Ti
+          #Min 3Gi / Max 32Ti
   placement:
     akash:
       #######################################################
