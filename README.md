@@ -177,6 +177,7 @@ Awesome DeFi apps you can deploy on Akash
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
 - [Hashicorp Vault](hashicorp-vault)
+- [vaultwarden](vaultwarden)
 
 ### Network
 
