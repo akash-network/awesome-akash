@@ -19,6 +19,7 @@ services:
           - global: true
 
     args:
+      - --accept-terms-of-use
       - --jwt-secret=16698d3fdef65a91a3af25a90463de00b976e885a6cfa7f45929b75e9b52d039
       #Generate your own with openssl rand -hex 32 | tr -d "\n" 
       - --execution-endpoint=<YOUR_ETH_EXECUTION_NODE_ENDPOINT>
