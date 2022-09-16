@@ -1,0 +1,51 @@
+---
+version: '2.0'
+services:
+  prysm-beacon:
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+    expose:
+      - port: 4000
+        as: 4000
+        to:
+          - global: true
+      - port: 13000
+        as: 13000
+        to:
+          - global: true
+      - port: 12000
+        as: 12000
+        proto: udp
+        to:
+          - global: true
+
+    args:
+      - --jwt-secret=16698d3fdef65a91a3af25a90463de00b976e885a6cfa7f45929b75e9b52d039
+      #Generate your own with openssl rand -hex 32 | tr -d "\n" 
+      - --execution-endpoint=<YOUR_ETH_EXECUTION_NODE_ENDPOINT>
+      #Point at your ETH node after it's deployed!
+      - --rpc-host=0.0.0.0 
+      - --grpc-gateway-host=0.0.0.0
+      - --monitoring-host=0.0.0.0
+      - --p2p-host-ip
+      - --min-sync-peers 16
+profiles:
+  compute:
+    prysm-beacon:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          - size: 1Ti
+  placement:
+    akash:
+      pricing:
+        prysm-beacon:
+          denom: uakt
+          amount: 10000
+deployment:
+  prysm-beacon:
+    akash:
+      profile: prysm-beacon
+      count: 1
