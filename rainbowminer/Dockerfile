@@ -11,7 +11,17 @@ ENV RVN_WALLET=
 ENV XMR_WALLET=
 ENV XTZ_WALLET=
 ENV AECurrency=
+ENV REGION=us
+ENV SSL=1
+ENV MINER_NAME=
+ENV ALGORITHM=
+ENV EXCLUDE_COIN_SYMBOL=
+ENV EXCLUDE_ALGORITHM=
+ENV EXCLUDE_POOL_NAME=
+ENV EXCLUDE_COIN=
+ENV EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
 ENV POOLS=C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
+
 
 COPY ./run.sh /run.sh
 COPY ./setup.json /RainbowMiner/setup.json
