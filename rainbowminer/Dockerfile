@@ -1,7 +1,9 @@
 FROM ubuntu:22.04
 
-RUN apt-get update ; apt-get install git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 curl -y
+RUN apt-get update ; apt-get install git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev -y 
+
 RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; chmod +x *.sh ; ./install.sh
+
 ENV TERM=xterm
 
 ENV CUSTOM_WALLET=
