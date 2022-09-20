@@ -138,7 +138,7 @@
     "LinuxDisplay": ":0",
     "LinuxXAuthority": "",
     "EnableMinersAsRoot": "1",
-    "EnableAutoUpdate": "1",
+    "EnableAutoUpdate": "0",
     "EnableUpdateDuringPause": "1",
     "EnableUpdateWhenScheduled": "0",
     "EnableAutoAlgorithmAdd": "1",
