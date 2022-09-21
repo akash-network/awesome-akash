@@ -6,6 +6,10 @@ Expected income from one device is about $1 to $30 per month, depending on locat
 
 ![](https://github.com/ovrclk/awesome-akash/raw/traffmonetizer/traffmonetizer/traffmonetizer.png)
 
+# How much will I earn?
+
+As of September 2022 the current payout rate is $0.10/Gb
+
 
 # How to?
 
