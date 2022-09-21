@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  json-server:
+    image: clue/json-server
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    args:
+      - "-H"
+      - "0.0.0.0"
+      - "-w"
+      - "db.json"
+profiles:
+  compute:
+    json-server:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 64Mi
+        storage:
+          size: 96Mi
+  placement:
+    akash:
+      pricing:
+        json-server:
+          denom: uakt
+          amount: 10000
+deployment:
+  json-server:
+    akash:
+      profile: json-server
+      count: 1
