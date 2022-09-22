@@ -45,6 +45,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Databases and Administration
 
+- [json-server](json-server)
 - [pgAdmin](pgadmin4)
 - [mongoDB](mongoDB)
 - [postgresSQL](postgres)
@@ -139,15 +140,16 @@ Awesome DeFi apps you can deploy on Akash
 
 - [xmrig](xmrig)
 - [RainbowMiner](rainbowminer)
-- [Peer2Profit](peer2profit)
 - [Honeygain](honeygain)
-- [Chia Bladebit](chia-bladebit)
-- [Chia Bladebit Disk](chia-bladebit-disk)
-- [Chia Madmax](chia-madmax)
-- [IPRoyal Pawns](iproyal-pawns)
 - [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
 - [Raptoreum](raptoreum-miner)
 - [pkt.cash](pkt-miner)
+- [Chia Bladebit](chia-bladebit)
+- [Chia Bladebit Disk](chia-bladebit-disk)
+- [Chia Madmax](chia-madmax)
+- [Traffmonetizer](traffmonetizer)
+- [Peer2Profit](peer2profit)
+- [IPRoyal Pawns](iproyal-pawns)
 
 ### Peer-to-peer File Sharing
 
