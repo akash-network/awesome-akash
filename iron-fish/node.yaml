@@ -1,0 +1,67 @@
+---
+version: "2.0"
+
+services:
+  ironfish:
+    image: ghcr.io/iron-fish/ironfish:latest
+    args:
+      - "start"
+    expose:
+      - port: 9033
+        as: 9033
+        to:
+          - global: true
+      - port: 8020
+        as: 8020
+        to:
+          - global: true
+  ironfish-miner:
+    image: ghcr.io/iron-fish/ironfish:latest
+    args:
+      - "miners:start"
+      - "--pool"
+      - "pool.ironfish.network"
+      - "--address"
+      - "REPLACE_ME"
+profiles:
+  compute:
+    ironfish:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 16Gi
+        storage:
+          size: 128Gi
+    ironfish-miner:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 4.75Gi
+        storage:
+          size: 6Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        ironfish:
+          denom: uakt
+          amount: 100000
+        ironfish-miner:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  ironfish:
+    akash:
+      profile: ironfish
+      count: 1
+  ironfish-miner:
+    akash:
+      profile: ironfish-miner
+      count: 1
