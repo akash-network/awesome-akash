@@ -143,6 +143,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
 - [Chia Madmax](chia-madmax)
+- [PacketStream](packetstream)
 - [IPRoyal Pawns](iproyal-pawns)
 - [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
 - [Raptoreum](raptoreum-miner)

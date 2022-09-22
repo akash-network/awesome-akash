@@ -9,7 +9,7 @@ services:
         to:
           - global: true
     env:
-      - CID=
+      - CID="REPLACE_ME"
 profiles:
   compute:
     packetstream:
@@ -26,6 +26,18 @@ profiles:
           #Min 32Mi / Max 32Ti
   placement:
     akash:
+      placement:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         packetstream:
           denom: uakt
