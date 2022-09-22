@@ -124,19 +124,26 @@ Awesome DeFi apps you can deploy on Akash
 ### Machine Learning
 
 - [Jupyter Notebook](jupyter)
+- [Doccano](doccano)
 
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
 
-### Metasearch Engine
+### Search Engines
 
 - [Whoogle Search](whoogle-search)
+- [Presearch](presearch)
 
 ### Mining
 
-- [xmrig](monero)
-- [Chia](chia)
+- [xmrig](xmrig)
+- [RainbowMiner](rainbowminer)
+- [Peer2Profit](peer2profit)
+- [Chia Bladebit](chia-bladebit)
+- [Chia Bladebit Disk](chia-bladebit-disk)
+- [Chia Madmax](chia-madmax)
+- [IPRoyal Pawns](iproyal-pawns)
 - [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
 - [Raptoreum](raptoreum-miner)
 - [pkt.cash](pkt-miner)
@@ -171,10 +178,15 @@ Awesome DeFi apps you can deploy on Akash
 - [CodiMD](CodiMD)
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
+- [Hashicorp Vault](hashicorp-vault)
 
 ### Network
 
 - [SoftEther VPN](softether-vpn)
+
+### Databases
+
+- [redis](redis)
 
 ### Video Conferencing
 
