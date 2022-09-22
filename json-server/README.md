@@ -1,7 +1,21 @@
-# Speedtest by Ookla
+# JSON Server
 
-![](https://github.com/ovrclk/awesome-akash/raw/benchmarking/speedtest-cli/speedtest-logo.png)
+Get a full fake REST API with __zero coding__ in __less than 30 seconds__ (seriously)
 
+Created with <3 for front-end developers who need a quick back-end for prototyping and mocking.
+
+https://github.com/typicode/json-server
+
+* [Egghead.io free video tutorial - Creating demo APIs with json-server](https://egghead.io/lessons/nodejs-creating-demo-apis-with-json-server)
+* [JSONPlaceholder - Live running version](https://jsonplaceholder.typicode.com)
+* [__My JSON Server__ - no installation required, use your own data](https://my-json-server.typicode.com)
+
+See also:
+* :dog: [husky - Git hooks made easy](https://github.com/typicode/husky)
+* :owl: [lowdb - local JSON database](https://github.com/typicode/lowdb)
+* ✅ [xv - a beautifully simple and capable test runner](https://github.com/typicode/xv)
+
+```
 Options:
   --config, -c               Path to config file   [default: "json-server.json"]
   --port, -p                 Set port                            [default: 3000]
@@ -26,9 +40,4 @@ Examples:
   json-server db.json
   json-server file.js
   json-server http://example.com/db.json
-
-https://github.com/typicode/json-server
-
-The definitive way to test the speed and performance of your internet connection. Every day, over ten million unique tests are actively initiated by our users in the locations and at the times when their connectivity matters to them. Since our founding in 2006, an unparalleled total of more than 40 billion tests have been taken with Speedtest.
-
-Our commitment to providing transparency into the performance of networks is what drives us. Whether helping our users assess the speed of their individual connections through the Speedtest application or publishing analysis on the state of global markets and related trends, our team is always working to provide data that will help make the internet better and faster for everyone.
+```
