@@ -86,6 +86,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Blockchain
 
+- [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Vidulum](vidulum)
 
