@@ -140,6 +140,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [xmrig](xmrig)
 - [RainbowMiner](rainbowminer)
+- [Iron Fish](iron-fish)
 - [Honeygain](honeygain)
 - [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
 - [Raptoreum](raptoreum-miner)
