@@ -140,6 +140,7 @@ Awesome DeFi apps you can deploy on Akash
 - [xmrig](xmrig)
 - [RainbowMiner](rainbowminer)
 - [Peer2Profit](peer2profit)
+- [Honeygain](honeygain)
 - [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
 - [Chia Madmax](chia-madmax)

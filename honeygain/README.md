@@ -1,6 +1,7 @@
-# Share your traffic for profit
+# Honeygain: Passive Income - Effortlessly
 
-Expected income from one device is about $2 to $15 per month, depending on location (country, city, network type). Connect more devices using different ISP and invite more refferals to increase your income!
+Honeygain is the first-ever app that allows its users to make money online by sharing their Internet connection.
+With Honeygain, you can make money by simply sharing your Internet. Start earning now.
 
 ![](https://github.com/ovrclk/awesome-akash/raw/honeygain/honeygain/honeygain.png)
 
@@ -14,9 +15,15 @@ Expected income from one device is about $2 to $15 per month, depending on locat
 
 # Payment Rates : September 2022
 
-1,000 Honeygain credits = $1 You get 3 credits for every 10MB shared.
+1,000 Honeygain credits = $1
+You get 3 credits for every 10MB shared.
+$0.3/GB
 
 # More info
 
 Share Akash with the Honeygain community!
 https://discord.com/invite/Qp8rFqqFqu
+https://twitter.com/Honeygain_App
+
+Honeygain Help Desk
+https://support.honeygain.com/hc/en-us
