@@ -17,14 +17,14 @@ profiles:
     honeygain:
       resources:
         cpu:
-          units: 1
+          units: 0.10
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 256Mi
+          size: 96Mi
           #Min 256Mi / Max 512Gi.
         storage:
-          size: 8Mi
-          #Min 8Mi / Max 32Ti
+          size: 6Mi
+          #Min 6Mi / Max 32Ti
   placement:
     akash:
       pricing:
@@ -40,5 +40,3 @@ deployment:
 ##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
 ##You can reduce vCPU and increase count:1 to see more bids
 ##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
-
-
