@@ -1,0 +1,47 @@
+---
+version: "2.0"
+
+services:
+  json-server:
+    image: clue/json-server
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    args:
+      - "-H"
+      - "0.0.0.0"
+      - "-w"
+      - "db.json"
+profiles:
+  compute:
+    json-server:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 64Mi
+        storage:
+          size: 96Mi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        json-server:
+          denom: uakt
+          amount: 10000
+deployment:
+  json-server:
+    akash:
+      profile: json-server
+      count: 1
