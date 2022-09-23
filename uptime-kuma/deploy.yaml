@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   uptime:
-    image: louislam/uptime-kuma:latest
+    image: louislam/uptime-kuma:1.18.0
     expose:
       - port: 3001
         as: 80
@@ -21,8 +21,6 @@ profiles:
           - size: 512Mi
   placement:
     akash:
-      attributes:
-        host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
