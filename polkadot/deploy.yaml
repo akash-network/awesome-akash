@@ -3,43 +3,64 @@ version: "2.0"
 
 services:
   polkadot:
-    image: parity/polkadot
+    image: parity/polkadot:v0.9.29
     expose:
-      - port: 30333
-        as: 30333
-        to:
-          - global: true
-      - port: 9933
+      - port: 9933 # rpc port
         as: 9933
         to:
           - global: true
-      - port: 9944
+      - port: 9944 # ws port
         as: 9944
         to:
           - global: true
+      - port: 30333 # p2p port
+        as: 30333
+        to:
+          - global: true
     args:
-    - "--chain=polkadot"
-    - "--ws-external"
-    - "--rpc-external"
-    - "--rpc-cors=*"
+    #https://github.com/paritytech/polkadot/blob/master/doc/docker.md
+    - --chain=polkadot
+    - --ws-external
+    - --rpc-external
+    - --rpc-cors=all
+    #- --pruning=256
+    #- --unsafe-pruning
+    #https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot
+    #- --name My_Validator_Name
+    #- --validator
+    #- --public-addr=/ip4/IP_ADDRESS/tcp/2435
+    #- --listen-addr=/ip4/0.0.0.0/tcp/30333
+    #- --rpc-methods=Unsafe
 profiles:
   compute:
-    polkadot-profile:
+    polkadot:
       resources:
         cpu:
           units: 4.0
         memory:
-          size: 64Gi
+          size: 16Gi
         storage:
           size: 128Gi
+          #An archive node takes up a lot of disk space - around Kusama's 12 millionth block this was around 660 GB.
   placement:
-    westcoast:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        polkadot-profile:
+        polkadot:
           denom: uakt
-          amount: 1000
+          amount: 10000
 deployment:
   polkadot:
-    westcoast:
-      profile: polkadot-profile
+    akash:
+      profile: polkadot
       count: 1
