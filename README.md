@@ -176,7 +176,7 @@ Awesome DeFi apps you can deploy on Akash
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
 - [Hashicorp Vault](hashicorp-vault)
-- [Uptime-Kuma](uptime-kuma)
+- [Uptime Kuma](uptime-kuma)
 
 ### Network
 
