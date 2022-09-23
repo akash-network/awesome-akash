@@ -3,7 +3,7 @@
     
     services:
       web:
-        image: pawelmalak/flame
+        image: pawelmalak/flame:multiarch2.3.0
         expose:
           - port: 5005
             as: 80
