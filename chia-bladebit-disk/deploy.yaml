@@ -19,6 +19,7 @@ services:
       - PLOTTER=bladebit-disk
       - BLADEBIT_VERSION=v2.0.0-beta1
      #Choose your plotter software - madmax, bladebit, bladebit-disk
+      - BUCKETS=128
       - PLOT_SIZE=32
       - FINAL_LOCATION=local
      #Set to "local" to access finished plots through web interface.

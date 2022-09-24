@@ -272,7 +272,7 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b 64 -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
 
         #                      You need about 192GiB(+|-) for high-frequency I/O Phase 1 calculations
         #                      to be completely in-memory.
@@ -293,7 +293,7 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "bladebit" ]]; then
         chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b 64 -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
         chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi

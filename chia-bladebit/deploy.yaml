@@ -18,6 +18,7 @@ services:
       - FARMERKEY=
       - PLOTTER=bladebit
      #Choose your plotter software - madmax, bladebit, bladebit-disk
+      - BUCKETS=256
       - PLOT_SIZE=32
       - FINAL_LOCATION=local
      #Set to "local" to access finished plots through web interface.
