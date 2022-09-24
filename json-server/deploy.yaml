@@ -5,7 +5,7 @@ services:
   json-server:
     image: clue/json-server
     expose:
-      - port: 3000
+      - port: 80
         as: 80
         to:
           - global: true
