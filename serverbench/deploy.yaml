@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   serverbench:
-    image: cryptoandcoffee/akash-serverbench:1
+    image: cryptoandcoffee/akash-serverbench:9
     expose:
       - port: 80
         to:

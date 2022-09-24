@@ -3,11 +3,14 @@ version: "2.0"
 
 services:
   phoronix:
-    image: cryptoandcoffee/akash-phoronix
+    image: cryptoandcoffee/akash-phoronix:2
     expose:
       - port: 80
         to:
           - global: true
+    environment:
+      - TEST="ramspeed fio"
+      - COMMAND="batch-benchmark"
 profiles:
   compute:
     phoronix:
@@ -15,9 +18,9 @@ profiles:
         cpu:
           units: 4.0
         memory:
-          size: 8Gi #2Gi required
+          size: 6Gi
         storage:
-          size: 1Gi
+          size: 32Gi #32Gi min for the default test.
   placement:
     akash:
       pricing:
@@ -29,3 +32,4 @@ deployment:
     akash:
       profile: phoronix
       count: 1
+
