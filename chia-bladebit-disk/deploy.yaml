@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:268
+    image: cryptoandcoffee/akash-chia:269
     expose:
       - port: 8080
         as: 80
@@ -17,6 +17,7 @@ services:
       - CONTRACT=
       - FARMERKEY=
       - PLOTTER=bladebit-disk
+      - BLADEBIT_VERSION=v2.0.0-beta1
      #Choose your plotter software - madmax, bladebit, bladebit-disk
       - PLOT_SIZE=32
       - FINAL_LOCATION=local
