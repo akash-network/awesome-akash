@@ -1,0 +1,65 @@
+version: '2.0'
+services:
+  nextcloud:
+    image: 'nextcloud:24.0.5'
+    #https://hub.docker.com/_/nextcloud
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+    env:
+      - MYSQL_PASSWORD=REPLACE_ME
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+  db:
+    image: mariadb:10.5
+    expose:
+      - port: 3306
+        to:
+          - service: nextcloud
+    args:
+      - --transaction-isolation=READ-COMMITTED
+      - --binlog-format=ROW
+    env:
+      - MARIADB_DATABASE=nextcloud
+      - MARIADB_PASSWORD=REPLACE_ME
+      - MARIADB_USER=nextcloud
+      - MARIADB_RANDOM_ROOT_PASSWORD=true
+profiles:
+  compute:
+    nextcloud:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 512Mi
+        storage:
+          - size: 16Gi
+    db:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 8Gi
+  placement:
+    akash:
+      pricing:
+        nextcloud:
+          denom: uakt
+          amount: 10000
+        db:
+          denom: uakt
+          amount: 10000
+deployment:
+  nextcloud:
+    akash:
+      profile: nextcloud
+      count: 1
+  db:
+    akash:
+      profile: db
+      count: 1
