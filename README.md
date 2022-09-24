@@ -121,6 +121,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Caddy](caddy)
 - [Grafana](grafana)
 - [IPFS](ipfs)
+- [Flame](flame)
 
 ### Machine Learning
 
@@ -138,19 +139,20 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Mining
 
-- [xmrig](xmrig)
-- [RainbowMiner](rainbowminer)
-- [Iron Fish](iron-fish)
-- [Honeygain](honeygain)
-- [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
-- [Raptoreum](raptoreum-miner)
-- [pkt.cash](pkt-miner)
 - [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
 - [Chia Madmax](chia-madmax)
-- [Traffmonetizer](traffmonetizer)
-- [Peer2Profit](peer2profit)
+- [Honeygain](honeygain)
 - [IPRoyal Pawns](iproyal-pawns)
+- [Iron Fish](iron-fish)
+- [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
+- [PacketStream](packetstream)
+- [Peer2Profit](peer2profit)
+- [pkt.cash](pkt-miner)
+- [RainbowMiner](rainbowminer)
+- [Raptoreum](raptoreum-miner)
+- [Traffmonetizer](traffmonetizer)
+- [xmrig](xmrig)
 
 ### Peer-to-peer File Sharing
 
@@ -183,6 +185,7 @@ Awesome DeFi apps you can deploy on Akash
 - [KnowYourDeFi](knowyourdefi)
 - [Code-Server](code-server)
 - [Hashicorp Vault](hashicorp-vault)
+- [Uptime Kuma](uptime-kuma)
 
 ### Network
 
