@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-RUN apt-get update ; apt-get install git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev -y 
+RUN apt-get update ; apt-get dist-upgrade -yqq ; apt-get install git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev -y
 
 RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; chmod +x *.sh ; ./install.sh
 
@@ -20,10 +20,10 @@ ENV MINER_NAME=
 ENV ALGORITHM=
 ENV EXCLUDE_COIN_SYMBOL=
 ENV EXCLUDE_ALGORITHM=
-ENV EXCLUDE_POOL_NAME=
+ENV EXCLUDE_POOL_NAME=Nicehash
 ENV EXCLUDE_COIN=
 ENV EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
-ENV POOLS=C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
+ENV POOLS=
 
 
 COPY ./run.sh /run.sh

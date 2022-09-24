@@ -43,7 +43,7 @@
     "SetupOnly": "$SetupOnly",
     "UIProfitColumns": "$UIProfitColumns",
     "RebootOnGPUFailure": "$RebootOnGPUFailure",
-    "Wallet": CUSTWALLET,
+    "Wallet": BTC_WALLET,
     "WorkerName": "",
     "Proxy": "",
     "ProxyUsername": "",
@@ -51,7 +51,7 @@
     "CovalentAPIKey": "",
     "EnableCurl": "0",
     "Region": REGION,
-    "Currency": "USD,BTC,ETH,XMR,AKT,DOGE",
+    "Currency": "BTC,USD,ETH,XMR,AKT,DOGE",
     "PoolName": POOLS,
     "ReduceZergPoolFee": "0",
     "ExcludePoolName": EXCLUDE_POOL_NAME,
@@ -245,7 +245,7 @@
     },
     "2MinersAE": {
       "AECurrency": AECURRENCY,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "NANO": "",
       "NANO-Params": "",
@@ -615,7 +615,7 @@
     },
     "BlockMasters": {
       "Penalty": 50,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -645,7 +645,7 @@
     },
     "BlockMastersCoins": {
       "Penalty": 50,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -1192,7 +1192,7 @@
       "BalancesKeepAlive": ""
     },
     "Hashcryptos": {
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Penalty": "0",
@@ -2087,14 +2087,14 @@
       "Region": "",
       "SSL": "",
       "BalancesKeepAlive": "",
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "OrganizationID": "",
       "API_Key": "",
       "API_Secret": ""
     },
     "NLpool": {
       "Penalty": 16,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2512,7 +2512,7 @@
       "BalancesKeepAlive": ""
     },
     "unMineable": {
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "BTT": "",
       "BTT-Params": "",
@@ -2717,7 +2717,7 @@
     "ZergPool": {
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2748,7 +2748,7 @@
     "ZergPoolCoins": {
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2781,7 +2781,7 @@
       "PartyPassword": "",
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2812,7 +2812,7 @@
       "AllowZero": "1",
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2844,7 +2844,7 @@
       "PartyPassword": "",
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2874,7 +2874,7 @@
     "ZergPoolSolo": {
       "AllowZero": "1",
       "Penalty": 12,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2904,7 +2904,7 @@
     "Zpool": {
       "AECurrency": AECURRENCY,
       "Penalty": 16,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2935,7 +2935,7 @@
     "ZpoolCoins": {
       "AECurrency": AECURRENCY,
       "Penalty": 16,
-      "BTC": BTC_WALLET,
+      "BTC": "$Wallet",
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
