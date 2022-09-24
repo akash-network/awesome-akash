@@ -4,7 +4,7 @@ Deploy a https://pkt.cash miner on https://akash.network
 
 ## Version
 
-packetcrypt-v0.5.1
+packetcrypt-v0.5.2
 
 ## Pool configuration
 
@@ -19,7 +19,7 @@ PKT pools vary in their performance and reliability.  Once you have created your
       - POOL4=https://stratum.zetahash.com
 ```
 
-For example, if a pool is not working.  Replace the pool adddress and/or comment out the variables. Be sure to update the sequential number for each POOL variable.
+For example, if a pool is not working.  Replace the pool address and/or comment out the variables. Be sure to update the sequential number for each POOL variable.
 
 ```
     env:
@@ -31,6 +31,10 @@ For example, if a pool is not working.  Replace the pool adddress and/or comment
 ```
 
 If you continue to have issues with the pools, please contact pkt.cash support channels.
+
+## Track earnings
+
+Track your earnings at https://explorer.pkt.cash
 
 ## Configuration
 
