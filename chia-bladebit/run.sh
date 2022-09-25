@@ -5,24 +5,17 @@ if [[ -z "$CONTRACT" || -z "$FARMERKEY" ]]; then
   exit
 fi
 
-
 if [[ $RCLONE == "true" && $JSON_SERVER != "" ]]; then
-  CHECK_PLOTS=$(curl --retry-all-errors --retry 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
-  echo "Found $CHECK_PLOTS total plots"
-  if [[ $CHECK_PLOTS > $TOTAL_PLOTS ]]; then
+
+CHECK_PLOTS=$(curl --retry-all-errors --head -s "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
+CHECK_PLOTS=${CHECK_PLOTS%$'\r'}
+  if (( $(bc <<<"$CHECK_PLOTS >= $TOTAL_PLOTS") )); then
+    echo "KILL"
     echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
     exit
   else
     echo "Plotting order found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
   fi
-  #if [[ $JSON_SERVER != "" ]]; then
-    #until [ "$CHECK_PLOTS" -lt "$TOTAL_PLOTS" ]; do
-  #  while (($CHECK_PLOTS > $TOTAL_PLOTS)); do
-  #    echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-  #    sleep 15
-  #    CHECK_PLOTS=$(curl --retry-all-errors --retry 300 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
-  #  done
-  #fi
 fi
 
 if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
@@ -100,13 +93,13 @@ if [[ "$FINAL_LOCATION" == "local" ]]; then
   echo "###################################################################################################"
   echo "Plots will be created locally.  Please check Cloudmos for the Uri - you can find this on the   "
   echo "deployment details page.  Plots will only appear after creation.  Please be patient for your first"
-  echo "plots to appear.  Starting in 15 seconds.                                                          "
+  echo "plots to appear.  Starting in 5 seconds.                                                          "
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
-  sleep 15
+  sleep 5
 else
   echo "###################################################################################################"
   echo "###################################################################################################"
@@ -115,13 +108,13 @@ else
   echo "###################################################################################################"
   echo "Plots will be uploaded to $FINAL_LOCATION on $REMOTE_HOST.                                         "
   echo "After the plot is succesfully uploaded it will be deleted automatically from the deployment        "
-  echo "Starting in 15 seconds.                                                                            "
+  echo "Starting in 5 seconds.                                                                            "
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
-  sleep 15
+  sleep 5
 fi
 
 
@@ -191,7 +184,7 @@ else
 fi
 
 
-if [[ "${UPLOAD_BACKGROUND}" == "true" && "${FINAL_LOCATION}" != "local" && "${RCLONE}" == "false" ]]; then
+if [[ $REMOTE_HOST != "" && $FINAL_LOCATION == "upload" ]]; then
 
   echo "Starting rsync in background and logging to rsync_log.log..."
   screen -dmS rsync bash /sync.sh
@@ -230,24 +223,31 @@ if [ ! -z $PLOTTER ]; then
     chmod 777 /plots -R
     COUNT=$((COUNT + 1))
 
-    if [[ $TOTAL_PLOTS != "" ]]; then #If user has set TOTAL_PLOTS
-      if [[ $COUNT > $TOTAL_PLOTS ]]; then
+    if [[ $TOTAL_PLOTS != "" && JSON_SERVER == "" ]]; then #If user has set TOTAL_PLOTS / count manually
+    if (( $(bc <<<"$COUNT >= $TOTAL_PLOTS") )); then
         echo "Plotting order is complete! Found $COUNT / $TOTAL_PLOTS requested. Please kill this deployment or update TOTAL_PLOTS"
+        echo "Last plot detected!"
+        echo "Sleeping 6 hours before killing to allow uploads to finish"
+        sleep $SLEEP_BEFORE_KILL
         exit
       else
         echo "Plotting order found $COUNT / $TOTAL_PLOTS requested."
       fi
     fi
 
-    if [[ $JSON_SERVER != "" && $TOTAL_PLOTS != "" ]]; then
-      CHECK_PLOTS=$(curl --retry-all-errors --retry 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep Total-Count | head -n1 | cut -d":" -f2- | cut -d" " -f2-)
-      echo "Found $CHECK_PLOTS total plots"
-      if [[ $CHECK_PLOTS > $TOTAL_PLOTS ]]; then
-        echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
-        exit
-      else
-        echo "Plotting order found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
-      fi
+    if [[ $JSON_SERVER != "" && $TOTAL_PLOTS != "" ]]; then #Count plots with server
+      CHECK_PLOTS=$(curl --retry-all-errors --head -s "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
+      CHECK_PLOTS=${CHECK_PLOTS%$'\r'}
+        if (( $(bc <<<"$CHECK_PLOTS >= $TOTAL_PLOTS") )); then
+          echo "KILL"
+          echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
+          echo "Last plot detected!"
+          echo "Sleeping 6 hours before killing to allow uploads to finish"
+          sleep $SLEEP_BEFORE_KILL
+          exit
+        else
+          echo "Plotting order found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER."
+        fi
     fi
 
     if [[ "$FINAL_LOCATION" != "local" ]]; then

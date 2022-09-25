@@ -47,5 +47,7 @@ ENV K32_SIZE=108
 ENV IMPERSONATE=
 ENV ALPHA=
 ENV PORT=
+ENV SLEEP_BEFORE_KILL=21600
+#Sleep for 6 hours at the end of plotting
 
 ENTRYPOINT ["/run.sh"]
