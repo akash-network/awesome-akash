@@ -167,6 +167,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Social
 
 - [Discourse](discourse)
+- [TeamSpeak](teamspeak)
 
 ### Tools
 
