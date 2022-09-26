@@ -37,6 +37,7 @@ if [[ "$FINAL_LOCATION" != "local" && "$RCLONE" == "false" ]]; then
   fi
 fi
 
+
 if [[ -z "$CPU_UNITS" || -z "$MEMORY_UNITS" || -z "$STORAGE_UNITS" ]]; then
   echo "CPU_UNITS, MEMORY_UNITS, STORAGE_UNITS variables not set - please check your settings"
   sleep 300
@@ -49,7 +50,11 @@ else
   STORAGE_UNITS=$(echo $STORAGE_UNITS | sed 's/[^0-9]//g') #Remove Gi from variable
   MEMORY_UNITS=$(echo $MEMORY_UNITS | sed 's/[^0-9]//g')   #Remove Gi from variable
 
+  if [[ $PORT != "8444" && $PLOTTER == "madmax" ]]; then
+  STORAGE_MIN=64
+  else
   STORAGE_MIN=364 #Required for Madmax 256Gb + 1 Plot
+  fi
   STORAGE_MAX=$(echo "${STORAGE_UNITS}-${STORAGE_MIN}" | bc -l)
   STORAGE_PLOTS=$(echo "${STORAGE_MAX}/${K32_SIZE}" | bc -l | awk '{print int($1+0.5)}') #Round down
 
@@ -59,10 +64,24 @@ else
   echo Found $STORAGE_MAX Storage max units
   echo Found $STORAGE_PLOTS Storage plots
 
-  if (($STORAGE_UNITS < 364)); then
-    echo "${STORAGE_UNITS}Gi is not enough disk space to create a plot with.  Please use at least 364Gi."
-    sleep 300
-    exit
+  if [[ $PORT != "8444" && $PLOTTER == "madmax" ]]; then
+    if (($STORAGE_UNITS < 64)); then
+      echo "${STORAGE_UNITS}Gi is not enough disk space to create a plot with on port : $PORT.  Please use at least 64Gi."
+      sleep 300
+      exit
+    elif (($STORAGE_UNITS < 364)); then
+        echo "${STORAGE_UNITS}Gi is not enough disk space to create a plot with.  Please use at least 364Gi."
+        sleep 300
+        exit
+    else
+        echo "You have set enough storage."
+    fi
+  else
+    if (($STORAGE_PLOTS < 1)); then
+      echo "${STORAGE_MAX}Gi is not enough storage to create a plot with.  Please use at least 364Gi."
+      sleep 300
+      exit
+    fi
   fi
 
   if (($MEMORY_UNITS < 6)); then
@@ -71,11 +90,7 @@ else
     exit
   fi
 
-  if (($STORAGE_PLOTS < 1)); then
-    echo "${STORAGE_MAX}Gi is not enough storage to create a plot with.  Please use at least 364Gi."
-    sleep 300
-    exit
-  fi
+
 
   echo "###################################################################################################"
   echo "###################################################################################################"
@@ -121,6 +136,8 @@ else
 fi
 
 
+
+
 if [[ $JSON_RCLONE != "" ]]; then
   mkdir -p /root/.config/rclone/
   echo -e "$JSON_RCLONE" >/root/.config/rclone/rclone.conf
@@ -141,13 +158,12 @@ if [[ $RCLONE == "true" ]]; then
 
 fi
 
-
-
+#Setup filemanager
 mkdir /plots
 chmod 777 /plots -R
-git clone https://github.com/prasathmani/tinyfilemanager /filemanager
 cp /filemanager/tinyfilemanager.php /plots/index.php
 
+#Setup nginx for filemanager
 mv /config.php /plots/
 mv /nginx.conf /etc/nginx/sites-enabled/default
 mv /nginx-default.conf /etc/nginx/nginx.conf
@@ -168,25 +184,6 @@ mkdir -p /root/chia/final
 mkdir -p /root/chia/tmp2
 mkdir -p /root/chia/tmp
 
-if [[ ${PLOTTER} == "bladebit-disk" ]]; then
-  git clone https://github.com/Chia-Network/bladebit.git && cd bladebit && git checkout $BLADEBIT_VERSION
-  mkdir -p build && cd build
-  cmake ..
-  cmake --build . --target bladebit --config Release -j $(nproc)
-  cd ..
-  cp ./build/bladebit /usr/local/bin/
-  cd /
-else
-  rm -rf chia-blockchain
-  git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules
-  cd chia-blockchain
-  git checkout $VERSION
-  sh install.sh
-  . ./activate
-  chia init
-fi
-
-
 if [[ $REMOTE_HOST != "" && $FINAL_LOCATION == "upload" ]]; then
 
   echo "Starting rsync in background and logging to rsync_log.log..."
@@ -197,8 +194,6 @@ if [[ $REMOTE_HOST != "" && $FINAL_LOCATION == "upload" ]]; then
     sleep 60
     exit
   fi
-
-
 fi
 
 if [[ $PLOTTER == "madmax-ramdrive" ]]; then
@@ -255,10 +250,6 @@ if [ ! -z $PLOTTER ]; then
 
     if [[ "$FINAL_LOCATION" != "local" ]]; then
 
-      #      if [[ $RCLONE == "true" ]]; then
-      #				#go run /transfer.sh/main.go --provider gdrive --basedir /plots/ --gdrive-client-json-filepath /gdrive.json --gdrive-local-config-path /gdrive_config
-      #			nohup rclone --log-file=plots.log --progress --drive-chunk-size 512M move /plots/*.plot google:/rclone/ >> plots.log
-      #			fi
       if [[ "$UPLOAD_BACKGROUND" == "false" && $RCLONE == "false" ]]; then
         sshpass -e rsync -av --remove-source-files --progress /plots/*.plot -e "ssh -p ${REMOTE_PORT}" "${REMOTE_USER}"@"${REMOTE_HOST}":"${FINAL_LOCATION}"
       fi
@@ -266,39 +257,31 @@ if [ ! -z $PLOTTER ]; then
         #rclone --rc-web-gui --progress --rc-web-gui-update --buffer-size=64M --drive-chunk-size 256M --dropbox-chunk-size 256M move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
         rclone --no-check-dest --contimeout 60s --timeout 300s --low-level-retries 10 --retries 99 --dropbox-chunk-size 150M --drive-chunk-size 256M --progress move /plots/*.plot $ENDPOINT_LOCATION:/$ENDPOINT_DIR
       fi
-      #			Invoke-Expression "$PSScriptRoot\$rclone_version\rclone.exe move $k adriancardo10_${n}:JM_1 --config=$PSScriptRoot\$rclone_version\rclone_dropbox.conf -P --dropbox-chunk-size=150M --drive-chunk-size 150M --transfers 1 --fast-list --tpslimit 1 --bwlimit 1000000000000000000000000000"
 
       if [[ ${PLOTTER} == "madmax" ]]; then
-        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
-      elif [[ ${PLOTTER} == "bladebit" ]]; then
-        chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
-        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
+        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
+      elif [[ ${PLOTTER} == "bladebit" ]]; then
+        bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
-
-        #                      You need about 192GiB(+|-) for high-frequency I/O Phase 1 calculations
-        #                      to be completely in-memory.
-        #				bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot --b 128 --cache $RAMCACHE -t1 $TMPDIR --f1-threads 3 --fp-threads 16 --c-threads 8 --p2-threads 12 --p3-threads 8 $FINALDIR
-        #chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY diskplot --cache $RAMCACHE -d $FINALDIR
-
-        #chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
-        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
+        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
 
     else
 
       if [[ ${PLOTTER} == "madmax" ]]; then
-        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
+        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
-        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
+        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
-        chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
-        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
+        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
 
     fi
