@@ -170,22 +170,23 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Tools
 
-- [DEGO Stats](dego-stats)
 - [authsteem](authsteem)
+- [Code-Server](code-server)
+- [CodiMD](CodiMD)
+- [dart-hello](dart)
+- [DEGO Stats](dego-stats)
+- [Folding@home](folding-at-home)
+- [Hashicorp Vault](hashicorp-vault)
+- [KnowYourDeFi](knowyourdefi)
+- [Matomo](matomo)
 - [microbox](microbox)
 - [Mintr](mintr)
-- [Folding@home](folding-at-home)
+- [Nextcloud](nextcloud)
 - [owncloud](owncloud)
-- [Quill editor](quill-editor)
 - [Periodic Table Creator](Periodic-Table-Creator)
-- [dart-hello](dart)
-- [Matomo](matomo)
-- [Zammad](zammad)
-- [CodiMD](CodiMD)
-- [KnowYourDeFi](knowyourdefi)
-- [Code-Server](code-server)
-- [Hashicorp Vault](hashicorp-vault)
+- [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
+- [Zammad](zammad)
 
 ### Network
 
