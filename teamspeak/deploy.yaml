@@ -1,8 +1,8 @@
-# Write or paste your SDL here!---
+--
 version: '2.0'
 services:
   teamspeak:
-    image: 'teamspeak:3.13.7'
+    image: teamspeak:3.13.7
     expose:
       - port: 9987
         as: 9987
@@ -54,6 +54,16 @@ profiles:
           - size: 8Gi
   placement:
     akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         teamspeak:
           denom: uakt
