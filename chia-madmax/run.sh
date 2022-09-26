@@ -154,6 +154,7 @@ cp /filemanager/tinyfilemanager.php /plots/index.php
 
 mv /config.php /plots/
 mv /nginx.conf /etc/nginx/sites-enabled/default
+mv /nginx-default.conf /etc/nginx/nginx.conf
 
 sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php/8.1/fpm/php.ini
 sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 1000G/g" /etc/php/8.1/fpm/php.ini
@@ -219,6 +220,10 @@ fi
 
 COUNT=0
 
+#Add support for custom port : https://github.com/ovrclk/awesome-akash/issues/327
+if [[ $PORT != "" ]]; then
+PORT="-x $PORT"
+fi
 
 if [ ! -z $PLOTTER ]; then
   while :; do
@@ -261,13 +266,13 @@ if [ ! -z $PLOTTER ]; then
       #			Invoke-Expression "$PSScriptRoot\$rclone_version\rclone.exe move $k adriancardo10_${n}:JM_1 --config=$PSScriptRoot\$rclone_version\rclone_dropbox.conf -P --dropbox-chunk-size=150M --drive-chunk-size 150M --transfers 1 --fast-list --tpslimit 1 --bwlimit 1000000000000000000000000000"
 
       if [[ ${PLOTTER} == "madmax" ]]; then
-        chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
         chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
-        chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS
+        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b 64 -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
 
         #                      You need about 192GiB(+|-) for high-frequency I/O Phase 1 calculations
         #                      to be completely in-memory.
@@ -276,19 +281,21 @@ if [ ! -z $PLOTTER ]; then
 
         #chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       else
-        chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
 
     else
 
       if [[ ${PLOTTER} == "madmax" ]]; then
-        chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
+      elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
+        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
         chia plotters bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b 64 -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
-        chia plotters madmax -k $SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS
+        chia plotters madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
 
     fi
