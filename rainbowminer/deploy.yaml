@@ -46,7 +46,7 @@ services:
       #Do not mine a specific coin, like Jagoancoin
       - EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
       #Auto-exchange currency
-      - POOLS=
+      - POOLS=C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
       #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
       #Check https://rbminer.net/monitoring/ for the most profitable coins, algorithms, and miners!
 profiles:
