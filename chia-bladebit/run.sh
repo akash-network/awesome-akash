@@ -5,6 +5,9 @@ if [[ -z "$CONTRACT" || -z "$FARMERKEY" ]]; then
   exit
 fi
 
+#check api for any plots without upload_complete and subtract from total plots completed
+#This will keep plotting until exact number
+
 if [[ $RCLONE == "true" && $JSON_SERVER != "" ]]; then
 
 CHECK_PLOTS=$(curl --retry-all-errors --head -s "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)

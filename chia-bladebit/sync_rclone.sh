@@ -17,7 +17,7 @@ for (( ; ; )); do
 
   for i in $files; do
 
-    result=$(cat api_plots.log | jq '.[] | select(.filename == "'"$i"'").filename')
+    result=$(cat api_plots.log | jq -r '.[] | select(.filename == "'"$i"'").filename')
 
     if grep -q $i /plots/pending.log; then
       echo "Skipping $i - alreading uploading!"
@@ -72,20 +72,45 @@ for (( ; ; )); do
   done
 
   sleep 15
+
   if [[ $ALPHA == true ]]; then
   for i in $pending; do
-    progress=$(cat $i.log | grep -o -P '(?<=GiB, ).*(?=%,)' | tail -n1)
     FINISHED=100
-    if (( $(bc <<<"$progress >= $FINISHED") )); then
-      echo "Already uploaded!"
-      rm $i.log
-      continue
-    fi
+    progress=$(cat $i.log | grep -o -P '(?<=GiB, ).*(?=%,)' | tail -n1)
     speed=$(cat $i.log | grep -o -P '(?<=%, ).*(?= ETA)' | tail -n1 | sed 's/.$//')
     #id=$(cat $i.log | grep id\" | awk '{print $2}')
-    id=$(curl --retry-all-errors -X GET $JSON_SERVER?filename=$i | jq .[].id)
-    if [[ $JSON_SERVER != "" && $id != "" ]]; then
-      curl --retry-all-errors -d "filename=$i" -d "progress=$progress" -d "speed=$speed" -X PATCH $JSON_SERVER/$id
+    #id=$(curl --retry-all-errors -X GET $JSON_SERVER?filename=$i | jq .[].id)
+    id=$(cat api_plots.log | jq -r '.[] | select(.filename == "'"$i"'").id')
+    START=$(cat api_plots.log | jq -r '.[] | select(.filename == "'"$i"'").start_time')
+    END=$(date +%s)
+    TOTAL_TIME=$(echo $((END-START)) | awk '{print int($1/60)" minutes"}')
+
+    if [[ $progress != "" && $id != "" ]]; then
+
+      if (( $(bc <<<"$progress == $FINISHED") )); then
+        echo "Finished Upload, now checking status on API"
+        result=$(cat api_plots.log | jq -r '.[] | select(.filename == "'"$i"'").progress')
+
+        if [[ $result != "upload_complete" && $progress == "100" ]]; then
+        END=$(date +%s)
+        curl --retry-all-errors -d "progress=upload_complete" -d "finish_time=$END" -X PATCH $JSON_SERVER/$id
+        rm $i.log
+        sed -i "s|$i||g" /plots/pending.log
+        sed -i '/^$/d;s/[[:blank:]]//g' /plots/pending.log
+        fi
+
+      else
+        curl --retry-all-errors -d "total_time=$TOTAL_TIME" -d "progress=$progress" -d "speed=$speed" -X PATCH $JSON_SERVER/$id
+      fi
+
+    else
+       echo "No progress or id"
+       result=$(cat api_plots.log | jq -r '.[] | select(.filename == "'"$i"'").progress')
+       if [[ $result != "Possible error detected in logs" ]]; then
+       echo "Updating the API with the error"
+       error=$(cat $i.log | grep ERROR | head -n1)
+       curl --retry-all-errors -d "error=$error" -X PATCH $JSON_SERVER/$id
+       fi
     fi
   done
   fi
