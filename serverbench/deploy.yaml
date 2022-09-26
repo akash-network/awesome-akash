@@ -1,0 +1,32 @@
+---
+version: "2.0"
+
+services:
+  serverbench:
+    image: cryptoandcoffee/akash-serverbench:9
+    expose:
+      - port: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    serverbench:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 4Gi #4Gi min for the default test.
+  placement:
+    akash:
+      pricing:
+        serverbench:
+          denom: uakt
+          amount: 10000
+deployment:
+  serverbench:
+    akash:
+      profile: serverbench
+      count: 1
+
