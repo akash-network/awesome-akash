@@ -1,0 +1,45 @@
+---
+version: "2.0"
+
+services:
+  fio:
+    image: cryptoandcoffee/akash-fio:4
+    expose:
+      - port: 80
+        to:
+          - global: true
+    #Replace COMMAND with the test you want to run.
+    env:
+      - TEST=standard #Run 3 tests recommended by ArtsTechnica / set to custom and uncomment the COMMAND variable to run custom test
+      #- COMMAND="--name=write_throughput --numjobs=8 --size=10G --time_based --runtime=60s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --bs=1M --iodepth=64 --rw=write --group_reporting=1"
+        #Test write throughput by performing sequential writes with multiple parallel streams (8+), using an I/O block size of 1 MB and an I/O depth of at least 64
+#########
+        #COMMAND: "--name=write_iops --directory=$TEST_DIR --size=10G --time_based --runtime=60s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --bs=4K --iodepth=64 --rw=randwrite --group_reporting=1"
+        #Test write IOPS by performing random writes, using an I/O block size of 4 KB and an I/O depth of at least 64:
+        #COMMAND: "--name=read_throughput --directory=$TEST_DIR --numjobs=8 --size=10G --time_based --runtime=60s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --bs=1M --iodepth=64 --rw=read --group_reporting=1"
+        #Test read throughput by performing sequential reads with multiple parallel streams (8+), using an I/O block size of 1 MB and an I/O depth of at least 64:
+        #COMMAND: "--name=read_iops --directory=$TEST_DIR --size=10G --time_based --runtime=60s --ramp_time=2s --ioengine=libaio --direct=1 --verify=0 --bs=4K --iodepth=64 --rw=randread --group_reporting=1
+        #Test read IOPS by performing random reads, using an I/O block size of 4 KB and an I/O depth of at least 64:
+#########
+profiles:
+  compute:
+    fio:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 32Gi #32Gi min for the default test.
+  placement:
+    akash:
+      pricing:
+        fio:
+          denom: uakt
+          amount: 10000
+deployment:
+  fio:
+    akash:
+      profile: fio
+      count: 1
+

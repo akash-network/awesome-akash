@@ -78,12 +78,16 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Benchmarking
 
-- [Speedtest by Ookla](speedtest-cli)
 - [Fast.com by Netflix](fast)
+- [Flexible IO Tester](fio)
 - [Geekbench 5](geekbench)
-- [Speedtest Tracker](speedtest-tracker)
 - [LibreSpeed](librespeed)
+- [MonkeyTest](monkeytest)
 - [OpenSpeedTest](openspeedtest)
+- [Phoronix](phoronix)
+- [Serverbench](serverbench)
+- [Speedtest by Ookla](speedtest-cli)
+- [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
 

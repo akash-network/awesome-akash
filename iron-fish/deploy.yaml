@@ -3,6 +3,10 @@ version: "2.0"
 
 services:
   ironfish-miner:
+    expose:
+      - port: 80
+        to:
+          - global: true
     image: ghcr.io/iron-fish/ironfish:latest
     args:
       - "miners:start"
