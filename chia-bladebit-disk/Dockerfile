@@ -2,6 +2,10 @@ FROM ubuntu:22.04
 RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release jq bc libgmp3-dev build-essential cmake libboost-all-dev libnuma-dev wget curl nano python3.10-venv dnsutils
 RUN git clone https://github.com/prasathmani/tinyfilemanager filemanager
 
+ENV VERSION=1.6.0
+ENV BLADEBIT_VERSION=v1.2.4
+ENV BLADEBIT_DISK_VERSION=v2.0.0-beta1
+
 #Chia Chain
 #RUN git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules && cd chia-blockchain && git checkout $VERSION && sh install.sh && . ./activate && chia init
 #Bladebit
@@ -23,7 +27,6 @@ COPY nginx-default.conf /
 ENV CPU_UNITS=
 ENV MEMORY_UNITS=
 ENV STORAGE_UNITS=
-ENV VERSION=1.6.0
 ENV KEYS=
 ENV REMOTE_PORT=22
 ENV REMOTE_HOST=
@@ -45,7 +48,6 @@ ENV PLOTTER=madmax
 ENV FINAL_LOCATION=local
 ENV UPLOAD_BACKGROUND=true
 ENV RAMCACHE=99G
-ENV BLADEBIT_VERSION=v1.2.4
 ENV JSON_RCLONE=
 ENV ENDPOINT_LOCATION=google
 ENV ENDPOINT_DIR=JM_1
@@ -62,10 +64,9 @@ ENV ALPHA=
 ENV PORT=
 ENV SLEEP_BEFORE_KILL=21600
 #Sleep for 6 hours at the end of plotting
-ENV BLADEBIT_DISK_VERSION=v2.0.0-beta1
 
 RUN bladebit -h
-RUN bladebit-disk -h
+RUN bladebit-disk help diskplot
 RUN madmax --help
 
 ENTRYPOINT ["/run.sh"]
