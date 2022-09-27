@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:26
+    image: cryptoandcoffee/akash-rainbowminer:50
     expose:
       - port: 4000
         as: 80
@@ -15,10 +15,40 @@ services:
       - DOGE_WALLET=
       - RVN_WALLET=
       - XTZ_WALLET=
-      - AECurrency=BTC
+      - REGION=us
+      #Check RainbowMiner after deployment for the region of the provider. You will see a country flag on top.
+      #See https://github.com/RainbowMiner/RainbowMiner/blob/master/Data/regions.json
+      #for a list of valid regions.
+      - AECurrency=DOGE
+      #Auto-exchange currency : exchange all coins and payout in this currency.
+      #Valid options are BTC,XMR,DOGE,RVN,XTZ.
+      #To mine specific coins and disable auto-exchange please update coins.json in the web interface
+################################################################################################################
+      #For all configuration options and a description see : https://github.com/RainbowMiner/RainbowMiner
+      #All the options can be configured once the miner is running.
+      #Click on URI aftr your deployment is complete to load the web interface.
+################################################################################################################
+      - DONATE=10
+      #Set the minutes, you want RainbowMiner to work for the developer (min. is 10 minutes, equals to 0.7%) [default=24]
+      - SSL=0
+      #Configure SSL usage: 0=prefer non-SSL over SSL pools, 1=prefer SSL over non-SSL pools, 2=use SSL pools only [default=0]
+      - MINER_NAME=
+      #Use only these specific miners, check Miners > Miners for a full list
+      - ALGORITHM=
+      #Mine only these algorithms, example Take2
+      - EXCLUDE_COIN_SYMBOL=
+      #Do not mine these symbols, check Pools > All Pools for a full list
+      - EXCLUDE_ALGORITHM=
+      #Do not mine these algorithms, check Pools > All Pools for a full list
+      - EXCLUDE_POOL_NAME=Nicehash
+      #Do not mine these pools, check Pools > All Pools for a full list
+      - EXCLUDE_COIN=
+      #Do not mine a specific coin, like Jagoancoin
+      - EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
       #Auto-exchange currency
       - POOLS=C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
       #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
+      #Check https://rbminer.net/monitoring/ for the most profitable coins, algorithms, and miners!
 profiles:
   compute:
     rainbowminer:
