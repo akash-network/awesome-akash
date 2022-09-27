@@ -264,9 +264,9 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
-        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY $FINALDIR
+        bladebit -w -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit-disk -w -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
         madmax -k $PLOT_SIZE -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
@@ -278,9 +278,9 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
-        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY $FINALDIR
+        bladebit -w -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
-        bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
+        bladebit-disk -w -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
         madmax -k $PLOT_SIZE -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
