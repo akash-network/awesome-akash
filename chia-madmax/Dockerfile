@@ -1,6 +1,18 @@
 FROM ubuntu:22.04
-RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release jq bc libgmp3-dev build-essential cmake libboost-all-dev libnuma-dev wget curl nano python3.10-venv
+RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -yqq ; DEBIAN_FRONTEND=noninteractive apt-get install -yqq git sshpass rsync screen sudo nginx php-fpm lsb-release jq bc libgmp3-dev build-essential cmake libboost-all-dev libnuma-dev wget curl nano python3.10-venv dnsutils
 RUN git clone https://github.com/prasathmani/tinyfilemanager filemanager
+
+#Chia Chain
+#RUN git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules && cd chia-blockchain && git checkout $VERSION && sh install.sh && . ./activate && chia init
+#Bladebit
+RUN git clone https://github.com/Chia-Network/bladebit.git && cd bladebit && git checkout $BLADEBIT_VERSION && mkdir -p build && cd build && cmake .. && cmake --build . --target bladebit --config Release -j $(nproc) && cd .. && cp ./build/bladebit /usr/local/bin/ && cd /
+#Bladebit-disk
+RUN git clone https://github.com/Chia-Network/bladebit.git bladebit-disk && cd bladebit-disk && git checkout $BLADEBIT_DISK_VERSION && mkdir -p build && cd build && cmake .. && cmake --build . --target bladebit --config Release -j $(nproc) && cd .. && cp ./build/bladebit /usr/local/bin/bladebit-disk && cd /
+#Madmax
+RUN git clone https://github.com/madMAx43v3r/chia-plotter madmax && cd madmax && apt install -y libsodium-dev cmake g++ git build-essential && git submodule update --init && ./make_devel.sh && cp build/chia_plot /usr/local/bin/madmax && cd /
+
+RUN rm -rf madmax bladebit-disk bladebit
+
 COPY sync_rclone.sh /
 COPY run.sh /
 COPY sync.sh /
@@ -49,21 +61,9 @@ ENV IMPERSONATE=
 ENV ALPHA=
 ENV PORT=
 ENV SLEEP_BEFORE_KILL=21600
+#Sleep for 6 hours at the end of plotting
 ENV BLADEBIT_DISK_VERSION=v2.0.0-beta1
 
-#Sleep for 6 hours at the end of plotting
-#Chia Chain
-#RUN git clone https://github.com/Chia-Network/chia-blockchain.git -b latest --recurse-submodules && cd chia-blockchain && git checkout $VERSION && sh install.sh && . ./activate && chia init
-#Bladebit
-RUN git clone https://github.com/Chia-Network/bladebit.git && cd bladebit && git checkout $BLADEBIT_VERSION && mkdir -p build && cd build && cmake .. && cmake --build . --target bladebit --config Release -j $(nproc) && cd .. && cp ./build/bladebit /usr/local/bin/ && cd /
-#Bladebit-disk
-RUN git clone https://github.com/Chia-Network/bladebit.git bladebit-disk && cd bladebit-disk && git checkout $BLADEBIT_DISK_VERSION && mkdir -p build && cd build && cmake .. && cmake --build . --target bladebit --config Release -j $(nproc) && cd .. && cp ./build/bladebit /usr/local/bin/bladebit-disk && cd /
-#Madmax
-RUN git clone https://github.com/madMAx43v3r/chia-plotter madmax && cd madmax && apt install -y libsodium-dev cmake g++ git build-essential && git submodule update --init && ./make_devel.sh && cp build/chia_plot /usr/local/bin/madmax && cd /
-
-RUN rm -rf madmax bladebit-disk bladebit
-
-#RUN cd chia-blockchain && . ./activate && chia -h
 RUN bladebit -h
 RUN bladebit-disk -h
 RUN madmax --help

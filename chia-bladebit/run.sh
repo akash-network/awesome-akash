@@ -1,5 +1,4 @@
 #!/bin/bash
-[ "$(dig +short cloudflare.com.)" ] && echo "Got DNS" || echo "Bad DNS, re-deploy or change provider!" ; sleep 3 ; exit
 
 if [[ -z "$CONTRACT" || -z "$FARMERKEY" ]]; then
   echo "CONTRACT or FARMERKEY not set - please check your settings"
@@ -13,7 +12,7 @@ fi
 if [[ $RCLONE == "true" && $JSON_SERVER != "" ]]; then
 
 CHECK_PLOTS=$(curl --retry-all-errors --head -s "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
-CHECK_PLOTS=${CHECK_PLOTS%$'\r'}
+CHECK_PLOTS="${CHECK_PLOTS%$'\r'}"
   if (( $(bc <<<"$CHECK_PLOTS >= $TOTAL_PLOTS") )); then
     echo "KILL"
     echo "Plotting order is complete! Found $CHECK_PLOTS / $TOTAL_PLOTS requested on $JSON_SERVER. Please kill this deployment or update TOTAL_PLOTS"
@@ -265,7 +264,7 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
-        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
         bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
@@ -279,7 +278,7 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
-        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
         bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
