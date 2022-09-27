@@ -1,4 +1,6 @@
 #!/bin/bash
+[ "$(dig +short cloudflare.com.)" ] && echo "Got DNS" || echo "Bad DNS, re-deploy or change provider!" ; sleep 3 ; exit
+
 if [[ -z "$CONTRACT" || -z "$FARMERKEY" ]]; then
   echo "CONTRACT or FARMERKEY not set - please check your settings"
   sleep 300
@@ -263,11 +265,11 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
-        bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
         bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
-        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
+        madmax -k $PLOT_SIZE -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
 
     else
@@ -277,11 +279,11 @@ if [ ! -z $PLOTTER ]; then
       elif [[ ${PLOTTER} == "madmax-ramdrive" ]]; then
         madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -2 /mnt/ram/ -d $FINALDIR -u $BUCKETS $PORT
       elif [[ ${PLOTTER} == "bladebit" ]]; then
-        bladebit -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
+        bladebit -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -d $FINALDIR
       elif [[ ${PLOTTER} == "bladebit-disk" ]]; then
         bladebit-disk -t $CPU_UNITS -f $FARMERKEY -c $CONTRACT diskplot -b $BUCKETS -t1 $TMPDIR --cache $RAMCACHE -a $FINALDIR
       else
-        madmax -k $PLOT_SIZE -n $COUNT -r $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
+        madmax -k $PLOT_SIZE -n $COUNT -t $CPU_UNITS -c $CONTRACT -f $FARMERKEY -t $TMPDIR -d $FINALDIR -u $BUCKETS $PORT
       fi
 
     fi
