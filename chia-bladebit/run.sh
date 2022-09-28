@@ -11,7 +11,7 @@ fi
 
 if [[ $RCLONE == "true" && $JSON_SERVER != "" ]]; then
 
-CHECK_PLOTS=$(curl --retry-all-errors --head -s "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
+CHECK_PLOTS=$(curl --connect-timeout 2 --retry 99 --retry-delay 2 --fail --retry-all-errors --header "Content-Type: application/json" --head "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
 CHECK_PLOTS="${CHECK_PLOTS%$'\r'}"
   if (( $(bc <<<"$CHECK_PLOTS >= $TOTAL_PLOTS") )); then
     echo "KILL"
@@ -235,7 +235,7 @@ if [ ! -z $PLOTTER ]; then
     fi
 
     if [[ $JSON_SERVER != "" && $TOTAL_PLOTS != "" ]]; then #Count plots with server
-      CHECK_PLOTS=$(curl --retry-all-errors --head -s "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
+      CHECK_PLOTS=$(curl --connect-timeout 2 --retry 99 --retry-delay 2 --fail --retry-all-errors --header "Content-Type: application/json" --head "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
       CHECK_PLOTS=${CHECK_PLOTS%$'\r'}
         if (( $(bc <<<"$CHECK_PLOTS >= $TOTAL_PLOTS") )); then
           echo "KILL"
