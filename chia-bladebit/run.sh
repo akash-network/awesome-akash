@@ -11,7 +11,7 @@ fi
 
 if [[ $RCLONE == "true" && $JSON_SERVER != "" ]]; then
 
-CHECK_PLOTS=$(curl --connect-timeout 2 --retry 99 --retry-all-errors --retry-delay 2 --head "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
+CHECK_PLOTS=$(curl --connect-timeout 5 --retry 99 --retry-all-errors --retry-delay 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
 CHECK_PLOTS="${CHECK_PLOTS%$'\r'}"
   if (( $(bc <<<"$CHECK_PLOTS >= $TOTAL_PLOTS") )); then
     echo "KILL"
@@ -100,8 +100,8 @@ else
   echo "###################################################################################################"
   echo "This deployment can create a total of $STORAGE_PLOTS plots on ${STORAGE_UNITS}Gi available storage "
   echo "requested without stopping. If this number doesn\'t look right - you need to update the CPU_UNITS, "
-  echo "MEMORY_UNITS, STORAGE_UNITS to match the units requested in the SDL. Sleeping 30 seconds.          "
-  sleep 30
+  echo "MEMORY_UNITS, STORAGE_UNITS to match the units requested in the SDL. Sleeping 5 seconds.          "
+  sleep 5
 fi
 
 if [[ "$FINAL_LOCATION" == "local" ]]; then
@@ -235,7 +235,7 @@ if [ ! -z $PLOTTER ]; then
     fi
 
     if [[ $JSON_SERVER != "" && $TOTAL_PLOTS != "" ]]; then #Count plots with server
-      CHECK_PLOTS=$(curl --connect-timeout 2 --retry 99 --retry-all-errors --retry-delay 2 --head "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
+      CHECK_PLOTS=$(curl --connect-timeout 5 --retry 99 --retry-all-errors --retry-delay 5 --head "$JSON_SERVER?_page=1&_limit=1" | grep X-Total-Count | awk '{print $2}' | head -n1)
       CHECK_PLOTS=${CHECK_PLOTS%$'\r'}
         if (( $(bc <<<"$CHECK_PLOTS >= $TOTAL_PLOTS") )); then
           echo "KILL"
