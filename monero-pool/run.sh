@@ -1,7 +1,14 @@
 #!/bin/bash
 
+DATA_MONERO=/data/monero
+DATA_WALLET=/data/wallet
+DATA_WALLET_LOG=/data/wallet.log
+DATA_POOL=/data/pool
+mkdir -p $DATA_MONERO
+
+
 if [[ $FAST_SYNC == true && $LOCAL == false ]]; then
-aria2c --out=/data/blockchain.raw --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
+aria2c --out=data/blockchain.raw --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
 monero-blockchain-import --input-file /data/blockchain.raw --batch-size 20000 --data-dir /data/monero
 rm /data/blockchain.raw
 elif [[ $FAST_SYNC == true && $LOCAL == true ]]; then
@@ -13,11 +20,6 @@ echo "Starting Slow Sync"
 fi
 
 
-
-DATA_MONERO=/data/monero
-DATA_WALLET=/data/wallet
-DATA_WALLET_LOG=/data/wallet.log
-DATA_POOL=/data/pool
 
 set -x
 
@@ -44,7 +46,6 @@ sed -i "s/log-file =\(.*\)/log-file = \/data\/pool.log/"                     /us
 #limit-rate-down=1048576   # 1048576 kB/s == 1GB/s; a raise from default 8192 kB/s; allow for faster initial sync
 
 echo Running Monero daemon...
-mkdir -p $DATA_MONERO
 
 if [[ $LOCAL == true ]]; then
 /usr/local/bin/monerod --detach --data-dir $DATA_MONERO \
