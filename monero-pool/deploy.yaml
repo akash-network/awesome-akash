@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   monero-pool:
-    image: cryptoandcoffee/akash-monero-pool:10
+    image: cryptoandcoffee/akash-monero-pool:13
     expose:
       - port: 4242
         as: 4242
