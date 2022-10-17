@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  budibase:
+    image: budibase/budibase:latest
+    params:
+      storage:
+        data:
+          mount: /data
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    budibase:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 2Gi
+          - name: data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta2
+  placement:
+    dcloud:
+      pricing:
+        budibase:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  budibase:
+    dcloud:
+      profile: budibase
+      count: 1
