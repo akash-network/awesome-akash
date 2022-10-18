@@ -1,0 +1,74 @@
+---
+version: "2.0"
+
+services:
+  monero-pool:
+    image: cryptoandcoffee/akash-monero-pool:17
+    expose:
+      - port: 4242
+        as: 4242
+        to:
+          - global: true
+      #mining pool port
+      - port: 4243
+        as: 80
+        to:
+          - global: true
+      #Monero-pool web UI
+      #- port: 28092
+      #  as: 28092
+      #  to:
+      #    - global: true
+      #Monerod restricted RPC
+    env:
+      - POOL_WALLET=
+      #Do not use quotes
+      - POOL_WALLET_SEED=
+      #Do not use quotes
+      - FEE_WALLET=
+      #Do not use quotes
+      - MONERO_ARGS=
+      #Optional
+      - MONERO_WALLET_ARGS=
+      #Optional
+      - POOL_FEE=0.01
+      - PAYMENT_THRESHOLD=0.001
+      - FAST_SYNC=true
+      #Use the official getmonero.org bootstrap
+      - VERIFY=true
+      #Set to false to enable --dangerous-unverified-import which speeds up sync for testing.
+profiles:
+  compute:
+    monero-pool:
+      resources:
+        cpu:
+          units: 4
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 16Gi
+          #Min 8Gi for monero-pool / Max 512Gi
+        storage:
+          size: 384Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        monero-pool:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  monero-pool:
+    akash:
+      profile: monero-pool
+      count: 1
+
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
