@@ -70,7 +70,7 @@ services:
       - DAEMON_USER=user1
       - DAEMON_PASS=pass1
   meowcoin:
-    image: cryptoandcoffee/akash-meowcoin:2
+    image: cryptoandcoffee/akash-meowcoin:3
     expose:
       - port: 9766
         to:

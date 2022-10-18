@@ -12,9 +12,10 @@ listen=1
 rpcallowip=::/0
 EOT
 
-/raven-4.6.1-7864c39c2/bin/ravend -daemon
+
+/ravend -daemon
 sleep 5
-/raven-4.6.1-7864c39c2/bin/raven-cli importprivkey $PRIVATE_KEY
+/raven-cli importprivkey $PRIVATE_KEY
 #/neoxa-cli importprivkey $PRIVATE_KEY
 tail -f /root/.raven/debug.log -n1000
 

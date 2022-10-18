@@ -70,7 +70,7 @@ services:
       - DAEMON_USER=user1
       - DAEMON_PASS=pass1
   neoxa:
-    image: cryptoandcoffee/akash-neoxa:7
+    image: cryptoandcoffee/akash-neoxa:8
     expose:
       - port: 9766
         to:

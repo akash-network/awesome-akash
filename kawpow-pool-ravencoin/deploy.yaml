@@ -50,7 +50,7 @@ services:
       - DAEMON_USER=user1
       - DAEMON_PASS=pass1
   ravencoin:
-    image: cryptoandcoffee/akash-ravencoin:1
+    image: cryptoandcoffee/akash-ravencoin:2
     expose:
       - port: 8766
         to:
