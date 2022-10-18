@@ -8,17 +8,36 @@ services:
       - port: 17117
         to:
           - service: ravencoin
+      #Pool API
       - port: 8767
         to:
           - global: true
+      #P2P Port
       - port: 8080
         as: 80
         to:
           - global: true
-      - port: 10001
-        as: 10001
+      #Web UI Port
+      - port: 10008
+        as: 10008
         to:
           - global: true
+      #Difficulty: 0.05
+      - port: 10016
+        as: 10016
+        to:
+          - global: true
+      #Difficulty: 0.10
+      - port: 10032
+        as: 10032
+        to:
+          - global: true
+      #Difficulty: 0.20
+      - port: 10256
+        as: 10256
+        to:
+          - global: true
+      #Difficulty: 1024000000
     env:
       - RAVEN_ENABLE=true
       - NEOXA_ENABLE=false
