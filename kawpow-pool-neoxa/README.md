@@ -6,7 +6,7 @@ Supports Ravencoin, Neoxa, Meowcoin
 
 ### Requirements
 
-# I already have a Mewocoin wallet and private key
+# I already have a Neoxa wallet and private key
 
 Great! You are steps away from your own private mining pool.  Click Deploy and update the required variables with your wallet information
 
