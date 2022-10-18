@@ -11,11 +11,11 @@ mkdir -p $DATA_POOL
 
 if [[ $FAST_SYNC == true && $LOCAL == false ]]; then
 aria2c --out=data/blockchain.raw --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
-monero-blockchain-import --input-file /data/blockchain.raw --batch-size 20000 --data-dir /data/monero
+monero-blockchain-import --input-file /data/blockchain.raw --dangerous-unverified-import 1 --batch-size 25000 --data-dir /data/monero
 rm /data/blockchain.raw
 elif [[ $FAST_SYNC == true && $LOCAL == true ]]; then
 #aria2c --out=/data/blockchain.raw --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
-monero-blockchain-import --input-file /data/blockchain.raw --batch-size 20000 --data-dir /data/monero
+monero-blockchain-import --input-file /data/blockchain.raw --dangerous-unverified-import 1 --batch-size 25000 --data-dir /data/monero
 rm /data/blockchain.raw
 else
 echo "Starting Slow Sync"
@@ -32,9 +32,9 @@ sed -i "s/pool-fee-wallet =\(.*\)/pool-fee-wallet = $FEE_WALLET/"            /us
 sed -i "s/pool-fee =\(.*\)/pool-fee = $POOL_FEE/"                            /usr/local/etc/pool.conf
 sed -i "s/payment-threshold =\(.*\)/payment-threshold = $PAYMENT_THRESHOLD/" /usr/local/etc/pool.conf
 
-#if [[ $LOCAL == true ]]; then #Testing
+if [[ $LOCAL == true ]]; then #Testing
 sed -i "s/block-notified =\(.*\)/block-notified = 1/"                        /usr/local/etc/pool.conf
-#fi
+fi
 
 sed -i "s/data-dir =\(.*\)/data-dir = \/data\/pool/"                         /usr/local/etc/pool.conf
 sed -i "s/log-file =\(.*\)/log-file = \/data\/pool.log/"                     /usr/local/etc/pool.conf
@@ -46,13 +46,12 @@ if [[ $LOCAL == true ]]; then
     --rpc-bind-ip 127.0.0.1 --rpc-bind-port 28081 \
     --rpc-restricted-bind-ip 0.0.0.0 --rpc-restricted-bind-port 28092 --confirm-external-bind $MONERO_ARGS \
     --block-notify '/usr/bin/pkill -USR1 notify' \
-    --db-sync-mode safe --enforce-dns-checkpointing --out-peers 128 --in-peers 1024 --limit-rate-up 1048576 --limit-rate-down 1048576
+    --enforce-dns-checkpointing --out-peers 128 --in-peers 1024 --limit-rate-up 1048576 --limit-rate-down 1048576
 else
 /usr/local/bin/monerod --detach --data-dir $DATA_MONERO \
     --rpc-bind-ip 127.0.0.1 --rpc-bind-port 28081 \
-    --block-notify '/usr/bin/pkill -USR1 notify' \ #Testing this command
     --rpc-restricted-bind-ip 0.0.0.0 --rpc-restricted-bind-port 28092 --confirm-external-bind $MONERO_ARGS \
-    --db-sync-mode safe --enforce-dns-checkpointing --out-peers 128 --in-peers 1024 --limit-rate-up 1048576 --limit-rate-down 1048576
+    --enforce-dns-checkpointing --out-peers 128 --in-peers 1024 --limit-rate-up 1048576 --limit-rate-down 1048576
 fi
 
 echo Sleeping for 30 secs...
