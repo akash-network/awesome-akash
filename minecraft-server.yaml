@@ -1,0 +1,42 @@
+version: "2.0"
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    env:
+      - EULA=true
+      - authHost=https://authserver.mojang.com
+      - accountsHost=https://api.mojang.com
+      - sessionHost=https://sessionserver.mojang.com
+      - servicesHost=https://api.minecraftservices.com
+      - name=PROD
+    expose:
+      - port: 25565
+        as: 25565
+        to:
+          - global: true
+
+profiles:
+  compute:
+    minecraft:
+      resources:
+        cpu:
+          units: 10
+        memory:
+          size: 8Gi
+        storage:
+          size: 20Gi
+          attributes:
+              persistent: true
+              class: beta3
+  placement:
+    westcoast:
+      pricing:
+        minecraft:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  minecraft:
+    westcoast:
+      profile: minecraft
+      count: 1
