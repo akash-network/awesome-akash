@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   kawpow-pool:
-    image: cryptoandcoffee/akash-kawpow-pool:8
+    image: cryptoandcoffee/akash-kawpow-pool:9
     expose:
       - port: 17117
         to:
