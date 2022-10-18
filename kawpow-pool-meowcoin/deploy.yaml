@@ -1,0 +1,90 @@
+---
+version: "2.0"
+
+services:
+  kawpow-pool:
+    image: cryptoandcoffee/akash-kawpow-pool:8
+    expose:
+      - port: 17117
+        to:
+          - service: meowcoin
+      - port: 8788
+        to:
+          - global: true
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+      - port: 10001
+        as: 10001
+        to:
+          - global: true
+    env:
+      - RAVEN_ENABLE=false
+      - NEOXA_ENABLE=false
+      - MEOWCOIN_ENABLE=true
+      - WALLET=
+      - FEE_WALLET=
+      - FEE_AMOUNT=0.1
+      - DAEMON_HOST=meowcoin
+      - DAEMON_PORT=9766
+      - DAEMON_USER=user1
+      - DAEMON_PASS=pass1
+  meowcoin:
+    image: cryptoandcoffee/akash-meowcoin:2
+    expose:
+      - port: 9766
+        to:
+          - service: kawpow-pool
+    env:
+      - PRIVATE_KEY=
+profiles:
+  compute:
+    kawpow-pool:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 8Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+    meowcoin:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 10Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        kawpow-pool:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+        meowcoin:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  kawpow-pool:
+    akash:
+      profile: kawpow-pool
+      count: 1
+  meowcoin:
+    akash:
+      profile: meowcoin
+      count: 1
