@@ -159,6 +159,10 @@ Awesome DeFi apps you can deploy on Akash
 - [Traffmonetizer](traffmonetizer)
 - [xmrig](xmrig)
 
+### Mining Pools
+
+- [monero-pool by jtgrassie](monero-pool)
+
 ### Peer-to-peer File Sharing
 
 - [qBittorrent](qbittorrent)
