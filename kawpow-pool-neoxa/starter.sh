@@ -3,7 +3,7 @@ cat <<EOT > /root/.neoxa/neoxa.conf
 rpcuser=user1
 rpcpassword=pass1
 onlynet=ipv4
-blocknotify=/root/.neoxa/blocknotify neoxa:17117 neoxamainnet %s
+#blocknotify=/root/.neoxa/blocknotify neoxa:17117 neoxamainnet %s
 #zmqpubhashblock=tcp://127.0.0.1:15101
 rpcbind=0.0.0.0
 server=1

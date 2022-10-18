@@ -4,7 +4,7 @@ cat <<EOT > /root/.raven/raven.conf
 rpcuser=user1
 rpcpassword=pass1
 onlynet=ipv4
-blocknotify=/root/.raven/blocknotify ravencoin:17117 ravencoin %s
+#blocknotify=/root/.raven/blocknotify ravencoin:17117 ravencoin %s
 #zmqpubhashblock=tcp://127.0.0.1:15101
 rpcbind=0.0.0.0
 server=1
