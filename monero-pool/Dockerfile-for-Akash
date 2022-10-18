@@ -48,6 +48,7 @@ ENV POOL_FEE=0.01
 ENV PAYMENT_THRESHOLD=0.001
 ENV FAST_SYNC=true
 ENV LOCAL=false
+ENV VERIFY=true
 #Use official Monero bootstrap, saves 24+ hours.
 
 # Copy resulting binaries & conf to /usr/local/{bin|etc}

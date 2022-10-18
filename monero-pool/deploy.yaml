@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   monero-pool:
-    image: cryptoandcoffee/akash-monero-pool:16
+    image: cryptoandcoffee/akash-monero-pool:17
     expose:
       - port: 4242
         as: 4242
@@ -21,20 +21,28 @@ services:
       #    - global: true
       #Monerod restricted RPC
     env:
-      - MONERO_ARGS=
-      - MONERO_WALLET_ARGS=
       - POOL_WALLET=
+      #Do not use quotes
       - POOL_WALLET_SEED=
+      #Do not use quotes
       - FEE_WALLET=
+      #Do not use quotes
+      - MONERO_ARGS=
+      #Optional
+      - MONERO_WALLET_ARGS=
+      #Optional
       - POOL_FEE=0.01
       - PAYMENT_THRESHOLD=0.001
       - FAST_SYNC=true
+      #Use the official getmonero.org bootstrap
+      - VERIFY=true
+      #Set to false to enable --dangerous-unverified-import which speeds up sync for testing.
 profiles:
   compute:
     monero-pool:
       resources:
         cpu:
-          units: 8
+          units: 4
           #Min 0.01 / Max 256 cpu.units
         memory:
           size: 16Gi

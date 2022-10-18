@@ -9,11 +9,16 @@ mkdir -p $DATA_WALLET
 mkdir -p $DATA_POOL
 
 
-if [[ $FAST_SYNC == true && $LOCAL == false ]]; then
+if [[ $FAST_SYNC == true && $LOCAL == false && $VERIFY == false ]]; then
 aria2c --out=data/blockchain.raw --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
 monero-blockchain-import --input-file /data/blockchain.raw --dangerous-unverified-import 1 --batch-size 25000 --data-dir /data/monero
 rm /data/blockchain.raw
+elif [[ $FAST_SYNC == true && $LOCAL == true && $VERIFY == true ]]; then
+aria2c --out=data/blockchain.raw --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
+monero-blockchain-import --input-file /data/blockchain.raw --batch-size 25000 --data-dir /data/monero
+rm /data/blockchain.raw
 elif [[ $FAST_SYNC == true && $LOCAL == true ]]; then
+#Expects blockchain.raw to already be in place for local sync
 #aria2c --out=/data/blockchain.raw --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
 monero-blockchain-import --input-file /data/blockchain.raw --dangerous-unverified-import 1 --batch-size 25000 --data-dir /data/monero
 rm /data/blockchain.raw
