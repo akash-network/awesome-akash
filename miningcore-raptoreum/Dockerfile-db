@@ -1,0 +1,7 @@
+FROM ubuntu:20.04
+RUN apt-get update ; DEBIAN_FRONTEND=noninteractive apt-get install -y sudo wget postgresql
+ENV POSTGRES_PASSWORD=
+COPY start-db.sh /
+COPY postgresql.conf /
+COPY pg_hba.conf /
+ENTRYPOINT ["./start-db.sh"]

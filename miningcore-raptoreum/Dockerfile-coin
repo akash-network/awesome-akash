@@ -1,0 +1,10 @@
+FROM ubuntu:22.04
+RUN apt-get update ; apt-get dist-upgrade -yqq
+RUN apt-get install -y git wget
+RUN wget https://github.com/Raptor3um/raptoreum/releases/download/1.3.17.01/raptoreum-ubuntu20-1.3.17.01.tar.gz ; tar -zxvf raptoreum-ubuntu20-1.3.17.01.tar.gz
+RUN mkdir -p /root/.raptoreum
+
+ENV PRIVATE_KEY=
+
+COPY start-coin.sh /
+ENTRYPOINT ["/start-coin.sh"]
