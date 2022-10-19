@@ -161,6 +161,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Mining Pools
 
+- [Atanapicoin Pool](miningcore-atanapicoin)
 - [monero-pool by jtgrassie](monero-pool)
 - [Meowcoin Pool](kawpow-pool-meowcoin)
 - [Neoxa Pool](kawpow-pool-neoxa)
