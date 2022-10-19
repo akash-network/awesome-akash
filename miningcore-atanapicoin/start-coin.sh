@@ -4,7 +4,6 @@ cat <<EOT > /root/.atanapicore/atanapi.conf
 rpcuser=user1
 rpcpassword=pass1
 onlynet=ipv4
-#blocknotify=/root/.neoxa/blocknotify neoxa:17117 neoxamainnet %s
 zmqpubhashblock=tcp://atanapi:15101
 
 rpcport=2982
@@ -49,19 +48,6 @@ addnode=86.57.193.186
 addnode=92.223.85.66
 addnode=94.25.171.82
 addnode=94.50.250.76
-
-
-#listen=1
-#server=1
-#rpcport=30001
-#port=30002
-#rpcuser=(your_rpc_username)
-#rpcpassword=(your_rpc_password)
-#rpcconnect=127.0.0.1
-#rpcallowip=127.0.0.1
-
-# NODE CONFIGURATION
-
 EOT
 
 

@@ -10,5 +10,4 @@ sed -i 's/HOST/"'"${DAEMON_HOST}"'"/g' /config.json
 
 cat /config.json
 
-
 dotnet /miningcore/build/Miningcore.dll -c /config.json
