@@ -1,13 +1,16 @@
 # Run a Private Monero Mining Pool
 
-Step 1 : Setup your Monero wallet - you will need the seed phrase and another wallet for the fee receipient.
+Step 1 : Setup your Monero wallet - you will need the seed phrase and another wallet for the fee recipient.
+
 Step 2 : Update the env: variables with your information, be sure NOT to use quotes for the seed phrase.
+
 Step 3 : Deploy and wait.  Be patient - deploying a pool takes at least 24 hours to be ready.  Be sure to fund your deployment with enough AKT!
+
 Step 4 : Click the URI link.  You should now see the web interface.
 
 # Security of your private keys
 
-You should assume this deployment is the equivelent of a hot wallet.  Do not use this wallet for long term storage of coins.
+You should assume this deployment is the equivalent of a hot wallet.  Do not use this wallet for long term storage of coins.
 Do not remove the signing attribute from this deployment.
 
 # A Monero mining pool server written in C.
@@ -52,13 +55,4 @@ pool software has), so if you use it and want to donate, XMR donations to:
 451ytzQg1vUVkuAW73VsQ72G96FUjASi4WNQse3v8ALfjiR5vLzGQ2hMUdYhG38Fi15eJ5FJ1ZL4EV1SFVi228muGX4f3SV
 ```
 
-![QR code](./qr-small.png)
-
 would be very much appreciated.
-
-## License
-
-Please see the [LICENSE](./LICENSE) file.
-
-[//]: # ( vim: set tw=80: )
-
