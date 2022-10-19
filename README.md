@@ -161,6 +161,16 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Mining Pools
 
+Pre-configured mining pools. Help distribute hashrate and secure your favorite coins!
+
+KawPow Algorithm
+
+- [Ravencoin Pool](kawpow-pool-ravencoin)
+- [Neoxa Pool](kawpow-pool-neoxa)
+- [Meowcoin Pool](kawpow-pool-meowcoin)
+
+XMR/Monero
+
 - [monero-pool by jtgrassie](monero-pool)
 
 ### Peer-to-peer File Sharing
