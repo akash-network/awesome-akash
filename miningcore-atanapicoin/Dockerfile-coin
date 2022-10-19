@@ -1,0 +1,14 @@
+FROM ubuntu:22.04
+RUN apt-get update ; apt-get dist-upgrade -yqq 
+RUN apt-get install -y git wget
+RUN wget https://github.com/atanapi/atanapi-core/releases/download/v1.0.0.2/atanapi-x86_64-pc-linux-gnu.tar.gz ; tar -zxvf atanapi-x86_64-pc-linux-gnu.tar.gz
+RUN mkdir -p /root/.atanapicore
+EXPOSE 30001 
+#Default RPC
+
+ENV PRIVATE_KEY=
+
+COPY start-coin.sh /
+ENTRYPOINT ["/start-coin.sh"]
+
+#, "-rpcuser=user1", "-rpcpassword=pass1", "-printtoconsole", "-zmqpubhashblock=tcp://127.0.0.1:15101", "-rpcbind=127.0.0.1", "-server=1", "-listen=1"]

@@ -1,0 +1,4 @@
+sudo docker build -f Dockerfile-db -t cryptoandcoffee/akash-miningcore-postgres:7 .
+# ; docker run -it --env POSTGRES_PASSWORD=test cryptoandcoffee/akash-miningcore-postgres:1
+sudo docker build -f Dockerfile-coin -t cryptoandcoffee/akash-atanapi:2 .
+sudo docker build -f Dockerfile -t cryptoandcoffee/akash-miningcore:7 .

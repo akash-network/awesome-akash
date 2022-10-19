@@ -1,0 +1,102 @@
+{
+    "api": {
+        "enabled": false,
+        "listenAddress": "0.0.0.0",
+        "port": 4000,
+        "adminPort": 4010
+    },
+    "logging": {
+        "level": "info",
+        "enableConsoleLog": true,
+        "enableConsoleColors": true,
+        "logFile": "",
+        "logBaseDirectory": "",
+        "perPoolLogFile": false
+    },
+    "banning": {
+        "manager": "Integrated",
+        "banOnJunkReceive": false,
+        "banOnInvalidShares": false
+    },
+    "notifications": {
+        "enabled": true,
+        "email": {
+            "host": "smtp.example.com",
+            "port": 587,
+            "user": "user",
+            "password": "password",
+            "fromAddress": "info@yourpool.org",
+            "fromName": "support"
+        },
+        "admin": {
+            "enabled": false,
+            "emailAddress": "user@example.com",
+            "notifyBlockFound": true
+        }
+    },
+    "persistence": {
+        "postgres": {
+            "host": "postgres",
+            "port": 5432,
+            "user": "miningcore",
+            "password": POSTGRES,
+            "database": "miningcore"
+        }
+    },
+    "paymentProcessing": {
+        "enabled": true,
+        "interval": 600,
+        "shareRecoveryFile": "recovered-shares.txt"
+    },
+    "pools": [{
+      "id": "napi-1",
+      "enabled": true,
+      "coin": "atanapicoin",
+      "address": WALLET,
+      "rewardRecipients": [
+        {
+          "address": FEE,
+          "percentage": AMOUNT
+        }
+      ],
+      "blockRefreshInterval": 0,
+      "jobRebroadcastTimeout": 10,
+      "clientConnectionTimeout": 600,
+      "banning": {
+        "enabled": true,
+        "time": 600,
+        "invalidPercent": 50,
+        "checkThreshold": 50
+      },
+      "ports": {
+        "3062": {
+          "listenAddress": "0.0.0.0",
+          "difficulty": 1,
+          "varDiff": {
+            "minDiff": 0.001,
+            "targetTime": 15,
+            "retargetTime": 90,
+            "variancePercent": 30
+          }
+        }
+      },
+      "daemons": [
+        {
+          "host": "atanapi",
+          "port": 30001,
+          "zmqBlockNotifySocket": "tcp://atanapi:15101",
+          "portWs": 18545,
+          "user": "user1",
+          "password": "pass1"
+        }
+      ],
+      "paymentProcessing": {
+        "enabled": true,
+        "minimumPayment": 0.5,
+        "payoutScheme": "PPLNS",
+        "payoutSchemeConfig": {
+          "factor": 2.0
+        }
+      }
+    }]
+}
