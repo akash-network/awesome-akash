@@ -1,4 +1,17 @@
-sudo docker build -f Dockerfile-db -t cryptoandcoffee/akash-miningcore-postgres:7 .
-# ; docker run -it --env POSTGRES_PASSWORD=test cryptoandcoffee/akash-miningcore-postgres:1
-sudo docker build -f Dockerfile-coin -t cryptoandcoffee/akash-atanapi:2 .
-sudo docker build -f Dockerfile -t cryptoandcoffee/akash-miningcore:7 .
+
+<img src="https://github.com/oliverw/miningcore/raw/master/logo.png" width="150">
+
+### Features
+
+- Supports clusters of pools each running individual currencies
+- Ultra-low-latency, multi-threaded Stratum implementation using asynchronous I/O
+- Adaptive share difficulty ("vardiff")
+- PoW validation (hashing) using native code for maximum performance
+- Session management for purging DDoS/flood initiated zombie workers
+- Payment processing
+- Banning System
+- Live Stats [API](https://github.com/oliverw/miningcore/wiki/API) on Port 4000
+- WebSocket streaming of notable events like Blocks found, Blocks unlocked, Payments and more
+- POW (proof-of-work) & POS (proof-of-stake) support
+- Detailed per-pool logging to console & filesystem
+- Runs on Linux and Windows
