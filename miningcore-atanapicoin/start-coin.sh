@@ -1,15 +1,33 @@
 #!/bin/bash
 
-cat <<EOT > /root/.atanapicore/atanapicore.conf
+cat <<EOT > /root/.atanapicore/atanapi.conf
 rpcuser=user1
 rpcpassword=pass1
 onlynet=ipv4
 #blocknotify=/root/.neoxa/blocknotify neoxa:17117 neoxamainnet %s
 zmqpubhashblock=tcp://atanapi:15101
+
+rpcport=2982
 rpcbind=0.0.0.0
-server=1
+rpcallowip=0.0.0.0/0
+
 listen=1
-rpcallowip=::/0
+server=1
+daemon=1
+
+addnode=104.219.214.246:30002
+addnode=124.79.31.93:30002
+addnode=144.91.123.186:30002
+addnode=176.49.110.196:30002
+addnode=178.128.54.75:30002
+addnode=35.238.164.153:30002
+addnode=82.65.198.148:30002
+addnode=89.235.202.57:30002
+addnode=161.35.60.68:30002
+addnode=176.49.110.196:30002
+addnode=178.128.54.75
+addnode=35.238.164.153
+addnode=65.109.52.145:30002
 addnode=180.244.161.147
 addnode=180.244.161.197
 addnode=180.244.164.82
@@ -31,9 +49,23 @@ addnode=86.57.193.186
 addnode=92.223.85.66
 addnode=94.25.171.82
 addnode=94.50.250.76
+
+
+#listen=1
+#server=1
+#rpcport=30001
+#port=30002
+#rpcuser=(your_rpc_username)
+#rpcpassword=(your_rpc_password)
+#rpcconnect=127.0.0.1
+#rpcallowip=127.0.0.1
+
+# NODE CONFIGURATION
+
 EOT
 
-/atanapid -daemon
+
+/atanapid
 sleep 5
 /atanapi-cli importprivkey $PRIVATE_KEY
 tail -f /root/.atanapicore/debug.log -n1000

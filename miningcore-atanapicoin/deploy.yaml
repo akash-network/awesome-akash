@@ -1,0 +1,111 @@
+---
+version: "2.0"
+
+services:
+  postgres:
+    image: cryptoandcoffee/akash-miningcore-postgres:7
+    expose:
+      - port: 5432
+        to:
+          - service: miningcore
+    env:
+      - POSTGRES_PASSWORD=
+  miningcore:
+    image: cryptoandcoffee/akash-miningcore:13
+    expose:
+      - port: 3062
+        to:
+          - global: true
+      #Stratum port
+    env:
+      - WALLET=
+      - FEE_WALLET=
+      - FEE_AMOUNT=0.1
+      - POSTGRES_PASSWORD=
+      - DAEMON_HOST=atanapi
+      - DAEMON_PORT=2982
+      - DAEMON_USER=user1
+      - DAEMON_PASS=pass1
+  atanapi:
+    image: cryptoandcoffee/akash-atanapi:13
+    expose:
+      - port: 2982
+        to:
+          - service: miningcore
+      - port: 18545
+        to:
+          - service: miningcore
+      - port: 15101
+        to:
+          - service: miningcore
+    env:
+      - PRIVATE_KEY=
+profiles:
+  compute:
+    miningcore:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 32Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+    atanapi:
+      resources:
+        cpu:
+          units: 4
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 16Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+    postgres:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 16Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        miningcore:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+        atanapi:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+        postgres:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  miningcore:
+    akash:
+      profile: miningcore
+      count: 1
+  atanapi:
+    akash:
+      profile: atanapi
+      count: 1
+  postgres:
+    akash:
+      profile: postgres
+      count: 1

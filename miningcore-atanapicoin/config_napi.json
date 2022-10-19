@@ -59,6 +59,7 @@
           "percentage": AMOUNT
         }
       ],
+      "hasLegacyDaemon": false,
       "blockRefreshInterval": 0,
       "jobRebroadcastTimeout": 10,
       "clientConnectionTimeout": 600,
@@ -82,8 +83,8 @@
       },
       "daemons": [
         {
-          "host": "atanapi",
-          "port": 30001,
+          "host": HOST,
+          "port": 2982,
           "zmqBlockNotifySocket": "tcp://atanapi:15101",
           "portWs": 18545,
           "user": "user1",
