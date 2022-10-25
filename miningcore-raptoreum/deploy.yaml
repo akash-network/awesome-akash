@@ -59,25 +59,25 @@ profiles:
     raptoreum:
       resources:
         cpu:
-          units: 4
-          #Min 0.01 / Max 256 cpu.units
-        memory:
-          size: 4Gi
-          #Min 8Gi for kawpow-pool / Max 512Gi
-        storage:
-          size: 16Gi
-          #Current blockchain size is > 144Gi
-          #Max 32Ti
-    postgres:
-      resources:
-        cpu:
           units: 2
           #Min 0.01 / Max 256 cpu.units
         memory:
           size: 4Gi
           #Min 8Gi for kawpow-pool / Max 512Gi
         storage:
-          size: 16Gi
+          size: 32Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+    postgres:
+      resources:
+        cpu:
+          units: 1
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 1Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 1Gi
           #Current blockchain size is > 144Gi
           #Max 32Ti
   placement:
