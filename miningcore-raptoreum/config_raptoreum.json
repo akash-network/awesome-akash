@@ -49,9 +49,9 @@
         "shareRecoveryFile": "recovered-shares.txt"
     },
     "pools": [{
-      "id": "raptoreum-1",
+      "id": COINID,
       "enabled": true,
-      "coin": "raptoreum",
+      "coin": CONFIG,
       "address": WALLET,
       "rewardRecipients": [
         {
@@ -85,7 +85,7 @@
         {
           "host": HOST,
           "port": 2982,
-          "zmqBlockNotifySocket": "tcp://raptoreum:15101",
+          "zmqBlockNotifySocket": ZMQ,
           "portWs": 18545,
           "user": "user1",
           "password": "pass1"

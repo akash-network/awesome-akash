@@ -9,9 +9,9 @@ services:
         to:
           - service: miningcore
     env:
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=KynYRMZBPcL
   miningcore:
-    image: cryptoandcoffee/akash-miningcore:13
+    image: cryptoandcoffee/akash-miningcore:16
     expose:
       - port: 3062
         to:
@@ -21,13 +21,15 @@ services:
       - WALLET=
       - FEE_WALLET=
       - FEE_AMOUNT=0.1
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=KynYRMZBPcL
       - DAEMON_HOST=raptoreum
       - DAEMON_PORT=2982
       - DAEMON_USER=user1
       - DAEMON_PASS=pass1
+      - NAME=raptoreum
+      - COINID=raptoreum-1
   raptoreum:
-    image: cryptoandcoffee/akash-raptoreum:1
+    image: cryptoandcoffee/akash-raptoreum:11
     expose:
       - port: 2982
         to:
