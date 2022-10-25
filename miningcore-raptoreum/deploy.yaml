@@ -11,7 +11,7 @@ services:
     env:
       - POSTGRES_PASSWORD=KynYRMZBPcL
   miningcore:
-    image: cryptoandcoffee/akash-miningcore:16
+    image: cryptoandcoffee/akash-miningcore:18
     expose:
       - port: 3062
         to:
@@ -29,7 +29,7 @@ services:
       - NAME=raptoreum
       - COINID=raptoreum-1
   raptoreum:
-    image: cryptoandcoffee/akash-raptoreum:12
+    image: cryptoandcoffee/akash-raptoreum:13
     expose:
       - port: 2982
         to:

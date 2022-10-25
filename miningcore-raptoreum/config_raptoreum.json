@@ -60,7 +60,7 @@
         }
       ],
       "hasLegacyDaemon": false,
-      "blockRefreshInterval": 500,
+      "blockRefreshInterval": 400,
       "jobRebroadcastTimeout": 10,
       "clientConnectionTimeout": 600,
       "banning": {

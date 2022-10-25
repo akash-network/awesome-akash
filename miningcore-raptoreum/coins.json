@@ -2153,6 +2153,34 @@
         "canonicalName": "Atanapi",
         "symbol": "NAPI",
         "family": "bitcoin",
+        "website": "https://atanapi.org/",
+        "market": "https://oxt.to/",
+        "twitter": "https://twitter.com/atanapicoin",
+        "telegram": "https://t.me/atanapicoin",
+        "discord": "",
+        "coinbaseHasher": {
+            "hash": "sha256d"
+        },
+        "headerHasher": {
+            "hash": "ghostrider"
+        },
+        "blockHasher": {
+            "hash": "reverse",
+            "args": [ { "hash": "sha256d" } ]
+        },
+        "hasFounderFee": true,
+        "hasMasterNodes": true,
+        "shareMultiplier": 65536,
+        "explorerBlockLink": "https://explorer.atanapi.org//block-height/$height$",
+        "explorerTxLink": "https://explorer.atanapi.org//tx/{0}",
+        "explorerAccountLink": "https://explorer.atanapi.org//address/{0}"
+    },
+
+    "jagoancoin": {
+        "name": "Jagoancoin",
+        "canonicalName": "Jagoancoin",
+        "symbol": "JGC",
+        "family": "bitcoin",
         "website": "https://raptoreum.com/",
         "market": "https://coinmarketcap.com/currencies/raptoreum",
         "twitter": "https://twitter.com/raptoreum",
@@ -2175,7 +2203,6 @@
         "explorerTxLink": "https://explorer.raptoreum.com/tx/{0}",
         "explorerAccountLink": "https://explorer.raptoreum.com/address/{0}"
     },
-
 
     "reacoin": {
         "name": "Reacoin",
