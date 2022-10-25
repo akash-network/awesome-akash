@@ -29,7 +29,7 @@ services:
       - NAME=raptoreum
       - COINID=raptoreum-1
   raptoreum:
-    image: cryptoandcoffee/akash-raptoreum:11
+    image: cryptoandcoffee/akash-raptoreum:12
     expose:
       - port: 2982
         to:

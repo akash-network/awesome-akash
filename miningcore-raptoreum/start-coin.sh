@@ -11,13 +11,11 @@ rm -f bootstrap.zip
 cat <<EOT > /root/.raptoreumcore/raptoreum.conf
 rpcuser=user1
 rpcpassword=pass1
-onlynet=ipv4
 zmqpubhashblock=tcp://raptoreum:15101
 
 rpcport=2982
 rpcbind=0.0.0.0
 rpcallowip=0.0.0.0/0
-#rpcallowip=::/0
 
 onlynet=ipv4
 
