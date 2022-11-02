@@ -91,6 +91,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Blockchain
 
+- [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Vidulum](vidulum)
 
@@ -158,6 +159,13 @@ Awesome DeFi apps you can deploy on Akash
 - [Traffmonetizer](traffmonetizer)
 - [xmrig](xmrig)
 
+### Mining Pools
+
+- [monero-pool by jtgrassie](monero-pool)
+- [Meowcoin Pool](kawpow-pool-meowcoin)
+- [Neoxa Pool](kawpow-pool-neoxa)
+- [Ravencoin Pool](kawpow-pool-ravencoin)
+
 ### Peer-to-peer File Sharing
 
 - [qBittorrent](qbittorrent)
@@ -171,25 +179,27 @@ Awesome DeFi apps you can deploy on Akash
 ### Social
 
 - [Discourse](discourse)
+- [TeamSpeak](teamspeak)
 
 ### Tools
 
-- [DEGO Stats](dego-stats)
 - [authsteem](authsteem)
+- [Code-Server](code-server)
+- [CodiMD](CodiMD)
+- [dart-hello](dart)
+- [DEGO Stats](dego-stats)
+- [Folding@home](folding-at-home)
+- [Hashicorp Vault](hashicorp-vault)
+- [KnowYourDeFi](knowyourdefi)
+- [Matomo](matomo)
 - [microbox](microbox)
 - [Mintr](mintr)
-- [Folding@home](folding-at-home)
+- [Nextcloud](nextcloud)
 - [owncloud](owncloud)
-- [Quill editor](quill-editor)
 - [Periodic Table Creator](Periodic-Table-Creator)
-- [dart-hello](dart)
-- [Matomo](matomo)
-- [Zammad](zammad)
-- [CodiMD](CodiMD)
-- [KnowYourDeFi](knowyourdefi)
-- [Code-Server](code-server)
-- [Hashicorp Vault](hashicorp-vault)
+- [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
+- [Zammad](zammad)
 
 ### Network
 
