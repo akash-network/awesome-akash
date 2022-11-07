@@ -10,9 +10,8 @@
     "APIPassword",
     "APIPort",
     "APIUser",
-    "CPUMiningAffinity",
-    "CPUMiningThreads",
     "DeviceName",
+    "CPUMiningAffinity",
     "EnableServerConfig",
     "ExcludeDeviceName",
     "ExcludeServerConfigVars",
@@ -36,6 +35,7 @@
     "OpenCLPlatformSorting"
   ],
   "Config": {
+    "CPUMiningThreads": CPUS,
     "VersionCompatibility": "4.8.5.3",
     "BalanceUpdateMinutes": "$BalanceUpdateMinutes",
     "ExcludeMinersWithFee": "0",
@@ -83,8 +83,8 @@
     "UIFullBenchmarkList": "0",
     "DeviceName": "CPU",
     "ExcludeDeviceName": "",
-    "Interval": "90",
-    "BenchmarkInterval": "60",
+    "Interval": "30",
+    "BenchmarkInterval": INTERVAL,
     "MaxCrashesDuringBenchmark": 1,
     "OCResetInterval": 0,
     "EnableFastlaneBenchmark": "0",
@@ -159,9 +159,8 @@
     "DisableAPI": "0",
     "DisableAsyncLoader": "0",
     "DisableInternetCheck": "0",
-    "CPUMiningThreads": 6,
     "CPUMiningAffinity": "0x555",
-    "EnableAutoAdjustAffinity": "0",
+    "EnableAutoAdjustAffinity": "1",
     "GPUMiningAffinity": "",
     "PoolDataWindow": "",
     "EnableErrorRatio": "1",
@@ -198,7 +197,7 @@
     "EnableServerPools": "0",
     "GroupName": "",
     "ServerConfigName": "algorithms,coins,config,pools,scheduler",
-    "ExcludeServerConfigVars": "APIAuth,APIPassword,APIPort,APIUser,CPUMiningAffinity,CPUMiningThreads,DeviceName,EnableServerConfig,ExcludeDeviceName,ExcludeServerConfigVars,GPUMiningAffinity,GroupName,LinuxDisplay,LinuxXAuthority,MSIApath,NVSMIpath,Proxy,RunMode,ServerConfigName,ServerName,ServerPassword,ServerPort,ServerUser,StartPaused,WorkerName,StaticCPUMinerPort,StaticGPUMinerPort,OpenCLPlatformSorting",
+    "ExcludeServerConfigVars": "APIAuth,APIPassword,APIPort,APIUser,CPUMiningAffinity,DeviceName,EnableServerConfig,ExcludeDeviceName,ExcludeServerConfigVars,GPUMiningAffinity,GroupName,LinuxDisplay,LinuxXAuthority,MSIApath,NVSMIpath,Proxy,RunMode,ServerConfigName,ServerName,ServerPassword,ServerPort,ServerUser,StartPaused,WorkerName,StaticCPUMinerPort,StaticGPUMinerPort,OpenCLPlatformSorting",
     "EnableServerExcludeList": "0",
     "LogLevel": "Info",
     "MaxLogfileDays": 7,
@@ -245,7 +244,7 @@
     },
     "2MinersAE": {
       "AECurrency": AECURRENCY,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "NANO": "",
       "NANO-Params": "",
@@ -615,7 +614,7 @@
     },
     "BlockMasters": {
       "Penalty": 50,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -645,7 +644,7 @@
     },
     "BlockMastersCoins": {
       "Penalty": 50,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -1192,8 +1191,10 @@
       "BalancesKeepAlive": ""
     },
     "Hashcryptos": {
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
+      "DOGE": DOGE_WALLET,
+      "DOGE-Params": "",
       "Worker": "$WorkerName",
       "Penalty": "0",
       "Algorithm": "",
@@ -1725,10 +1726,10 @@
       "BalancesKeepAlive": ""
     },
     "MiningDutch": {
-      "User": "",
+      "User": MINING_DUTCH,
       "API_ID": "",
       "API_Key": "",
-      "AECurrency": "BTC",
+      "AECurrency": AECURRENCY,
       "Penalty": 3,
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -1757,10 +1758,10 @@
       "BalancesKeepAlive": ""
     },
     "MiningDutchCoins": {
-      "User": "",
+      "User": MINING_DUTCH,
       "API_ID": "",
       "API_Key": "",
-      "AECurrency": "BTC",
+      "AECurrency": AECURRENCY,
       "Penalty": 3,
       "GLT": "",
       "GLT-Params": "",
@@ -1791,7 +1792,7 @@
       "BalancesKeepAlive": ""
     },
     "MiningPoolHub": {
-      "AECurrency": "BTC",
+      "AECurrency": AECURRENCY,
       "Penalty": 12,
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -1823,7 +1824,7 @@
       "API_Key": ""
     },
     "MiningPoolHubCoins": {
-      "AECurrency": "BTC",
+      "AECurrency": AECURRENCY,
       "Worker": "$WorkerName",
       "Penalty": "0",
       "Algorithm": "",
@@ -2087,14 +2088,14 @@
       "Region": "",
       "SSL": "",
       "BalancesKeepAlive": "",
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "OrganizationID": "",
       "API_Key": "",
       "API_Secret": ""
     },
     "NLpool": {
       "Penalty": 16,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2187,8 +2188,8 @@
       "BalancesKeepAlive": ""
     },
     "ProHashing": {
-      "User": "",
-      "AECurrency": "BTC",
+      "User": PROHASHING,
+      "AECurrency": AECURRENCY,
       "API_Key": "",
       "EnableAPIKeyForMiners": "0",
       "Worker": "$WorkerName",
@@ -2219,7 +2220,7 @@
       "BalancesKeepAlive": ""
     },
     "ProHashingCoins": {
-      "User": "",
+      "User": PROHASHING,
       "PPMode": "pps",
       "API_Key": "",
       "EnableAPIKeyForMiners": "0",
@@ -2251,7 +2252,7 @@
       "BalancesKeepAlive": ""
     },
     "ProHashingCoinsSolo": {
-      "User": "",
+      "User": PROHASHING,
       "API_Key": "",
       "EnableAPIKeyForMiners": "0",
       "Worker": "$WorkerName",
@@ -2512,7 +2513,9 @@
       "BalancesKeepAlive": ""
     },
     "unMineable": {
-      "BTC": "$Wallet",
+      "DOGE": DOGE_WALLET,
+      "DOGE_Params": "",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "BTT": "",
       "BTT-Params": "",
@@ -2717,7 +2720,7 @@
     "ZergPool": {
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2748,7 +2751,7 @@
     "ZergPoolCoins": {
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2781,7 +2784,7 @@
       "PartyPassword": "",
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2812,7 +2815,7 @@
       "AllowZero": "1",
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2844,7 +2847,7 @@
       "PartyPassword": "",
       "AECurrency": AECURRENCY,
       "Penalty": 12,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2874,7 +2877,7 @@
     "ZergPoolSolo": {
       "AllowZero": "1",
       "Penalty": 12,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2904,7 +2907,7 @@
     "Zpool": {
       "AECurrency": AECURRENCY,
       "Penalty": 16,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",
@@ -2935,7 +2938,7 @@
     "ZpoolCoins": {
       "AECurrency": AECURRENCY,
       "Penalty": 16,
-      "BTC": "$Wallet",
+      "BTC": BTC_WALLET,
       "BTC-Params": "",
       "Worker": "$WorkerName",
       "Algorithm": "",

@@ -1,9 +1,8 @@
-# Write or paste your SDL here!---
 version: "2.0"
 
 services:
   rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:50
+    image: cryptoandcoffee/akash-rainbowminer:71
     expose:
       - port: 4000
         as: 80
@@ -18,6 +17,10 @@ services:
       - REGION=us
       #Check RainbowMiner after deployment for the region of the provider. You will see a country flag on top.
       #See https://github.com/RainbowMiner/RainbowMiner/blob/master/Data/regions.json
+      - PROHASHING=
+      #Prohashing.com username
+      - MINING_DUTCH=
+      #Mining-dutch.nl username
       #for a list of valid regions.
       - AECurrency=DOGE
       #Auto-exchange currency : exchange all coins and payout in this currency.
@@ -38,15 +41,17 @@ services:
       #Mine only these algorithms, example Take2
       - EXCLUDE_COIN_SYMBOL=
       #Do not mine these symbols, check Pools > All Pools for a full list
-      - EXCLUDE_ALGORITHM=
+      - EXCLUDE_ALGORITHM=VerusHash
       #Do not mine these algorithms, check Pools > All Pools for a full list
       - EXCLUDE_POOL_NAME=Nicehash
       #Do not mine these pools, check Pools > All Pools for a full list
       - EXCLUDE_COIN=
       #Do not mine a specific coin, like Jagoancoin
       - EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
-      #Auto-exchange currency
-      - POOLS=C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
+      #Exclude miner name
+      - BENCHMARK_INTERVAL=120
+      #Benchmarking time in seconds
+      - POOLS=ProHashing,ProHashingCoins,MiningDutch,MiningDutchCoins,Hashcryptos,C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
       #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
       #Check https://rbminer.net/monitoring/ for the most profitable coins, algorithms, and miners!
 profiles:
