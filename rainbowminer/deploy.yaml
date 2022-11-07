@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:67
+    image: cryptoandcoffee/akash-rainbowminer:68
     expose:
       - port: 4000
         as: 80
