@@ -7,7 +7,7 @@ RUN apt-get update ; apt-get dist-upgrade -yqq ; apt-get install git sudo wget l
 #This removes deviceparams requirements
 #RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; sed -i 's/$($DeviceParams)//g' ./Miners/*.ps1 ; chmod +x *.sh ; ./install.sh
 
-RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; sed -i 's/\$Session.Config.CPUMiningThreads/#$Session.Config.CPUMiningThreads/g' ./Modules/Core.psm1 ; sed -i 's/$($DeviceParams)//g' ./Miners/*.ps1 ; chmod +x *.sh ; ./install.sh
+RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; sed -i 's/\$Session.Config.CPUMiningThreads/#$Session.Config.CPUMiningThreads/g' ./Modules/Core.psm1 ; chmod +x *.sh ; ./install.sh
 
 ENV TERM=xterm
 
@@ -24,7 +24,7 @@ ENV SSL=1
 ENV MINER_NAME=
 ENV ALGORITHM=
 ENV EXCLUDE_COIN_SYMBOL=
-ENV EXCLUDE_ALGORITHM=Autolykos2
+ENV EXCLUDE_ALGORITHM=
 ENV EXCLUDE_POOL_NAME=Nicehash
 ENV EXCLUDE_COIN=
 ENV EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer

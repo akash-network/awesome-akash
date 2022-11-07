@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:68
+    image: cryptoandcoffee/akash-rainbowminer:71
     expose:
       - port: 4000
         as: 80
@@ -49,7 +49,7 @@ services:
       #Do not mine a specific coin, like Jagoancoin
       - EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
       #Exclude miner name
-      - BENCHMARK_INTERVAL=30
+      - BENCHMARK_INTERVAL=120
       #Benchmarking time in seconds
       - POOLS=ProHashing,ProHashingCoins,MiningDutch,MiningDutchCoins,Hashcryptos,C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
       #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
