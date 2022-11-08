@@ -211,6 +211,9 @@ Awesome DeFi apps you can deploy on Akash
 
 - [redis](redis)
 
+### Mining
+- [PKT Miner](pkt-miner)
+
 ### Video Conferencing
 
 - Your project can be the first!
