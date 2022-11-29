@@ -20,6 +20,8 @@ Step 2: Use the same name to replace line 14. Leave ip: only change the name.
 
 Step 3: Wait until the blockchain has synced (check the "logs" tab to see chain height) then edit the --public-host environment variable to reflect the instances public/static IP address. (Check the "Leases" tab for the IP) Once changed, click "Update Deployment"
 
+Step 4: Click "shell" and type in ```hsd-cli info``` to see how many inbound connections after re-deploying. The "host" feild should show your public IP.
+
 <br>
 
 More information related to handshake node configuration types: https://hsd-dev.org/guides/config.html
