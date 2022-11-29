@@ -1,0 +1,55 @@
+---
+version: '2.0'
+endpoints:
+ hnsep1: #step1# change this to a unique name, leave the colon.
+   kind: ip
+services:
+  hnsnode:
+     image: 'rithvikvibhu/hsd-with-ip:latest'
+     expose:
+      - port: 12038
+        as: 12038
+        to:
+          - global: true
+            ip: hnsep1 #step2# use the same unique name here that you created above, no colon.
+     command:
+      - hsd
+      - '--bip37=true'
+      - '--listen=true'
+      - '--public-host=0.0.0.0' #step3# add your static IP here after you deploy and the handshake blockchain has synced. (Update Deployment)
+      - '--public-port=12038'
+      - '--max-inbound=5000'
+     params:
+      storage:
+        data:
+          mount: /root/.hsd
+          readOnly: false
+profiles:
+  compute:
+    hnsnode:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 2GB
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 100Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      attributes:
+        ip-lease: true
+
+      pricing:
+        hnsnode:
+          denom: uakt
+          amount: 1000
+deployment:
+  hnsnode:
+    dcloud:
+      profile: hnsnode
+      count: 1
