@@ -2,14 +2,14 @@
 
 This is an SDL file that will deploy a full listening handshake node onto akash.
 
-[Link to Akash SDL File](https://github.com/WireWrex/handshake-node-akash/blob/main/handshake-node-fl.sdl)
+[Link to Akash SDL File](https://github.com/FliKites/handshake-node-akash/blob/main/deploy.yaml)
 
 Deploy using CloudMOS: https://cloudmos.io/cloud-deploy
 
 Open Cloudmos and click "Deploy" 
 <br>
 
-Step 0: Choose the "Empty" option and paste the [SDL](https://github.com/WireWrex/handshake-node-akash/blob/main/handshake-node-fl.sdl) file.
+Step 0: Choose the "Empty" option and paste the [SDL](https://github.com/FliKites/handshake-node-akash/blob/main/deploy.yaml) file.
 <br>
 
 Step 1: Create a unique name under```endpoints:``` You will be changing line 4. Leave the colon.
