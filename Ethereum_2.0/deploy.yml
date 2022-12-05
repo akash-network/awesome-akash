@@ -52,9 +52,9 @@ profiles:
     ethereum:
       resources:
         cpu:
-          units: 32.0
+          units: 8.0
         memory:
-          size: 64Gi
+          size: 20Gi
         storage:
           - size: 50Gi
           - name: data
