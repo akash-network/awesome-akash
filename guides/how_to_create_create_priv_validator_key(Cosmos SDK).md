@@ -1,6 +1,6 @@
 # Create priv_validator_key.json
 
-[Гайд на русском](https://github.com/Dimokus88/guides/blob/main/Cosmos%20SDK/valkey/README_RU.md)
+[Гайд на русском](https://github.com/Dimokus88/awesome-akash/blob/master/guides/how_to_create_create_priv_validator_key(Cosmos%20SDK).md#%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5-priv_validator_keyjson)
 
 Since the nodes of the **Cosmos SDK** ecosystem are standardized, the `priv_validator_key.json` file will also be suitable for Cosmos projects.
 
