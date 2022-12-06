@@ -67,7 +67,7 @@ profiles:
       pricing:
         ethereum:
           denom: uakt
-          amount: 1000
+          amount: 1000000
 deployment:
   ethereum:
     akash:
