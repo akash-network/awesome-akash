@@ -183,6 +183,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Tools
 
+- [thirdweb](thirdweb)
 - [authsteem](authsteem)
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)
@@ -200,6 +201,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
 - [Zammad](zammad)
+- [Budibase](budibase)
 
 ### Network
 
@@ -217,3 +219,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [MyetherWallet](MyetherWallet)
 - [tronwallet](tronwallet)
+
+### Web Frameworks
+
+- [NextJS](nextjs)
