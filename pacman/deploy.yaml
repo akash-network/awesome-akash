@@ -5,7 +5,7 @@ services:
   pacman:
     image: yuravorobei/pacman-web
     expose:
-      - port: 8080
+      - port: 80
         as: 80
         to:
           - global: true
