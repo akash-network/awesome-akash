@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:71
+    image: cryptoandcoffee/akash-rainbowminer:73
     expose:
       - port: 4000
         as: 80
@@ -41,7 +41,7 @@ services:
       #Mine only these algorithms, example Take2
       - EXCLUDE_COIN_SYMBOL=
       #Do not mine these symbols, check Pools > All Pools for a full list
-      - EXCLUDE_ALGORITHM=VerusHash
+      - EXCLUDE_ALGORITHM=VertHash
       #Do not mine these algorithms, check Pools > All Pools for a full list
       - EXCLUDE_POOL_NAME=Nicehash
       #Do not mine these pools, check Pools > All Pools for a full list

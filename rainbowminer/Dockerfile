@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-RUN apt-get update ; apt-get dist-upgrade -yqq ; apt-get install git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev bc -y
+RUN apt-get update ; apt-get dist-upgrade -yqq ; apt-get install git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev bc curl -y
 
 #RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; chmod +x *.sh ; ./install.sh
 
