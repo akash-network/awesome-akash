@@ -2,26 +2,28 @@
 version: "2.0"
 
 services:
-  presearch:
-    image: presearch/node:1.2.5
-    env:
-      - 'REGISTRATION_CODE=insert your registration code here'
-    # need to expose at least 1 port otherwise "Error: invalid manifest: zero global services"
+  osmosis-fe:
+    # 1. get the latest tag here https://hub.docker.com/r/osmolabs/osmosis-frontend/tags
+    image: osmolabs/osmosis-frontend:370966c
     expose:
-      - port: 8080
+      # HTTP
+      - port: 3000
         as: 80
-        proto: tcp
+        accept:
+          # 2. set your domain name here
+          #- akash.osmosis.zone
+          #- osmosis.mysite.com
         to:
           - global: true
 
 profiles:
   compute:
-    presearch:
+    osmosis-fe:
       resources:
         cpu:
-          units: 1.0
+          units: 4
         memory:
-          size: 512Mi
+          size: 4Gi
         storage:
           size: 1Gi
   placement:
@@ -33,12 +35,12 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
           - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        presearch:
+        osmosis-fe:
           denom: uakt
-          amount: 10000
+          amount: 2000
 
 deployment:
-  presearch:
+  osmosis-fe:
     akash:
-      profile: presearch
+      profile: osmosis-fe
       count: 1
