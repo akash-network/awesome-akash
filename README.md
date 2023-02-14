@@ -202,6 +202,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Uptime Kuma](uptime-kuma)
 - [Zammad](zammad)
 - [Budibase](budibase)
+- [Keycloak IAM](keycloak-iam)
 
 ### Network
 
