@@ -6,7 +6,7 @@ Go to http://yourhost/ghost/ to set up your account.
 
 ## Production
 
-It is not recommended to use the `slite3` database if you plan more than 1000 members in your blog.  
+It is not recommended to use the `sqlite3` database if you plan more than 1000 members in your blog.  
 
 The MySQL & persistent storage enabled version is available here:
 - [deploy-mysql.yaml](deploy-mysql.yaml)
