@@ -1,9 +1,3 @@
-[![Code Quality](https://img.shields.io/codacy/grade/5b35c73264f446c482d8076f53845f37)](https://hub.docker.com/r/cm2network/tf2/) [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) [![](https://img.shields.io/docker/image-size/cm2network/tf2)](https://microbadger.com/images/cm2network/tf2) [![Discord](https://img.shields.io/discord/747067734029893653)](https://discord.gg/7ntmAwM)
-# Supported tags and respective `Dockerfile` links
--	[`base`, `latest` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/bullseye/Dockerfile)
--	[`metamod` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/bullseye/Dockerfile)
--	[`sourcemod` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/TF2/blob/master/bullseye/Dockerfile)
-
 # What is Team Fortress 2?
 Nine distinct classes provide a broad range of tactical abilities and personalities. Constantly updated with new game modes, maps, equipment and, most importantly, hats!
 This Docker image contains the dedicated server of the game.
