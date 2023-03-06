@@ -1,0 +1,41 @@
+---
+version: "2.0"
+
+services:
+  ai-chat-app:
+    image: ghcr.io/imagegenius/ai-chat-app
+    expose:
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+    env:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+profiles:
+  compute:
+    ai-chat-app:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 4Gi
+        storage:
+          size: 4Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        ai-chat-app:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  ai-chat-app:
+    akash:
+      profile: ai-chat-app
+      count: 1
