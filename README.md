@@ -211,6 +211,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Periodic Table Creator](Periodic-Table-Creator)
 - [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
+- [Webtop](webtop)
 - [Zammad](zammad)
 - [Budibase](budibase)
 
