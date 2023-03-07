@@ -217,7 +217,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Network
 
 - [SoftEther VPN](softether-vpn)
-- [Sentinel dVPN node](Sentinel-dVPN-node)
+- [Sentinel dVPN node](Sentinel%20dVPN%20node)
 
 ### Databases
 
