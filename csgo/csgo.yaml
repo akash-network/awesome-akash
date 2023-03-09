@@ -1,0 +1,55 @@
+version: "2.0"
+
+# endpoints: 
+# myendpoint:
+#   kind: ip
+#Remove comment to enable IP lease
+
+services:
+  csgo:
+    image: cm2network/csgo
+    expose:
+      - port: 27016
+        as: 27016
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27021
+        as: 27021
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+
+    env:
+      - SRCDS_PORT=27016
+      - SRCDS_TOKEN={YOURTOKEN}
+      - SRCDS_TV_PORT=27021
+
+profiles:
+  compute:
+    csgo:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 8Gi
+        storage:
+          size: 32Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+#        ip-lease: true #Remove comment to enable IP lease
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        csgo:
+          denom: uakt
+          amount: 100000
+deployment:
+  csgo:
+    akash:
+      profile: csgo
+      count: 1
