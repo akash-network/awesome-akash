@@ -16,7 +16,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### AI
 
-- [ChatGPT Self-Hosted Chat App](ai-chat-app)
+- [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Stable Diffusion](stable-diffusion-ui)
 
 ### Blogging

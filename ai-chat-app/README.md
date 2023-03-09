@@ -2,64 +2,11 @@ Open Source, Self-Hosted Chat GPT app
 
 [![ai-chat-app](https://raw.githubusercontent.com/imagegenius/templates/main/unraid/img/ai-chat-app.png)](https://github.com/bitswired/ai-chat-app)
 
-## Supported Architectures
-
-We use Docker manifest for cross-platform compatibility. More details can be found on [Docker's website](https://github.com/docker/distribution/blob/master/docs/spec/manifest-v2-2.md#manifest-list).
-
-To obtain the appropriate image for your architecture, simply pull `ghcr.io/imagegenius/ai-chat-app:latest`. Alternatively, you can also obtain specific architecture images by using tags.
-
-This image supports the following architectures:
-
-| Architecture | Available | Tag |
-| :----: | :----: | ---- |
-| x86-64 | ✅ | amd64-\<version tag\> |
-| arm64 | ✅ | arm64v8-\<version tag\> |
-| armhf | ❌ | |
-
 ## Application Setup
 
 The WebUI can be accessed at `http://your-ip:3000`, you must specify an OpenAI API Key in settings before using, go to `http://your-ip:3000/settings`, enter the API key, and press save.
 
 This app is brand new, hence it is buggy. I need to create a new chat via the `Templates`, then I can start to make other chats.
-
-## Usage
-
-Example snippets to start creating a container:
-
-### Docker Compose
-
-```yaml
----
-version: "2.1"
-services:
-  ai-chat-app:
-    image: ghcr.io/imagegenius/ai-chat-app:latest
-    container_name: ai-chat-app
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    volumes:
-      - path_to_appdata:/config
-    ports:
-      - 3000:3000
-    restart: unless-stopped
-```
-
-### Docker CLI ([Click here for more info](https://docs.docker.com/engine/reference/commandline/cli/))
-
-```bash
-docker run -d \
-  --name=ai-chat-app \
-  -e PUID=1000 \
-  -e PGID=1000 \
-  -e TZ=Etc/UTC \
-  -p 3000:3000 \
-  -v path_to_appdata:/config \
-  --restart unless-stopped \
-  ghcr.io/imagegenius/ai-chat-app:latest
-
-```
 
 ## Variables
 
