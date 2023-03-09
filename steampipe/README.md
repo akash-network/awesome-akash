@@ -1,7 +1,3 @@
-[![](https://img.shields.io/codacy/grade/e0437b7e0040420e97c81b434f003b27)](https://hub.docker.com/r/cm2network/steampipe/) [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/steampipe.svg)](https://hub.docker.com/r/cm2network/steampipe/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/steampipe.svg)](https://hub.docker.com/r/cm2network/steampipe/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/steampipe.svg)](https://hub.docker.com/r/cm2network/steampipe/) [![](https://img.shields.io/docker/image-size/cm2network/steampipe)](https://img.shields.io/docker/image-size/cm2network/steampipe) [![Discord](https://img.shields.io/discord/747067734029893653)](https://discord.gg/7ntmAwM)
-# Supported tags and respective `Dockerfile` links
-  -	[`contentbuilder`, `latest` (*bullseye-contentbuilder/Dockerfile*)](https://github.com/CM2Walki/steampipe/blob/master/bullseye-contentbuilder/Dockerfile)
-
 # What is SteamPipe?
 SteamPipe is the game/application content system that powers Steam. SteamPipe includes the following features: Efficient and fast content delivery. Unlimited public and private "beta" branches, allowing multiple builds to be tested (Source: [developer.valvesoftware.com](https://partner.steamgames.com/doc/sdk/uploading)). If you are developing a game on Steam, this is the tool you use to upload new builds of your game to Steam.
  
