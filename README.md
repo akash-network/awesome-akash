@@ -122,6 +122,16 @@ Awesome DeFi apps you can deploy on Akash
 - [DOOM](doom)
 - [Snake Game](snake-game)
 
+### Game Servers
+
+- [Counter-Strike: Global Offensive](csgo)
+- [Holdfast: Nations At War](holdfastnaw)
+- [Mordhau](mordhau)
+- [Squad](squad)
+- [SteamCMD](steamcmd)
+- [SteamPipe](steampipe)
+- [Team Fortress 2](tf2)
+
 ### Hosting
 
 - [Caddy](caddy)
