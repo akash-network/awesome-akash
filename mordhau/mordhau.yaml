@@ -1,0 +1,95 @@
+version: "2.0"
+
+# endpoints: 
+# myendpoint:
+#   kind: ip
+#Remove comment to enable IP lease
+
+services:
+  mordhau:
+    image: cm2network/mordhau
+    expose:
+      - port: 27016
+        as: 27016
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27021
+        as: 27021
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27016
+        as: 27016
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27021
+        as: 27021
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 7788
+        as: 7788
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27166
+        as: 27166
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 21115
+        as: 21115
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 15001
+        as: 15001
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 7778
+        as: 7778
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27016
+        as: 27016
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+
+    env:
+      - SERVER_BEACONPORT=15001
+      - SERVER_PORT=7778
+      - SERVER_QUERYPORT=27016
+
+profiles:
+  compute:
+    mordhau:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 8Gi
+        storage:
+          size: 32Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+#        ip-lease: true #Remove comment to enable IP lease
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        mordhau:
+          denom: uakt
+          amount: 100000
+deployment:
+  mordhau:
+    akash:
+      profile: mordhau
+      count: 1
