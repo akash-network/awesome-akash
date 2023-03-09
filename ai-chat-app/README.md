@@ -23,18 +23,6 @@ Now you can start a new chat.
 Templates are available to be imported
 ![](https://raw.githubusercontent.com/88plug/awesome-akash/ai/ai-chat-app/screenshots/templates.png)
 
-## Variables
-
-To configure the container, pass variables at runtime using the format `<external>:<internal>`. For instance, `-p 8080:80` exposes port `80` inside the container, making it accessible outside the container via the host's IP on port `8080`.
-
-| Variable | Description |
-| :----: | --- |
-| `-p 3000` | WebUI Port |
-| `-e PUID=1000` | for UserID - see below for explanation |
-| `-e PGID=1000` | for GroupID - see below for explanation |
-| `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
-| `-v /config` | Contains the database |
-
 ## Chat Interface
 
 ![](https://raw.githubusercontent.com/88plug/awesome-akash/ai/ai-chat-app/screenshots/interface.png)
