@@ -1,4 +1,6 @@
-Self-Hosted ChatGPT  
+# What is AI Chat App?
+
+This self-hosted ChatGPT interface offers a user-friendly experience for power users to create and import prompt templates, optimize their results, and easily share with others.
 
 ![](https://raw.githubusercontent.com/88plug/awesome-akash/ai/ai-chat-app/screenshots/welcome.png)
 
