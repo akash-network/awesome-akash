@@ -1,12 +1,27 @@
-Open Source, Self-Hosted Chat GPT app
+Self-Hosted ChatGPT  
 
-[![ai-chat-app](https://raw.githubusercontent.com/imagegenius/templates/main/unraid/img/ai-chat-app.png)](https://github.com/bitswired/ai-chat-app)
+![](https://raw.githubusercontent.com/88plug/awesome-akash/ai/ai-chat-app/screenshots/welcome.png)
 
-## Application Setup
+## Requirements
 
-The WebUI can be accessed at `http://your-ip:3000`, you must specify an OpenAI API Key in settings before using, go to `http://your-ip:3000/settings`, enter the API key, and press save.
+To use this app, you need a ChatGPT API key. [Get your key from OpenAI API Keys.](https://platform.openai.com/account/api-keys)
 
-This app is brand new, hence it is buggy. I need to create a new chat via the `Templates`, then I can start to make other chats.
+## Setting up the App
+
+By default, the server runs on port 3000 and is assigned an ephemeral port by the provider. Once deployed, access the web interface by clicking on "Forwarded Ports" in Cloudmos.
+
+![image](https://user-images.githubusercontent.com/19512127/224119623-47c80369-75c9-412d-a4fd-66d98c2cb778.png)
+
+To use the OpenAI API, you must provide your API key in the app settings. Simply navigate to your Settings, enter the API Key, and click "Save".
+
+![](https://raw.githubusercontent.com/88plug/awesome-akash/ai/ai-chat-app/screenshots/api-key.png)
+
+Now you can start a new chat.
+
+## Templates
+
+Templates are available to be imported
+![](https://raw.githubusercontent.com/88plug/awesome-akash/ai/ai-chat-app/screenshots/templates.png)
 
 ## Variables
 
@@ -19,6 +34,10 @@ To configure the container, pass variables at runtime using the format `<externa
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-v /config` | Contains the database |
+
+## Chat Interface
+
+![](https://raw.githubusercontent.com/88plug/awesome-akash/ai/ai-chat-app/screenshots/interface.png)
 
 ## Umask for running applications
 
