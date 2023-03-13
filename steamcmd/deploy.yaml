@@ -7,10 +7,7 @@ services:
     expose:
       - port: 
         to:
-          - global: true
-    env:
-      
-  
+          - global: true  
 profiles:
   compute:
     steamcmd:
