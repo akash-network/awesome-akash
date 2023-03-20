@@ -1,6 +1,6 @@
 ## Ethereum 2.0 node deployment
 
->If you don't have validator keys, go to [how to create one](/create_validator_key_en(Linux).md)).
+>If you don't have validator keys, go to [how to create one](/Ethereum2/create_validator_key_en(Linux).md)).
 
 Fill in the variables in the [SDL file](/deploy_alternarive.yml):
 
