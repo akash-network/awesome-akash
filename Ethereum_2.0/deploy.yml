@@ -17,7 +17,7 @@ services:
       - "bash"
       - "-c"
     args:
-      - 'curl -s https://raw.githubusercontent.com/Dimokus88/awesome-akash/master/Ethereum_2.0/main.sh | bash '
+      - 'curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/Ethereum_2.0/main.sh | bash '
     params:
       storage:
         data:
