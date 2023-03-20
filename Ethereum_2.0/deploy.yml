@@ -5,23 +5,25 @@ services:
   ethereum:
     image: dimokus88/ubuntu:1.3
     env:
-      - DEPOSIT_JSON_BASE64=
-      - KEYSTORE_JSON_BASE64=
-      - ACCOUNT_ETH_PASS=
-      - RECEPIENT=
-      - NETWORK=goerli
-      - SSH_PASS=
-      - LIGHTHOUSE_LINK=https://github.com/sigp/lighthouse/releases/download/v3.2.1/lighthouse-v3.2.1-x86_64-unknown-linux-gnu.tar.gz
-      - SNAP_URL=https://prater-checkpoint-sync.stakely.io
+      - "DEPOSIT_JSON_BASE64="
+      - "DEPOSIT_FILE_NAME="
+      - "KEYSTORE_JSON_BASE64="
+      - "KEYSTORE_FILE_NAME="
+      - "ACCOUNT_ETH_PASS="
+      - "RECEPIENT="
+      - "NETWORK="
+      - "SSH_PASS="
+      - "LIGHTHOUSE_LINK=https://github.com/sigp/lighthouse/releases/download/v3.5.1/lighthouse-v3.5.1-x86_64-unknown-linux-gnu-portable.tar.gz"
+      - "SNAP_URL=https://prater-checkpoint-sync.stakely.io"
     command:
       - "bash"
       - "-c"
     args:
-      - 'curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/Ethereum_2.0/main.sh | bash '
-    params:
-      storage:
-        data:
-          mount: /home/
+      - 'curl -s https://raw.githubusercontent.com/akash-network/Akash-Nodes-Lab/main/Active_testnets/Ethereum2/main.sh | bash '
+    #params:
+    #  storage:
+    #    data:
+    #      mount: /home/
     expose:
       - port: 22
         as: 22
@@ -52,24 +54,24 @@ profiles:
     ethereum:
       resources:
         cpu:
-          units: 8.0
+          units: 4.0
         memory:
-          size: 20Gi
+          size: 9Gi
         storage:
-          - size: 50Gi
-          - name: data
-            size: 500Gi
-            attributes:
-              persistent: true
-              class: beta3
+          - size: 200Gi
+          #- name: data
+          #  size: 200Gi
+          #  attributes:
+          #    persistent: true
+          #    class: beta3
   placement:
-    akash:
+    akash: 
       pricing:
         ethereum:
           denom: uakt
-          amount: 1000000
+          amount: 10000
 deployment:
   ethereum:
     akash:
       profile: ethereum
-      count: 1
+      count: 1 
