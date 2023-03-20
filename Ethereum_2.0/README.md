@@ -22,6 +22,6 @@ Fill in the variables in the [SDL file](https://github.com/Dimokus88/awesome-aka
       
 `- KEYSTORE_JSON_BASE64=`- зашифрованный **keystore_xxxxx.json** с помощью base64 ([Инструкция по генерации](https://github.com/Dimokus88/awesome-akash/blob/master/Ethereum_2.0/create_validator_key_ru(Linux).md#%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-json-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2))
      
-`- ACCOUNT_ETH_PASS=` - пароль от ключей валидатора из [п.8 инструкции]https://github.com/Dimokus88/awesome-akash/blob/master/Ethereum_2.0/create_validator_key_ru(Linux).md)
+`- ACCOUNT_ETH_PASS=` - пароль от ключей валидатора из [п.8 инструкции](https://github.com/Dimokus88/awesome-akash/blob/master/Ethereum_2.0/create_validator_key_ru(Linux).md)
       
 `- RECEPIENT=` - получатель вознаграждений.
