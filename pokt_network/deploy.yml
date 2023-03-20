@@ -22,7 +22,7 @@ services:
       - "-c"
     args:
       - "apt-get update && apt-get upgrade -y;apt-get install -y curl;
-         curl -s https://raw.githubusercontent.com/DecloudNodesLab/Projects/main/POKT_Network/main.sh | bash"   
+         curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt_network/main.sh | bash"   
     
     expose:
       - port: 8081
