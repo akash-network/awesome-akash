@@ -4,10 +4,10 @@ runsvdir -P /etc/service &
 # ++ Download validator keys ++
 mkdir /root/validator_keys
 sleep 2
-echo $DEPOSIT_JSON_BASE64 | openssl base64 -d > /root/validator_keys/deposit.json
+echo $DEPOSIT_JSON_BASE64 | openssl base64 -d > /root/validator_keys/$DEPOSIT_FILE_NAME
 sleep 2
-echo $KEYSTORE_JSON_BASE64 | openssl base64 -d > /root/validator_keys/keystore.json
-sleep 2
+echo $KEYSTORE_JSON_BASE64 | openssl base64 -d > /root/validator_keys/$KEYSTORE_FILE_NAME
+
 echo $ACCOUNT_ETH_PASS > /root/validator_keys/pass.txt
 
 # > Run SSH connection
@@ -49,6 +49,7 @@ tar -C /usr/bin -xf lighthouse.tar.gz
 sleep 2
 # ++++ import account ++++
 lighthouse --network $NETWORK account validator import --directory /root/validator_keys/ --datadir /home/lighthouse --password-file /root/validator_keys/pass.txt --reuse-password
+rm /root/validator_keys/pass.txt
 
 # >> Create Lighthouse service on runit 
 
