@@ -11,8 +11,8 @@ services:
       - "KEY_PASS=" # Password to keyfile.json;
       - "ADDRESS=" # Account address;
       - "CHAINS_LINK=" # Link to chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form;
-      - "LINK_SNAPSHOT=" # Link to network snapshot
-      - "SEEDS=" # Set seeds address;
+      - "LINK_SNAPSHOT=" # Link to network snapshot https://docs.pokt.network/node/setup/#download-snapshot ;
+      - "SEEDS=" # Set seeds address: https://docs.pokt.network/node/seeds/ ;
    # params:
    #   storage:
    #     data:
