@@ -49,7 +49,6 @@ tar -C /usr/bin -xf lighthouse.tar.gz
 sleep 2
 # ++++ import account ++++
 lighthouse --network $NETWORK account validator import --directory /root/validator_keys/ --datadir /home/lighthouse --password-file /root/validator_keys/pass.txt --reuse-password
-rm /root/validator_keys/pass.txt
 
 # >> Create Lighthouse service on runit 
 
