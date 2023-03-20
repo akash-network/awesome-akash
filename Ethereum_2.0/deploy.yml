@@ -58,9 +58,9 @@ profiles:
         memory:
           size: 9Gi
         storage:
-          - size: 200Gi
+          - size: 600Gi
           #- name: data
-          #  size: 200Gi
+          #  size: 600Gi
           #  attributes:
           #    persistent: true
           #    class: beta3
