@@ -2,7 +2,7 @@
 
 >If you don't have validator keys, go to [how to create one](/Ethereum_2.0/create_validator_key_en(Linux).md)).
 
-Fill in the variables in the [SDL file](/Ethereum_2.0/deploy_alternarive.yml):
+Fill in the variables in the [SDL file](/Ethereum_2.0/deploy.yml):
 
 `"- DEPOSIT_JSON_BASE64="` - encrypted **deposit_data_xxxxxxx.json** with base64 ([Generation instruction](/Ethereum_2.0/create_validator_key_en(Linux).md#encrypt-json-files))</br>
 
