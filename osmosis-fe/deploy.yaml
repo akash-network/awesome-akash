@@ -2,24 +2,30 @@
 version: "2.0"
 
 services:
-  pacman:
-    image: yuravorobei/pacman-web
+  osmosis-fe:
+    # 1. get the latest tag here https://hub.docker.com/r/osmolabs/osmosis-frontend/tags
+    image: osmolabs/osmosis-frontend:370966c
     expose:
-      - port: 80
+      # HTTP
+      - port: 3000
         as: 80
+        accept:
+          # 2. set your domain name here
+          #- akash.osmosis.zone
+          #- osmosis.mysite.com
         to:
           - global: true
 
 profiles:
   compute:
-    pacman:
+    osmosis-fe:
       resources:
         cpu:
-          units: 1.0
+          units: 4
         memory:
-          size: 512Mi
+          size: 4Gi
         storage:
-          size: 512Mi
+          size: 1Gi
   placement:
     akash:
       attributes:
@@ -29,12 +35,12 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
           - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        pacman: 
+        osmosis-fe:
           denom: uakt
-          amount: 10000
+          amount: 2000
 
 deployment:
-  pacman:
+  osmosis-fe:
     akash:
-      profile: pacman
+      profile: osmosis-fe
       count: 1

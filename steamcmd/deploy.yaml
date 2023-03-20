@@ -2,24 +2,23 @@
 version: "2.0"
 
 services:
-  pacman:
-    image: yuravorobei/pacman-web
+  steamcmd:
+    image: cm2network/steamcmd
     expose:
-      - port: 80
-        as: 80
+      - port: 
         to:
-          - global: true
-
+          - global: true  
 profiles:
   compute:
-    pacman:
+    steamcmd:
       resources:
         cpu:
           units: 1.0
         memory:
-          size: 512Mi
+          size: 1Gi
         storage:
-          size: 512Mi
+          size: 1Gi
+
   placement:
     akash:
       attributes:
@@ -29,12 +28,12 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
           - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        pacman: 
+        steamcmd:
           denom: uakt
           amount: 10000
 
 deployment:
-  pacman:
+  steamcmd:
     akash:
-      profile: pacman
+      profile: steamcmd
       count: 1
