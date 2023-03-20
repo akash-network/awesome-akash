@@ -7,7 +7,7 @@ sleep 2
 echo $DEPOSIT_JSON_BASE64 | openssl base64 -d > /root/validator_keys/deposit.json
 sleep 2
 echo $KEYSTORE_JSON_BASE64 | openssl base64 -d > /root/validator_keys/keystore.json
-
+sleep 2
 echo $ACCOUNT_ETH_PASS > /root/validator_keys/pass.txt
 
 # > Run SSH connection
