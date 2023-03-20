@@ -44,4 +44,4 @@ cat filename_keystore.json | openssl base64 -A
 ```
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/203850724-df0813cd-ff75-4bd9-a4e0-eba273da5bd9.png" width=100%</p>
 
-Carefully copy and save the command outputs to a text file, you will need them when filling out the `deploy.yml` file.
+Carefully copy and save the output of the commands to a text file, also copy the file names as you will need them when filling out the deploy.yml file.
