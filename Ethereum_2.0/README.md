@@ -20,7 +20,7 @@ Fill in the variables in the [SDL file](/Ethereum_2.0/deploy.yml):
 
 >Если у вас нет ключей валидатора, перейдите [к инструкции по их созданию](/Ethereum_2.0/create_validator_key_ru(Linux).md).
 
-Заполните переменные в [SDL файл](/Ethereum_2.0/deploy_alternarive.yml):
+Заполните переменные в [SDL файл](/Ethereum_2.0/deploy.yml):
 
 `- "DEPOSIT_JSON_BASE64="` - зашифрованный **deposit_data_xxxxxxx.json** с помощью base64 ([Инструкция по генерации](/Ethereum_2.0/create_validator_key_ru(Linux).md#%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-json-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2))</br>
 
