@@ -2,9 +2,9 @@
 
 >If you don't have validator keys, go to [how to create one](https://github.com/Dimokus88/Akash-Nodes-Lab/blob/main/Active_testnets/Ethereum2/create_validator_key_en(Linux).md)).
 
-Fill in the variables in the [SDL file](https://github.com/Dimokus88/Akash-Nodes-Lab/blob/main/Active_testnets/Ethereum2/deploy_alternarive.yml):
+Fill in the variables in the [SDL file](/deploy_alternarive.yml):
 
-`"- DEPOSIT_JSON_BASE64="` - encrypted **deposit_data_xxxxxxx.json** with base64 ([Generation instruction](https://github.com/Dimokus88/Akash-Nodes-Lab/blob/main/Active_testnets/Ethereum2/create_validator_key_en(Linux).md#encrypt-json-files))</br>
+`"- DEPOSIT_JSON_BASE64="` - encrypted **deposit_data_xxxxxxx.json** with base64 ([Generation instruction](/create_validator_key_en(Linux).md#encrypt-json-files))</br>
 
 `- "DEPOSIT_FILE_NAME="` - Full name of deposit_data file with json extension, </br>for example: `- "DEPOSIT_FILE_NAME=deposit_data-1679338505.json"`</br>
 
