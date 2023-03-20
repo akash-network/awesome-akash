@@ -19,7 +19,7 @@ services:
       - "bash"
       - "-c"
     args:
-      - 'curl -s https://raw.githubusercontent.com/akash-network/Akash-Nodes-Lab/main/Active_testnets/Ethereum2/main.sh | bash '
+      - 'curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/Ethereum_2.0/main.sh | bash '
     #params:
     #  storage:
     #    data:
