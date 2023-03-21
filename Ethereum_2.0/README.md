@@ -18,7 +18,7 @@ Fill in the variables in the [SDL file](/Ethereum_2.0/deploy.yml):
 
 ### Resources
 
-Choose resources according to your tasks, since for example, disk usage with `state sync` enabled in the `goerli` network will be about **300 Gb**, while the full archive of the Ethereum main network blockchain will require up to **1.5 Gb** hard drive. Use `state sync` if your application does not care about historical network data. Helps save hard drive space.
+Choose resources according to your tasks, since for example, disk usage with `state sync` enabled in the `goerli` network will be about **300GB**, while the full archive of the Ethereum main network blockchain will require up to **1.5TB** hard drive. Use `state sync` if your application does not care about historical network data. Helps save hard drive space.
 
 ```
        resources:
@@ -52,7 +52,7 @@ Choose resources according to your tasks, since for example, disk usage with `st
  
 ### Ресурсы
 
-Выбирайте ресурсы под свои задачи, так как например, использование диска при включенном `state sync` в сети `goerli` будет около **300 Gb**, тогда как полный архив блокчейна основной сети Ethereum потребует до **1,5 Gb** жесткого диска. Используйте `state sync` если вашему приложению неважны исторические данные сети. Помогает съекономить место на жестком диске.
+Выбирайте ресурсы под свои задачи, так как например, использование диска при включенном `state sync` в сети `goerli` будет около **300GB**, тогда как полный архив блокчейна основной сети Ethereum потребует до **1,5TB** жесткого диска. Используйте `state sync` если вашему приложению неважны исторические данные сети. Помогает съекономить место на жестком диске.
 
 ```
       resources:
