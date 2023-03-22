@@ -4,15 +4,15 @@ Fill in the variables in the [SDL file](/pokt_network/deploy.yml):
 
 |Variable|Description|
 | :-------: | :-------: |
-|- "SSH_PASS=" | Password to connect to the node via SSH (root user).|
-|- "VERSION=RC-0.9.2" | Set actual version POKT Network.|
-| - "CHAIN=" | Set POKT chain, **mainnet** or **testnet**.|
-|- "KEYFILE_BASE64=" | Encrypted contents of the keyfile.json file using BASE64.|
-|- "KEY_PASS=" | Password to keyfile.json.|
-|- "ADDRESS=" | Account address.|
-|- "CHAINS_LINK=" | Link to download chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form.|
-|- "LINK_SNAPSHOT=" | Link to network [snapshot](https://docs.pokt.network/node/setup/#download-snapshot) .|
-|- "SEEDS=" | Set seeds [address](https://docs.pokt.network/node/seeds/) .|
+|`SSH_PASS`| Password to connect to the node via SSH (root user).|
+|`VERSION`| Set actual version POKT Network.|
+|`CHAIN`| Set POKT chain, **mainnet** or **testnet**.|
+|`KEYFILE_BASE64`| Encrypted contents of the keyfile.json file using BASE64.|
+|`KEY_PASS`| Password to keyfile.json.|
+|`ADDRESS`| Account address.|
+|`CHAINS_LINK`| Link to download chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form.|
+|`LINK_SNAPSHOT`| Link to network [snapshot](https://docs.pokt.network/node/setup/#download-snapshot) .|
+|`SEEDS`| Set seeds [address](https://docs.pokt.network/node/seeds/) .|
 
 ### Resources
 
@@ -58,20 +58,21 @@ profiles:
               class: beta3
 ```
 
+# Развертка ноды POKT Network на Akash Network
 
 Заполните переменные в [SDL файле](/pokt_network/deploy.yml):
 
 |Переменная|Описание|
 | :-------: | :-------: |
-|- "SSH_PASS=" |  Пароль, для подключения к контейнеру по протоколу SSH (пользователь root).|
-|- "VERSION=RC-0.9.2" | Установите актуальную версию POKT Network.|
-| - "CHAIN=" | Установите нужную цепочку, **mainnet** или **testnet**.|
-|- "KEYFILE_BASE64=" | Зашифрованное содержимое файла keyfile.json с помощью BASE64.|
-|- "KEY_PASS=" | Пароль от keyfile.json.|
-|- "ADDRESS=" | Адрес аккаунта.|
-|- "CHAINS_LINK=" | Ссылка для скачивания файла chains.json file, или используйте CHAINS_BASE64 для доставки содержимого chains.json внутрь контейнера в зашифрованном ввиде с помощью BASE64 .|
-|- "LINK_SNAPSHOT=" | Ссылка на скачивание [снепшота](https://docs.pokt.network/node/setup/#download-snapshot) сети.|
-|- "SEEDS=" | Установите перечени SEED нод, [доступно на сайте](https://docs.pokt.network/node/seeds/).|
+|`SSH_PASS`|  Пароль, для подключения к контейнеру по протоколу SSH (пользователь root).|
+|`VERSION`| Установите актуальную версию POKT Network.|
+|`CHAIN`| Установите нужную цепочку, **mainnet** или **testnet**.|
+|`KEYFILE_BASE64`| Зашифрованное содержимое файла keyfile.json с помощью BASE64.|
+|`KEY_PASS`| Пароль от keyfile.json.|
+|`ADDRESS`| Адрес аккаунта.|
+|`CHAINS_LINK`| Ссылка для скачивания файла chains.json file, или используйте CHAINS_BASE64 для доставки содержимого chains.json внутрь контейнера в зашифрованном ввиде с помощью BASE64 .|
+|`LINK_SNAPSHOT`| Ссылка на скачивание [снепшота](https://docs.pokt.network/node/setup/#download-snapshot) сети.|
+|`SEEDS`| Установите перечени SEED нод, [доступно на сайте](https://docs.pokt.network/node/seeds/).|
 
 ### Ресурсы
 
