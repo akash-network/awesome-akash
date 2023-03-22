@@ -49,7 +49,7 @@ profiles:
         storage:
           size: 500Gi 
         #- name: data
-        #  size: 1000Gi
+        #  size: 500Gi
         #   attributes:
         #    persistent: true
         #     class: beta3
