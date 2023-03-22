@@ -16,7 +16,11 @@ services:
     args:
       - 'apt-get update && apt-get upgrade -y ;
         apt-get install -y  curl ;
-        curl https://raw.githubusercontent.com/Dimokus88/Akash-Nodes-Lab/main/Mainnets/Bitcoin/main.sh | bash'    
+        curl https://raw.githubusercontent.com/akash-network/awesome-akash/master/bitcoin/main.sh | bash'    
+    #params:
+    #  storage:
+    #    data:
+    #      mount: /root/
     expose:
       - port: 80
         as: 80
@@ -39,7 +43,12 @@ profiles:
         memory:
           size: 2Gi
         storage:
-          size: 30Gi # A full Bitcoin node requires over 600 gigabytes. Для полной ноды Биткоин необходимо более 600 гигабайт.         
+          size: 30Gi # A full Bitcoin node requires over 600 gigabytes. Для полной ноды Биткоин необходимо более 600 гигабайт. 
+          #- name: data
+          #  size: 600Gi
+          #  attributes:
+          #    persistent: true
+          #    class: beta3
   placement:
     akash: 
       attributes:            
