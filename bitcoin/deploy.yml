@@ -7,7 +7,7 @@ services:
       - "PASS_SSH=" # Password to connect to the node via SSH (root user). Пароль для подключения к ноде по SSH(пользователь root).
       - "LINK_BINARY=https://bitcoin.org/bin/bitcoin-core-22.0/bitcoin-22.0-x86_64-linux-gnu.tar.gz" # The download address of the binary file.Адрес скачивание бинарного файла.
       - "SNAPSHOT=" # Link to node snapshot (disable if you want to sync the full node). Адрес на снепшот ноды(отключите если хотите синхронизировать полную ноду).
-      - "PRUNE=20000" # Blockchain pruning, indicates the number of megabytes available for node storage (disable if you want to synchronize the full node).Обрезка блокчейна, указывается количество мегабайт доступных для хранения ноды (отключите если хотите синхронизировать полную ноду).
+      - "PRUNE=" # Blockchain pruning, indicates the number of megabytes available for node storage (disable if you want to synchronize the full node).Обрезка блокчейна, указывается количество мегабайт доступных для хранения ноды (отключите если хотите синхронизировать полную ноду).
     # Synchronization of a full bitcoin node needs more than 600 gigabytes of memory, and will take about 5 days.
     # Синхронизация полной ноды биткоина нуждается более чем в 600 гигабайт памяти, и займет около 5 дней.
     command:
@@ -43,7 +43,7 @@ profiles:
         memory:
           size: 2Gi
         storage:
-          size: 30Gi # A full Bitcoin node requires over 600 gigabytes. Для полной ноды Биткоин необходимо более 600 гигабайт. 
+          size: 600Gi # A full Bitcoin node requires over 600 gigabytes. Для полной ноды Биткоин необходимо более 600 гигабайт. 
           #- name: data
           #  size: 600Gi
           #  attributes:
