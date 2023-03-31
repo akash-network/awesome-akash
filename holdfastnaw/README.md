@@ -1,7 +1,3 @@
-[![](https://img.shields.io/codacy/grade/80b3d1a6e05e440abfdc34354001b1bf.svg)](https://hub.docker.com/r/cm2network/holdfastnaw/) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/cm2network/holdfastnaw)](https://hub.docker.com/r/cm2network/holdfastnaw/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/holdfastnaw.svg)](https://hub.docker.com/r/cm2network/holdfastnaw/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/holdfastnaw.svg)](https://hub.docker.com/r/cm2network/holdfastnaw/) [![](https://img.shields.io/docker/image-size/cm2network/holdfastnaw)](https://hub.docker.com/r/cm2network/holdfastnaw/) [![Discord](https://img.shields.io/discord/747067734029893653)](https://discord.gg/7ntmAwM)
-# Supported tags and respective `Dockerfile` links
--	[`latest` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/holdfastnaw/blob/master/bullseye/Dockerfile)
-
 # What is Holdfast: Nations At War ?
 Fight on multiple fronts in Holdfast: Nations At War - A competitive multiplayer first and third person shooter set during the great Napoleonic Era. Charge into battle with over 150 players per server!
 
