@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  alpaca.cpp:
+  alpaca-cpp:
     image: cryptoandcoffee/akash-alpaca-cpp:1
     expose:
       - port: 8080
@@ -17,7 +17,7 @@ services:
       - "15"
 profiles:
   compute:
-    alpaca.cpp:
+    alpaca-cpp:
       resources:
         cpu:
           units: 16.0 
@@ -34,12 +34,12 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
           - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        alpaca.cpp: 
+        alpaca-cpp: 
           denom: uakt
           amount: 10000
 
 deployment:
-  alpaca.cpp:
+  alpaca-cpp:
     akash:
-      profile: alpaca.cpp
+      profile: alpaca-cpp
       count: 1
