@@ -16,7 +16,11 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### AI
 
+- [Alpaca.cpp](alpaca-cpp)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [Daila](daila)
+- [GPT4ALL](gpt4all)
+- [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
 
 ### Blogging
