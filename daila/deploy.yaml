@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  daila:
+    image: cryptoandcoffee/akash-daila:5
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - MODEL_SIZE=7B
+      - ALPACA=true
+      - LLAMA=false
+profiles:
+  compute:
+    daila:
+      resources:
+        cpu:
+          units: 32.0 
+        memory:
+          size: 16Gi #Need to increase for larger models
+        storage:
+          size: 8Gi #Need to increase for larger models
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        daila: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  daila:
+    akash:
+      profile: daila
+      count: 1
