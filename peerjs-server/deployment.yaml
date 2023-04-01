@@ -4,7 +4,7 @@ version: "2.0"
 services:
   peerjs:
     image: peerjs/peerjs-server:1.0-latest
-    args: ["--path", "/myapp", "--proxied", "true"]
+    args: ["--path", "/myapp", "--proxied", "true"] # more options can be found at https://github.com/peers/peerjs-server#config--cli-options
     expose:
       - port: 9000
         as: 80
