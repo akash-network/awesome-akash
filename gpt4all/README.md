@@ -1,14 +1,8 @@
-<h1 align="center">GPT4All</h1>
-<p align="center">Demo, data and code to train an assistant-style large language model with ~800k GPT-3.5-Turbo Generations based on LLaMa</p>
+# GPT4All
+Demo, data and code to train an assistant-style large language model with ~800k GPT-3.5-Turbo Generations based on LLaMa
 
-<p align="center">
-<a href="https://s3.amazonaws.com/static.nomic.ai/gpt4all/2023_GPT4All_Technical_Report.pdf">:green_book: Technical Report</a>
-</p>
-<p align="center">
-<a href="https://discord.gg/kvmy6dQB">Discord</a>
-</p>
-
-
+[Technical Report](https://s3.amazonaws.com/static.nomic.ai/gpt4all/2023_GPT4All_Technical_Report.pdf)
+[Discord](https://discord.gg/kvmy6dQB)
 
 ![gpt4all-lora-demo](https://user-images.githubusercontent.com/13879686/228352356-de66ca7a-df70-474e-b929-2e3656165051.gif)
 
