@@ -1,0 +1,49 @@
+---
+version: "2.0"
+
+services:
+  stable-diffusion-ui:
+    image: cryptoandcoffee/akash-stable-diffusion-ui:3
+    expose:
+      - port: 9000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    stable-diffusion-ui:
+      resources:
+        cpu:
+          units: 16
+          # For quicker performance of Stable Diffusion, it's recommended to increase the CPU capacity. 
+          # You can try using 32, 64, or 128 units to achieve faster processing. In case you don't receive any bids,
+          # consider lowering the requested CPU capacity. Note that the maximum CPU units allowed are 256.
+        memory:
+          size: 10Gi
+          # Stable Diffusion needs at least 8Gi of memory.
+        storage:
+          size: 32Gi
+          # Stable Diffusion requires at least 25Gi of disk space. 
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        stable-diffusion-ui:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  stable-diffusion-ui:
+    akash:
+      profile: stable-diffusion-ui
+      count: 1
