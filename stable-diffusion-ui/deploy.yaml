@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   stable-diffusion-ui:
-    image: cryptoandcoffee/akash-stable-diffusion-ui:3
+    image: cryptoandcoffee/akash-stable-diffusion-ui:4
     expose:
       - port: 9000
         as: 80
@@ -16,7 +16,7 @@ profiles:
       resources:
         cpu:
           units: 16
-          # For quicker performance of Stable Diffusion, it's recommended to increase the CPU capacity. 
+          # For quicker performance of Stable Diffusion, it's recommended to increase the CPU capacity.
           # You can try using 32, 64, or 128 units to achieve faster processing. In case you don't receive any bids,
           # consider lowering the requested CPU capacity. Note that the maximum CPU units allowed are 256.
         memory:
@@ -24,7 +24,7 @@ profiles:
           # Stable Diffusion needs at least 8Gi of memory.
         storage:
           size: 32Gi
-          # Stable Diffusion requires at least 25Gi of disk space. 
+          # Stable Diffusion requires at least 25Gi of disk space.
   placement:
     akash:
       #######################################################
