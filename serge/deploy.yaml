@@ -1,0 +1,46 @@
+---
+version: "2.0"
+
+services:
+  serge:
+    image: cryptoandcoffee/akash-serge:1
+    expose:
+      - port: 8008
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    serge:
+      resources:
+        cpu:
+          units: 32.0 
+#Higher is better for AI! Be sure to change thread setting in app.
+        memory:
+          size: 28Gi 
+#7B requires about 4.5GB of free RAM
+#13B requires about 12GB free
+#30B requires about 20GB free // 24 not enough
+        storage:
+          size: 25Gi 
+#7B requires about 4.2GB of free RAM
+#13B requires about 8.13GB free
+#30B requires about 20.2GB free
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        serge: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  serge:
+    akash:
+      profile: serge
+      count: 1
