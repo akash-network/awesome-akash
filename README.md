@@ -117,7 +117,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Business
 
- - [Odoo](odoo)
+- [Odoo](odoo)
 
 ### Games
 
@@ -217,6 +217,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Mintr](mintr)
 - [Nextcloud](nextcloud)
 - [owncloud](owncloud)
+- [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
 - [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
