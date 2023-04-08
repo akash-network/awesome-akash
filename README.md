@@ -100,10 +100,12 @@ Awesome DeFi apps you can deploy on Akash
 - [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
-
+- [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Vidulum](vidulum)
+- [Ethereum 2.0](Ethereum_2.0)
+- [POKT Network](pokt_network)
 
 ### Blogging
 
