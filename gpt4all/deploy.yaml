@@ -1,0 +1,47 @@
+---
+version: "2.0"
+
+services:
+  gpt4all:
+    image: cryptoandcoffee/akash-gpt4all:2
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    command:
+      - "./gotty"
+      - "-w"
+      - "./gpt4all/chat/gpt4all-lora-quantized-linux-x86"
+      - "--model"
+      - "gpt4all/chat/gpt4all-lora-quantized.bin"
+      - "-t"
+      - "15" 
+profiles:
+  compute:
+    gpt4all:
+      resources:
+        cpu:
+          units: 16.0 
+        memory:
+          size: 16Gi #Need to increase for larger models
+        storage:
+          size: 8Gi #Need to increase for larger models
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        gpt4all: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  gpt4all:
+    akash:
+      profile: gpt4all
+      count: 1
