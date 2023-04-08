@@ -1,0 +1,31 @@
+FROM ubuntu:18.04
+RUN apt-get update ; apt-get install -y git sudo software-properties-common
+RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
+
+RUN add-apt-repository -y ppa:chris-lea/redis-server ; add-apt-repository -y ppa:bitcoin/bitcoin ; apt update
+RUN apt install -y libdb4.8-dev libdb4.8++-dev libssl-dev libboost-all-dev libminiupnpc-dev libtool autotools-dev redis-server
+RUN apt install -y git npm nodejs
+RUN apt-get install -y apt-transport-https software-properties-common build-essential autoconf pkg-config make gcc g++ screen wget curl ntp fail2ban
+RUN cd ~
+RUN git config --global http.https://gopkg.in.followRedirects true
+RUN git clone https://github.com/88plug/kawpow-pool
+
+EXPOSE 8080
+
+RUN cd kawpow-pool/ ; chmod +x ./install.sh ; ./install.sh
+COPY start.sh /
+
+ENV DAEMON_HOST=
+ENV DAEMON_PORT=
+ENV DAEMON_USER=
+ENV DAEMON_PASS=
+
+ENV WALLET=
+ENV FEE_WALLET=
+ENV FEE_AMOUNT=0.1
+ENV RAVEN_ENABLE=false
+ENV NEOXA_ENABLE=false
+ENV MEOWCOIN_ENABLE=true
+#1% fee
+
+ENTRYPOINT ["./start.sh"]

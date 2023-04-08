@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  peerjs:
+    image: peerjs/peerjs-server:1.0-latest
+    args: ["--path", "/myapp", "--proxied", "true"] # more options can be found at https://github.com/peers/peerjs-server#config--cli-options
+    expose:
+      - port: 9000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    peerjs:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        peerjs:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  peerjs:
+    akash:
+      profile: peerjs
+      count: 1

@@ -20,19 +20,20 @@ profiles:
         storage:
           size: 2.5Gi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
         curve: 
           denom: uakt
-          amount: 3000
+          amount: 10000
 
 deployment:
   curve:
-    westcoast:
+    akash:
       profile: curve
       count: 1 

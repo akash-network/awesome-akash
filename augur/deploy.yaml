@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  augur:
     image: augurproject/augur
     expose:
       - port: 80
@@ -12,7 +12,7 @@ services:
 
 profiles:
   compute:
-    web:
+    augur:
       resources:
         cpu:
           units: 0.1
@@ -21,19 +21,20 @@ profiles:
         storage:
           size: 512Mi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"          
       pricing:
-        web: 
+        augur: 
           denom: uakt
-          amount: 1000
+          amount: 10000
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  augur:
+    akash:
+      profile: augur
       count: 1

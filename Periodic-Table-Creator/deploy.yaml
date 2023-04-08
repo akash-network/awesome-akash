@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  perio:
     image: perioo/perio:v1
     expose:
       - port: 8501
@@ -12,28 +12,29 @@ services:
 
 profiles:
   compute:
-    web:
+    perio:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 1512Mi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        web:
+        perio:
           denom: uakt
-          amount: 3000
+          amount: 10000
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  perio:
+    akash:
+      profile: perio
       count: 1

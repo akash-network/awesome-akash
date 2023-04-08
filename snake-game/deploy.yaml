@@ -20,15 +20,13 @@ services:
         as: 80
         to:
           - global: true
-        accept:
-          - snakegame.smartwave.tk
 
 profiles:
   compute:
     snake:
       resources:
         cpu:
-          units: 0.5
+          units: 0.25
         memory:
           size: 512Mi
         storage:
@@ -36,32 +34,33 @@ profiles:
     mongo:
       resources:
         cpu:
-          units: 0.5
+          units: 0.25
         memory:
           size: 512Mi
         storage:
           size: 128Mi
   placement:
-    westcoast:
+    akash:
       attributes:
-        organization: ovrclk.com
+        organization: akash.network
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
         snake: 
           denom: uakt
-          amount: 9000
+          amount: 10000
         mongo: 
           denom: uakt
-          amount: 5000
+          amount: 10000
 
 deployment:
   snake:
-    westcoast:
+    akash:
       profile: snake
       count: 1
   mongo:
-    westcoast:
+    akash:
       profile: mongo
       count: 1

@@ -1,0 +1,37 @@
+version: "2.0"
+services:
+  keycloak-iam:
+    image: quay.io/keycloak/keycloak:20.0.0
+    env:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=changeme
+    args:
+      - 'start-dev'
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    keycloak-iam:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 512Mi
+  placement:
+    dcloud:
+      pricing:
+        keycloak-iam:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  keycloak-iam:
+    dcloud:
+      profile: keycloak-iam
+      count: 1
+

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  pancakeswap:
     image: yuravorobei/pancake-swap
     expose:
       - port: 8080
@@ -12,26 +12,29 @@ services:
 
 profiles:
   compute:
-    web:
+    pancakeswap:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 1Gi
   placement:
-    westcoast:
+    akash:
+      attributes:
+        host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        web: 
+        pancakeswap: 
           denom: uakt
-          amount: 3000
+          amount: 10000
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  pancakeswap:
+    akash:
+      profile: pancakeswap
       count: 1

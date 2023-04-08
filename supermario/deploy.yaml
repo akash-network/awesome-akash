@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  supermario:
     image: pengbai/docker-supermario 
     expose:
       - port: 8080
@@ -12,27 +12,30 @@ services:
 
 profiles:
   compute:
-    web:
+    supermario:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
           size: 512Mi
         storage:
           size: 512Mi
   placement:
-    westcoast:
+    akash:
+      attributes:
+        host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        web: 
+        supermario: 
           denom: uakt
-          amount: 3000
+          amount: 10000
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  supermario:
+    akash:
+      profile: supermario
       count: 1
 

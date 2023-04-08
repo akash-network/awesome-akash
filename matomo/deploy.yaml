@@ -1,0 +1,69 @@
+---
+version: "2.0"
+
+services:
+  db:
+    image: mysql:8.0.25
+    env:
+      - MYSQL_ROOT_PASSWORD=awdnadpwbdnaiosd
+      - MYSQL_DATABASE=matomo
+      - MYSQL_USER=matomo
+      - MYSQL_PASSWORD=mdabn9aodw908adsb9uoawd978asbi
+
+    expose:
+      - port: 3306
+        to:
+          - servcie: matomo
+  matomo:
+    image: matomo:apache
+    depends-on:
+        - db
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+
+profiles:
+  compute:
+    db:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    matomo:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        db:
+          denom: uakt
+          amount: 10000
+        matomo:
+          denom: uakt
+          amount: 10000
+deployment:
+  db:
+    akash:
+      profile: db
+      count: 1
+  matomo:
+    akash:
+      profile: matomo
+      count: 1

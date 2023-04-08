@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  web:
+  qbittorrent:
     image: ghcr.io/spacepotahto/qbittorrent:1.0.0
     expose:
       - port: 8080
@@ -20,29 +20,30 @@ services:
 
 profiles:
   compute:
-    web:
+    qbittorrent:
       resources:
         cpu:
-          units: 1
+          units: 1.0
         memory:
           size: 1Gi
         storage:
           # Specify [<Expected Total Files Download Size> + 1]Gi
           size: 2Gi
   placement:
-    westcoast:
+    akash:
       attributes:
         host: akash
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        web: 
+        qbittorrent: 
           denom: uakt
-          amount: 1000
+          amount: 10000
 
 deployment:
-  web:
-    westcoast:
-      profile: web
+  qbittorrent:
+    akash:
+      profile: qbittorrent
       count: 1

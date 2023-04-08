@@ -1,0 +1,45 @@
+---
+version: "2.0"
+
+services:
+  alpaca-cpp:
+    image: cryptoandcoffee/akash-alpaca-cpp:1
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    command:
+      - "./gotty"
+      - "-w"
+      - "./chat"
+      - "-t"
+      - "15"
+profiles:
+  compute:
+    alpaca-cpp:
+      resources:
+        cpu:
+          units: 16.0 
+        memory:
+          size: 16Gi #Need to increase for larger models
+        storage:
+          size: 8Gi #Need to increase for larger models
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        alpaca-cpp: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  alpaca-cpp:
+    akash:
+      profile: alpaca-cpp
+      count: 1

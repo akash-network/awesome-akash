@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  librespeed:
+    image: adolfintel/speedtest
+    expose:
+      - port: 80
+        to:
+          - global: true
+    env:
+      - MODE=standalone
+      - TITLE=Akash Librespeed Test
+      - WEBPORT=80
+      #- TELEMETRY=
+      #- ENABLE_ID_OBFUSCATION=
+      #- REDACT_IP_ADDRESSES=
+      #- PASSWORD=
+      #- EMAIL=
+      #- IPINFO_APIKEY=
+      #- DISABLE_IPINFO=
+      #- DISTANCE=
+      #Check https://github.com/librespeed/speedtest/blob/master/doc_docker.md#standalone-mode for detailed descriptions
+profiles:
+  compute:
+    librespeed:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      pricing:
+        librespeed:
+          denom: uakt
+          amount: 10000
+deployment:
+  librespeed:
+    akash:
+      profile: librespeed
+      count: 1

@@ -1,0 +1,31 @@
+---
+version: "2.0"
+
+services:
+  fast:
+    image: ddooo/fast
+    expose:
+      - port: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    fast:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      pricing:
+        fast:
+          denom: uakt
+          amount: 10000
+deployment:
+  fast:
+    akash:
+      profile: fast
+      count: 1
