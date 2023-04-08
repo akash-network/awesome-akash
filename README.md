@@ -14,6 +14,15 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
+### AI
+
+- [Alpaca.cpp](alpaca-cpp)
+- [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [Daila](daila)
+- [GPT4ALL](gpt4all)
+- [Serge](serge)
+- [Stable Diffusion](stable-diffusion-ui)
+
 ### Blogging
 
 - [SteemCN](steemcn)
@@ -91,10 +100,12 @@ Awesome DeFi apps you can deploy on Akash
 - [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
-
+- [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Vidulum](vidulum)
+- [Ethereum 2.0](Ethereum_2.0)
+- [POKT Network](pokt_network)
 
 ### Blogging
 
@@ -108,7 +119,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Business
 
- - [Odoo](odoo)
+- [Odoo](odoo)
 
 ### Games
 
@@ -121,6 +132,16 @@ Awesome DeFi apps you can deploy on Akash
 - [MemoryGame](MemoryGame)
 - [DOOM](doom)
 - [Snake Game](snake-game)
+
+### Game Servers
+
+- [Counter-Strike: Global Offensive](csgo)
+- [Holdfast: Nations At War](holdfastnaw)
+- [Mordhau](mordhau)
+- [Squad](squad)
+- [SteamCMD](steamcmd)
+- [SteamPipe](steampipe)
+- [Team Fortress 2](tf2)
 
 ### Hosting
 
@@ -198,15 +219,18 @@ Awesome DeFi apps you can deploy on Akash
 - [Mintr](mintr)
 - [Nextcloud](nextcloud)
 - [owncloud](owncloud)
+- [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
 - [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
+- [Webtop](webtop)
 - [Zammad](zammad)
 - [Budibase](budibase)
 
 ### Network
 
 - [SoftEther VPN](softether-vpn)
+- [Sentinel dVPN node](Sentinel-dVPN-node)
 
 ### Databases
 

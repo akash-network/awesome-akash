@@ -1,0 +1,104 @@
+version: "2.0"
+
+#endpoints: 
+# myendpoint:
+#   kind: ip
+# Remove comment to enable IP lease
+
+services:
+  valheim:
+    image: cm2network/valheim
+    expose:
+      - port: 27016
+        as: 27016
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27021
+        as: 27021
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27016
+        as: 27016
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27021
+        as: 27021
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 7788
+        as: 7788
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27166
+        as: 27166
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 21115
+        as: 21115
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 15001
+        as: 15001
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 7778
+        as: 7778
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 27016
+        as: 27016
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+      - port: 2458
+        as: 2458
+        to:
+          - global: true
+#            ip: "myendpoint" #Remove comment to enable IP lease
+
+    env:
+      - SERVER_PORT=2458
+
+profiles:
+  compute:
+    valheim:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 8Gi
+        storage:
+          size: 32Gi 
+  placement:
+    akash:
+      attributes:
+        host: akash
+#        ip-lease: true #Remove comment to enable IP lease
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        valheim:
+          denom: uakt
+          amount: 100000
+deployment:
+  valheim:
+    akash:
+      profile: valheim
+      count: 1
