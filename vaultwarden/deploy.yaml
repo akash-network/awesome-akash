@@ -1,0 +1,45 @@
+---
+version: '2.0'
+services:
+  vaultwarden:
+    image: 'vaultwarden/server:alpine'
+    expose:
+      - port: 80
+        as: 80
+        accept:
+          - vault.domain.tld
+        to:
+          - global: true
+    env:
+      - ADMIN_TOKEN=your-freshly-generated-token
+    params:
+      storage:
+        data:
+          mount: /mnt/vw-data
+          readOnly: false
+profiles:
+  compute:
+    vaultwarden:
+      resources:
+        cpu:
+          units: 0.3
+        memory:
+          size: 256Mi
+        storage:
+          - size: 8Mi
+          - name: data
+            size: 256Mi
+            attributes:
+              persistent: true
+              class: beta2
+  placement:
+    eastcoast:
+      pricing:
+        vaultwarden:
+          denom: uakt
+          amount: 10000
+deployment:
+  vaultwarden:
+    eastcoast:
+      profile: vaultwarden
+      count: 1

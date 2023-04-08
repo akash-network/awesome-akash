@@ -226,6 +226,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Zammad](zammad)
 - [Budibase](budibase)
 - [Keycloak IAM](keycloak-iam)
+- [vaultwarden](vaultwarden)
 
 ### Network
 
