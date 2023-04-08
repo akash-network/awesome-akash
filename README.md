@@ -225,6 +225,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Webtop](webtop)
 - [Zammad](zammad)
 - [Budibase](budibase)
+- [Keycloak IAM](keycloak-iam)
 
 ### Network
 
