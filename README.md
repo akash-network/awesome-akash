@@ -163,6 +163,10 @@ Awesome DeFi apps you can deploy on Akash
 - [Whoogle Search](whoogle-search)
 - [Presearch](presearch)
 
+### Search Engine
+
+- [YaCy](yacy)
+
 ### Mining
 
 - [Chia Bladebit](chia-bladebit)
