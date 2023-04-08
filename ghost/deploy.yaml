@@ -3,17 +3,21 @@ version: "2.0"
 
 services:
   ghost:
-    image: ghost:4.20.4
+    image: ghost:5.12.3
     expose:
       - port: 2368
         as: 80
         to:
           - global: true
-        # change mysite123.com to yours
-        #accept:
-          #- mysite123.com
-    #env:
-      #- "url=http://mysite123.com"
+        accept:
+          - changeme.com
+    env:
+      - url=http://changeme.com
+      - NODE_ENV=production
+      # ref. https://ghost.org/docs/config/#configuration-options
+      - database__client=sqlite3
+      - database__connection__filename=content/data/ghost.db
+
 profiles:
   compute:
     ghost:
@@ -33,7 +37,7 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
           - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        ghost: 
+        ghost:
           denom: uakt
           amount: 10000
 

@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   chia:
-    image: cryptoandcoffee/akash-chia:254
+    image: cryptoandcoffee/akash-chia:316
     expose:
       - port: 8080
         as: 80
@@ -12,12 +12,16 @@ services:
           - global: true
     env:
     #############################REQUIRED##############################
-      - VERSION=1.5.0
+      - VERSION=1.6.0
      #Always check https://github.com/Chia-Network/chia-blockchain/releases
       - CONTRACT=
       - FARMERKEY=
       - PLOTTER=madmax
      #Choose your plotter software - madmax, bladebit, bladebit-disk
+      - BUCKETS=256
+      - PLOT_SIZE=32
+      - PORT=8444
+     #Network port (default = 8444, chives = 9699, mmx = 11337)
       - FINAL_LOCATION=local
      #Set to "local" to access finished plots through web interface.
      #Set to "upload" and finished plots will be uploaded to a SSH destination like user@ip:/home/user/plots

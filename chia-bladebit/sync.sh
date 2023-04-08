@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+export SSHPASS=${REMOTE_PASS}
 echo "Check this every 15 seconds"
 for (( ; ; )); do
 

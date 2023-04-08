@@ -1,0 +1,132 @@
+---
+version: "2.0"
+
+services:
+  kawpow-pool:
+    image: cryptoandcoffee/akash-kawpow-pool:9
+    expose:
+      - port: 17117
+        to:
+          - service: meowcoin
+      #Pool API
+      - port: 8788
+        to:
+          - global: true
+      #P2P Port
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+      #Web UI Port
+      - port: 10001
+        as: 10001
+        to:
+          - global: true
+      #Difficulty: 0.001
+      - port: 10002
+        as: 10002
+        to:
+          - global: true
+      #Difficulty: 0.01
+      - port: 10003
+        as: 10003
+        to:
+          - global: true
+      #Difficulty: 0.1
+      - port: 10004
+        as: 10004
+        to:
+          - global: true
+      #Difficulty: 0.5
+      - port: 10005
+        as: 10005
+        to:
+          - global: true
+      #Difficulty: 1
+      - port: 10006
+        as: 10006
+        to:
+          - global: true
+      #Difficulty: 2
+      - port: 10007
+        as: 10007
+        to:
+          - global: true
+      #Difficulty: 4
+      - port: 10008
+        as: 10008
+        to:
+          - global: true
+      #Difficulty: 0.5
+    env:
+      - RAVEN_ENABLE=false
+      - NEOXA_ENABLE=false
+      - MEOWCOIN_ENABLE=true
+      - WALLET=
+      - FEE_WALLET=
+      - FEE_AMOUNT=0.1
+      - DAEMON_HOST=meowcoin
+      - DAEMON_PORT=9766
+      - DAEMON_USER=user1
+      - DAEMON_PASS=pass1
+  meowcoin:
+    image: cryptoandcoffee/akash-meowcoin:3
+    expose:
+      - port: 9766
+        to:
+          - service: kawpow-pool
+    env:
+      - PRIVATE_KEY=
+profiles:
+  compute:
+    kawpow-pool:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 8Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+    meowcoin:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 10Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        kawpow-pool:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+        meowcoin:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  kawpow-pool:
+    akash:
+      profile: kawpow-pool
+      count: 1
+  meowcoin:
+    akash:
+      profile: meowcoin
+      count: 1
