@@ -16,7 +16,11 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### AI
 
+- [Alpaca.cpp](alpaca-cpp)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [Daila](daila)
+- [GPT4ALL](gpt4all)
+- [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
 
 ### Blogging
@@ -37,6 +41,12 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 ### Chat
 
 - [Mattermost](mattermost)
+
+### Machine Learning
+
+- [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
+- [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
+- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
 
 ### Continuous Integration
 
@@ -97,10 +107,13 @@ Awesome DeFi apps you can deploy on Akash
 - [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
-
+- [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Vidulum](vidulum)
+- [Ethereum 2.0](Ethereum_2.0)
+- [POKT Network](pokt_network)
+- [Bitcoin Cash Node](bitcoincashnode)
 
 ### Blogging
 
@@ -114,7 +127,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Business
 
- - [Odoo](odoo)
+- [Odoo](odoo)
 
 ### Games
 
@@ -125,7 +138,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Minesweeper](minesweeper)
 - [Tetris2](tetris2)
 - [MemoryGame](MemoryGame)
-- [DOOM](doom)
 - [Snake Game](snake-game)
 
 ### Game Servers
@@ -158,6 +170,10 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Whoogle Search](whoogle-search)
 - [Presearch](presearch)
+
+### Search Engine
+
+- [YaCy](yacy)
 
 ### Mining
 
@@ -214,12 +230,15 @@ Awesome DeFi apps you can deploy on Akash
 - [Mintr](mintr)
 - [Nextcloud](nextcloud)
 - [owncloud](owncloud)
+- [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
 - [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
 - [Webtop](webtop)
 - [Zammad](zammad)
 - [Budibase](budibase)
+- [Keycloak IAM](keycloak-iam)
+- [vaultwarden](vaultwarden)
 
 ### Network
 

@@ -10,7 +10,7 @@ services:
     env:
       - "MNEMONIC_BASE64=" # Mnemonic phrase encrypted with BASE64.
       - "MONIKER=dVPN on Akash Network v2RAY" # Your dVPN node name.
-      - "VERSION=v0.6.0" # dVPN binary file version.
+      - "VERSION=v0.6.5" # dVPN binary file version.
       - "LISTEN_PORT=3333" # v2RAY listen port
       - "REMOTE_PORT=8585" # Remote port for are connection sentinel client service.
       - "IPV4_ADDRESS=" # Node static IP address ( of leases section )
