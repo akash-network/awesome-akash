@@ -2,7 +2,7 @@
 
 This is an SDL file that will deploy a full listening handshake node onto akash.
 
-[Link to Akash SDL File](https://github.com/akash-network/awesome-akash/blob/master/handshake)
+[Link to Akash SDL File](https://github.com/akash-network/awesome-akash/blob/master/handshake/deploy.yaml)
 
 Deploy to Akash: 
 
