@@ -32,14 +32,13 @@ More information related to handshake node configuration types: https://hsd-dev.
 
 # Full Node that allows inbound connections from other full and light clients like hnsd
 `<IP address>` MUST be your external IP address, publicly accessible by the internet.
-
+```
 hsd \
 --bip37=true   \
 --listen=true   \
 --public-host=`<IP address>` \
 --public-port=12038  \
 --max-inbound=1000	
-
-
+```
 
 
