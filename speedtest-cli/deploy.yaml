@@ -1,0 +1,31 @@
+---
+version: "2.0"
+
+services:
+  speedtest-cli:
+    image: cryptoandcoffee/akash-speedtest-cli
+    expose:
+      - port: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    speedtest-cli:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      pricing:
+        speedtest-cli:
+          denom: uakt
+          amount: 10000
+deployment:
+  speedtest-cli:
+    akash:
+      profile: speedtest-cli
+      count: 1

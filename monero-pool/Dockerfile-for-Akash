@@ -1,0 +1,75 @@
+FROM debian:latest
+#FROM ubuntu:22.04
+#For Monero build
+RUN apt-get update ; apt-get dist-upgrade -yqq ; apt-get install -yqq git build-essential cmake pkg-config libboost-all-dev libssl-dev libzmq3-dev libunbound-dev libsodium-dev libunwind8-dev liblzma-dev libreadline6-dev libldns-dev libexpat1-dev doxygen graphviz libpgm-dev qttools5-dev-tools libhidapi-dev libusb-1.0-0-dev libprotobuf-dev protobuf-compiler libudev-dev aria2
+#For monero-pool build
+RUN apt install -yqq liblmdb-dev libevent-dev libjson-c-dev uuid-dev
+#Get Monero
+RUN git clone https://github.com/monero-project/monero
+#Build Monero
+RUN cd monero ; git submodule update --init --force ; make -j8 release
+RUN cd /monero/build/Linux/master/release/bin/
+
+#RUN pwd ; ls -la
+#RUN cd /monero/build/Linux/master/release/bin
+#Secure Wallet
+RUN echo "\
+$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 128 | tr -d '\n'; echo)\
+" >> /monero/build/Linux/master/release/bin/commands
+
+RUN echo "\
+$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 128 | tr -d '\n'; echo)\
+" >> /monero/build/Linux/master/release/bin/commands
+
+RUN tail -n 1 /monero/build/Linux/master/release/bin/commands >> /monero/build/Linux/master/release/bin/commands
+RUN echo "1" >> /monero/build/Linux/master/release/bin/commands
+RUN echo "0" >> /monero/build/Linux/master/release/bin/commands
+RUN cat /monero/build/Linux/master/release/bin/commands
+RUN cp /monero/build/Linux/master/release/bin/* /usr/local/bin
+
+
+# Build deps for Monero Pool
+RUN apt-get install -y liblmdb-dev libevent-dev libjson-c-dev uuid-dev xxd curl
+
+# Build Monero Pool
+RUN mkdir -p /root/monero-pool
+RUN cd /root/monero-pool && git clone --depth=1 https://github.com/jtgrassie/monero-pool.git .
+RUN cd /root/monero-pool && MONERO_ROOT=/monero make -j8 release
+
+#RUN apt-get install -y tini curl libgssapi-krb5-2 liblmdb0 libevent-2.1-7 libjson-c4 uuid libunbound8 libboost-filesystem1.71.0 libboost-thread1.71.0 libboost-regex1.71.0 libhidapi-libusb0 libevent-core-2.1-7 libsodium23 && apt-get clean
+
+ENV MONERO_ARGS=
+ENV MONERO_WALLET_ARGS=
+ENV POOL_WALLET=
+ENV POOL_WALLET_SEED=""
+ENV FEE_WALLET=
+ENV POOL_FEE=0.01
+#1% Fee
+ENV PAYMENT_THRESHOLD=0.001
+ENV FAST_SYNC=true
+ENV LOCAL=false
+ENV VERIFY=true
+#Use official Monero bootstrap, saves 24+ hours.
+
+# Copy resulting binaries & conf to /usr/local/{bin|etc}
+
+RUN cp /root/monero-pool/build/release/monero-pool /usr/local/bin/
+RUN cp /root/monero-pool/build/release/pool.conf /usr/local/etc/
+
+
+
+#CMD [ "monerod", \
+#		"--p2p-bind-ip=0.0.0.0", \
+#		"--p2p-bind-port=18080", \
+#		"--rpc-bind-ip=0.0.0.0", \
+#		"--rpc-bind-port=18081", \
+#		"--non-interactive", \
+#		"--confirm-external-bind" ]
+
+COPY run.sh /usr/local/bin
+#COPY data/blockchain.raw /data/
+ENTRYPOINT ["/bin/bash", "run.sh"]
+#ENTRYPOINT ["tini", "--", "/usr/local/bin/run.sh"]
+#ENTRYPOINT ["monerod"]
+#RUN aria2c --summary-interval=5 -c -s 16 -x 16 -k 64M -j 1 https://downloads.getmonero.org/blockchain.raw
+#RUN monero-blockchain-import --input-file blockchain.raw
