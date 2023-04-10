@@ -1,22 +1,24 @@
----
 version: '2.0'
 endpoints:
- hnsep1: #step1# change this to a unique name, leave the colon.
+ #step1 change this to a unique name, leave the colon.
+ hnsep1:
    kind: ip
 services:
   hnsnode:
-     image: 'rithvikvibhu/hsd-with-ip:latest'
+     image: 'wirewrex/hsd_with_ip:latest'
      expose:
       - port: 12038
         as: 12038
         to:
           - global: true
-            ip: hnsep1 #step2# use the same unique name here that you created above, no colon.
+            #step2 use the same unique name here that you created above, no colon.
+            ip: hnsep1
      command:
       - hsd
       - '--bip37=true'
       - '--listen=true'
-      - '--public-host=0.0.0.0' #step3# add your static IP here after you deploy and the handshake blockchain has synced. (Update Deployment)
+      # step3 add your static IP here after you deploy and the handshake blockchain has synced. (Update Deployment)
+      - '--public-host=0.0.0.0'
       - '--public-port=12038'
       - '--max-inbound=5000'
      params:
@@ -47,7 +49,7 @@ profiles:
       pricing:
         hnsnode:
           denom: uakt
-          amount: 1000
+          amount: 3500
 deployment:
   hnsnode:
     dcloud:
