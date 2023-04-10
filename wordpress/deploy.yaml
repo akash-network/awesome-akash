@@ -13,7 +13,7 @@ services:
       - DB_PASSWORD=wordpress
       - DB_NAME=wordpress
       - DB_USER=wordpress
-      # - WORDPRESS_SITE_URL=exmaple.com
+      # - WORDPRESS_SITE_URL=example.com
       - FS_METHOD=direct
       - WP_REDIS_HOST=redis
     expose:
@@ -21,7 +21,7 @@ services:
         http_options:
           max_body_size: 104857600
         # accept: 
-        # - "exmaple.com"
+        # - "example.com"
         to:
           - global: true
     params:
