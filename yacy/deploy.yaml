@@ -1,0 +1,46 @@
+---
+version: "2.0"
+
+services:
+  yacy:
+    image: yacy/yacy_search_server:latest
+    expose:
+      - port: 8090
+        as: 80
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /opt/yacy_search_server/DATA
+profiles:
+  compute:
+    yacy-profile:
+      resources:
+        cpu:
+          units: 8.0
+        memory:
+          size: 16Gi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        yacy-profile:
+          denom: uakt
+          amount: 100000
+deployment:
+  yacy:
+    akash:
+      profile: yacy-profile
+      count: 1
