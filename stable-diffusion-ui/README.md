@@ -1,43 +1,30 @@
 # Easy Diffusion 2.5
-### The easiest way to install and use [Stable Diffusion](https://github.com/CompVis/stable-diffusion) on your own computer.
+The easiest way to install and use [Stable Diffusion](https://github.com/CompVis/stable-diffusion) on Akash!
 
-Does not require technical knowledge, does not require pre-installed software. 1-click install, powerful features, friendly community.
+## Easy for new users:
+![Screenshot of the initial UI](https://user-images.githubusercontent.com/844287/217043152-29454d15-0387-4228-b70d-9a4b84aeb8ba.png)
 
-[Installation guide](#step-1-download-and-extract-the-installer) | [Troubleshooting guide](https://github.com/cmdr2/stable-diffusion-ui/wiki/Troubleshooting) | <sub>[![Discord Server](https://img.shields.io/discord/1014774730907209781?label=Discord)](https://discord.com/invite/u9yhsFmEkB)</sub> <sup>(for support queries, and development discussions)</sup>
 
-![t2i](https://raw.githubusercontent.com/Stability-AI/stablediffusion/main/assets/stable-samples/txt2img/768/merged-0006.png)
+## Powerful features for advanced users:
+![Screenshot of advanced settings](https://user-images.githubusercontent.com/844287/217042588-fc53c975-bacd-4a9c-af88-37408734ade3.png)
 
-# Step 1: Download and extract the installer
-Click the download button for your operating system:
 
-<p float="left">
-  <a href="https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.15/stable-diffusion-ui-windows.zip"><img src="https://github.com/cmdr2/stable-diffusion-ui/raw/main/media/download-win.png" width="200" /></a>
-  <a href="https://github.com/cmdr2/stable-diffusion-ui/releases/download/v2.5.15/stable-diffusion-ui-linux.zip"><img src="https://github.com/cmdr2/stable-diffusion-ui/raw/main/media/download-linux.png" width="200" /></a>
-</p>
+## Live Preview
+Useful for judging (and stopping) an image quickly, without waiting for it to finish rendering.
 
-## On Windows:
-1. Unzip/extract the folder `stable-diffusion-ui` which should be in your downloads folder, unless you changed your default downloads destination.
-2. Move the `stable-diffusion-ui` folder to your `C:` drive (or any other drive like `D:`, at the top root level). `C:\stable-diffusion-ui` or `D:\stable-diffusion-ui` as examples. This will avoid a common problem with Windows (file path length limits).
-## On Linux:
-1. Unzip/extract the folder `stable-diffusion-ui` which should be in your downloads folder, unless you changed your default downloads destination.
-2. Open a terminal window, and navigate to the `stable-diffusion-ui` directory.
+![live-512](https://user-images.githubusercontent.com/844287/192097249-729a0a1e-a677-485e-9ccc-16a9e848fabe.gif)
 
-# Step 2: Run the program
-## On Windows: 
-Double-click `Start Stable Diffusion UI.cmd`.
-If Windows SmartScreen prevents you from running the program click `More info` and then `Run anyway`.
-## On Linux: 
-Run `./start.sh` (or `bash start.sh`) in a terminal.
+## Task Queue
+![Screenshot of task queue](https://user-images.githubusercontent.com/844287/217043984-0b35f73b-1318-47cb-9eed-a2a91b430490.png)
 
-The installer will take care of whatever is needed. If you face any problems, you can join the friendly [Discord community](https://discord.com/invite/u9yhsFmEkB) and ask for assistance.
 
-# Step 3: There is no Step 3. It's that simple!
+# System Requirements
+1. Windows 10/11, or Linux. Experimental support for Mac is coming soon.
+2. An NVIDIA graphics card, preferably with 4GB or more of VRAM. If you don't have a compatible graphics card, it'll automatically run in the slower "CPU Mode".
+3. Minimum 8 GB of RAM and 25GB of disk space.
 
-**To Uninstall:** Just delete the `stable-diffusion-ui` folder to uninstall all the downloaded packages.
+You don't need to install or struggle with Python, Anaconda, Docker etc. The installer will take care of whatever is needed.
 
-----
-
-# Easy for new users, powerful features for advanced users
 ## Features:
 
 ### User experience
@@ -89,33 +76,6 @@ The installer will take care of whatever is needed. If you face any problems, yo
 - **Developer Console**: A developer-mode for those who want to modify their Stable Diffusion code, and edit the conda environment.
 
 **(and a lot more)**
-
-----
-
-## Easy for new users:
-![Screenshot of the initial UI](https://user-images.githubusercontent.com/844287/217043152-29454d15-0387-4228-b70d-9a4b84aeb8ba.png)
-
-
-## Powerful features for advanced users:
-![Screenshot of advanced settings](https://user-images.githubusercontent.com/844287/217042588-fc53c975-bacd-4a9c-af88-37408734ade3.png)
-
-
-## Live Preview
-Useful for judging (and stopping) an image quickly, without waiting for it to finish rendering.
-
-![live-512](https://user-images.githubusercontent.com/844287/192097249-729a0a1e-a677-485e-9ccc-16a9e848fabe.gif)
-
-## Task Queue
-![Screenshot of task queue](https://user-images.githubusercontent.com/844287/217043984-0b35f73b-1318-47cb-9eed-a2a91b430490.png)
-
-
-
-# System Requirements
-1. Windows 10/11, or Linux. Experimental support for Mac is coming soon.
-2. An NVIDIA graphics card, preferably with 4GB or more of VRAM. If you don't have a compatible graphics card, it'll automatically run in the slower "CPU Mode".
-3. Minimum 8 GB of RAM and 25GB of disk space.
-
-You don't need to install or struggle with Python, Anaconda, Docker etc. The installer will take care of whatever is needed.
 
 ----
 
