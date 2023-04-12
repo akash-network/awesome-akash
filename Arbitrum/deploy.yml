@@ -5,7 +5,7 @@ services:
   app:
     image: offchainlabs/arb-node:v1.4.5-e97c1a4
     args:
-      - '--l1.url=https://mainnet.infura.io/v3/944c5f677e68491594a89a039787b64f'
+      - '--l1.url=' #Ethereum node RPC address
 
     expose:
       - port: 8545
