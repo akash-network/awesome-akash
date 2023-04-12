@@ -68,6 +68,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [MySQL](MySQL)
 - [CouchDB](couchdb)
 - [InfluxDB](influxdb)
+- [SurrealDB](SurrealDB)
 
 ### DeFi
 
@@ -113,6 +114,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
 - [Bitcoin Cash Node](bitcoincashnode)
+- [Handshake](handshake)
 
 ### Blogging
 
