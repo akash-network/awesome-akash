@@ -19,6 +19,10 @@ services:
         to:
           - global: true
             ip: your_endpoint_name # Specify the endpoint name from line 4
+    params:
+      storage:
+        data:
+          mount: /root/
 profiles:
   compute:
     node:
@@ -28,7 +32,12 @@ profiles:
         memory:
           size: 4Gi
         storage:
+        - size: 1Gi 
+        - name: data
           size: 50Gi
+          attributes:
+            persistent: true
+            class: beta3 #beta1 - HDD, beta2 - SSD, beta3 - NVMI
 
 
   placement:
