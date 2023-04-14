@@ -17,6 +17,10 @@ services:
       - port: 8547
         to:
           - global: true
+    params:
+      storage:
+        data:
+          mount: /root/.arbitrum/
 profiles:
   compute:
     app:
@@ -26,7 +30,12 @@ profiles:
         memory:
           size: 5Gi
         storage:
+        - size: 1Gi
+        - name: data
           size: 300Gi
+          attributes:
+              persistent: true
+              class: beta3
           
   placement:
     akash: 
