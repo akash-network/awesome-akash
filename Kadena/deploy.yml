@@ -34,12 +34,10 @@ profiles:
         storage:
         - size: 1Gi 
         - name: data
-          size: 50Gi
+          size: 100Gi
           attributes:
             persistent: true
             class: beta3 #beta1 - HDD, beta2 - SSD, beta3 - NVMI
-
-
   placement:
     akash:
       pricing:
