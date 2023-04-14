@@ -113,6 +113,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
+- [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
 - [Fuse Netowork Node](fuse-network-node)
