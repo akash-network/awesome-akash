@@ -115,6 +115,7 @@ Awesome DeFi apps you can deploy on Akash
 - [POKT Network](pokt_network)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
+- [Fuse Netowork Node](fuse-network-node)
 
 ### Blogging
 
