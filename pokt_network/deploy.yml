@@ -25,17 +25,17 @@ services:
     
     expose:
       - port: 8081
-        as: 8081
         to:
-         - global: true 
+         - global: true
+      - port: 8443
+        to:
+         - global: true
       - port: 26656
-        as: 26656
         to:
-         - global: true 
+         - global: true
       - port: 22
-        as: 22
         to:
-         - global: true 
+         - global: true
 
 profiles:
   compute:
