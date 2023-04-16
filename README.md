@@ -42,6 +42,12 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [Mattermost](mattermost)
 
+### Machine Learning
+
+- [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
+- [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
+- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+
 ### Continuous Integration
 
 - [Jenkins](jenkins)
@@ -63,6 +69,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [CouchDB](couchdb)
 - [InfluxDB](influxdb)
 - [SecretMessage](SecretMessage)
+- [SurrealDB](SurrealDB)
 
 ### DeFi
 
@@ -108,6 +115,8 @@ Awesome DeFi apps you can deploy on Akash
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
 - [Bitcoin Cash Node](bitcoincashnode)
+- [Handshake](handshake)
+- [Fuse Netowork Node](fuse-network-node)
 
 ### Blogging
 

@@ -12,7 +12,7 @@ services:
       - "ADDRESS=" # Account address;
       - "CHAINS_LINK=" # Link to download chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form;
       - "LINK_SNAPSHOT=" # Link to network snapshot https://docs.pokt.network/node/setup/#download-snapshot ;
-      - "SEEDS=" # Set seeds address: https://docs.pokt.network/node/seeds/ ;
+      - "SEEDS=" # Set seeds address https://docs.pokt.network/node/seeds/ ;
    # params:
    #   storage:
    #     data:
@@ -21,8 +21,7 @@ services:
       - "bash"
       - "-c"
     args:
-      - "apt-get update && apt-get upgrade -y;apt-get install -y curl;
-         curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt_network/main.sh | bash"   
+      - "apt-get update && apt-get upgrade -y;apt-get install -y curl; curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt_network/main.sh | bash"   
     
     expose:
       - port: 8081
@@ -47,12 +46,12 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          size: 500Gi 
+          size: 600Gi 
         #- name: data
-        #  size: 500Gi
+        #  size: 600Gi
         #   attributes:
         #    persistent: true
-        #     class: beta3
+        #    class: beta3
   placement:
     akash: 
       pricing:
