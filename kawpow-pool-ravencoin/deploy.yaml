@@ -1,0 +1,112 @@
+---
+version: "2.0"
+
+services:
+  kawpow-pool:
+    image: cryptoandcoffee/akash-kawpow-pool:9
+    expose:
+      - port: 17117
+        to:
+          - service: ravencoin
+      #Pool API
+      - port: 8767
+        to:
+          - global: true
+      #P2P Port
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+      #Web UI Port
+      - port: 10008
+        as: 10008
+        to:
+          - global: true
+      #Difficulty: 0.05
+      - port: 10016
+        as: 10016
+        to:
+          - global: true
+      #Difficulty: 0.10
+      - port: 10032
+        as: 10032
+        to:
+          - global: true
+      #Difficulty: 0.20
+      - port: 10256
+        as: 10256
+        to:
+          - global: true
+      #Difficulty: 1024000000
+    env:
+      - RAVEN_ENABLE=true
+      - NEOXA_ENABLE=false
+      - MEOWCOIN_ENABLE=false
+      - WALLET=
+      - FEE_WALLET=
+      - FEE_AMOUNT=0.1
+      - DAEMON_HOST=ravencoin
+      - DAEMON_PORT=8766
+      - DAEMON_USER=user1
+      - DAEMON_PASS=pass1
+  ravencoin:
+    image: cryptoandcoffee/akash-ravencoin:2
+    expose:
+      - port: 8766
+        to:
+          - service: kawpow-pool
+    env:
+      - PRIVATE_KEY=
+profiles:
+  compute:
+    kawpow-pool:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 8Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+    ravencoin:
+      resources:
+        cpu:
+          units: 2
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 4Gi
+          #Min 8Gi for kawpow-pool / Max 512Gi
+        storage:
+          size: 64Gi
+          #Current blockchain size is > 144Gi
+          #Max 32Ti
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        kawpow-pool:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+        ravencoin:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  kawpow-pool:
+    akash:
+      profile: kawpow-pool
+      count: 1
+  ravencoin:
+    akash:
+      profile: ravencoin
+      count: 1

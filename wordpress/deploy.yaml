@@ -3,28 +3,59 @@ version: "2.0"
 
 services:
   wordpress:
-    image: wordpress 
+    image: trafex/wordpress:6.1
+    depends_on:
+    - db
+    volumes:
+      - "site-data:/var/www"
     env:
-      - WORDPRESS_DB_HOST=db
-      - WORDPRESS_DB_USER=exampleuser
-      - WORDPRESS_DB_PASSWORD=examplepass
-      - WORDPRESS_DB_NAME=exampledb
+      - DB_HOST=db
+      - DB_PASSWORD=wordpress
+      - DB_NAME=wordpress
+      - DB_USER=wordpress
+      # - WORDPRESS_SITE_URL=example.com
+      - FS_METHOD=direct
+      - WP_REDIS_HOST=redis
     expose:
       - port: 80
+        http_options:
+          max_body_size: 104857600
+        # accept: 
+        # - "example.com"
         to:
           - global: true
+    params:
+      storage:
+        data:
+          mount: /var/www
+        
 
   db:
-    image: mysql:5.7
+    image: mariadb:10.9.3
+    volumes:
+      - "db-data:/var/lib/mysql"
     env:
-      - MYSQL_DATABASE=exampledb
-      - MYSQL_USER=exampleuser
-      - MYSQL_PASSWORD=examplepass
-      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_ROOT_PASSWORD=wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      ####Replace password###
+      - MYSQL_PASSWORD=change_me
     expose:
       - port: 3306
         to:
           - service: wordpress
+  redis:
+    image: bitnami/redis:7.0.5
+    expose:
+      - port: 6379
+        proto: tcp
+        to:
+          - service: wordpress
+    env:
+      - ALLOW_EMPTY_PASSWORD=yes
+      ## Set if ALLOW_EMPTY_PASSWORD=no
+      #- REDIS_PASSWORD=changeme
+
 
 profiles:
   compute:
@@ -35,15 +66,29 @@ profiles:
         memory:
           size: 1Gi
         storage:
-          size: 2Gi
+          - size: 2Gi
+          - name: data
+            size: 2Gi
+            attributes:
+              persistent: true
+              class: beta2
     db:
       resources:
         cpu:
-          units: 0.5
+          units: 1.0
         memory:
-          size: "256Mi"
+          size: 1Gi
         storage:
-          size: "1Gi"
+          size: 1Gi
+
+    redis:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 1Gi
   placement:
     akash:
       attributes:
@@ -51,13 +96,17 @@ profiles:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
         wordpress:
           denom: uakt
-          amount: 100
+          amount: 10000
         db:
           denom: uakt
-          amount: 100
+          amount: 10000
+        redis:
+          denom: uakt
+          amount: 10000
 
 deployment:
   wordpress:
@@ -67,4 +116,8 @@ deployment:
   db:
     akash:
       profile: db
+      count: 1
+  redis:
+    akash:
+      profile: redis
       count: 1

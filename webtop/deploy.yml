@@ -1,0 +1,40 @@
+---
+  version: "2.0"
+  
+  services:
+    webtop:
+      image: lscr.io/linuxserver/webtop:latest
+      env:
+         - PUID=1000
+         - PGID=1000
+         - TZ=Etc/UTC
+         - SUBFOLDER=/ #optional
+         - KEYBOARD=en-us-qwerty #optional
+         - TITLE=Webtop #optional
+      expose:
+        - port: 3000
+          as: 3000
+          to:
+            - global: true
+  profiles:
+    compute:
+      webtop:
+        resources:
+          cpu:
+            units: 2
+          memory:
+            size: 4Gi
+          storage:
+            size: 50Gi
+    placement:
+      akash: 
+        attributes:
+        pricing:
+          webtop:
+            denom: uakt
+            amount: 10000
+  deployment:
+    webtop:
+      akash:
+        profile: webtop
+        count: 1

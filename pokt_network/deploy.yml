@@ -1,0 +1,65 @@
+---
+version: "2.0"
+services:
+  app:
+    image: ubuntu:22.04
+    env:
+      - "SSH_PASS=" # If you need SSH access to the container(user root), set this variable;
+      - "VERSION=RC-0.9.2" # Set actual version POKT;
+      - "CHAIN=" #Set POKT chain, mainnet or testnet;
+      - "KEYFILE_BASE64=" # Encrypted contents of the keyfile.json file using BASE64;
+      - "KEY_PASS=" # Password to keyfile.json;
+      - "ADDRESS=" # Account address;
+      - "CHAINS_LINK=" # Link to download chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form;
+      - "LINK_SNAPSHOT=" # Link to network snapshot https://docs.pokt.network/node/setup/#download-snapshot ;
+      - "SEEDS=" # Set seeds address https://docs.pokt.network/node/seeds/ ;
+   # params:
+   #   storage:
+   #     data:
+   #       mount: /root 
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - "apt-get update && apt-get upgrade -y;apt-get install -y curl; curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt_network/main.sh | bash"   
+    
+    expose:
+      - port: 8081
+        as: 8081
+        to:
+         - global: true 
+      - port: 26656
+        as: 26656
+        to:
+         - global: true 
+      - port: 22
+        as: 22
+        to:
+         - global: true 
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gi
+        storage:
+          size: 600Gi 
+        #- name: data
+        #  size: 600Gi
+        #   attributes:
+        #    persistent: true
+        #    class: beta3
+  placement:
+    akash: 
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1 

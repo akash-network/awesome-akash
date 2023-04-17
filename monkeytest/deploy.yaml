@@ -1,0 +1,33 @@
+---
+version: "2.0"
+
+services:
+  monkeytest:
+    image: cryptoandcoffee/akash-monkeytest:1
+    expose:
+      - port: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    monkeytest:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 4Gi #8Gi min for the default test.
+  placement:
+    akash:
+      pricing:
+        monkeytest:
+          denom: uakt
+          amount: 10000
+deployment:
+  monkeytest:
+    akash:
+      profile: monkeytest
+      count: 1
+
+
