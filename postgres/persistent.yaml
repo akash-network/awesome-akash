@@ -6,34 +6,6 @@ services:
       storage:
         data:
           mount: /var/lib/postgres
-  grafana:
-    image: grafana/grafana
-    expose:
-      - port: 3000
-        as: 80
-        to:
-          - global: true
-        accept:
-          - webperstest.localhost
-    params:
-      storage:
-        data:
-          mount: /var/lib/grafana
-profiles:
-  compute:
-    grafana-profile:
-      resources:
-        cpu:
-          units: 1
-        memory:
-          size: 1Gi
-        storage:
-          - size: 512Mi
-          - name: data
-            size: 1Gi
-            attributes:
-              persistent: true
-              class: beta2
     postgres-profile:
       resources:
         cpu:
@@ -52,6 +24,7 @@ profiles:
     signedBy:
         anyOf:
           - "akash1vz375dkt0c60annyp6mkzeejfq0qpyevhseu05"
+          - "akash1t8e5vktvrtwxn98tfr3k3esl424s2jm6cz7m80"
       attributes:
         region: us-west
       pricing:
@@ -63,10 +36,6 @@ profiles:
           amount: 7000
           
 deployment:
-  grafana:
-    westcoast:
-      profile: grafana-profile
-      count: 1
   postgres:
     westcoast:
       profile: postgres-profile
