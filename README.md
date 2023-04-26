@@ -246,6 +246,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [SoftEther VPN](softether-vpn)
 - [Sentinel dVPN node](Sentinel-dVPN-node)
+- [Tor Proxy](tor-proxy)
 
 ### Databases
 
