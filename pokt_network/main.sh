@@ -52,8 +52,11 @@ fi
 wget -O $HOME/.pocket/config/genesis.json $GENESIS_LINK
 if [[ -n $LINK_SNAPSHOT ]]
 then
+export LINK_SNAPSHOT=$LINK_SNAPSHOT
 mkdir -p $HOME/.pocket/data
 SIZE=`wget --spider $LINK_SNAPSHOT 2>&1 | awk '/Length/ {print $2/(1024*1024*1024)}' | cut -d '.' -f 1`
+echo $SIZE $LINK_SNAPSHOT
+
 (wget -qO- $LINK_SNAPSHOT | pv -bep -s "$SIZE"G -i 5 | tar -xz -C $HOME/.pocket/data) 2>&1 | stdbuf -o0 tr '\r' '\n'
 fi
 echo === Run node ===
