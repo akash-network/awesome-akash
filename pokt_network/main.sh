@@ -2,10 +2,6 @@
 TZ=Europe/London && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 apt-get install -y wget gcc make git nvme-cli nano unzip runit pv
 runsvdir -P /etc/service &
-
-mkdir -p $HOME/.pocket/data
-wget --progress=bar:force -O - $LINK_SNAPSHOT | tar -xz -C $HOME/.pocket/data
-
 if [[ -n $SSH_PASS ]]
 then
 apt-get install -y ssh 
