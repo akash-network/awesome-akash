@@ -58,7 +58,7 @@ export LINK_SNAPSHOT=$LINK_SNAPSHOT
 mkdir -p $HOME/.pocket/data
 SIZE=`wget --spider $LINK_SNAPSHOT 2>&1 | awk '/Length/ {print $2}'
 echo $SIZE $LINK_SNAPSHOT
-(wget -qO- --progress=bar:force $LINK_SNAPSHOT | pv -bep -s $SIZE -i 5 | tar -xz -C $HOME/.pocket/data) 2>&1 | stdbuf -o0 tr '\r' '\n'
+(wget -nv -O - $LINK_SNAPSHOT | pv -petrafb -s $SIZE -i 5 | tar -xz -C $HOME/.pocket/data) 2>&1 | stdbuf -o0 tr '\r' '\n'
 fi
 echo === Run node ===
 mkdir -p /root/pocket/log    
