@@ -54,7 +54,9 @@ if [[ -n $LINK_SNAPSHOT ]]
 then
 mkdir -p $HOME/.pocket/data
 SIZE=`wget --spider $LINK_SNAPSHOT 2>&1 | awk '/Length/ {print $2/(1024*1024*1024)}' | cut -d '.' -f 1`
-wget -qO- $LINK_SNAPSHOT | pv -bep -s "$SIZE"G | tar -xz -C $HOME/.pocket/data
+wget -qO- $LINK_SNAPSHOT | pv -bep -s "$SIZE"G > /root/latest.tar.gz
+tar -xz /root/latest.tar.gz -C $HOME/.pocket/data
+rm /root/latest.tar.gz
 fi
 echo === Run node ===
 mkdir -p /root/pocket/log    
