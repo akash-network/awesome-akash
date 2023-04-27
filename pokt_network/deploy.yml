@@ -10,6 +10,7 @@ services:
       - "KEYFILE_BASE64=" # Encrypted contents of the keyfile.json file using BASE64;
       - "KEY_PASS=" # Password to keyfile.json;
       - "ADDRESS=" # Account address;
+      - "GENESIS_LINK=" # Link to download genesis file https://docs.pokt.network/node/setup/#setup-the-genesis-configuration-file ;
       - "CHAINS_LINK=" # Link to download chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form;
       - "LINK_SNAPSHOT=" # Link to network snapshot https://docs.pokt.network/node/setup/#download-snapshot ;
       - "SEEDS=" # Set seeds address https://docs.pokt.network/node/seeds/ ;
