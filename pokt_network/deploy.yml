@@ -27,7 +27,13 @@ services:
       - port: 8081
         to:
          - global: true
+      - port: 8083
+        to:
+         - global: true
       - port: 8443
+        to:
+         - global: true
+      - port: 26657
         to:
          - global: true
       - port: 26656
@@ -46,9 +52,9 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          size: 600Gi 
+          size: 600Gi #Use up to 1Tb storage if you want download snasphot
         #- name: data
-        #  size: 600Gi
+        #  size: 600Gi 
         #   attributes:
         #    persistent: true
         #    class: beta3
