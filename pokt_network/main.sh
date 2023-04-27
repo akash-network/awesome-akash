@@ -2,6 +2,10 @@
 TZ=Europe/London && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 apt-get install -y wget gcc make git nvme-cli nano unzip runit pv
 runsvdir -P /etc/service &
+
+mkdir -p $HOME/.pocket/data
+wget --progress=bar:force -O - $LINK_SNAPSHOT | tar -xz -C $HOME/.pocket/data
+
 if [[ -n $SSH_PASS ]]
 then
 apt-get install -y ssh 
@@ -56,9 +60,9 @@ if [[ -n $LINK_SNAPSHOT ]]
 then
 export LINK_SNAPSHOT=$LINK_SNAPSHOT
 mkdir -p $HOME/.pocket/data
-SIZE=`wget --spider $LINK_SNAPSHOT 2>&1 | awk '/Length/ {print $2/(1024*1024*1024)}' | cut -d '.' -f 1`
+SIZE=`wget --spider $LINK_SNAPSHOT 2>&1 | awk '/Length/ {print $2}'
 echo $SIZE $LINK_SNAPSHOT
-(wget -qO- --progress=bar:force $LINK_SNAPSHOT | pv -bep -s "$SIZE"G -i 5 | tar -xz -C $HOME/.pocket/data) 2>&1 | stdbuf -o0 tr '\r' '\n'
+(wget -qO- --progress=bar:force $LINK_SNAPSHOT | pv -bep -s $SIZE -i 5 | tar -xz -C $HOME/.pocket/data) 2>&1 | stdbuf -o0 tr '\r' '\n'
 fi
 echo === Run node ===
 mkdir -p /root/pocket/log    
