@@ -1,6 +1,6 @@
 #!/bin/bash
 TZ=Europe/London && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-apt-get install -y wget gcc make git nvme-cli nano unzip runit
+apt-get install -y wget gcc make git nvme-cli nano unzip runit pv
 runsvdir -P /etc/service &
 if [[ -n $SSH_PASS ]]
 then
@@ -49,11 +49,17 @@ if [[ -n $CHAINS_BASE64 ]]
 then
 echo $CHAINS_BASE64 | base64 -d > /root/.pocket/config/chains.json
 fi
-wget -O $HOME/.pocket/config/genesis.json $GENESIS_LINK
+mkdir -p $HOME/.pocket/config
+curl -o $HOME/.pocket/config/genesis.json $GENESIS_LINK
+
 if [[ -n $LINK_SNAPSHOT ]]
 then
+export LINK_SNAPSHOT=$LINK_SNAPSHOT
 mkdir -p $HOME/.pocket/data
-wget -qO- $LINK_SNAPSHOT | tar -xz -C $HOME/.pocket/data
+
+SIZE=`wget --spider $LINK_SNAPSHOT 2>&1 | awk '/Length/ {print $2}'`
+echo == Download snapshot ==
+(wget -nv -O - $LINK_SNAPSHOT | pv -petrafb -s $SIZE -i 5 | tar -xz -C $HOME/.pocket/data) 2>&1 | stdbuf -o0 tr '\r' '\n'
 fi
 echo === Run node ===
 mkdir -p /root/pocket/log    
