@@ -53,7 +53,7 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          size: 600Gi #Use up to 1Tb storage if you want download snasphot
+          size: 600Gi
         #- name: data
         #  size: 600Gi 
         #   attributes:
