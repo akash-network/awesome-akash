@@ -14,13 +14,14 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
-### Social
+### AI
 
-- [Discourse](discourse)
-
-### Peer-to-peer File Sharing
-
-- [qBittorrent](qbittorrent)
+- [Alpaca.cpp](alpaca-cpp)
+- [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [Daila](daila)
+- [GPT4ALL](gpt4all)
+- [Serge](serge)
+- [Stable Diffusion](stable-diffusion-ui)
 
 ### Blogging
 
@@ -41,6 +42,12 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [Mattermost](mattermost)
 
+### Machine Learning
+
+- [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
+- [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
+- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+
 ### Continuous Integration
 
 - [Jenkins](jenkins)
@@ -53,6 +60,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Databases and Administration
 
+- [json-server](json-server)
 - [pgAdmin](pgadmin4)
 - [mongoDB](mongoDB)
 - [postgresSQL](postgres)
@@ -60,6 +68,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [MySQL](MySQL)
 - [CouchDB](couchdb)
 - [InfluxDB](influxdb)
+- [SurrealDB](SurrealDB)
 
 ### DeFi
 
@@ -81,11 +90,34 @@ Awesome DeFi apps you can deploy on Akash
 - [Synthetix.Exchange](synthetix.exchange)
 - [Ren Protocol](renprotocol)
 - [yfii](yfii)
+- [Sifchain DEX](sifchain-ui)
+- [Osmosis DEX](osmosis-fe)
+
+### Benchmarking
+
+- [Fast.com by Netflix](fast)
+- [Flexible IO Tester](fio)
+- [Geekbench 5](geekbench)
+- [LibreSpeed](librespeed)
+- [MonkeyTest](monkeytest)
+- [OpenSpeedTest](openspeedtest)
+- [Phoronix](phoronix)
+- [Serverbench](serverbench)
+- [Speedtest by Ookla](speedtest-cli)
+- [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
-
+- [Bitcoin](bitcoin)
+- [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Near Node](near)
+- [Vidulum](vidulum)
+- [Ethereum 2.0](Ethereum_2.0)
+- [POKT Network](pokt_network)
+- [Kadena](Kadena)
+- [Bitcoin Cash Node](bitcoincashnode)
+- [Handshake](handshake)
+- [Fuse Netowork Node](fuse-network-node)
 
 ### Blogging
 
@@ -97,9 +129,9 @@ Awesome DeFi apps you can deploy on Akash
 - [Drupal](drupal)
 - [Wiki.js](wikijs)
 
-### Bussiness
+### Business
 
- - [Odoo](odoo)
+- [Odoo](odoo)
 
 ### Games
 
@@ -110,34 +142,70 @@ Awesome DeFi apps you can deploy on Akash
 - [Minesweeper](minesweeper)
 - [Tetris2](tetris2)
 - [MemoryGame](MemoryGame)
-- [DOOM](doom)
 - [Snake Game](snake-game)
+
+### Game Servers
+
+- [Counter-Strike: Global Offensive](csgo)
+- [Holdfast: Nations At War](holdfastnaw)
+- [Mordhau](mordhau)
+- [Squad](squad)
+- [SteamCMD](steamcmd)
+- [SteamPipe](steampipe)
+- [Team Fortress 2](tf2)
 
 ### Hosting
 
 - [Caddy](caddy)
 - [Grafana](grafana)
 - [IPFS](ipfs)
+- [Flame](flame)
 
 ### Machine Learning
 
 - [Jupyter Notebook](jupyter)
+- [Doccano](doccano)
 
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
 
-### Metasearch Engine
+### Search Engines
 
 - [Whoogle Search](whoogle-search)
+- [Presearch](presearch)
+
+### Search Engine
+
+- [YaCy](yacy)
 
 ### Mining
 
-- [xmrig](monero)
-- [Chia](chia)
+- [Chia Bladebit](chia-bladebit)
+- [Chia Bladebit Disk](chia-bladebit-disk)
+- [Chia Madmax](chia-madmax)
+- [Honeygain](honeygain)
+- [IPRoyal Pawns](iproyal-pawns)
+- [Iron Fish](iron-fish)
 - [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
+- [PacketStream](packetstream)
+- [Peer2Profit](peer2profit)
+- [pkt.cash](pkt-miner)
+- [RainbowMiner](rainbowminer)
 - [Raptoreum](raptoreum-miner)
-- [pkt.cash](https://github.com/ovrclk/pkt-miner)
+- [Traffmonetizer](traffmonetizer)
+- [xmrig](xmrig)
+
+### Mining Pools
+
+- [monero-pool by jtgrassie](monero-pool)
+- [Meowcoin Pool](kawpow-pool-meowcoin)
+- [Neoxa Pool](kawpow-pool-neoxa)
+- [Ravencoin Pool](kawpow-pool-ravencoin)
+
+### Peer-to-peer File Sharing
+
+- [qBittorrent](qbittorrent)
 
 ### Project Management
 
@@ -145,22 +213,45 @@ Awesome DeFi apps you can deploy on Akash
 - [Redmine](redmine)
 - [Kanboard](kanboard)
 
+### Social
+
+- [Discourse](discourse)
+- [TeamSpeak](teamspeak)
+
 ### Tools
 
-- [DEGO Stats](dego-stats)
+- [thirdweb](thirdweb)
 - [authsteem](authsteem)
+- [Code-Server](code-server)
+- [CodiMD](CodiMD)
+- [dart-hello](dart)
+- [DEGO Stats](dego-stats)
+- [Folding@home](folding-at-home)
+- [Hashicorp Vault](hashicorp-vault)
+- [KnowYourDeFi](knowyourdefi)
+- [Matomo](matomo)
 - [microbox](microbox)
 - [Mintr](mintr)
-- [Folding@home](folding-at-home)
+- [Nextcloud](nextcloud)
 - [owncloud](owncloud)
-- [Quill editor](quill-editor)
+- [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
-- [dart-hello](dart)
-- [Matomo](matomo)
+- [Quill editor](quill-editor)
+- [Uptime Kuma](uptime-kuma)
+- [Webtop](webtop)
 - [Zammad](zammad)
-- [CodiMD](CodiMD)
-- [KnowYourDeFi](knowyourdefi)
-- [Code-Server](code-server)
+- [Budibase](budibase)
+- [Keycloak IAM](keycloak-iam)
+- [vaultwarden](vaultwarden)
+
+### Network
+
+- [SoftEther VPN](softether-vpn)
+- [Sentinel dVPN node](Sentinel-dVPN-node)
+
+### Databases
+
+- [redis](redis)
 
 ### Video Conferencing
 
@@ -170,3 +261,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [MyetherWallet](MyetherWallet)
 - [tronwallet](tronwallet)
+
+### Web Frameworks
+
+- [NextJS](nextjs)

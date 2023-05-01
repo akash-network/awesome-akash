@@ -1,0 +1,77 @@
+---
+version: "2.0"
+
+services:
+  ethereum:
+    image: dimokus88/ubuntu:1.3
+    env:
+      - "DEPOSIT_JSON_BASE64=" # The content of the deposit.json file is encrypted with BASE64
+      - "DEPOSIT_FILE_NAME=" # Full name of the deposit file
+      - "KEYSTORE_JSON_BASE64=" # The content of the keystore.json file is encrypted with BASE64
+      - "KEYSTORE_FILE_NAME=" # Full name of the keystore file
+      - "ACCOUNT_ETH_PASS=" # Password for generated validator keys.
+      - "RECEPIENT=" # Recipient of the reward
+      - "NETWORK=" # ID testnet or mainnet
+      - "SSH_PASS=" # SSH password (root user)
+      - "LIGHTHOUSE_LINK=https://github.com/sigp/lighthouse/releases/download/v3.5.1/lighthouse-v3.5.1-x86_64-unknown-linux-gnu-portable.tar.gz"
+      - "SNAP_URL=https://prater-checkpoint-sync.stakely.io"
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/Ethereum_2.0/main.sh | bash '
+    #params:
+    #  storage:
+    #    data:
+    #      mount: /home/
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+      - port: 30303
+        as: 30303
+        to:
+          - global: true
+      - port: 8545
+        as: 8545
+        to:
+          - global: true
+      - port: 8546
+        as: 8546
+        to:
+          - global: true
+      - port: 8547
+        as: 8547
+        to:
+          - global: true
+      - port: 8551
+        as: 8551
+        to:
+          - global: true
+profiles:
+  compute:
+    ethereum:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 9Gi
+        storage:
+          - size: 600Gi
+          #- name: data
+          #  size: 600Gi
+          #  attributes:
+          #    persistent: true
+          #    class: beta3
+  placement:
+    akash: 
+      pricing:
+        ethereum:
+          denom: uakt
+          amount: 10000
+deployment:
+  ethereum:
+    akash:
+      profile: ethereum
+      count: 1 

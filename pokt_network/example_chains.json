@@ -1,0 +1,10 @@
+[
+  {
+    "id": "CODE_CHAIN",
+    "url": "YOUR_RPC_ADDRESS",
+    "basic_auth": {
+      "username": "",
+      "password": ""
+    }
+  }
+]
