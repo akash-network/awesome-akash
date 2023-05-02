@@ -13,7 +13,7 @@ services:
     image: offchainlabs/nitro-node:v2.0.13-174496c
     args:
       - '--l1.url='#Ethereum node RPC address
-      - '--l2.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
+      - '--node.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
 ...
 
 ```
