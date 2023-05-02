@@ -5,7 +5,6 @@ services:
   arbitrum:
     image: offchainlabs/nitro-node:v2.0.13-174496c
     args:
-      - '--init.url=https://snapshot.arbitrum.io/mainnet/nitro.tar' 
       - '--l1.url=' #Infura Ethereum node RPC address
       - '--l2.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
 
