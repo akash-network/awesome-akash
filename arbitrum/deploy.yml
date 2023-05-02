@@ -5,8 +5,8 @@ services:
   arbitrum:
     image: offchainlabs/arb-node:v1.4.5-e97c1a4
     args:
-      - '--l1.url=https://mainnet.infura.io/v3/ab917a74c5e443bc86b7265d9caae686' #Infura Ethereum node RPC address
-      - '--node.chain-id=42161' #L2 chain ID https://developer.arbitrum.io/public-chains
+      - '--l1.url=' #Infura Ethereum node RPC address
+      - '--node.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
 
     expose:
       - port: 8545
