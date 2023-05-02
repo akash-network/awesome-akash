@@ -2,6 +2,8 @@
 
 Add Ethereum node RPC address in `--l1.url=`, chain ID in `--l2.chain-id=` and create deployment.
 
+All information about Arbitrum node, you can find on site https://developer.arbitrum.io/node-running/running-a-node .
+
 Example:
 
 ```
