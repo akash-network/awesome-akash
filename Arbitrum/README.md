@@ -1,16 +1,18 @@
 # Arbitrum RPC node on Akash Network
 
-Add Ethereum node RPC address in `--l1.url=` and create deployment.
+Add Ethereum node RPC address in `--l1.url=`, chain ID in `--l2.chain-id=` and create deployment.
 
 Example:
 
 ```
 ...
 services:
-  app:
-    image: offchainlabs/arb-node:v1.4.5-e97c1a4
+  arbitrum:
+    image: offchainlabs/nitro-node:v2.0.13-174496c
     args:
-      - '--l1.url=http://your-RPC-Ethereum-address.com:443' #Ethereum node RPC address
+      - '--init.url=https://snapshot.arbitrum.io/mainnet/nitro.tar' 
+      - '--l1.url='#Ethereum node RPC address
+      - '--l2.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
 ...
 
 ```
