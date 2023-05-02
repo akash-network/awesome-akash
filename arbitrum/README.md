@@ -1,10 +1,10 @@
 # Arbitrum RPC node on Akash Network
 
-Add Ethereum node RPC address in `--l1.url=`, chain ID in `--l2.chain-id=` and create deployment.
+Add Ethereum node infura RPC address in `--l1.url=`, chain ID in `--l2.chain-id=` and create deployment.
+
 
 All information about Arbitrum node, you can find on site https://developer.arbitrum.io/node-running/running-a-node .
-
-Example:
+You can add custumize flags from list, example:
 
 ```
 ...
@@ -14,11 +14,12 @@ services:
     args:
       - '--l1.url='#Ethereum node RPC address
       - '--node.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
+      - '--your.flags=argument'
 ...
 
 ```
 
-And another usage flags:
+Usage flags:
 
 |Flag|Description|
 | :-------: | :-------: |
