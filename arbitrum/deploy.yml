@@ -3,10 +3,10 @@ version: "2.0"
 
 services:
   arbitrum:
-    image: offchainlabs/nitro-node:v2.0.13-174496c
+    image: offchainlabs/arb-node:v1.4.5-e97c1a4
     args:
-      - '--l1.url=' #Infura Ethereum node RPC address
-      - '--l2.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
+      - '--l1.url=https://mainnet.infura.io/v3/ab917a74c5e443bc86b7265d9caae686' #Infura Ethereum node RPC address
+      - '--node.chain-id=42161' #L2 chain ID https://developer.arbitrum.io/public-chains
 
     expose:
       - port: 8545
@@ -16,6 +16,12 @@ services:
         to:
           - global: true
       - port: 8547
+        to:
+          - global: true
+      - port: 8548
+        to:
+          - global: true
+      - port: 8549
         to:
           - global: true
     #params:
