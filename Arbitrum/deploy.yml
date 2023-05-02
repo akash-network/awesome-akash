@@ -3,9 +3,11 @@ version: "2.0"
 
 services:
   arbitrum:
-    image: offchainlabs/arb-node:v1.4.5-e97c1a4
+    image: offchainlabs/nitro-node:v2.0.13-174496c
     args:
-      - '--l1.url=' #Ethereum node RPC address
+      - '--init.url=https://snapshot.arbitrum.io/mainnet/nitro.tar' 
+      - '--l1.url=https://g.w.lavanet.xyz:443/gateway/gth1/rpc-http/2a92f79a73906e9d99f4b356e7f6d4ef'#Ethereum node RPC address
+      - '--l2.chain-id=421613' #L2 chain ID https://developer.arbitrum.io/public-chains
 
     expose:
       - port: 8545
