@@ -4,6 +4,7 @@ Add Ethereum node infura RPC address in `--l1.url=`, chain ID in `--l2.chain-id=
 
 
 All information about Arbitrum node, you can find on site https://developer.arbitrum.io/node-running/running-a-node .
+
 You can add custumize flags from list, example:
 
 ```
