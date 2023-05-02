@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  app:
+    image: offchainlabs/arb-node:v1.4.5-e97c1a4
+    args:
+      - '--l1.url=' #Ethereum node RPC address
+
+    expose:
+      - port: 8545
+        to:
+          - global: true
+      - port: 8546
+        to:
+          - global: true
+      - port: 8547
+        to:
+          - global: true
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 3
+        memory:
+          size: 5Gi
+        storage:
+          size: 300Gi
+          
+  placement:
+    akash: 
+      attributes:
+            
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1 
