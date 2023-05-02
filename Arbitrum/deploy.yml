@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  app:
+  arbitrum:
     image: offchainlabs/arb-node:v1.4.5-e97c1a4
     args:
       - '--l1.url=' #Ethereum node RPC address
@@ -17,27 +17,34 @@ services:
       - port: 8547
         to:
           - global: true
+    #params:
+    #  storage:
+    #    data:
+    #      mount: /root/
 profiles:
   compute:
-    app:
+    arbitrum:
       resources:
         cpu:
           units: 3
         memory:
           size: 5Gi
         storage:
-          size: 300Gi
+        - size: 300Gi 
+        #- name: data
+        #  size: 100Gi
+        #  attributes:
+        #    persistent: true
+        #    class: beta3 #beta1 - HDD, beta2 - SSD, beta3 - NVMI
           
   placement:
     akash: 
-      attributes:
-            
       pricing:
-        app:
+        arbitrum:
           denom: uakt
           amount: 10000
 deployment:
-  app:
+  arbitrum:
     akash:
-      profile: app
+      profile: arbitrum
       count: 1 
