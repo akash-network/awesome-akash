@@ -3,10 +3,13 @@ version: "2.0"
 
 services:
   arbitrum:
-    image: offchainlabs/arb-node:v1.4.5-e97c1a4
+    image: offchainlabs/nitro-node:v2.0.11-8e786ec
     args:
-      - '--l1.url=' #Infura Ethereum node RPC address
-      - '--node.chain-id=' #L2 chain ID https://developer.arbitrum.io/public-chains
+      - --l1.url=
+      - --l2.chain-id=
+      - --init.empty
+      #- --init.url=https://snapshot.arbitrum.io/mainnet/nitro.tar
+
 
     expose:
       - port: 8545
@@ -19,11 +22,15 @@ services:
         to:
           - global: true
       - port: 8548
+        as: 80
         to:
           - global: true
       - port: 8549
         to:
           - global: true
+
+
+
     #params:
     #  storage:
     #    data:
@@ -33,11 +40,11 @@ profiles:
     arbitrum:
       resources:
         cpu:
-          units: 3
+          units: 5
         memory:
-          size: 5Gi
+          size: 8Gi
         storage:
-        - size: 300Gi 
+        - size: 150Gi 
         #- name: data
         #  size: 100Gi
         #  attributes:
