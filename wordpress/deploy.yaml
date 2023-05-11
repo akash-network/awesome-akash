@@ -10,7 +10,7 @@ services:
       - "site-data:/var/www"
     env:
       - DB_HOST=db
-      - DB_PASSWORD=wordpress
+      - DB_PASSWORD=wordpass
       - DB_NAME=wordpress
       - DB_USER=wordpress
       # - WORDPRESS_SITE_URL=example.com
@@ -28,8 +28,6 @@ services:
       storage:
         data:
           mount: /var/www
-        
-
   db:
     image: mariadb:10.9.3
     volumes:
@@ -44,6 +42,10 @@ services:
       - port: 3306
         to:
           - service: wordpress
+    params:
+      storage:
+        sqldata:
+          mount: /var/lib/mysql
   redis:
     image: bitnami/redis:7.0.5
     expose:
@@ -71,7 +73,7 @@ profiles:
             size: 2Gi
             attributes:
               persistent: true
-              class: beta2
+              class: beta3
     db:
       resources:
         cpu:
@@ -79,7 +81,12 @@ profiles:
         memory:
           size: 1Gi
         storage:
-          size: 1Gi
+          - size: 1Gi
+          - name: sqldata
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
 
     redis:
       resources:
