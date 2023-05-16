@@ -13,15 +13,15 @@ services:
     env:
       - "BASE_URL=http://localhost:3000"
       - "DATABASE_URL=postgresql://akash:squarekingzebrahello@postgres:5432/chatchat"
-      - "NEXTAUTH_URL="
-      - "NEXTAUTH_SECRET="
-      - "OPENAI_API_KEY="
+      - "NEXTAUTH_URL=localhost:3000"
+      - "NEXTAUTH_SECRET=0x3A7F" #Generate Random hash (16 bits is best)
+      - "OPENAI_API_KEY=your-openai-key"
       - "OPENAI_API_ENDPOINT=https://api.openai.com"
-      - "EMAIL_HOST="
-      - "EMAIL_PORT="
-      - "EMAIL_USERNAME="
-      - "EMAIL_PASSWORD="
-      - "EMAIL_FROM="
+      #- "EMAIL_HOST="
+      #- "EMAIL_PORT="
+      #- "EMAIL_USERNAME="
+      #- "EMAIL_PASSWORD="
+      #- "EMAIL_FROM="
       - "POSTGRES_USER=admin"
   postgres:
     image: postgres
@@ -42,7 +42,7 @@ profiles:
         memory:
           size: 4.75Gi
         storage:
-          - size: 2.5Gi
+          - size: 16Gi
     postgres:
       resources:
         cpu:
