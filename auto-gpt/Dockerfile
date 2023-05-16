@@ -28,7 +28,6 @@ RUN tar -zxvf gotty_2.0.0-alpha.3_linux_amd64.tar.gz ; chmod +x gotty ; rm -rf g
 
 ENTRYPOINT ["/gotty", "-w", "--random-url-length", "16", "python", "-m", "autogpt"]
 
-
 # dev build -> include everything
 FROM autogpt-base as autogpt-dev
 RUN pip install --no-cache-dir -r requirements.txt
@@ -42,6 +41,4 @@ RUN sed -i '/Items below this point will not be included in the Docker Image/,$d
 WORKDIR /app
 ONBUILD COPY autogpt/ ./autogpt
 
-#RUN wget https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz
-#RUN tar -zxvf gotty_2.0.0-alpha.3_linux_amd64.tar.gz
 FROM autogpt-${BUILD_TYPE} AS auto-gpt
