@@ -26,6 +26,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [GPT4ALL](gpt4all)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
+- [Terminal GPT](tgpt)
 
 ### Blogging
 
