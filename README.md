@@ -18,6 +18,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
+- [BabyAGI](babyagi)
 - [ChatChat](chatchat)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
