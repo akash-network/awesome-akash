@@ -38,7 +38,7 @@ profiles:
     chatchat:
       resources:
         cpu:
-          units: 4
+          units: 8
         memory:
           size: 4.75Gi
         storage:
