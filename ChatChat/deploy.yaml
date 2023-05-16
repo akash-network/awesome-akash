@@ -1,0 +1,71 @@
+---
+version: '2.0'
+services:
+  chatchat:
+    image: cryptoandcoffee/akash-chatchat:1
+    depends_on:
+    - postgres
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - BASE_URL="http://localhost:3000"
+      - DATABASE_URL="postgresql://akash:squarekingzebrahello@postgres:5432/chatchat"
+      - NEXTAUTH_URL=""
+      - NEXTAUTH_SECRET=""
+      - OPENAI_API_KEY=""
+      - OPENAI_API_ENDPOINT="https://api.openai.com"
+      - EMAIL_HOST=""
+      - EMAIL_PORT=""
+      - EMAIL_USERNAME=""
+      - EMAIL_PASSWORD=""
+      - EMAIL_FROM=""
+      - POSTGRES_USER="admin"
+  postgres:
+    image: postgres
+    expose:
+      - port: 5432
+        to:
+          - service: chatchat
+    env:
+      - "POSTGRES_USER=admin"
+      - "POSTGRES_PASSWORD=squarekingzebrahello"
+      - "POSTGRES_DB=chatchat"
+profiles:
+  compute:
+    chatchat:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 2.5Gi
+    postgres:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 256Mi
+        storage:
+          - size: 1Gi
+  placement:
+    akash:
+      pricing:
+        chatchat:
+          denom: uakt
+          amount: 10000
+        postgres:
+          denom: uakt
+          amount: 10000
+deployment:
+  chatchat:
+    akash:
+      profile: chatchat
+      count: 1
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
