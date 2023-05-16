@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  bitcoin-cash:
+    image: ghcr.io/ubunteroz/akash-bitcoincashnode:latest
+    args:
+      - "-server"               # Enable RPC
+      - "-rest"                 # Enable REST
+      - "-rpcallowip=0.0.0.0/0" # DO NOT CHANGE THIS LINE
+      - "-rpcbind=0.0.0.0:8332" # DO NOT CHANGE THIS LINE
+      - "-rpcuser=bitcoincash"  # Set RPC user
+      - "-rpcpassword=cash"     # Set RPC password
+      - "-prune=100000"         # Prune blockchain data to keep storage below xxx MB
+    expose:
+      - port: 8332
+        as: 8332
+        to:
+          - global: true
+profiles:
+  compute:
+    bitcoin-cash:
+      resources:
+        cpu:
+          units: 4.0  # You can change this to higher/lower value
+        memory:
+          size: 16Gi  # You can change this to higher/lower value
+        storage:
+          size: 128Gi # If you change this, make sure to adjust -prune argument above
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        bitcoin-cash:
+          denom: uakt
+          amount: 100000
+deployment:
+  bitcoin-cash:
+    akash:
+      profile: bitcoin-cash
+      count: 1

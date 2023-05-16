@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  ghost:
+    image: ghcr.io/dmikey/ghost-ipfs-bkup:v0.0.1
+    expose:
+      - port: 2368
+        as: 80
+        to:
+          - global: true
+        accept:
+          - changeme.com
+    env:
+      - url=http://changeme.com
+      - NODE_ENV=production
+      - S3_PATH=test-bucket-name
+      - AWS_ACCESS_KEY_ID=123456
+      - AWS_SECRET_ACCESS_KEY=123456
+      - KEY_PASSWORD=backup-password-for-database
+
+profiles:
+  compute:
+    ghost:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+  placement:
+    akash:
+      pricing:
+        ghost:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  ghost:
+    akash:
+      profile: ghost
+      count: 1
