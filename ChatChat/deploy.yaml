@@ -11,18 +11,18 @@ services:
         to:
           - global: true
     env:
-      - BASE_URL="http://localhost:3000"
-      - DATABASE_URL="postgresql://akash:squarekingzebrahello@postgres:5432/chatchat"
-      - NEXTAUTH_URL=""
-      - NEXTAUTH_SECRET=""
-      - OPENAI_API_KEY=""
-      - OPENAI_API_ENDPOINT="https://api.openai.com"
-      - EMAIL_HOST=""
-      - EMAIL_PORT=""
-      - EMAIL_USERNAME=""
-      - EMAIL_PASSWORD=""
-      - EMAIL_FROM=""
-      - POSTGRES_USER="admin"
+      - "BASE_URL=http://localhost:3000"
+      - "DATABASE_URL=postgresql://akash:squarekingzebrahello@postgres:5432/chatchat"
+      - "NEXTAUTH_URL="
+      - "NEXTAUTH_SECRET="
+      - "OPENAI_API_KEY="
+      - "OPENAI_API_ENDPOINT=https://api.openai.com"
+      - "EMAIL_HOST="
+      - "EMAIL_PORT="
+      - "EMAIL_USERNAME="
+      - "EMAIL_PASSWORD="
+      - "EMAIL_FROM="
+      - "POSTGRES_USER=admin"
   postgres:
     image: postgres
     expose:
@@ -40,7 +40,7 @@ profiles:
         cpu:
           units: 4
         memory:
-          size: 4Gi
+          size: 4.75Gi
         storage:
           - size: 2.5Gi
     postgres:
@@ -53,6 +53,16 @@ profiles:
           - size: 1Gi
   placement:
     akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         chatchat:
           denom: uakt
