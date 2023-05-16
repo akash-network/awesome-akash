@@ -79,18 +79,6 @@ yarn
 yarn dev
 ```
 
-#### Vercel
-
-[![Deployed in Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/okisdev/ChatChat)
-
-#### Zeabur
-
-Visit [Zeabur](https://zeabur.com) to deploy
-
-#### Railway
-
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/-WWW5r)
-
 #### Docker
 
 ```bash
