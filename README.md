@@ -73,6 +73,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [MySQL](MySQL)
 - [CouchDB](couchdb)
 - [InfluxDB](influxdb)
+- [SurrealDB](SurrealDB)
 
 ### DeFi
 
@@ -114,10 +115,14 @@ Awesome DeFi apps you can deploy on Akash
 - [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
+- [Near Node](near)
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
+- [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
+- [Handshake](handshake)
+- [Fuse Netowork Node](fuse-network-node)
 
 ### Blogging
 
