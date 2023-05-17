@@ -1,21 +1,10 @@
 ---
-version: "2.0"
-
+version: '2.0'
 services:
   wordpress:
-    image: trafex/wordpress:6.1
+    image: wordpress
     depends_on:
     - db
-    volumes:
-      - "site-data:/var/www"
-    env:
-      - DB_HOST=db
-      - DB_PASSWORD=wordpass
-      - DB_NAME=wordpress
-      - DB_USER=wordpress
-      # - WORDPRESS_SITE_URL=example.com
-      - FS_METHOD=direct
-      - WP_REDIS_HOST=redis
     expose:
       - port: 80
         http_options:
@@ -24,86 +13,78 @@ services:
         # - "example.com"
         to:
           - global: true
+    env:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=testpass4you
+      - WORDPRESS_DB_NAME=wordpress
     params:
       storage:
-        data:
-          mount: /var/www
+        wordpress-data:
+          mount: /var/www/html
+          readOnly: false
   db:
-    image: mariadb:10.9.3
-    volumes:
-      - "db-data:/var/lib/mysql"
-    env:
-      - MYSQL_ROOT_PASSWORD=wordpress
-      - MYSQL_DATABASE=wordpress
-      - MYSQL_USER=wordpress
-      ####Replace password###
-      - MYSQL_PASSWORD=change_me
+    # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
     expose:
       - port: 3306
         to:
           - service: wordpress
-    params:
-      storage:
-        sqldata:
-          mount: /var/lib/mysql
-  redis:
-    image: bitnami/redis:7.0.5
-    expose:
-      - port: 6379
-        proto: tcp
+      - port: 33060
         to:
           - service: wordpress
     env:
-      - ALLOW_EMPTY_PASSWORD=yes
-      ## Set if ALLOW_EMPTY_PASSWORD=no
-      #- REDIS_PASSWORD=changeme
-
-
+      - MYSQL_ROOT_PASSWORD=wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=testpass4you
+    params:
+      storage:
+        wordpress-db:
+          mount: /var/lib/mysql
+          readOnly: false
 profiles:
   compute:
     wordpress:
       resources:
         cpu:
-          units: 1.0
+          units: 4
         memory:
-          size: 1Gi
+          size: 4Gi
         storage:
-          - size: 2Gi
-          - name: data
-            size: 2Gi
+          - size: 4Gi
+          - name: wordpress-data
+            size: 32Gi
             attributes:
               persistent: true
               class: beta3
     db:
       resources:
         cpu:
-          units: 1.0
+          units: 1
         memory:
           size: 1Gi
         storage:
           - size: 1Gi
-          - name: sqldata
-            size: 1Gi
+          - name: wordpress-db
+            size: 8Gi
             attributes:
               persistent: true
               class: beta3
-
-    redis:
-      resources:
-        cpu:
-          units: 1
-        memory:
-          size: 2Gi
-        storage:
-          size: 1Gi
   placement:
     akash:
-      attributes:
-        host: akash
+      #######################################################
+      #Keep this section to deploy on trusted providers
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
           - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         wordpress:
           denom: uakt
@@ -111,10 +92,6 @@ profiles:
         db:
           denom: uakt
           amount: 10000
-        redis:
-          denom: uakt
-          amount: 10000
-
 deployment:
   wordpress:
     akash:
@@ -123,8 +100,4 @@ deployment:
   db:
     akash:
       profile: db
-      count: 1
-  redis:
-    akash:
-      profile: redis
       count: 1
