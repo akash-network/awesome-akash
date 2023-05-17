@@ -26,41 +26,6 @@ This is a port of [babyagi](https://github.com/yoheinakajima/babyagi) with [Lang
 
 and more ...
 
-## 👉 Getting Started
-
-1. Clone the repository
-
-```sh
-git clone https://github.com/miurla/babyagi-ui
-```
-
-2. Go to the project holder
-
-```sh
-cd babyagi-ui
-```
-
-3. Install packages with npm
-
-```sh
-npm install
-```
-
-4. Setup your .env file. And set the variables.
-   - You need to create an index in advance with [Pinecone](https://www.pinecone.io/).
-     - [Reference setting](./public/pinecone-setup.png)
-   - Set your SerpAPI Key, if you want to use the search tool with BabyBeeAGI.
-
-```sh
-cp .env.example .env
-```
-
-5. Run the project
-
-```sh
-npm run dev
-```
-
 ## ⚠️ Warning
 
 This script is designed to be run continuously as part of a task management system. Running this script continuously can result in high API usage, so please use it responsibly. Additionally, the script requires the OpenAI API to be set up correctly, so make sure you have set up the API before running the script.
