@@ -70,28 +70,6 @@ Please refer to https://github.com/users/okisdev/projects/7
 
 > Please modify the environment variables before deployment, more details can be found in the [documentation](https://docs.okis.dev/chat/deployment/).
 
-#### Local Deployment
-
-```bash
-git clone
-cd ChatChat
-yarn
-yarn dev
-```
-
-#### Docker
-
-```bash
-docker build -t chatchat .
-docker run -p 3000:3000 chatchat -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
-```
-
-OR
-
-```bash
-docker run -p 3000:3000 ghcr.io/okisdev/chatchat:latest -e BASE_URL="" -e DATABASE_URL="" -e NEXTAUTH_URL="" -e NEXTAUTH_SECRET="" -e OPENAI_API_KEY="" -e OPENAI_API_ENDPOINT="" -e EMAIL_HOST="" -e EMAIL_PORT="" -e EMAIL_USERNAME="" -e EMAIL_PASSWORD="" -e EMAIL_FORM=""
-```
-
 ## LICENSE
 
 [AGPL-3.0](./LICENSE)
@@ -102,8 +80,4 @@ docker run -p 3000:3000 ghcr.io/okisdev/chatchat:latest -e BASE_URL="" -e DATABA
 
 ## Technology Stack
 
-nextjs / tailwindcss / shadcn UI
-
-```
-
-```
+```nextjs / tailwindcss / shadcn UI```

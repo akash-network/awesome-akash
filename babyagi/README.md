@@ -12,7 +12,7 @@ This README will cover the following:
 
 - [Warning about running the script continuously](#continous-script-warning)
 
-# How It Works<a name="how-it-works"></a>
+# How It Works
 
 The script works by running an infinite loop that does the following steps:
 
@@ -20,7 +20,6 @@ The script works by running an infinite loop that does the following steps:
 2. Sends the task to the execution agent, which uses OpenAI's API to complete the task based on the context.
 3. Enriches the result and stores it in [Chroma](https://docs.trychroma.com)/[Weaviate](https://weaviate.io/).
 4. Creates new tasks and reprioritizes the task list based on the objective and the result of the previous task.
-   </br>
 
 ![image](https://user-images.githubusercontent.com/21254008/235015461-543a897f-70cc-4b63-941a-2ae3c9172b11.png)
 
@@ -32,45 +31,20 @@ The `prioritization_agent()` function is where OpenAI's API is used to repriorit
 
 Finally, the script uses Chroma/Weaviate to store and retrieve task results for context. The script creates a Chroma/Weaviate collection based on the table name specified in the TABLE_NAME variable. Chroma/Weaviate is then used to store the results of the task in the collection, along with the task name and any additional metadata.
 
-# How to Use<a name="how-to-use"></a>
 
-To use the script, you will need to follow these steps:
-
-1. Clone the repository via `git clone https://github.com/yoheinakajima/babyagi.git` and `cd` into the cloned repository.
-2. Install the required packages: `pip install -r requirements.txt`
-3. Copy the .env.example file to .env: `cp .env.example .env`. This is where you will set the following variables.
-4. Set your OpenAI API key in the OPENAI_API_KEY and OPENAPI_API_MODEL variables. In order to use with Weaviate you will also need to setup additional variables detailed [here](docs/weaviate.md).
-5. Set the name of the table where the task results will be stored in the TABLE_NAME variable.
-6. (Optional) Set the name of the BabyAGI instance in the BABY_NAME variable.
-7. (Optional) Set the objective of the task management system in the OBJECTIVE variable.
-8. (Optional) Set the first task of the system in the INITIAL_TASK variable.
-9. Run the script: `python babyagi.py`
-
-All optional values above can also be specified on the command line.
-
-# Running inside a docker container
-
-As a prerequisite, you will need docker and docker-compose installed. Docker desktop is the simplest option https://www.docker.com/products/docker-desktop/
-
-To run the system inside a docker container, setup your .env file as per steps above and then run the following:
-
-```
-docker-compose up
-```
-
-# Supported Models<a name="supported-models"></a>
+# Supported Models
 
 This script works with all OpenAI models, as well as Llama and its variations through Llama.cpp. Default model is **gpt-3.5-turbo**. To use a different model, specify it through LLM_MODEL or use the command line.
 
 ## Llama
 
-Llama integration requires llama-cpp package. You will also need the Llama model weights. 
+Llama integration requires llama-cpp package. You will also need the Llama model weights.
 
 - **Under no circumstances share IPFS, magnet links, or any other links to model downloads anywhere in this repository, including in issues, discussions or pull requests. They will be immediately deleted.**
 
 Once you have them, set LLAMA_MODEL_PATH to the path of the specific model to use. For convenience, you can link `models` in BabyAGI repo to the folder where you have the Llama model weights. Then run the script with `LLM_MODEL=llama` or `-l` argument.
 
-# Warning<a name="continous-script-warning"></a>
+# Warning
 
 This script is designed to be run continuously as part of a task management system. Running this script continuously can result in high API usage, so please use it responsibly. Additionally, the script requires the OpenAI API to be set up correctly, so make sure you have set up the API before running the script.
 
@@ -92,8 +66,6 @@ I am new to GitHub and open source, so please be patient as I learn to manage th
 To help the BabyAGI community stay informed about the project's progress, Blueprint AI has developed a Github activity summarizer for BabyAGI. This concise report displays a summary of all contributions to the BabyAGI repository over the past 7 days (continuously updated), making it easy for you to keep track of the latest developments.
 
 To view the BabyAGI 7-day activity report, go here: [https://app.blueprint.ai/github/yoheinakajima/babyagi](https://app.blueprint.ai/github/yoheinakajima/babyagi)
-
-[<img width="293" alt="image" src="https://user-images.githubusercontent.com/334530/235789974-f49d3cbe-f4df-4c3d-89e9-bfb60eea6308.png">](https://app.blueprint.ai/github/yoheinakajima/babyagi)
 
 
 # Inspired projects
