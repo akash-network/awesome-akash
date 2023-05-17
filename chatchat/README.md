@@ -80,8 +80,4 @@ Please refer to https://github.com/users/okisdev/projects/7
 
 ## Technology Stack
 
-nextjs / tailwindcss / shadcn UI
-
-```
-
-```
+```nextjs / tailwindcss / shadcn UI```
