@@ -122,7 +122,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
-- [Fuse Netowork Node](fuse-network-node)
+- [Fuse Network Node](fuse-network-node)
 
 ### Blogging
 
