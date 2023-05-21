@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   serge:
-    image: cryptoandcoffee/akash-serge:1
+    image: cryptoandcoffee/akash-serge:2
     expose:
       - port: 8008
         as: 80
