@@ -66,24 +66,6 @@ We are working on a GPT4All that does not have this limitation right now.
 
 You can pass any of the [huggingface generation config params](https://huggingface.co/docs/transformers/main_classes/text_generation#transformers.GenerationConfig) in the config.
 
-# Roadmap
-## Short Term
- - <span style="color:green">(IN PROGRESS)</span> Train a GPT4All model based on GPTJ to alleviate llama distribution issues.
- - <span style="color:green">(IN PROGRESS)</span> Create improved CPU and GPU interfaces for this model.
- - <span style="color:red">(NOT STARTED)</span> Integrate llama.cpp bindings
- - <span style="color:red">(NOT STARTED)</span> Create a good conversational chat interface for the model.
- - <span style="color:red">(NOT STARTED)</span> Allow users to opt in and submit their chats for subsequent training runs
-
-## Medium Term
- - <span style="color:red">(NOT STARTED)</span> Integrate GPT4All with [Atlas](https://atlas.nomic.ai) to allow for document retrieval.
-   - BLOCKED by GPT4All based on GPTJ
- - <span style="color:red">(NOT STARTED)</span> Integrate GPT4All with Langchain.
- - <span style="color:green">(IN PROGRESS)</span> Build easy custom training scripts to allow users to fine tune models.
-
-## Long Term
- - <span style="color:red">(NOT STARTED)</span> Allow anyone to curate training data for subsequent GPT4All releases using Atlas.
- - <span style="color:green">(IN PROGRESS)</span> Democratize AI. 
-
 # Reproducibility
 
 Trained LoRa Weights:
@@ -114,7 +96,7 @@ Setup the environment
 python -m pip install -r requirements.txt
 
 cd transformers
-pip install -e . 
+pip install -e .
 
 cd ../peft
 pip install -e .
@@ -134,7 +116,7 @@ python generate.py --config configs/generate/generate.yaml --prompt "Write a scr
 
 ## Need Help?
 
-Join the <a href="https://discord.gg/kvmy6dQB"> Discord </a> and ask for help in `#gpt4all-help`
+Join the [Discord](https://discord.gg/kvmy6dQB) and ask for help in `#gpt4all-help`
 
 # Sample Generations
 
@@ -165,7 +147,7 @@ Join the <a href="https://discord.gg/kvmy6dQB"> Discord </a> and ask for help in
 >1. The title of your movie plot should be "The Last Stand". 2. The summary of your movie plot should be: A group of mercenaries are hired to protect a small town from a dangerous criminal who is on the run. However, the town's sheriff is not willing to let them take over and decides to take matters into his own hands.
 
 ### Reverse a string in python.
-> In Python, you can reverse a list or tuple by using the reversed() function on it. Here's an example of how to use this method with strings: 
+> In Python, you can reverse a list or tuple by using the reversed() function on it. Here's an example of how to use this method with strings:
 >    ```python
 >   my_string = "Hello World" # Define your original string here
 >   reversed_str = my_string[::-1]   # Use a slice and negative index for reverse order
@@ -183,7 +165,7 @@ Join the <a href="https://discord.gg/kvmy6dQB"> Discord </a> and ask for help in
 >9. Shih Tzu
 >10. Pug
 
-### Write me a poem about the fall of Julius Ceasar into a ceasar salad in iambic pentameter. 
+### Write me a poem about the fall of Julius Ceasar into a ceasar salad in iambic pentameter.
 >The fall of Julius Ceasar into a ceasar salad
 >In iambic pentameter,
 >The mighty Roman emperor
@@ -201,10 +183,10 @@ Join the <a href="https://discord.gg/kvmy6dQB"> Discord </a> and ask for help in
 >But now, he was just a salad topping,
 >His legacy reduced to a mere garnish,
 >As he was consumed by the masses.
-    
-### What is a three word topic describing the following keywords: baseball, football, soccer: 
+
+### What is a three word topic describing the following keywords: baseball, football, soccer:
 >Sports, athletics, games
-    
+
 ## Citation
 
 If you utilize this reposistory, models or data in a downstream project, please consider citing it with:

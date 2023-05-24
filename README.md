@@ -17,11 +17,16 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 ### AI
 
 - [Alpaca.cpp](alpaca-cpp)
+- [Auto-GPT](auto-gpt)
+- [BabyAGI](babyagi)
+- [BabyAGI-UI](babyagi-ui)
+- [ChatChat](chatchat)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
 - [GPT4ALL](gpt4all)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
+- [Terminal GPT](tgpt)
 
 ### Blogging
 
@@ -111,13 +116,14 @@ Awesome DeFi apps you can deploy on Akash
 - [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
+- [Near Node](near)
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
 - [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
-- [Fuse Netowork Node](fuse-network-node)
+- [Fuse Network Node](fuse-network-node)
 
 ### Blogging
 
