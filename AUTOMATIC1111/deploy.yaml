@@ -2,14 +2,12 @@
 version: "2.0"
 services:
   app:
-    image: dimokus88/automatic1111:0.1.20
+    image: dimokus88/automatic1111:0.1
     expose:
       - port: 8080
-        as: 80
+        as: 8080
         to:
           - global: true
-    env:
-      - "MODEL_LINK=" # if left blank, the model version 1.5 will be loaded. For example, for model version 2.1, link https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.ckpt
 profiles:
   compute:
     app:
@@ -17,7 +15,7 @@ profiles:
         cpu:
           units: 6.0
         memory:
-          size: 20Gi
+          size: 35Gi
         gpu:
           units: 1
         storage:
