@@ -4,8 +4,9 @@ RUN apt update && apt upgrade -y && apt install -y wget build-essential git make
 RUN pip install wheel
 RUN pip install lit
 ENV PYTORCH_CUDA_ALLOC_CONF=garbage_collection_threshold:0.9,max_split_size_mb:512
+RUN git clone https://github.com/Dimokus88/stable-diffusion-webui.git
+RUN pip install diffusers transformers accelerate scipy safetensors
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 RUN sed -i 's/\r$//' /entrypoint.sh
-ENTRYPOINT ["bash", "/entrypoint.sh", "--update-check", "--xformers", "--listen", "--port", "8080"]
-CMD ["--medvram"]
+ENTRYPOINT ["bash", "/entrypoint.sh"]
