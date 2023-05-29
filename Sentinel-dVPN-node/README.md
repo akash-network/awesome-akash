@@ -1,4 +1,5 @@
-https://user-images.githubusercontent.com/23629420/219872517-2adc32b1-5f64-4d48-9a81-1e2ef6b01a53.png
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/7d65c5b3-1027-4008-9899-0911c8ed8552)
+
 
 | [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) |
 |:--:|
