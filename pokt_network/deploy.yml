@@ -10,9 +10,10 @@ services:
       - "KEYFILE_BASE64=" # Encrypted contents of the keyfile.json file using BASE64;
       - "KEY_PASS=" # Password to keyfile.json;
       - "ADDRESS=" # Account address;
+      - "GENESIS_LINK=" # Link to download genesis file https://docs.pokt.network/node/setup/#setup-the-genesis-configuration-file ;
       - "CHAINS_LINK=" # Link to download chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form;
       - "LINK_SNAPSHOT=" # Link to network snapshot https://docs.pokt.network/node/setup/#download-snapshot ;
-      - "SEEDS=" # Set seeds address: https://docs.pokt.network/node/seeds/ ;
+      - "SEEDS=" # Set seeds address https://docs.pokt.network/node/seeds/ ;
    # params:
    #   storage:
    #     data:
@@ -21,22 +22,27 @@ services:
       - "bash"
       - "-c"
     args:
-      - "apt-get update && apt-get upgrade -y;apt-get install -y curl;
-         curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt_network/main.sh | bash"   
+      - "apt-get update && apt-get upgrade -y;apt-get install -y curl; curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt_network/main.sh | bash"   
     
     expose:
       - port: 8081
-        as: 8081
         to:
-         - global: true 
+         - global: true
+      - port: 8083
+        to:
+         - global: true
+      - port: 8443
+        to:
+         - global: true
+      - port: 26657
+        to:
+         - global: true
       - port: 26656
-        as: 26656
         to:
-         - global: true 
+         - global: true
       - port: 22
-        as: 22
         to:
-         - global: true 
+         - global: true
 
 profiles:
   compute:
@@ -47,12 +53,12 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          size: 500Gi 
+          size: 600Gi
         #- name: data
-        #  size: 500Gi
+        #  size: 600Gi 
         #   attributes:
         #    persistent: true
-        #     class: beta3
+        #    class: beta3
   placement:
     akash: 
       pricing:
