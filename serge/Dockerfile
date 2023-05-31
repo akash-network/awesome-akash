@@ -22,7 +22,7 @@ RUN apt-get update \
     && pip install --upgrade pip
 
 # Add redis config
-COPY ./config/redis.conf /etc/redis/redis.conf
+COPY ./serge/config/redis.conf /etc/redis/redis.conf
 
 # ---------------------------------------
 # Dev environment
@@ -31,21 +31,20 @@ ENV NODE_ENV='development'
 
 # Install Node.js and npm packages
 COPY --from=node_base /usr/local /usr/local
-COPY ./web/package*.json ./
+COPY ./serge/web/package*.json ./
 RUN npm ci
 
-COPY scripts/dev.sh /usr/src/app/dev.sh
-RUN chmod 755 /usr/src/app/dev.sh
+COPY --chmod=0755 scripts/dev.sh /usr/src/app/dev.sh
 CMD ./dev.sh
 
 # ---------------------------------------
 # Build frontend
 FROM node_base as frontend_builder
 
-COPY ./web/package*.json ./
+COPY ./serge/web/package*.json ./
 RUN npm ci
 
-COPY ./web /usr/src/app/web/
+COPY ./serge/web /usr/src/app/web/
 WORKDIR /usr/src/app/web/
 RUN npm run build
 
@@ -57,15 +56,13 @@ ENV NODE_ENV='production'
 WORKDIR /usr/src/app
 
 COPY --from=frontend_builder /usr/src/app/web/build /usr/src/app/api/static/
-COPY ./api /usr/src/app/api
-COPY scripts/deploy.sh /usr/src/app/deploy.sh
+COPY ./serge/api /usr/src/app/api
+COPY --chmod=0755 serge/scripts/deploy.sh /usr/src/app/deploy.sh
 
 RUN pip install --no-cache-dir ./api
 
-RUN chmod 755 /usr/src/app/deploy.sh 
-
 RUN mkdir -p /data/db
-RUN mkdir -p /usr/src/app/weights/
+RUN mkdir -p /usr/src/app/weights
 
 EXPOSE 8008
 CMD ./deploy.sh
