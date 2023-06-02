@@ -1,30 +1,40 @@
----
-version: "2.0"
-
+version: '2.0'
 services:
-  serge:
-    image: cryptoandcoffee/akash-serge:0.1.3
+  flowise:
+    image: flowiseai/flowise
     expose:
-      - port: 8008
+      - port: 3000
         as: 80
         to:
           - global: true
+    args:
+      - start
+    command:
+      - flowise
+    env:
+      #- "PORT=${PORT}"
+      #- "FLOWISE_USERNAME=${FLOWISE_USERNAME}"
+      #- "FLOWISE_PASSWORD=${FLOWISE_PASSWORD}"
+    params:
+      storage:
+        flowise:
+          mount: /root/.flowise
+          readOnly: false
 profiles:
   compute:
-    serge:
+    flowise:
       resources:
         cpu:
-          units: 32.0
-#Higher is better for AI! Be sure to change thread setting in app.
+          units: 4
         memory:
-          size: 28Gi
-#7B requires about 4.5GB of free RAM
-#13B requires about 12GB free
-#30B requires about 20GB free // 24 not enough
+          size: 4Gi
         storage:
-          size: 25Gi
-#Bigger models may require more storage.
-#Increase as required.
+          - size: 1Gi
+          - name: flowise
+            size: 32Gi
+            attributes:
+              persistent: true
+              class: beta3
   placement:
     akash:
       #######################################################
@@ -38,11 +48,11 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        serge:
+        flowise:
           denom: uakt
           amount: 10000
 deployment:
-  serge:
+  flowise:
     akash:
-      profile: serge
+      profile: flowise
       count: 1
