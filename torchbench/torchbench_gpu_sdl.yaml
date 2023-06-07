@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  gpu-test:
+    image: docker.io/thumperai/torchbench
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    cmd:
+      - "pytest /workspace/benchmark/test_bench.py -k"
+  
+profiles:
+  compute:
+    gpu-test:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 20Gi
+        gpu:
+          units: 1
+        storage:
+          - size: 100Gi
+  placement:
+    westcoast:
+      pricing:
+        gpu-test:
+          denom: uakt
+          amount: 100000
+deployment:
+  gpu-test:
+    westcoast:
+      profile: gpu-test
+      count: 1
