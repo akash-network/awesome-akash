@@ -11,6 +11,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
         libpng-dev
 
 RUN pip install pyyaml 
-# RUN apt install git -y
 RUN git clone https://github.com/pytorch/benchmark
-RUN cd benchmark && python install.py
+
+# running install at run time to reduce container size from 20Gb to about 7.
+# RUN cd benchmark && python install.py
