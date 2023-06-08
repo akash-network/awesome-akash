@@ -14,6 +14,9 @@ RUN pip install pyyaml
 RUN git clone https://github.com/pytorch/benchmark
 
 COPY run.sh /
+COPY run.sh /workspace/
+RUN chmod 777 /workspace/run.sh
+RUN chmod 777 -R /workspace/
 ENTRYPOINT ["sh","./run.sh"]
 
 # ENTRYPOINT ["python /workspace/benchmark/install.py models hf_bert hf_Bert_large resnet50 tacotron2 && pytest /workspace/benchmark/test_bench.py -k '(hf_bert or hf_bert_Large or resnet50 or tacotron2)' --ignore_machine_config"]
