@@ -126,16 +126,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Handshake](handshake)
 - [Fuse Network Node](fuse-network-node)
 
-### Blogging
-
-- [SteemCN](steemcn)
-- [Ghost](ghost)
-- [Grav](Grav)
-- [Wordpress](wordpress)
-- [Confluence](confluence)
-- [Drupal](drupal)
-- [Wiki.js](wikijs)
-
 ### Business
 
 - [Odoo](odoo)
