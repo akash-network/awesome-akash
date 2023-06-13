@@ -3,17 +3,14 @@ version: "2.0"
 
 services:
   app:
-    image: forestjqg/docker_gwan_atomstaking:wanchain     
+    image: forestjqg/chainimages:imgwan
     
     command:
       - "bash"
       - "-c"
     args:
-      - 'apt-get update ;
-        apt-get upgrade -y ;
-        apt-get install vim -y ;
-        sleep infinity'
-    
+      - "chmod +x /wanchain/start.sh && /wanchain/start.sh "
+
     expose:
       - port: 80
         as: 80
