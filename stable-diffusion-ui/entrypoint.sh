@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the download URL of the latest release from the Stable Diffusion UI GitHub repository
-url=$(curl -s https://api.github.com/repos/cmdr2/stable-diffusion-ui/releases/latest \
+url=$(curl -Ls https://api.github.com/repos/cmdr2/stable-diffusion-ui/releases/latest \
 | grep -i "browser_download_url.*linux.zip" \
 | cut -d : -f 2,3 \
 | tr -d '"' \
