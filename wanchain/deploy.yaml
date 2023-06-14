@@ -3,13 +3,15 @@ version: "2.0"
 
 services:
   app:
-    image: forestjqg/chainimages:imgwan
+    image: forestjqg/rpc:nodewanrpc
     
     command:
       - "bash"
       - "-c"
     args:
-      - "chmod +x /wanchain/start.sh && /wanchain/start.sh "
+      - "/wanchain/entrypoint.sh"  
+      - "--http"
+      - "--http.addr=0.0.0.0"
 
     expose:
       - port: 80
