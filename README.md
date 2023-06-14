@@ -24,10 +24,12 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [ChatChat](chatchat)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
+- [Flowise](flowise)
 - [GPT4ALL](gpt4all)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
+- [Weaviate](weaviate)
 
 ### Blogging
 
