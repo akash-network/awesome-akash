@@ -10,8 +10,6 @@ The deployment uses a custom image (`forestjqg/chainimages:imgwan`)
 USAGE:
    gwan [options] [command] [command options] [arguments...]
    
-VERSION:
-   3.0.0-b63be1b9-20220615
    
 COMMANDS:
    account                            Manage accounts
