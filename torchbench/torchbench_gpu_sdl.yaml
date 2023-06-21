@@ -23,6 +23,9 @@ profiles:
           size: 20Gi
         gpu:
           units: 1
+          attributes:
+            vendor:
+              nvidia:
         storage:
           - size: 100Gi
   placement:
