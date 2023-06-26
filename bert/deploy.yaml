@@ -1,0 +1,37 @@
+version: "2.0"
+
+services:
+  web:
+    image: clydedevv/bert-base-uncased:latest
+    env:
+      - MODEL_NAME=bert-base-uncased
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu: 100m
+        memory: 512Mi
+        storage: 10Gi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+      pricing:
+        web: 
+          denom: uakt
+          amount: 1000
+
+deployment:
+  web:
+    westcoast:
+      profile: web
+      count: 1
