@@ -1,10 +1,15 @@
 version: "2.0"
 
 services:
-  web:
+  bert-base-uncased:
     image: clydedevv/bert-base-uncased:latest
     env:
       - MODEL_NAME=bert-base-uncased
+    command:
+      - "sh"
+      - "-c"
+    args:
+      - 'sleep infinity'
     expose:
       - port: 80
         as: 80
@@ -13,25 +18,30 @@ services:
 
 profiles:
   compute:
-    web:
+    bert-base-uncased:
       resources:
-        cpu: 100m
-        memory: 512Mi
-        storage: 10Gi
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: a4000
+        storage:
+          - size: 512Mi
   placement:
     westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
       pricing:
-        web: 
+        bert-base-uncased:
           denom: uakt
-          amount: 1000
+          amount: 100000
 
 deployment:
-  web:
+  bert-base-uncased:
     westcoast:
-      profile: web
+      profile: bert-base-uncased
       count: 1
+
