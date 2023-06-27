@@ -36,4 +36,3 @@ deployment:
       profile: freegpt-webui
       count: 1
 
-
