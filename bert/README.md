@@ -25,7 +25,3 @@ This project is intended for participants in the Akash GPU Testnet who are inter
 ## Contributing
 
 Contributions are welcome! If you have any improvements or additions to suggest, please feel free to create a pull request or open an issue.
-
-## License
-
-This project is licensed under the terms of the MIT license.
