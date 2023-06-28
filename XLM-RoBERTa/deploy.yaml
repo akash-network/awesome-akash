@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   xlm-roberta-base:
-    image: clydedevv/xlm-roberta-base:latest
+    image: clydedevv/xlm-roberta-base:0.0.1
     env:
       - MODEL_NAME=xlm-roberta-base
     command:
