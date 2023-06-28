@@ -27,7 +27,7 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: a4000
+                - model: v100
         storage:
           - size: 512Mi
   placement:
