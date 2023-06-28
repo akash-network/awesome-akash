@@ -11,11 +11,9 @@ This repository contains the necessary files to deploy a Flask application that 
 
 ## Deployment
 
-To deploy the application on the Akash network, you need to build and push the Docker image, and then deploy the application using the `deploy.yaml` file.
+To deploy the application on the Akash network, you need to deploy the application using the `deploy.yaml` file.
 
-1. Build the Docker image: `docker build -t clydedevv/xlm-roberta-base:latest .`
-2. Push the Docker image: `docker push clydedevv/xlm-roberta-base:latest`
-3. Deploy the application on Akash: `akash deploy create deploy.yaml --from $AKASH_KEY_NAME`
+Deploy the application on Akash: `akash deploy create deploy.yaml --from $AKASH_KEY_NAME`
 
 Replace `$AKASH_KEY_NAME` with the name of your Akash key.
 
