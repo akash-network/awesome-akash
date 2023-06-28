@@ -55,7 +55,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
 
-### Continuous Integration
+### CI/CD, DevOps
 
 - [Jenkins](jenkins)
 - [Bitbucket](bitbucket)
