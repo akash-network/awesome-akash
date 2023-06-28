@@ -1,0 +1,44 @@
+version: "2.0"
+
+services:
+  xlm-roberta-base:
+    image: clydedevv/xlm-roberta-base:latest
+    env:
+      - MODEL_NAME=xlm-roberta-base
+    command:
+      - "python"
+      - "app.py"
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    xlm-roberta-base:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: a4000
+        storage:
+          - size: 512Mi
+  placement:
+    westcoast:
+      pricing:
+        xlm-roberta-base:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  xlm-roberta-base:
+    westcoast:
+      profile: xlm-roberta-base
+      count: 1
