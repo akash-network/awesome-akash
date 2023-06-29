@@ -1,29 +1,20 @@
-version: "2.0"
-
+version: '2.0'
 services:
-  bert-base-uncased:
+  bert:
     image: clydedevv/bert-base-uncased:0.0.1
-    env:
-      - MODEL_NAME=bert-base-uncased
-    command:
-      - "sh"
-      - "-c"
-    args:
-      - 'sleep infinity'
     expose:
       - port: 80
         as: 80
         to:
           - global: true
-
 profiles:
   compute:
-    bert-base-uncased:
+    bert:
       resources:
         cpu:
-          units: 1
+          units: 4
         memory:
-          size: 1Gi
+          size: 4Gi
         gpu:
           units: 1
           attributes:
@@ -31,17 +22,15 @@ profiles:
               nvidia:
                 - model: v100
         storage:
-          - size: 512Mi
+          - size: 10Gi
   placement:
-    westcoast:
+    akash:
       pricing:
-        bert-base-uncased:
+        bert:
           denom: uakt
           amount: 100000
-
 deployment:
-  bert-base-uncased:
-    westcoast:
-      profile: bert-base-uncased
+  bert:
+    akash:
+      profile: bert
       count: 1
-
