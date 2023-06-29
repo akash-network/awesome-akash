@@ -20,13 +20,9 @@ This repository contains the necessary files to deploy the BERT model from Huggi
 
 ## Detailed Instructions
 
-1. **Building the Docker Image**: You can build the Docker image using the provided Dockerfile with the command `docker build -t your-dockerhub-username/bert-base-uncased:0.0.1 .`. Don't forget to replace `your-dockerhub-username` with your actual Docker Hub username.
+1. **Deploying on Akash**: You can deploy the application on Akash using the provided `deploy.yaml` file. Make sure to replace `image: your-dockerhub-username/bert-base-uncased:0.0.1` in the `deploy.yaml` file with the correct Docker image name (clydedevv/bert-base-uncased:0.0.1). Then, use the Akash CLI to create the deployment with the command `akash deploy create deploy.yaml --from $AKASH_KEY_NAME`.
 
-2. **Pushing the Docker Image to Docker Hub**: After building the Docker image, you can push it to Docker Hub using the command `docker push your-dockerhub-username/bert-base-uncased:0.0.1`.
-
-3. **Deploying on Akash**: With the Docker image pushed to Docker Hub, you can now deploy the application on Akash. Make sure to replace `image: your-dockerhub-username/bert-base-uncased:0.0.1` in the `deploy.yaml` file with the correct Docker image name. Then, use the Akash CLI to create the deployment with the command `akash deploy create deploy.yaml --from $AKASH_KEY_NAME`.
-
-4. **Testing the Deployment**: After the deployment is successful, you can test it by sending a GET request to the deployed application's URL. The application currently doesn't have any endpoints defined, so you should expect a 404 response. This indicates that the application is running successfully.
+2. **Testing the Deployment**: After the deployment is successful, you can test it by sending a GET request to the deployed application's URL. The application currently doesn't have any endpoints defined, so you should expect a 404 response. This indicates that the application is running successfully.
 
 ## Audience
 
