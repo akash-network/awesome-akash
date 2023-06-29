@@ -10,9 +10,13 @@ This repository contains the necessary files to deploy the BERT model from Huggi
 
 - The Docker image has been built and pushed to Docker Hub, making it ready for deployment on the Akash GPU Testnet.
 
+- The `app.py` file has been created which loads the BERT model when run. Currently, it does not include a Flask application or an `/encode` endpoint.
+
 ## Next Steps
 
-- Deploy the Docker image on the Akash GPU Testnet using the Akash CLI and the `deploy.yaml` file.
+- Update the `app.py` file to include a Flask application with an `/encode` endpoint that can process POST requests and use the BERT model to transform input text into embeddings.
+
+- Deploy the updated Docker image on the Akash GPU Testnet using the Akash CLI and the `deploy.yaml` file.
 
 - Test the deployment to ensure that the BERT model is loaded successfully and that the application is functioning as expected.
 
