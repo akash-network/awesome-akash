@@ -182,7 +182,8 @@ HEALTHCHECK --interval=5s --timeout=3s --start-period=5s --retries=3 \
 # Switch back to jovyan to avoid accidental container runs as root
 # USER ${NB_UID}
 
-WORKDIR "${HOME}"
+# WORKDIR "${HOME}"
+WORKDIR "/workspace/"
 
 RUN pip install pyyaml jupyter jupyterlab
 RUN git clone https://github.com/pytorch/benchmark
@@ -192,6 +193,10 @@ COPY run.sh /workspace/
 RUN chmod 777 /workspace/run.sh
 RUN chmod 777 -R /workspace/
 COPY Akash_Gpu_Benchmark_Notebook.ipynb /workspace/Akash_Gpu_Benchmark_Notebook.ipynb
+RUN chmod 777 -R /workspace/
+RUN chmod 777 -R "${HOME}"
+RUN /opt/conda/bin/python3 -m pip install torch torchaudio torchvision torchtext
+
 # ENTRYPOINT ["sh","./run.sh"]
 # ENTRYPOINT ["jupyter notebook"]
 
