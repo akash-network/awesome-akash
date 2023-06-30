@@ -6,8 +6,8 @@ services:
     image: docker.io/thumperai/torchbench:v0.0.1
     expose:
        - port: 8888
-        as: 80
-        to:
+         as: 80
+         to:
           - global: true
     # cmd:
     #    - 'python /workspace/benchmark/install.py models hf_bert hf_Bert_large resnet50 tacotron2 && pytest /workspace/benchmark/test_bench.py -k "(hf_bert or hf_bert_Large or resnet50 or tacotron2)" --ignore_machine_config'
