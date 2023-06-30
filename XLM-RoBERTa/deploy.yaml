@@ -1,44 +1,37 @@
-version: "2.0"
-
+#updated roberta
+version: '2.0'
 services:
-  xlm-roberta-base:
-    image: clydedevv/xlm-roberta-base:0.0.4
-    env:
-      - MODEL_NAME=xlm-roberta-base
-    command:
-      - "python"
-      - "app.py"
+  roberta:
+    image: clydedevv/xlm-roberta-base:0.0.5
     expose:
       - port: 80
         as: 80
         to:
           - global: true
-
 profiles:
   compute:
-    xlm-roberta-base:
+    roberta:
       resources:
         cpu:
-          units: 1
+          units: 4
         memory:
-          size: 1Gi
+          size: 4Gi
         gpu:
           units: 1
           attributes:
             vendor:
               nvidia:
-                - model: a4000
+                - model: v100
         storage:
-          - size: 512Mi
+          - size: 10Gi
   placement:
-    westcoast:
+    akash:
       pricing:
-        xlm-roberta-base:
+        roberta:
           denom: uakt
           amount: 100000
-
 deployment:
-  xlm-roberta-base:
-    westcoast:
-      profile: xlm-roberta-base
+  roberta:
+    akash:
+      profile: roberta
       count: 1
