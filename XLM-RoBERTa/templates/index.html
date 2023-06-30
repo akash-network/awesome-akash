@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XLM-RoBERTa</title>
+</head>
+<body>
+    <form method="POST">
+        <input type="text" name="text" placeholder="Enter text">
+        <input type="submit" value="Submit">
+    </form>
+    {% if output %}
+        <p>{{ output }}</p>
+    {% endif %}
+</body>
+</html>
