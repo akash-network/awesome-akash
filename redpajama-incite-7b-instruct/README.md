@@ -8,11 +8,16 @@ For more information -> https://huggingface.co/togethercomputer/RedPajama-INCITE
 ### Notes
 This application requires a GPU with 16GB memory. It is recommended to use a video card NVIDIA H100.
 
-After launch container, the application should download the trained model from the project repository, these are two files with a total weight of 13.8Gb and it may take some time depending on the internet speed of GPU provider.
+After launch container, the application should download the trained model from the project repository, these are two files with a total weight of 13.8Gb and it may take some time depending on the internet speed of GPU provider. 
 
 
-## Logs file
+## Logs
+This file contains all logs that should be on normal application startup:
 [212912-1-1-logs-2023-07-01.txt](https://github.com/yuravorobei/awesome-akash/files/11927219/212912-1-1-logs-2023-07-01.txt)
+
+Screenshot:
+![Screenshot_20230702_011025](https://github.com/yuravorobei/awesome-akash/assets/19820490/21a48177-c276-4ee4-b500-8e1a203b9d4c)
+
 
 ## Demo Video
 https://github.com/yuravorobei/awesome-akash/assets/19820490/c14f70b6-6eb1-496a-97f5-b686274a781a
