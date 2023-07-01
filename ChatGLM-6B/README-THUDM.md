@@ -1,4 +1,4 @@
-# ChatGLM-6B on kash Network
+# ChatGLM-6B on Akash Network
 
 the original code repo is [here](https://github.com/THUDM/ChatGLM-6B)
 
