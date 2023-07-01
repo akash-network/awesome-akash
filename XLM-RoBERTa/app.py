@@ -1,18 +1,31 @@
 from flask import Flask, request, jsonify, render_template
-from transformers import pipeline
+from transformers import XLMRobertaTokenizer, XLMRobertaForMaskedLM
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
+MODEL_NAME = 'xlm-roberta-base'
+tokenizer = XLMRobertaTokenizer.from_pretrained(MODEL_NAME)
+model = XLMRobertaForMaskedLM.from_pretrained(MODEL_NAME)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        text = request.form['text']
+        encoded_input = tokenizer(text, return_tensors='pt')
+        output = model(**encoded_input)
+        predicted_token = tokenizer.decode(output.logits.argmax(-1).tolist()[0])
+        return render_template('index.html', output=predicted_token)
     return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    text = request.form.get('text')
-    nlp = pipeline("sentiment-analysis", model="cardiffnlp/twitter-xlm-roberta-base-sentiment")
-    result = nlp(text)[0]
-    return jsonify(result)
+    data = request.get_json()
+    text = data.get('text')
+    encoded_input = tokenizer(text, return_tensors='pt')
+    output = model(**encoded_input)
+    predicted_token = tokenizer.decode(output.logits.argmax(-1).tolist()[0])
+    return jsonify({'predicted_token': predicted_token})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    print("XLMRoberta deployed successfully!")
+    app.run(host='0.0.0.0', port=80)
