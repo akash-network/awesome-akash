@@ -21,6 +21,4 @@ For example, you can use curl to send a POST request:
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"text":"This <mask> model can understand and generate text in multiple languages."}' http://your-akash-deployment-url/predict
-
-
-
+```
