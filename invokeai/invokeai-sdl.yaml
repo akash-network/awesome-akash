@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  sdinvokeai:
+    image: ghcr.io/ebr/invokeai:latest-cuda
+    expose:
+      - port: 9090
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    sdinvokeai:
+      resources:
+        cpu:
+          units: 25.0
+        memory:
+          size: 26Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+        storage:
+          size: 100Gi
+  placement:
+    akash:
+      pricing:
+        sdinvokeai: 
+          denom: uakt
+          amount: 100000
+
+deployment:
+  sdinvokeai:
+    akash:
+      profile: sdinvokeai
+      count: 1
