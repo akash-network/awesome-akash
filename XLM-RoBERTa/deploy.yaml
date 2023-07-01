@@ -2,7 +2,7 @@
 version: '2.0'
 services:
   roberta:
-    image: clydedevv/xlm-roberta-app:0.0.8
+    image: clydedevv/xlm-roberta-app:0.0.9
     expose:
       - port: 80
         as: 80
