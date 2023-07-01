@@ -1,14 +1,17 @@
 
-##stable-diffusion-webui On the Akash Network
+## stable-diffusion-webui On the Akash Network
 
 A browser interface based on Gradio library for Stable Diffusion.
 The original repo can be found [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 
 ## Web UI
-
-
+![image](https://github.com/hengdingy/awesome-akash/assets/107467232/f429ea37-6cb7-439c-9286-7596b0ac5e46)
 
 ## Demo Video
+
+
+https://github.com/hengdingy/awesome-akash/assets/107467232/09b38c5a-b875-47d9-b2bd-4c01abce5b03
+
 
 ## Features
 [Detailed feature showcase with images](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features):
