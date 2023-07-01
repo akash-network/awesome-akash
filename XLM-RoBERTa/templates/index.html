@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>XLM-RoBERTa</title>
-</head>
 <body>
-    <form method="POST">
-        <input type="text" name="text" placeholder="Enter text">
-        <input type="submit" value="Submit">
-    </form>
-    {% if output %}
-        <p>{{ output }}</p>
-    {% endif %}
+
+<h2>Text Sentiment Analysis</h2>
+
+<form action="/predict" method="post">
+  <label for="text">Enter text:</label><br>
+  <input type="text" id="text" name="text"><br>
+  <input type="submit" value="Submit">
+</form> 
+
 </body>
 </html>
