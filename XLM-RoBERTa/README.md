@@ -24,7 +24,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"text":"This <mask> model 
 ```
 
 ## Future Steps 
-BERT and RoBERTa are highly versatile language models that can be fine-tuned for a wide variety of natural language processing (NLP) tasks. Here are a few potential use cases:
+BERT and RoBERTa are highly versatile language models that can be fine-tuned for a wide variety of natural language processing (NLP) tasks. The models could be used to do any of the following:
 
 Sentiment Analysis: You could fine-tune these models on a dataset of product reviews, social media comments, or any other text data to predict the sentiment of the text. This could be used by organizations to monitor customer feedback and public opinion about their products or services.
 
