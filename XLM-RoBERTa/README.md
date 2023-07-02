@@ -23,6 +23,15 @@ For example, you can use curl to send a POST request:
 curl -X POST -H "Content-Type: application/json" -d '{"text":"This <mask> model can understand and generate text in multiple languages."}' http://your-akash-deployment-url/predict
 ```
 
+## UI
+![image](https://github.com/clydedevv/awesome-akash/assets/80094928/9e95fc83-edff-4419-9b7c-57cea0d9c61e)
+
+## Interactivity Demo
+
+
+https://github.com/clydedevv/awesome-akash/assets/80094928/6ee78fa4-b0b3-454f-8dc1-b89938565cb5
+
+
 ## Future Steps 
 BERT and RoBERTa are highly versatile language models that can be fine-tuned for a wide variety of natural language processing (NLP) tasks. The models could be used to do any of the following:
 
