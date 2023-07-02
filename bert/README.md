@@ -30,11 +30,10 @@ curl -X POST -H "Content-Type: application/json" -d '{"text":"This [MASK] model 
 ```
 ![image](https://github.com/clydedevv/awesome-akash/assets/80094928/a00a4dbc-9486-4365-a8f9-590341c20250)
 
-Video Demo
+## Video Demo
 
-Replace yo
+https://github.com/clydedevv/awesome-akash/assets/80094928/72b666ac-c743-42b4-b391-abe23c42979d
 
-https://github.com/clydedevv/awesome-akash/assets/80094928/e21c5f7a-7f71-435b-a537-91a2d0966ea5
 
-ur-akash-deployment-url with the URL of your Akash deployment.
+Replace your-akash-deployment-url with the URL of your Akash deployment.
 
