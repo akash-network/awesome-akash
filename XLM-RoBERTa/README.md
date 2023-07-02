@@ -22,3 +22,20 @@ For example, you can use curl to send a POST request:
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"text":"This <mask> model can understand and generate text in multiple languages."}' http://your-akash-deployment-url/predict
 ```
+
+## Future Steps 
+BERT and RoBERTa are highly versatile language models that can be fine-tuned for a wide variety of natural language processing (NLP) tasks. Here are a few potential use cases:
+
+Sentiment Analysis: You could fine-tune these models on a dataset of product reviews, social media comments, or any other text data to predict the sentiment of the text. This could be used by organizations to monitor customer feedback and public opinion about their products or services.
+
+Text Classification: These models can be used to classify text into predefined categories. For example, a news organization could use this to automatically categorize news articles into topics like "Sports", "Politics", "Technology", etc.
+
+Question Answering: BERT and RoBERTa can be trained to answer questions about a given context. This could be used to build a customer service chatbot that can answer frequently asked questions.
+
+Named Entity Recognition (NER): NER is the task of identifying and classifying named entities in text (like person names, organizations, locations, medical codes, time expressions, quantities, monetary values, percentages, etc.). This could be used in various fields like healthcare, finance, and law enforcement.
+
+Text Generation: Although BERT and RoBERTa are not primarily designed for text generation, they can be used to generate text by predicting the next word in a sentence. This could be used to build a tool for writing assistance or content creation.
+
+As for training these models on Akash, it's certainly possible. Training a large language model like BERT or RoBERTa requires a lot of computational resources, and Akash's decentralized cloud could potentially provide a cost-effective solution for this. However, training these models also requires a large amount of high-quality labeled data, which can be challenging to obtain.
+
+In terms of future steps, one possible direction could be to build a platform on Akash where users can fine-tune pre-trained models like BERT and RoBERTa on their own datasets. This would allow users to leverage the power of these models for their specific use cases without having to train the models from scratch.
