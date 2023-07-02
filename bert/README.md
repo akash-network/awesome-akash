@@ -1,33 +1,33 @@
-# BERT Model Deployment on Akash GPU Testnet
+# BERT on Akash
 
-This repository contains the necessary files to deploy the BERT model from Hugging Face on the Akash GPU Testnet. The BERT model is a powerful language model that can be used for a variety of natural language processing tasks.
+This repository contains the necessary files to deploy a Flask application that uses the BERT language model on the Akash network. BERT is a powerful language model that can understand and generate text in English.
 
-## What's Been Done
+## Files
 
-- A Dockerfile has been created to build a Docker image for the BERT model. The Dockerfile specifies the necessary dependencies for running the BERT model and sets up a basic application that loads the BERT model when the Docker container is started.
+- `Dockerfile`: This file is used to build the Docker image for the application. It sets up an environment with Python and all the necessary libraries to run the application.
+- `requirements.txt`: This file lists the Python packages that need to be installed in the Docker image. This includes Flask for the web application and the Transformers library for the BERT model.
+- `app.py`: This is the main application file. It creates a Flask web application that uses the BERT model to predict the masked words in a sentence.
+- `deploy.yaml`: This file defines the Akash deployment configuration for the application. It specifies the resources needed to run the application and the Docker image to use.
 
-- A `deploy.yaml` file has been created for deploying the Docker image on the Akash GPU Testnet. The `deploy.yaml` file specifies the resources required for the deployment, including CPU, memory, storage, and GPU.
+## Deployment
 
-- The Docker image has been built and pushed to Docker Hub, making it ready for deployment on the Akash GPU Testnet.
+To deploy the application on the Akash network, you need to build and push the Docker image, and then deploy the application using the `deploy.yaml` file.
 
-## Next Steps
+1. Build the Docker image: `docker build -t your-dockerhub-username/bert-base-uncased:0.0.1 .`
+2. Push the Docker image: `docker push your-dockerhub-username/bert-base-uncased:0.0.1`
+3. Deploy the application on Akash: `akash deploy create deploy.yaml --from $AKASH_KEY_NAME`
 
-- Deploy the Docker image on the Akash GPU Testnet using the Akash CLI and the `deploy.yaml` file.
+Replace `your-dockerhub-username` with your Docker Hub username and `$AKASH_KEY_NAME` with the name of your Akash key.
 
-- Test the deployment to ensure that the BERT model is loaded successfully and that the application is functioning as expected.
+## Usage
 
-- Develop a more interactive application that uses the BERT model to provide a service, such as text classification or sentiment analysis. This could be a web application with a user interface for inputting text and displaying the output from the BERT model.
+The application listens on port 80 and accepts POST requests to the `/predict` endpoint. The POST request should contain a JSON object with a single attribute 'text' that contains the sentence with a word replaced by '[MASK]'. The application will return the sentence with the '[MASK]' replaced by the predicted word.
 
-## Detailed Instructions
+For example, you can use curl to send a POST request:
 
-1. **Deploying on Akash**: You can deploy the application on Akash using the provided `deploy.yaml` file. Make sure to replace `image: your-dockerhub-username/bert-base-uncased:0.0.1` in the `deploy.yaml` file with the correct Docker image name (clydedevv/bert-base-uncased:0.0.1). Then, use the Akash CLI to create the deployment with the command `akash deploy create deploy.yaml --from $AKASH_KEY_NAME`.
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"text":"This [MASK] model can understand and generate text in multiple languages."}' http://your-akash-deployment-url/predict
+```
 
-2. **Testing the Deployment**: After the deployment is successful, you can test it by sending a GET request to the deployed application's URL. The application currently doesn't have any endpoints defined, so you should expect a 404 response. This indicates that the application is running successfully.
+Replace your-akash-deployment-url with the URL of your Akash deployment.
 
-## Audience
-
-This project is intended for participants in the Akash GPU Testnet who are interested in deploying AI language models. The provided files and instructions can serve as a starting point for deploying other models on the Akash GPU Testnet.
-
-## Contributing
-
-Contributions are welcome! If you have any improvements or additions to suggest, please feel free to create a pull request or open an issue.
