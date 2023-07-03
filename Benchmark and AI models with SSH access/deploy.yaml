@@ -1,0 +1,68 @@
+---
+version: "2.0"
+
+services:
+  benchmark:
+    image: huggingface/transformers-pytorch-gpu:latest
+    env:
+      - SSH_PASS=password
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'apt-get update ;
+        apt-get upgrade -y ;
+        apt install -y ssh ;
+        echo "PermitRootLogin yes" >> /etc/ssh/sshd_config ;
+        (echo $SSH_PASS; echo $SSH_PASS) | passwd root ; 
+        service ssh start;
+        echo ==== ssh user:"root" === ;
+        echo === ssh pass:"$SSH_PASS" === ;
+        apt install python3.8-venv ;
+        python3 -m venv env ;
+        source env/bin/activate ;
+        pip3 install torch ;
+        pip3 install transformers ;
+        pip3 install py3nvml ;
+        python3 /transformers/examples/pytorch/benchmarking/run_benchmark.py --models bert-base-cased --batch_size=512 ;
+        nvidia-smi ;
+        sleep infinity'
+
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+          
+      - port: 22
+        as: 22
+        to:
+          - global: true 
+
+profiles:
+  compute:
+    benchmark:
+      resources:
+        cpu:
+          units: 5.0
+        memory:
+          size: 12Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+        storage:
+          size: 30Gi
+  placement:
+    akash:
+      pricing:
+        benchmark: 
+          denom: uakt
+          amount: 100000
+
+deployment:
+  benchmark:
+    akash:
+      profile: benchmark
+      count: 1
