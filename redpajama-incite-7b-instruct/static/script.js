@@ -1,14 +1,14 @@
-// функция асинхронного запроса на сервер и получение ответа
+// function of asynchronous request to the server and receiving a response
 const generateText = async (text) => {
     const inferResponse = await fetch(`infer_redpajama?prompt=${text}`);
     const inferJson = await inferResponse.json();
     return inferJson.output;
 };
 
-// получаем объект формы
+// get the form object
 const textGenForm = document.querySelector('.text-gen-form');
 
-// добавить отслеживания события отправки формы (нажатия кнопки)
+// add form submission event (button click) tracking 
 textGenForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
