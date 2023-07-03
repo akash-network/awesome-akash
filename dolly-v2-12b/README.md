@@ -11,6 +11,9 @@ After launch container, the application should download the trained model from t
 #### Logs
 Unfortunately, I could not achieve a normal display of logs. They do not display an indicator that the trained application models are loading, and they do not display requests to the server. But when manually launched locally, the logs are displayed. Therefore, in this case, in order to find out that the application is ready to work, you will have to constantly update the application page and wait for the interface to appear.
 Now the logs look like on this screenshot:
+![Screenshot_20230703_201823](https://github.com/yuravorobei/awesome-akash/assets/19820490/91300de4-c61f-4620-9db0-4aa950fe103a)
 
 ## Demo Video
+https://github.com/yuravorobei/awesome-akash/assets/19820490/0b0060eb-ed0e-4132-b711-9aa93bad894a
+
 
