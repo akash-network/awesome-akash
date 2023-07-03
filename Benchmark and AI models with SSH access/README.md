@@ -13,9 +13,14 @@ https://github.com/huggingface/transformers
 
 #Commands for running the benchmark over SSH.
 
-python3 -m venv env ;
-source env/bin/activate ;
-pip3 install torch ;
-pip3 install transformers ;
-pip3 install py3nvml ;
-python3 /transformers/examples/pytorch/benchmarking/run_benchmark.py --models bert-base-cased --batch_size=512 ;
+  python3 -m venv env ;
+
+  source env/bin/activate ;
+
+  pip3 install torch ;
+
+  pip3 install transformers ;
+
+  pip3 install py3nvml ;
+
+  python3 /transformers/examples/pytorch/benchmarking/run_benchmark.py --models bert-base-cased --batch_size=512
