@@ -1,0 +1,34 @@
+version: '2.0'
+services:
+  sss:
+    image: nomorelies/sss
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+profiles:
+  compute:
+    sss:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 16Gi
+  placement:
+    akash:
+      pricing:
+        sss:
+          denom: uakt
+          amount: 100000
+deployment:
+  sss:
+    akash:
+      profile: sss
+      count: 1
