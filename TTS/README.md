@@ -10,7 +10,4 @@ Open URI in Cloudmos or Akash Console after deployment.
 
 [TTS Docs](https://tts.readthedocs.io/en/latest/index.html)
 [Docker Images](https://tts.readthedocs.io/en/latest/docker_images.html)
-
-## Showcase
-
-[![Showcase](https://i.ytimg.com/vi/pRBYgL2Se-o/maxresdefault.jpg)](https://youtu.be/pRBYgL2Se-o)
+[Showcase](https://youtu.be/pRBYgL2Se-o)
