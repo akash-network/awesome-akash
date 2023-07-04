@@ -1,0 +1,44 @@
+version: '2.0'
+services:
+  tts:
+    image: ghcr.io/coqui-ai/tts
+    expose:
+      - port: 80
+        as: 80
+        to:
+        - global: true
+      - port: 5002
+        as: 5002
+        to:
+        - global: true
+    command:
+      - bash
+      - '-c'
+    args:
+      - python3 TTS/server/server.py --model_name tts_models/en/vctk/vits
+profiles:
+  compute:
+    tts:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          - size: 32Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    akash:
+      pricing:
+        tts:
+          denom: uakt
+          amount: 100000
+deployment:
+  tts:
+    akash:
+      profile: tts
+      count: 1
