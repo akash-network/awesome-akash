@@ -15,7 +15,7 @@ services:
       - bash
       - '-c'
     args:
-      - python3 TTS/server/server.py --model_name tts_models/en/vctk/vits
+      - python3 TTS/server/server.py --model_name tts_models/en/vctk/vits --use_cuda true
 profiles:
   compute:
     tts:
