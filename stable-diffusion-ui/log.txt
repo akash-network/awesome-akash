@@ -1,0 +1,1006 @@
+[stable]: --2023-06-27 17:11:15--  https://github.com/easydiffusion/easydiffusion/releases/download/v2.5.24/Easy-Diffusion-Linux.zip
+[stable]: Resolving github.com (github.com)... 20.205.243.166
+[stable]: Connecting to github.com (github.com)|20.205.243.166|:443... connected.
+[stable]: HTTP request sent, awaiting response... 302 Found
+[stable]: Location: https://objects.githubusercontent.com/github-production-release-asset-2e65be/528152092/636fa503-bb1d-4d6c-865e-9eb382cbaa79?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230627%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230627T171115Z&X-Amz-Expires=300&X-Amz-Signature=8f7b6f35e357cda892f5cfea8ec3bf678ef23c3df04dff5e9a33f9f1cfbc8ce6&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=528152092&response-content-disposition=attachment%3B%20filename%3DEasy-Diffusion-Linux.zip&response-content-type=application%2Foctet-stream [following]
+[stable]: --2023-06-27 17:11:16--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/528152092/636fa503-bb1d-4d6c-865e-9eb382cbaa79?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230627%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230627T171115Z&X-Amz-Expires=300&X-Amz-Signature=8f7b6f35e357cda892f5cfea8ec3bf678ef23c3df04dff5e9a33f9f1cfbc8ce6&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=528152092&response-content-disposition=attachment%3B%20filename%3DEasy-Diffusion-Linux.zip&response-content-type=application%2Foctet-stream
+[stable]: Resolving objects.githubusercontent.com (objects.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.108.133, ...
+[stable]: Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.111.133|:443... connected.
+[stable]: HTTP request sent, awaiting response... 200 OK
+[stable]: Length: 12756 (12K) [application/octet-stream]
+[stable]: Saving to: 'Easy-Diffusion-Linux.zip'
+[stable]: 
+[stable]:      0K .......... ..                                         100% 62.1M=0s
+[stable]: 
+[stable]: 2023-06-27 17:11:16 (62.1 MB/s) - 'Easy-Diffusion-Linux.zip' saved [12756/12756]
+[stable]: 
+[stable]: Stable Diffusion UI version 2.5.2 downloaded successfully.
+[stable]: Archive:  Easy-Diffusion-Linux.zip
+[stable]:    creating: easy-diffusion/
+[stable]:   inflating: easy-diffusion/CreativeML Open RAIL-M License  
+[stable]:   inflating: easy-diffusion/start.sh  
+[stable]:   inflating: easy-diffusion/LICENSE  
+[stable]:   inflating: easy-diffusion/How to install and run.txt  
+[stable]:    creating: easy-diffusion/scripts/
+[stable]:   inflating: easy-diffusion/scripts/install_status.txt  
+[stable]:   inflating: easy-diffusion/scripts/functions.sh  
+[stable]:   inflating: easy-diffusion/scripts/bootstrap.sh  
+[stable]:   inflating: easy-diffusion/scripts/on_env_start.sh  
+[stable]: Starting Stable Diffusion UI.
+[stable]: /usr/bin/curl
+[stable]: /usr/bin/tar
+[stable]: /usr/bin/bzip2
+[stable]: Downloading micromamba from https://micro.mamba.pm/api/micromamba/linux-64/latest to /easy-diffusion/installer_files/mamba/micromamba
+[stable]:   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[stable]:                                  Dload  Upload   Total   Spent    Left  Speed
+[stable]:   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+[stable]:   0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0100  4231    0  4231    0     0   2038      0 --:--:--  0:00:02 --:--:-- 4131k
+[stable]:   0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  1 5045k    1 51701    0     0  15005      0  0:05:44  0:00:03  0:05:41 57960bin/micromamba
+[stable]:  47 5045k   47 2399k    0     0   528k      0  0:00:09  0:00:04  0:00:05 1210k100 5045k  100 5045k    0     0  1055k      0  0:00:04  0:00:04 --:--:-- 2268k
+[stable]: Micromamba version:
+[stable]: 1.4.4
+[stable]: 
+[stable]:                                            __
+[stable]:           __  ______ ___  ____ _____ ___  / /_  ____ _
+[stable]:          / / / / __ `__ \/ __ `/ __ `__ \/ __ \/ __ `/
+[stable]:         / /_/ / / / / / / /_/ / / / / / / /_/ / /_/ /
+[stable]:        / .___/_/ /_/ /_/\__,_/_/ /_/ /_/_.___/\__,_/
+[stable]:       /_/
+[stable]: 
+[stable]: Empty environment created at prefix: /easy-diffusion/installer_files/env
+[stable]: Packages to install: conda python=3.8.5 git
+[stable]: 
+[stable]:                                            __
+[stable]:           __  ______ ___  ____ _____ ___  / /_  ____ _
+[stable]:          / / / / __ `__ \/ __ `/ __ `__ \/ __ \/ __ `/
+[stable]:         / /_/ / / / / / / /_/ / / / / / / /_/ / /_/ /
+[stable]:        / .___/_/ /_/ /_/\__,_/_/ /_/ /_/_.___/\__,_/
+[stable]:       /_/
+[stable]: 
+[stable]: 
+[stable]: Transaction
+[stable]: 
+[stable]:   Prefix: /easy-diffusion/installer_files/env
+[stable]: 
+[stable]:   Updating specs:
+[stable]: 
+[stable]:    - conda
+[stable]:    - python=3.8.5
+[stable]:    - git
+[stable]: 
+[stable]: 
+[stable]:   Package                         Version  Build               Channel          Size
+[stable]: ──────────────────────────────────────────────────────────────────────────────────────
+[stable]:   Install:
+[stable]: ──────────────────────────────────────────────────────────────────────────────────────
+[stable]: 
+[stable]:   + _libgcc_mutex                     0.1  conda_forge         conda-forge       3kB
+[stable]:   + _openmp_mutex                     4.5  2_gnu               conda-forge      24kB
+[stable]:   + boltons                        23.0.0  pyhd8ed1ab_0        conda-forge     303kB
+[stable]:   + brotli                          1.0.9  h166bdaf_9          conda-forge      20kB
+[stable]:   + brotli-bin                      1.0.9  h166bdaf_9          conda-forge      20kB
+[stable]:   + bzip2                           1.0.8  h7f98852_4          conda-forge     496kB
+[stable]:   + c-ares                         1.19.1  hd590300_0          conda-forge     113kB
+[stable]:   + ca-certificates              2023.5.7  hbcca054_0          conda-forge     148kB
+[stable]:   + certifi                      2023.5.7  pyhd8ed1ab_0        conda-forge     152kB
+[stable]:   + cffi                           1.14.4  py38ha312104_0      conda-forge     231kB
+[stable]:   + charset-normalizer              3.1.0  pyhd8ed1ab_0        conda-forge      45kB
+[stable]:   + colorama                        0.4.6  pyhd8ed1ab_0        conda-forge      25kB
+[stable]:   + conda                          23.5.0  py38h578d9bd_1      conda-forge       1MB
+[stable]:   + conda-package-handling          2.0.2  pyh38be061_0        conda-forge     253kB
+[stable]:   + conda-package-streaming         0.8.0  pyhd8ed1ab_0        conda-forge      19kB
+[stable]:   + cryptography                   39.0.0  py38h1724139_0      conda-forge       1MB
+[stable]:   + curl                           7.87.0  h6312ad2_0          conda-forge      88kB
+[stable]:   + expat                           2.5.0  hcb278e6_1          conda-forge     137kB
+[stable]:   + gettext                        0.21.1  h27087fc_0          conda-forge       4MB
+[stable]:   + git                            2.39.1  pl5321ha3eba64_0    conda-forge       9MB
+[stable]:   + idna                              3.4  pyhd8ed1ab_0        conda-forge      57kB
+[stable]:   + jsonpatch                        1.32  pyhd8ed1ab_0        conda-forge      15kB
+[stable]:   + jsonpointer                       2.0  py_0                conda-forge       9kB
+[stable]:   + keyutils                        1.6.1  h166bdaf_0          conda-forge     118kB
+[stable]:   + krb5                           1.20.1  hf9c8cef_0          conda-forge       1MB
+[stable]:   + ld_impl_linux-64                 2.40  h41732ed_0          conda-forge     705kB
+[stable]:   + libbrotlicommon                 1.0.9  h166bdaf_9          conda-forge      71kB
+[stable]:   + libbrotlidec                    1.0.9  h166bdaf_9          conda-forge      33kB
+[stable]:   + libbrotlienc                    1.0.9  h166bdaf_9          conda-forge     265kB
+[stable]:   + libcurl                        7.87.0  h6312ad2_0          conda-forge     347kB
+[stable]:   + libedit                  3.1.20191231  he28a2e2_2          conda-forge     124kB
+[stable]:   + libev                            4.33  h516909a_1          conda-forge     106kB
+[stable]:   + libexpat                        2.5.0  hcb278e6_1          conda-forge      78kB
+[stable]:   + libffi                          3.2.1  he1b5a44_1007       conda-forge      48kB
+[stable]:   + libgcc-ng                      13.1.0  he5830b7_0          conda-forge     776kB
+[stable]:   + libgomp                        13.1.0  he5830b7_0          conda-forge     419kB
+[stable]:   + libiconv                         1.17  h166bdaf_0          conda-forge       1MB
+[stable]:   + libnghttp2                     1.51.0  hdcd2b5c_0          conda-forge     623kB
+[stable]:   + libnsl                          2.0.0  h7f98852_0          conda-forge      31kB
+[stable]:   + libsqlite                      3.42.0  h2797004_0          conda-forge     829kB
+[stable]:   + libssh2                        1.10.0  haa6b8db_3          conda-forge     239kB
+[stable]:   + libstdcxx-ng                   13.1.0  hfd8a6a1_0          conda-forge       4MB
+[stable]:   + libzlib                        1.2.13  hd590300_5          conda-forge      62kB
+[stable]:   + ncurses                           6.4  hcb278e6_0          conda-forge     881kB
+[stable]:   + openssl                        1.1.1u  hd590300_0          conda-forge       2MB
+[stable]:   + packaging                        23.1  pyhd8ed1ab_0        conda-forge      46kB
+[stable]:   + pcre2                           10.40  hc3806b6_0          conda-forge       2MB
+[stable]:   + perl                           5.32.1  2_h7f98852_perl5    conda-forge      15MB
+[stable]:   + pip                            23.1.2  pyhd8ed1ab_0        conda-forge       1MB
+[stable]:   + pluggy                          1.2.0  pyhd8ed1ab_0        conda-forge      22kB
+[stable]:   + pycosat                         0.6.4  py38h0a891b7_1      conda-forge     111kB
+[stable]:   + pycparser                        2.21  pyhd8ed1ab_0        conda-forge     103kB
+[stable]:   + pyopenssl                      23.2.0  pyhd8ed1ab_1        conda-forge     129kB
+[stable]:   + pysocks                         1.7.1  pyha2e5f31_6        conda-forge      19kB
+[stable]:   + python                          3.8.5  h1103e12_9_cpython  conda-forge      23MB
+[stable]:   + python_abi                        3.8  3_cp38              conda-forge       6kB
+[stable]:   + readline                          8.2  h8228510_1          conda-forge     281kB
+[stable]:   + requests                       2.31.0  pyhd8ed1ab_0        conda-forge      57kB
+[stable]:   + ruamel.yaml                   0.17.32  py38h01eb140_0      conda-forge     200kB
+[stable]:   + ruamel.yaml.clib                0.2.7  py38h1de0b5d_1      conda-forge     146kB
+[stable]:   + setuptools                     68.0.0  pyhd8ed1ab_0        conda-forge     464kB
+[stable]:   + sqlite                         3.42.0  h2c6b66d_0          conda-forge     818kB
+[stable]:   + tk                             8.6.12  h27826a3_0          conda-forge       3MB
+[stable]:   + toolz                          0.12.0  pyhd8ed1ab_0        conda-forge      49kB
+[stable]:   + tqdm                           4.65.0  pyhd8ed1ab_1        conda-forge      88kB
+[stable]:   + urllib3                         2.0.3  pyhd8ed1ab_0        conda-forge      98kB
+[stable]:   + wheel                          0.40.0  pyhd8ed1ab_0        conda-forge      56kB
+[stable]:   + xz                              5.2.6  h166bdaf_0          conda-forge     418kB
+[stable]:   + zlib                           1.2.13  hd590300_5          conda-forge      93kB
+[stable]:   + zstandard                      0.19.0  py38ha98ab4e_2      conda-forge     394kB
+[stable]:   + zstd                            1.5.2  h3eb15da_6          conda-forge     420kB
+[stable]: 
+[stable]:   Summary:
+[stable]: 
+[stable]:   Install: 71 packages
+[stable]: 
+[stable]:   Total download: 82MB
+[stable]: 
+[stable]: ──────────────────────────────────────────────────────────────────────────────────────
+[stable]: 
+[stable]: 
+[stable]: 
+[stable]: Transaction starting
+[stable]: Linking _libgcc_mutex-0.1-conda_forge
+[stable]: Linking python_abi-3.8-3_cp38
+[stable]: Linking ld_impl_linux-64-2.40-h41732ed_0
+[stable]: Linking libstdcxx-ng-13.1.0-hfd8a6a1_0
+[stable]: Linking ca-certificates-2023.5.7-hbcca054_0
+[stable]: Linking libgomp-13.1.0-he5830b7_0
+[stable]: Linking _openmp_mutex-4.5-2_gnu
+[stable]: Linking libgcc-ng-13.1.0-he5830b7_0
+[stable]: Linking libev-4.33-h516909a_1
+[stable]: Linking c-ares-1.19.1-hd590300_0
+[stable]: Linking libbrotlicommon-1.0.9-h166bdaf_9
+[stable]: Linking ncurses-6.4-hcb278e6_0
+[stable]: Linking bzip2-1.0.8-h7f98852_4
+[stable]: Linking xz-5.2.6-h166bdaf_0
+[stable]: Linking libffi-3.2.1-he1b5a44_1007
+[stable]: Linking libnsl-2.0.0-h7f98852_0
+[stable]: Linking openssl-1.1.1u-hd590300_0
+[stable]: Linking libzlib-1.2.13-hd590300_5
+[stable]: Linking gettext-0.21.1-h27087fc_0
+[stable]: Linking libexpat-2.5.0-hcb278e6_1
+[stable]: Linking keyutils-1.6.1-h166bdaf_0
+[stable]: Linking libiconv-1.17-h166bdaf_0
+[stable]: Linking libbrotlienc-1.0.9-h166bdaf_9
+[stable]: Linking libbrotlidec-1.0.9-h166bdaf_9
+[stable]: Linking libedit-3.1.20191231-he28a2e2_2
+[stable]: Linking readline-8.2-h8228510_1
+[stable]: Linking perl-5.32.1-2_h7f98852_perl5
+[stable]: Linking zstd-1.5.2-h3eb15da_6
+[stable]: Linking libnghttp2-1.51.0-hdcd2b5c_0
+[stable]: Linking tk-8.6.12-h27826a3_0
+[stable]: Linking libsqlite-3.42.0-h2797004_0
+[stable]: Linking libssh2-1.10.0-haa6b8db_3
+[stable]: Linking zlib-1.2.13-hd590300_5
+[stable]: Linking pcre2-10.40-hc3806b6_0
+[stable]: Linking expat-2.5.0-hcb278e6_1
+[stable]: Linking brotli-bin-1.0.9-h166bdaf_9
+[stable]: Linking krb5-1.20.1-hf9c8cef_0
+[stable]: Linking sqlite-3.42.0-h2c6b66d_0
+[stable]: Linking brotli-1.0.9-h166bdaf_9
+[stable]: Linking libcurl-7.87.0-h6312ad2_0
+[stable]: Linking python-3.8.5-h1103e12_9_cpython
+[stable]: Linking curl-7.87.0-h6312ad2_0
+[stable]: Linking git-2.39.1-pl5321ha3eba64_0
+[stable]: Linking wheel-0.40.0-pyhd8ed1ab_0
+[stable]: Linking setuptools-68.0.0-pyhd8ed1ab_0
+[stable]: Linking pip-23.1.2-pyhd8ed1ab_0
+[stable]: Linking pysocks-1.7.1-pyha2e5f31_6
+[stable]: Linking pycparser-2.21-pyhd8ed1ab_0
+[stable]: Linking charset-normalizer-3.1.0-pyhd8ed1ab_0
+[stable]: Linking idna-3.4-pyhd8ed1ab_0
+[stable]: Linking certifi-2023.5.7-pyhd8ed1ab_0
+[stable]: Linking colorama-0.4.6-pyhd8ed1ab_0
+[stable]: Linking packaging-23.1-pyhd8ed1ab_0
+[stable]: Linking toolz-0.12.0-pyhd8ed1ab_0
+[stable]: Linking pluggy-1.2.0-pyhd8ed1ab_0
+[stable]: Linking jsonpointer-2.0-py_0
+[stable]: Linking boltons-23.0.0-pyhd8ed1ab_0
+[stable]: Linking urllib3-2.0.3-pyhd8ed1ab_0
+[stable]: Linking tqdm-4.65.0-pyhd8ed1ab_1
+[stable]: Linking jsonpatch-1.32-pyhd8ed1ab_0
+[stable]: Linking requests-2.31.0-pyhd8ed1ab_0
+[stable]: Linking ruamel.yaml.clib-0.2.7-py38h1de0b5d_1
+[stable]: Linking pycosat-0.6.4-py38h0a891b7_1
+[stable]: Linking cffi-1.14.4-py38ha312104_0
+[stable]: Linking ruamel.yaml-0.17.32-py38h01eb140_0
+[stable]: Linking zstandard-0.19.0-py38ha98ab4e_2
+[stable]: Linking cryptography-39.0.0-py38h1724139_0
+[stable]: Linking conda-package-streaming-0.8.0-pyhd8ed1ab_0
+[stable]: Linking pyopenssl-23.2.0-pyhd8ed1ab_1
+[stable]: Linking conda-package-handling-2.0.2-pyh38be061_0
+[stable]: Linking conda-23.5.0-py38h578d9bd_1
+[stable]: 
+[stable]: Transaction finished
+[stable]: 
+[stable]: To activate this environment, use:
+[stable]: 
+[stable]:     micromamba activate /easy-diffusion/installer_files/env
+[stable]: 
+[stable]: Or to execute a single command in this environment, use:
+[stable]: 
+[stable]:     micromamba run -p /easy-diffusion/installer_files/env mycommand
+[stable]: 
+[stable]: /easy-diffusion/installer_files/env/bin/git
+[stable]: git version 2.39.1
+[stable]: /easy-diffusion/installer_files/env/bin/conda
+[stable]: conda 23.5.0
+[stable]: 
+[stable]: 
+[stable]: Easy Diffusion
+[stable]: 
+[stable]: 
+[stable]: 
+[stable]: Downloading Easy Diffusion..
+[stable]: 
+[stable]: Using the main channel
+[stable]: 
+[stable]: Cloning into 'sd-ui-files'...
+[stable]: Collecting torch==2.0.0
+[stable]:   Downloading torch-2.0.0-cp38-cp38-manylinux1_x86_64.whl (619.9 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 619.9/619.9 MB 5.1 MB/s eta 0:00:00
+[stable]: Collecting filelock (from torch==2.0.0)
+[stable]:   Downloading filelock-3.12.2-py3-none-any.whl (10 kB)
+[stable]: Collecting typing-extensions (from torch==2.0.0)
+[stable]:   Downloading typing_extensions-4.6.3-py3-none-any.whl (31 kB)
+[stable]: Collecting sympy (from torch==2.0.0)
+[stable]:   Downloading sympy-1.12-py3-none-any.whl (5.7 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.7/5.7 MB 52.0 MB/s eta 0:00:00
+[stable]: Collecting networkx (from torch==2.0.0)
+[stable]:   Downloading networkx-3.1-py3-none-any.whl (2.1 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 57.8 MB/s eta 0:00:00
+[stable]: Collecting jinja2 (from torch==2.0.0)
+[stable]:   Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.1/133.1 kB 24.3 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cuda-nvrtc-cu11==11.7.99 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cuda_nvrtc_cu11-11.7.99-2-py3-none-manylinux1_x86_64.whl (21.0 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.0/21.0 MB 49.0 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cuda-runtime-cu11==11.7.99 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cuda_runtime_cu11-11.7.99-py3-none-manylinux1_x86_64.whl (849 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 849.3/849.3 kB 36.1 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cuda-cupti-cu11==11.7.101 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cuda_cupti_cu11-11.7.101-py3-none-manylinux1_x86_64.whl (11.8 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.8/11.8 MB 60.0 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cudnn-cu11==8.5.0.96 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cudnn_cu11-8.5.0.96-2-py3-none-manylinux1_x86_64.whl (557.1 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 557.1/557.1 MB 5.0 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cublas-cu11==11.10.3.66 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cublas_cu11-11.10.3.66-py3-none-manylinux1_x86_64.whl (317.1 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 317.1/317.1 MB 9.2 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cufft-cu11==10.9.0.58 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cufft_cu11-10.9.0.58-py3-none-manylinux1_x86_64.whl (168.4 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 168.4/168.4 MB 15.7 MB/s eta 0:00:00
+[stable]: Collecting nvidia-curand-cu11==10.2.10.91 (from torch==2.0.0)
+[stable]:   Downloading nvidia_curand_cu11-10.2.10.91-py3-none-manylinux1_x86_64.whl (54.6 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 54.6/54.6 MB 33.7 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cusolver-cu11==11.4.0.1 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cusolver_cu11-11.4.0.1-2-py3-none-manylinux1_x86_64.whl (102.6 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 102.6/102.6 MB 22.8 MB/s eta 0:00:00
+[stable]: Collecting nvidia-cusparse-cu11==11.7.4.91 (from torch==2.0.0)
+[stable]:   Downloading nvidia_cusparse_cu11-11.7.4.91-py3-none-manylinux1_x86_64.whl (173.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 173.2/173.2 MB 15.1 MB/s eta 0:00:00
+[stable]: Collecting nvidia-nccl-cu11==2.14.3 (from torch==2.0.0)
+[stable]:   Downloading nvidia_nccl_cu11-2.14.3-py3-none-manylinux1_x86_64.whl (177.1 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 177.1/177.1 MB 14.9 MB/s eta 0:00:00
+[stable]: Collecting nvidia-nvtx-cu11==11.7.91 (from torch==2.0.0)
+[stable]:   Downloading nvidia_nvtx_cu11-11.7.91-py3-none-manylinux1_x86_64.whl (98 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.6/98.6 kB 9.5 MB/s eta 0:00:00
+[stable]: Collecting triton==2.0.0 (from torch==2.0.0)
+[stable]:   Downloading triton-2.0.0-1-cp38-cp38-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (63.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.2/63.2 MB 29.9 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: setuptools in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch==2.0.0) (68.0.0)
+[stable]: Requirement already satisfied: wheel in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch==2.0.0) (0.40.0)
+[stable]: Collecting cmake (from triton==2.0.0->torch==2.0.0)
+[stable]:   Downloading cmake-3.26.4-py2.py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (24.0 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.0/24.0 MB 49.8 MB/s eta 0:00:00
+[stable]: Collecting lit (from triton==2.0.0->torch==2.0.0)
+[stable]:   Downloading lit-16.0.6.tar.gz (153 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 153.7/153.7 kB 23.2 MB/s eta 0:00:00
+[stable]:   Installing build dependencies: started
+[stable]:   Installing build dependencies: finished with status 'done'
+[stable]:   Getting requirements to build wheel: started
+[stable]:   Getting requirements to build wheel: finished with status 'done'
+[stable]:   Installing backend dependencies: started
+[stable]:   Installing backend dependencies: finished with status 'done'
+[stable]:   Preparing metadata (pyproject.toml): started
+[stable]:   Preparing metadata (pyproject.toml): finished with status 'done'
+[stable]: Collecting MarkupSafe>=2.0 (from jinja2->torch==2.0.0)
+[stable]:   Downloading MarkupSafe-2.1.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+[stable]: Collecting mpmath>=0.19 (from sympy->torch==2.0.0)
+[stable]:   Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 44.5 MB/s eta 0:00:00
+[stable]: Building wheels for collected packages: lit
+[stable]:   Building wheel for lit (pyproject.toml): started
+[stable]:   Building wheel for lit (pyproject.toml): finished with status 'done'
+[stable]:   Created wheel for lit: filename=lit-16.0.6-py3-none-any.whl size=93582 sha256=5b596434b3947ba51f92a7f2d5163ff04c0065399064b84371712e70fa5718e3
+[stable]:   Stored in directory: /root/.cache/pip/wheels/05/ab/f1/0102fea49a41c753f0e79a1a4012417d5d7ef0f93224694472
+[stable]: Successfully built lit
+[stable]: Installing collected packages: mpmath, lit, cmake, typing-extensions, sympy, nvidia-nvtx-cu11, nvidia-nccl-cu11, nvidia-cusparse-cu11, nvidia-curand-cu11, nvidia-cufft-cu11, nvidia-cuda-runtime-cu11, nvidia-cuda-nvrtc-cu11, nvidia-cuda-cupti-cu11, nvidia-cublas-cu11, networkx, MarkupSafe, filelock, nvidia-cusolver-cu11, nvidia-cudnn-cu11, jinja2, triton, torch
+[stable]: Successfully installed MarkupSafe-2.1.3 cmake-3.26.4 filelock-3.12.2 jinja2-3.1.2 lit-16.0.6 mpmath-1.3.0 networkx-3.1 nvidia-cublas-cu11-11.10.3.66 nvidia-cuda-cupti-cu11-11.7.101 nvidia-cuda-nvrtc-cu11-11.7.99 nvidia-cuda-runtime-cu11-11.7.99 nvidia-cudnn-cu11-8.5.0.96 nvidia-cufft-cu11-10.9.0.58 nvidia-curand-cu11-10.2.10.91 nvidia-cusolver-cu11-11.4.0.1 nvidia-cusparse-cu11-11.7.4.91 nvidia-nccl-cu11-2.14.3 nvidia-nvtx-cu11-11.7.91 sympy-1.12 torch-2.0.0 triton-2.0.0 typing-extensions-4.6.3
+[stable]: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[stable]: Collecting torchvision==0.15.1
+[stable]:   Downloading torchvision-0.15.1-cp38-cp38-manylinux1_x86_64.whl (33.8 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 33.8/33.8 MB 39.5 MB/s eta 0:00:00
+[stable]: Collecting numpy (from torchvision==0.15.1)
+[stable]:   Downloading numpy-1.24.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.3/17.3 MB 52.5 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: requests in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torchvision==0.15.1) (2.31.0)
+[stable]: Requirement already satisfied: torch==2.0.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torchvision==0.15.1) (2.0.0)
+[stable]: Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.15.1)
+[stable]:   Downloading Pillow-9.5.0-cp38-cp38-manylinux_2_28_x86_64.whl (3.4 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 51.9 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: filelock in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (3.12.2)
+[stable]: Requirement already satisfied: typing-extensions in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (4.6.3)
+[stable]: Requirement already satisfied: sympy in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (1.12)
+[stable]: Requirement already satisfied: networkx in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (3.1)
+[stable]: Requirement already satisfied: jinja2 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (3.1.2)
+[stable]: Requirement already satisfied: nvidia-cuda-nvrtc-cu11==11.7.99 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (11.7.99)
+[stable]: Requirement already satisfied: nvidia-cuda-runtime-cu11==11.7.99 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (11.7.99)
+[stable]: Requirement already satisfied: nvidia-cuda-cupti-cu11==11.7.101 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (11.7.101)
+[stable]: Requirement already satisfied: nvidia-cudnn-cu11==8.5.0.96 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (8.5.0.96)
+[stable]: Requirement already satisfied: nvidia-cublas-cu11==11.10.3.66 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (11.10.3.66)
+[stable]: Requirement already satisfied: nvidia-cufft-cu11==10.9.0.58 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (10.9.0.58)
+[stable]: Requirement already satisfied: nvidia-curand-cu11==10.2.10.91 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (10.2.10.91)
+[stable]: Requirement already satisfied: nvidia-cusolver-cu11==11.4.0.1 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (11.4.0.1)
+[stable]: Requirement already satisfied: nvidia-cusparse-cu11==11.7.4.91 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (11.7.4.91)
+[stable]: Requirement already satisfied: nvidia-nccl-cu11==2.14.3 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (2.14.3)
+[stable]: Requirement already satisfied: nvidia-nvtx-cu11==11.7.91 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (11.7.91)
+[stable]: Requirement already satisfied: triton==2.0.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch==2.0.0->torchvision==0.15.1) (2.0.0)
+[stable]: Requirement already satisfied: setuptools in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch==2.0.0->torchvision==0.15.1) (68.0.0)
+[stable]: Requirement already satisfied: wheel in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch==2.0.0->torchvision==0.15.1) (0.40.0)
+[stable]: Requirement already satisfied: cmake in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from triton==2.0.0->torch==2.0.0->torchvision==0.15.1) (3.26.4)
+[stable]: Requirement already satisfied: lit in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from triton==2.0.0->torch==2.0.0->torchvision==0.15.1) (16.0.6)
+[stable]: Requirement already satisfied: charset-normalizer<4,>=2 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->torchvision==0.15.1) (3.1.0)
+[stable]: Requirement already satisfied: idna<4,>=2.5 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->torchvision==0.15.1) (3.4)
+[stable]: Requirement already satisfied: urllib3<3,>=1.21.1 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->torchvision==0.15.1) (2.0.3)
+[stable]: Requirement already satisfied: certifi>=2017.4.17 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->torchvision==0.15.1) (2023.5.7)
+[stable]: Requirement already satisfied: MarkupSafe>=2.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from jinja2->torch==2.0.0->torchvision==0.15.1) (2.1.3)
+[stable]: Requirement already satisfied: mpmath>=0.19 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from sympy->torch==2.0.0->torchvision==0.15.1) (1.3.0)
+[stable]: Installing collected packages: pillow, numpy, torchvision
+[stable]: Successfully installed numpy-1.24.4 pillow-9.5.0 torchvision-0.15.1
+[stable]: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[stable]: Collecting sdkit==1.0.112
+[stable]:   Downloading sdkit-1.0.112-py3-none-any.whl (106 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 106.2/106.2 kB 844.5 kB/s eta 0:00:00
+[stable]: Collecting stable-diffusion-sdkit==2.1.4 (from sdkit==1.0.112)
+[stable]:   Downloading stable_diffusion_sdkit-2.1.4-py3-none-any.whl (116 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 116.5/116.5 kB 1.1 MB/s eta 0:00:00
+[stable]: Collecting gfpgan (from sdkit==1.0.112)
+[stable]:   Downloading gfpgan-1.3.8-py3-none-any.whl (52 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 52.2/52.2 kB 432.8 kB/s eta 0:00:00
+[stable]: Collecting piexif (from sdkit==1.0.112)
+[stable]:   Downloading piexif-1.1.3-py2.py3-none-any.whl (20 kB)
+[stable]: Collecting realesrgan (from sdkit==1.0.112)
+[stable]:   Downloading realesrgan-0.3.0-py3-none-any.whl (26 kB)
+[stable]: Requirement already satisfied: requests in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from sdkit==1.0.112) (2.31.0)
+[stable]: Collecting picklescan (from sdkit==1.0.112)
+[stable]:   Downloading picklescan-0.0.8-py3-none-any.whl (10 kB)
+[stable]: Collecting safetensors (from sdkit==1.0.112)
+[stable]:   Downloading safetensors-0.3.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 12.1 MB/s eta 0:00:00
+[stable]: Collecting k-diffusion (from sdkit==1.0.112)
+[stable]:   Downloading k_diffusion-0.0.15-py3-none-any.whl (25 kB)
+[stable]: Collecting diffusers==0.15.1 (from sdkit==1.0.112)
+[stable]:   Downloading diffusers-0.15.1-py3-none-any.whl (851 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 852.0/852.0 kB 6.7 MB/s eta 0:00:00
+[stable]: Collecting compel==1.1.5 (from sdkit==1.0.112)
+[stable]:   Downloading compel-1.1.5-py3-none-any.whl (24 kB)
+[stable]: Collecting accelerate==0.18.0 (from sdkit==1.0.112)
+[stable]:   Downloading accelerate-0.18.0-py3-none-any.whl (215 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 215.3/215.3 kB 1.8 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: numpy>=1.17 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from accelerate==0.18.0->sdkit==1.0.112) (1.24.4)
+[stable]: Requirement already satisfied: packaging>=20.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from accelerate==0.18.0->sdkit==1.0.112) (23.1)
+[stable]: Collecting psutil (from accelerate==0.18.0->sdkit==1.0.112)
+[stable]:   Downloading psutil-5.9.5-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (282 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 282.1/282.1 kB 2.2 MB/s eta 0:00:00
+[stable]: Collecting pyyaml (from accelerate==0.18.0->sdkit==1.0.112)
+[stable]:   Downloading PyYAML-6.0-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (701 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 701.2/701.2 kB 5.8 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: torch>=1.4.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from accelerate==0.18.0->sdkit==1.0.112) (2.0.0)
+[stable]: Collecting pyparsing~=3.0 (from compel==1.1.5->sdkit==1.0.112)
+[stable]:   Downloading pyparsing-3.1.0-py3-none-any.whl (102 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 102.6/102.6 kB 1.0 MB/s eta 0:00:00
+[stable]: Collecting transformers~=4.25 (from compel==1.1.5->sdkit==1.0.112)
+[stable]:   Downloading transformers-4.30.2-py3-none-any.whl (7.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.2/7.2 MB 32.9 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: Pillow in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from diffusers==0.15.1->sdkit==1.0.112) (9.5.0)
+[stable]: Requirement already satisfied: filelock in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from diffusers==0.15.1->sdkit==1.0.112) (3.12.2)
+[stable]: Collecting huggingface-hub>=0.13.2 (from diffusers==0.15.1->sdkit==1.0.112)
+[stable]:   Downloading huggingface_hub-0.15.1-py3-none-any.whl (236 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 236.8/236.8 kB 39.7 MB/s eta 0:00:00
+[stable]: Collecting importlib-metadata (from diffusers==0.15.1->sdkit==1.0.112)
+[stable]:   Downloading importlib_metadata-6.7.0-py3-none-any.whl (22 kB)
+[stable]: Collecting regex!=2019.12.17 (from diffusers==0.15.1->sdkit==1.0.112)
+[stable]:   Downloading regex-2023.6.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (772 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 772.3/772.3 kB 37.6 MB/s eta 0:00:00
+[stable]: Collecting albumentations==1.3.0 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading albumentations-1.3.0-py3-none-any.whl (123 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.5/123.5 kB 19.8 MB/s eta 0:00:00
+[stable]: Collecting opencv-python==4.6.0.66 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading opencv_python-4.6.0.66-cp36-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (60.9 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.9/60.9 MB 33.3 MB/s eta 0:00:00
+[stable]: Collecting pytorch-lightning==1.4.2 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading pytorch_lightning-1.4.2-py3-none-any.whl (916 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 916.6/916.6 kB 22.9 MB/s eta 0:00:00
+[stable]: Collecting omegaconf==2.1.1 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading omegaconf-2.1.1-py3-none-any.whl (74 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 74.7/74.7 kB 17.9 MB/s eta 0:00:00
+[stable]: Collecting test-tube>=0.7.5 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading test_tube-0.7.5.tar.gz (21 kB)
+[stable]:   Preparing metadata (setup.py): started
+[stable]:   Preparing metadata (setup.py): finished with status 'done'
+[stable]: Collecting einops==0.3.0 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading einops-0.3.0-py2.py3-none-any.whl (25 kB)
+[stable]: Collecting transformers~=4.25 (from compel==1.1.5->sdkit==1.0.112)
+[stable]:   Downloading transformers-4.26.1-py3-none-any.whl (6.3 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 51.7 MB/s eta 0:00:00
+[stable]: Collecting kornia==0.6 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading kornia-0.6.0-py2.py3-none-any.whl (367 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 367.1/367.1 kB 38.3 MB/s eta 0:00:00
+[stable]: Collecting open-clip-torch==2.0.2 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading open_clip_torch-2.0.2-py3-none-any.whl (1.4 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 44.7 MB/s eta 0:00:00
+[stable]: Collecting torchmetrics==0.6.0 (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading torchmetrics-0.6.0-py3-none-any.whl (329 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 329.4/329.4 kB 23.2 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: tqdm in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from stable-diffusion-sdkit==2.1.4->sdkit==1.0.112) (4.65.0)
+[stable]: Collecting scipy (from albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading scipy-1.10.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.5 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.5/34.5 MB 43.5 MB/s eta 0:00:00
+[stable]: Collecting scikit-image>=0.16.1 (from albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading scikit_image-0.21.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (13.9 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.9/13.9 MB 53.7 MB/s eta 0:00:00
+[stable]: Collecting qudida>=0.0.4 (from albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading qudida-0.0.4-py3-none-any.whl (3.5 kB)
+[stable]: Collecting opencv-python-headless>=4.1.1 (from albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading opencv_python_headless-4.7.0.72-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (49.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 49.2/49.2 MB 32.4 MB/s eta 0:00:00
+[stable]: Collecting antlr4-python3-runtime==4.8 (from omegaconf==2.1.1->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading antlr4-python3-runtime-4.8.tar.gz (112 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 112.4/112.4 kB 10.6 MB/s eta 0:00:00
+[stable]:   Preparing metadata (setup.py): started
+[stable]:   Preparing metadata (setup.py): finished with status 'done'
+[stable]: Requirement already satisfied: torchvision in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from open-clip-torch==2.0.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112) (0.15.1)
+[stable]: Collecting ftfy (from open-clip-torch==2.0.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading ftfy-6.1.1-py3-none-any.whl (53 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 53.1/53.1 kB 8.9 MB/s eta 0:00:00
+[stable]: Collecting future>=0.17.1 (from pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading future-0.18.3.tar.gz (840 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 840.9/840.9 kB 45.5 MB/s eta 0:00:00
+[stable]:   Preparing metadata (setup.py): started
+[stable]:   Preparing metadata (setup.py): finished with status 'done'
+[stable]: Collecting fsspec[http]!=2021.06.0,>=2021.05.0 (from pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading fsspec-2023.6.0-py3-none-any.whl (163 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 163.8/163.8 kB 34.1 MB/s eta 0:00:00
+[stable]: Collecting tensorboard>=2.2.0 (from pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading tensorboard-2.13.0-py3-none-any.whl (5.6 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.6/5.6 MB 56.8 MB/s eta 0:00:00
+[stable]: Collecting pyDeprecate==0.3.1 (from pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading pyDeprecate-0.3.1-py3-none-any.whl (10 kB)
+[stable]: Requirement already satisfied: typing-extensions in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112) (4.6.3)
+[stable]: Collecting tokenizers!=0.11.3,<0.14,>=0.11.1 (from transformers~=4.25->compel==1.1.5->sdkit==1.0.112)
+[stable]:   Downloading tokenizers-0.13.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.8 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.8/7.8 MB 55.2 MB/s eta 0:00:00
+[stable]: Collecting basicsr>=1.4.2 (from gfpgan->sdkit==1.0.112)
+[stable]:   Downloading basicsr-1.4.2.tar.gz (172 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 172.5/172.5 kB 38.6 MB/s eta 0:00:00
+[stable]:   Preparing metadata (setup.py): started
+[stable]:   Preparing metadata (setup.py): finished with status 'done'
+[stable]: Collecting facexlib>=0.2.5 (from gfpgan->sdkit==1.0.112)
+[stable]:   Downloading facexlib-0.3.0-py3-none-any.whl (59 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.6/59.6 kB 14.0 MB/s eta 0:00:00
+[stable]: Collecting lmdb (from gfpgan->sdkit==1.0.112)
+[stable]:   Downloading lmdb-1.4.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (298 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 298.9/298.9 kB 34.5 MB/s eta 0:00:00
+[stable]: Collecting tb-nightly (from gfpgan->sdkit==1.0.112)
+[stable]:   Downloading tb_nightly-2.14.0a20230625-py3-none-any.whl (5.6 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.6/5.6 MB 62.7 MB/s eta 0:00:00
+[stable]: Collecting yapf (from gfpgan->sdkit==1.0.112)
+[stable]:   Downloading yapf-0.40.1-py3-none-any.whl (250 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 250.3/250.3 kB 42.0 MB/s eta 0:00:00
+[stable]: Collecting clean-fid (from k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading clean_fid-0.1.35-py3-none-any.whl (26 kB)
+[stable]: Collecting clip-anytorch (from k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading clip_anytorch-2.5.2-py3-none-any.whl (1.4 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 68.9 MB/s eta 0:00:00
+[stable]: Collecting jsonmerge (from k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading jsonmerge-1.9.0.tar.gz (32 kB)
+[stable]:   Preparing metadata (setup.py): started
+[stable]:   Preparing metadata (setup.py): finished with status 'done'
+[stable]: Collecting resize-right (from k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading resize_right-0.0.2-py3-none-any.whl (8.9 kB)
+[stable]: Collecting torchdiffeq (from k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading torchdiffeq-0.2.3-py3-none-any.whl (31 kB)
+[stable]: Collecting torchsde (from k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading torchsde-0.2.5-py3-none-any.whl (59 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 59.2/59.2 kB 6.8 MB/s eta 0:00:00
+[stable]: Collecting wandb (from k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading wandb-0.15.4-py3-none-any.whl (2.1 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 52.1 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: charset-normalizer<4,>=2 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->sdkit==1.0.112) (3.1.0)
+[stable]: Requirement already satisfied: idna<4,>=2.5 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->sdkit==1.0.112) (3.4)
+[stable]: Requirement already satisfied: urllib3<3,>=1.21.1 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->sdkit==1.0.112) (2.0.3)
+[stable]: Requirement already satisfied: certifi>=2017.4.17 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from requests->sdkit==1.0.112) (2023.5.7)
+[stable]: Collecting addict (from basicsr>=1.4.2->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading addict-2.4.0-py3-none-any.whl (3.8 kB)
+[stable]: Collecting filterpy (from facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading filterpy-1.4.5.zip (177 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 178.0/178.0 kB 31.8 MB/s eta 0:00:00
+[stable]:   Preparing metadata (setup.py): started
+[stable]:   Preparing metadata (setup.py): finished with status 'done'
+[stable]: Collecting numba (from facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading numba-0.57.1-cp38-cp38-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (3.6 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 57.8 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: networkx>=2.8 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from scikit-image>=0.16.1->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112) (3.1)
+[stable]: Collecting imageio>=2.27 (from scikit-image>=0.16.1->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading imageio-2.31.1-py3-none-any.whl (313 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 313.2/313.2 kB 40.6 MB/s eta 0:00:00
+[stable]: Collecting tifffile>=2022.8.12 (from scikit-image>=0.16.1->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading tifffile-2023.4.12-py3-none-any.whl (219 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 219.4/219.4 kB 5.5 MB/s eta 0:00:00
+[stable]: Collecting PyWavelets>=1.1.1 (from scikit-image>=0.16.1->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading PyWavelets-1.4.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.9 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 48.4 MB/s eta 0:00:00
+[stable]: Collecting lazy_loader>=0.2 (from scikit-image>=0.16.1->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading lazy_loader-0.2-py3-none-any.whl (8.6 kB)
+[stable]: Collecting pandas>=0.20.3 (from test-tube>=0.7.5->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading pandas-2.0.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 60.0 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: sympy in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (1.12)
+[stable]: Requirement already satisfied: jinja2 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (3.1.2)
+[stable]: Requirement already satisfied: nvidia-cuda-nvrtc-cu11==11.7.99 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (11.7.99)
+[stable]: Requirement already satisfied: nvidia-cuda-runtime-cu11==11.7.99 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (11.7.99)
+[stable]: Requirement already satisfied: nvidia-cuda-cupti-cu11==11.7.101 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (11.7.101)
+[stable]: Requirement already satisfied: nvidia-cudnn-cu11==8.5.0.96 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (8.5.0.96)
+[stable]: Requirement already satisfied: nvidia-cublas-cu11==11.10.3.66 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (11.10.3.66)
+[stable]: Requirement already satisfied: nvidia-cufft-cu11==10.9.0.58 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (10.9.0.58)
+[stable]: Requirement already satisfied: nvidia-curand-cu11==10.2.10.91 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (10.2.10.91)
+[stable]: Requirement already satisfied: nvidia-cusolver-cu11==11.4.0.1 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (11.4.0.1)
+[stable]: Requirement already satisfied: nvidia-cusparse-cu11==11.7.4.91 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (11.7.4.91)
+[stable]: Requirement already satisfied: nvidia-nccl-cu11==2.14.3 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (2.14.3)
+[stable]: Requirement already satisfied: nvidia-nvtx-cu11==11.7.91 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (11.7.91)
+[stable]: Requirement already satisfied: triton==2.0.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (2.0.0)
+[stable]: Requirement already satisfied: setuptools in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (68.0.0)
+[stable]: Requirement already satisfied: wheel in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from nvidia-cublas-cu11==11.10.3.66->torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (0.40.0)
+[stable]: Requirement already satisfied: cmake in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from triton==2.0.0->torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (3.26.4)
+[stable]: Requirement already satisfied: lit in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from triton==2.0.0->torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (16.0.6)
+[stable]: Collecting zipp>=0.5 (from importlib-metadata->diffusers==0.15.1->sdkit==1.0.112)
+[stable]:   Downloading zipp-3.15.0-py3-none-any.whl (6.8 kB)
+[stable]: Collecting jsonschema>2.4.0 (from jsonmerge->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading jsonschema-4.17.3-py3-none-any.whl (90 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.4/90.4 kB 21.6 MB/s eta 0:00:00
+[stable]: Collecting absl-py>=0.4 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading absl_py-1.4.0-py3-none-any.whl (126 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 126.5/126.5 kB 22.7 MB/s eta 0:00:00
+[stable]: Collecting grpcio>=1.48.2 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading grpcio-1.56.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 51.6 MB/s eta 0:00:00
+[stable]: Collecting google-auth<3,>=1.6.3 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading google_auth-2.21.0-py2.py3-none-any.whl (182 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 182.1/182.1 kB 7.6 MB/s eta 0:00:00
+[stable]: Collecting google-auth-oauthlib<1.1,>=0.5 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading google_auth_oauthlib-1.0.0-py2.py3-none-any.whl (18 kB)
+[stable]: Collecting markdown>=2.6.8 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading Markdown-3.4.3-py3-none-any.whl (93 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 93.9/93.9 kB 18.1 MB/s eta 0:00:00
+[stable]: Collecting protobuf>=3.19.6 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading protobuf-4.23.3-cp37-abi3-manylinux2014_x86_64.whl (304 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 304.5/304.5 kB 28.6 MB/s eta 0:00:00
+[stable]: Collecting tensorboard-data-server<0.8.0,>=0.7.0 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading tensorboard_data_server-0.7.1-py3-none-manylinux2014_x86_64.whl (6.6 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 54.5 MB/s eta 0:00:00
+[stable]: Collecting werkzeug>=1.0.1 (from tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading Werkzeug-2.3.6-py3-none-any.whl (242 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 242.5/242.5 kB 31.2 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: boltons>=20.2.1 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from torchsde->k-diffusion->sdkit==1.0.112) (23.0.0)
+[stable]: Collecting trampoline>=0.1.2 (from torchsde->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading trampoline-0.1.2-py3-none-any.whl (5.2 kB)
+[stable]: Collecting Click!=8.0.0,>=7.0 (from wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading click-8.1.3-py3-none-any.whl (96 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 96.6/96.6 kB 20.9 MB/s eta 0:00:00
+[stable]: Collecting GitPython!=3.1.29,>=1.0.0 (from wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading GitPython-3.1.31-py3-none-any.whl (184 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.3/184.3 kB 31.8 MB/s eta 0:00:00
+[stable]: Collecting sentry-sdk>=1.0.0 (from wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading sentry_sdk-1.26.0-py2.py3-none-any.whl (209 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 209.4/209.4 kB 38.1 MB/s eta 0:00:00
+[stable]: Collecting docker-pycreds>=0.4.0 (from wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading docker_pycreds-0.4.0-py2.py3-none-any.whl (9.0 kB)
+[stable]: Collecting pathtools (from wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading pathtools-0.1.2.tar.gz (11 kB)
+[stable]:   Preparing metadata (setup.py): started
+[stable]:   Preparing metadata (setup.py): finished with status 'done'
+[stable]: Collecting setproctitle (from wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading setproctitle-1.3.2-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (31 kB)
+[stable]: Collecting appdirs>=1.4.3 (from wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading appdirs-1.4.4-py2.py3-none-any.whl (9.6 kB)
+[stable]: Collecting platformdirs>=3.5.1 (from yapf->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading platformdirs-3.8.0-py3-none-any.whl (16 kB)
+[stable]: Collecting tomli>=2.0.1 (from yapf->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading tomli-2.0.1-py3-none-any.whl (12 kB)
+[stable]: Collecting six>=1.4.0 (from docker-pycreds>=0.4.0->wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
+[stable]: Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from fsspec[http]!=2021.06.0,>=2021.05.0->pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading aiohttp-3.8.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.0 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 45.6 MB/s eta 0:00:00
+[stable]: Collecting gitdb<5,>=4.0.1 (from GitPython!=3.1.29,>=1.0.0->wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading gitdb-4.0.10-py3-none-any.whl (62 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.7/62.7 kB 10.0 MB/s eta 0:00:00
+[stable]: Collecting cachetools<6.0,>=2.0.0 (from google-auth<3,>=1.6.3->tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading cachetools-5.3.1-py3-none-any.whl (9.3 kB)
+[stable]: Collecting pyasn1-modules>=0.2.1 (from google-auth<3,>=1.6.3->tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading pyasn1_modules-0.3.0-py2.py3-none-any.whl (181 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 181.3/181.3 kB 30.8 MB/s eta 0:00:00
+[stable]: Collecting rsa<5,>=3.1.4 (from google-auth<3,>=1.6.3->tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading rsa-4.9-py3-none-any.whl (34 kB)
+[stable]: Collecting urllib3<3,>=1.21.1 (from requests->sdkit==1.0.112)
+[stable]:   Downloading urllib3-1.26.16-py2.py3-none-any.whl (143 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.1/143.1 kB 10.8 MB/s eta 0:00:00
+[stable]: Collecting requests-oauthlib>=0.7.0 (from google-auth-oauthlib<1.1,>=0.5->tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+[stable]: Collecting attrs>=17.4.0 (from jsonschema>2.4.0->jsonmerge->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading attrs-23.1.0-py3-none-any.whl (61 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.2/61.2 kB 17.3 MB/s eta 0:00:00
+[stable]: Collecting importlib-resources>=1.4.0 (from jsonschema>2.4.0->jsonmerge->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading importlib_resources-5.12.0-py3-none-any.whl (36 kB)
+[stable]: Collecting pkgutil-resolve-name>=1.3.10 (from jsonschema>2.4.0->jsonmerge->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading pkgutil_resolve_name-1.3.10-py3-none-any.whl (4.7 kB)
+[stable]: Collecting pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 (from jsonschema>2.4.0->jsonmerge->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading pyrsistent-0.19.3-py3-none-any.whl (57 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.5/57.5 kB 16.2 MB/s eta 0:00:00
+[stable]: Collecting python-dateutil>=2.8.2 (from pandas>=0.20.3->test-tube>=0.7.5->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading python_dateutil-2.8.2-py2.py3-none-any.whl (247 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 247.7/247.7 kB 38.5 MB/s eta 0:00:00
+[stable]: Collecting pytz>=2020.1 (from pandas>=0.20.3->test-tube>=0.7.5->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading pytz-2023.3-py2.py3-none-any.whl (502 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 502.3/502.3 kB 48.1 MB/s eta 0:00:00
+[stable]: Collecting tzdata>=2022.1 (from pandas>=0.20.3->test-tube>=0.7.5->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 341.8/341.8 kB 15.8 MB/s eta 0:00:00
+[stable]: Collecting scikit-learn>=0.19.1 (from qudida>=0.0.4->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading scikit_learn-1.2.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.8 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.8/9.8 MB 42.3 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: MarkupSafe>=2.1.1 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from werkzeug>=1.0.1->tb-nightly->gfpgan->sdkit==1.0.112) (2.1.3)
+[stable]: Collecting matplotlib (from filterpy->facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading matplotlib-3.7.1-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (9.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.2/9.2 MB 36.9 MB/s eta 0:00:00
+[stable]: Collecting wcwidth>=0.2.5 (from ftfy->open-clip-torch==2.0.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading wcwidth-0.2.6-py2.py3-none-any.whl (29 kB)
+[stable]: Collecting llvmlite<0.41,>=0.40.0dev0 (from numba->facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading llvmlite-0.40.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (42.1 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.1/42.1 MB 27.8 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: mpmath>=0.19 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from sympy->torch>=1.4.0->accelerate==0.18.0->sdkit==1.0.112) (1.3.0)
+[stable]: Collecting multidict<7.0,>=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]!=2021.06.0,>=2021.05.0->pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading multidict-6.0.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (121 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.3/121.3 kB 20.1 MB/s eta 0:00:00
+[stable]: Collecting async-timeout<5.0,>=4.0.0a3 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]!=2021.06.0,>=2021.05.0->pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+[stable]: Collecting yarl<2.0,>=1.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]!=2021.06.0,>=2021.05.0->pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading yarl-1.9.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (266 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 266.9/266.9 kB 26.2 MB/s eta 0:00:00
+[stable]: Collecting frozenlist>=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]!=2021.06.0,>=2021.05.0->pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading frozenlist-1.3.3-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (161 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 161.3/161.3 kB 28.2 MB/s eta 0:00:00
+[stable]: Collecting aiosignal>=1.1.2 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]!=2021.06.0,>=2021.05.0->pytorch-lightning==1.4.2->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading aiosignal-1.3.1-py3-none-any.whl (7.6 kB)
+[stable]: Collecting smmap<6,>=3.0.1 (from gitdb<5,>=4.0.1->GitPython!=3.1.29,>=1.0.0->wandb->k-diffusion->sdkit==1.0.112)
+[stable]:   Downloading smmap-5.0.0-py3-none-any.whl (24 kB)
+[stable]: Collecting pyasn1<0.6.0,>=0.4.6 (from pyasn1-modules>=0.2.1->google-auth<3,>=1.6.3->tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading pyasn1-0.5.0-py2.py3-none-any.whl (83 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 83.9/83.9 kB 22.4 MB/s eta 0:00:00
+[stable]: Collecting oauthlib>=3.0.0 (from requests-oauthlib>=0.7.0->google-auth-oauthlib<1.1,>=0.5->tb-nightly->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 151.7/151.7 kB 2.9 MB/s eta 0:00:00
+[stable]: Collecting joblib>=1.1.1 (from scikit-learn>=0.19.1->qudida>=0.0.4->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading joblib-1.2.0-py3-none-any.whl (297 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 298.0/298.0 kB 2.6 MB/s eta 0:00:00
+[stable]: Collecting threadpoolctl>=2.0.0 (from scikit-learn>=0.19.1->qudida>=0.0.4->albumentations==1.3.0->stable-diffusion-sdkit==2.1.4->sdkit==1.0.112)
+[stable]:   Downloading threadpoolctl-3.1.0-py3-none-any.whl (14 kB)
+[stable]: Collecting contourpy>=1.0.1 (from matplotlib->filterpy->facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading contourpy-1.1.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (300 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 300.4/300.4 kB 2.6 MB/s eta 0:00:00
+[stable]: Collecting cycler>=0.10 (from matplotlib->filterpy->facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading cycler-0.11.0-py3-none-any.whl (6.4 kB)
+[stable]: Collecting fonttools>=4.22.0 (from matplotlib->filterpy->facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading fonttools-4.40.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.4 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 44.7 MB/s eta 0:00:00
+[stable]: Collecting kiwisolver>=1.0.1 (from matplotlib->filterpy->facexlib>=0.2.5->gfpgan->sdkit==1.0.112)
+[stable]:   Downloading kiwisolver-1.4.4-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.whl (1.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 43.0 MB/s eta 0:00:00
+[stable]: Building wheels for collected packages: antlr4-python3-runtime, basicsr, test-tube, jsonmerge, future, filterpy, pathtools
+[stable]:   Building wheel for antlr4-python3-runtime (setup.py): started
+[stable]:   Building wheel for antlr4-python3-runtime (setup.py): finished with status 'done'
+[stable]:   Created wheel for antlr4-python3-runtime: filename=antlr4_python3_runtime-4.8-py3-none-any.whl size=141210 sha256=e47e9f8da5217996cff316c419cb18c543153fc6750ddf595aa2fb5679c87080
+[stable]:   Stored in directory: /root/.cache/pip/wheels/c8/d0/ab/d43c02eaddc5b9004db86950802442ad9a26f279c619e28da0
+[stable]:   Building wheel for basicsr (setup.py): started
+[stable]:   Building wheel for basicsr (setup.py): finished with status 'done'
+[stable]:   Created wheel for basicsr: filename=basicsr-1.4.2-py3-none-any.whl size=214824 sha256=9bfd4e78e9f924ac9e4d63f3ca2dd2ec76ff23a1044b520507d33e34a2b0c721
+[stable]:   Stored in directory: /root/.cache/pip/wheels/4d/d3/95/e17d0bcdd7dcfb0dbf79db006711e434c42036efbf6695ef7f
+[stable]:   Building wheel for test-tube (setup.py): started
+[stable]:   Building wheel for test-tube (setup.py): finished with status 'done'
+[stable]:   Created wheel for test-tube: filename=test_tube-0.7.5-py3-none-any.whl size=25329 sha256=884838eb80fe7d17b21ecdfcc20124ef9d27103f9a78013add0203d9213e0a93
+[stable]:   Stored in directory: /root/.cache/pip/wheels/95/b0/3a/00ea66dbb0d9ce470ce1bdcb854a6fa030c279c316cb27ca9e
+[stable]:   Building wheel for jsonmerge (setup.py): started
+[stable]:   Building wheel for jsonmerge (setup.py): finished with status 'done'
+[stable]:   Created wheel for jsonmerge: filename=jsonmerge-1.9.0-py3-none-any.whl size=18608 sha256=43e833afa8a5fc587a777a3d5cba971e73797b80575d87b575cab92922717c35
+[stable]:   Stored in directory: /root/.cache/pip/wheels/82/c3/9a/421a7eabc04d18b19ee10e43646bea935e518eb88a6e5e9df7
+[stable]:   Building wheel for future (setup.py): started
+[stable]:   Building wheel for future (setup.py): finished with status 'done'
+[stable]:   Created wheel for future: filename=future-0.18.3-py3-none-any.whl size=492022 sha256=a01dab5c1c7ad881b7e40e7dc391213b14ebb884cb8f18183110574c2bf38d69
+[stable]:   Stored in directory: /root/.cache/pip/wheels/a0/0b/ee/e6994fadb42c1354dcccb139b0bf2795271bddfe6253ccdf11
+[stable]:   Building wheel for filterpy (setup.py): started
+[stable]:   Building wheel for filterpy (setup.py): finished with status 'done'
+[stable]:   Created wheel for filterpy: filename=filterpy-1.4.5-py3-none-any.whl size=110459 sha256=30f1322a0c44ef27db13544b6f24f11566191246866a59bc664a847375960f9b
+[stable]:   Stored in directory: /root/.cache/pip/wheels/fe/f6/cb/40331472edf4fd399b8cad02973c6acbdf26898342928327fe
+[stable]:   Building wheel for pathtools (setup.py): started
+[stable]:   Building wheel for pathtools (setup.py): finished with status 'done'
+[stable]:   Created wheel for pathtools: filename=pathtools-0.1.2-py3-none-any.whl size=8791 sha256=89f49ee7f01b4723dc8e554d42a3c583c1f850ca4ed35342cd709a93e3f55f94
+[stable]:   Stored in directory: /root/.cache/pip/wheels/4c/8e/7e/72fbc243e1aeecae64a96875432e70d4e92f3d2d18123be004
+[stable]: Successfully built antlr4-python3-runtime basicsr test-tube jsonmerge future filterpy pathtools
+[stable]: Installing collected packages: wcwidth, trampoline, tokenizers, safetensors, resize-right, pytz, pathtools, lmdb, einops, appdirs, antlr4-python3-runtime, addict, zipp, werkzeug, urllib3, tzdata, tomli, tifffile, threadpoolctl, tensorboard-data-server, smmap, six, setproctitle, scipy, regex, pyyaml, PyWavelets, pyrsistent, pyparsing, pyDeprecate, pyasn1, psutil, protobuf, platformdirs, pkgutil-resolve-name, piexif, picklescan, opencv-python-headless, opencv-python, oauthlib, multidict, llvmlite, lazy_loader, kiwisolver, joblib, imageio, grpcio, future, ftfy, fsspec, frozenlist, fonttools, cycler, contourpy, Click, cachetools, attrs, async-timeout, absl-py, yarl, sentry-sdk, scikit-learn, scikit-image, rsa, python-dateutil, pyasn1-modules, omegaconf, importlib-resources, importlib-metadata, gitdb, docker-pycreds, aiosignal, yapf, requests-oauthlib, qudida, pandas, numba, matplotlib, markdown, jsonschema, huggingface-hub, google-auth, GitPython, aiohttp, wandb, transformers, jsonmerge, google-auth-oauthlib, filterpy, diffusers, albumentations, tensorboard, tb-nightly, torchmetrics, facexlib, basicsr, torchsde, torchdiffeq, test-tube, pytorch-lightning, open-clip-torch, kornia, gfpgan, clip-anytorch, clean-fid, accelerate, stable-diffusion-sdkit, realesrgan, k-diffusion, compel, sdkit
+[stable]:   Attempting uninstall: urllib3
+[stable]:     Found existing installation: urllib3 2.0.3
+[stable]:     Uninstalling urllib3-2.0.3:
+[stable]:       Successfully uninstalled urllib3-2.0.3
+[stable]: Successfully installed Click-8.1.3 GitPython-3.1.31 PyWavelets-1.4.1 absl-py-1.4.0 accelerate-0.18.0 addict-2.4.0 aiohttp-3.8.4 aiosignal-1.3.1 albumentations-1.3.0 antlr4-python3-runtime-4.8 appdirs-1.4.4 async-timeout-4.0.2 attrs-23.1.0 basicsr-1.4.2 cachetools-5.3.1 clean-fid-0.1.35 clip-anytorch-2.5.2 compel-1.1.5 contourpy-1.1.0 cycler-0.11.0 diffusers-0.15.1 docker-pycreds-0.4.0 einops-0.3.0 facexlib-0.3.0 filterpy-1.4.5 fonttools-4.40.0 frozenlist-1.3.3 fsspec-2023.6.0 ftfy-6.1.1 future-0.18.3 gfpgan-1.3.8 gitdb-4.0.10 google-auth-2.21.0 google-auth-oauthlib-1.0.0 grpcio-1.56.0 huggingface-hub-0.15.1 imageio-2.31.1 importlib-metadata-6.7.0 importlib-resources-5.12.0 joblib-1.2.0 jsonmerge-1.9.0 jsonschema-4.17.3 k-diffusion-0.0.15 kiwisolver-1.4.4 kornia-0.6.0 lazy_loader-0.2 llvmlite-0.40.1 lmdb-1.4.1 markdown-3.4.3 matplotlib-3.7.1 multidict-6.0.4 numba-0.57.1 oauthlib-3.2.2 omegaconf-2.1.1 open-clip-torch-2.0.2 opencv-python-4.6.0.66 opencv-python-headless-4.7.0.72 pandas-2.0.2 pathtools-0.1.2 picklescan-0.0.8 piexif-1.1.3 pkgutil-resolve-name-1.3.10 platformdirs-3.8.0 protobuf-4.23.3 psutil-5.9.5 pyDeprecate-0.3.1 pyasn1-0.5.0 pyasn1-modules-0.3.0 pyparsing-3.1.0 pyrsistent-0.19.3 python-dateutil-2.8.2 pytorch-lightning-1.4.2 pytz-2023.3 pyyaml-6.0 qudida-0.0.4 realesrgan-0.3.0 regex-2023.6.3 requests-oauthlib-1.3.1 resize-right-0.0.2 rsa-4.9 safetensors-0.3.1 scikit-image-0.21.0 scikit-learn-1.2.2 scipy-1.10.1 sdkit-1.0.112 sentry-sdk-1.26.0 setproctitle-1.3.2 six-1.16.0 smmap-5.0.0 stable-diffusion-sdkit-2.1.4 tb-nightly-2.14.0a20230625 tensorboard-2.13.0 tensorboard-data-server-0.7.1 test-tube-0.7.5 threadpoolctl-3.1.0 tifffile-2023.4.12 tokenizers-0.13.3 tomli-2.0.1 torchdiffeq-0.2.3 torchmetrics-0.6.0 torchsde-0.2.5 trampoline-0.1.2 transformers-4.26.1 tzdata-2023.3 urllib3-1.26.16 wandb-0.15.4 wcwidth-0.2.6 werkzeug-2.3.6 yapf-0.40.1 yarl-1.9.2 zipp-3.15.0
+[stable]: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[stable]: Collecting rich==12.6.0
+[stable]:   Downloading rich-12.6.0-py3-none-any.whl (237 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 237.5/237.5 kB 11.6 MB/s eta 0:00:00
+[stable]: Collecting commonmark<0.10.0,>=0.9.0 (from rich==12.6.0)
+[stable]:   Downloading commonmark-0.9.1-py2.py3-none-any.whl (51 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 51.1/51.1 kB 14.6 MB/s eta 0:00:00
+[stable]: Collecting pygments<3.0.0,>=2.6.0 (from rich==12.6.0)
+[stable]:   Downloading Pygments-2.15.1-py3-none-any.whl (1.1 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 47.0 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: typing-extensions<5.0,>=4.0.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from rich==12.6.0) (4.6.3)
+[stable]: Installing collected packages: commonmark, pygments, rich
+[stable]: Successfully installed commonmark-0.9.1 pygments-2.15.1 rich-12.6.0
+[stable]: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[stable]: Collecting uvicorn==0.19.0
+[stable]:   Downloading uvicorn-0.19.0-py3-none-any.whl (56 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.6/56.6 kB 3.5 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: click>=7.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from uvicorn==0.19.0) (8.1.3)
+[stable]: Collecting h11>=0.8 (from uvicorn==0.19.0)
+[stable]:   Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 58.3/58.3 kB 12.7 MB/s eta 0:00:00
+[stable]: Installing collected packages: h11, uvicorn
+[stable]: Successfully installed h11-0.14.0 uvicorn-0.19.0
+[stable]: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[stable]: Collecting fastapi==0.85.1
+[stable]:   Downloading fastapi-0.85.1-py3-none-any.whl (55 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.4/55.4 kB 4.8 MB/s eta 0:00:00
+[stable]: Collecting pydantic!=1.7,!=1.7.1,!=1.7.2,!=1.7.3,!=1.8,!=1.8.1,<2.0.0,>=1.6.2 (from fastapi==0.85.1)
+[stable]:   Downloading pydantic-1.10.9-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 26.7 MB/s eta 0:00:00
+[stable]: Collecting starlette==0.20.4 (from fastapi==0.85.1)
+[stable]:   Downloading starlette-0.20.4-py3-none-any.whl (63 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 kB 15.8 MB/s eta 0:00:00
+[stable]: Collecting anyio<5,>=3.4.0 (from starlette==0.20.4->fastapi==0.85.1)
+[stable]:   Downloading anyio-3.7.0-py3-none-any.whl (80 kB)
+[stable]:      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.9/80.9 kB 22.5 MB/s eta 0:00:00
+[stable]: Requirement already satisfied: typing-extensions>=3.10.0 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from starlette==0.20.4->fastapi==0.85.1) (4.6.3)
+[stable]: Requirement already satisfied: idna>=2.8 in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from anyio<5,>=3.4.0->starlette==0.20.4->fastapi==0.85.1) (3.4)
+[stable]: Collecting sniffio>=1.1 (from anyio<5,>=3.4.0->starlette==0.20.4->fastapi==0.85.1)
+[stable]:   Downloading sniffio-1.3.0-py3-none-any.whl (10 kB)
+[stable]: Collecting exceptiongroup (from anyio<5,>=3.4.0->starlette==0.20.4->fastapi==0.85.1)
+[stable]:   Downloading exceptiongroup-1.1.1-py3-none-any.whl (14 kB)
+[stable]: Installing collected packages: sniffio, pydantic, exceptiongroup, anyio, starlette, fastapi
+[stable]: Successfully installed anyio-3.7.0 exceptiongroup-1.1.1 fastapi-0.85.1 pydantic-1.10.9 sniffio-1.3.0 starlette-0.20.4
+[stable]: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[stable]: Collecting pycloudflared==0.2.0
+[stable]:   Downloading pycloudflared-0.2.0-py3-none-any.whl (7.3 kB)
+[stable]: Requirement already satisfied: tomli in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from pycloudflared==0.2.0) (2.0.1)
+[stable]: Requirement already satisfied: tqdm in /easy-diffusion/installer_files/env/lib/python3.8/site-packages (from pycloudflared==0.2.0) (4.65.0)
+[stable]: Installing collected packages: pycloudflared
+[stable]: Successfully installed pycloudflared-0.2.0
+[stable]: WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[stable]: > python -m pip install --upgrade torch==2.0.0
+[stable]: torch: 2.0.0
+[stable]: > python -m pip install --upgrade torchvision==0.15.1
+[stable]: torchvision: 0.15.1
+[stable]: > python -m pip install --upgrade sdkit==1.0.112
+[stable]: sdkit: 1.0.112
+[stable]: stable-diffusion-sdkit: 2.1.4
+[stable]: > python -m pip install --upgrade rich==12.6.0
+[stable]: > python -m pip install --upgrade uvicorn==0.19.0
+[stable]: > python -m pip install --upgrade fastapi==0.85.1
+[stable]: > python -m pip install --upgrade pycloudflared==0.2.0
+[stable]: 
+[stable]: 
+[stable]: Easy Diffusion installation complete, starting the server!
+[stable]: 
+[stable]: PYTHONPATH=/easy-diffusion/installer_files/env/lib/python3.8/site-packages
+[stable]: /easy-diffusion/installer_files/env/bin/python
+[stable]: Python 3.8.5
+[stable]: No module 'xformers'. Proceeding without it.
+[stable]: 17:13:41.364 INFO MainThread started in                             server.py:20
+[stable]: /easy-diffusion/stable-diffusion                                                
+[stable]: 17:13:41.366 INFO MainThread started at 06/27/23 17:13:41           server.py:21
+[stable]: > download stable-diffusion 1.4
+[stable]: 17:13:41.890 INFO MainThread Downloading                        http_utils.py:31
+[stable]: https://huggingface.co/CompVis/stable-diffusion-v-1-4-original/                 
+[stable]: resolve/main/sd-v1-4.ckpt to                                                    
+[stable]: /easy-diffusion/models/stable-diffusion/sd-v1-4.ckpt                            
+[stable]: /easy-diffusion/installer_files/env/lib/python3.8/site-packages/torchvision/transforms/functional_tensor.py:5: UserWarning: The torchvision.transforms.functional_tensor module is deprecated in 0.15 and will be **removed in 0.17**. Please don't rely on it. You probably just need to use APIs in torchvision.transforms.functional or in torchvision.transforms.v2.functional.
+[stable]:   warnings.warn(
+[stable]: Downloading:   0%|[32m          [0m| 0/4265380512 [00:00<?, ?it/s]Downloading:   0%|[32m          [0m| 3.62M/3.97G [00:00<01:52, 37.9MB/s]Downloading:   0%|[32m          [0m| 7.25M/3.97G [00:00<02:09, 32.9MB/s]Downloading:   0%|[32m          [0m| 10.4M/3.97G [00:00<02:18, 30.7MB/s]Downloading:   0%|[32m          [0m| 15.0M/3.97G [00:00<01:56, 36.5MB/s]Downloading:   0%|[32m          [0m| 18.9M/3.97G [00:00<01:51, 38.0MB/s]Downloading:   1%|[32m          [0m| 22.6M/3.97G [00:00<01:53, 37.5MB/s]Downloading:   1%|[32m          [0m| 27.3M/3.97G [00:00<01:43, 41.1MB/s]Downloading:   1%|[32m          [0m| 31.3M/3.97G [00:00<01:48, 39.0MB/s]Downloading:   1%|[32m          [0m| 35.1M/3.97G [00:01<01:58, 35.8MB/s]Downloading:   1%|[32m          [0m| 39.6M/3.97G [00:01<01:49, 38.5MB/s]Downloading:   1%|[32m          [0m| 45.1M/3.97G [00:01<01:35, 44.1MB/s]Downloading:   1%|[32m          [0m| 50.3M/3.97G [00:01<01:29, 47.0MB/s]Downloading:   1%|[32m▏         [0m| 56.1M/3.97G [00:01<01:22, 51.0MB/s]Downloading:   2%|[32m▏         [0m| 61.1M/3.97G [00:01<01:28, 47.6MB/s]Downloading:   2%|[32m▏         [0m| 66.4M/3.97G [00:01<01:24, 49.6MB/s]Downloading:   2%|[32m▏         [0m| 71.2M/3.97G [00:01<01:26, 48.3MB/s]Downloading:   2%|[32m▏         [0m| 75.9M/3.97G [00:01<01:37, 42.7MB/s]Downloading:   2%|[32m▏         [0m| 80.6M/3.97G [00:01<01:34, 44.4MB/s]Downloading:   2%|[32m▏         [0m| 85.0M/3.97G [00:02<01:42, 40.7MB/s]Downloading:   2%|[32m▏         [0m| 89.1M/3.97G [00:02<01:42, 40.8MB/s]Downloading:   2%|[32m▏         [0m| 93.2M/3.97G [00:02<01:40, 41.5MB/s]Downloading:   2%|[32m▏         [0m| 97.3M/3.97G [00:02<01:44, 40.0MB/s]Downloading:   2%|[32m▏         [0m| 101M/3.97G [00:02<01:41, 40.8MB/s] Downloading:   3%|[32m▎         [0m| 105M/3.97G [00:02<01:48, 38.3MB/s]Downloading:   3%|[32m▎         [0m| 110M/3.97G [00:02<01:39, 41.8MB/s]Downloading:   3%|[32m▎         [0m| 115M/3.97G [00:02<01:36, 42.9MB/s]Downloading:   3%|[32m▎         [0m| 120M/3.97G [00:02<01:31, 45.1MB/s]Downloading:   3%|[32m▎         [0m| 124M/3.97G [00:03<01:29, 46.2MB/s]Downloading:   3%|[32m▎         [0m| 130M/3.97G [00:03<01:20, 51.6MB/s]Downloading:   3%|[32m▎         [0m| 136M/3.97G [00:03<01:38, 41.9MB/s]Downloading:   3%|[32m▎         [0m| 142M/3.97G [00:03<01:27, 47.0MB/s]Downloading:   4%|[32m▎         [0m| 148M/3.97G [00:03<01:18, 52.2MB/s]Downloading:   4%|[32m▍         [0m| 154M/3.97G [00:03<01:16, 53.8MB/s]Downloading:   4%|[32m▍         [0m| 159M/3.97G [00:03<01:37, 42.2MB/s]Downloading:   4%|[32m▍         [0m| 164M/3.97G [00:04<01:56, 35.1MB/s]Downloading:   4%|[32m▍         [0m| 168M/3.97G [00:04<02:06, 32.2MB/s]Downloading:   4%|[32m▍         [0m| 171M/3.97G [00:04<02:16, 30.0MB/s]Downloading:   4%|[32m▍         [0m| 174M/3.97G [00:04<02:14, 30.3MB/s]Downloading:   4%|[32m▍         [0m| 178M/3.97G [00:04<02:07, 31.9MB/s]Downloading:   5%|[32m▍         [0m| 183M/3.97G [00:04<01:46, 38.2MB/s]Downloading:   5%|[32m▍         [0m| 187M/3.97G [00:04<01:45, 38.5MB/s]Downloading:   5%|[32m▍         [0m| 191M/3.97G [00:04<01:56, 35.0MB/s]Downloading:   5%|[32m▍         [0m| 196M/3.97G [00:05<01:40, 40.6MB/s]Downloading:   5%|[32m▍         [0m| 201M/3.97G [00:05<01:43, 39.4MB/s]Downloading:   5%|[32m▌         [0m| 205M/3.97G [00:05<01:36, 42.0MB/s]Downloading:   5%|[32m▌         [0m| 212M/3.97G [00:05<01:22, 48.7MB/s]Downloading:   5%|[32m▌         [0m| 217M/3.97G [00:05<01:18, 51.5MB/s]Downloading:   5%|[32m▌         [0m| 223M/3.97G [00:05<01:13, 54.6MB/s]Downloading:   6%|[32m▌         [0m| 229M/3.97G [00:05<01:18, 51.5MB/s]Downloading:   6%|[32m▌         [0m| 234M/3.97G [00:05<01:21, 49.6MB/s]Downloading:   6%|[32m▌         [0m| 238M/3.97G [00:05<01:28, 45.4MB/s]Downloading:   6%|[32m▌         [0m| 243M/3.97G [00:06<01:37, 41.2MB/s]Downloading:   6%|[32m▌         [0m| 247M/3.97G [00:06<01:57, 34.0MB/s]Downloading:   6%|[32m▌         [0m| 250M/3.97G [00:06<02:04, 32.0MB/s]Downloading:   6%|[32m▌         [0m| 254M/3.97G [00:06<02:13, 30.0MB/s]Downloading:   6%|[32m▋         [0m| 257M/3.97G [00:06<02:20, 28.4MB/s]Downloading:   6%|[32m▋         [0m| 262M/3.97G [00:06<01:58, 33.6MB/s]Downloading:   7%|[32m▋         [0m| 266M/3.97G [00:06<01:45, 37.9MB/s]Downloading:   7%|[32m▋         [0m| 270M/3.97G [00:06<01:47, 37.1MB/s]Downloading:   7%|[32m▋         [0m| 274M/3.97G [00:07<01:57, 33.9MB/s]Downloading:   7%|[32m▋         [0m| 277M/3.97G [00:07<02:01, 32.6MB/s]Downloading:   7%|[32m▋         [0m| 280M/3.97G [00:07<02:09, 30.6MB/s]Downloading:   7%|[32m▋         [0m| 285M/3.97G [00:07<01:56, 33.9MB/s]Downloading:   7%|[32m▋         [0m| 289M/3.97G [00:07<01:46, 37.4MB/s]Downloading:   7%|[32m▋         [0m| 294M/3.97G [00:07<01:37, 40.4MB/s]Downloading:   7%|[32m▋         [0m| 298M/3.97G [00:07<01:40, 39.4MB/s]Downloading:   7%|[32m▋         [0m| 303M/3.97G [00:07<01:30, 43.5MB/s]Downloading:   8%|[32m▊         [0m| 307M/3.97G [00:08<01:31, 43.3MB/s]Downloading:   8%|[32m▊         [0m| 312M/3.97G [00:08<01:46, 36.9MB/s]Downloading:   8%|[32m▊         [0m| 316M/3.97G [00:08<01:42, 38.4MB/s]Downloading:   8%|[32m▊         [0m| 322M/3.97G [00:08<01:26, 45.6MB/s]Downloading:   8%|[32m▊         [0m| 326M/3.97G [00:08<01:27, 44.7MB/s]Downloading:   8%|[32m▊         [0m| 331M/3.97G [00:08<01:39, 39.4MB/s]Downloading:   8%|[32m▊         [0m| 336M/3.97G [00:08<01:31, 42.8MB/s]Downloading:   8%|[32m▊         [0m| 340M/3.97G [00:08<01:42, 38.2MB/s]Downloading:   9%|[32m▊         [0m| 346M/3.97G [00:08<01:31, 42.6MB/s]Downloading:   9%|[32m▊         [0m| 350M/3.97G [00:09<01:31, 42.7MB/s]Downloading:   9%|[32m▊         [0m| 356M/3.97G [00:09<01:23, 46.5MB/s]Downloading:   9%|[32m▉         [0m| 360M/3.97G [00:09<01:25, 45.6MB/s]Downloading:   9%|[32m▉         [0m| 365M/3.97G [00:09<01:45, 36.8MB/s]Downloading:   9%|[32m▉         [0m| 369M/3.97G [00:09<02:01, 32.0MB/s]Downloading:   9%|[32m▉         [0m| 372M/3.97G [00:09<02:06, 30.7MB/s]Downloading:   9%|[32m▉         [0m| 377M/3.97G [00:09<01:49, 35.3MB/s]Downloading:   9%|[32m▉         [0m| 383M/3.97G [00:10<01:28, 43.6MB/s]Downloading:  10%|[32m▉         [0m| 388M/3.97G [00:10<02:11, 29.4MB/s]Downloading:  10%|[32m▉         [0m| 394M/3.97G [00:10<01:50, 34.9MB/s]Downloading:  10%|[32m▉         [0m| 398M/3.97G [00:10<01:47, 35.8MB/s]Downloading:  10%|[32m▉         [0m| 402M/3.97G [00:10<01:39, 38.6MB/s]Downloading:  10%|[32m█         [0m| 407M/3.97G [00:10<01:32, 41.6MB/s]Downloading:  10%|[32m█         [0m| 412M/3.97G [00:10<01:32, 41.5MB/s]Downloading:  10%|[32m█         [0m| 416M/3.97G [00:10<01:29, 42.6MB/s]Downloading:  10%|[32m█         [0m| 420M/3.97G [00:11<01:43, 37.1MB/s]Downloading:  10%|[32m█         [0m| 425M/3.97G [00:11<01:33, 40.8MB/s]Downloading:  11%|[32m█         [0m| 430M/3.97G [00:11<01:35, 40.0MB/s]Downloading:  11%|[32m█         [0m| 434M/3.97G [00:11<01:28, 42.9MB/s]Downloading:  11%|[32m█         [0m| 440M/3.97G [00:11<01:21, 46.7MB/s]Downloading:  11%|[32m█         [0m| 444M/3.97G [00:11<01:24, 44.8MB/s]Downloading:  11%|[32m█         [0m| 449M/3.97G [00:11<01:34, 40.3MB/s]Downloading:  11%|[32m█         [0m| 453M/3.97G [00:11<01:41, 37.4MB/s]Downloading:  11%|[32m█         [0m| 457M/3.97G [00:12<01:37, 38.8MB/s]Downloading:  11%|[32m█▏        [0m| 462M/3.97G [00:12<01:26, 43.6MB/s]Downloading:  12%|[32m█▏        [0m| 468M/3.97G [00:12<01:19, 47.7MB/s]Downloading:  12%|[32m█▏        [0m| 473M/3.97G [00:12<01:21, 46.0MB/s]Downloading:  12%|[32m█▏        [0m| 477M/3.97G [00:12<01:27, 43.0MB/s]Downloading:  12%|[32m█▏        [0m| 482M/3.97G [00:12<01:32, 40.8MB/s]Downloading:  12%|[32m█▏        [0m| 486M/3.97G [00:12<01:29, 41.8MB/s]Downloading:  12%|[32m█▏        [0m| 490M/3.97G [00:12<01:33, 40.3MB/s]Downloading:  12%|[32m█▏        [0m| 494M/3.97G [00:12<01:34, 39.7MB/s]Downloading:  12%|[32m█▏        [0m| 498M/3.97G [00:13<01:33, 39.9MB/s]Downloading:  12%|[32m█▏        [0m| 502M/3.97G [00:13<01:27, 42.8MB/s]Downloading:  12%|[32m█▏        [0m| 507M/3.97G [00:13<01:40, 37.2MB/s]Downloading:  13%|[32m█▎        [0m| 510M/3.97G [00:13<01:55, 32.3MB/s]Downloading:  13%|[32m█▎        [0m| 515M/3.97G [00:13<01:42, 36.3MB/s]Downloading:  13%|[32m█▎        [0m| 519M/3.97G [00:13<01:36, 38.7MB/s]Downloading:  13%|[32m█▎        [0m| 524M/3.97G [00:13<01:31, 40.5MB/s]Downloading:  13%|[32m█▎        [0m| 528M/3.97G [00:13<01:28, 42.1MB/s]Downloading:  13%|[32m█▎        [0m| 532M/3.97G [00:13<01:35, 38.8MB/s]Downloading:  13%|[32m█▎        [0m| 537M/3.97G [00:14<01:30, 40.8MB/s]Downloading:  13%|[32m█▎        [0m| 541M/3.97G [00:14<01:45, 35.1MB/s]Downloading:  13%|[32m█▎        [0m| 546M/3.97G [00:14<01:32, 40.0MB/s]Downloading:  14%|[32m█▎        [0m| 550M/3.97G [00:14<01:34, 39.1MB/s]Downloading:  14%|[32m█▎        [0m| 554M/3.97G [00:14<01:40, 36.7MB/s]Downloading:  14%|[32m█▎        [0m| 559M/3.97G [00:14<01:32, 39.8MB/s]Downloading:  14%|[32m█▍        [0m| 563M/3.97G [00:14<01:33, 39.1MB/s]Downloading:  14%|[32m█▍        [0m| 567M/3.97G [00:14<01:40, 36.5MB/s]Downloading:  14%|[32m█▍        [0m| 572M/3.97G [00:15<01:31, 40.3MB/s]Downloading:  14%|[32m█▍        [0m| 578M/3.97G [00:15<01:20, 45.6MB/s]Downloading:  14%|[32m█▍        [0m| 582M/3.97G [00:15<01:43, 35.2MB/s]Downloading:  14%|[32m█▍        [0m| 586M/3.97G [00:15<01:57, 31.2MB/s]Downloading:  14%|[32m█▍        [0m| 589M/3.97G [00:15<01:59, 30.6MB/s]Downloading:  15%|[32m█▍        [0m| 594M/3.97G [00:15<01:42, 35.7MB/s]Downloading:  15%|[32m█▍        [0m| 598M/3.97G [00:15<01:42, 35.6MB/s]Downloading:  15%|[32m█▍        [0m| 603M/3.97G [00:15<01:31, 39.5MB/s]Downloading:  15%|[32m█▍        [0m| 608M/3.97G [00:16<01:24, 42.9MB/s]Downloading:  15%|[32m█▌        [0m| 613M/3.97G [00:16<01:18, 46.0MB/s]Downloading:  15%|[32m█▌        [0m| 618M/3.97G [00:16<01:22, 43.7MB/s]Downloading:  15%|[32m█▌        [0m| 622M/3.97G [00:16<01:30, 40.0MB/s]Downloading:  15%|[32m█▌        [0m| 627M/3.97G [00:16<01:23, 43.1MB/s]Downloading:  16%|[32m█▌        [0m| 631M/3.97G [00:16<01:23, 43.1MB/s]Downloading:  16%|[32m█▌        [0m| 636M/3.97G [00:16<01:27, 41.4MB/s]Downloading:  16%|[32m█▌        [0m| 640M/3.97G [00:16<01:31, 39.2MB/s]Downloading:  16%|[32m█▌        [0m| 643M/3.97G [00:17<01:55, 31.1MB/s]Downloading:  16%|[32m█▌        [0m| 647M/3.97G [00:17<02:03, 29.2MB/s]Downloading:  16%|[32m█▌        [0m| 650M/3.97G [00:17<02:09, 27.6MB/s]Downloading:  16%|[32m█▌        [0m| 652M/3.97G [00:17<02:12, 27.0MB/s]Downloading:  16%|[32m█▌        [0m| 655M/3.97G [00:17<02:13, 26.8MB/s]Downloading:  16%|[32m█▌        [0m| 658M/3.97G [00:17<02:16, 26.2MB/s]Downloading:  16%|[32m█▌        [0m| 660M/3.97G [00:17<02:21, 25.2MB/s]Downloading:  16%|[32m█▋        [0m| 663M/3.97G [00:17<02:13, 26.6MB/s]Downloading:  16%|[32m█▋        [0m| 666M/3.97G [00:17<02:19, 25.5MB/s]Downloading:  16%|[32m█▋        [0m| 670M/3.97G [00:18<01:56, 30.6MB/s]Downloading:  17%|[32m█▋        [0m| 673M/3.97G [00:18<01:55, 30.8MB/s]Downloading:  17%|[32m█▋        [0m| 678M/3.97G [00:18<01:41, 35.2MB/s]Downloading:  17%|[32m█▋        [0m| 681M/3.97G [00:18<01:56, 30.6MB/s]Downloading:  17%|[32m█▋        [0m| 684M/3.97G [00:18<02:02, 28.9MB/s]Downloading:  17%|[32m█▋        [0m| 689M/3.97G [00:18<01:46, 33.2MB/s]Downloading:  17%|[32m█▋        [0m| 693M/3.97G [00:18<01:36, 36.5MB/s]Downloading:  17%|[32m█▋        [0m| 697M/3.97G [00:18<01:43, 34.3MB/s]Downloading:  17%|[32m█▋        [0m| 701M/3.97G [00:19<01:33, 37.6MB/s]Downloading:  17%|[32m█▋        [0m| 705M/3.97G [00:19<01:37, 36.3MB/s]Downloading:  17%|[32m█▋        [0m| 708M/3.97G [00:19<01:48, 32.6MB/s]Downloading:  18%|[32m█▊        [0m| 713M/3.97G [00:19<01:35, 37.0MB/s]Downloading:  18%|[32m█▊        [0m| 718M/3.97G [00:19<01:29, 39.3MB/s]Downloading:  18%|[32m█▊        [0m| 721M/3.97G [00:19<01:29, 39.1MB/s]Downloading:  18%|[32m█▊        [0m| 726M/3.97G [00:19<01:23, 42.1MB/s]Downloading:  18%|[32m█▊        [0m| 730M/3.97G [00:19<01:30, 38.8MB/s]Downloading:  18%|[32m█▊        [0m| 734M/3.97G [00:19<01:43, 33.9MB/s]Downloading:  18%|[32m█▊        [0m| 739M/3.97G [00:20<01:29, 39.0MB/s]Downloading:  18%|[32m█▊        [0m| 744M/3.97G [00:20<01:24, 41.2MB/s]Downloading:  18%|[32m█▊        [0m| 749M/3.97G [00:20<01:16, 45.4MB/s]Downloading:  19%|[32m█▊        [0m| 756M/3.97G [00:20<01:06, 51.9MB/s]Downloading:  19%|[32m█▊        [0m| 761M/3.97G [00:20<01:08, 50.4MB/s]Downloading:  19%|[32m█▉        [0m| 766M/3.97G [00:20<01:08, 50.2MB/s]Downloading:  19%|[32m█▉        [0m| 771M/3.97G [00:20<01:16, 45.3MB/s]Downloading:  19%|[32m█▉        [0m| 775M/3.97G [00:20<01:22, 41.9MB/s]Downloading:  19%|[32m█▉        [0m| 779M/3.97G [00:21<01:28, 38.8MB/s]Downloading:  19%|[32m█▉        [0m| 784M/3.97G [00:21<01:25, 40.2MB/s]Downloading:  19%|[32m█▉        [0m| 788M/3.97G [00:21<01:20, 42.6MB/s]Downloading:  19%|[32m█▉        [0m| 793M/3.97G [00:21<01:28, 38.8MB/s]Downloading:  20%|[32m█▉        [0m| 796M/3.97G [00:21<01:34, 36.3MB/s]Downloading:  20%|[32m█▉        [0m| 802M/3.97G [00:21<01:24, 40.4MB/s]Downloading:  20%|[32m█▉        [0m| 806M/3.97G [00:21<01:23, 41.1MB/s]Downloading:  20%|[32m█▉        [0m| 810M/3.97G [00:21<01:39, 34.5MB/s]Downloading:  20%|[32m██        [0m| 814M/3.97G [00:21<01:29, 38.1MB/s]Downloading:  20%|[32m██        [0m| 819M/3.97G [00:22<01:22, 41.4MB/s]Downloading:  20%|[32m██        [0m| 824M/3.97G [00:22<01:30, 37.7MB/s]Downloading:  20%|[32m██        [0m| 828M/3.97G [00:22<01:23, 40.7MB/s]Downloading:  20%|[32m██        [0m| 832M/3.97G [00:22<01:28, 38.4MB/s]Downloading:  21%|[32m██        [0m| 837M/3.97G [00:22<01:20, 42.2MB/s]Downloading:  21%|[32m██        [0m| 844M/3.97G [00:22<01:08, 49.2MB/s]Downloading:  21%|[32m██        [0m| 849M/3.97G [00:22<01:06, 50.9MB/s]Downloading:  21%|[32m██        [0m| 854M/3.97G [00:22<01:21, 41.1MB/s]Downloading:  21%|[32m██        [0m| 859M/3.97G [00:23<01:32, 36.2MB/s]Downloading:  21%|[32m██        [0m| 862M/3.97G [00:23<01:41, 33.0MB/s]Downloading:  21%|[32m██▏       [0m| 866M/3.97G [00:23<01:49, 30.8MB/s]Downloading:  21%|[32m██▏       [0m| 869M/3.97G [00:23<01:53, 29.5MB/s]Downloading:  21%|[32m██▏       [0m| 872M/3.97G [00:23<02:02, 27.4MB/s]Downloading:  21%|[32m██▏       [0m| 875M/3.97G [00:23<02:06, 26.4MB/s]Downloading:  22%|[32m██▏       [0m| 877M/3.97G [00:23<02:04, 26.8MB/s]Downloading:  22%|[32m██▏       [0m| 880M/3.97G [00:23<02:03, 27.1MB/s]Downloading:  22%|[32m██▏       [0m| 885M/3.97G [00:24<01:39, 33.5MB/s]Downloading:  22%|[32m██▏       [0m| 889M/3.97G [00:24<01:34, 35.4MB/s]Downloading:  22%|[32m██▏       [0m| 892M/3.97G [00:24<01:46, 31.4MB/s]Downloading:  22%|[32m██▏       [0m| 896M/3.97G [00:24<01:40, 33.2MB/s]Downloading:  22%|[32m██▏       [0m| 899M/3.97G [00:24<01:44, 31.8MB/s]Downloading:  22%|[32m██▏       [0m| 902M/3.97G [00:24<01:47, 30.7MB/s]Downloading:  22%|[32m██▏       [0m| 905M/3.97G [00:24<01:49, 30.2MB/s]Downloading:  22%|[32m██▏       [0m| 910M/3.97G [00:24<01:34, 35.1MB/s]Downloading:  22%|[32m██▏       [0m| 915M/3.97G [00:24<01:22, 40.1MB/s]Downloading:  23%|[32m██▎       [0m| 919M/3.97G [00:25<01:22, 39.9MB/s]Downloading:  23%|[32m██▎       [0m| 923M/3.97G [00:25<01:20, 41.2MB/s]Downloading:  23%|[32m██▎       [0m| 928M/3.97G [00:25<01:19, 41.4MB/s]Downloading:  23%|[32m██▎       [0m| 932M/3.97G [00:25<01:35, 34.6MB/s]Downloading:  23%|[32m██▎       [0m| 937M/3.97G [00:25<01:23, 39.5MB/s]Downloading:  23%|[32m██▎       [0m| 941M/3.97G [00:25<01:23, 39.4MB/s]Downloading:  23%|[32m██▎       [0m| 945M/3.97G [00:25<01:52, 29.0MB/s]Downloading:  23%|[32m██▎       [0m| 948M/3.97G [00:25<01:44, 31.3MB/s]Downloading:  23%|[32m██▎       [0m| 952M/3.97G [00:26<01:46, 30.8MB/s]Downloading:  24%|[32m██▎       [0m| 957M/3.97G [00:26<01:33, 35.1MB/s]Downloading:  24%|[32m██▎       [0m| 961M/3.97G [00:26<01:25, 37.9MB/s]Downloading:  24%|[32m██▎       [0m| 966M/3.97G [00:26<01:20, 40.5MB/s]Downloading:  24%|[32m██▍       [0m| 970M/3.97G [00:26<01:18, 41.6MB/s]Downloading:  24%|[32m██▍       [0m| 976M/3.97G [00:26<01:09, 46.5MB/s]Downloading:  24%|[32m██▍       [0m| 980M/3.97G [00:26<01:31, 35.4MB/s]Downloading:  24%|[32m██▍       [0m| 984M/3.97G [00:27<01:46, 30.5MB/s]Downloading:  24%|[32m██▍       [0m| 987M/3.97G [00:27<01:53, 28.5MB/s]Downloading:  24%|[32m██▍       [0m| 990M/3.97G [00:27<01:58, 27.3MB/s]Downloading:  24%|[32m██▍       [0m| 993M/3.97G [00:27<01:58, 27.2MB/s]Downloading:  24%|[32m██▍       [0m| 996M/3.97G [00:27<02:02, 26.2MB/s]Downloading:  25%|[32m██▍       [0m| 998M/3.97G [00:27<02:03, 26.2MB/s]Downloading:  25%|[32m██▍       [0m| 0.98G/3.97G [00:27<01:39, 32.2MB/s]Downloading:  25%|[32m██▍       [0m| 0.98G/3.97G [00:27<01:50, 29.1MB/s]Downloading:  25%|[32m██▍       [0m| 0.99G/3.97G [00:27<01:43, 31.0MB/s]Downloading:  25%|[32m██▍       [0m| 0.99G/3.97G [00:28<01:24, 37.7MB/s]Downloading:  25%|[32m██▌       [0m| 1.00G/3.97G [00:28<01:15, 42.5MB/s]Downloading:  25%|[32m██▌       [0m| 1.00G/3.97G [00:28<01:21, 39.0MB/s]Downloading:  25%|[32m██▌       [0m| 1.01G/3.97G [00:28<01:15, 42.2MB/s]Downloading:  25%|[32m██▌       [0m| 1.01G/3.97G [00:28<01:10, 45.0MB/s]Downloading:  26%|[32m██▌       [0m| 1.02G/3.97G [00:28<01:09, 45.7MB/s]Downloading:  26%|[32m██▌       [0m| 1.02G/3.97G [00:28<01:05, 48.2MB/s]Downloading:  26%|[32m██▌       [0m| 1.03G/3.97G [00:28<01:01, 51.2MB/s]Downloading:  26%|[32m██▌       [0m| 1.03G/3.97G [00:28<01:01, 51.7MB/s]Downloading:  26%|[32m██▌       [0m| 1.04G/3.97G [00:29<01:12, 43.6MB/s]Downloading:  26%|[32m██▌       [0m| 1.04G/3.97G [00:29<01:16, 41.1MB/s]Downloading:  26%|[32m██▋       [0m| 1.04G/3.97G [00:29<01:14, 42.3MB/s]Downloading:  26%|[32m██▋       [0m| 1.05G/3.97G [00:29<01:08, 45.9MB/s]Downloading:  27%|[32m██▋       [0m| 1.06G/3.97G [00:29<01:02, 50.4MB/s]Downloading:  27%|[32m██▋       [0m| 1.06G/3.97G [00:29<01:02, 49.9MB/s]Downloading:  27%|[32m██▋       [0m| 1.07G/3.97G [00:29<01:08, 45.3MB/s]Downloading:  27%|[32m██▋       [0m| 1.07G/3.97G [00:29<01:06, 46.8MB/s]Downloading:  27%|[32m██▋       [0m| 1.08G/3.97G [00:29<01:03, 48.7MB/s]Downloading:  27%|[32m██▋       [0m| 1.08G/3.97G [00:30<00:59, 52.6MB/s]Downloading:  27%|[32m██▋       [0m| 1.09G/3.97G [00:30<00:56, 55.0MB/s]Downloading:  27%|[32m██▋       [0m| 1.09G/3.97G [00:30<00:57, 54.1MB/s]Downloading:  28%|[32m██▊       [0m| 1.10G/3.97G [00:30<00:56, 54.4MB/s]Downloading:  28%|[32m██▊       [0m| 1.10G/3.97G [00:30<01:10, 43.7MB/s]Downloading:  28%|[32m██▊       [0m| 1.11G/3.97G [00:30<01:13, 42.0MB/s]Downloading:  28%|[32m██▊       [0m| 1.11G/3.97G [00:30<01:11, 42.9MB/s]Downloading:  28%|[32m██▊       [0m| 1.12G/3.97G [00:30<01:12, 42.5MB/s]Downloading:  28%|[32m██▊       [0m| 1.12G/3.97G [00:31<01:15, 40.7MB/s]Downloading:  28%|[32m██▊       [0m| 1.12G/3.97G [00:31<01:17, 39.3MB/s]Downloading:  28%|[32m██▊       [0m| 1.13G/3.97G [00:31<01:12, 42.3MB/s]Downloading:  28%|[32m██▊       [0m| 1.13G/3.97G [00:31<01:21, 37.5MB/s]Downloading:  29%|[32m██▊       [0m| 1.14G/3.97G [00:31<01:21, 37.4MB/s]Downloading:  29%|[32m██▊       [0m| 1.14G/3.97G [00:31<01:14, 40.7MB/s]Downloading:  29%|[32m██▉       [0m| 1.14G/3.97G [00:31<01:11, 42.4MB/s]Downloading:  29%|[32m██▉       [0m| 1.15G/3.97G [00:31<01:09, 43.4MB/s]Downloading:  29%|[32m██▉       [0m| 1.15G/3.97G [00:31<01:13, 41.4MB/s]Downloading:  29%|[32m██▉       [0m| 1.16G/3.97G [00:32<01:14, 40.4MB/s]Downloading:  29%|[32m██▉       [0m| 1.16G/3.97G [00:32<01:18, 38.6MB/s]Downloading:  29%|[32m██▉       [0m| 1.16G/3.97G [00:32<01:28, 34.2MB/s]Downloading:  29%|[32m██▉       [0m| 1.17G/3.97G [00:32<01:21, 36.8MB/s]Downloading:  30%|[32m██▉       [0m| 1.17G/3.97G [00:32<01:22, 36.3MB/s]Downloading:  30%|[32m██▉       [0m| 1.18G/3.97G [00:32<01:12, 41.2MB/s]Downloading:  30%|[32m██▉       [0m| 1.18G/3.97G [00:32<01:05, 45.7MB/s]Downloading:  30%|[32m██▉       [0m| 1.19G/3.97G [00:32<01:13, 40.5MB/s]Downloading:  30%|[32m███       [0m| 1.19G/3.97G [00:32<01:06, 44.8MB/s]Downloading:  30%|[32m███       [0m| 1.20G/3.97G [00:33<01:00, 49.3MB/s]Downloading:  30%|[32m███       [0m| 1.20G/3.97G [00:33<01:31, 32.4MB/s]Downloading:  30%|[32m███       [0m| 1.21G/3.97G [00:33<01:10, 42.3MB/s]Downloading:  31%|[32m███       [0m| 1.22G/3.97G [00:33<01:04, 45.9MB/s]Downloading:  31%|[32m███       [0m| 1.22G/3.97G [00:33<01:07, 43.6MB/s]Downloading:  31%|[32m███       [0m| 1.23G/3.97G [00:33<01:09, 42.4MB/s]Downloading:  31%|[32m███       [0m| 1.23G/3.97G [00:33<01:13, 40.2MB/s]Downloading:  31%|[32m███       [0m| 1.23G/3.97G [00:34<01:09, 42.2MB/s]Downloading:  31%|[32m███       [0m| 1.24G/3.97G [00:34<01:05, 44.6MB/s]Downloading:  31%|[32m███▏      [0m| 1.24G/3.97G [00:34<01:19, 36.9MB/s]Downloading:  31%|[32m███▏      [0m| 1.25G/3.97G [00:34<01:27, 33.6MB/s]Downloading:  32%|[32m███▏      [0m| 1.25G/3.97G [00:34<01:21, 35.9MB/s]Downloading:  32%|[32m███▏      [0m| 1.26G/3.97G [00:34<01:13, 39.5MB/s]Downloading:  32%|[32m███▏      [0m| 1.26G/3.97G [00:34<01:16, 38.1MB/s]Downloading:  32%|[32m███▏      [0m| 1.26G/3.97G [00:34<01:16, 37.9MB/s]Downloading:  32%|[32m███▏      [0m| 1.27G/3.97G [00:35<01:16, 37.7MB/s]Downloading:  32%|[32m███▏      [0m| 1.27G/3.97G [00:35<01:19, 36.6MB/s]Downloading:  32%|[32m███▏      [0m| 1.28G/3.97G [00:35<01:15, 38.6MB/s]Downloading:  32%|[32m███▏      [0m| 1.28G/3.97G [00:35<01:17, 37.3MB/s]Downloading:  32%|[32m███▏      [0m| 1.28G/3.97G [00:35<01:26, 33.3MB/s]Downloading:  32%|[32m███▏      [0m| 1.29G/3.97G [00:35<01:26, 33.3MB/s]Downloading:  32%|[32m███▏      [0m| 1.29G/3.97G [00:35<01:18, 36.6MB/s]Downloading:  33%|[32m███▎      [0m| 1.29G/3.97G [00:35<01:16, 37.5MB/s]Downloading:  33%|[32m███▎      [0m| 1.30G/3.97G [00:35<01:25, 33.4MB/s]Downloading:  33%|[32m███▎      [0m| 1.30G/3.97G [00:36<01:19, 36.1MB/s]Downloading:  33%|[32m███▎      [0m| 1.31G/3.97G [00:36<01:16, 37.5MB/s]Downloading:  33%|[32m███▎      [0m| 1.31G/3.97G [00:36<01:15, 37.8MB/s]Downloading:  33%|[32m███▎      [0m| 1.31G/3.97G [00:36<01:14, 38.1MB/s]Downloading:  33%|[32m███▎      [0m| 1.32G/3.97G [00:36<01:04, 44.3MB/s]Downloading:  33%|[32m███▎      [0m| 1.32G/3.97G [00:36<01:16, 37.0MB/s]Downloading:  33%|[32m███▎      [0m| 1.33G/3.97G [00:36<01:14, 38.2MB/s]Downloading:  34%|[32m███▎      [0m| 1.33G/3.97G [00:36<01:07, 41.8MB/s]Downloading:  34%|[32m███▎      [0m| 1.34G/3.97G [00:36<01:02, 45.4MB/s]Downloading:  34%|[32m███▍      [0m| 1.34G/3.97G [00:37<01:01, 45.7MB/s]Downloading:  34%|[32m███▍      [0m| 1.35G/3.97G [00:37<01:03, 44.5MB/s]Downloading:  34%|[32m███▍      [0m| 1.35G/3.97G [00:37<01:07, 41.8MB/s]Downloading:  34%|[32m███▍      [0m| 1.35G/3.97G [00:37<01:25, 33.0MB/s]Downloading:  34%|[32m███▍      [0m| 1.36G/3.97G [00:37<01:22, 34.0MB/s]Downloading:  34%|[32m███▍      [0m| 1.36G/3.97G [00:37<01:15, 36.9MB/s]Downloading:  34%|[32m███▍      [0m| 1.37G/3.97G [00:37<01:19, 35.0MB/s]Downloading:  34%|[32m███▍      [0m| 1.37G/3.97G [00:37<01:20, 34.6MB/s]Downloading:  35%|[32m███▍      [0m| 1.37G/3.97G [00:38<01:27, 32.1MB/s]Downloading:  35%|[32m███▍      [0m| 1.38G/3.97G [00:38<01:27, 31.7MB/s]Downloading:  35%|[32m███▍      [0m| 1.38G/3.97G [00:38<01:24, 33.0MB/s]Downloading:  35%|[32m███▍      [0m| 1.38G/3.97G [00:38<01:22, 33.6MB/s]Downloading:  35%|[32m███▍      [0m| 1.39G/3.97G [00:38<01:20, 34.4MB/s]Downloading:  35%|[32m███▍      [0m| 1.39G/3.97G [00:38<01:16, 36.4MB/s]Downloading:  35%|[32m███▌      [0m| 1.39G/3.97G [00:38<01:21, 33.8MB/s]Downloading:  35%|[32m███▌      [0m| 1.40G/3.97G [00:38<01:25, 32.5MB/s]Downloading:  35%|[32m███▌      [0m| 1.40G/3.97G [00:38<01:26, 32.0MB/s]Downloading:  35%|[32m███▌      [0m| 1.40G/3.97G [00:39<01:15, 36.3MB/s]Downloading:  35%|[32m███▌      [0m| 1.41G/3.97G [00:39<01:08, 40.2MB/s]Downloading:  36%|[32m███▌      [0m| 1.41G/3.97G [00:39<01:21, 33.7MB/s]Downloading:  36%|[32m███▌      [0m| 1.42G/3.97G [00:39<01:10, 38.7MB/s]Downloading:  36%|[32m███▌      [0m| 1.42G/3.97G [00:39<01:17, 35.4MB/s]Downloading:  36%|[32m███▌      [0m| 1.43G/3.97G [00:39<01:19, 34.3MB/s]Downloading:  36%|[32m███▌      [0m| 1.43G/3.97G [00:39<01:14, 36.9MB/s]Downloading:  36%|[32m███▌      [0m| 1.43G/3.97G [00:39<01:08, 39.9MB/s]Downloading:  36%|[32m███▌      [0m| 1.44G/3.97G [00:39<01:06, 41.1MB/s]Downloading:  36%|[32m███▋      [0m| 1.44G/3.97G [00:40<01:08, 39.4MB/s]Downloading:  36%|[32m███▋      [0m| 1.45G/3.97G [00:40<01:08, 39.5MB/s]Downloading:  36%|[32m███▋      [0m| 1.45G/3.97G [00:40<01:10, 38.6MB/s]Downloading:  37%|[32m███▋      [0m| 1.45G/3.97G [00:40<01:12, 37.4MB/s]Downloading:  37%|[32m███▋      [0m| 1.46G/3.97G [00:40<01:11, 37.5MB/s]Downloading:  37%|[32m███▋      [0m| 1.46G/3.97G [00:40<01:08, 39.4MB/s]Downloading:  37%|[32m███▋      [0m| 1.46G/3.97G [00:40<01:07, 39.9MB/s]Downloading:  37%|[32m███▋      [0m| 1.47G/3.97G [00:40<01:09, 38.7MB/s]Downloading:  37%|[32m███▋      [0m| 1.47G/3.97G [00:40<01:14, 36.0MB/s]Downloading:  37%|[32m███▋      [0m| 1.48G/3.97G [00:41<01:17, 34.7MB/s]Downloading:  37%|[32m███▋      [0m| 1.48G/3.97G [00:41<01:11, 37.7MB/s]Downloading:  37%|[32m███▋      [0m| 1.48G/3.97G [00:41<01:05, 40.7MB/s]Downloading:  37%|[32m███▋      [0m| 1.49G/3.97G [00:41<01:15, 35.5MB/s]Downloading:  38%|[32m███▊      [0m| 1.49G/3.97G [00:41<01:09, 38.5MB/s]Downloading:  38%|[32m███▊      [0m| 1.50G/3.97G [00:41<01:05, 40.5MB/s]Downloading:  38%|[32m███▊      [0m| 1.50G/3.97G [00:41<01:12, 36.6MB/s]Downloading:  38%|[32m███▊      [0m| 1.51G/3.97G [00:41<01:09, 38.0MB/s]Downloading:  38%|[32m███▊      [0m| 1.51G/3.97G [00:42<01:08, 38.7MB/s]Downloading:  38%|[32m███▊      [0m| 1.51G/3.97G [00:42<01:08, 38.8MB/s]Downloading:  38%|[32m███▊      [0m| 1.52G/3.97G [00:42<01:04, 40.8MB/s]Downloading:  38%|[32m███▊      [0m| 1.52G/3.97G [00:42<01:06, 39.8MB/s]Downloading:  38%|[32m███▊      [0m| 1.53G/3.97G [00:42<01:05, 40.4MB/s]Downloading:  38%|[32m███▊      [0m| 1.53G/3.97G [00:42<01:12, 36.3MB/s]Downloading:  39%|[32m███▊      [0m| 1.53G/3.97G [00:42<01:04, 40.3MB/s]Downloading:  39%|[32m███▊      [0m| 1.54G/3.97G [00:42<01:04, 40.7MB/s]Downloading:  39%|[32m███▉      [0m| 1.54G/3.97G [00:42<01:07, 38.9MB/s]Downloading:  39%|[32m███▉      [0m| 1.55G/3.97G [00:43<01:03, 41.3MB/s]Downloading:  39%|[32m███▉      [0m| 1.55G/3.97G [00:43<01:02, 41.5MB/s]Downloading:  39%|[32m███▉      [0m| 1.56G/3.97G [00:43<00:56, 46.3MB/s]Downloading:  39%|[32m███▉      [0m| 1.56G/3.97G [00:43<01:01, 42.4MB/s]Downloading:  39%|[32m███▉      [0m| 1.56G/3.97G [00:43<01:04, 40.2MB/s]Downloading:  39%|[32m███▉      [0m| 1.57G/3.97G [00:43<01:09, 37.3MB/s]Downloading:  40%|[32m███▉      [0m| 1.57G/3.97G [00:43<01:08, 37.5MB/s]Downloading:  40%|[32m███▉      [0m| 1.58G/3.97G [00:43<01:10, 36.6MB/s]Downloading:  40%|[32m███▉      [0m| 1.58G/3.97G [00:43<01:04, 39.8MB/s]Downloading:  40%|[32m███▉      [0m| 1.59G/3.97G [00:44<00:57, 44.6MB/s]Downloading:  40%|[32m████      [0m| 1.59G/3.97G [00:44<00:57, 44.6MB/s]Downloading:  40%|[32m████      [0m| 1.59G/3.97G [00:44<00:54, 47.3MB/s]Downloading:  40%|[32m████      [0m| 1.60G/3.97G [00:44<00:55, 45.8MB/s]Downloading:  40%|[32m████      [0m| 1.60G/3.97G [00:44<00:54, 46.9MB/s]Downloading:  40%|[32m████      [0m| 1.61G/3.97G [00:44<00:58, 43.3MB/s]Downloading:  41%|[32m████      [0m| 1.61G/3.97G [00:44<00:57, 43.8MB/s]Downloading:  41%|[32m████      [0m| 1.62G/3.97G [00:44<01:03, 40.1MB/s]Downloading:  41%|[32m████      [0m| 1.62G/3.97G [00:44<01:08, 37.1MB/s]Downloading:  41%|[32m████      [0m| 1.62G/3.97G [00:45<01:06, 38.0MB/s]Downloading:  41%|[32m████      [0m| 1.63G/3.97G [00:45<01:04, 38.8MB/s]Downloading:  41%|[32m████      [0m| 1.63G/3.97G [00:45<01:02, 40.0MB/s]Downloading:  41%|[32m████      [0m| 1.64G/3.97G [00:45<00:56, 44.0MB/s]Downloading:  41%|[32m████▏     [0m| 1.64G/3.97G [00:45<01:13, 33.8MB/s]Downloading:  41%|[32m████▏     [0m| 1.65G/3.97G [00:45<01:20, 30.9MB/s]Downloading:  42%|[32m████▏     [0m| 1.65G/3.97G [00:45<01:14, 33.4MB/s]Downloading:  42%|[32m████▏     [0m| 1.65G/3.97G [00:45<01:09, 35.8MB/s]Downloading:  42%|[32m████▏     [0m| 1.66G/3.97G [00:46<00:59, 41.5MB/s]Downloading:  42%|[32m████▏     [0m| 1.66G/3.97G [00:46<00:56, 44.0MB/s]Downloading:  42%|[32m████▏     [0m| 1.67G/3.97G [00:46<00:54, 45.1MB/s]Downloading:  42%|[32m████▏     [0m| 1.67G/3.97G [00:46<00:58, 42.1MB/s]Downloading:  42%|[32m████▏     [0m| 1.68G/3.97G [00:46<01:02, 39.6MB/s]Downloading:  42%|[32m████▏     [0m| 1.68G/3.97G [00:46<00:59, 41.4MB/s]Downloading:  42%|[32m████▏     [0m| 1.69G/3.97G [00:46<00:59, 41.5MB/s]Downloading:  43%|[32m████▎     [0m| 1.69G/3.97G [00:46<01:10, 34.8MB/s]Downloading:  43%|[32m████▎     [0m| 1.69G/3.97G [00:46<01:12, 33.8MB/s]Downloading:  43%|[32m████▎     [0m| 1.70G/3.97G [00:47<01:18, 30.9MB/s]Downloading:  43%|[32m████▎     [0m| 1.70G/3.97G [00:47<01:20, 30.3MB/s]Downloading:  43%|[32m████▎     [0m| 1.70G/3.97G [00:47<01:10, 34.7MB/s]Downloading:  43%|[32m████▎     [0m| 1.71G/3.97G [00:47<01:00, 40.1MB/s]Downloading:  43%|[32m████▎     [0m| 1.71G/3.97G [00:47<00:55, 43.8MB/s]Downloading:  43%|[32m████▎     [0m| 1.72G/3.97G [00:47<00:54, 44.2MB/s]Downloading:  43%|[32m████▎     [0m| 1.72G/3.97G [00:47<01:01, 39.0MB/s]Downloading:  43%|[32m████▎     [0m| 1.73G/3.97G [00:47<01:10, 34.3MB/s]Downloading:  44%|[32m████▎     [0m| 1.73G/3.97G [00:48<01:11, 33.6MB/s]Downloading:  44%|[32m████▎     [0m| 1.73G/3.97G [00:48<01:07, 35.6MB/s]Downloading:  44%|[32m████▎     [0m| 1.74G/3.97G [00:48<01:05, 36.5MB/s]Downloading:  44%|[32m████▍     [0m| 1.74G/3.97G [00:48<01:03, 37.9MB/s]Downloading:  44%|[32m████▍     [0m| 1.75G/3.97G [00:48<00:59, 40.0MB/s]Downloading:  44%|[32m████▍     [0m| 1.75G/3.97G [00:48<01:00, 39.1MB/s]Downloading:  44%|[32m████▍     [0m| 1.75G/3.97G [00:48<01:07, 35.1MB/s]Downloading:  44%|[32m████▍     [0m| 1.76G/3.97G [00:48<01:06, 35.6MB/s]Downloading:  44%|[32m████▍     [0m| 1.76G/3.97G [00:48<01:06, 35.7MB/s]Downloading:  44%|[32m████▍     [0m| 1.76G/3.97G [00:49<01:07, 35.3MB/s]Downloading:  44%|[32m████▍     [0m| 1.77G/3.97G [00:49<01:08, 34.7MB/s]Downloading:  45%|[32m████▍     [0m| 1.77G/3.97G [00:49<01:02, 37.6MB/s]Downloading:  45%|[32m████▍     [0m| 1.78G/3.97G [00:49<01:09, 34.1MB/s]Downloading:  45%|[32m████▍     [0m| 1.78G/3.97G [00:49<01:10, 33.5MB/s]Downloading:  45%|[32m████▍     [0m| 1.78G/3.97G [00:49<01:08, 34.5MB/s]Downloading:  45%|[32m████▍     [0m| 1.79G/3.97G [00:49<01:08, 34.2MB/s]Downloading:  45%|[32m████▌     [0m| 1.79G/3.97G [00:49<01:06, 35.3MB/s]Downloading:  45%|[32m████▌     [0m| 1.80G/3.97G [00:49<00:57, 40.4MB/s]Downloading:  45%|[32m████▌     [0m| 1.80G/3.97G [00:50<00:58, 40.0MB/s]Downloading:  45%|[32m████▌     [0m| 1.80G/3.97G [00:50<01:04, 36.0MB/s]Downloading:  45%|[32m████▌     [0m| 1.81G/3.97G [00:50<01:06, 35.0MB/s]Downloading:  46%|[32m████▌     [0m| 1.81G/3.97G [00:50<01:05, 35.5MB/s]Downloading:  46%|[32m████▌     [0m| 1.81G/3.97G [00:50<01:10, 32.7MB/s]Downloading:  46%|[32m████▌     [0m| 1.82G/3.97G [00:50<01:10, 32.7MB/s]Downloading:  46%|[32m████▌     [0m| 1.82G/3.97G [00:50<01:13, 31.6MB/s]Downloading:  46%|[32m████▌     [0m| 1.82G/3.97G [00:50<01:17, 29.6MB/s]Downloading:  46%|[32m████▌     [0m| 1.83G/3.97G [00:50<01:14, 31.0MB/s]Downloading:  46%|[32m████▌     [0m| 1.83G/3.97G [00:51<01:17, 29.9MB/s]Downloading:  46%|[32m████▌     [0m| 1.83G/3.97G [00:51<01:04, 35.9MB/s]Downloading:  46%|[32m████▌     [0m| 1.84G/3.97G [00:51<01:07, 33.9MB/s]Downloading:  46%|[32m████▋     [0m| 1.84G/3.97G [00:51<01:00, 38.0MB/s]Downloading:  46%|[32m████▋     [0m| 1.85G/3.97G [00:51<00:56, 40.7MB/s]Downloading:  47%|[32m████▋     [0m| 1.85G/3.97G [00:51<01:04, 35.5MB/s]Downloading:  47%|[32m████▋     [0m| 1.85G/3.97G [00:51<01:06, 34.4MB/s]Downloading:  47%|[32m████▋     [0m| 1.86G/3.97G [00:51<01:01, 36.7MB/s]Downloading:  47%|[32m████▋     [0m| 1.86G/3.97G [00:52<00:57, 39.1MB/s]Downloading:  47%|[32m████▋     [0m| 1.87G/3.97G [00:52<00:53, 42.1MB/s]Downloading:  47%|[32m████▋     [0m| 1.87G/3.97G [00:52<00:58, 38.3MB/s]Downloading:  47%|[32m████▋     [0m| 1.87G/3.97G [00:52<00:56, 39.7MB/s]Downloading:  47%|[32m████▋     [0m| 1.88G/3.97G [00:52<00:58, 38.3MB/s]Downloading:  47%|[32m████▋     [0m| 1.88G/3.97G [00:52<00:57, 39.3MB/s]Downloading:  47%|[32m████▋     [0m| 1.89G/3.97G [00:52<00:53, 41.5MB/s]Downloading:  48%|[32m████▊     [0m| 1.89G/3.97G [00:52<00:58, 38.0MB/s]Downloading:  48%|[32m████▊     [0m| 1.89G/3.97G [00:52<00:56, 39.5MB/s]Downloading:  48%|[32m████▊     [0m| 1.90G/3.97G [00:53<00:56, 39.4MB/s]Downloading:  48%|[32m████▊     [0m| 1.90G/3.97G [00:53<00:59, 37.2MB/s]Downloading:  48%|[32m████▊     [0m| 1.91G/3.97G [00:53<00:59, 37.3MB/s]Downloading:  48%|[32m████▊     [0m| 1.91G/3.97G [00:53<00:59, 37.3MB/s]Downloading:  48%|[32m████▊     [0m| 1.91G/3.97G [00:53<00:54, 40.8MB/s]Downloading:  48%|[32m████▊     [0m| 1.92G/3.97G [00:53<00:52, 42.2MB/s]Downloading:  48%|[32m████▊     [0m| 1.92G/3.97G [00:53<00:45, 48.6MB/s]Downloading:  49%|[32m████▊     [0m| 1.93G/3.97G [00:53<00:45, 48.7MB/s]Downloading:  49%|[32m████▊     [0m| 1.93G/3.97G [00:53<00:53, 41.2MB/s]Downloading:  49%|[32m████▉     [0m| 1.94G/3.97G [00:54<00:59, 36.8MB/s]Downloading:  49%|[32m████▉     [0m| 1.94G/3.97G [00:54<01:02, 35.1MB/s]Downloading:  49%|[32m████▉     [0m| 1.95G/3.97G [00:54<00:56, 38.6MB/s]Downloading:  49%|[32m████▉     [0m| 1.95G/3.97G [00:54<00:52, 41.5MB/s]Downloading:  49%|[32m████▉     [0m| 1.96G/3.97G [00:54<00:48, 44.4MB/s]Downloading:  49%|[32m████▉     [0m| 1.96G/3.97G [00:54<00:49, 43.3MB/s]Downloading:  49%|[32m████▉     [0m| 1.96G/3.97G [00:54<00:51, 41.7MB/s]Downloading:  50%|[32m████▉     [0m| 1.97G/3.97G [00:54<00:52, 41.4MB/s]Downloading:  50%|[32m████▉     [0m| 1.97G/3.97G [00:54<00:50, 42.6MB/s]Downloading:  50%|[32m████▉     [0m| 1.98G/3.97G [00:55<00:58, 36.9MB/s]Downloading:  50%|[32m████▉     [0m| 1.98G/3.97G [00:55<00:59, 35.9MB/s]Downloading:  50%|[32m████▉     [0m| 1.98G/3.97G [00:55<01:02, 34.2MB/s]Downloading:  50%|[32m█████     [0m| 1.99G/3.97G [00:55<01:02, 34.4MB/s]Downloading:  50%|[32m█████     [0m| 1.99G/3.97G [00:55<01:05, 32.4MB/s]Downloading:  50%|[32m█████     [0m| 1.99G/3.97G [00:55<01:03, 33.4MB/s]Downloading:  50%|[32m█████     [0m| 2.00G/3.97G [00:55<00:59, 35.9MB/s]Downloading:  50%|[32m█████     [0m| 2.00G/3.97G [00:55<00:53, 39.9MB/s]Downloading:  51%|[32m█████     [0m| 2.01G/3.97G [00:55<00:47, 44.8MB/s]Downloading:  51%|[32m█████     [0m| 2.01G/3.97G [00:56<00:44, 47.6MB/s]Downloading:  51%|[32m█████     [0m| 2.02G/3.97G [00:56<00:46, 44.7MB/s]Downloading:  51%|[32m█████     [0m| 2.02G/3.97G [00:56<00:58, 36.0MB/s]Downloading:  51%|[32m█████     [0m| 2.03G/3.97G [00:56<01:03, 32.7MB/s]Downloading:  51%|[32m█████     [0m| 2.03G/3.97G [00:56<01:08, 30.7MB/s]Downloading:  51%|[32m█████     [0m| 2.03G/3.97G [00:56<01:06, 31.2MB/s]Downloading:  51%|[32m█████     [0m| 2.04G/3.97G [00:56<01:10, 29.3MB/s]Downloading:  51%|[32m█████▏    [0m| 2.04G/3.97G [00:57<01:18, 26.6MB/s]Downloading:  51%|[32m█████▏    [0m| 2.04G/3.97G [00:57<01:19, 25.9MB/s]Downloading:  51%|[32m█████▏    [0m| 2.04G/3.97G [00:57<01:14, 27.8MB/s]Downloading:  52%|[32m█████▏    [0m| 2.05G/3.97G [00:57<01:11, 28.9MB/s]Downloading:  52%|[32m█████▏    [0m| 2.05G/3.97G [00:57<01:08, 30.3MB/s]Downloading:  52%|[32m█████▏    [0m| 2.05G/3.97G [00:57<01:11, 28.8MB/s]Downloading:  52%|[32m█████▏    [0m| 2.06G/3.97G [00:57<01:05, 31.3MB/s]Downloading:  52%|[32m█████▏    [0m| 2.06G/3.97G [00:57<01:07, 30.6MB/s]Downloading:  52%|[32m█████▏    [0m| 2.06G/3.97G [00:57<01:01, 33.6MB/s]Downloading:  52%|[32m█████▏    [0m| 2.07G/3.97G [00:58<01:02, 32.7MB/s]Downloading:  52%|[32m█████▏    [0m| 2.07G/3.97G [00:58<01:02, 32.5MB/s]Downloading:  52%|[32m█████▏    [0m| 2.08G/3.97G [00:58<00:50, 40.3MB/s]Downloading:  52%|[32m█████▏    [0m| 2.08G/3.97G [00:58<00:48, 42.0MB/s]Downloading:  52%|[32m█████▏    [0m| 2.08G/3.97G [00:58<00:46, 43.2MB/s]Downloading:  53%|[32m█████▎    [0m| 2.09G/3.97G [00:58<00:49, 40.5MB/s]Downloading:  53%|[32m█████▎    [0m| 2.09G/3.97G [00:58<00:45, 44.5MB/s]Downloading:  53%|[32m█████▎    [0m| 2.10G/3.97G [00:58<00:45, 44.5MB/s]Downloading:  53%|[32m█████▎    [0m| 2.10G/3.97G [00:58<00:41, 48.2MB/s]Downloading:  53%|[32m█████▎    [0m| 2.11G/3.97G [00:59<00:45, 43.7MB/s]Downloading:  53%|[32m█████▎    [0m| 2.11G/3.97G [00:59<00:46, 43.2MB/s]Downloading:  53%|[32m█████▎    [0m| 2.12G/3.97G [00:59<00:50, 39.4MB/s]Downloading:  53%|[32m█████▎    [0m| 2.12G/3.97G [00:59<00:53, 36.9MB/s]Downloading:  53%|[32m█████▎    [0m| 2.12G/3.97G [00:59<00:54, 36.4MB/s]Downloading:  54%|[32m█████▎    [0m| 2.13G/3.97G [00:59<00:53, 37.0MB/s]Downloading:  54%|[32m█████▎    [0m| 2.13G/3.97G [00:59<00:49, 39.8MB/s]Downloading:  54%|[32m█████▍    [0m| 2.14G/3.97G [00:59<00:47, 41.5MB/s]Downloading:  54%|[32m█████▍    [0m| 2.14G/3.97G [00:59<00:44, 44.0MB/s]Downloading:  54%|[32m█████▍    [0m| 2.15G/3.97G [01:00<00:48, 40.5MB/s]Downloading:  54%|[32m█████▍    [0m| 2.15G/3.97G [01:00<00:44, 44.1MB/s]Downloading:  54%|[32m█████▍    [0m| 2.16G/3.97G [01:00<00:41, 46.8MB/s]Downloading:  54%|[32m█████▍    [0m| 2.16G/3.97G [01:00<00:37, 52.0MB/s]Downloading:  55%|[32m█████▍    [0m| 2.17G/3.97G [01:00<01:02, 31.2MB/s]Downloading:  55%|[32m█████▍    [0m| 2.17G/3.97G [01:00<00:50, 37.9MB/s]Downloading:  55%|[32m█████▍    [0m| 2.18G/3.97G [01:00<00:42, 45.8MB/s]Downloading:  55%|[32m█████▌    [0m| 2.19G/3.97G [01:01<00:39, 48.7MB/s]Downloading:  55%|[32m█████▌    [0m| 2.19G/3.97G [01:01<00:36, 52.6MB/s]Downloading:  55%|[32m█████▌    [0m| 2.20G/3.97G [01:01<00:37, 50.5MB/s]Downloading:  55%|[32m█████▌    [0m| 2.20G/3.97G [01:01<00:46, 40.5MB/s]Downloading:  56%|[32m█████▌    [0m| 2.21G/3.97G [01:01<00:46, 41.2MB/s]Downloading:  56%|[32m█████▌    [0m| 2.21G/3.97G [01:01<00:44, 42.5MB/s]Downloading:  56%|[32m█████▌    [0m| 2.22G/3.97G [01:01<00:48, 38.8MB/s]Downloading:  56%|[32m█████▌    [0m| 2.22G/3.97G [01:01<00:48, 38.5MB/s]Downloading:  56%|[32m█████▌    [0m| 2.22G/3.97G [01:02<00:59, 31.8MB/s]Downloading:  56%|[32m█████▌    [0m| 2.23G/3.97G [01:02<01:04, 29.2MB/s]Downloading:  56%|[32m█████▌    [0m| 2.23G/3.97G [01:02<01:06, 28.0MB/s]Downloading:  56%|[32m█████▌    [0m| 2.23G/3.97G [01:02<01:00, 30.6MB/s]Downloading:  56%|[32m█████▋    [0m| 2.24G/3.97G [01:02<00:51, 36.2MB/s]Downloading:  56%|[32m█████▋    [0m| 2.24G/3.97G [01:02<00:47, 39.3MB/s]Downloading:  57%|[32m█████▋    [0m| 2.25G/3.97G [01:02<00:46, 39.5MB/s]Downloading:  57%|[32m█████▋    [0m| 2.25G/3.97G [01:02<00:48, 38.3MB/s]Downloading:  57%|[32m█████▋    [0m| 2.25G/3.97G [01:03<00:49, 37.5MB/s]Downloading:  57%|[32m█████▋    [0m| 2.26G/3.97G [01:03<00:53, 34.7MB/s]Downloading:  57%|[32m█████▋    [0m| 2.26G/3.97G [01:03<00:47, 38.4MB/s]Downloading:  57%|[32m█████▋    [0m| 2.27G/3.97G [01:03<00:43, 41.7MB/s]Downloading:  57%|[32m█████▋    [0m| 2.27G/3.97G [01:03<00:44, 40.8MB/s]Downloading:  57%|[32m█████▋    [0m| 2.28G/3.97G [01:03<00:50, 35.8MB/s]Downloading:  57%|[32m█████▋    [0m| 2.28G/3.97G [01:03<00:49, 36.7MB/s]Downloading:  57%|[32m█████▋    [0m| 2.28G/3.97G [01:03<00:47, 38.1MB/s]Downloading:  58%|[32m█████▊    [0m| 2.29G/3.97G [01:03<00:45, 40.0MB/s]Downloading:  58%|[32m█████▊    [0m| 2.29G/3.97G [01:04<00:53, 34.0MB/s]Downloading:  58%|[32m█████▊    [0m| 2.29G/3.97G [01:04<00:54, 32.8MB/s]Downloading:  58%|[32m█████▊    [0m| 2.30G/3.97G [01:04<00:49, 36.1MB/s]Downloading:  58%|[32m█████▊    [0m| 2.30G/3.97G [01:04<00:42, 42.0MB/s]Downloading:  58%|[32m█████▊    [0m| 2.31G/3.97G [01:04<00:41, 43.0MB/s]Downloading:  58%|[32m█████▊    [0m| 2.31G/3.97G [01:04<00:49, 35.7MB/s]Downloading:  58%|[32m█████▊    [0m| 2.32G/3.97G [01:04<00:56, 31.7MB/s]Downloading:  58%|[32m█████▊    [0m| 2.32G/3.97G [01:04<00:51, 34.5MB/s]Downloading:  58%|[32m█████▊    [0m| 2.32G/3.97G [01:05<00:50, 34.7MB/s]Downloading:  59%|[32m█████▊    [0m| 2.33G/3.97G [01:05<00:43, 40.9MB/s]Downloading:  59%|[32m█████▊    [0m| 2.33G/3.97G [01:05<00:48, 36.5MB/s]Downloading:  59%|[32m█████▉    [0m| 2.34G/3.97G [01:05<00:55, 31.9MB/s]Downloading:  59%|[32m█████▉    [0m| 2.34G/3.97G [01:05<00:51, 34.0MB/s]Downloading:  59%|[32m█████▉    [0m| 2.35G/3.97G [01:05<00:45, 38.4MB/s]Downloading:  59%|[32m█████▉    [0m| 2.35G/3.97G [01:05<00:46, 37.2MB/s]Downloading:  59%|[32m█████▉    [0m| 2.35G/3.97G [01:05<00:45, 38.0MB/s]Downloading:  59%|[32m█████▉    [0m| 2.36G/3.97G [01:06<00:43, 40.0MB/s]Downloading:  59%|[32m█████▉    [0m| 2.36G/3.97G [01:06<00:44, 38.7MB/s]Downloading:  60%|[32m█████▉    [0m| 2.36G/3.97G [01:06<00:47, 36.5MB/s]Downloading:  60%|[32m█████▉    [0m| 2.37G/3.97G [01:06<00:47, 36.6MB/s]Downloading:  60%|[32m█████▉    [0m| 2.37G/3.97G [01:06<00:49, 34.8MB/s]Downloading:  60%|[32m█████▉    [0m| 2.38G/3.97G [01:06<00:49, 35.0MB/s]Downloading:  60%|[32m█████▉    [0m| 2.38G/3.97G [01:06<00:48, 35.3MB/s]Downloading:  60%|[32m█████▉    [0m| 2.38G/3.97G [01:06<00:51, 33.4MB/s]Downloading:  60%|[32m██████    [0m| 2.39G/3.97G [01:06<00:54, 31.4MB/s]Downloading:  60%|[32m██████    [0m| 2.39G/3.97G [01:07<01:00, 28.0MB/s]Downloading:  60%|[32m██████    [0m| 2.39G/3.97G [01:07<00:54, 31.0MB/s]Downloading:  60%|[32m██████    [0m| 2.40G/3.97G [01:07<00:47, 35.7MB/s]Downloading:  60%|[32m██████    [0m| 2.40G/3.97G [01:07<00:42, 39.6MB/s]Downloading:  61%|[32m██████    [0m| 2.41G/3.97G [01:07<00:43, 38.6MB/s]Downloading:  61%|[32m██████    [0m| 2.41G/3.97G [01:07<00:41, 40.2MB/s]Downloading:  61%|[32m██████    [0m| 2.41G/3.97G [01:07<00:42, 39.2MB/s]Downloading:  61%|[32m██████    [0m| 2.42G/3.97G [01:07<00:39, 42.6MB/s]Downloading:  61%|[32m██████    [0m| 2.42G/3.97G [01:07<00:37, 43.9MB/s]Downloading:  61%|[32m██████    [0m| 2.43G/3.97G [01:08<00:36, 45.4MB/s]Downloading:  61%|[32m██████    [0m| 2.43G/3.97G [01:08<00:38, 43.1MB/s]Downloading:  61%|[32m██████▏   [0m| 2.44G/3.97G [01:08<00:35, 46.4MB/s]Downloading:  61%|[32m██████▏   [0m| 2.44G/3.97G [01:08<00:30, 53.0MB/s]Downloading:  62%|[32m██████▏   [0m| 2.45G/3.97G [01:08<00:28, 57.1MB/s]Downloading:  62%|[32m██████▏   [0m| 2.46G/3.97G [01:08<00:27, 60.0MB/s]Downloading:  62%|[32m██████▏   [0m| 2.46G/3.97G [01:08<00:26, 62.0MB/s]Downloading:  62%|[32m██████▏   [0m| 2.47G/3.97G [01:08<00:26, 61.9MB/s]Downloading:  62%|[32m██████▏   [0m| 2.47G/3.97G [01:08<00:25, 64.0MB/s]Downloading:  62%|[32m██████▏   [0m| 2.48G/3.97G [01:08<00:23, 67.1MB/s]Downloading:  63%|[32m██████▎   [0m| 2.49G/3.97G [01:09<00:22, 69.9MB/s]Downloading:  63%|[32m██████▎   [0m| 2.49G/3.97G [01:09<00:22, 69.6MB/s]Downloading:  63%|[32m██████▎   [0m| 2.50G/3.97G [01:09<00:22, 69.7MB/s]Downloading:  63%|[32m██████▎   [0m| 2.51G/3.97G [01:09<00:22, 70.2MB/s]Downloading:  63%|[32m██████▎   [0m| 2.51G/3.97G [01:09<00:22, 70.8MB/s]Downloading:  63%|[32m██████▎   [0m| 2.52G/3.97G [01:09<00:22, 68.2MB/s]Downloading:  64%|[32m██████▎   [0m| 2.53G/3.97G [01:09<00:23, 66.7MB/s]Downloading:  64%|[32m██████▍   [0m| 2.54G/3.97G [01:09<00:21, 70.7MB/s]Downloading:  64%|[32m██████▍   [0m| 2.54G/3.97G [01:09<00:20, 73.4MB/s]Downloading:  64%|[32m██████▍   [0m| 2.55G/3.97G [01:09<00:21, 70.8MB/s]Downloading:  64%|[32m██████▍   [0m| 2.56G/3.97G [01:10<00:20, 73.9MB/s]Downloading:  65%|[32m██████▍   [0m| 2.56G/3.97G [01:10<00:20, 75.0MB/s]Downloading:  65%|[32m██████▍   [0m| 2.57G/3.97G [01:10<00:19, 75.7MB/s]Downloading:  65%|[32m██████▍   [0m|17:15:12.704 ERROR MainThread Invalid URL                 model_downloader.py:62
+[stable]: 'configs/v1-inference.yaml': No scheme supplied. Perhaps                        
+[stable]: you meant https://configs/v1-inference.yaml?                                    
+[stable]: Traceback (most recent call last):                                              
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/sdkit/models/model_downloader.py", line 60, in                          
+[stable]: download_model                                                                  
+[stable]:     download_file(config_url, out_path)                                         
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/sdkit/utils/http_utils.py", line 20, in                                 
+[stable]: download_file                                                                   
+[stable]:     res = requests.get(url, stream=True)                                        
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/requests/api.py", line 73, in get                                       
+[stable]:     return request("get", url, params=params, **kwargs)                         
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/requests/api.py", line 59, in request                                   
+[stable]:     return session.request(method=method, url=url,                              
+[stable]: **kwargs)                                                                       
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/requests/sessions.py", line 575, in request                             
+[stable]:     prep = self.prepare_request(req)                                            
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/requests/sessions.py", line 486, in                                     
+[stable]: prepare_request                                                                 
+[stable]:     p.prepare(                                                                  
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/requests/models.py", line 368, in prepare                               
+[stable]:     self.prepare_url(url, params)                                               
+[stable]:   File                                                                          
+[stable]: "/easy-diffusion/installer_files/env/lib/python3.8/site-p                       
+[stable]: ackages/requests/models.py", line 439, in prepare_url                           
+[stable]:     raise MissingSchema(                                                        
+[stable]: requests.exceptions.MissingSchema: Invalid URL                                  
+[stable]: 'configs/v1-inference.yaml': No scheme supplied. Perhaps                        
+[stable]: you meant https://configs/v1-inference.yaml?                                    
+[stable]: stable-diffusion model(s) found.
+[stable]: > download gfpgan 1.4
+[stable]: 17:15:14.211 INFO MainThread Downloading                        http_utils.py:31
+[stable]: https://github.com/TencentARC/GFPGAN/releases/download/v1.3.4/G                 
+[stable]: FPGANv1.4.pth to /easy-diffusion/models/gfpgan/GFPGANv1.4.pth                   
+[stable]:  2.58G/3.97G [01:10<00:20, 74.0MB/s]Downloading:  65%|[32m██████▌   [0m| 2.59G/3.97G [01:10<00:20, 73.9MB/s]Downloading:  65%|[32m██████▌   [0m| 2.59G/3.97G [01:10<00:19, 75.6MB/s]Downloading:  65%|[32m██████▌   [0m| 2.60G/3.97G [01:10<00:19, 76.8MB/s]Downloading:  66%|[32m██████▌   [0m| 2.61G/3.97G [01:10<00:18, 79.1MB/s]Downloading:  66%|[32m██████▌   [0m| 2.62G/3.97G [01:10<00:18, 76.9MB/s]Downloading:  66%|[32m██████▌   [0m| 2.62G/3.97G [01:11<00:19, 75.5MB/s]Downloading:  66%|[32m██████▌   [0m| 2.63G/3.97G [01:11<00:19, 74.2MB/s]Downloading:  66%|[32m██████▋   [0m| 2.64G/3.97G [01:11<00:18, 75.4MB/s]Downloading:  67%|[32m██████▋   [0m| 2.65G/3.97G [01:11<00:19, 74.3MB/s]Downloading:  67%|[32m██████▋   [0m| 2.65G/3.97G [01:11<00:18, 77.1MB/s]Downloading:  67%|[32m██████▋   [0m| 2.66G/3.97G [01:11<00:18, 75.6MB/s]Downloading:  67%|[32m██████▋   [0m| 2.67G/3.97G [01:11<00:18, 74.5MB/s]Downloading:  67%|[32m██████▋   [0m| 2.67G/3.97G [01:11<00:18, 74.7MB/s]Downloading:  68%|[32m██████▊   [0m| 2.68G/3.97G [01:11<00:18, 73.6MB/s]Downloading:  68%|[32m██████▊   [0m| 2.69G/3.97G [01:11<00:18, 74.3MB/s]Downloading:  68%|[32m██████▊   [0m| 2.70G/3.97G [01:12<00:18, 73.7MB/s]Downloading:  68%|[32m██████▊   [0m| 2.70G/3.97G [01:12<00:18, 75.3MB/s]Downloading:  68%|[32m██████▊   [0m| 2.71G/3.97G [01:12<00:18, 75.0MB/s]Downloading:  68%|[32m██████▊   [0m| 2.72G/3.97G [01:12<00:16, 80.3MB/s]Downloading:  69%|[32m██████▊   [0m| 2.73G/3.97G [01:12<00:16, 79.7MB/s]Downloading:  69%|[32m██████▉   [0m| 2.73G/3.97G [01:12<00:17, 75.6MB/s]Downloading:  69%|[32m██████▉   [0m| 2.74G/3.97G [01:12<00:17, 73.6MB/s]Downloading:  69%|[32m██████▉   [0m| 2.75G/3.97G [01:12<00:17, 73.6MB/s]Downloading:  69%|[32m██████▉   [0m| 2.75G/3.97G [01:12<00:17, 74.1MB/s]Downloading:  70%|[32m██████▉   [0m| 2.76G/3.97G [01:13<00:19, 68.0MB/s]Downloading:  70%|[32m██████▉   [0m| 2.77G/3.97G [01:13<00:19, 65.5MB/s]Downloading:  70%|[32m██████▉   [0m| 2.77G/3.97G [01:13<00:20, 63.8MB/s]Downloading:  70%|[32m███████   [0m| 2.78G/3.97G [01:13<00:18, 68.4MB/s]Downloading:  70%|[32m███████   [0m| 2.79G/3.97G [01:13<00:17, 71.4MB/s]Downloading:  70%|[32m███████   [0m| 2.80G/3.97G [01:13<00:17, 73.6MB/s]Downloading:  71%|[32m███████   [0m| 2.80G/3.97G [01:13<00:16, 74.7MB/s]Downloading:  71%|[32m███████   [0m| 2.81G/3.97G [01:13<00:16, 76.9MB/s]Downloading:  71%|[32m███████   [0m| 2.82G/3.97G [01:13<00:17, 70.6MB/s]Downloading:  71%|[32m███████   [0m| 2.83G/3.97G [01:13<00:16, 73.9MB/s]Downloading:  71%|[32m███████▏  [0m| 2.83G/3.97G [01:14<00:16, 73.5MB/s]Downloading:  72%|[32m███████▏  [0m| 2.84G/3.97G [01:14<00:16, 73.5MB/s]Downloading:  72%|[32m███████▏  [0m| 2.85G/3.97G [01:14<00:16, 72.7MB/s]Downloading:  72%|[32m███████▏  [0m| 2.85G/3.97G [01:14<00:16, 73.3MB/s]Downloading:  72%|[32m███████▏  [0m| 2.86G/3.97G [01:14<00:16, 73.2MB/s]Downloading:  72%|[32m███████▏  [0m| 2.87G/3.97G [01:14<00:16, 73.8MB/s]Downloading:  72%|[32m███████▏  [0m| 2.88G/3.97G [01:14<00:16, 72.2MB/s]Downloading:  73%|[32m███████▎  [0m| 2.88G/3.97G [01:14<00:15, 74.2MB/s]Downloading:  73%|[32m███████▎  [0m| 2.89G/3.97G [01:14<00:15, 73.1MB/s]Downloading:  73%|[32m███████▎  [0m| 2.90G/3.97G [01:15<00:14, 78.8MB/s]Downloading:  73%|[32m███████▎  [0m| 2.91G/3.97G [01:15<00:15, 75.5MB/s]Downloading:  73%|[32m███████▎  [0m| 2.91G/3.97G [01:15<00:14, 77.5MB/s]Downloading:  74%|[32m███████▎  [0m| 2.92G/3.97G [01:15<00:15, 74.3MB/s]Downloading:  74%|[32m███████▎  [0m| 2.93G/3.97G [01:15<00:15, 74.3MB/s]Downloading:  74%|[32m███████▍  [0m| 2.94G/3.97G [01:15<00:13, 79.8MB/s]Downloading:  74%|[32m███████▍  [0m| 2.94G/3.97G [01:15<00:14, 76.6MB/s]Downloading:  74%|[32m███████▍  [0m| 2.95G/3.97G [01:15<00:13, 79.0MB/s]Downloading:  75%|[32m███████▍  [0m| 2.96G/3.97G [01:15<00:14, 77.3MB/s]Downloading:  75%|[32m███████▍  [0m| 2.97G/3.97G [01:15<00:14, 75.1MB/s]Downloading:  75%|[32m███████▍  [0m| 2.97G/3.97G [01:16<00:14, 72.2MB/s]Downloading:  75%|[32m███████▌  [0m| 2.98G/3.97G [01:16<00:14, 74.1MB/s]Downloading:  75%|[32m███████▌  [0m| 2.99G/3.97G [01:16<00:14, 71.8MB/s]Downloading:  75%|[32m███████▌  [0m| 3.00G/3.97G [01:16<00:14, 73.6MB/s]Downloading:  76%|[32m███████▌  [0m| 3.00G/3.97G [01:16<00:14, 71.7MB/s]Downloading:  76%|[32m███████▌  [0m| 3.01G/3.97G [01:16<00:24, 42.3MB/s]Downloading:  76%|[32m███████▌  [0m| 3.01G/3.97G [01:16<00:22, 45.1MB/s]Downloading:  76%|[32m███████▌  [0m| 3.02G/3.97G [01:17<00:20, 50.6MB/s]Downloading:  76%|[32m███████▌  [0m| 3.03G/3.97G [01:17<00:18, 55.4MB/s]Downloading:  76%|[32m███████▋  [0m| 3.04G/3.97G [01:17<00:15, 62.9MB/s]Downloading:  77%|[32m███████▋  [0m| 3.04G/3.97G [01:17<00:15, 63.8MB/s]Downloading:  77%|[32m███████▋  [0m| 3.05G/3.97G [01:17<00:14, 67.6MB/s]Downloading:  77%|[32m███████▋  [0m| 3.06G/3.97G [01:17<00:13, 70.3MB/s]Downloading:  77%|[32m███████▋  [0m| 3.06G/3.97G [01:17<00:13, 72.8MB/s]Downloading:  77%|[32m███████▋  [0m| 3.07G/3.97G [01:17<00:13, 74.0MB/s]Downloading:  77%|[32m███████▋  [0m| 3.08G/3.97G [01:17<00:13, 73.1MB/s]Downloading:  78%|[32m███████▊  [0m| 3.09G/3.97G [01:17<00:13, 73.1MB/s]Downloading:  78%|[32m███████▊  [0m| 3.09G/3.97G [01:18<00:12, 76.0MB/s]Downloading:  78%|[32m███████▊  [0m| 3.10G/3.97G [01:18<00:12, 73.3MB/s]Downloading:  78%|[32m███████▊  [0m| 3.11G/3.97G [01:18<00:12, 73.5MB/s]Downloading:  78%|[32m███████▊  [0m| 3.11G/3.97G [01:18<00:12, 75.3MB/s]Downloading:  79%|[32m███████▊  [0m| 3.12G/3.97G [01:18<00:12, 75.3MB/s]Downloading:  79%|[32m███████▉  [0m| 3.13G/3.97G [01:18<00:12, 75.0MB/s]Downloading:  79%|[32m███████▉  [0m| 3.14G/3.97G [01:18<00:11, 75.4MB/s]Downloading:  79%|[32m███████▉  [0m| 3.14G/3.97G [01:18<00:11, 80.3MB/s]Downloading:  79%|[32m███████▉  [0m| 3.15G/3.97G [01:18<00:11, 77.6MB/s]Downloading:  80%|[32m███████▉  [0m| 3.16G/3.97G [01:19<00:11, 75.9MB/s]Downloading:  80%|[32m███████▉  [0m| 3.17G/3.97G [01:19<00:11, 78.5MB/s]Downloading:  80%|[32m███████▉  [0m| 3.18G/3.97G [01:19<00:10, 81.5MB/s]Downloading:  80%|[32m████████  [0m| 3.18G/3.97G [01:19<00:11, 71.6MB/s]Downloading:  80%|[32m████████  [0m| 3.19G/3.97G [01:19<00:11, 72.7MB/s]Downloading:  81%|[32m████████  [0m| 3.20G/3.97G [01:19<00:11, 74.5MB/s]Downloading:  81%|[32m████████  [0m| 3.21G/3.97G [01:19<00:11, 74.4MB/s]Downloading:  81%|[32m████████  [0m| 3.21G/3.97G [01:19<00:10, 75.3MB/s]Downloading:  81%|[32m████████  [0m| 3.22G/3.97G [01:19<00:10, 75.5MB/s]Downloading:  81%|[32m████████  [0m| 3.23G/3.97G [01:19<00:10, 72.9MB/s]Downloading:  81%|[32m████████▏ [0m| 3.23G/3.97G [01:20<00:10, 73.6MB/s]Downloading:  82%|[32m████████▏ [0m| 3.24G/3.97G [01:20<00:10, 74.7MB/s]Downloading:  82%|[32m████████▏ [0m| 3.25G/3.97G [01:20<00:10, 74.6MB/s]Downloading:  82%|[32m████████▏ [0m| 3.26G/3.97G [01:20<00:10, 70.7MB/s]Downloading:  82%|[32m████████▏ [0m| 3.26G/3.97G [01:20<00:10, 70.0MB/s]Downloading:  82%|[32m████████▏ [0m| 3.27G/3.97G [01:20<00:11, 65.6MB/s]Downloading:  82%|[32m████████▏ [0m| 3.27G/3.97G [01:20<00:11, 64.1MB/s]Downloading:  83%|[32m████████▎ [0m| 3.28G/3.97G [01:20<00:11, 66.5MB/s]Downloading:  83%|[32m████████▎ [0m| 3.29G/3.97G [01:20<00:11, 66.7MB/s]Downloading:  83%|[32m████████▎ [0m| 3.29G/3.97G [01:21<00:11, 64.1MB/s]Downloading:  83%|[32m████████▎ [0m| 3.30G/3.97G [01:21<00:11, 65.4MB/s]Downloading:  83%|[32m████████▎ [0m| 3.31G/3.97G [01:21<00:10, 66.7MB/s]Downloading:  83%|[32m████████▎ [0m| 3.31G/3.97G [01:21<00:10, 69.6MB/s]Downloading:  84%|[32m████████▎ [0m| 3.32G/3.97G [01:21<00:10, 68.8MB/s]Downloading:  84%|[32m████████▍ [0m| 3.33G/3.97G [01:21<00:09, 70.9MB/s]Downloading:  84%|[32m████████▍ [0m| 3.33G/3.97G [01:21<00:09, 70.2MB/s]Downloading:  84%|[32m████████▍ [0m| 3.34G/3.97G [01:21<00:09, 70.4MB/s]Downloading:  84%|[32m████████▍ [0m| 3.35G/3.97G [01:21<00:09, 70.2MB/s]Downloading:  84%|[32m████████▍ [0m| 3.35G/3.97G [01:21<00:09, 71.8MB/s]Downloading:  85%|[32m████████▍ [0m| 3.36G/3.97G [01:22<00:09, 72.0MB/s]Downloading:  85%|[32m████████▍ [0m| 3.37G/3.97G [01:22<00:08, 72.9MB/s]Downloading:  85%|[32m████████▍ [0m| 3.38G/3.97G [01:22<00:08, 74.0MB/s]Downloading:  85%|[32m████████▌ [0m| 3.38G/3.97G [01:22<00:08, 72.6MB/s]Downloading:  85%|[32m████████▌ [0m| 3.39G/3.97G [01:22<00:08, 73.4MB/s]Downloading:  86%|[32m████████▌ [0m| 3.40G/3.97G [01:22<00:08, 70.6MB/s]Downloading:  86%|[32m████████▌ [0m| 3.40G/3.97G [01:22<00:08, 70.5MB/s]Downloading:  86%|[32m████████▌ [0m| 3.41G/3.97G [01:22<00:08, 71.5MB/s]Downloading:  86%|[32m████████▌ [0m| 3.42G/3.97G [01:22<00:08, 68.1MB/s]Downloading:  86%|[32m████████▌ [0m| 3.42G/3.97G [01:23<00:08, 66.5MB/s]Downloading:  86%|[32m████████▋ [0m| 3.43G/3.97G [01:23<00:08, 70.0MB/s]Downloading:  87%|[32m████████▋ [0m| 3.44G/3.97G [01:23<00:08, 69.8MB/s]Downloading:  87%|[32m████████▋ [0m| 3.44G/3.97G [01:23<00:08, 66.6MB/s]Downloading:  87%|[32m████████▋ [0m| 3.45G/3.97G [01:23<00:08, 67.4MB/s]Downloading:  87%|[32m████████▋ [0m| 3.46G/3.97G [01:23<00:08, 68.1MB/s]Downloading:  87%|[32m████████▋ [0m| 3.46G/3.97G [01:23<00:08, 68.1MB/s]Downloading:  87%|[32m████████▋ [0m| 3.47G/3.97G [01:23<00:07, 72.1MB/s]Downloading:  88%|[32m████████▊ [0m| 3.48G/3.97G [01:23<00:07, 75.1MB/s]Downloading:  88%|[32m████████▊ [0m| 3.49G/3.97G [01:23<00:07, 70.3MB/s]Downloading:  88%|[32m████████▊ [0m| 3.49G/3.97G [01:24<00:07, 70.3MB/s]Downloading:  88%|[32m████████▊ [0m| 3.50G/3.97G [01:24<00:06, 72.5MB/s]Downloading:  88%|[32m████████▊ [0m| 3.51G/3.97G [01:24<00:06, 72.2MB/s]Downloading:  88%|[32m████████▊ [0m| 3.51G/3.97G [01:24<00:07, 69.8MB/s]Downloading:  89%|[32m████████▊ [0m| 3.52G/3.97G [01:24<00:06, 72.1MB/s]Downloading:  89%|[32m████████▉ [0m| 3.53G/3.97G [01:24<00:06, 74.9MB/s]Downloading:  89%|[32m████████▉ [0m| 3.54G/3.97G [01:24<00:06, 71.9MB/s]Downloading:  89%|[32m████████▉ [0m| 3.54G/3.97G [01:24<00:06, 73.9MB/s]Downloading:  89%|[32m████████▉ [0m| 3.55G/3.97G [01:24<00:06, 74.7MB/s]Downloading:  90%|[32m████████▉ [0m| 3.56G/3.97G [01:25<00:05, 76.0MB/s]Downloading:  90%|[32m████████▉ [0m| 3.57G/3.97G [01:25<00:05, 76.4MB/s]Downloading:  90%|[32m████████▉ [0m| 3.57G/3.97G [01:25<00:05, 76.3MB/s]Downloading:  90%|[32m█████████ [0m| 3.58G/3.97G [01:25<00:05, 75.8MB/s]Downloading:  90%|[32m█████████ [0m| 3.59G/3.97G [01:25<00:05, 73.6MB/s]Downloading:  90%|[32m█████████ [0m| 3.59G/3.97G [01:25<00:05, 71.1MB/s]Downloading:  91%|[32m█████████ [0m| 3.60G/3.97G [01:25<00:05, 72.8MB/s]Downloading:  91%|[32m█████████ [0m| 3.61G/3.97G [01:25<00:05, 74.2MB/s]Downloading:  91%|[32m█████████ [0m| 3.61G/3.97G [01:25<00:05, 73.8MB/s]Downloading:  91%|[32m█████████ [0m| 3.62G/3.97G [01:25<00:05, 73.0MB/s]Downloading:  91%|[32m█████████▏[0m| 3.63G/3.97G [01:26<00:04, 77.1MB/s]Downloading:  92%|[32m█████████▏[0m| 3.64G/3.97G [01:26<00:04, 79.1MB/s]Downloading:  92%|[32m█████████▏[0m| 3.65G/3.97G [01:26<00:04, 77.6MB/s]Downloading:  92%|[32m█████████▏[0m| 3.65G/3.97G [01:26<00:04, 78.2MB/s]Downloading:  92%|[32m█████████▏[0m| 3.66G/3.97G [01:26<00:04, 77.6MB/s]Downloading:  92%|[32m█████████▏[0m| 3.67G/3.97G [01:26<00:04, 78.4MB/s]Downloading:  93%|[32m█████████▎[0m| 3.68G/3.97G [01:26<00:03, 79.7MB/s]Downloading:  93%|[32m█████████▎[0m| 3.68G/3.97G [01:26<00:03, 82.7MB/s]Downloading:  93%|[32m█████████▎[0m| 3.69G/3.97G [01:26<00:03, 83.4MB/s]Downloading:  93%|[32m█████████▎[0m| 3.70G/3.97G [01:26<00:03, 82.3MB/s]Downloading:  93%|[32m█████████▎[0m| 3.71G/3.97G [01:27<00:03, 81.8MB/s]Downloading:  94%|[32m█████████▎[0m| 3.72G/3.97G [01:27<00:03, 80.0MB/s]Downloading:  94%|[32m█████████▎[0m| 3.72G/3.97G [01:27<00:03, 77.6MB/s]Downloading:  94%|[32m█████████▍[0m| 3.73G/3.97G [01:27<00:03, 79.0MB/s]Downloading:  94%|[32m█████████▍[0m| 3.74G/3.97G [01:27<00:03, 77.1MB/s]Downloading:  94%|[32m█████████▍[0m| 3.75G/3.97G [01:27<00:03, 79.5MB/s]Downloading:  94%|[32m█████████▍[0m| 3.75G/3.97G [01:27<00:02, 79.9MB/s]Downloading:  95%|[32m█████████▍[0m| 3.76G/3.97G [01:27<00:02, 77.0MB/s]Downloading:  95%|[32m█████████▍[0m| 3.77G/3.97G [01:27<00:02, 76.4MB/s]Downloading:  95%|[32m█████████▌[0m| 3.78G/3.97G [01:28<00:02, 77.2MB/s]Downloading:  95%|[32m█████████▌[0m| 3.78G/3.97G [01:28<00:02, 76.1MB/s]Downloading:  95%|[32m█████████▌[0m| 3.79G/3.97G [01:28<00:02, 77.9MB/s]Downloading:  96%|[32m█████████▌[0m| 3.80G/3.97G [01:28<00:02, 78.9MB/s]Downloading:  96%|[32m█████████▌[0m| 3.81G/3.97G [01:28<00:02, 78.9MB/s]Downloading:  96%|[32m█████████▌[0m| 3.81G/3.97G [01:28<00:02, 78.1MB/s]Downloading:  96%|[32m█████████▌[0m| 3.82G/3.97G [01:28<00:02, 80.2MB/s]Downloading:  96%|[32m█████████▋[0m| 3.83G/3.97G [01:28<00:01, 81.2MB/s]Downloading:  97%|[32m█████████▋[0m| 3.84G/3.97G [01:28<00:01, 79.1MB/s]Downloading:  97%|[32m█████████▋[0m| 3.84G/3.97G [01:28<00:01, 80.0MB/s]Downloading:  97%|[32m█████████▋[0m| 3.85G/3.97G [01:29<00:01, 78.4MB/s]Downloading:  97%|[32m█████████▋[0m| 3.86G/3.97G [01:29<00:01, 78.0MB/s]Downloading:  97%|[32m█████████▋[0m| 3.87G/3.97G [01:29<00:01, 79.5MB/s]Downloading:  98%|[32m█████████▊[0m| 3.87G/3.97G [01:29<00:01, 78.5MB/s]Downloading:  98%|[32m█████████▊[0m| 3.88G/3.97G [01:29<00:01, 75.6MB/s]Downloading:  98%|[32m█████████▊[0m| 3.89G/3.97G [01:29<00:01, 76.8MB/s]Downloading:  98%|[32m█████████▊[0m| 3.90G/3.97G [01:29<00:01, 78.6MB/s]Downloading:  98%|[32m█████████▊[0m| 3.90G/3.97G [01:29<00:00, 76.0MB/s]Downloading:  98%|[32m█████████▊[0m| 3.91G/3.97G [01:29<00:00, 74.3MB/s]Downloading:  99%|[32m█████████▊[0m| 3.92G/3.97G [01:30<00:00, 74.3MB/s]Downloading:  99%|[32m█████████▉[0m| 3.93G/3.97G [01:30<00:00, 75.6MB/s]Downloading:  99%|[32m█████████▉[0m| 3.93G/3.97G [01:30<00:00, 78.6MB/s]Downloading:  99%|[32m█████████▉[0m| 3.94G/3.97G [01:30<00:00, 78.5MB/s]Downloading:  99%|[32m█████████▉[0m| 3.95G/3.97G [01:30<00:00, 76.7MB/s]Downloading: 100%|[32m█████████▉[0m| 3.96G/3.97G [01:30<00:00, 77.2MB/s]Downloading: 100%|[32m█████████▉[0m| 3.96G/3.97G [01:30<00:00, 76.2MB/s]Downloading: 100%|[32m█████████▉[0m| 3.97G/3.97G [01:30<00:00, 68.0MB/s]Downloading: 100%|[32m██████████[0m| 3.97G/3.97G [01:30<00:00, 47.0MB/s]
+[stable]: gfpgan model(s) found.
+[stable]: > download realesrgan x4plus
+[stable]: 17:15:21.641 INFO MainThread Downloading                        http_utils.py:31
+[stable]: https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0                 
+[stable]: /RealESRGAN_x4plus.pth to                                                       
+[stable]: /easy-diffusion/models/realesrgan/RealESRGAN_x4plus.pth                         
+[stable]: Downloading:   0%|[32m          [0m| 0/348632874 [00:00<?, ?it/s]Downloading:   1%|[32m▏         [0m| 4.44M/332M [00:00<00:07, 46.2MB/s]Downloading:   3%|[32m▎         [0m| 10.6M/332M [00:00<00:05, 56.7MB/s]Downloading:   5%|[32m▍         [0m| 16.0M/332M [00:00<00:06, 50.6MB/s]Downloading:   7%|[32m▋         [0m| 21.9M/332M [00:00<00:05, 54.7MB/s]Downloading:   9%|[32m▊         [0m| 28.6M/332M [00:00<00:05, 58.7MB/s]Downloading:  11%|[32m█         [0m| 36.3M/332M [00:00<00:04, 66.0MB/s]Downloading:  13%|[32m█▎        [0m| 42.7M/332M [00:00<00:04, 60.9MB/s]Downloading:  15%|[32m█▍        [0m| 49.3M/332M [00:00<00:04, 63.3MB/s]Downloading:  17%|[32m█▋        [0m| 56.5M/332M [00:00<00:04, 66.8MB/s]Downloading:  19%|[32m█▉        [0m| 63.0M/332M [00:01<00:04, 66.6MB/s]Downloading:  21%|[32m██        [0m| 69.4M/332M [00:01<00:04, 63.2MB/s]Downloading:  23%|[32m██▎       [0m| 75.6M/332M [00:01<00:04, 58.3MB/s]Downloading:  24%|[32m██▍       [0m| 81.2M/332M [00:01<00:04, 58.2MB/s]Downloading:  27%|[32m██▋       [0m| 88.6M/332M [00:01<00:04, 63.0MB/s]Downloading:  29%|[32m██▉       [0m| 95.9M/332M [00:01<00:03, 66.6MB/s]Downloading:  31%|[32m███       [0m| 102M/332M [00:01<00:03, 63.9MB/s] Downloading:  33%|[32m███▎      [0m| 109M/332M [00:01<00:03, 62.4MB/s]Downloading:  34%|[32m███▍      [0m| 115M/332M [00:01<00:03, 61.9MB/s]Downloading:  36%|[32m███▋      [0m| 121M/332M [00:02<00:03, 62.1MB/s]Downloading:  38%|[32m███▊      [0m| 128M/332M [00:02<00:03, 65.2MB/s]Downloading:  40%|[32m████      [0m| 134M/332M [00:02<00:03, 64.5MB/s]Downloading:  42%|[32m████▏     [0m| 140M/332M [00:02<00:03, 65.1MB/s]Downloading:  44%|[32m████▍     [0m| 147M/332M [00:02<00:02, 66.7MB/s]Downloading:  46%|[32m████▌     [0m| 153M/332M [00:02<00:02, 65.1MB/s]Downloading:  48%|[32m████▊     [0m| 160M/332M [00:02<00:02, 63.8MB/s]Downloading:  50%|[32m█████     [0m| 167M/332M [00:02<00:02, 66.7MB/s]Downloading:  52%|[32m█████▏    [0m| 173M/332M [00:02<00:02, 63.1MB/s]Downloading:  54%|[32m█████▍    [0m| 179M/332M [00:03<00:02, 60.9MB/s]Downloading:  56%|[32m█████▌    [0m| 186M/332M [00:03<00:02, 64.3MB/s]Downloading:  58%|[32m█████▊    [0m| 194M/332M [00:03<00:02, 68.2MB/s]Downloading:  60%|[32m██████    [0m| 200M/332M [00:03<00:02, 66.5MB/s]Downloading:  62%|[32m██████▏   [0m| 207M/332M [00:03<00:02, 61.5MB/s]Downloading:  64%|[32m██████▍   [0m| 213M/332M [00:03<00:02, 62.0MB/s]Downloading:  66%|[32m██████▌   [0m| 219M/332M [00:03<00:01, 59.7MB/s]Downloading:  68%|[32m██████▊   [0m| 225M/332M [00:03<00:01, 61.4MB/s]Downloading:  70%|[32m██████▉   [0m| 232M/332M [00:03<00:01, 64.2MB/s]Downloading:  72%|[32m███████▏  [0m| 239M/332M [00:03<00:01, 65.9MB/s]Downloading:  74%|[32m███████▍  [0m| 246M/332M [00:04<00:01, 67.9MB/s]Downloading:  76%|[32m███████▋  [0m| 254M/332M [00:04<00:01, 71.6MB/s]Downloading:  78%|[32m███████▊  [0m| 260M/332M [00:04<00:01, 68.8MB/s]Downloading:  80%|[32m████████  [0m| 267M/332M [00:04<00:01, 66.4MB/s]Downloading:  82%|[32m████████▏ [0m| 274M/332M [00:04<00:00, 65.3MB/s]Downloading:  85%|[32m████████▍ [0m| 281M/332M [00:04<00:00, 69.0MB/s]Downloading:  87%|[32m████████▋ [0m| 288M/332M [00:04<00:00, 66.4MB/s]Downloading:  89%|[32m████████▊ [0m| 295M/332M [00:04<00:00, 68.7MB/s]Downloading:  91%|[32m█████████ [0m| 301M/332M [00:04<00:00, 68.9MB/s]Downloading:  93%|[32m█████████▎[0m| 308M/332M [00:05<00:00, 64.2MB/s]Downloading:  95%|[32m█████████▍[0m| 314M/332M [00:05<00:00, 63.8MB/s]Downloading:  96%|[32m█████████▋[0m| 321M/332M [00:05<00:00, 64.1MB/s]Downloading:  99%|[32m█████████▉[0m| 329M/332M [00:05<00:00, 69.9MB/s]Downloading: 100%|[32m██████████[0m| 332M/332M [00:05<00:00, 64.4MB/s]
+[stable]: realesrgan model(s) found.
+[stable]: > download vae vae-ft-mse-840000-ema-pruned
+[stable]: 17:15:23.916 INFO MainThread Downloading                        http_utils.py:31
+[stable]: https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resol                 
+[stable]: ve/main/vae-ft-mse-840000-ema-pruned.ckpt to                                    
+[stable]: /easy-diffusion/models/vae/vae-ft-mse-840000-ema-pruned.ckpt                    
+[stable]: Downloading:   0%|[32m          [0m| 0/67040989 [00:00<?, ?it/s]Downloading:   4%|[32m▎         [0m| 2.25M/63.9M [00:00<00:02, 22.9MB/s]Downloading:  13%|[32m█▎        [0m| 8.25M/63.9M [00:00<00:01, 46.1MB/s]Downloading:  23%|[32m██▎       [0m| 14.4M/63.9M [00:00<00:00, 54.5MB/s]Downloading:  35%|[32m███▍      [0m| 22.1M/63.9M [00:00<00:00, 64.6MB/s]Downloading:  46%|[32m████▌     [0m| 29.3M/63.9M [00:00<00:00, 68.4MB/s]Downloading:  57%|[32m█████▋    [0m| 36.7M/63.9M [00:00<00:00, 71.3MB/s]Downloading:  69%|[32m██████▊   [0m| 43.9M/63.9M [00:00<00:00, 70.3MB/s]Downloading:  85%|[32m████████▍ [0m| 54.1M/63.9M [00:00<00:00, 80.1MB/s]Downloading:  97%|[32m█████████▋[0m| 61.8M/63.9M [00:00<00:00, 80.2MB/s]Downloading: 100%|[32m██████████[0m| 63.9M/63.9M [00:00<00:00, 70.4MB/s]
+[stable]: vae model(s) found.
+[stable]: 17:15:31.002 INFO MainThread Scanning all model folders for model_manager.py:370
+[stable]: models...                                                                       
+[stable]: 17:15:31.041 INFO MainThread Scanned 3 models. Nothing      model_manager.py:379
+[stable]: infected                                                                        
+[stable]: 17:15:31.480 INFO MainThread Start new Rendering Thread on   task_manager.py:467
+[stable]: device: cuda:0                                                                  
+[stable]: 17:15:31.687 INFO cuda:0 Device usage during initialization:      renderer.py:48
+[stable]: 17:15:31.688 INFO cuda:0 CPU utilization: 1.7%, System RAM    memory_utils.py:44
+[stable]: used: 10.9 of 62.6 GiB, GPU RAM used (cuda:0): 0.8 of 23.6                      
+[stable]: GiB (peak: 0.0 GiB)                                                             
+[stable]: 17:15:31.689 INFO cuda:0 Setting cuda:0 as active, with    device_manager.py:154
+[stable]: precision: half                                                                 
+[stable]: 17:15:31.689 INFO cuda:0 loading stable-diffusion model from      __init__.py:36
+[stable]: /easy-diffusion/models/stable-diffusion/sd-v1-4.ckpt to device:                 
+[stable]: cuda:0                                                                          
+[stable]: ╭────────────────────────── Easy Diffusion is ready ───────────────────────────╮
+[stable]: │                                                                              │
+[stable]: │ Easy Diffusion is ready to serve requests.                                   │
+[stable]: │                                                                              │
+[stable]: │ A new browser tab should have been opened by now.                            │
+[stable]: │ If not, please open your web browser and navigate to http://localhost:9000/  │
+[stable]: │                                                                              │
+[stable]: ╰──────────────────────────────────────────────────────────────────────────────╯
+[stable]: 17:15:32.708 INFO cuda:0 using config:                            __init__.py:75
+[stable]: /easy-diffusion/installer_files/env/lib/python3.8/site-packages/s               
+[stable]: dkit/models/models_db/configs/v1-inference.yaml                                 
+[stable]: 17:15:32.714 INFO cuda:0 using attn_precision: fp16               __init__.py:81
+[stable]: LatentDiffusion: Running in eps-prediction mode
+[stable]: DiffusionWrapper has 859.52 M params.
+[stable]: making attention of type 'vanilla' with 512 in_channels
+[stable]: Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+[stable]: making attention of type 'vanilla' with 512 in_channels
+[stable]: 17:15:35.213 INFO cuda:0 Created a temporary directory at     instantiator.py:21
+[stable]: /tmp/tmpp8u5kwl4                                                                
+[stable]: 17:15:35.214 INFO cuda:0 Writing                              instantiator.py:76
+[stable]: /tmp/tmpp8u5kwl4/_remote_module_non_scriptable.py                               
+[stable]: Downloading:   0%|[32m          [0m| 0/334695179 [00:00<?, ?it/s]Downloading:   1%|[32m▏         [0m| 4.62M/319M [00:00<00:06, 48.3MB/s]Downloading:   3%|[32m▎         [0m| 9.25M/319M [00:00<00:07, 43.1MB/s]Downloading:   5%|[32m▍         [0m| 14.8M/319M [00:00<00:06, 49.5MB/s]Downloading:   6%|[32m▋         [0m| 20.4M/319M [00:00<00:05, 52.4MB/s]Downloading:   8%|[32m▊         [0m| 25.4M/319M [00:00<00:06, 50.1MB/s]Downloading:   9%|[32m▉         [0m| 30.3M/319M [00:00<00:06, 45.9MB/s]Downloading:  11%|[32m█▏        [0m| 36.2M/319M [00:00<00:05, 50.3MB/s]Downloading:  13%|[32m█▎        [0m| 41.1M/319M [00:00<00:07, 41.4MB/s]Downloading:  15%|[32m█▍        [0m| 46.7M/319M [00:01<00:06, 45.5MB/s]Downloading:  16%|[32m█▌        [0m| 51.7M/319M [00:01<00:05, 47.3MB/s]Downloading:  18%|[32m█▊        [0m| 58.2M/319M [00:01<00:05, 53.0MB/s]Downloading:  20%|[32m█▉        [0m| 63.5M/319M [00:01<00:05, 49.7MB/s]Downloading:  21%|[32m██▏       [0m| 68.4M/319M [00:01<00:05, 49.3MB/s]Downloading:  23%|[32m██▎       [0m| 73.3M/319M [00:01<00:06, 39.1MB/s]Downloading:  24%|[32m██▍       [0m| 77.4M/319M [00:01<00:06, 39.4MB/s]Downloading:  26%|[32m██▌       [0m| 82.4M/319M [00:01<00:05, 42.3MB/s]Downloading:  27%|[32m██▋       [0m| 86.7M/319M [00:02<00:06, 37.3MB/s]Downloading:  29%|[32m██▉       [0m| 91.8M/319M [00:02<00:05, 40.9MB/s]Downloading:  30%|[32m███       [0m| 96.0M/319M [00:02<00:05, 39.9MB/s]Downloading:  31%|[32m███▏      [0m| 100M/319M [00:02<00:05, 40.8MB/s] Downloading:  33%|[32m███▎      [0m| 105M/319M [00:02<00:05, 44.3MB/s]Downloading:  35%|[32m███▍      [0m| 111M/319M [00:02<00:04, 48.4MB/s]Downloading:  37%|[32m███▋      [0m| 117M/319M [00:02<00:04, 52.1MB/s]Downloading:  38%|[32m███▊      [0m| 122M/319M [00:02<00:03, 52.4MB/s]Downloading:  40%|[32m███▉      [0m| 127M/319M [00:02<00:04, 42.3MB/s]Downloading:  41%|[32m████▏     [0m| 132M/319M [00:03<00:04, 44.5MB/s]Downloading:  43%|[32m████▎     [0m| 138M/319M [00:03<00:03, 49.1MB/s]Downloading:  45%|[32m████▌     [0m| 145M/319M [00:03<00:03, 53.7MB/s]Downloading:  47%|[32m████▋     [0m| 150M/319M [00:03<00:03, 55.5MB/s]Downloading:  49%|[32m████▉     [0m| 156M/319M [00:03<00:03, 56.9MB/s]Downloading:  51%|[32m█████     [0m| 162M/319M [00:03<00:02, 55.1MB/s]Downloading:  52%|[32m█████▏    [0m| 167M/319M [00:03<00:03, 52.0MB/s]Downloading:  54%|[32m█████▍    [0m| 172M/319M [00:03<00:03, 45.3MB/s]Downloading:  55%|[32m█████▌    [0m| 177M/319M [00:03<00:03, 45.2MB/s]Downloading:  57%|[32m█████▋    [0m| 182M/319M [00:04<00:03, 46.4MB/s]Downloading:  59%|[32m█████▊    [0m| 187M/319M [00:04<00:02, 48.6MB/s]Downloading:  60%|[32m██████    [0m| 193M/319M [00:04<00:02, 51.9MB/s]Downloading:  62%|[32m██████▏   [0m| 198M/319M [00:04<00:02, 52.9MB/s]Downloading:  64%|[32m██████▍   [0m| 204M/319M [00:04<00:02, 55.8MB/s]Downloading:  66%|[32m██████▌   [0m| 209M/319M [00:04<00:02, 51.1MB/s]Downloading:  67%|[32m██████▋   [0m| 214M/319M [00:04<00:02, 49.1MB/s]Downloading:  69%|[32m██████▊   [0m| 219M/319M [00:04<00:02, 48.5MB/s]Downloading:  70%|[32m███████   [0m| 225M/319M [00:04<00:01, 50.9MB/s]Downloading:  72%|[32m███████▏  [0m| 230M/319M [00:05<00:01, 52.3MB/s]Downloading:  74%|[32m███████▎  [0m| 235M/319M [00:05<00:02, 40.0MB/s]Downloading:  75%|[32m███████▌  [0m| 241M/319M [00:05<00:01, 44.0MB/s]Downloading:  77%|[32m███████▋  [0m| 246M/319M [00:05<00:01, 39.9MB/s]Downloading:  78%|[32m███████▊  [0m| 250M/319M [00:05<00:01, 37.5MB/s]Downloading:  80%|[32m███████▉  [0m| 254M/319M [00:05<00:01, 39.0MB/s]Downloading:  81%|[32m████████▏ [0m| 260M/319M [00:05<00:01, 44.9MB/s]Downloading:  83%|[32m████████▎ [0m| 265M/319M [00:05<00:01, 48.0MB/s]Downloading:  85%|[32m████████▍ [0m| 271M/319M [00:06<00:00, 51.5MB/s]Downloading:  87%|[32m████████▋ [0m| 276M/319M [00:06<00:00, 50.8MB/s]Downloading:  88%|[32m████████▊ [0m| 281M/319M [00:06<00:00, 50.4MB/s]Downloading:  90%|[32m█████████ [0m| 288M/319M [00:06<00:00, 56.1MB/s]Downloading:  92%|[32m█████████▏[0m| 294M/319M [00:06<00:00, 56.6MB/s]Downloading:  94%|[32m█████████▍[0m| 300M/319M [00:06<00:00, 58.1MB/s]Downloading:  96%|[32m█████████▌[0m| 305M/319M [00:06<00:00, 51.4MB/s]Downloading:  97%|[32m█████████▋[0m| 310M/319M [00:06<00:00, 44.7MB/s]Downloading:  99%|[32m█████████▊[0m| 315M/319M [00:07<00:00, 41.1MB/s]Downloading: 100%|[32m██████████[0m| 319M/319M [00:07<00:00, 47.2MB/s]
+[stable]: Downloading (…)olve/main/vocab.json:   0%|          | 0.00/961k [00:00<?, ?B/s]Downloading (…)olve/main/vocab.json: 100%|██████████| 961k/961k [00:00<00:00, 1.05MB/s]Downloading (…)olve/main/vocab.json: 100%|██████████| 961k/961k [00:00<00:00, 1.05MB/s]
+[stable]: Downloading (…)olve/main/merges.txt:   0%|          | 0.00/525k [00:00<?, ?B/s]Downloading (…)olve/main/merges.txt: 100%|██████████| 525k/525k [00:00<00:00, 947kB/s]Downloading (…)olve/main/merges.txt: 100%|██████████| 525k/525k [00:00<00:00, 945kB/s]
+[stable]: Downloading (…)cial_tokens_map.json:   0%|          | 0.00/389 [00:00<?, ?B/s]Downloading (…)cial_tokens_map.json: 100%|██████████| 389/389 [00:00<00:00, 258kB/s]
+[stable]: Downloading (…)okenizer_config.json:   0%|          | 0.00/905 [00:00<?, ?B/s]Downloading (…)okenizer_config.json: 100%|██████████| 905/905 [00:00<00:00, 928kB/s]
+[stable]: Downloading (…)lve/main/config.json:   0%|          | 0.00/4.52k [00:00<?, ?B/s]Downloading (…)lve/main/config.json: 100%|██████████| 4.52k/4.52k [00:00<00:00, 603kB/s]
+[stable]: 17:16:01.683 INFO cuda:0 VRAM Optimizations:                 optimizations.py:26
+[stable]: {'KEEP_FS_AND_CS_IN_CPU', 'SET_ATTENTION_STEP_TO_16'}                           
+[stable]: 17:16:01.848 INFO cuda:0 Global seed set to 42                        seed.py:65
+[stable]: Downloading pytorch_model.bin:   0%|          | 0.00/1.71G [00:00<?, ?B/s]Downloading pytorch_model.bin:   1%|          | 10.5M/1.71G [00:00<00:25, 66.2MB/s]Downloading pytorch_model.bin:   1%|          | 21.0M/1.71G [00:00<00:22, 75.6MB/s]Downloading pytorch_model.bin:   2%|▏         | 31.5M/1.71G [00:00<00:19, 85.3MB/s]Downloading pytorch_model.bin:   2%|▏         | 41.9M/1.71G [00:00<00:19, 87.1MB/s]Downloading pytorch_model.bin:   3%|▎         | 52.4M/1.71G [00:00<00:18, 87.7MB/s]Downloading pytorch_model.bin:   4%|▎         | 62.9M/1.71G [00:00<00:18, 88.5MB/s]Downloading pytorch_model.bin:   4%|▍         | 73.4M/1.71G [00:00<00:18, 89.7MB/s]Downloading pytorch_model.bin:   5%|▍         | 83.9M/1.71G [00:00<00:17, 91.3MB/s]Downloading pytorch_model.bin:   6%|▌         | 94.4M/1.71G [00:01<00:18, 89.0MB/s]Downloading pytorch_model.bin:   6%|▌         | 105M/1.71G [00:01<00:18, 85.4MB/s] Downloading pytorch_model.bin:   7%|▋         | 115M/1.71G [00:01<00:18, 86.8MB/s]Downloading pytorch_model.bin:   7%|▋         | 126M/1.71G [00:01<00:18, 85.0MB/s]Downloading pytorch_model.bin:   8%|▊         | 136M/1.71G [00:01<00:18, 85.6MB/s]Downloading pytorch_model.bin:   9%|▊         | 147M/1.71G [00:01<00:18, 86.2MB/s]Downloading pytorch_model.bin:   9%|▉         | 157M/1.71G [00:01<00:17, 88.0MB/s]Downloading pytorch_model.bin:  10%|▉         | 168M/1.71G [00:01<00:18, 85.0MB/s]Downloading pytorch_model.bin:  10%|█         | 178M/1.71G [00:02<00:18, 83.4MB/s]Downloading pytorch_model.bin:  11%|█         | 189M/1.71G [00:02<00:18, 82.8MB/s]Downloading pytorch_model.bin:  12%|█▏        | 199M/1.71G [00:02<00:17, 84.8MB/s]Downloading pytorch_model.bin:  12%|█▏        | 210M/1.71G [00:02<00:17, 85.2MB/s]Downloading pytorch_model.bin:  13%|█▎        | 220M/1.71G [00:02<00:17, 84.4MB/s]Downloading pytorch_model.bin:  13%|█▎        | 231M/1.71G [00:02<00:17, 84.8MB/s]Downloading pytorch_model.bin:  14%|█▍        | 241M/1.71G [00:02<00:16, 87.4MB/s]Downloading pytorch_model.bin:  15%|█▍        | 252M/1.71G [00:02<00:17, 83.3MB/s]Downloading pytorch_model.bin:  15%|█▌        | 262M/1.71G [00:03<00:18, 77.8MB/s]Downloading pytorch_model.bin:  16%|█▌        | 273M/1.71G [00:03<00:18, 79.6MB/s]Downloading pytorch_model.bin:  17%|█▋        | 283M/1.71G [00:03<00:17, 83.7MB/s]Downloading pytorch_model.bin:  17%|█▋        | 294M/1.71G [00:03<00:17, 83.3MB/s]Downloading pytorch_model.bin:  18%|█▊        | 304M/1.71G [00:03<00:16, 86.6MB/s]Downloading pytorch_model.bin:  18%|█▊        | 315M/1.71G [00:03<00:16, 86.1MB/s]Downloading pytorch_model.bin:  19%|█▉        | 325M/1.71G [00:03<00:16, 84.3MB/s]Downloading pytorch_model.bin:  20%|█▉        | 336M/1.71G [00:03<00:16, 83.2MB/s]Downloading pytorch_model.bin:  20%|██        | 346M/1.71G [00:04<00:16, 81.7MB/s]Downloading pytorch_model.bin:  21%|██        | 357M/1.71G [00:04<00:16, 82.8MB/s]Downloading pytorch_model.bin:  21%|██▏       | 367M/1.71G [00:04<00:16, 80.7MB/s]Downloading pytorch_model.bin:  22%|██▏       | 377M/1.71G [00:04<00:16, 81.9MB/s]Downloading pytorch_model.bin:  23%|██▎       | 388M/1.71G [00:04<00:15, 84.8MB/s]Downloading pytorch_model.bin:  23%|██▎       | 398M/1.71G [00:04<00:15, 85.1MB/s]Downloading pytorch_model.bin:  24%|██▍       | 409M/1.71G [00:04<00:14, 86.8MB/s]Downloading pytorch_model.bin:  25%|██▍       | 419M/1.71G [00:04<00:14, 88.2MB/s]Downloading pytorch_model.bin:  25%|██▌       | 430M/1.71G [00:05<00:14, 87.8MB/s]Downloading pytorch_model.bin:  26%|██▌       | 440M/1.71G [00:05<00:14, 90.2MB/s]Downloading pytorch_model.bin:  26%|██▋       | 451M/1.71G [00:05<00:14, 88.9MB/s]Downloading pytorch_model.bin:  27%|██▋       | 461M/1.71G [00:05<00:14, 88.2MB/s]Downloading pytorch_model.bin:  28%|██▊       | 472M/1.71G [00:05<00:13, 89.9MB/s]Downloading pytorch_model.bin:  28%|██▊       | 482M/1.71G [00:05<00:13, 91.2MB/s]Downloading pytorch_model.bin:  29%|██▉       | 493M/1.71G [00:05<00:13, 90.7MB/s]Downloading pytorch_model.bin:  29%|██▉       | 503M/1.71G [00:05<00:13, 88.5MB/s]Downloading pytorch_model.bin:  30%|███       | 514M/1.71G [00:06<00:13, 85.7MB/s]Downloading pytorch_model.bin:  31%|███       | 524M/1.71G [00:06<00:14, 82.7MB/s]Downloading pytorch_model.bin:  31%|███▏      | 535M/1.71G [00:06<00:14, 80.7MB/s]Downloading pytorch_model.bin:  32%|███▏      | 545M/1.71G [00:06<00:14, 79.2MB/s]Downloading pytorch_model.bin:  32%|███▏      | 556M/1.71G [00:06<00:14, 80.8MB/s]Downloading pytorch_model.bin:  33%|███▎      | 566M/1.71G [00:06<00:13, 84.9MB/s]Downloading pytorch_model.bin:  34%|███▎      | 577M/1.71G [00:06<00:13, 84.2MB/s]Downloading pytorch_model.bin:  34%|███▍      | 587M/1.71G [00:06<00:13, 85.1MB/s]Downloading pytorch_model.bin:  35%|███▍      | 598M/1.71G [00:07<00:13, 82.4MB/s]Downloading pytorch_model.bin:  36%|███▌      | 608M/1.71G [00:07<00:13, 84.3MB/s]Downloading pytorch_model.bin:  36%|███▌      | 619M/1.71G [00:07<00:12, 84.6MB/s]Downloading pytorch_model.bin:  37%|███▋      | 629M/1.71G [00:07<00:12, 86.2MB/s]Downloading pytorch_model.bin:  37%|███▋      | 640M/1.71G [00:07<00:12, 88.1MB/s]Downloading pytorch_model.bin:  38%|███▊      | 650M/1.71G [00:07<00:12, 86.1MB/s]Downloading pytorch_model.bin:  39%|███▊      | 661M/1.71G [00:07<00:13, 79.0MB/s]Downloading pytorch_model.bin:  39%|███▉      | 671M/1.71G [00:07<00:12, 80.5MB/s]Downloading pytorch_model.bin:  40%|███▉      | 682M/1.71G [00:08<00:12, 82.1MB/s]Downloading pytorch_model.bin:  40%|████      | 692M/1.71G [00:08<00:11, 84.9MB/s]Downloading pytorch_model.bin:  41%|████      | 703M/1.71G [00:08<00:11, 87.4MB/s]Downloading pytorch_model.bin:  42%|████▏     | 713M/1.71G [00:08<00:11, 88.2MB/s]Downloading pytorch_model.bin:  42%|████▏     | 724M/1.71G [00:08<00:11, 89.0MB/s]Downloading pytorch_model.bin:  43%|████▎     | 734M/1.71G [00:08<00:11, 87.4MB/s]Downloading pytorch_model.bin:  44%|████▎     | 744M/1.71G [00:08<00:11, 84.6MB/s]Downloading pytorch_model.bin:  44%|████▍     | 755M/1.71G [00:08<00:11, 85.9MB/s]Downloading pytorch_model.bin:  45%|████▍     | 765M/1.71G [00:08<00:10, 86.6MB/s]Downloading pytorch_model.bin:  45%|████▌     | 776M/1.71G [00:09<00:10, 87.6MB/s]Downloading pytorch_model.bin:  46%|████▌     | 786M/1.71G [00:09<00:10, 88.4MB/s]Downloading pytorch_model.bin:  47%|████▋     | 797M/1.71G [00:09<00:10, 89.6MB/s]Downloading pytorch_model.bin:  47%|████▋     | 807M/1.71G [00:09<00:09, 91.1MB/s]Downloading pytorch_model.bin:  48%|████▊     | 818M/1.71G [00:09<00:09, 89.6MB/s]Downloading pytorch_model.bin:  48%|████▊     | 828M/1.71G [00:09<00:09, 90.1MB/s]Downloading pytorch_model.bin:  49%|████▉     | 839M/1.71G [00:09<00:09, 90.5MB/s]Downloading pytorch_model.bin:  50%|████▉     | 849M/1.71G [00:09<00:09, 93.2MB/s]Downloading pytorch_model.bin:  50%|█████     | 860M/1.71G [00:10<00:09, 93.0MB/s]Downloading pytorch_model.bin:  51%|█████     | 870M/1.71G [00:10<00:14, 58.7MB/s]Downloading pytorch_model.bin:  51%|█████▏    | 881M/1.71G [00:10<00:12, 65.3MB/s]Downloading pytorch_model.bin:  52%|█████▏    | 891M/1.71G [00:10<00:11, 71.6MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 902M/1.71G [00:10<00:10, 74.5MB/s]Downloading pytorch_model.bin:  53%|█████▎    | 912M/1.71G [00:10<00:10, 79.0MB/s]Downloading pytorch_model.bin:  54%|█████▍    | 923M/1.71G [00:10<00:09, 82.8MB/s]Downloading pytorch_model.bin:  55%|█████▍    | 933M/1.71G [00:11<00:08, 86.5MB/s]Downloading pytorch_model.bin:  55%|█████▌    | 944M/1.71G [00:11<00:08, 86.4MB/s]Downloading pytorch_model.bin:  56%|█████▌    | 954M/1.71G [00:11<00:08, 88.4MB/s]Downloading pytorch_model.bin:  56%|█████▋    | 965M/1.71G [00:11<00:08, 89.3MB/s]Downloading pytorch_model.bin:  57%|█████▋    | 975M/1.71G [00:11<00:08, 90.7MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 986M/1.71G [00:11<00:08, 90.3MB/s]Downloading pytorch_model.bin:  58%|█████▊    | 996M/1.71G [00:11<00:07, 91.4MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 1.01G/1.71G [00:11<00:07, 90.5MB/s]Downloading pytorch_model.bin:  59%|█████▉    | 1.02G/1.71G [00:11<00:07, 92.2MB/s]Downloading pytorch_model.bin:  60%|██████    | 1.03G/1.71G [00:12<00:07, 89.3MB/s]Downloading pytorch_model.bin:  61%|██████    | 1.04G/1.71G [00:12<00:07, 90.0MB/s]Downloading pytorch_model.bin:  61%|██████▏   | 1.05G/1.71G [00:12<00:07, 88.3MB/s]Downloading pytorch_model.bin:  62%|██████▏   | 1.06G/1.71G [00:12<00:07, 87.7MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 1.07G/1.71G [00:12<00:07, 85.9MB/s]Downloading pytorch_model.bin:  63%|██████▎   | 1.08G/1.71G [00:12<00:07, 89.9MB/s]Downloading pytorch_model.bin:  64%|██████▎   | 1.09G/1.71G [00:12<00:06, 90.9MB/s]Downloading pytorch_model.bin:  64%|██████▍   | 1.10G/1.71G [00:12<00:06, 92.9MB/s]Downloading pytorch_model.bin:  65%|██████▍   | 1.11G/1.71G [00:13<00:06, 94.5MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 1.12G/1.71G [00:13<00:06, 95.0MB/s]Downloading pytorch_model.bin:  66%|██████▌   | 1.13G/1.71G [00:13<00:06, 92.9MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 1.14G/1.71G [00:13<00:06, 92.8MB/s]Downloading pytorch_model.bin:  67%|██████▋   | 1.15G/1.71G [00:13<00:06, 91.8MB/s]Downloading pytorch_model.bin:  68%|██████▊   | 1.16G/1.71G [00:13<00:06, 90.9MB/s]Downloading pytorch_model.bin:  69%|██████▊   | 1.17G/1.71G [00:13<00:06, 87.5MB/s]Downloading pytorch_model.bin:  69%|██████▉   | 1.18G/1.71G [00:13<00:06, 87.1MB/s]Downloading pytorch_model.bin:  70%|██████▉   | 1.20G/1.71G [00:13<00:05, 86.5MB/s]Downloading pytorch_model.bin:  70%|███████   | 1.21G/1.71G [00:14<00:05, 85.8MB/s]Downloading pytorch_model.bin:  71%|███████   | 1.22G/1.71G [00:14<00:05, 90.2MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 1.23G/1.71G [00:14<00:05, 84.7MB/s]Downloading pytorch_model.bin:  72%|███████▏  | 1.24G/1.71G [00:14<00:05, 80.5MB/s]Downloading pytorch_model.bin:  73%|███████▎  | 1.25G/1.71G [00:14<00:05, 83.0MB/s]Downloading pytorch_model.bin:  74%|███████▎  | 1.26G/1.71G [00:14<00:05, 81.8MB/s]Downloading pytorch_model.bin:  74%|███████▍  | 1.27G/1.71G [00:14<00:05, 84.6MB/s]Downloading pytorch_model.bin:  75%|███████▍  | 1.28G/1.71G [00:14<00:05, 84.3MB/s]Downloading pytorch_model.bin:  75%|███████▌  | 1.29G/1.71G [00:15<00:04, 86.2MB/s]Downloading pytorch_model.bin:  76%|███████▌  | 1.30G/1.71G [00:15<00:04, 85.1MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 1.31G/1.71G [00:15<00:04, 85.0MB/s]Downloading pytorch_model.bin:  77%|███████▋  | 1.32G/1.71G [00:15<00:04, 85.3MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 1.33G/1.71G [00:15<00:04, 83.1MB/s]Downloading pytorch_model.bin:  78%|███████▊  | 1.34G/1.71G [00:15<00:04, 81.2MB/s]Downloading pytorch_model.bin:  79%|███████▉  | 1.35G/1.71G [00:15<00:04, 81.0MB/s]Downloading pytorch_model.bin:  80%|███████▉  | 1.36G/1.71G [00:15<00:04, 82.0MB/s]Downloading pytorch_model.bin:  80%|████████  | 1.37G/1.71G [00:16<00:04, 83.2MB/s]Downloading pytorch_model.bin:  81%|████████  | 1.38G/1.71G [00:16<00:03, 83.8MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 1.39G/1.71G [00:16<00:03, 80.4MB/s]Downloading pytorch_model.bin:  82%|████████▏ | 1.41G/1.71G [00:16<00:03, 80.5MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 1.42G/1.71G [00:16<00:03, 76.2MB/s]Downloading pytorch_model.bin:  83%|████████▎ | 1.43G/1.71G [00:16<00:03, 76.0MB/s]Downloading pytorch_model.bin:  84%|████████▍ | 1.44G/1.71G [00:16<00:03, 78.1MB/s]Downloading pytorch_model.bin:  85%|████████▍ | 1.45G/1.71G [00:17<00:03, 78.9MB/s]Downloading pytorch_model.bin:  85%|████████▌ | 1.46G/1.71G [00:17<00:03, 79.0MB/s]Downloading pytorch_model.bin:  86%|████████▌ | 1.47G/1.71G [00:17<00:03, 79.0MB/s]Downloading pytorch_model.bin:  86%|████████▋ | 1.48G/1.71G [00:17<00:02, 80.3MB/s]Downloading pytorch_model.bin:  87%|████████▋ | 1.49G/1.71G [00:17<00:02, 80.8MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 1.50G/1.71G [00:17<00:02, 81.3MB/s]Downloading pytorch_model.bin:  88%|████████▊ | 1.51G/1.71G [00:17<00:02, 79.8MB/s]Downloading pytorch_model.bin:  89%|████████▉ | 1.52G/1.71G [00:17<00:02, 79.9MB/s]Downloading pytorch_model.bin:  89%|████████▉ | 1.53G/1.71G [00:18<00:02, 78.6MB/s]Downloading pytorch_model.bin:  90%|█████████ | 1.54G/1.71G [00:18<00:02, 81.3MB/s]Downloading pytorch_model.bin:  91%|█████████ | 1.55G/1.71G [00:18<00:01, 84.8MB/s]Downloading pytorch_model.bin:  91%|█████████▏| 1.56G/1.71G [00:18<00:01, 86.4MB/s]Downloading pytorch_model.bin:  92%|█████████▏| 1.57G/1.71G [00:18<00:01, 87.9MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 1.58G/1.71G [00:18<00:01, 85.6MB/s]Downloading pytorch_model.bin:  93%|█████████▎| 1.59G/1.71G [00:18<00:01, 88.4MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 1.60G/1.71G [00:18<00:01, 91.4MB/s]Downloading pytorch_model.bin:  94%|█████████▍| 1.61G/1.71G [00:19<00:01, 90.1MB/s]Downloading pytorch_model.bin:  95%|█████████▌| 1.63G/1.71G [00:19<00:00, 89.7MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 1.64G/1.71G [00:19<00:00, 89.4MB/s]Downloading pytorch_model.bin:  96%|█████████▌| 1.65G/1.71G [00:19<00:00, 88.6MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 1.66G/1.71G [00:19<00:00, 86.5MB/s]Downloading pytorch_model.bin:  97%|█████████▋| 1.67G/1.71G [00:19<00:00, 87.9MB/s]Downloading pytorch_model.bin:  98%|█████████▊| 1.68G/1.71G [00:19<00:00, 88.8MB/s]Downloading pytorch_model.bin:  99%|█████████▊| 1.69G/1.71G [00:19<00:00, 91.0MB/s]Downloading pytorch_model.bin:  99%|█████████▉| 1.70G/1.71G [00:19<00:00, 91.8MB/s]Downloading pytorch_model.bin: 100%|█████████▉| 1.71G/1.71G [00:20<00:00, 92.2MB/s]Downloading pytorch_model.bin: 100%|██████████| 1.71G/1.71G [00:20<00:00, 85.2MB/s]
+[stable]: 17:16:02.105 INFO cuda:0 seeds used = [42]                    sampler_main.py:64
+[stable]: 17:16:02.543 INFO cuda:0 loaded stable-diffusion model from       __init__.py:40
+[stable]: /easy-diffusion/models/stable-diffusion/sd-v1-4.ckpt to device:                 
+[stable]: cuda:0                                                                          
+[stable]: 17:16:07.459 INFO AnyIO worker thread Scanning all model    model_manager.py:370
+[stable]: folders for models...                                                           
+[stable]: 17:16:11.218 INFO cuda:0 Session 1687886167177 starting task task_manager.py:314
+[stable]: 140549785176528 on NVIDIA GeForce RTX 4090                                      
+[stable]: 17:16:11.225 INFO cuda:0 request: {'guidance_scale': 7.5,         renderer.py:81
+[stable]:  'height': 512,                                                                 
+[stable]:  'negative_prompt': '',                                                         
+[stable]:  'num_inference_steps': 25,                                                     
+[stable]:  'prompt': 'a photograph of an astronaut riding a horse',                       
+[stable]:  'sampler_name': 'euler_a',                                                     
+[stable]:  'seed': 2423393576,                                                            
+[stable]:  'use_face_correction': None,                                                   
+[stable]:  'use_hypernetwork_model': None,                                                
+[stable]:  'use_stable_diffusion_model':                                                  
+[stable]: '/easy-diffusion/models/stable-diffusion/sd-v1-4.ckpt',                         
+[stable]:  'use_upscale': None,                                                           
+[stable]:  'use_vae_model': None,                                                         
+[stable]:  'width': 512}                                                                  
+[stable]: 17:16:11.231 INFO cuda:0 task data: {'block_nsfw': False,         renderer.py:82
+[stable]:  'clip_skip': False,                                                            
+[stable]:  'codeformer_fidelity': 0.5,                                                    
+[stable]:  'codeformer_upscale_faces': False,                                             
+[stable]:  'latent_upscaler_steps': 10,                                                   
+[stable]:  'metadata_output_format': 'none',                                              
+[stable]:  'output_format': 'jpeg',                                                       
+[stable]:  'output_lossless': False,                                                      
+[stable]:  'output_quality': 75,                                                          
+[stable]:  'request_id': 140549785176528,                                                 
+[stable]:  'save_to_disk_path': None,                                                     
+[stable]:  'session_id': '1687886167177',                                                 
+[stable]:  'show_only_filtered_image': True,                                              
+[stable]:  'stream_image_progress': False,                                                
+[stable]:  'stream_image_progress_interval': 5,                                           
+[stable]:  'upscale_amount': 4,                                                           
+[stable]:  'use_face_correction': None,                                                   
+[stable]:  'use_hypernetwork_model': None,                                                
+[stable]:  'use_lora_model': None,                                                        
+[stable]:  'use_stable_diffusion_model':                                                  
+[stable]: '/easy-diffusion/models/stable-diffusion/sd-v1-4.ckpt',                         
+[stable]:  'use_upscale': None,                                                           
+[stable]:  'use_vae_model': None,                                                         
+[stable]:  'vram_usage_level': 'balanced'}                                                
+[stable]: 17:16:11.236 INFO cuda:0 Global seed set to 2423393576                seed.py:65
+[stable]: Sampling:   0%|          | 0/1 [00:00<?, ?it/s]Sampling: 100%|██████████| 1/1 [00:00<00:00,  2.70it/s]Sampling: 100%|██████████| 1/1 [00:00<00:00,  2.70it/s]
+[stable]: 17:16:11.295 INFO cuda:0 seeds used = [2423393576]            sampler_main.py:64
+[stable]: 17:16:13.707 INFO cuda:0 Task completed                           renderer.py:73
+[stable]: 17:16:13.758 INFO cuda:0 Session 1687886167177 task          task_manager.py:367
+[stable]: 140549785176528 completed by NVIDIA GeForce RTX 4090.                           
