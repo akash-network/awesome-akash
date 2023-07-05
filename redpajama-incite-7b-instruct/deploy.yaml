@@ -3,7 +3,7 @@
 
   services:
     app:
-      image: yuravorobei/redpajama_incite_7b_instruct:0.2
+      image: yuravorobei/redpajama_incite_7b_instruct:0.3
 
       expose:
         - port: 7860
