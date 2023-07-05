@@ -5,10 +5,10 @@ services:
   gpu-test:
     image: docker.io/thumperai/torchbench:v0.0.3
     expose:
-    - port: 8888
-      as: 80
-      to:
-      - global: true
+      - port: 8888
+        as: 80
+        to:
+         - global: true
     cmd:
        - '"jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--gpus all", "--no-browser"'
         # python /workspace/benchmark/install.py models hf_bert hf_Bert_large resnet50 tacotron2 && pytest /workspace/benchmark/test_bench.py -k "(hf_bert or hf_bert_Large or resnet50 or tacotron2)" --ignore_machine_config'
@@ -16,7 +16,7 @@ services:
         # runtime is about 1 minute for setup and about 8 minutes for benchmarks on laptop 
     env:
     - "JUPYTER_TOKEN=passwd"
-
+    
 profiles:
   compute:
     gpu-test:
