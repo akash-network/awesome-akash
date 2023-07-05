@@ -4,10 +4,11 @@ RUN git clone https://github.com/pytorch/benchmark
 
 COPY run.sh /
 COPY run.sh /app/
+COPY run_cpu_only.sh /app/
 COPY Akash_Gpu_Benchmark_Notebook.ipynb /app/Akash_Gpu_Benchmark_Notebook.ipynb
 RUN chmod 777 -R /app/
 RUN chmod 777 -R "${HOME}"
-RUN pip3 install torchtext torchaudio torchvision
+RUN pip3 install torchtext torchaudio torchvision seaborn
 # RUN /opt/conda/bin/python3 -m pip install torch torchaudio torchvision torchtext
 
 # ENTRYPOINT ["sh","./run.sh"]
