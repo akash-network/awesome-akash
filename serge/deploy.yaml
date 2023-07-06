@@ -14,7 +14,7 @@ profiles:
     serge:
       resources:
         cpu:
-          units: 32.0
+          units: 24
 #Higher is better for AI! Be sure to change thread setting in app.
         memory:
           size: 28Gi
@@ -22,21 +22,17 @@ profiles:
 #13B requires about 12GB free
 #30B requires about 20GB free // 24 not enough
         storage:
-          size: 25Gi
+          size: 100Gi
 #Bigger models may require more storage.
 #Increase as required.
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: 4090
   placement:
     akash:
-      #######################################################
-      #Keep this section to deploy on trusted providers
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
-      #######################################################
-      #Remove this section to deploy on untrusted providers
-      #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         serge:
           denom: uakt
