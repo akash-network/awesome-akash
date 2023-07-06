@@ -7,10 +7,15 @@ FastChat is an open platform for training, serving, and evaluating large languag
 - A distributed multi-model serving system with web UI and OpenAI-compatible RESTful APIs.
 
 # Web UI
+![image](https://github.com/satoshi-kevin/awesome-akash/assets/127167037/57f85eb6-bd3a-4991-8b78-b84e3ff3f25a)
 
 
 
 # Demo Video
+
+
+https://github.com/satoshi-kevin/awesome-akash/assets/127167037/9387ab2c-d4a2-45db-ae1f-a79320b55fc4
+
 
 ## News
 - [2023/06] 🔥 We introduced **LongChat**, our long-context chatbots and evaluation tools. Check out the blog [post](https://lmsys.org/blog/2023-06-29-longchat/) and [code](https://github.com/DachengLi1/LongChat/).
