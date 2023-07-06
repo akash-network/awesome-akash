@@ -29,6 +29,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+- [Dolly-v2-12b](dolly-v2-12b)
+- [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 
 ### Blogging
 
