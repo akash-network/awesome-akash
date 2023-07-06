@@ -3,7 +3,7 @@
   
   services:
     app:
-      image: ubuntu:latest
+      image: ubuntu
       expose:
       - port: 7680
         as: 80
