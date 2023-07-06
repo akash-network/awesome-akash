@@ -1,6 +1,7 @@
 # Semantra
 
-Deployment video: https://www.youtube.com/watch?v=LfoPUIn-Eug
+Deployment video: https://www.youtube.com/watch?v=LfoPUIn-
+
 Project page: https://github.com/freedmand/semantra
 
 Semantra is a multipurpose tool for semantically searching documents. Query by meaning rather than just by matching text.
