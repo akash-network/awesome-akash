@@ -1,0 +1,41 @@
+---
+version: "2.0"
+
+services:
+  gpu-test:
+    image: docker.io/thumperai/torchbench:v0.0.1
+    expose:
+       - port: 8888
+         as: 80
+         to:
+          - global: true
+    # cmd:
+    #    - 'python /workspace/benchmark/install.py models hf_bert hf_Bert_large resnet50 tacotron2 && pytest /workspace/benchmark/test_bench.py -k "(hf_bert or hf_bert_Large or resnet50 or tacotron2)" --ignore_machine_config'
+        # - "cd benchmark && python install.py models hf_bert hf_Bert_large resnet50 tacotron2 && pytest /workspace/benchmark/test_bench.py -k '(hf_bert or hf_bert_Large or resnet50 or tacotron2 and (not cuda))' --ignore_machine_config"
+        # runtime is about 1 minute for setup and about 8 minutes for benchmarks on laptop 
+profiles:
+  compute:
+    gpu-test:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 20Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+        storage:
+          - size: 100Gi
+  placement:
+    westcoast:
+      pricing:
+        gpu-test:
+          denom: uakt
+          amount: 100000
+deployment:
+  gpu-test:
+    westcoast:
+      profile: gpu-test
+      count: 1
