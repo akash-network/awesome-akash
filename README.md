@@ -29,6 +29,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+- [Flan-T5 XXL](flan-t5-xxl)
 
 ### Blogging
 
