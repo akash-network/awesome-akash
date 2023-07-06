@@ -1,6 +1,6 @@
 # Semantra
 
-Deployment video: https://www.youtube.com/watch?v=LfoPUIn-
+Deployment video: https://www.youtube.com/watch?v=LfoPUIn-Eug
 
 Project page: https://github.com/freedmand/semantra
 
