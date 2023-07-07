@@ -23,14 +23,16 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [ChatChat](chatchat)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
+- [Dolly-v2-12b](dolly-v2-12b)
 - [Flowise](flowise)
 - [GPT4ALL](gpt4all)
+- [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
+- [Semantra](semantra)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
-- [Dolly-v2-12b](dolly-v2-12b)
-- [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
+- [Flan-T5 XXL](flan-t5-xxl)
 
 ### Blogging
 
