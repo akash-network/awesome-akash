@@ -25,6 +25,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Daila](daila)
 - [Flowise](flowise)
 - [GPT4ALL](gpt4all)
+- [Semantra](semantra)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
