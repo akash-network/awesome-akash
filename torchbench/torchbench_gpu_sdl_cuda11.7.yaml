@@ -1,0 +1,45 @@
+version: '2.0'
+services:
+  gpu-test:
+    image: docker.io/thumperai/torchbench:v0.0.11-cuda-11.7-dev
+    expose:
+      - port: 8888
+        as: 80
+        to:
+          - global: true
+    cmd:
+      - '"jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"'
+    env:
+      - JUPYTER_TOKEN=passwd
+profiles:
+  compute:
+    gpu-test:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 20Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: k80
+                - model: p4
+                - model: t4
+                - model: 1650
+             
+        storage:
+          - size: 100Gi
+  placement:
+    westcoast:
+      pricing:
+        gpu-test:
+          denom: uakt
+          amount: 100000
+deployment:
+  gpu-test:
+    westcoast:
+      profile: gpu-test
+      count: 1
+
