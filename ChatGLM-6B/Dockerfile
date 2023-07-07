@@ -1,5 +1,5 @@
 ##thudm
-FROM sxk1633/nvidia-cuda:11.4.0
+FROM library/ubuntu:20.04
 
 WORKDIR /
 
