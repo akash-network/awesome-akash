@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   gpu-test:
-    image: docker.io/thumperai/torchbench:v0.0.7-cuda-12.1
+    image: docker.io/thumperai/torchbench:v0.0.8-cuda-12.0-dev
     expose: 
       - port: 8888
         as: 80
@@ -28,8 +28,19 @@ profiles:
         gpu:
           units: 1
           attributes:
-            vendor:
-              nvidia:
+          vendor:
+            nvidia:
+              - model: a40
+              - model: a10
+              - model: 4090
+              - model: 3090Ti
+              - model: 4080
+              - model: 3090              
+              - model: h100
+              - model: a100
+              - model: v100
+
+
         storage:
           - size: 100Gi
   placement:

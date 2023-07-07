@@ -2,9 +2,10 @@
 FROM tverous/pytorch-notebook:latest
 RUN git clone https://github.com/pytorch/benchmark
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
-RUN apt-get install -y pandoc texlive-xetex
+RUN apt-get install -y pandoc texlive-xetex fonts-liberation texlive texlive-latex-extra  
 COPY run.sh /
 COPY run.sh /app/
+COPY run_tacotron.sh /app/
 COPY run_cpu_only.sh /app/
 COPY Akash_Gpu_Benchmark_Notebook.ipynb /app/Akash_Gpu_Benchmark_Notebook.ipynb
 RUN chmod 777 -R /app/

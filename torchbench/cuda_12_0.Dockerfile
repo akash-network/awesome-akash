@@ -37,6 +37,7 @@ RUN apt-get install -y pandoc texlive-xetex fonts-liberation texlive texlive-lat
 
 COPY run.sh /
 COPY run.sh /app/
+COPY run_tacotron.sh /app/
 COPY run_cpu_only.sh /app/
 COPY Akash_Gpu_Benchmark_Notebook.ipynb /app/Akash_Gpu_Benchmark_Notebook.ipynb
 RUN chmod 777 -R /app/
