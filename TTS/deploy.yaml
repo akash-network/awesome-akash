@@ -12,6 +12,10 @@ services:
       - '-c'
     args:
       - 'python3 TTS/server/server.py --model_name tts_models/en/vctk/vits --use_cuda true'
+
+# use gpu with --use cuda true
+# use cpu with --use cuda false
+
 profiles:
   compute:
     tts:
