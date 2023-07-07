@@ -1,22 +1,16 @@
----
-version: "2.0"
-
+version: '2.0'
 services:
   gpu-test:
-    image: docker.io/thumperai/torchbench:v0.0.11-cuda-12.0-dev
-    expose: 
+    image: docker.io/thumperai/torchbench:v0.0.10-cuda-12.0-dev
+    expose:
       - port: 8888
         as: 80
         to:
-         - global: true
+          - global: true
     cmd:
-       - '"jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"'
-        # python /workspace/benchmark/install.py models hf_bert hf_Bert_large resnet50 tacotron2 && pytest /workspace/benchmark/test_bench.py -k "(hf_bert or hf_bert_Large or resnet50 or tacotron2)" --ignore_machine_config'
-        # - "cd benchmark && python install.py models hf_bert hf_Bert_large resnet50 tacotron2 && pytest /workspace/benchmark/test_bench.py -k '(hf_bert or hf_bert_Large or resnet50 or tacotron2 and (not cuda))' --ignore_machine_config"
-        # runtime is about 1 minute for setup and about 8 minutes for benchmarks on laptop 
+      - '"jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--allow-root", "--no-browser"'
     env:
-    - "JUPYTER_TOKEN=passwd"
-    
+      - JUPYTER_TOKEN=passwd
 profiles:
   compute:
     gpu-test:
@@ -28,18 +22,24 @@ profiles:
         gpu:
           units: 1
           attributes:
-          vendor:
-            nvidia:
-              - model: a40
-              - model: a10
-              - model: 4090
-              - model: 3090Ti
-              - model: 4080
-              - model: 3090              
-              - model: h100
-              - model: a100
-              - model: v100
-
+            vendor:
+              nvidia:
+                - model: a40
+                - model: a10
+                - model: 4090
+                - model: 3090Ti
+                - model: 4080
+                - model: 3090
+                - model: h100
+                - model: a100
+                - model: v100
+                - model: 3060
+                - model: p100
+                - model: 4000
+                - model: a4000
+                - model: 2070
+                - model: 1080
+                - model: 1080Ti
 
         storage:
           - size: 100Gi
