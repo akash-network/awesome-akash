@@ -2,7 +2,7 @@
 FROM tverous/pytorch-notebook:latest
 RUN git clone https://github.com/pytorch/benchmark
 RUN DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
-RUN apt-get install -y pandoc texlive-xetex fonts-liberation texlive texlive-latex-extra  
+RUN apt-get install -y pandoc texlive-xetex fonts-liberation texlive texlive-latex-extra libnss3
 COPY run.sh /
 COPY run.sh /app/
 COPY run_tacotron.sh /app/
