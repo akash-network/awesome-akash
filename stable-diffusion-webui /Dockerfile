@@ -1,6 +1,6 @@
 ##automatic   stable-diffusion-webui
 
-FROM sxk1633/nvidia-cuda:11.4.0
+FROM library/ubuntu:20.04
 
 RUN DEBIAN_FRONTEND=noninteractive && apt update && apt install tzdata -y
 
