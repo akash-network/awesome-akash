@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   gpu-test:
-    image: docker.io/thumperai/torchbench:v0.0.8-cuda-12.0-dev
+    image: docker.io/thumperai/torchbench:v0.0.11-cuda-12.0-dev
     expose: 
       - port: 8888
         as: 80
