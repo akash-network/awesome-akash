@@ -1,0 +1,36 @@
+---
+version: "2.0"
+
+services:
+  falcon7b:
+    image: shimpa/falcon7b:0.07
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    falcon7b:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 100Gi
+        gpu:
+          units: 1
+        storage:
+          - size: 200Gi
+  placement:
+    akash:
+      pricing:
+        falcon7b: 
+          denom: uakt
+          amount: 100000
+
+deployment:
+  falcon7b:
+    akash:
+      profile: falcon7b
+      count: 1
