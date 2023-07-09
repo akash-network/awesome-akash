@@ -1,7 +1,7 @@
 version: '2.0'
 services:
   bert:
-    image: clydedevv/bert-base-uncased:0.0.6
+    image: clydedevv/bert-base-uncased:0.0.8
     expose:
       - port: 80
         as: 80
