@@ -2,6 +2,8 @@
 
 This repository contains the necessary files to deploy a Flask application that uses the XLM-RoBERTa language model on the Akash network. XLM-RoBERTa is a powerful language model that can understand and generate text in multiple languages.
 
+Original Facebook Research repo: https://github.com/facebookresearch/XLM
+
 ## Files
 
 - `Dockerfile`: This file is used to build the Docker image for the application. It sets up an environment with Python and all the necessary libraries to run the XLM-RoBERTa model.
