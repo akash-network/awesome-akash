@@ -33,6 +33,8 @@ Note: I noticed that sometimes the logs may not be displayed, what is the reason
 
 ## Demo Video
 For the demo video, I deployed the app with the following settings: `MODEL_NAME=gpt-neo-2.7B`, `MAX_INPUT_TOKEN_LENGTH=30`, `MAX_NEW_TOKENS=50`:
+
+
 https://github.com/yuravorobei/awesome-akash/assets/19820490/11b25cb9-801e-423a-b304-de67acdfbbac
 
 
