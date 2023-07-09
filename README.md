@@ -19,6 +19,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
+- [BERT](bert)
+- [BERT Sentiment Analysis] (bert-sentiment-analysis)
 - [BabyAGI-UI](babyagi-ui)
 - [ChatChat](chatchat)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
@@ -29,6 +31,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+- [XLM-roBERTa](XLM-roBERTa)
 
 ### Blogging
 
