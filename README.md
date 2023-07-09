@@ -20,7 +20,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BERT](bert)
-- [BERT Sentiment Analysis] (bert-sentiment-analysis)
+- [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [BabyAGI-UI](babyagi-ui)
 - [ChatChat](chatchat)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
