@@ -26,6 +26,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Flowise](flowise)
 - [GPT4ALL](gpt4all)
+- [GPT-Neo](gpt-neo)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge)
