@@ -28,8 +28,12 @@ When the deployment starts, the model files will be downloaded and loaded into m
 ## Logs
 The logs on the screenshot below show that the loading of the models has completed and the Uvicorn web server has started and the application is ready to work.
 Note: I noticed that sometimes the logs may not be displayed, what is the reason for this is not clear, but the application starts and runs successfully.
+![Screenshot_20230708_232701](https://github.com/yuravorobei/awesome-akash/assets/19820490/f59895e0-12d8-4cce-a19f-ed0471e1675f)
 
 
 ## Demo Video
 For the demo video, I deployed the app with the following settings: `MODEL_NAME=gpt-neo-2.7B`, `MAX_INPUT_TOKEN_LENGTH=30`, `MAX_NEW_TOKENS=50`:
+https://github.com/yuravorobei/awesome-akash/assets/19820490/11b25cb9-801e-423a-b304-de67acdfbbac
+
+
 
