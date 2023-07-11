@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Falcon-7b Interface</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Falcon-7b Interface</h1>
+
+  <label for="input-text">Enter your text:</label>
+  <input type="text" id="input-text">
+  <button onclick="generateText()">Generate</button>
+
+  <h2>Generated Texts:</h2>
+  <div id="generated-texts"></div>
+
+  <script>
+    function generateText() {
+      var inputText = $("#input-text").val();
+      $.ajax({
+        url: "/generate",
+        type: "POST",
+        data: JSON.stringify({ "text": inputText }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data) {
+          displayGeneratedTexts(data.generated_texts);
+        }
+      });
+    }
+
+    function displayGeneratedTexts(texts) {
+      var generatedTextsContainer = $("#generated-texts");
+      generatedTextsContainer.empty();
+      texts.forEach(function(text, index) {
+        generatedTextsContainer.append("<p>Response " + (index + 1) + ": " + text + "</p>");
+      });
+    }
+  </script>
+</body>
+</html>
