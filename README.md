@@ -31,6 +31,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Semantra](semantra)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
+- [StableStudio](StableStudio)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
 - [Flan-T5 XXL](flan-t5-xxl)
