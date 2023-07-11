@@ -1,0 +1,43 @@
+version: '2.0'
+services:
+  codeserver:
+    image: ghcr.io/linuxserver/code-server
+    env:
+      - PUID=1000
+      - PGID=1000
+      - PASSWORD=password 
+      - SUDO_PASSWORD=password
+
+    expose:
+      - port: 8443
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    codeserver:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 4Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        codeserver:
+          denom: uakt
+          amount: 10000
+deployment:
+  codeserver:
+    akash:
+      profile: codeserver
+      count: 1
+

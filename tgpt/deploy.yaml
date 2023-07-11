@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  tgpt:
+    image: cryptoandcoffee/akash-tgpt:1
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+profiles:
+  compute:
+    tgpt:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 4.75Gi #Increase this for larger local memory, can be lower if used external vector for memory.
+        storage:
+          size: 16Gi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        tgpt:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  tgpt:
+    akash:
+      profile: tgpt
+      count: 1

@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  adminer:
+    image: adminer
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    adminer:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        adminer:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  adminer:
+    akash:
+      profile: adminer
+      count: 1

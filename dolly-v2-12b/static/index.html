@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dolly text generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <main>
+      <section id="text-gen">
+        <h1>Dolly text generator</h1>
+        <p>
+          Model:
+          <a
+              href="https://huggingface.co/databricks/dolly-v2-12b"
+              rel="noreferrer"
+              target="_blank"
+            >dolly-v2-12b Model Card</a
+          >
+        </p>
+        <form class="text-gen-form">
+          <label for="text-gen-input">Text prompt</label>
+          <input
+            id="text-gen-input"
+            type="text"
+            value="What is Akash Network?"
+          />
+          <button id="text-gen-submit">Submit</button>
+          <p class="text-gen-output"></p>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

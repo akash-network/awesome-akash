@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  thorchain:
+    image: edouardl/thorchain-bepswap-thorchain-ui
+    expose:
+      - port: 5000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    thorchain:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        thorchain:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  thorchain:
+    akash:
+      profile: thorchain
+      count: 1

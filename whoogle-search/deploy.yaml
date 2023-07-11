@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  whoogle:
+    image: benbusby/whoogle-search:latest
+    # See https://github.com/benbusby/whoogle-search for full list of supported environment variables
+    env:
+      - WHOOGLE_USER=user
+      - WHOOGLE_PASS=password
+    expose:
+      - port: 5000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    whoogle:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        whoogle: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  whoogle:
+    akash:
+      profile: whoogle
+      count: 1

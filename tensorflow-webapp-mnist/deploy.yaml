@@ -1,0 +1,80 @@
+---
+version: "2.0"
+
+services:
+  tfserver:
+    image: wlouie1/mnist-tf-serve:1.0
+    expose:
+      - port: 8501
+  flaskserver:
+    image: wlouie1/mnist-flask-serve:1.0
+    expose:
+      - port: 5000
+    depends-on:
+      - tfserver
+  web:
+    image: wlouie1/mnist-app:1.0
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+    depends-on:
+      - flaskserver
+
+profiles:
+  compute:
+    tfserver:
+      resources:
+        cpu:
+          units: 0.2
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    flaskserver:
+      resources:
+        cpu:
+          units: 0.2
+        memory:
+          size: 256Mi
+        storage:
+          size: 1Gi
+    web:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 256Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        tfserver:
+          denom: uakt
+          amount: 10000
+        flaskserver:
+          denom: uakt
+          amount: 10000
+        web:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  tfserver:
+    westcoast:
+      profile: tfserver
+      count: 1
+  flaskserver:
+    westcoast:
+      profile: flaskserver
+      count: 1
+  web:
+    westcoast:
+      profile: web
+      count: 1

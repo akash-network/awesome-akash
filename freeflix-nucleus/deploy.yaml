@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  ffnucleus:
+    image: harish1551/ff_nucleus:latest
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+        accept:
+          - dcloud.nucleus.freeflix.live
+
+profiles:
+  compute:
+    ffnucleus:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        ffnucleus: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  ffnucleus:
+    akash:
+      profile: ffnucleus
+      count: 1
+

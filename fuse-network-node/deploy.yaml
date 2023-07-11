@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  fusenet:
+    image: fusenet/node
+    expose:
+      - port: 30303
+        to:
+          - global: true
+      - port: 8545
+        to:
+          - global: true
+      - port: 8546
+        to:
+          - global: true
+    args:
+    - "--role node"
+profiles:
+  compute:
+    fusenet-profile:
+      resources:
+        cpu:
+          units: 11.0
+        memory:
+          size: 64Gi
+        storage:
+          size: 128Gi
+  placement:
+    westcoast:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        fusenet-profile:
+          denom: uakt
+          amount: 1000
+deployment:
+  fusenet:
+    westcoast:
+      profile: fusenet-profile
+      count: 1

@@ -1,0 +1,157 @@
+---
+version: '2'
+services:
+
+  postgresql:
+    image: docker.io/bitnami/postgresql:11
+    expose:
+      - port: 5432
+        proto: tcp
+        to:
+          - service: redis
+          - service: discourse
+          - service: sidekiq
+    env:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USERNAME=akt_discourse
+      - POSTGRESQL_DATABASE=akash_discourse
+      ## Set if ALLOW_EMPTY_PASSWORD=no
+      #- POSTGRESQL_PASSWORD=changeme 
+      #- POSTGRESQL_POSTGRES_PASSWORD=changeme
+
+  redis:
+    image: docker.io/bitnami/redis:6.0
+    expose:
+      - port: 6379
+        proto: tcp
+        to:
+          - service: discourse
+          - service: sidekiq
+    env:
+      - ALLOW_EMPTY_PASSWORD=yes
+      ## Set if ALLOW_EMPTY_PASSWORD=no
+      #- REDIS_PASSWORD=changeme
+
+  discourse:
+    image: docker.io/bitnami/discourse:2
+    expose:
+      - port: 3000
+        to:
+          - global: true
+    depends_on:
+      - postgresql
+      - redis
+    env:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - DISCOURSE_HOST=localhost
+      - DISCOURSE_DATABASE_HOST=postgresql
+      - DISCOURSE_DATABASE_PORT_NUMBER=5432
+      - DISCOURSE_DATABASE_USER=akt_discourse
+      - DISCOURSE_DATABASE_PASSWORD=changeme
+      - DISCOURSE_DATABASE_NAME=akash_discourse
+      - DISCOURSE_REDIS_HOST=redis
+      - DISCOURSE_REDIS_PORT_NUMBER=6379
+      - POSTGRESQL_CLIENT_POSTGRES_USER=postgres
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_NAME=akash_discourse
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_USER=akt_discourse
+      - POSTGRESQL_CLIENT_CREATE_DATABASE_EXTENSIONS=hstore,pg_trgm
+      
+      ## Set if ALLOW_EMPTY_PASSWORD=no
+      #- DISCOURSE_DATABASE_PASSWORD=changeme
+      #- DISCOURSE_REDIS_PASSWORD=changeme
+      #- POSTGRESQL_CLIENT_POSTGRES_PASSWORD=changeme
+      #- POSTGRESQL_CLIENT_CREATE_DATABASE_PASSWORD=changeme
+  
+  sidekiq:
+    image: docker.io/bitnami/discourse:latest
+    depends_on:
+      - discourse
+    args: 
+      - /opt/bitnami/scripts/discourse-sidekiq/run.sh
+    env:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - DISCOURSE_HOST=localhost
+      - DISCOURSE_DATABASE_HOST=postgresql
+      - DISCOURSE_DATABASE_PORT_NUMBER=5432
+      - DISCOURSE_DATABASE_USER=akt_discourse
+      - DISCOURSE_DATABASE_PASSWORD=changeme
+      - DISCOURSE_DATABASE_NAME=akash_discourse
+      - DISCOURSE_REDIS_HOST=redis
+      - DISCOURSE_REDIS_PORT_NUMBER=6379
+      
+      ## Set if ALLOW_EMPTY_PASSWORD=no
+      #- DISCOURSE_DATABASE_PASSWORD=changeme
+      #- DISCOURSE_REDIS_PASSWORD=changeme
+      
+
+profiles:
+  compute:
+    postgresql:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    redis:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    discourse:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    sidekiq:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      pricing:
+        postgresql: 
+          denom: uakt
+          amount: 10000
+        redis: 
+          denom: uakt
+          amount: 10000
+        discourse: 
+          denom: uakt
+          amount: 10000
+        sidekiq: 
+          denom: uakt
+          amount: 10000
+
+
+deployment:
+  postgresql:
+    westcoast:
+      profile: postgresql
+      count: 1 
+  redis:
+    westcoast:
+      profile: redis
+      count: 1 
+  discourse:
+    westcoast:
+      profile: discourse
+      count: 1 
+  sidekiq:
+    westcoast:
+      profile: sidekiq
+      count: 1 

@@ -1,0 +1,64 @@
+---
+version: '2.0'
+services:
+  prysm-beacon:
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain
+    expose:
+      - port: 4000
+        as: 4000
+        to:
+          - global: true
+      - port: 13000
+        as: 13000
+        proto: tcp
+        to:
+          - global: true
+      - port: 12000
+        as: 12000
+        proto: udp
+        to:
+          - global: true
+      #For additionl ports see : https://docs.prylabs.network/docs/prysm-usage/p2p-host-ip
+    args:
+      - --chain=mainnet
+      - --accept-terms-of-use
+      - --jwt-secret=16698d3fdef65a91a3af25a90463de00b976e885a6cfa7f45929b75e9b52d039
+      #Generate your own with openssl rand -hex 32 | tr -d "\n"
+      #- --suggested-fee-recipient=
+      #- --execution-endpoint=<YOUR_ETH_EXECUTION_NODE_ENDPOINT>
+      - --rpc-host=0.0.0.0
+      - --grpc-gateway-host=0.0.0.0
+      - --monitoring-host=0.0.0.0
+      #For additional arguments see : https://docs.prylabs.network/docs/prysm-usage/parameters
+profiles:
+  compute:
+    prysm-beacon:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 32Gi
+        storage:
+          - size: 1Ti
+  placement:
+    akash:
+      placement:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        prysm-beacon:
+          denom: uakt
+          amount: 10000
+deployment:
+  prysm-beacon:
+    akash:
+      profile: prysm-beacon
+      count: 1

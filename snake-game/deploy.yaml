@@ -1,0 +1,66 @@
+---
+version: "2.0"
+
+services:
+  mongo:
+    image: library/mongo:latest
+    expose:
+      - port: 27017
+        as: 27017
+        to:
+          - service: mongo
+  snake:
+    image: harish1551/snake-game:latest
+    env:
+      - DB_HOST=mongo
+    depends_on:
+      - mongo
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    snake:
+      resources:
+        cpu:
+          units: 0.25
+        memory:
+          size: 512Mi
+        storage:
+          size: 1G
+    mongo:
+      resources:
+        cpu:
+          units: 0.25
+        memory:
+          size: 512Mi
+        storage:
+          size: 128Mi
+  placement:
+    akash:
+      attributes:
+        organization: akash.network
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        snake: 
+          denom: uakt
+          amount: 10000
+        mongo: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  snake:
+    akash:
+      profile: snake
+      count: 1
+  mongo:
+    akash:
+      profile: mongo
+      count: 1

@@ -1,0 +1,49 @@
+---
+version: "2.0"
+endpoints:
+  your_endpoint_name:  # # WARRING! SPECIFY UNIQ ENDPOINT NAME! ONLY LOWER CASE SYMBOLS!
+    kind: ip
+services:
+  app:
+
+    image: dimokus88/sentineldvpn:0.12
+    env:
+      - "MNEMONIC_BASE64=" # Mnemonic phrase encrypted with BASE64.
+      - "MONIKER=dVPN on Akash Network v2RAY" # Your dVPN node name.
+      - "VERSION=v0.6.5" # dVPN binary file version.
+      - "LISTEN_PORT=3333" # v2RAY listen port
+      - "REMOTE_PORT=8585" # Remote port for are connection sentinel client service.
+      - "IPV4_ADDRESS=" # Node static IP address ( of leases section )
+    expose:
+      - port: 8585 # REMOTE_URL_PORT
+        as: 8585 # REMOTE_URL_PORT
+        to:
+          - global: true
+            ip: your_endpoint_name # Specify the endpoint name from line 4
+      - port: 3333 # LISTEN_PORT 
+        as: 3333 # LISTEN_PORT 
+        to:
+          - global: true
+            ip: your_endpoint_name # Specify the endpoint name from line 4
+       
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 1Gi
+        storage:
+          size: 10Gi         
+  placement:
+    akash: 
+      pricing:
+        app:
+          denom: uakt
+          amount: 100000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1 

@@ -1,0 +1,47 @@
+---
+version: "2.0"
+
+services:
+  web:
+    image: slowriot/minecraft-server
+    expose:
+      - port: 25565
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - FORCE_REDOWNLOAD=true
+      - EULA=TRUE
+      - VERSION=1.17
+      - SERVER_NAME=AkashMinecraft
+      - MEMORY=4G
+      - MAX_PLAYERS=10
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 1.5
+        memory:
+          size: 5Gi
+        storage:
+          size: 8Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        web:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  web:
+    akash:
+      profile: web
+      count: 1

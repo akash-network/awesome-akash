@@ -1,0 +1,83 @@
+---
+version: "2.0"
+
+services:
+  web:
+    image: ghcr.io/spacepotahto/qbittorrent:1.0.0
+    expose:
+      # Web app
+      - port: 8080
+        as: 8080
+        to:
+          - service: ssh
+      # File server
+      - port: 5000
+        as: 5000
+        to:
+          - service: ssh
+      # Optional listening port
+      # See also https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Listening_Port
+      - port: 6881
+        as: 6881
+        to:
+          - global: true
+  ssh:
+    image: ghcr.io/spacepotahto/openssh-server:1.0.0
+    depends_on:
+      - web
+    env:
+      # See all options at https://github.com/linuxserver/docker-openssh-server#usage
+      # Note supplying key for authentication is generally safer than password based authentication
+      # - PUBLIC_KEY=yourpublickey
+      - PASSWORD_ACCESS=true
+      - USER_PASSWORD=yourpassword
+      - USER_NAME=username
+    expose:
+      - port: 2222
+        as: 2222
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          # Specify [<Expected Total Files Download Size> + 1]Gi
+          size: 2Gi
+    ssh:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        web: 
+          denom: uakt
+          amount: 10000
+        ssh: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  web:
+    akash:
+      profile: web
+      count: 1
+  ssh:
+    akash:
+      profile: ssh
+      count: 1
