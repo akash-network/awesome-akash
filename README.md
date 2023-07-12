@@ -21,6 +21,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [ChatChat](chatchat)
+- [ChatGLM-6B](ChatGLM-6B)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
 - [Dolly-v2-12b](dolly-v2-12b)
