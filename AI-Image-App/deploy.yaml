@@ -21,7 +21,6 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: a100
         storage:
           - size: 100Gi
   placement:
