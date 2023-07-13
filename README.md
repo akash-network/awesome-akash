@@ -24,6 +24,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
 - [Flowise](flowise)
+- [FastChat](FastChat)
 - [GPT4ALL](gpt4all)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
