@@ -36,6 +36,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Weaviate](weaviate)
 - [Flan-T5 XXL](flan-t5-xxl)
 - [Falcon-7B](Falcon-7B)
+- [AI-Image-App](AI-Image-App)
 
 ### Blogging
 
