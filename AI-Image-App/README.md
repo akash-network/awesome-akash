@@ -1,6 +1,6 @@
 # AI-Art
 
-![AI-Art Screenshot](./AI-Image-App/Screenshot(234).png)
+![AI-Art Screenshot](./Screenshot(234).png)
 
 Art generation using VQGAN + CLIP using docker containers. A simplified,
 updated, and expanded upon version of
@@ -25,11 +25,11 @@ For running just deploy [this SDL](https://github.com/alfset/awesome-akash/blob/
 
 ### Logs
 
-![Checking Logs](./AI-Image-App/Screenshot(232).png)
+![Checking Logs](./Screenshot(232).png)
 
 ### Check GPU resources has been used
 
-![Checking GPU resources](./AI-Image-App/Screenshot(233).png)
+![Checking GPU resources](./Screenshot(233).png)
 
 ## Image sizes
 
