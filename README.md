@@ -27,7 +27,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [GPT4ALL](gpt4all)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
-- [stable-diffusion-webui](stable-diffusion-webui)
+- [Stable-diffusion-webui](stable-diffusion-webui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
 
