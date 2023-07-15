@@ -1,0 +1,1 @@
+[Matomo](https://matomo.org) is an open source user analytics platform for websites and mobile apps. During the installtion process you will be asked for a Mysql database, user, and password. You can change those according to your needs in the deploy.yaml. 

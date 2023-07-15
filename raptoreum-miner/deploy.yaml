@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  raptoreum:
+    image: cryptoandcoffee/cpu-akash-cpuminer-gr-avx2:2
+    expose:
+      - port: 4048
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - "ADDRESS=RMB251ZucvCNyX1yoQqsSC2wwJ3s7fHx3b"
+      - "POOL=suprnova"
+      - "WORKER=akash"
+      - "TUNE=no-tune"
+      - "DONATION=0"
+profiles:
+  compute:
+    raptoreum:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 256Mi
+        storage:
+          size: 128Mi
+  placement:
+    akash:
+      pricing:
+        raptoreum:
+          denom: uakt
+          amount: 2
+
+deployment:
+  raptoreum:
+    akash:
+      profile: raptoreum
+      count: 1

@@ -1,0 +1,52 @@
+---
+version: "2.0"
+
+services:
+  stable-diffusion-ui:
+    image: s20081428/stable-diffusion-ui:v2.3
+    expose:
+      - port: 9000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    stable-diffusion-ui:
+      resources:
+        cpu:
+          units: 16
+          # For quicker performance of Stable Diffusion, it's recommended to increase the CPU capacity.
+          # You can try using 32, 64, or 128 units to achieve faster processing. In case you don't receive any bids,
+          # consider lowering theu requested CPU capacity. Note that the maximum CPU units allowed are 256.
+        memory:
+          size: 32Gi
+          # Stable Diffusion needs at least 8Gi of memory.
+        storage:
+          size: 32Gi
+          # Stable Diffusion requires at least 25Gi of disk space.
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: 4090
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+    
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        stable-diffusion-ui:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  stable-diffusion-ui:
+    akash:
+      profile: stable-diffusion-ui
+      count: 1

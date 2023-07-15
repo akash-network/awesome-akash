@@ -1,0 +1,87 @@
+version: '2.0'
+services:
+  weaviate:
+    image: semitechnologies/weaviate:1.19.6
+    expose:
+      - port: 8080
+        to:
+          - global: true
+    env:
+      # Check https://weaviate.io/developers/weaviate/installation/docker-compose
+      # For the latest version and full configuration instructions
+      - QUERY_DEFAULTS_LIMIT=20
+      - AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true
+      - PERSISTENCE_DATA_PATH=./var/lib/weaviate
+      - DEFAULT_VECTORIZER_MODULE=text2vec-transformers
+      - ENABLE_MODULES=text2vec-transformers
+      - TRANSFORMERS_INFERENCE_API=http://t2v-transformers:8080
+      - CLUSTER_HOSTNAME=akash
+    params:
+      storage:
+        weaviate:
+          mount: /var/lib/weaviate
+          readOnly: false
+  t2v-transformers:
+    image: semitechnologies/transformers-inference:sentence-transformers-multi-qa-MiniLM-L6-cos-v1
+    env:
+      - ENABLE_CUDA=0
+      # set to 1 to enable and uncommend gpu resources below
+      # - NVIDIA_VISIBLE_DEVICES=all
+      # enable if running with CUDA
+    expose:
+      - port: 8080
+        to:
+          - service: weaviate
+profiles:
+  compute:
+    weaviate:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 4Gi
+          - name: weaviate
+            size: 32Gi
+            attributes:
+              persistent: true
+              class: beta3
+    t2v-transformers:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 8Gi
+        storage:
+          - size: 1Gi
+        #gpu:
+        #  units: 1
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        weaviate:
+          denom: uakt
+          amount: 10000
+        t2v-transformers:
+          denom: uakt
+          amount: 10000
+deployment:
+  weaviate:
+    akash:
+      profile: weaviate
+      count: 1
+  t2v-transformers:
+    akash:
+      profile: t2v-transformers
+      count: 1

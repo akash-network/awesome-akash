@@ -1,0 +1,82 @@
+--
+version: '2.0'
+services:
+  teamspeak:
+    image: teamspeak:3.13.7
+    expose:
+      - port: 9987
+        as: 9987
+        to:
+          - global: true
+      - port: 10011
+        as: 10011
+        to:
+          - global: true
+      - port: 30033
+        as: 30033
+        to:
+          - global: true
+    env:
+      - TS3SERVER_DB_PLUGIN=ts3db_mariadb
+      - TS3SERVER_DB_SQLCREATEPATH=create_mariadb
+      - TS3SERVER_DB_HOST=mariadb
+      - TS3SERVER_DB_USER=root
+      - TS3SERVER_DB_PASSWORD=example
+      - TS3SERVER_DB_NAME=teamspeak
+      - TS3SERVER_DB_WAITUNTILREADY=30
+      - TS3SERVER_LICENSE=accept
+  mariadb:
+    image: mariadb
+    expose:
+      - port: 3306
+        to:
+          - service: teamspeak
+    env:
+      - MYSQL_ROOT_PASSWORD=example
+      - MYSQL_DATABASE=teamspeak
+profiles:
+  compute:
+    teamspeak:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 512Mi
+        storage:
+          - size: 16Gi
+    mariadb:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 8Gi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        teamspeak:
+          denom: uakt
+          amount: 1000
+        mariadb:
+          denom: uakt
+          amount: 10000
+deployment:
+  teamspeak:
+    akash:
+      profile: teamspeak
+      count: 1
+  mariadb:
+    akash:
+      profile: mariadb
+      count: 1

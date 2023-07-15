@@ -1,0 +1,48 @@
+---
+version: "2.0"
+
+services:
+  miner-moneroocean:
+    image: cryptoandcoffee/akash-moneroocean:112
+    expose:
+      - port: 80
+        to:
+          - global: true
+    env:
+      - WALLET=
+      #Your Monero Wallet Address
+      - MEMORY_SIZE=1Gi
+      #Must match memory size in the resources profile
+      - WORKER=akash
+      #All worker names have the provider domain as suffix, example akash-provider.akash.world
+      - MODE=light
+      #Light or Fast - Min 1Gi required for MODE=light and Min 3Gi required for MODE=fast
+profiles:
+  compute:
+    miner-moneroocean:
+      resources:
+        cpu:
+          units: 1.0
+          #Min 0.01 / Max 256 CPU's.
+        memory:
+          size: 1Gi
+          #Min 1Gi for MODE=light/auto and Min 3Gi MODE=fast / Max 512Gi.
+          #For best performance use at least 256Mi per cpu.unit requested above the 1Gi minimum required.
+        storage:
+          size: 16Mi
+          #Min 16Gi / Max 32Ti
+  placement:
+    akash:
+      pricing:
+        miner-moneroocean:
+          denom: uakt
+          amount: 10000 #Keep high to show all bids
+deployment:
+  miner-moneroocean:
+    akash:
+      profile: miner-moneroocean
+      count: 1
+
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.

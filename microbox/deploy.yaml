@@ -1,0 +1,65 @@
+---
+version: "2.0"
+
+services:
+  redis:
+    image: microbox/redis
+    expose:
+      - port: 6379
+        as: 6379
+        to:
+          - service: redis
+  web:
+    image: ety001/online_clipboard:akash
+    env:
+      - "DB_PORT_6379_TCP_ADDR=redis"
+      - "DB_PORT_6379_TCP_PORT=6379"
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 128Mi
+    redis:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 128Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        web:
+          denom: uakt
+          amount: 10000
+        redis:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  web:
+    akash:
+      profile: web
+      count: 1
+  redis:
+    akash:
+      profile: redis
+      count: 1

@@ -1,0 +1,46 @@
+---
+version: "2.0"
+
+services:
+  iperf:
+    image: networkstatic/iperf3
+    args: ["-s"]
+    expose:
+      - port: 5201
+        as: 5201
+        to:
+          - global: true
+      - port: 5201
+        as: 5201
+        to:
+          - global: true
+        proto: udp
+
+profiles:
+  compute:
+    iperf:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 16Mi
+        storage:
+          size: 128Mi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        iperf: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  iperf:
+    akash:
+      profile: iperf
+      count: 1

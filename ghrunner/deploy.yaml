@@ -1,0 +1,51 @@
+# Github Runner with ssh
+# used by https://github.com/<org>/<repo>
+# https://github.com/<org>/<repo>/settings/actions/runners
+---
+version: "2.0"
+
+services:
+  ghrunner:
+    image: andrey01/ghrunner:2.305.0@sha256:01806d5fa1cf7c99fbe8e5bba67a18fa63d71286aaa57116bab9945e435fe99e
+    env:
+      - 'SSH_PUBKEY=<your public SSH key from ~/.ssh/id_<type>.pub'
+      - 'RUNNER_GH_REPO=https://github.com/<org>/<repo>'
+      - 'RUNNER_GH_TOKEN=<get from https://github.com/<org>/<repo>/settings/actions/runners/new>'
+      - 'RUNNER_LABELS=ghrunner'
+      - 'RUNNER_NAME=ghrunner'
+    expose:
+      # HTTP
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      # SSH
+      - port: 22
+        as: 22
+        to:
+          - global: true
+
+profiles:
+  compute:
+    ghrunner:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 16Gi
+        storage:
+          size: 20Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        ghrunner:
+          denom: uakt
+          amount: 1000000
+
+deployment:
+  ghrunner:
+    akash:
+      profile: ghrunner
+      count: 1
