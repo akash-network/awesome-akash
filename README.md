@@ -18,6 +18,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
+- [AUTOMATIC1111](AUTOMATIC1111)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [ChatChat](chatchat)
@@ -132,6 +133,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
+- [Polkadot](polkadot)
 - [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
