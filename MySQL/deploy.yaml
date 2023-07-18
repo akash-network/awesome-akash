@@ -12,6 +12,10 @@ services:
         as: 80
         to:
           - global: true
+    env:
+      - "MYSQL_ROOT_PASSWORD=my-secret-password"
+      - "MYSQL_DATABASE=mydb"
+
 profiles:
   compute:
     mysql:

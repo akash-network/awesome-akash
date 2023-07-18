@@ -18,15 +18,28 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
+- [AUTOMATIC1111](AUTOMATIC1111)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [ChatChat](chatchat)
+- [ChatGLM-6B](ChatGLM-6B)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
+- [Dolly-v2-12b](dolly-v2-12b)
+- [Flowise](flowise)
+- [FastChat](FastChat)
 - [GPT4ALL](gpt4all)
+- [GPT-Neo](gpt-neo)
+- [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
+- [Semantra](semantra)
 - [Serge](serge)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
+- [TTS](TTS)
+- [Weaviate](weaviate)
+- [Flan-T5 XXL](flan-t5-xxl)
+- [Falcon-7B](Falcon-7B)
+- [AI-Image-App](AI-Image-App)
 
 ### Blogging
 
@@ -53,11 +66,12 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
 
-### Continuous Integration
+### CI/CD, DevOps
 
 - [Jenkins](jenkins)
 - [Bitbucket](bitbucket)
 - [Azure Devops Agent](azure-devops-agent)
+- [Github Runner](ghrunner)
 
 ### Data Visualization
 
@@ -119,6 +133,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
+- [Polkadot](polkadot)
 - [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
