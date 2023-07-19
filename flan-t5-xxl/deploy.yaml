@@ -1,0 +1,46 @@
+---
+  version: "2.0"
+
+  services:
+    app:
+      image: cryptopasser/flan-t5:0.5
+
+      expose:
+        - port: 7575
+          as: 80
+          to:
+          - global: true
+
+  profiles:
+    compute:
+      app:
+        resources:
+            cpu:
+                units: 4
+            memory:
+                size: 20Gi
+            gpu:
+                units: 1
+                attributes:
+                    vendor:
+                        nvidia:
+                            - model: 3090
+                            - model: 4090
+                            - model: v100
+                            - model: a100
+                            - model: h100
+                            - model: a40
+            storage:
+                - size: 60Gi
+    placement:
+      akash:
+        attributes:
+        pricing:
+          app:
+            denom: uakt
+            amount: 100000
+  deployment:
+    app:
+      akash:
+        profile: app
+        count: 1
