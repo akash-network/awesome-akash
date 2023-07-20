@@ -18,8 +18,7 @@ RUN apt update && apt -y --no-install-recommends install \
   lz4 \
   hub \
   ssh \
-  ca-certificates \
-  wget
+  ca-certificates
 
 RUN useradd -m -s /bin/bash user
 
