@@ -32,6 +32,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [FastChat](FastChat)
 - [GPT4ALL](gpt4all)
 - [GPT-Neo](gpt-neo)
+- [Llama-2-70B](Llama-2-70B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge)
