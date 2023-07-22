@@ -19,10 +19,6 @@
           as: 80
           to:
           - global: true
-        - port: 22
-          as: 22
-          to:
-          - global: true
 
   profiles:
     compute:
