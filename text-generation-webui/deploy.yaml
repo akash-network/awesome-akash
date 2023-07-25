@@ -1,8 +1,8 @@
 version: '2.0'
 services:
   text-generation-webui:
-    # v1.3.1 of text-generation-webui change this if you want to use a newer/older version
-    image: zjuuu/text-generation-webui:v1.3.1
+    # v1.4 of text-generation-webui change this if you want to use a newer/older version
+    image: zjuuu/text-generation-webui:v1.4
     expose:
       # ui port
       - port: 7860
