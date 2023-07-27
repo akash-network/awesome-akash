@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BERT Sentiment Analysis</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <textarea name="text" placeholder="Enter text here..."></textarea>
+        <button type="submit">Analyze</button>
+    </form>
+    {% if ranking %}
+        <p>Sentiment: {{ ranking }}</p>
+    {% endif %}
+</body>
+</html>

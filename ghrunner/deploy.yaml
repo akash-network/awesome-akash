@@ -1,4 +1,4 @@
-# Github Runner with ssh
+# Github Runner
 # used by https://github.com/<org>/<repo>
 # https://github.com/<org>/<repo>/settings/actions/runners
 ---
@@ -6,22 +6,17 @@ version: "2.0"
 
 services:
   ghrunner:
-    image: andrey01/ghrunner:2.305.0@sha256:01806d5fa1cf7c99fbe8e5bba67a18fa63d71286aaa57116bab9945e435fe99e
+    image: andrey01/ghrunner:2.306.0@sha256:a0c624820a006342d250f812e41f98c339ed819e6384915a4ec489d36e6668dd
+    # Refer to https://github.com/myoung34/docker-github-actions-runner for more options
     env:
-      - 'SSH_PUBKEY=<your public SSH key from ~/.ssh/id_<type>.pub'
-      - 'RUNNER_GH_REPO=https://github.com/<org>/<repo>'
-      - 'RUNNER_GH_TOKEN=<get from https://github.com/<org>/<repo>/settings/actions/runners/new>'
-      - 'RUNNER_LABELS=ghrunner'
+      - 'REPO_URL=https://github.com/<org>/<repo>'
+      - 'RUNNER_TOKEN=<get from https://github.com/<org>/<repo>/settings/actions/runners/new>'
+      - 'LABELS=ghrunner'
       - 'RUNNER_NAME=ghrunner'
     expose:
       # HTTP
       - port: 80
         as: 80
-        to:
-          - global: true
-      # SSH
-      - port: 22
-        as: 22
         to:
           - global: true
 
