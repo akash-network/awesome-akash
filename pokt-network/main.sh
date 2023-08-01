@@ -1,27 +1,47 @@
 #!/bin/bash
 TZ=Europe/London && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-apt-get install -y wget gcc make git nvme-cli nano unzip runit pv
+apt-get install -y -qq wget gcc make git nvme-cli nano unzip runit pv aria2 lz4
 runsvdir -P /etc/service &
 if [[ -n $SSH_PASS ]]
 then
-apt-get install -y ssh 
+apt-get install -y ssh
 echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && (echo $SSH_PASS; echo $SSH_PASS) | passwd root && service ssh restart
 fi
-wget https://go.dev/dl/go1.20.1.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.20.1.linux-amd64.tar.gz
-PATH=$PATH:/usr/local/go/bin && echo $PATH 
-go version && echo 'export PATH='$PATH:/usr/local/go/bin >> /root/.bashrc
+
+if ! [ -x "$(command -v go)" ]; then
+  wget https://go.dev/dl/go1.20.1.linux-amd64.tar.gz && tar -C /usr/local -xzf go1.20.1.linux-amd64.tar.gz
+  PATH=$PATH:/usr/local/go/bin && echo $PATH
+  go version && echo 'export PATH='$PATH:/usr/local/go/bin >> /root/.bashrc
+fi
+
 mkdir -p /root/.pocket/config
-git clone https://github.com/pokt-network/pocket-core.git && cd pocket-core
-git checkout tags/$VERSION && go build -o /usr/bin/pocket /pocket-core/app/cmd/pocket_core/main.go && pocket version
+
+if [ ! -d "pocket-core" ]; then
+  git clone https://github.com/pokt-network/pocket-core.git
+fi
+
+cd pocket-core
+
+# Fetch all tags from the remote
+git fetch --tags
+
+# If the current checked out tag isn't the specified version, switch to it
+CURRENT_TAG=$(git describe --tags)
+if [ "$CURRENT_TAG" != "$VERSION" ]; then
+  git checkout tags/$VERSION
+  # Build the binary for the new tag
+  go build -o /usr/bin/pocket /pocket-core/app/cmd/pocket_core/main.go && pocket version
+fi
+
 # ============================= Setting a custom keyfile.json =======================
-if [[ -n $KEYFILE_BASE64 ]] 
+if [[ -n $KEYFILE_BASE64 ]]
 then
 echo $KEYFILE_BASE64 | base64 -d > /tmp/keyfile.json
 apt-get install -y expect
 cat > /root/import <<EOF
 #!/usr/bin/expect -f
 spawn pocket accounts import-armored /tmp/keyfile.json
-expect "Enter decrypt pass" 
+expect "Enter decrypt pass"
 send "$KEY_PASS\r"
 expect "Enter decrypt pass"
 send "$KEY_PASS\r"
@@ -32,7 +52,7 @@ chmod +x /root/import && /root/import
 cat > /root/create_validator <<EOF
 #!/usr/bin/expect -f
 spawn pocket accounts set-validator $ADDRESS
-expect "Enter the password:" 
+expect "Enter the password:"
 send "$KEY_PASS\r"
 expect eof
 EOF
@@ -50,35 +70,45 @@ then
 echo $CHAINS_BASE64 | base64 -d > /root/.pocket/config/chains.json
 fi
 mkdir -p $HOME/.pocket/config
+
+# This errors due to missing GENESIS_LINK envar, but this doesn't seem to be needed for the mainnet?
 curl -o $HOME/.pocket/config/genesis.json $GENESIS_LINK
 
-if [[ -n $LINK_SNAPSHOT ]]
-then
-export LINK_SNAPSHOT=$LINK_SNAPSHOT
-mkdir -p $HOME/.pocket/data
+echo "== Downloading snapshot =="
 
-SIZE=`wget --spider $LINK_SNAPSHOT 2>&1 | awk '/Length/ {print $2}'`
-echo == Download snapshot ==
-(wget -nv -O - $LINK_SNAPSHOT | pv -petrafb -s $SIZE -i 5 | tar -xz -C $HOME/.pocket/data) 2>&1 | stdbuf -o0 tr '\r' '\n'
+mkdir -p $HOME/.pocket/data
+if [ ! "$(ls -A $HOME/.pocket/data)" ]; then
+  echo "No data in $HOME/.pocket/data. Downloading..."
+  latestFile=$(curl https://pocket-snapshot.liquify.com/files/pruned/latest.txt)
+  echo "Downloading the snapshot"
+  curl -s "https://pocket-snapshot.liquify.com/files/pruned/$latestFile" | tar xf - -C "$HOME/.pocket"
+else
+  echo "Data exists in $HOME/.pocket/data. Skipping download."
 fi
-echo === Run node ===
-mkdir -p /root/pocket/log    
-cat > /root/pocket/run <<EOF 
+
+echo "== Finished Downloading snapshot =="
+
+echo "=== Run node ==="
+mkdir -p /root/pocket/log
+cat > /root/pocket/run <<EOF
 #!/bin/bash
 exec 2>&1
-exec pocket start --seeds="$SEEDS" --$CHAIN
+exec pocket start --simulateRelay --seeds="$SEEDS" --$CHAIN
 EOF
 mkdir /tmp/log/
-cat > /root/pocket/log/run <<EOF 
+cat > /root/pocket/log/run <<EOF
 #!/bin/bash
 exec svlogd -tt /tmp/log/
 EOF
-chmod +x /root/pocket/log/run /root/pocket/run 
+chmod +x /root/pocket/log/run /root/pocket/run
 ln -s /root/pocket /etc/service && ln -s /tmp/log/current /LOG
 
 sleep 20
 for ((;;))
-  do    
+  do
     tail -100 /LOG && sleep 5m
   done
 fi
+fred-icon
+AskFred
+dragger-icon
