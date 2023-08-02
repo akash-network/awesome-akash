@@ -1,4 +1,4 @@
-# Awesome Akash
+# Awesome Akash <!-- omit in toc -->
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
@@ -7,7 +7,38 @@ Instructions on how to deploy the SDL files in this repository can be found [her
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
+
+- [Official](#official)
+- [AI](#ai)
+- [Blogging](#blogging)
+- [Built with Cosmos-SDK](#built-with-cosmos-sdk)
+- [Chat](#chat)
+- [Machine Learning](#machine-learning)
+- [CI/CD, DevOps](#cicd-devops)
+- [Data Visualization](#data-visualization)
+- [Databases and Administration](#databases-and-administration)
+- [DeFi](#defi)
+- [Benchmarking](#benchmarking)
+- [Blockchain](#blockchain)
+- [Business](#business)
+- [Games](#games)
+- [Game Servers](#game-servers)
+- [Hosting](#hosting)
+- [Media](#media)
+- [Search Engines](#search-engines)
+- [Search Engine](#search-engine)
+- [Mining](#mining)
+- [Mining Pools](#mining-pools)
+- [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
+- [Project Management](#project-management)
+- [Social](#social)
+- [Tools](#tools)
+- [Network](#network)
+- [Databases](#databases)
+- [Video Conferencing](#video-conferencing)
+- [Wallet](#wallet)
+- [Web Frameworks](#web-frameworks)
 
 ### Official
 
@@ -67,9 +98,11 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Machine Learning
 
+- [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+- [Doccano](doccano)
 
 ### CI/CD, DevOps
 
@@ -131,28 +164,19 @@ Awesome DeFi apps you can deploy on Akash
 - [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
+
 - [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Near Node](near)
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
-- [POKT Network](pokt_network)
+- [POKT Network](pokt-network)
 - [Polkadot](polkadot)
 - [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
 - [Fuse Network Node](fuse-network-node)
-
-### Blogging
-
-- [SteemCN](steemcn)
-- [Ghost](ghost)
-- [Grav](Grav)
-- [Wordpress](wordpress)
-- [Confluence](confluence)
-- [Drupal](drupal)
-- [Wiki.js](wikijs)
 
 ### Business
 
@@ -185,11 +209,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Grafana](grafana)
 - [IPFS](ipfs)
 - [Flame](flame)
-
-### Machine Learning
-
-- [Jupyter Notebook](jupyter)
-- [Doccano](doccano)
 
 ### Media
 
