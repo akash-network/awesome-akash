@@ -27,7 +27,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Hosting](#hosting)
 - [Media](#media)
 - [Search Engines](#search-engines)
-- [Search Engine](#search-engine)
 - [Mining](#mining)
 - [Mining Pools](#mining-pools)
 - [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
@@ -218,9 +217,6 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Whoogle Search](whoogle-search)
 - [Presearch](presearch)
-
-### Search Engine
-
 - [YaCy](yacy)
 
 ### Mining
