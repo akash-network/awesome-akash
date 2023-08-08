@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flan-T5</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="form-block">
+        <h1>Flan-T5</h1>
+        <p> Model:
+            <a href="https://huggingface.co/google/flan-t5-xxl" rel="noreferrer" target="_blank" >google/flan-t5-xxl</a>
+        </p>
+        <div>
+          <form id="t5-form">
+              <div class="input-block">
+                <label for="t5-input">Text prompt:</label>
+                <textarea id="t5-input" rows="3">Tell me all the oceans of the planet</textarea>
+              </div>
+              <button id="t5-submit">Submit</button>
+              <div>
+                <label for="t5-output">Results:</label>
+                <div id="t5-output"></div>
+              </div>
+            </form>
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>

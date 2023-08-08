@@ -1,0 +1,25 @@
+.form-block {
+  width: 30rem;
+  text-align: center;
+}
+
+.input-block {
+  display: flex;
+}
+
+.input-block #t5-input {
+  width: 100%;
+}
+
+#t5-submit {
+  margin: 10px;
+  width: 100px;
+  height: 30px;
+}
+
+#t5-output {
+  width: 100%;
+  border: 1px solid;
+  min-height: 50px;
+  margin: 0 10px;
+}

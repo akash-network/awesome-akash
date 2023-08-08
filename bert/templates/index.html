@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Masked Word Prediction with BERT</h2>
+
+<form id="predict-form" action="/predict" method="post">
+  <label for="text">Enter text with a masked word (use "[MASK]" ):</label><br>
+  <input type="text" id="text" name="text"><br>
+  <input type="submit" value="Predict">
+</form>
+
+<h3 id="output"></h3>
+
+<script>
+document.getElementById('predict-form').onsubmit = function(event) {
+  event.preventDefault();
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/predict', true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    if (this.status == 200) {
+      var response = JSON.parse(this.responseText);
+      document.getElementById('output').textContent = 'Predicted word: ' + response.predicted_token;
+    } else {
+      document.getElementById('output').textContent = 'Error: ' + this.status;
+    }
+  };
+
+  var data = JSON.stringify({
+    'text': document.getElementById('text').value
+  });
+  xhr.send(data);
+};
+</script>
+
+</body>
+</html>
