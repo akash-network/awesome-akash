@@ -14,7 +14,9 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
-### AI
+### AI - CPU
+
+Available on Mainnet
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
@@ -25,10 +27,33 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Daila](daila)
 - [Flowise](flowise)
 - [GPT4ALL](gpt4all)
-- [Serge](serge)
+- [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+
+### AI - GPU
+
+Available on Testnet Only
+
+- [AI-Image-App](AI-Image-App)
+- [AUTOMATIC1111](AUTOMATIC1111)
+- [BERT](bert)
+- [BERT Sentiment Analysis](bert-sentiment-analysis)
+- [ChatGLM-6B](ChatGLM-6B)
+- [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [Dolly-v2-12b](dolly-v2-12b)
+- [Falcon-7B](Falcon-7B)
+- [FastChat](FastChat)
+- [Flan-T5 XXL](flan-t5-xxl)
+- [GPT-Neo](gpt-neo)
+- [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
+- [Semantra](semantra)
+- [Serge](serge-gpu)
+- [StableStudio](StableStudio)
+- [Text generation WebUi](text-generation-webui)
+- [TTS](TTS)
+- [XLM-roBERTa](XLM-roBERTa)
 
 ### Blogging
 
@@ -55,11 +80,12 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
 
-### Continuous Integration
+### CI/CD, DevOps
 
 - [Jenkins](jenkins)
 - [Bitbucket](bitbucket)
 - [Azure Devops Agent](azure-devops-agent)
+- [Github Runner](ghrunner)
 
 ### Data Visualization
 
@@ -121,6 +147,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
 - [POKT Network](pokt_network)
+- [Polkadot](polkadot)
 - [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
@@ -186,7 +213,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [YaCy](yacy)
 
-### Mining
+### Mining - CPU
 
 - [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
@@ -201,6 +228,12 @@ Awesome DeFi apps you can deploy on Akash
 - [RainbowMiner](rainbowminer)
 - [Raptoreum](raptoreum-miner)
 - [Traffmonetizer](traffmonetizer)
+- [xmrig](xmrig)
+
+### Mining - GPU
+
+- [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
+- [RainbowMiner](rainbowminer)
 - [xmrig](xmrig)
 
 ### Mining Pools

@@ -1,12 +1,16 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/23629420/219872517-2adc32b1-5f64-4d48-9a81-1e2ef6b01a53.png" width=90% </p>
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/7d65c5b3-1027-4008-9899-0911c8ed8552)
 
-<div align=center>
 
 | [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) |
 |:--:|
-
-| [Discord Akash](https://discord.akash.network/) | [Telegram Akash EN](https://t.me/AkashNW) |  [Twitter Akash](https://twitter.com/akashnet_)| [Cloudmos Guide](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)
+  
+| [Delegate AKT](https://restake.app/akash/akashvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64gq0kaj4) | [Delegate DVPN](https://restake.app/sentinel/sentvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64grgugsr) | [Delegate Kava](https://restake.app/kava/kavavaloper1mrd5kqtq28p39wcrkm8tk8avtn57arrurxfah0) | [Delegate Desmos](https://restake.app/desmos/desmosvaloper1fkpnxtn4nvm27zkpyuvcz3rpa9rzxm70q4v8sn) | 
 |:--:|:--:|:--:|:--:|
+
+|[Delegate Kyve](https://restake.app/kyve/kyvevaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64gzgc27r) | [Delegate Vidulum](https://restake.app/vidulum/vdlvaloper1nuphu4p06dlgx2se0w58z5c7yv00r5gle0h5gs) | [Delegate Realio](https://restake.app/realio/realiovaloper1chee8l82uxqfduxr8x0pfrp9psl08cy4a20m0u) | 
+|:--:|:--:|:--:|
+  
+
 
 
 
@@ -18,7 +22,9 @@ ___
 
 Open [WEB interface](https://deploy.cloudmos.io/) `Cloudmos`.
 
-Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)).<br/> Next, press the `DEPLOY` button, select the empty `Empty` template and copy the content of [deploy.yml](https://github.com/DecloudNodesLab/Projects/blob/main/Software/Webtop/deploy.yml).
+Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)).
+
+Next, press the `DEPLOY` button, select the empty `Empty` template and copy the content of [deploy.yml](https://github.com/DecloudNodesLab/Projects/blob/main/Software/Webtop/deploy.yml).
 
 ___
 
@@ -33,8 +39,6 @@ Simply pulling lscr.io/linuxserver/webtop:latest should retrieve the correct ima
 
 This image provides various versions that are available via tags. Please read the descriptions carefully and exercise caution when using unstable or development tags.
 
-<div align=center>
-  
 | Tag |	Available	| Description|
 | :-----: | :-----: |  :-----: |   
 |`latest`|✅| XFCE Alpine |
@@ -62,9 +66,8 @@ This image provides various versions that are available via tags. Please read th
 |`fedora-icewm`|	✅|	IceWM Fedora <br/>
 |`arch-icewm`|	✅|	IceWM Arch <br/> 
 
-</div>
+A detailed description of the contents of the image, its variables and settings is available at:
 
-A detailed description of the contents of the image, its variables and settings is available at:<br/>
 https://hub.docker.com/r/linuxserver/webtop
 
 ___
