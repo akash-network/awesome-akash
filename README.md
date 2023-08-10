@@ -14,36 +14,45 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
-### AI
+### AI - CPU
 
-- [AI-Image-App](AI-Image-App)
+Available on Mainnet
+
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
-- [AUTOMATIC1111](AUTOMATIC1111)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
-- [BERT](bert)
-- [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatChat](chatchat)
-- [ChatGLM-6B](ChatGLM-6B)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
+- [Flowise](flowise)
+- [GPT4ALL](gpt4all)
+- [Serge](serge-cpu)
+- [Stable Diffusion](stable-diffusion-ui)
+- [Terminal GPT](tgpt)
+- [Weaviate](weaviate)
+
+### AI - GPU
+
+Available on Testnet Only
+
+- [AI-Image-App](AI-Image-App)
+- [AUTOMATIC1111](AUTOMATIC1111)
+- [BERT](bert)
+- [BERT Sentiment Analysis](bert-sentiment-analysis)
+- [ChatGLM-6B](ChatGLM-6B)
+- [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
 - [Flan-T5 XXL](flan-t5-xxl)
-- [Flowise](flowise)
-- [GPT4ALL](gpt4all)
 - [GPT-Neo](gpt-neo)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
-- [Serge](serge)
-- [Stable Diffusion](stable-diffusion-ui)
+- [Serge](serge-gpu)
 - [StableStudio](StableStudio)
-- [Terminal GPT](tgpt)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
-- [Weaviate](weaviate)
 - [XLM-roBERTa](XLM-roBERTa)
 
 ### Blogging
