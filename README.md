@@ -213,7 +213,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [YaCy](yacy)
 
-### Mining - CPU
+### Mining
 
 - [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
@@ -228,12 +228,6 @@ Awesome DeFi apps you can deploy on Akash
 - [RainbowMiner](rainbowminer)
 - [Raptoreum](raptoreum-miner)
 - [Traffmonetizer](traffmonetizer)
-- [xmrig](xmrig)
-
-### Mining - GPU
-
-- [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
-- [RainbowMiner](rainbowminer)
 - [xmrig](xmrig)
 
 ### Mining Pools
