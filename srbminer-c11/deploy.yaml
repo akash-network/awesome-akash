@@ -1,0 +1,57 @@
+---
+version: "2.0"
+
+services:
+  SRBMiner-Multi:
+    image: cryptoandcoffee/akash-gpu-miner-srbminer-multi-c11:1
+    expose:
+      - port: 21550
+        as: 80
+        to:
+          - global: true
+    env:
+      - ALGO=etchash
+      - WALLET_ADDRESS=""
+      - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
+      - PASSWORD=x
+      - OPTIONS="--disable-cpu --api-enable"
+#The default command. Adjust OPTIONS as needed.
+#/root/SRBMiner-MULTI --algorithm $ALGO --pool $POOL --wallet $WALLET_ADDRESS --password $PASSWORD $OPTIONS
+profiles:
+  compute:
+    SRBMiner-Multi:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 768Mi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                #- model: 3090
+        storage:
+          - size: 128Mi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        SRBMiner-Multi:
+          denom: uakt
+          amount: 1000000 #Keep high to show all bids
+deployment:
+  SRBMiner-Multi:
+    akash:
+      profile: SRBMiner-Multi
+      count: 1
