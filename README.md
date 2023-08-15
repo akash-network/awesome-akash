@@ -251,6 +251,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Discourse](discourse)
 - [TeamSpeak](teamspeak)
+- [Waku](waku)
 
 ### Tools
 
