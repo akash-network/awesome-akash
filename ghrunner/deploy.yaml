@@ -6,7 +6,7 @@ version: "2.0"
 
 services:
   ghrunner:
-    image: andrey01/ghrunner:2.306.0@sha256:a0c624820a006342d250f812e41f98c339ed819e6384915a4ec489d36e6668dd
+    image: andrey01/ghrunner:2.308.0@sha256:dc925d8b87db15b4122f52b3c3507200f98c7f18ac56cf7d639349b9d5e3f8cf
     # Refer to https://github.com/myoung34/docker-github-actions-runner for more options
     env:
       # Do not enable auto update, otherwise the container will end up in CrashLoopBackoff state eventually getting closed by the Akash Provider due to https://github.com/orgs/akash-network/discussions/160
