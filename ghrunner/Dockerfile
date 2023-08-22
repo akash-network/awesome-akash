@@ -5,4 +5,5 @@ RUN apt update \
     npm \
     lz4 \
     pv \
+    wget \
  && rm -rf /var/lib/apt/lists/*
