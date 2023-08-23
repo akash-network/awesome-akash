@@ -1,5 +1,3 @@
-![image](https://user-images.githubusercontent.com/23629420/219872517-2adc32b1-5f64-4d48-9a81-1e2ef6b01a53.png)
-
 # Deploy Lava Provider
 
 The launch is described using CloudFlare!
@@ -53,16 +51,3 @@ Run stake command:
 ```
 lavad tx pairing stake-provider "<CHAIN>" "<AMOUNT_STAKE>ulava" "lava.declab.pro:443,2" 2 --chain-id $CHAIN_ID --from $ADDRESS --provider-moniker <YOUR_MONIKER> --keyring-backend "test" --gas="auto" --gas-adjustment "1.5" --fees 50000ulava --node $LAVAD_NODE -y
 ```
-
-
-____
-
-Decloud Nodes Lab
-
-Professional decentralized validator powered by Akash Network.
-
-Site: https://declab.pro
-
-E-mail: decloudlab@gmail.com
-
-Discord: https://discord.gg/rPENzerwZ8
