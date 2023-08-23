@@ -1,0 +1,27 @@
+endpoints:
+  - api-interface: tendermintrpc
+    chain-id: LAV1
+    network-address:
+        address: "0.0.0.0:2001"
+    node-urls:
+      - url: http://provider.hurricane.akash.pub:<26657>
+      - url: ws://provider.hurricane.akash.pub:<26657>/websocket
+  - api-interface: grpc
+    chain-id: LAV1
+    network-address:
+        address: "0.0.0.0:2001"
+    node-urls:
+      - url: provider.hurricane.akash.pub:<9090>
+  - api-interface: rest
+    chain-id: LAV1
+    network-address:
+        address: "0.0.0.0:2001"
+    node-urls:
+      - url: http://provider.hurricane.akash.pub:<1317>
+
+#For ETH CHAIN
+  - api-interface: jsonrpc
+    chain-id: ETH1
+    network-address: 127.0.0.1:2221
+    node-urls:
+      - url: wss://eth-rpc/ws
