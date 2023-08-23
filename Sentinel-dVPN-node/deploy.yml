@@ -1,37 +1,35 @@
 ---
 version: "2.0"
 endpoints:
-  your_endpoint_name:  # # WARRING! SPECIFY UNIQ ENDPOINT NAME! ONLY LOWER CASE SYMBOLS!
+ <uniq_name_endpoint>: # unique name, for example "dvpn_dimokus:", and enter this name in line 23 and 28.
     kind: ip
 services:
   app:
-
-    image: dimokus88/sentineldvpn:0.12
+    image: dimokus88/sentineldvpn:0.7.0  
     env:
       - "MNEMONIC_BASE64=" # Mnemonic phrase encrypted with BASE64.
       - "MONIKER=dVPN on Akash Network v2RAY" # Your dVPN node name.
-      - "VERSION=v0.6.5" # dVPN binary file version.
-      - "LISTEN_PORT=3333" # v2RAY listen port
       - "REMOTE_PORT=8585" # Remote port for are connection sentinel client service.
-      - "IPV4_ADDRESS=" # Node static IP address ( of leases section )
+      - "LISTEN_PORT=3333" # v2RAY listen port
+      - "IPV4_ADDRESS=" # Mnemonic phrase encoded base64 with padding.
+      - "RPC_ADDRESS=https://rpc.sentinel.co:443"
+      - "GIGABYTE_PRICES=29000000udvpn,390000ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,5250000ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,7000000ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,525000000ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783"
+      - "HOURLY_PRICES=4900000udvpn"
     expose:
       - port: 8585 # REMOTE_URL_PORT
-        as: 8585 # REMOTE_URL_PORT
         to:
           - global: true
-            ip: your_endpoint_name # Specify the endpoint name from line 4
+            ip: <uniq_name_endpoint>  # Name from string 3, for example "ip: dvpn_dimokus"
       - port: 3333 # LISTEN_PORT 
-        as: 3333 # LISTEN_PORT 
         to:
           - global: true
-            ip: your_endpoint_name # Specify the endpoint name from line 4
-       
+            ip: <uniq_name_endpoint>  # Name from string 3, for example "ip: dvpn_dimokus"    
 profiles:
   compute:
     app:
       resources:
         cpu:
-          units: 2
+          units: 1
         memory:
           size: 1Gi
         storage:
