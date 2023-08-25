@@ -1,0 +1,44 @@
+version: '2.0'
+endpoints:
+ <uniq_name_endpoint>: # unique name, for example "lava_dimokus:", and enter this name in line 24.
+   kind: ip
+services:
+  lava-provider:
+    image: dimokus88/lavaprovider:0.7
+    env:
+      - "SSH_PASS=YOUR_SSH_PASSWORD" # Password for a connection via ssh.
+      - "CHAIN_ID=lava-testnet-2"
+      - "BINARY_LINK=https://github.com/lavanet/lava/releases/download/v0.21.1.2/lavad-v0.21.1.2-linux-amd64" # Download link to actual binary file.
+      - "MNEMONIC_BASE64=" # Mnemonic phrase encoded base64 with padding.
+      - "CONFIG_LINK=https://server.gitopia.com/raw/DecloudNodesLab/cosmos-universe/master/projects/Lava/example_config.yml" # Link to you RAW (or direct download) rpcprovider.yml file.
+      - "LAVAD_NODE=" # RPC node Lava network.
+      - "LAVAD_GEOLOCATION=" # Geolocation provider (1 - US; 2 - EU)
+    expose:
+      - port: 22
+        to:
+          - global: true
+      - port: 443
+        to:
+          - global: true
+            ip: <uniq_name_endpoint>  # Name from string 3, for example "ip: lava_dimokus"
+profiles:
+  compute:
+    lava-provider:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      pricing:
+        lava-provider:
+          denom: uakt
+          amount: 10000
+deployment:
+  lava-provider:
+    akash:
+      profile: lava-provider
+      count: 1

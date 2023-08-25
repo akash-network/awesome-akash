@@ -1,8 +1,8 @@
 ![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/7d65c5b3-1027-4008-9899-0911c8ed8552)
 
 
-| [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) |
-|:--:|
+| [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) | [Discord Decloud Nodes Lab](https://discord.gg/rPENzerwZ8) | [Site Decloud Nodes Lab](https://declab.pro)|
+|:--:|:--:|:--:|
   
 | [Delegate AKT](https://restake.app/akash/akashvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64gq0kaj4) | [Delegate DVPN](https://restake.app/sentinel/sentvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64grgugsr) | [Delegate Kava](https://restake.app/kava/kavavaloper1mrd5kqtq28p39wcrkm8tk8avtn57arrurxfah0) | [Delegate Desmos](https://restake.app/desmos/desmosvaloper1fkpnxtn4nvm27zkpyuvcz3rpa9rzxm70q4v8sn) | 
 |:--:|:--:|:--:|:--:|
