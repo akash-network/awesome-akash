@@ -1,4 +1,6 @@
-# POKT Network node on Akash Network <!-- omit in toc -->
+# Pocket Network <!-- omit in toc -->
+
+Pocket Network (POKT) tackles the RPC Trilemma by enabling an open protocol that empowers developers with Reliable, Performant, and Cost-Effective RPC access to the open internet.
 
 - [Resources](#resources)
 - [Развертка ноды POKT Network на Akash Network](#развертка-ноды-pokt-network-на-akash-network)
