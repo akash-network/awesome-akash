@@ -56,8 +56,8 @@ for var in "${!config_mappings[@]}"; do
     update_config "$var" "${config_mappings[$var]}" "$CONFIG_PATH"
 done
 
-[[ -n $LISTEN_PORT ]] && sed -i.bak -e "s|^listen_port *=.*|listen_port = \"$LISTEN_PORT\"|;" "$V2RAY_CONFIG_PATH"
-[[ -n $TRANSPORT ]] && sed -i.bak -e "s|^transport *=.*|transport = \"$TRANSPORT\"|;" "$V2RAY_CONFIG_PATH"
+update_config "LISTEN_PORT" "listen_port" "$V2RAY_CONFIG_PATH"
+update_config "TRANSPORT" "transport" "$V2RAY_CONFIG_PATH"
 
 # Special cases
 [[ -z $HANDSHAKE ]] && HANDSHAKE=false && update_config "HANDSHAKE" "enable" "$CONFIG_PATH"
