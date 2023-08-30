@@ -28,7 +28,7 @@ check_var "IPV4_ADDRESS" "CHECK YOUR IPV4 ADDRESS IN DEPLOY.YML !" "IPV4_ADDRESS
 sentinelnode config init && sentinelnode v2ray config init
 
 (echo ;echo ;echo ;echo ;echo ;echo ;echo )| openssl req -new -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -x509 -sha256 -days 365 -nodes -out ${HOME}/tls.crt -keyout ${HOME}/tls.key
-
+REMOTE_URL="$IPV4_ADDRESS:$REMOTE_PORT"
 # Variables to update in the config.toml.
 declare -A config_mappings=(
     ["GAS_ADJUSTMENT"]="gas_adjustment"
@@ -48,6 +48,7 @@ declare -A config_mappings=(
     ["IPV4_ADDRESS"]="ipv4_address"
     ["GIGABYTE_PRICES"]="gigabyte_prices"
     ["HOURLY_PRICES"]="hourly_prices"
+    ["REMOTE_URL"]="remote_url"
 )
 
 # Update each variable in config.toml.
@@ -55,8 +56,6 @@ for var in "${!config_mappings[@]}"; do
     update_config "$var" "${config_mappings[$var]}" "$CONFIG_PATH"
 done
 
-REMOTE_URL="$IPV4_ADDRESS:$REMOTE_PORT"
-sed -i.bak -e "s|^remote_url *=.*|remote_url = \"https://$REMOTE_URL\"|;" "$CONFIG_PATH"
 [[ -n $LISTEN_PORT ]] && sed -i.bak -e "s|^listen_port *=.*|listen_port = \"$LISTEN_PORT\"|;" "$V2RAY_CONFIG_PATH"
 [[ -n $TRANSPORT ]] && sed -i.bak -e "s|^transport *=.*|transport = \"$TRANSPORT\"|;" "$V2RAY_CONFIG_PATH"
 
