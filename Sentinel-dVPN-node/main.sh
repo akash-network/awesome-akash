@@ -61,8 +61,6 @@ done
 
 # Special cases
 [[ -z $HANDSHAKE ]] && HANDSHAKE=false && update_config "HANDSHAKE" "enable" "$CONFIG_PATH"
-[[ -n $BACKEND ]] || sed -i.bak -e "s/^backend *=.*/backend = \"test\"/;" "$CONFIG_PATH"
-[[ -n $TYPE ]] || sed -i.bak -e "s/^type *=.*/type = \"v2ray\"/;" "$CONFIG_PATH"
 [[ -n $REMOTE_PORT ]] || sed -i.bak -e "s|^listen_on *=.*|listen_on = \"0.0.0.0:$REMOTE_PORT\"|;" "$CONFIG_PATH"
 
 (echo `echo $MNEMONIC_BASE64 | base64 -d`)|sentinelnode keys add --recover
