@@ -10,8 +10,8 @@ ___
 
 <div align="center">
   
-| [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) |
-|:--:|
+| [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) | [Discord Decloud Nodes Lab](https://discord.gg/rPENzerwZ8) |
+|:--:|:--:|
 
 | [Akash Network](https://akash.network/) | [Forum Akash Network](https://forum.akash.network/) | [Sentinel](https://sentinel.co/) |
 |:--:|:--:|:--:|
