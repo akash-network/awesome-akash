@@ -61,7 +61,7 @@ How to work with it is [described in this document](https://github.com/DecloudNo
 ## Node deployment
 Open [WEB interface](https://deploy.cloudmos.io/) `Cloudmos`.
 
-Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md#create-certificate)). Next, click the `DEPLOY` button, select the empty `Empty` template and copy the contents of [deploy.yml](https://raw.githubusercontent.com/DecloudNodesLab/Sentinel_dVPN/main/deploy.yml) there .
+Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md#create-certificate)). Next, click the `DEPLOY` button, select the empty `Empty` template and copy the contents of [deploy.yml](/Sentinel-dVPN-node//deploy.yml) there .
 ___
 
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221607947-cdc2b2e6-cc96-4709-9278-e15369bb62bf.gif" width=70% </p>
@@ -75,7 +75,7 @@ Also, fill in the variables with your data:
 * `MONIKER` - The name of your node, make it unique.
 * `IPV4_ADDRESS` - leave blank for now.
 > If you want to change `LISTEN_PORT` or `REMOTE_PORT` - don't forget to make the changes in the corresponding paragraphs of the `EXPOSE` section as well.
-Also, for advanced users, [created a list of available variables](/VARIABLES.md) with a short description.
+Also, for advanced users, [created a list of available variables](/Sentinel-dVPN-node/VARIABLES.md) with a short description.
   
 Pay attention to the correct filling of the variables, they must be INSIDE the quotes, for example: <br/> `"MONIKER=dVPN on Akash Network v2RAY"`
 
