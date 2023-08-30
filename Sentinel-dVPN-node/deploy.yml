@@ -1,7 +1,7 @@
 ---
 version: "2.0"
 endpoints:
- uniq_name_endpoint: # unique name, for example "dvpn_dimokus:", and enter this name in line 23 and 28.
+  uniq_name_endpoint: # unique name, for example "dvpn_dimokus:", and enter this name in line 23 and 28.
     kind: ip
 services:
   app:
