@@ -26,7 +26,7 @@ Our news channels and technical support:
 | [Discord Sentinel](https://discord.gg/HPW52yQuQJ) | [Telegram Sentinel dVPN](https://t.me/SentinelNodeNetwork) | [Twitter Sentinel](https://twitter.com/Sentinel_co)
 |:--:|:--:|:--:|
 
-| [Инструкция на русском](/README_RU.md) |
+| [Инструкция на русском](/Sentinel-dVPN-node/README_RU.md) |
 |:--:|
 </div>
 
