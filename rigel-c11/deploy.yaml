@@ -2,8 +2,8 @@
 version: "2.0"
 
 services:
-  t-rex:
-    image: cryptoandcoffee/akash-gpu-miner-t-rex-c11:18
+  rigel:
+    image: cryptoandcoffee/akash-gpu-miner-rigel-c11:18
     expose:
       - port: 4061
         as: 80
@@ -16,10 +16,10 @@ services:
       - PASSWORD=x
       - OPTIONS="--api-bind-http 0.0.0.0:4067 --api-read-only --no-nvml"
 #The default command. Adjust OPTIONS as needed.
-#/root/t-rex -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
+#/root/rigel -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
 profiles:
   compute:
-    t-rex:
+    rigel:
       resources:
         cpu:
           units: 0.5
@@ -36,11 +36,11 @@ profiles:
   placement:
     akash:
       pricing:
-        t-rex:
+        rigel:
           denom: uakt
           amount: 1000000 #Keep high to show all bids
 deployment:
-  t-rex:
+  rigel:
     akash:
-      profile: T-Rex
+      profile: rigel
       count: 1

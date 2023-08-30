@@ -129,7 +129,7 @@ echo $(jq '.randomx."init-avx2" = 0' /root/moneroocean/config.json) > /root/mone
 echo $(jq '.cuda.enabled = true' /root/moneroocean/config.json) > /root/moneroocean/config.json
 echo $(jq '.cuda.astrobwt = true' /root/moneroocean/config.json) > /root/moneroocean/config.json
 echo $(jq '.cuda.panthera = true' /root/moneroocean/config.json) > /root/moneroocean/config.json
-echo $(jq '.pools[].url = "gulf.moneroocean.stream:10128"' /root/moneroocean/config.json) > /root/moneroocean/config.json
+echo $(jq '.pools[].url = "gulf.moneroocean.stream:10032"' /root/moneroocean/config.json) > /root/moneroocean/config.json
 
 cat /root/moneroocean/config.json
 

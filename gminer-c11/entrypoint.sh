@@ -9,4 +9,4 @@ if [ ! -f "/root/gminer" ]; then
     tar -xf /root/gminer.tar.xz -C /root
 fi
 # Run gminer with your desired parameters
-/root/miner --algo $ALGO --server $POOL --user $WALLET_ADDRESS --pass $PASSWORD $OPTIONS
+/root/miner --algo "${ALGO}" --server "${POOL}" --user "${WALLET_ADDRESS}" --pass "${PASSWORD}" "${OPTIONS}"

@@ -2,7 +2,7 @@
 version: "2.0"
 
 services:
-  WildRig-Multi:
+  wildrig-multi:
     image: cryptoandcoffee/akash-gpu-miner-wildrig-multi-c11:1
     expose:
       - port: 21550
@@ -13,13 +13,13 @@ services:
       - ALGO=kawpow
       - WALLET_ADDRESS=""
       - POOL="stratum+ssl://kawpow.mine.zergpool.com:13638"
-      - PASSWORD="c=ETC,m=solo"
+      - PASSWORD="c=ETC,m=solo" #Example mines kawpow algorithm and payout out in Ethereum Classic
       - OPTIONS="--api-port 21550"
 #The default command. Adjust OPTIONS as needed.
 #/root/wildrig-multi -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
 profiles:
   compute:
-    WildRig-Multi:
+    wildrig-multi:
       resources:
         cpu:
           units: 0.5
@@ -35,23 +35,12 @@ profiles:
           - size: 128Mi
   placement:
     akash:
-      #######################################################
-      #Keep this section to deploy on trusted providers
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
-      #######################################################
-      #Remove this section to deploy on untrusted providers
-      #Miners: You can receive more bids from more providers by removing this section
-      #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        WildRig-Multi:
+        wildrig-multi:
           denom: uakt
           amount: 1000000 #Keep high to show all bids
 deployment:
-  WildRig-Multi:
+  wildrig-multi:
     akash:
-      profile: WildRig-Multi
+      profile: wildrig-multi
       count: 1
