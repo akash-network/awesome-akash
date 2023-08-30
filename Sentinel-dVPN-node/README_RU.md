@@ -26,7 +26,7 @@ ___
 | [Discord Sentinel](https://discord.gg/HPW52yQuQJ) | [Telegram Sentinel dVPN](https://t.me/SentinelNodeNetwork) | [Twitter Sentinel](https://twitter.com/Sentinel_co)
 |:--:|:--:|:--:|
 
-| [English guide](/README.md) | 
+| [English guide](/Sentinel-dVPN-node/README.md) | 
 |:--:|  
 </div>
 
@@ -55,7 +55,7 @@ ___
 ## Развертка ноды
 Откройте [WEB интерфейс](https://deploy.cloudmos.io/) `Cloudmos`.
 
-Убедитесь, что на вашем балансе есть **более 6 АКТ** и **присутсвует сертификат** (если нет, то обратитесь к [инструкции по использованию Cloudmos](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)). Далее, нажмите кнопку `DEPLOY`, выберите пустой темплейт `Empty` и скопируйте туда содержимое [deploy.yml](https://raw.githubusercontent.com/DecloudNodesLab/Sentinel_dVPN/main/deploy.yml).
+Убедитесь, что на вашем балансе есть **более 6 АКТ** и **присутсвует сертификат** (если нет, то обратитесь к [инструкции по использованию Cloudmos](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)). Далее, нажмите кнопку `DEPLOY`, выберите пустой темплейт `Empty` и скопируйте туда содержимое [deploy.yml](/Sentinel-dVPN-node/deploy.yml).
 ___
 
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221607947-cdc2b2e6-cc96-4709-9278-e15369bb62bf.gif" width=70% </p>
@@ -69,7 +69,7 @@ ___
 * `MONIKER` - Имя Вашей ноды, сделайте его уникальным.
 * `IPV4_ADDRESS` - пока оставьте пустым.
 > Если Вы захотите сменить `LISTEN_PORT` или `REMOTE_PORT` - не забудьте также внести изменения в соответвующих пунктах раздела `EXPOSE`.
-Также, для продвинутых пользоветелей, [создан перечень доступных переменных](/VARIABLES_RU.md) с коротким описанием.
+Также, для продвинутых пользоветелей, [создан перечень доступных переменных](/Sentinel-dVPN-node/VARIABLES_RU.md) с коротким описанием.
   
 Обратите внимание на правильность заполнения переменных, они должны находится ВНУТРИ кавычек, например: <br/> `"MONIKER=dVPN on Akash Network v2RAY"`
     
