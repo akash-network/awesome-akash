@@ -28,7 +28,7 @@ check_var "IPV4_ADDRESS" "CHECK YOUR IPV4 ADDRESS IN DEPLOY.YML !" "IPV4_ADDRESS
 sentinelnode config init && sentinelnode v2ray config init
 
 (echo ;echo ;echo ;echo ;echo ;echo ;echo )| openssl req -new -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -x509 -sha256 -days 365 -nodes -out ${HOME}/tls.crt -keyout ${HOME}/tls.key
-REMOTE_URL="$IPV4_ADDRESS:$REMOTE_PORT"
+REMOTE_URL="https://$IPV4_ADDRESS:$REMOTE_PORT"
 # Variables to update in the config.toml.
 declare -A config_mappings=(
     ["GAS_ADJUSTMENT"]="gas_adjustment"
