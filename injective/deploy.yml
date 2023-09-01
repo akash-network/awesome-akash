@@ -1,0 +1,62 @@
+---
+version: '2.0'
+services:
+  injective-service:
+    image: 'ghcr.io/akash-network/cosmos-omnibus:v0.3.42-injective-v1.11.6-1688984159'
+    expose:
+      - port: 9090
+        to:
+          - global: true
+      - port: 1317
+        to:
+          - global: true
+      - port: 26657
+        as: 80
+        to:
+          - global: true
+      - port: 26656
+        to:
+          - global: true
+    env:
+      - MONIKER=my-moniker-1
+      - >-
+        CHAIN_JSON=https://raw.githubusercontent.com/cosmos/chain-registry/master/injective/chain.json
+      - P2P_POLKACHU=1
+      - SNAPSHOT_DATA_PATH=data
+      - SNAPSHOT_WASM_PATH=wasm
+      - >-
+        SNAPSHOT_URL=https://tools.highstakes.ch/files/injective.tar.gz
+      - MINIMUM_GAS_PRICES=500000000inj
+      - INJECTIVED_IAVL_DISABLE_FASTNODE=true
+      - INJECTIVED_API_ENABLE=true
+    params:
+      storage:
+        data:
+          mount: /root/.injectived
+          readOnly: false
+profiles:
+  compute:
+    injective-service:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 64Gi
+        storage:
+          - size: 7Gi
+          - name: data
+            size: 1Ti
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        injective-service:
+          denom: uakt
+          amount: 1000
+deployment:
+  injective-service:
+    dcloud:
+      profile: injective-service
+      count: 1

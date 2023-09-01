@@ -185,6 +185,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
 - [Fuse Network Node](fuse-network-node)
+- [Injective](injective)
 
 ### Business
 
