@@ -81,6 +81,8 @@ Available on Testnet Only
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
+- [Stable Diffusion](stable-diffusion-ui)
+- [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
