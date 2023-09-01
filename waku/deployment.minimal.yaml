@@ -1,0 +1,75 @@
+---
+version: "2.0"
+
+endpoints: 
+  nodeendpoint:
+    kind: ip
+
+services:
+  node:
+    image: statusteam/nim-waku:v0.19.0-rc.0
+    expose:
+      - port: 60000
+        as: 60000
+        proto: tcp
+        to:
+          - global: true
+            ip: nodeendpoint
+
+      - port: 8003
+        as: 8003
+        proto: tcp
+        to:
+          - global: true
+            ip: nodeendpoint
+
+      - port: 9005
+        proto: udp
+        to:
+          - global: true
+            ip: nodeendpoint
+    args:
+      - --relay=true
+      - --topic=/waku/2/default-waku/proto
+      - --topic=/waku/2/dev-waku/proto
+      - --keep-alive=true
+      - --max-connections=50
+      - --dns-discovery=true
+      - --dns-discovery-url=enrtree://AOGECG2SPND25EEFMAJ5WF3KSGJNSGV356DSTL2YVLLZWIV6SAYBM@prod.waku.nodes.status.im
+      - --discv5-discovery=true
+      - --discv5-udp-port=9005
+      - --discv5-enr-auto-update=True
+      - --log-level=DEBUG
+      - --metrics-server=True
+      - --metrics-server-port=8003
+      - --metrics-server-address=0.0.0.0
+#      - --nat=extip:{MY_IP}
+
+profiles:
+  compute:
+    node:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        node: 
+          denom: uakt
+          amount: 1000
+
+deployment:
+  node:
+    westcoast:
+      profile: node
+      count: 1
+
