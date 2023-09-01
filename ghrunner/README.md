@@ -1,6 +1,6 @@
 # Github Runner
 
-1. Get the token for registering your runner https://github.com/<org>/<repo>/settings/actions/runners/new
+1. Get the token for registering your runner `https://github.com/<org>/<repo>/settings/actions/runners/new`
 2. Set your repo & token in deploy.yaml file
 
 ## For devs

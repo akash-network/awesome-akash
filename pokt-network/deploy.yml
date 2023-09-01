@@ -1,0 +1,56 @@
+---
+version: "2.0"
+services:
+  app:
+    image: ubuntu:22.04
+    env:
+      - "SSH_PASS=" # If you need SSH access to the container(user root), set this variable;
+      - "VERSION=RC-0.10.4" # Set actual version POKT;
+      - "CHAIN=" #Set POKT chain, mainnet or testnet;
+      - "KEYFILE_BASE64=" # Encrypted contents of the keyfile.json file using BASE64;
+      - "KEY_PASS=" # Password to keyfile.json;
+      - "ADDRESS=" # Account address;
+      - "CHAINS_LINK=" # Link to download chains.json file, or use CHAINS_BASE64 to transfer the contents of the chains.json file in encrypted form;
+      - "SEEDS=7c0d7ec36db6594c1ffaa99724e1f8300bbd52d0@seed1.mainnet.pokt.network:26662,cdcf936d70726dd724e0e6a8353d8e5ba5abdd20@seed2.mainnet.pokt.network:26663,74b4322a91c4a7f3e774648d0730c1e610494691@seed3.mainnet.pokt.network:26662,b3235089ff302c9615ba661e13e601d9d6265b15@seed4.mainnet.pokt.network:26663" # Set seeds address https://docs.pokt.network/node/seeds/ ;
+    command:
+      - bash
+      - "-c"
+    args: # Make sure this gist does not mention a "revision" (hash) of the gist so the next time the container boots it can get newer version of the script. This field is immutable.
+      - >-
+        apt-get update && apt-get upgrade -yqq; apt-get install -yqq curl; curl -s
+        https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt-network/main.sh | bash
+    expose:
+      - port: 8081
+        to:
+          - global: true
+        as: 80
+        # # If you wish to bring your own domain, uncomment the following line and replace the domain name with your own.
+        # accept:
+        #   - poktonakt.spankpool.com
+      - port: 26656
+        to:
+          - global: true
+      - port: 22
+        to:
+          - global: true
+  profiles:
+    compute:
+      pokt-node:
+        resources:
+          cpu:
+            units: 8
+          memory:
+            size: 24Gi
+          storage:
+            - size: 300Gi
+    placement:
+      akash:
+        pricing:
+          pokt-node:
+            denom: uakt
+            amount: 10000
+  deployment:
+    pokt-node:
+      akash:
+        profile: pokt-node
+        count: 1

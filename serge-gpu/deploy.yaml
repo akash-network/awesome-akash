@@ -30,9 +30,9 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: 4090
   placement:
     akash:
+
       pricing:
         serge:
           denom: uakt
