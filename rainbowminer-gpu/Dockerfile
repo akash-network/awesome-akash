@@ -35,6 +35,7 @@ ENV POOLS=
 ENV BENCHMARK_INTERVAL=30
 ENV PROHASHING=
 ENV MINING_DUTCH=
+ENV DEVICE_NAME=CPU,GPU
 
 COPY ./run.sh /run.sh
 COPY ./setup.json /RainbowMiner/setup.json
