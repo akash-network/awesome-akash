@@ -5,7 +5,7 @@ endpoints:
     kind: ip
 services:
   app:
-    image: declab/sentinel_dvpn:0.7.0
+    image: declab/sentinel_dvpn:0.7.1
     env:
       - "MNEMONIC_BASE64=" # Mnemonic phrase encrypted with BASE64.
       - "MONIKER=dVPN on Akash Network v2RAY" # Your dVPN node name.
