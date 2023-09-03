@@ -18,7 +18,7 @@ services:
     args: # Make sure this gist does not mention a "revision" (hash) of the gist so the next time the container boots it can get newer version of the script. This field is immutable.
       - >-
         apt-get update && apt-get upgrade -yqq; apt-get install -yqq curl; curl -s
-        https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt_network/main.sh | bash
+        https://raw.githubusercontent.com/akash-network/awesome-akash/master/pokt-network/main.sh | bash
     expose:
       - port: 8081
         to:

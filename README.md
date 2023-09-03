@@ -1,4 +1,4 @@
-# Awesome Akash
+# Awesome Akash <!-- omit in toc -->
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
@@ -7,7 +7,37 @@ Instructions on how to deploy the SDL files in this repository can be found [her
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
+
+- [Official](#official)
+- [AI](#ai)
+- [Blogging](#blogging)
+- [Built with Cosmos-SDK](#built-with-cosmos-sdk)
+- [Chat](#chat)
+- [Machine Learning](#machine-learning)
+- [CI/CD, DevOps](#cicd-devops)
+- [Data Visualization](#data-visualization)
+- [Databases and Administration](#databases-and-administration)
+- [DeFi](#defi)
+- [Benchmarking](#benchmarking)
+- [Blockchain](#blockchain)
+- [Business](#business)
+- [Games](#games)
+- [Game Servers](#game-servers)
+- [Hosting](#hosting)
+- [Media](#media)
+- [Search Engines](#search-engines)
+- [Mining](#mining)
+- [Mining Pools](#mining-pools)
+- [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
+- [Project Management](#project-management)
+- [Social](#social)
+- [Tools](#tools)
+- [Network](#network)
+- [Databases](#databases)
+- [Video Conferencing](#video-conferencing)
+- [Wallet](#wallet)
+- [Web Frameworks](#web-frameworks)
 
 ### Official
 
@@ -47,9 +77,12 @@ Available on Testnet Only
 - [FastChat](FastChat)
 - [Flan-T5 XXL](flan-t5-xxl)
 - [GPT-Neo](gpt-neo)
+- [Llama-2-70B](Llama-2-70B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
+- [Stable Diffusion](stable-diffusion-ui)
+- [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
@@ -76,9 +109,11 @@ Available on Testnet Only
 
 ### Machine Learning
 
+- [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+- [Doccano](doccano)
 
 ### CI/CD, DevOps
 
@@ -140,6 +175,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
+
 - [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
@@ -152,16 +188,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
 - [Fuse Network Node](fuse-network-node)
-
-### Blogging
-
-- [SteemCN](steemcn)
-- [Ghost](ghost)
-- [Grav](Grav)
-- [Wordpress](wordpress)
-- [Confluence](confluence)
-- [Drupal](drupal)
-- [Wiki.js](wikijs)
+- [Injective](injective)
 
 ### Business
 
@@ -195,11 +222,6 @@ Awesome DeFi apps you can deploy on Akash
 - [IPFS](ipfs)
 - [Flame](flame)
 
-### Machine Learning
-
-- [Jupyter Notebook](jupyter)
-- [Doccano](doccano)
-
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
@@ -208,9 +230,6 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Whoogle Search](whoogle-search)
 - [Presearch](presearch)
-
-### Search Engine
-
 - [YaCy](yacy)
 
 ### Mining
@@ -251,6 +270,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Discourse](discourse)
 - [TeamSpeak](teamspeak)
+- [Waku](waku)
 
 ### Tools
 
