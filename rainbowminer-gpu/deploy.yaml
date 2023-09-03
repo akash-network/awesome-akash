@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:73
+    image: cryptoandcoffee/akash-gpu-miner-rainbowminer:3
     expose:
       - port: 4000
         as: 80
@@ -39,13 +39,13 @@ services:
       #Use only these specific miners, check Miners > Miners for a full list
       - ALGORITHM=
       #Mine only these algorithms, example Take2
-      - EXCLUDE_COIN_SYMBOL=
+      - EXCLUDE_COIN_SYMBOL=VTC
       #Do not mine these symbols, check Pools > All Pools for a full list
       - EXCLUDE_ALGORITHM=
       #Do not mine these algorithms, check Pools > All Pools for a full list
       - EXCLUDE_POOL_NAME=Nicehash
       #Do not mine these pools, check Pools > All Pools for a full list
-      - EXCLUDE_COIN=VTC
+      - EXCLUDE_COIN=
       #Do not mine a specific coin, like Jagoancoin
       - EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
       #Exclude miner name
