@@ -1,0 +1,46 @@
+---
+version: "2.0"
+
+services:
+  onezerominer:
+    image: cryptoandcoffee/akash-gpu-miner-onezerominer-c11:2
+    expose:
+      - port: 21550
+        as: 80
+        to:
+          - global: true
+    env:
+      - ALGO=dynex
+      - WALLET_ADDRESS=""
+      - POOL="stratum+ssl://us2.dynex.herominers.com"
+      - PASSWORD=x
+      - OPTIONS="--api-host 0.0.0.0 --api-port 21550 --mallob-endpoint us2.dynex.herominers.com:1119"
+#The default command. Adjust OPTIONS as needed.
+#/root/onezerominer --algo $ALGO --pool $POOL --wallet $WALLET_ADDRESS --pass $PASSWORD $OPTIONS
+profiles:
+  compute:
+    onezerominer:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 768Mi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                #- model: 3090
+        storage:
+          - size: 128Mi
+  placement:
+    akash:
+      pricing:
+        onezerominer:
+          denom: uakt
+          amount: 1000000 #Keep high to show all bids
+deployment:
+  onezerominer:
+    akash:
+      profile: onezerominer
+      count: 1
