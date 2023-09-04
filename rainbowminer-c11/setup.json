@@ -2,7 +2,7 @@
   "Autostart": {
     "Enable": "1",
     "ConfigName": "All",
-    "DeviceName": DEVICE_NAME,
+    "DeviceName": "GPU",
     "WorkerName": ""
   },
   "Exclude": [

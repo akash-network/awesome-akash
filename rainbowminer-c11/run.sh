@@ -35,7 +35,6 @@ sed -i 's/INTERVAL/"'"$BENCHMARK_INTERVAL"'"/g' ./RainbowMiner/setup.json
 sed -i 's/CPUS/"'"$CPUS"'"/g' ./RainbowMiner/setup.json
 sed -i 's/PROHASHING/"'"$PROHASHING"'"/g' ./RainbowMiner/setup.json
 sed -i 's/MINING_DUTCH/"'"$MINING_DUTCH"'"/g' ./RainbowMiner/setup.json
-sed -i 's/DEVICE_NAME/"'"$DEVICE_NAME"'"/g' ./RainbowMiner/setup.json
 
 
 
