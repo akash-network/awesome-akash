@@ -99,7 +99,7 @@ I : INTEL GPU
 [0.85%]   [ C  -  -  - ]   yespowersugar
 [0.85%]   [ C  -  -  - ]   yespowertide
 [0.00%]   [ C  -  -  - ]   yespowerurx
-```
+
 
 ===========================================
 DUAL MINEABLE ALGORITHMS:
@@ -324,6 +324,7 @@ Parameter aliases
 
 ==================================================================================================================
 
+
 --log-file-mode
 0 - clear content of existing log file before writing
 1 - append to existing log file's end
@@ -422,5 +423,4 @@ This should be a unique string, which accessed in browser results in a computer 
 
 --api-miner-restart-url
 This should be a unique string, which accessed in browser restarts SRBMiner-MULTI.
-
-
+```
