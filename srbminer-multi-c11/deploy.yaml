@@ -2,24 +2,24 @@
 version: "2.0"
 
 services:
-  onezerominer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-onezerominer-c11:3
+  srbminer-multi-c11:
+    image: cryptoandcoffee/akash-gpu-miner-srbminer-multi-c11:32
     expose:
       - port: 21550
         as: 80
         to:
           - global: true
     env:
-      - ALGO=dynex
+      - ALGO=etchash
       - WALLET_ADDRESS=""
-      - POOL="stratum+ssl://us2.dynex.herominers.com"
+      - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
       - PASSWORD=x
-      - OPTIONS="--api-host 0.0.0.0 --api-port 21550 --mallob-endpoint us2.dynex.herominers.com:1119"
+      - OPTIONS="--disable-cpu"
 #The default command. Adjust OPTIONS as needed.
-#/root/onezerominer --algo $ALGO --pool $POOL --wallet $WALLET_ADDRESS --pass $PASSWORD $OPTIONS
+#/root/SRBMiner-MULTI --algorithm $ALGO --pool $POOL --wallet $WALLET_ADDRESS --password $PASSWORD $OPTIONS
 profiles:
   compute:
-    onezerominer-c11:
+    srbminer-multi-c11:
       resources:
         cpu:
           units: 0.5
@@ -47,13 +47,13 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        onezerominer-c11:
+        srbminer-multi-c11:
           denom: uakt
           amount: 100000 #Keep high to show all bids
 deployment:
-  onezerominer-c11:
+  srbminer-multi-c11:
     akash:
-      profile: onezerominer-c11
+      profile: srbminer-multi-c11
       count: 1
 
 ##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti

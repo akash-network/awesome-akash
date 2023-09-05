@@ -17,9 +17,14 @@ if [ ! -f "/root/onezerominer" ]; then
     rm /root/onezerominer.tar.gz
     chmod +x /root/onezerominer
 fi
-# Run onezerominer with your desired parameters
-#xhost +Local:*
-#xhost
-#xhost local:root
+
 unset DISPLAY
+
+ALGO=$(sed -e 's/^"//' -e 's/"$//' <<<"$ALGO") #Remove quotes
+PASSWORD=$(sed -e 's/^"//' -e 's/"$//' <<<"$PASSWORD") #Remove quotes
+POOL=$(sed -e 's/^"//' -e 's/"$//' <<<"$POOL") #Remove quotes
+WALLET_ADDRESS=$(sed -e 's/^"//' -e 's/"$//' <<<"$WALLET_ADDRESS") #Remove quotes
+OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$OPTIONS") #Remove quotes
+
+
 bash -c "./onezerominer --algo $ALGO --pool $POOL --wallet $WALLET_ADDRESS --pass $PASSWORD $OPTIONS"

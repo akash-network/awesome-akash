@@ -60,11 +60,12 @@ profiles:
     rainbowminer-c11:
       resources:
         cpu:
-          units: 4
+          units: 1
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 4.75Gi
+          size: 6Gi
           #Min 4.75Gi-8Gi for RainbowMiner depending on total cpu units.
+          #Recommended 6 for max compatibility with multiple algorithms
           #For best performance use at least 256Mi per cpu.unit requested above the 2.5Gi minimum required.
         storage:
           size: 3Gi

@@ -3,14 +3,14 @@ version: "2.0"
 
 services:
   wildrig-multi:
-    image: cryptoandcoffee/akash-gpu-miner-wildrig-multi-c11:1
+    image: cryptoandcoffee/akash-gpu-miner-wildrig-multi-c11:2
     expose:
       - port: 21550
         as: 80
         to:
           - global: true
     env:
-      - ALGO=kawpow
+      - ALGO="kawpow"
       - WALLET_ADDRESS=""
       - POOL="stratum+ssl://kawpow.mine.zergpool.com:13638"
       - PASSWORD="c=ETC,m=solo" #Example mines kawpow algorithm and payout out in Ethereum Classic
@@ -35,12 +35,27 @@ profiles:
           - size: 128Mi
   placement:
     akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         wildrig-multi:
           denom: uakt
-          amount: 1000000 #Keep high to show all bids
+          amount: 100000 #Keep high to show all bids
 deployment:
   wildrig-multi:
     akash:
       profile: wildrig-multi
       count: 1
+
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.

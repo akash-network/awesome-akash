@@ -1,8 +1,6 @@
 FROM nvidia/cuda:11.8.0-base-ubuntu20.04
-#FROM cryptoandcoffee/nvidia-docker-cuda-11-base
 
 WORKDIR /root
-
 
 # Install necessary tools and clean up
 RUN apt update && \

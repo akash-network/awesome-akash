@@ -15,4 +15,10 @@ fi
 # Your previous entrypoint logic
 cd "$(dirname "$0")"
 
+ALGO=$(sed -e 's/^"//' -e 's/"$//' <<<"$ALGO") #Remove quotes
+PASSWORD=$(sed -e 's/^"//' -e 's/"$//' <<<"$PASSWORD") #Remove quotes
+POOL=$(sed -e 's/^"//' -e 's/"$//' <<<"$POOL") #Remove quotes
+WALLET_ADDRESS=$(sed -e 's/^"//' -e 's/"$//' <<<"$WALLET_ADDRESS") #Remove quotes
+OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$OPTIONS") #Remove quotes
+
 /root/t-rex -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS

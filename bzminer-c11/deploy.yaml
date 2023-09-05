@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   bzminer:
-    image: cryptoandcoffee/akash-gpu-miner-bzminer-c11:18
+    image: cryptoandcoffee/akash-gpu-miner-bzminer-c11:2
     expose:
       - port: 4061
         as: 80

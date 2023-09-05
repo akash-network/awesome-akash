@@ -14,5 +14,18 @@ if [ ! -f "/root/srbminer" ]; then
     rm /root/srbminer.tar.xz
     chmod +x /root/SRBMiner-MULTI
 fi
-# Run srbminer with your desired parameters
+
+echo "Startup takes up to ~60 seconds"
+
+# List of variables to strip quotes from
+#vars=("ALGO" "POOL" "WALLET_ADDRESS" "PASSWORD" "OPTIONS")
+# Loop to strip quotes and export
+#for var in "${vars[@]}"; do export "$var"=$(sed -e 's/^"//' -e 's/"$//' <<< "$(eval echo \$$var)"); done
+
+ALGO=$(sed -e 's/^"//' -e 's/"$//' <<<"$ALGO") #Remove quotes
+PASSWORD=$(sed -e 's/^"//' -e 's/"$//' <<<"$PASSWORD") #Remove quotes
+POOL=$(sed -e 's/^"//' -e 's/"$//' <<<"$POOL") #Remove quotes
+WALLET_ADDRESS=$(sed -e 's/^"//' -e 's/"$//' <<<"$WALLET_ADDRESS") #Remove quotes
+OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$OPTIONS") #Remove quotes
+
 /root/SRBMiner-MULTI --algorithm $ALGO --pool $POOL --wallet $WALLET_ADDRESS --password $PASSWORD $OPTIONS
