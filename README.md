@@ -46,8 +46,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### AI - CPU
 
-Available on Mainnet
-
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
@@ -63,8 +61,6 @@ Available on Mainnet
 - [Weaviate](weaviate)
 
 ### AI - GPU
-
-Available on Testnet Only
 
 - [AI-Image-App](AI-Image-App)
 - [AUTOMATIC1111](AUTOMATIC1111)
