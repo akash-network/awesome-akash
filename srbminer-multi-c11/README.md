@@ -14,7 +14,7 @@ Support :
 https://discord.gg/zXY23De
 https://bitcointalk.org/index.php?topic=5190081.0
 
-
+```
 C : CPU
 A : AMD GPU
 N : NVIDIA GPU
@@ -99,7 +99,7 @@ I : INTEL GPU
 [0.85%]   [ C  -  -  - ]   yespowersugar
 [0.85%]   [ C  -  -  - ]   yespowertide
 [0.00%]   [ C  -  -  - ]   yespowerurx
-
+```
 
 ===========================================
 DUAL MINEABLE ALGORITHMS:
