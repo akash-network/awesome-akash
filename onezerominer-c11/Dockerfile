@@ -1,4 +1,6 @@
 FROM nvidia/cuda:11.8.0-base-ubuntu20.04
+
+# Set non-interactive mode
 ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /root

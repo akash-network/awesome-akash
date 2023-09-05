@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   rigel-c11:
-    image: cryptoandcoffee/akash-gpu-miner-rigel-c11:19
+    image: cryptoandcoffee/akash-gpu-miner-rigel-c11:20
     expose:
       - port: 4061
         as: 80

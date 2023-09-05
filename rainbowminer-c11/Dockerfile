@@ -1,6 +1,4 @@
-#FROM ubuntu:22.04
 FROM nvidia/cuda:11.8.0-base-ubuntu20.04
-#FROM nvidia/cuda:12.2.0-base-ubuntu22.04
 
 # Set non-interactive mode
 ENV DEBIAN_FRONTEND=noninteractive

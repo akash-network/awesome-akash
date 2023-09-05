@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   srbminer-multi-c11:
-    image: cryptoandcoffee/akash-gpu-miner-srbminer-multi-c11:32
+    image: cryptoandcoffee/akash-gpu-miner-srbminer-multi-c11:34
     expose:
       - port: 21550
         as: 80

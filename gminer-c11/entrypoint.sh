@@ -9,4 +9,11 @@ if [ ! -f "/root/gminer" ]; then
     tar -xf /root/gminer.tar.xz -C /root
 fi
 # Run gminer with your desired parameters
-/root/miner --algo "${ALGO}" --server "${POOL}" --user "${WALLET_ADDRESS}" --pass "${PASSWORD}" "${OPTIONS}"
+
+ALGO=$(sed -e 's/^"//' -e 's/"$//' <<<"$ALGO") #Remove quotes
+PASSWORD=$(sed -e 's/^"//' -e 's/"$//' <<<"$PASSWORD") 
+POOL=$(sed -e 's/^"//' -e 's/"$//' <<<"$POOL") 
+WALLET_ADDRESS=$(sed -e 's/^"//' -e 's/"$//' <<<"$WALLET_ADDRESS") 
+OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$OPTIONS") 
+
+/root/miner --algo $ALGO --server $POOL --user $WALLET_ADDRESS --pass $PASSWORD $OPTIONS

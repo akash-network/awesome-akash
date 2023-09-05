@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   wildrig-multi:
-    image: cryptoandcoffee/akash-gpu-miner-wildrig-multi-c11:2
+    image: cryptoandcoffee/akash-gpu-miner-wildrig-multi-c11:4
     expose:
       - port: 21550
         as: 80

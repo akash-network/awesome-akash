@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   onezerominer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-onezerominer-c11:3
+    image: cryptoandcoffee/akash-gpu-miner-onezerominer-c11:4
     expose:
       - port: 21550
         as: 80

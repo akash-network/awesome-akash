@@ -14,4 +14,11 @@ if [ ! -f "/root/lolMiner" ]; then
     chmod +x lolMiner
 fi
 # Run lolMiner with your desired parameters
+
+ALGO=$(sed -e 's/^"//' -e 's/"$//' <<<"$ALGO") #Remove quotes
+PASSWORD=$(sed -e 's/^"//' -e 's/"$//' <<<"$PASSWORD") 
+POOL=$(sed -e 's/^"//' -e 's/"$//' <<<"$POOL") 
+WALLET_ADDRESS=$(sed -e 's/^"//' -e 's/"$//' <<<"$WALLET_ADDRESS") 
+OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$OPTIONS") 
+
 /root/lolMiner -a $ALGO -p $POOL -u $WALLET_ADDRESS --pass $PASSWORD $OPTIONS

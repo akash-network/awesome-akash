@@ -1,7 +1,9 @@
 FROM nvidia/cuda:11.8.0-base-ubuntu20.04
 
-WORKDIR /root
+# Set non-interactive mode
+ENV DEBIAN_FRONTEND=noninteractive
 
+WORKDIR /root
 
 # Install necessary tools and clean up
 RUN apt update && \

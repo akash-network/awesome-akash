@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   gminer:
-    image: cryptoandcoffee/akash-gpu-miner-gminer-c11:8
+    image: cryptoandcoffee/akash-gpu-miner-gminer-c11:2
     expose:
       - port: 4067
         as: 80
