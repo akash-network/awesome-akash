@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   rainbowminer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-rainbowminer-c11:2
+    image: cryptoandcoffee/akash-gpu-miner-rainbowminer-c11:3
     expose:
       - port: 4000
         as: 80
@@ -97,7 +97,6 @@ deployment:
     akash:
       profile: rainbowminer-c11
       count: 1
+      #Max Deployment Count : 50
 
-##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
-##You can reduce vCPU and increase count:1 to see more bids
-##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
+## Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti

@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   lolminer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-lolminer-c11:2
+    image: cryptoandcoffee/akash-gpu-miner-lolminer-c11:3
     expose:
       - port: 21550
         as: 80
@@ -55,3 +55,6 @@ deployment:
     akash:
       profile: lolminer-c11
       count: 1
+      #Max Deployment Count : 50
+
+## Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
