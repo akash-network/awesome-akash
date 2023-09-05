@@ -2,8 +2,8 @@
 version: "2.0"
 
 services:
-  WildRig-Multi:
-    image: cryptoandcoffee/akash-gpu-miner-wildrig-multi-c11:1
+  lolminer-c11:
+    image: cryptoandcoffee/akash-gpu-miner-lolminer-c11:1
     expose:
       - port: 21550
         as: 80
@@ -19,7 +19,7 @@ services:
 #/root/lolMiner -a $ALGO -p $POOL -u $WALLET_ADDRESS --pass $PASSWORD $OPTIONS
 profiles:
   compute:
-    WildRig-Multi:
+    lolminer-c11:
       resources:
         cpu:
           units: 0.5
@@ -47,11 +47,11 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        WildRig-Multi:
+        lolminer-c11:
           denom: uakt
           amount: 1000000 #Keep high to show all bids
 deployment:
-  WildRig-Multi:
+  lolminer-c11:
     akash:
-      profile: WildRig-Multi
+      profile: lolminer-c11
       count: 1
