@@ -1,0 +1,60 @@
+---
+version: "2.0"
+
+services:
+  nbminer-c11:
+    image: cryptoandcoffee/akash-gpu-miner-nbminer-c11:1
+    expose:
+      - port: 4061
+        as: 80
+        to:
+          - global: true
+    env:
+      - ALGO="etchash"
+      - WALLET_ADDRESS="0xaCBB2c01BE91298D136fEC40F370a68D54eC7E6a"
+      - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
+      - PASSWORD="x"
+      - OPTIONS=""
+#The default command. Adjust OPTIONS as needed.
+#/root/nbminer -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
+profiles:
+  compute:
+    nbminer-c11:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 768Mi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                #- model: 3090
+        storage:
+          - size: 128Mi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        nbminer-c11:
+          denom: uakt
+          amount: 100000 #Keep high to show all bids
+deployment:
+  nbminer-c11:
+    akash:
+      profile: nbminer-c11
+      count: 1
+      #Max Deployment Count : 50
+
+## Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
