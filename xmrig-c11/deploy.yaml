@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   xmrig-c11:
-    image: cryptoandcoffee/akash-gpu-miner-xmrig-c11:4
+    image: cryptoandcoffee/akash-gpu-miner-xmrig-c11:7
     expose:
       - port: 8080
         as: 80
@@ -36,12 +36,11 @@ profiles:
           units: 0.5
           #Min 0.01 / Max 256 cpu.units
         memory:
-          size: 4.75Gi
-          #Min 3Gi with single NUMA nodes (Only works on single NUMA node/limited compatibility)
-          #Min 4.75Gi with > 2 NUMA nodes (Best compatibility/fastest)
+          size: 3Gi
+          #Min 3Gi with GPU!
         storage:
-          size: 6Mi
-          #Min 6Mi / Max 32Ti
+          size: 128Mi
+          #Min 128Mi with GPU / Max 32Ti
         gpu:
           units: 1
           attributes:

@@ -73,4 +73,4 @@ RUN mv /xmrig/build/xmrig /xmrig/
 
 
 # Command to run
-CMD ["/xmrig/run.sh"]
+ENTRYPOINT ["/xmrig/run.sh"]
