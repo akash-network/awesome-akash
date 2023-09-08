@@ -50,7 +50,7 @@ generate_config() {
     algo_config+="[$algo]\nwallet = $wallet_address\n"
     [ ! -z "$pool" ] && algo_config+="pool1 = $pool\n"
     [ ! -z "$worker" ] && algo_config+="rigname = $worker\n"
-    [ ! -z "$password" ] && algo_config+="password = $password\n"
+    [ ! -z "$password" ] && algo_config+="rigPassword = $password\n"
 
     # If the algorithm contains "zil" (case-insensitive), add zilEpoch = 0
     if [[ "$algo" =~ [zZ][iI][lL] ]]; then

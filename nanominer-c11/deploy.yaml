@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   nanominer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-nanominer-c11:21
+    image: cryptoandcoffee/akash-gpu-miner-nanominer-c11:22
     expose:
       - port: 9090
         as: 80
@@ -33,7 +33,7 @@ services:
         - WORKER_ALGO3="akash"
         - PASSWORD_ALGO3=""
         
-      #ALGO4 will use CPU! Options are RandomX or VerusHash. 
+      #ALGO4 will use CPU! Options are RandomX or VerusHash. Be sure to increase CPU if enabled.
       #  - ALGO4="RandomX"
       #  - WALLET_ADDRESS_ALGO4="4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
       #  - POOL_ALGO4="nyc.xmrlife.com:36969"
