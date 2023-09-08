@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 remove_quotes() {
   local str="$1"
   str="${str%\"}"
@@ -7,17 +6,20 @@ remove_quotes() {
   echo "$str"
 }
 
-ALGO=$(remove_quotes "$ALGO")
-PASSWORD=$(remove_quotes "$PASSWORD")
-POOL=$(remove_quotes "$POOL")
-WALLET_ADDRESS=$(remove_quotes "$WALLET_ADDRESS")
-OPTIONS=$(remove_quotes "$OPTIONS")
+for var_name in ALGO POOL WALLET WORKER TLS_FINGERPRINT TLS CUSTOM_OPTIONS; do
+  eval "value=\$$var_name"
+  value=$(remove_quotes "$value")
 
-if [ -z $WALLET ]; then
-    echo "Please examine the SDL and be sure to set your Monero Wallet Address in the WALLET= variable."
-    sleep 300
-    exit
-fi
+  if [ -z "$value" ]; then
+    if [[ "$var_name" != "TLS_FINGERPRINT" && "$var_name" != "CUSTOM_OPTIONS" ]]; then
+      echo "Please examine the SDL and be sure to set $var_name."
+      sleep 300
+      exit
+    fi
+  else
+    eval "$var_name=\"$value\""
+  fi
+done
 
 
 WORKER=$(echo ${WORKER}-${AKASH_CLUSTER_PUBLIC_HOSTNAME})

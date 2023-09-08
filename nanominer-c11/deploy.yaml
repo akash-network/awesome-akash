@@ -2,37 +2,69 @@
 version: "2.0"
 
 services:
-  rigel-c11:
-    image: cryptoandcoffee/akash-gpu-miner-rigel-c11:21
+  nanominer-c11:
+    image: cryptoandcoffee/akash-gpu-miner-nanominer-c11:21
     expose:
-      - port: 4061
+      - port: 9090
         as: 80
+        proto: tcp
         to:
           - global: true
     env:
-      - ALGO=etchash
-      - WALLET_ADDRESS=""
-      - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
-      - PASSWORD=x
-      - OPTIONS="--api-bind-http 0.0.0.0:4061 --api-read-only --no-nvml"
-#The default command. Adjust OPTIONS as needed.
-#/root/rigel -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
+    #Nanominer configures itself automatically for most algorithms and can mine up to 4 at once
+    #See https://github.com/nanopool/nanominer for which algorithms can be minded together
+    #You can add/remove as needed. Just make sure the variables are blank if you do not want them included.
+
+        - ALGO1="Etchash"
+        - WALLET_ADDRESS_ALGO1="0xaCBB2c01BE91298D136fEC40F370a68D54eC7E6a"
+        - POOL_ALGO1="etchash.mine.zergpool.com:19997"
+        - WORKER_ALGO1=""
+        - PASSWORD_ALGO1="c=ETC,m=solo,ID=akash"
+
+        - ALGO2="Zilliqa"
+        - WALLET_ADDRESS_ALGO2="zil1drdjac9hpnqv33v98t4vmwpv6krf9kkgwzuday"
+        - POOL_ALGO2="us-east.ezil.me:4444"
+        - WORKER_ALGO2="akash"
+        - PASSWORD_ALGO2=""
+
+        - ALGO3="heavyhash"
+        - WALLET_ADDRESS_ALGO3="kaspa:qrkmyk7205v6cfzd6m7g9j2xlfxj2h7787s87jq0g77ayhl3g88nznvc3pymj"
+        - POOL_ALGO3="us-solo-kas.2miners.com:13030"
+        - WORKER_ALGO3="akash"
+        - PASSWORD_ALGO3=""
+        
+      #ALGO4 will use CPU! Options are RandomX or VerusHash. 
+      #  - ALGO4="RandomX"
+      #  - WALLET_ADDRESS_ALGO4="4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
+      #  - POOL_ALGO4="nyc.xmrlife.com:36969"
+      #  - WORKER_ALGO4="akash"
+      #  - PASSWORD_ALGO4=""
+      #Advanced Miners! please use CUSTOM_COMMAND to overwrite the variables above.
+        - CUSTOM_COMMAND=""
+      #Static configuration variables
+        - CHECK_FOR_UPDATES=true
+        - MPORT=0
+        - NO_LOG=true
+        - NO_COLOR=true
+        - WEB_PORT=9090
 profiles:
   compute:
-    rigel-c11:
+    nanominer-c11:
       resources:
         cpu:
           units: 0.5
+          #Min 0.01 / Max 256 cpu.units
         memory:
-          size: 768Mi
+          size: 1Gi
+          #Min 3Gi with RandomX and GPU
+        storage:
+          size: 512Mi
+          #Min 6Mi / Max 32Ti
         gpu:
           units: 1
           attributes:
             vendor:
               nvidia:
-                #- model: 3090
-        storage:
-          - size: 128Mi
   placement:
     akash:
       #######################################################
@@ -47,14 +79,15 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        rigel-c11:
+        nanominer-c11:
           denom: uakt
           amount: 100000 #Keep high to show all bids
 deployment:
-  rigel-c11:
+  nanominer-c11:
     akash:
-      profile: rigel-c11
+      profile: nanominer-c11
       count: 1
-      #Max Deployment Count : 50
 
-## Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+##You can reduce vCPU and increase count:1 to see more bids
+##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.

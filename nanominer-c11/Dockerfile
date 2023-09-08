@@ -16,7 +16,14 @@ ENV ALGO=
 ENV WALLET_ADDRESS=
 ENV POOL=
 ENV PASSWORD=x
+ENV CUSTOM_COMMAND=""
 ENV OPTIONS=""
+# Set default environment variables for the header
+ENV CHECK_FOR_UPDATES=true
+ENV MPORT=0
+ENV NO_LOG=true
+ENV WEB_PORT=9090
+ENV NO_COLOR=true
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

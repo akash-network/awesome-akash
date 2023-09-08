@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   xmrig-c11:
-    image: cryptoandcoffee/akash-gpu-miner-xmrig-c11:7
+    image: cryptoandcoffee/akash-gpu-miner-xmrig-c11:9
     expose:
       - port: 8080
         as: 80
@@ -11,15 +11,15 @@ services:
         to:
           - global: true
     env:
-      - ALGO=rx/0
+      - ALGO="rx/0"
       #Set the algorithm you want xmrig to use.
-      - POOL=gulf.moneroocean.stream:20128
+      - POOL="gulf.moneroocean.stream:20128"
       #The mining pool you want to connect to.
-      - WALLET=4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K
+      - WALLET="4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
       #Your Monero Wallet Address for the default pool, otherwise any other wallet address for another pool/coin.
-      - WORKER=akash
+      - WORKER="akash"
       #All worker names have the provider domain as suffix, example akash-provider.akash.world
-      - PASS=x
+      - PASS="x"
       #Most pools do not require a password.  Only change this if you need to set a password.
       - TLS=true
       #Protect your shares by choosing pools that support encryption!

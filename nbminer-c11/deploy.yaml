@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   nbminer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-nbminer-c11:1
+    image: cryptoandcoffee/akash-gpu-miner-nbminer-c11:2
     expose:
       - port: 4061
         as: 80
@@ -22,9 +22,9 @@ profiles:
     nbminer-c11:
       resources:
         cpu:
-          units: 0.5
+          units: 0.25
         memory:
-          size: 768Mi
+          size: 512Mi
         gpu:
           units: 1
           attributes:
