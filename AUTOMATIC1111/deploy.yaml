@@ -18,10 +18,13 @@ profiles:
           size: 35Gi
         gpu:
           units: 1
+          attributes:
+            vendor:
+              nvidia:
         storage:
           size: 50Gi
   placement:
-    akash:       
+    akash:
       pricing:
         app:
           denom: uakt
@@ -30,4 +33,4 @@ deployment:
   app:
     akash:
       profile: app
-      count: 1 
+      count: 1
