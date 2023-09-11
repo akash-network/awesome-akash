@@ -15,16 +15,16 @@ profiles:
       resources:
         cpu:
           units: 24
-#Higher is better for AI! Be sure to change thread setting in app.
+        #Higher is better for AI! Be sure to change thread setting in app.
         memory:
           size: 28Gi
-#7B requires about 4.5GB of free RAM
-#13B requires about 12GB free
-#30B requires about 20GB free // 24 not enough
+        #7B requires about 4.5GB of free RAM
+        #13B requires about 12GB free
+        #30B requires about 20GB free // 24 not enough
         storage:
           size: 100Gi
-#Bigger models may require more storage.
-#Increase as required.
+        #Bigger models may require more storage.
+        #Increase as required.
         gpu:
           units: 1
           attributes:
@@ -32,7 +32,6 @@ profiles:
               nvidia:
   placement:
     akash:
-
       pricing:
         serge:
           denom: uakt
