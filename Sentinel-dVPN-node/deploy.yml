@@ -37,13 +37,13 @@ profiles:
         memory:
           size: 1Gi
         storage:
-          size: 10Gi         
+          size: 3Gi         
   placement:
     akash: 
       pricing:
         app:
           denom: uakt
-          amount: 100000
+          amount: 1000
 deployment:
   app:
     akash:
