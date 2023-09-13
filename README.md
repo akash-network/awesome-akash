@@ -46,8 +46,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### AI - CPU
 
-Available on Mainnet
-
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
@@ -63,8 +61,6 @@ Available on Mainnet
 - [Weaviate](weaviate)
 
 ### AI - GPU
-
-Available on Testnet Only
 
 - [AI-Image-App](AI-Image-App)
 - [AUTOMATIC1111](AUTOMATIC1111)
@@ -232,7 +228,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Presearch](presearch)
 - [YaCy](yacy)
 
-### Mining
+### Mining - CPU
 
 - [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
@@ -248,6 +244,18 @@ Awesome DeFi apps you can deploy on Akash
 - [Raptoreum](raptoreum-miner)
 - [Traffmonetizer](traffmonetizer)
 - [xmrig](xmrig)
+
+### Mining - GPU
+
+- [BzMiner](bzminer-c11)
+- [GMiner](gminer-c11)
+- [lolMiner](lolminer-c11)
+- [OneZeroMiner](onezerominer-c11)
+- [RainbowMiner](rainbowminer-c11)
+- [Rigel](rigel-c11)
+- [SRBMiner-MULTI](srbminer-multi-c11)
+- [T-Rex](t-rex-c11)
+- [WildRig Multi](wildrig-multi-c11)
 
 ### Mining Pools
 
