@@ -21,15 +21,14 @@ Open shell tab and past command ```wget -O /stable-diffusion-webui/models/Stable
 
 Then go to web interface AUTOMATIC1111 and click on refresh:
 
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/05d5bb63-5471-41d5-9630-622c2018a340)
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/994d2720-f927-438e-9059-6c350f600788)
 
 And you can select dowloaded models:
 
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/02a8a933-7b3e-435f-b8bf-27af487b4c8e)
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/5e5d481e-592e-49b6-91c8-76f655867321)
 
 enjoy!
 
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/f86e0a8e-8293-4101-8cfa-25862cbf638b)
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/d82abe7f-10a1-442d-b6e4-0498107e1e0f)
 
-![00000-4128270933](https://github.com/Dimokus88/awesome-akash/assets/23629420/9288d059-87af-4ddb-9a0a-d4cd182bca63)
-
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/360a5c4c-9ab9-453d-8058-63b9b285a79d)
