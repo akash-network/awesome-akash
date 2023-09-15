@@ -10,27 +10,25 @@ AUTOMATIC1111 is a user interface for working with graphics AI.
 
 The default deployment is set to the stable-diffusion **2.1** :
 
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/51256fc0-96cf-4418-a104-88e752ba541c)
-
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/1d369298-4e9e-4044-9dfc-4861bff43527)
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/113c64e3-3ccf-4b4f-b606-16c2ddaaff23)
 
 Also, after deployment, you can use the command line to upload additional models to the `/stable-diffusion-webui/models/Stable-diffusion` folder.
 Open shell tab and past command ```wget -O /stable-diffusion-webui/models/Stable-diffusion/<NAME_MODEL>.safetensors <LINK_TO_MODEL>```, example:
 
 `wget -O /stable-diffusion-webui/models/Stable-diffusion/epiCRealism.safetensors https://civitai.com/api/download/models/67990`
 
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/f1f2bce1-adae-45a1-b5d6-078293cb2829)
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/7cc7aa13-45f4-4518-ba19-96aa0a6d8119)
 
 Then go to web interface AUTOMATIC1111 and click on refresh:
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/d1df8759-e3ba-4752-8ffa-352b5733cee4)
+
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/994d2720-f927-438e-9059-6c350f600788)
 
 And you can select dowloaded models:
 
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/02a8a933-7b3e-435f-b8bf-27af487b4c8e)
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/5e5d481e-592e-49b6-91c8-76f655867321)
 
 enjoy!
 
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/f86e0a8e-8293-4101-8cfa-25862cbf638b)
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/d82abe7f-10a1-442d-b6e4-0498107e1e0f)
 
-![00000-4128270933](https://github.com/Dimokus88/awesome-akash/assets/23629420/9288d059-87af-4ddb-9a0a-d4cd182bca63)
-
+![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/360a5c4c-9ab9-453d-8058-63b9b285a79d)
