@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Llama2-70B</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', path='/script.js') }}"></script>
+  </head>
+  <body>
+    <main>
+      <div class="form-block">
+        <div class="form-header">
+          <h1>Llama-2-70b</h1>
+          <p>Model link:
+              <a href="https://huggingface.co/meta-llama/Llama-2-70b" rel="noreferrer" target="_blank" >meta-llama/Llama-2-70b</a>
+          </p>
+        </div>
+        <div class="form-body">
+          <p style="text-align: center; font-size: 20px; color: white;">This model generates a logical continuation of your text</p>
+          <textarea id="text-box"></textarea>
+          <div>
+            <button id="talk-button">GENERATE</button>
+            <div class="lds-spinner" style="display: none;"><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div></div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>

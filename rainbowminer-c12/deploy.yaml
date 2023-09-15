@@ -1,14 +1,15 @@
 version: "2.0"
 
 services:
-  rainbowminer:
-    image: cryptoandcoffee/akash-rainbowminer:73
+  rainbowminer-c11:
+    image: cryptoandcoffee/akash-gpu-miner-rainbowminer-c12:1
     expose:
       - port: 4000
         as: 80
         to:
           - global: true
     env:
+#At least one address required!
       - BTC_WALLET=
       - XMR_WALLET=
       - DOGE_WALLET=
@@ -33,41 +34,47 @@ services:
 ################################################################################################################
       - DONATE=10
       #Set the minutes, you want RainbowMiner to work for the developer (min. is 10 minutes, equals to 0.7%) [default=24]
-      - SSL=0
+      - SSL=1
       #Configure SSL usage: 0=prefer non-SSL over SSL pools, 1=prefer SSL over non-SSL pools, 2=use SSL pools only [default=0]
       - MINER_NAME=
       #Use only these specific miners, check Miners > Miners for a full list
       - ALGORITHM=
       #Mine only these algorithms, example Take2
-      - EXCLUDE_COIN_SYMBOL=
+      - EXCLUDE_COIN_SYMBOL=VTC
       #Do not mine these symbols, check Pools > All Pools for a full list
       - EXCLUDE_ALGORITHM=
       #Do not mine these algorithms, check Pools > All Pools for a full list
       - EXCLUDE_POOL_NAME=Nicehash
       #Do not mine these pools, check Pools > All Pools for a full list
-      - EXCLUDE_COIN=VTC
+      - EXCLUDE_COIN=
       #Do not mine a specific coin, like Jagoancoin
       - EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
       #Exclude miner name
-      - BENCHMARK_INTERVAL=120
+      - BENCHMARK_INTERVAL=60
       #Benchmarking time in seconds
       - POOLS=ProHashing,ProHashingCoins,MiningDutch,MiningDutchCoins,Hashcryptos,C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
       #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
       #Check https://rbminer.net/monitoring/ for the most profitable coins, algorithms, and miners!
 profiles:
   compute:
-    rainbowminer:
+    rainbowminer-c11:
       resources:
         cpu:
-          units: 4
+          units: 1
           #Min 0.01 / Max 256 CPU's.
         memory:
-          size: 4.75Gi
+          size: 6Gi
           #Min 4.75Gi-8Gi for RainbowMiner depending on total cpu units.
+          #Recommended 6 for max compatibility with multiple algorithms
           #For best performance use at least 256Mi per cpu.unit requested above the 2.5Gi minimum required.
         storage:
           size: 3Gi
           #Min 3Gi / Max 32Ti
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
   placement:
     akash:
       #######################################################
@@ -82,13 +89,13 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        rainbowminer:
+        rainbowminer-c11:
           denom: uakt
-          amount: 10000 #Keep high to show all bids
+          amount: 100000 #Keep high to show all bids
 deployment:
-  rainbowminer:
+  rainbowminer-c11:
     akash:
-      profile: rainbowminer
+      profile: rainbowminer-c11
       count: 1
 
 ##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
