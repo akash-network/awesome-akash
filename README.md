@@ -263,18 +263,6 @@ Awesome DeFi apps you can deploy on Akash
 - [WildRig Multi](wildrig-multi-c11)
 - [XMRig GPU](xmrig-c11)
 
-### Mining - GPU
-
-- [BzMiner](bzminer-c11)
-- [GMiner](gminer-c11)
-- [lolMiner](lolminer-c11)
-- [OneZeroMiner](onezerominer-c11)
-- [RainbowMiner](rainbowminer-c11)
-- [Rigel](rigel-c11)
-- [SRBMiner-MULTI](srbminer-multi-c11)
-- [T-Rex](t-rex-c11)
-- [WildRig Multi](wildrig-multi-c11)
-
 ### Mining Pools
 
 - [monero-pool by jtgrassie](monero-pool)
