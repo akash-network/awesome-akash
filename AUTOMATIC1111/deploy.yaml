@@ -18,6 +18,9 @@ profiles:
           size: 35Gi
         gpu:
           units: 1
+          attributes:
+            vendor:
+              nvidia:
         storage:
           size: 50Gi
   placement:
