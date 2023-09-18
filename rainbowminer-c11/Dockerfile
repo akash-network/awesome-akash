@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install necessary tools and clean up
 RUN apt update && \
     apt-get dist-upgrade -yqq && \
-    apt -y install wget jq curl xz-utils nvidia-opencl-dev git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev bc curl git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev bc curl && \
+    apt -y install wget jq curl xz-utils nvidia-opencl-dev git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev bc curl git sudo wget libicu-dev xz-utils pciutils libnuma-dev libhwloc15 libuv1-dev libssl-dev libhwloc-dev liblzo2-dev libpam0g-dev libmicrohttpd-dev bc curl libdb1-compat libcrypt1 gawk && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -42,6 +42,9 @@ RUN apt-get update \
 
 #RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; sed -i 's/\$Session.Config.CPUMiningThreads/#$Session.Config.CPUMiningThreads/g' ./Modules/Core.psm1 ; chmod +x *.sh ; ./install.sh
 #RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; ./Modules/Core.psm1 ; chmod +x *.sh ; ./install.sh
+#RUN apt-get install -y glibc-source gawk build-essential
+RUN apt-get install -y build-essential gawk libdb1-compat libcrypt1 glibc-source
+#RUN mkdir $HOME/glibc/ && cd $HOME/glibc ; wget http://ftp.gnu.org/gnu/libc/glibc-2.32.tar.gz ; tar -xvzf glibc-2.32.tar.gz ; mkdir build  ; mkdir glibc-2.32-install ; cd build ; ~/glibc/glibc-2.32/configure --prefix=$HOME/glibc/glibc-2.32-install ; make ; make install
 
 RUN git clone https://github.com/rainbowminer/RainbowMiner ; cd RainbowMiner ; chmod +x *.sh ; ./install.sh
 

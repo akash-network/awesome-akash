@@ -25,14 +25,15 @@ profiles:
           units: 0.5
         memory:
           size: 768Mi
+        storage:
+          - size: 128Mi
         gpu:
           units: 1
           attributes:
             vendor:
               nvidia:
                 #- model: 3090
-        storage:
-          - size: 128Mi
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
   placement:
     akash:
       #######################################################
@@ -55,6 +56,6 @@ deployment:
     akash:
       profile: rigel-c11
       count: 1
-      #Max Deployment Count : 50
+      #Max replica count : 50
 
-## Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti
