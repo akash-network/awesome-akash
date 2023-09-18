@@ -16,23 +16,23 @@ services:
     #You can add/remove as needed. Just make sure the variables are blank if you do not want them included.
 
         - ALGO1="Etchash"
-        - WALLET_ADDRESS_ALGO1="0xaCBB2c01BE91298D136fEC40F370a68D54eC7E6a"
+        - WALLET_ADDRESS_ALGO1=""
         - POOL_ALGO1="etchash.mine.zergpool.com:19997"
         - WORKER_ALGO1=""
         - PASSWORD_ALGO1="c=ETC,m=solo,ID=akash"
 
         - ALGO2="Zilliqa"
-        - WALLET_ADDRESS_ALGO2="zil1drdjac9hpnqv33v98t4vmwpv6krf9kkgwzuday"
+        - WALLET_ADDRESS_ALGO2=""
         - POOL_ALGO2="us-east.ezil.me:4444"
         - WORKER_ALGO2="akash"
         - PASSWORD_ALGO2=""
 
         - ALGO3="heavyhash"
-        - WALLET_ADDRESS_ALGO3="kaspa:qrkmyk7205v6cfzd6m7g9j2xlfxj2h7787s87jq0g77ayhl3g88nznvc3pymj"
+        - WALLET_ADDRESS_ALGO3=""
         - POOL_ALGO3="us-solo-kas.2miners.com:13030"
         - WORKER_ALGO3="akash"
         - PASSWORD_ALGO3=""
-        
+
       #ALGO4 will use CPU! Options are RandomX or VerusHash. Be sure to increase CPU if enabled.
       #  - ALGO4="RandomX"
       #  - WALLET_ADDRESS_ALGO4="4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
@@ -65,6 +65,8 @@ profiles:
           attributes:
             vendor:
               nvidia:
+                #- model: 3090
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
   placement:
     akash:
       #######################################################
@@ -87,7 +89,6 @@ deployment:
     akash:
       profile: nanominer-c11
       count: 1
+      #Max replica count : 50
 
-##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
-##You can reduce vCPU and increase count:1 to see more bids
-##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti

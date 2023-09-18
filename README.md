@@ -236,26 +236,32 @@ Awesome DeFi apps you can deploy on Akash
 - [Honeygain](honeygain)
 - [IPRoyal Pawns](iproyal-pawns)
 - [Iron Fish](iron-fish)
-- [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
+- [MoneroOcean CPU with XMR payout](moneroocean)
 - [PacketStream](packetstream)
 - [Peer2Profit](peer2profit)
 - [pkt.cash](pkt-miner)
 - [RainbowMiner](rainbowminer)
 - [Raptoreum](raptoreum-miner)
 - [Traffmonetizer](traffmonetizer)
-- [xmrig](xmrig)
+- [XMRig CPU](xmrig)
 
 ### Mining - GPU
 
+- [Bminer](bminer-c11)
 - [BzMiner](bzminer-c11)
+- [CryptoDredge](cryptodredge-c11)
 - [GMiner](gminer-c11)
 - [lolMiner](lolminer-c11)
+- [MoneroOcean GPU with XMR payout](moneroocean-c11)
+- [Nanominer](nanominer-c11)
+- [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
 - [RainbowMiner](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
 - [T-Rex](t-rex-c11)
 - [WildRig Multi](wildrig-multi-c11)
+- [XMRig GPU](xmrig-c11)
 
 ### Mining Pools
 

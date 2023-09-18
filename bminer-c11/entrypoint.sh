@@ -1,4 +1,23 @@
-#!/bin/bash
+#!/usr/bin/env bash
+remove_quotes() {
+  local str="$1"
+  str="${str%\"}"
+  str="${str#\"}"
+  echo "$str"
+}
+
+for var_name in OPTIONS; do
+  eval "value=\$$var_name"
+  value=$(remove_quotes "$value")
+
+  if [ -z "$value" ]; then
+      echo "Please examine the SDL and be sure to set $var_name."
+      sleep 300
+      exit
+  else
+    eval "$var_name=\"$value\""
+  fi
+done
 
 # Check if bminer is already downloaded
 if [ ! -f "/root/bminer" ]; then
@@ -16,12 +35,8 @@ if [ ! -f "/root/bminer" ]; then
 fi
 
 echo "Startup takes up to ~60 seconds"
-
-ALGO=$(sed -e 's/^"//' -e 's/"$//' <<<"$ALGO") #Remove quotes
-PASSWORD=$(sed -e 's/^"//' -e 's/"$//' <<<"$PASSWORD") 
-POOL=$(sed -e 's/^"//' -e 's/"$//' <<<"$POOL") 
-WALLET_ADDRESS=$(sed -e 's/^"//' -e 's/"$//' <<<"$WALLET_ADDRESS") 
-OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$OPTIONS") 
-
+while :
+do
 /root/bminer $OPTIONS
-#-uri _ADDRESS --password $PASSWORD $OPTIONS
+sleep 1
+done

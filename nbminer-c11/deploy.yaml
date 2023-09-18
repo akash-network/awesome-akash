@@ -11,7 +11,7 @@ services:
           - global: true
     env:
       - ALGO="etchash"
-      - WALLET_ADDRESS="0xaCBB2c01BE91298D136fEC40F370a68D54eC7E6a"
+      - WALLET_ADDRESS=""
       - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
       - PASSWORD="x"
       - OPTIONS=""
@@ -25,14 +25,15 @@ profiles:
           units: 0.25
         memory:
           size: 512Mi
+        storage:
+          - size: 128Mi
         gpu:
           units: 1
           attributes:
             vendor:
               nvidia:
                 #- model: 3090
-        storage:
-          - size: 128Mi
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
   placement:
     akash:
       #######################################################
@@ -55,6 +56,6 @@ deployment:
     akash:
       profile: nbminer-c11
       count: 1
-      #Max Deployment Count : 50
+      #Max replica count : 50
 
-## Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti

@@ -1,18 +1,15 @@
 # Use NVIDIA CUDA base image
 FROM nvidia/cuda:11.8.0-devel-ubuntu20.04
 
+LABEL authors="Andrew Mello"
+LABEL maintainer="cryptoandcoffee@protonmail.com"
+LABEL website="https://cryptoandcoffee.com"
+
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
-ENV POOL=pool.hashvault.pro:443
-ENV WALLET=
-ENV PASS=x
-ENV WORKER=akash
-ENV TLS=true
-ENV TLS_FINGERPRINT=420c7850e09b7c0bdcf748a7da9eb3647daf8515718f36d9ccfdd6b9ff834b14
-ENV ALGO=rx/0
-ENV DONATE_LEVEL=0
-ENV RANDOMX_MODE=
-ENV CUSTOM_OPTIONS=
+ENV POOL="gulf.moneroocean.stream:10128"
+ENV WALLET_ADDRESS="4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
+ENV OPTIONS="--verbose --no-color --cuda --no-cpu --bench-algo-time 10 --syslog"
 
 # Install system dependencies
 RUN apt update && \
@@ -44,7 +41,7 @@ RUN apt update && \
 # Clone, build and install XMRig
 RUN git clone https://github.com/moneroocean/xmrig && \
     cd xmrig && \
-   sed -i 's/constexpr const int kDefaultDonateLevel = 1;/constexpr const int kDefaultDonateLevel = 0;/g' src/donate.h && \
+    sed -i 's/constexpr const int kDefaultDonateLevel = 1;/constexpr const int kDefaultDonateLevel = 0;/g' src/donate.h && \
     sed -i 's/constexpr const int kMinimumDonateLevel = 1;/constexpr const int kMinimumDonateLevel = 0;/g' src/donate.h && \
     mkdir build && \
     cd build && \
