@@ -2,7 +2,8 @@
 version: '2.0'
 services:
   uptime-kuma-persistent:
-    image: 'louislam/uptime-kuma:1.23.1'
+    image: louislam/uptime-kuma:1.23.1
+
     expose:
       - port: 3001
         as: 80
