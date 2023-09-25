@@ -1,4 +1,4 @@
-version: '2.0'
+version: "2.0"
 services:
   text-generation-webui:
     # v1.4 of text-generation-webui change this if you want to use a newer/older version

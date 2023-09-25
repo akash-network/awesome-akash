@@ -1,4 +1,4 @@
-version: '2.0'
+version: "2.0"
 services:
   sss:
     image: nomorelies/sss:v1.2

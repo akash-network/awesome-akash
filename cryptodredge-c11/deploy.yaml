@@ -2,31 +2,29 @@
 version: "2.0"
 
 services:
-  gminer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-gminer-c11:3
+  bminer-c11:
+    image: cryptoandcoffee/akash-gpu-miner-cryptodredge-c11:2
     expose:
-      - port: 4067
+      - port: 1880
         as: 80
         to:
           - global: true
     env:
-      - ALGO=etchash
+      - ALGO="kawpow"
       - WALLET_ADDRESS=""
-      - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
-      - PASSWORD=x
-      - OPTIONS="--api-bind-http 0.0.0.0:4067"
-#The default command. Adjust OPTIONS as needed.
-#/root/miner -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
+      - POOL="stratum+ssl://kawpow.mine.zergpool.com:13638"
+      - PASSWORD="c=DOGE,m=solo" #Example mines kawpow algorithm and payout out in DOGE
+      - OPTIONS=""
 profiles:
   compute:
-    gminer-c11:
+    bminer-c11:
       resources:
         cpu:
           units: 0.5
         memory:
           size: 768Mi
         storage:
-          - size: 256Mi
+          - size: 128Mi
         gpu:
           units: 1
           attributes:
@@ -48,13 +46,13 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        gminer-c11:
+        bminer-c11:
           denom: uakt
           amount: 100000 #Keep high to show all bids
 deployment:
-  gminer-c11:
+  bminer-c11:
     akash:
-      profile: gminer-c11
+      profile: bminer-c11
       count: 1
       #Max replica count : 50
 

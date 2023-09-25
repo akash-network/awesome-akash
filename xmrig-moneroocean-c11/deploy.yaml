@@ -2,31 +2,34 @@
 version: "2.0"
 
 services:
-  gminer-c11:
-    image: cryptoandcoffee/akash-gpu-miner-gminer-c11:3
+  xmrig-moneroocean-c11:
+    image: cryptoandcoffee/akash-gpu-miner-xmrig-moneroocean-c11:17
     expose:
-      - port: 4067
+      - port: 8080
         as: 80
+        proto: tcp
         to:
           - global: true
     env:
-      - ALGO=etchash
+      #Your Monero Wallet Address. Track your stats at https://moneroocean.stream
       - WALLET_ADDRESS=""
-      - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
-      - PASSWORD=x
-      - OPTIONS="--api-bind-http 0.0.0.0:4067"
-#The default command. Adjust OPTIONS as needed.
-#/root/miner -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
+      #Everything is pre-configured by default to auto-switch the most profitabile algorithm.
+      #If you want to mine a specific coin, use standard xmrig.
+      #Default options do not need to be changed.
+      #- OPTIONS="--verbose --no-color --cuda --no-cpu --bench-algo-time 10 --syslog"
 profiles:
   compute:
-    gminer-c11:
+    xmrig-moneroocean-c11:
       resources:
         cpu:
-          units: 0.5
+          units: 1
+          #Min 0.01 / Max 256 cpu.units
         memory:
-          size: 768Mi
+          size: 3Gi
+          #Min 3Gi with GPU because of multiple algorithm switching.
         storage:
-          - size: 256Mi
+          size: 128Mi
+          #Min 128Mi with GPU / Max 32Ti
         gpu:
           units: 1
           attributes:
@@ -48,13 +51,13 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        gminer-c11:
+        xmrig-moneroocean-c11:
           denom: uakt
           amount: 100000 #Keep high to show all bids
 deployment:
-  gminer-c11:
+  xmrig-moneroocean-c11:
     akash:
-      profile: gminer-c11
+      profile: xmrig-moneroocean-c11
       count: 1
       #Max replica count : 50
 

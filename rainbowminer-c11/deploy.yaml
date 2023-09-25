@@ -75,6 +75,8 @@ profiles:
           attributes:
             vendor:
               nvidia:
+                #- model: 3090
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
   placement:
     akash:
       #######################################################
@@ -97,6 +99,6 @@ deployment:
     akash:
       profile: rainbowminer-c11
       count: 1
-      #Max Deployment Count : 50
+      #Max replica count : 50
 
-## Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti

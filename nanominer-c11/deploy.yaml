@@ -1,0 +1,94 @@
+---
+version: "2.0"
+
+services:
+  nanominer-c11:
+    image: cryptoandcoffee/akash-gpu-miner-nanominer-c11:22
+    expose:
+      - port: 9090
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+    #Nanominer configures itself automatically for most algorithms and can mine up to 4 at once
+    #See https://github.com/nanopool/nanominer for which algorithms can be minded together
+    #You can add/remove as needed. Just make sure the variables are blank if you do not want them included.
+
+        - ALGO1="Etchash"
+        - WALLET_ADDRESS_ALGO1=""
+        - POOL_ALGO1="etchash.mine.zergpool.com:19997"
+        - WORKER_ALGO1=""
+        - PASSWORD_ALGO1="c=ETC,m=solo,ID=akash"
+
+        - ALGO2="Zilliqa"
+        - WALLET_ADDRESS_ALGO2=""
+        - POOL_ALGO2="us-east.ezil.me:4444"
+        - WORKER_ALGO2="akash"
+        - PASSWORD_ALGO2=""
+
+        - ALGO3="heavyhash"
+        - WALLET_ADDRESS_ALGO3=""
+        - POOL_ALGO3="us-solo-kas.2miners.com:13030"
+        - WORKER_ALGO3="akash"
+        - PASSWORD_ALGO3=""
+
+      #ALGO4 will use CPU! Options are RandomX or VerusHash. Be sure to increase CPU if enabled.
+      #  - ALGO4="RandomX"
+      #  - WALLET_ADDRESS_ALGO4="4AbG74FRUHYXBLkvqM1f7QH3UXGkhLetKdxS7U7BHkyfMF4nfx99GvN1REwYQHAeVLLy4Qa5gXXkfS4pSHHUWwdVFifDo5K"
+      #  - POOL_ALGO4="nyc.xmrlife.com:36969"
+      #  - WORKER_ALGO4="akash"
+      #  - PASSWORD_ALGO4=""
+      #Advanced Miners! please use CUSTOM_COMMAND to overwrite the variables above.
+        - CUSTOM_COMMAND=""
+      #Static configuration variables
+        - CHECK_FOR_UPDATES=true
+        - MPORT=0
+        - NO_LOG=true
+        - NO_COLOR=true
+        - WEB_PORT=9090
+profiles:
+  compute:
+    nanominer-c11:
+      resources:
+        cpu:
+          units: 0.5
+          #Min 0.01 / Max 256 cpu.units
+        memory:
+          size: 1Gi
+          #Min 3Gi with RandomX and GPU
+        storage:
+          size: 512Mi
+          #Min 6Mi / Max 32Ti
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                #- model: 3090
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        nanominer-c11:
+          denom: uakt
+          amount: 100000 #Keep high to show all bids
+deployment:
+  nanominer-c11:
+    akash:
+      profile: nanominer-c11
+      count: 1
+      #Max replica count : 50
+
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti
