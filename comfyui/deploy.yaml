@@ -12,7 +12,7 @@ services:
       - "VAEURLS="
       - "MODELURLS="
       - "UPSCALEURLS="
-      - "COMMANDLINE_ARGS=--listen --port 8080 --gpu-only"
+      - "COMMANDLINE_ARGS=--listen --port 8080 --gpu-only --disable-xformers"
 profiles:
   compute:
     app:
