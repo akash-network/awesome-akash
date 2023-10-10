@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   app:
-    image: zjuuu/comfyui:0.1
+    image: zjuuu/comfyui:0.4
     expose:
       - port: 8080
         as: 8080
@@ -12,7 +12,7 @@ services:
       - "VAEURLS="
       - "MODELURLS="
       - "UPSCALEURLS="
-      - "COMMANDLINE_ARGS=--listen --port 8080 --gpu-only --disable-xformers"
+      - "COMMANDLINE_ARGS=--listen --port 8080"
 profiles:
   compute:
     app:
