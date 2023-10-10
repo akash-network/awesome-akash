@@ -5,6 +5,7 @@ RUN pip install --upgrade pip
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git comfyui && chmod 777 -R comfyui && chown -R fcb:fcb comfyui
 RUN pip install -r comfyui/requirements.txt
 RUN pip install -U xformers
+RUN pip install torchvision==0.15 --extra-index-url https://download.pytorch.org/whl/cu117
 
 RUN ln -sf /bin/bash /bin/sh
 WORKDIR /
