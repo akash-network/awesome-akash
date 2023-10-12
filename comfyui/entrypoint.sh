@@ -4,6 +4,15 @@ echo "$MODELURLS"
 echo "$VAEURLS"
 echo "$UPSCALEURLS"
 echo "$COMMANDLINE_ARGS"
+echo "$ENABLE_MANAGER"
+
+if [ -z "$ENABLE_MANAGER" ]; then
+    echo "Env variable 'ENABLE_MANAGER' is not set. Will not install ComfyUI-Manager"
+else    
+    cd "/comfyui/custom_nodes"
+    git clone "https://github.com/ltdrdata/ComfyUI-Manager.git"
+    cd /
+fi
 
 # split string into array
 IFS=',' read -r -a URLS <<< "$MODELURLS"
@@ -35,5 +44,6 @@ do
     wget -nv $url -P /comfyui/models/upscale_model
 done
 
+echo "Starting ComfyUI ..."
 python /comfyui/main.py $COMMANDLINE_ARGS
 

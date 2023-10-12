@@ -2,13 +2,14 @@
 version: "2.0"
 services:
   app:
-    image: zjuuu/comfyui:0.5
+    image: zjuuu/comfyui:0.6
     expose:
       - port: 8080
         as: 8080
         to:
           - global: true
     env:
+      - "ENABLE_MANAGER=true"
       - "VAEURLS="
       - "MODELURLS="
       - "UPSCALEURLS="
