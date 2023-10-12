@@ -7,6 +7,12 @@ It is built upon the values of performance, stability, and openness, and MariaDB
 
 https://mariadb.org/
 
+## Docker image
+
+https://hub.docker.com/_/mariadb it's the official docker image we are using.
+
+For more environment options and versions please check their documentation.
+
 ## Mariadb vs MySQL
 
 > MariaDB is more scalable and offers a higher query speed when compared to MySQL. This makes it good for managing large-sized data. You will also find more features in MariaDB that MySQL doesn't have, like sequence storage engines and virtual columns. You can also use multiple engines in one table.
