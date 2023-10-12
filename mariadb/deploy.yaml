@@ -9,8 +9,8 @@ services:
         to:
           - global: true
     env:
-      - "MYSQL_ROOT_PASSWORD=my-secret-password"
-      - "MYSQL_DATABASE=mydb"
+      - "MARIADB_ROOT_PASSWORD=my-secret-password"
+      - "MARIADB_DATABASE=mydb"
 
 profiles:
   compute:
