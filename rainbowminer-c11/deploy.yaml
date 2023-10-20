@@ -1,0 +1,104 @@
+version: "2.0"
+
+services:
+  rainbowminer-c11:
+    image: cryptoandcoffee/akash-gpu-miner-rainbowminer-c11:3
+    expose:
+      - port: 4000
+        as: 80
+        to:
+          - global: true
+    env:
+#At least one address required!
+      - BTC_WALLET=
+      - XMR_WALLET=
+      - DOGE_WALLET=
+      - RVN_WALLET=
+      - XTZ_WALLET=
+      - REGION=us
+      #Check RainbowMiner after deployment for the region of the provider. You will see a country flag on top.
+      #See https://github.com/RainbowMiner/RainbowMiner/blob/master/Data/regions.json
+      - PROHASHING=
+      #Prohashing.com username
+      - MINING_DUTCH=
+      #Mining-dutch.nl username
+      #for a list of valid regions.
+      - AECurrency=DOGE
+      #Auto-exchange currency : exchange all coins and payout in this currency.
+      #Valid options are BTC,XMR,DOGE,RVN,XTZ.
+      #To mine specific coins and disable auto-exchange please update coins.json in the web interface
+################################################################################################################
+      #For all configuration options and a description see : https://github.com/RainbowMiner/RainbowMiner
+      #All the options can be configured once the miner is running.
+      #Click on URI aftr your deployment is complete to load the web interface.
+################################################################################################################
+      - DONATE=10
+      #Set the minutes, you want RainbowMiner to work for the developer (min. is 10 minutes, equals to 0.7%) [default=24]
+      - SSL=1
+      #Configure SSL usage: 0=prefer non-SSL over SSL pools, 1=prefer SSL over non-SSL pools, 2=use SSL pools only [default=0]
+      - MINER_NAME=
+      #Use only these specific miners, check Miners > Miners for a full list
+      - ALGORITHM=
+      #Mine only these algorithms, example Take2
+      - EXCLUDE_COIN_SYMBOL=VTC
+      #Do not mine these symbols, check Pools > All Pools for a full list
+      - EXCLUDE_ALGORITHM=
+      #Do not mine these algorithms, check Pools > All Pools for a full list
+      - EXCLUDE_POOL_NAME=Nicehash
+      #Do not mine these pools, check Pools > All Pools for a full list
+      - EXCLUDE_COIN=
+      #Do not mine a specific coin, like Jagoancoin
+      - EXCLUDE_MINER_NAME=CcminerMTP,CcminerMTP10,Nsgminer
+      #Exclude miner name
+      - BENCHMARK_INTERVAL=60
+      #Benchmarking time in seconds
+      - POOLS=ProHashing,ProHashingCoins,MiningDutch,MiningDutchCoins,Hashcryptos,C3pool,MoneroOcean,unMineable,ZergPool,ZergPoolCoins,Zpool,ZpoolCoins
+      #Full list of pools can be found at : https://github.com/RainbowMiner/RainbowMiner
+      #Check https://rbminer.net/monitoring/ for the most profitable coins, algorithms, and miners!
+profiles:
+  compute:
+    rainbowminer-c11:
+      resources:
+        cpu:
+          units: 1
+          #Min 0.01 / Max 256 CPU's.
+        memory:
+          size: 6Gi
+          #Min 4.75Gi-8Gi for RainbowMiner depending on total cpu units.
+          #Recommended 6 for max compatibility with multiple algorithms
+          #For best performance use at least 256Mi per cpu.unit requested above the 2.5Gi minimum required.
+        storage:
+          size: 3Gi
+          #Min 3Gi / Max 32Ti
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                #- model: 3090
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        rainbowminer-c11:
+          denom: uakt
+          amount: 100000 #Keep high to show all bids
+deployment:
+  rainbowminer-c11:
+    akash:
+      profile: rainbowminer-c11
+      count: 1
+      #Max replica count : 50
+
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti

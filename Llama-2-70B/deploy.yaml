@@ -1,0 +1,50 @@
+---
+version: "2.0"
+
+services:
+  app:
+    image: yuravorobei/llama-2:0.6
+    env:
+      - "MAX_INPUT_TOKEN_LENGTH=256"
+      - "MAX_NEW_TOKENS=50"
+
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - "uvicorn main:app --host 0.0.0.0 --port 7860"
+
+    expose:
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 15Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+
+        storage:
+          - size: 150Gi
+  placement:
+    akash:
+      attributes:
+      pricing:
+        app:
+          denom: uakt
+          amount: 100000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1

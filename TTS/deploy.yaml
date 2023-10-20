@@ -1,4 +1,4 @@
-version: '2.0'
+version: "2.0"
 services:
   tts:
     image: nomorelies/tts:v1.0
@@ -9,9 +9,9 @@ services:
           - global: true
     command:
       - bash
-      - '-c'
+      - "-c"
     args:
-      - 'python3 TTS/server/server.py --model_name tts_models/en/vctk/vits --use_cuda true'
+      - "python3 TTS/server/server.py --model_name tts_models/en/vctk/vits --use_cuda true"
 
 # use gpu with --use cuda true
 # use cpu with --use cuda false
