@@ -334,3 +334,4 @@ Awesome DeFi apps you can deploy on Akash
 ### Web Frameworks
 
 - [NextJS](nextjs)
+- [Nitropage](nitropage)
