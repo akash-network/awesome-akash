@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   nitropage:
-    image: wirelos/nitropage:0.33.0
+    image: wirelos/nitropage-starter:0.33.0
     expose:
       - port: 3000
         as: 80
@@ -11,7 +11,15 @@ services:
         to:
           - global: true
     env:
+      # Path to database file
       - DATABASE_URL=file:/var/db/dev.db
+      # Additional salt used while hashing passwords with bcrypt
+      - NITRO_AUTH_SALT=change_this
+      # Password used to encrypt iron session cookies
+      - NP_AUTH_IRON_PASSWORD=some_not_random_password_that_is_at_least_32_characters
+      # Comment out to disable demo mode
+      - NP_DEMO=1
+      - VITE_NP_DEMO=1
 profiles:
   compute:
     nitropage:
