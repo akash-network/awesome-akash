@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   nitropage:
-    image: wirelos/nitropage-starter:0.33.0
+    image: wirelos/nitropage-starter:0.33.1
     expose:
       - port: 3000
         as: 80
