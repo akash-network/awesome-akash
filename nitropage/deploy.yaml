@@ -12,7 +12,7 @@ services:
           - global: true
     env:
       # Path to database file
-      - DATABASE_URL=file:/var/db/dev.db
+      - DATABASE_URL=file:/srv/db/dev.db
       # Additional salt used while hashing passwords with bcrypt
       - NITRO_AUTH_SALT=change_this
       # Password used to encrypt iron session cookies
