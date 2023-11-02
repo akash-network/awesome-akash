@@ -11,7 +11,7 @@ This Akash template can be deployed as is using the pre-built Docker image or re
 
 - deploy this template with your favorite deployment tool for Akash (e.g. [Cloudmos](https://deploy.cloudmos.io/))
     - change `NITRO_AUTH_SALT` and `NP_AUTH_IRON_PASSWORD`
-    - uncomment `NP_DEMO` and `VITE_NP_DEMO` to disable demo content
+    - set `NP_DEMO` to 0 to disable demo content
 - when the deployment is up and running, visit http://your-deployment-url/admin to create an admin account or login with admin / 1234 if you did not disable demo content
 - after first login you can now create a Nitropage project
     - set the domain name to your Akash deployment domain, in case you intend to create multiple projects
