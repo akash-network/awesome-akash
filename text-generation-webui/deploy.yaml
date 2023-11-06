@@ -30,9 +30,9 @@ profiles:
     text-generation-webui:
       resources:
         cpu:
-          units: 12
+          units: 6
         memory:
-          size: 32Gi
+          size: 16Gi
         gpu:
           units: 1
           attributes:
