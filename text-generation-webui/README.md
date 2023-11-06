@@ -34,3 +34,6 @@ To learn how to use the various features, check out the Documentation: https://g
  - [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui/tree/main)
  - [Prebuild Docker Images by zjuuu](hhttps://hub.docker.com/r/zjuuu/text-generation-webui)
 
+## How to build the Docker image
+
+Clone the original repository: [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui/tree/main). Copy & paste the [Dockerfile](/text-generation-webui/Dockerfile). Run `docker build -t yourimagename .`
