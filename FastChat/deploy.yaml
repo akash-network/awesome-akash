@@ -1,5 +1,5 @@
 ##sdl yaml
-version: '2.0'
+version: "2.0"
 services:
   gpu-app:
     image: sxk1633/fastchat:13b-1

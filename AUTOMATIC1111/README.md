@@ -2,10 +2,6 @@
 
 ___
 
-### Attention! As of June 2023, deployment is ONLY available on the testnet-gpu network!
-
-___
-
 AUTOMATIC1111 is a user interface for working with graphics AI.
 
 The default deployment is set to the stable-diffusion **2.1** :
