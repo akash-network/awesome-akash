@@ -14,7 +14,7 @@ services:
       - WALLET_ADDRESS=""
       - POOL="stratum+ssl://kawpow.mine.zergpool.com:13638"
       - PASSWORD="c=ETC,m=solo" #Example mines kawpow algorithm and payout out in Ethereum Classic
-      - OPTIONS="--api-port 21550"
+      - OPTIONS=""
 #The default command. Adjust OPTIONS as needed.
 #/root/wildrig-multi -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
 profiles:
@@ -25,6 +25,8 @@ profiles:
           units: 0.5
         memory:
           size: 768Mi
+        storage:
+          - size: 128Mi
         gpu:
           units: 1
           attributes:
