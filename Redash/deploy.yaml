@@ -1,0 +1,288 @@
+---
+version: "2.0"
+services:
+
+  postgres:
+    image: postgres:9.6-alpine
+    volumes:
+      - /opt/redash/postgres-data:/var/lib/postgresql/data
+    restart: always
+    expose:
+      - port: 5432
+        as: 5432
+        to:
+          - global: false
+          - service: redash
+          - service: scheduled-worker
+    env:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    params:
+      storage:
+        postgres-db:
+          mount: /var/lib/postgres
+          readOnly: false
+  
+  scheduler:
+    image: redash/redash:10.0.0.b50363
+    expose: []
+    command:
+      - /app/bin/docker-entrypoint
+    args:
+      - scheduler
+    env:
+      - PYTHONUNBUFFERED=0
+      - REDASH_LOG_LEVEL=INFO
+      - REDASH_REDIS_URL=redis://redis:6379/0
+      - POSTGRES_PASSWORD=password123
+      - REDASH_COOKIE_SECRET=redash-selfhosted
+      - REDASH_SECRET_KEY=redash-selfhosted
+      - REDASH_DATABASE_URL=postgresql://postgres:password123@postgres/postgres
+      
+  worker:
+    image: redash/redash:10.0.0.b50363
+    expose: []
+    command:
+      - /app/bin/docker-entrypoint
+    args:
+      - worker
+    env:
+      - PYTHONUNBUFFERED=0
+      - REDASH_LOG_LEVEL=INFO
+      - REDASH_REDIS_URL=redis://redis:6379/0
+      - POSTGRES_PASSWORD=password123
+      - REDASH_COOKIE_SECRET=redash-selfhosted
+      - REDASH_SECRET_KEY=redash-selfhosted
+      - REDASH_DATABASE_URL=postgresql://postgres:password123@postgres/postgres
+      - QUEUES="periodic emails default"
+
+
+# build db and server manually 
+# in redash shell...
+# bin/docker-entrypoint create_db
+# bin/docker-entrypoint server
+  redash:
+    image: redash/redash:10.0.0.b50363
+    depends_on:
+      - postgres
+      - redis
+    expose:
+      - port: 5000
+        to:
+          - service: nginx
+      - port: 5678
+        as: 5678
+        to:
+          - global: false
+          - service: scheduler
+          - service: scheduled-worker
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'while true; do sleep 30; done;'
+    env:
+      - PYTHONUNBUFFERED=0
+      - REDASH_LOG_LEVEL=INFO
+      - REDASH_REDIS_URL=redis://redis:6379/0
+      - POSTGRES_PASSWORD=password123
+      - REDASH_COOKIE_SECRET=redash-selfhosted
+      - REDASH_SECRET_KEY=redash-selfhosted
+      - REDASH_DATABASE_URL=postgresql://postgres:password123@postgres/postgres
+
+  scheduled-worker:
+    image: redash/redash:10.0.0.b50363
+    expose: []
+    command:
+      - /app/bin/docker-entrypoint
+    args:
+      - worker
+    env:
+      - PYTHONUNBUFFERED=0
+      - REDASH_LOG_LEVEL=INFO
+      - REDASH_REDIS_URL=redis://redis:6379/0
+      - POSTGRES_PASSWORD=password123
+      - REDASH_COOKIE_SECRET=redash-selfhosted
+      - REDASH_SECRET_KEY=redash-selfhosted
+      - REDASH_DATABASE_URL=postgresql://postgres:password123@postgres/postgres
+      - QUEUES=scheduled_queries,schemas
+
+  redash-adhoc:
+    image: redash/redash:10.0.0.b50363
+    expose: []
+    command:
+      - /app/bin/docker-entrypoint
+    args:
+      - worker
+    env:
+      - PYTHONUNBUFFERED=0
+      - REDASH_LOG_LEVEL=INFO
+      - REDASH_REDIS_URL=redis://redis:6379/0
+      - POSTGRES_PASSWORD=password123
+      - REDASH_COOKIE_SECRET=redash-selfhosted
+      - REDASH_SECRET_KEY=redash-selfhosted
+      - REDASH_DATABASE_URL=postgresql://postgres:password123@postgres/postgres
+      - QUEUES=queries
+
+  redis:
+    image: redis:5.0-alpine
+    expose:
+      - port: 6379
+        as: 6379
+        to:
+          - global: false
+          - service: redash
+          - service: scheduled-worker
+    restart: always
+
+  nginx:
+    image: redash/nginx:latest
+    depends_on:
+      - redash
+    links:
+      - redash:redash
+    restart: always
+    expose:
+      - port: 80
+        as: 80
+        accept:
+          - "akashdash.xyz"
+        to:
+          - global: true
+            ip: "redashten"
+
+endpoints:
+  redashten:
+    kind: ip
+
+          
+profiles:
+  compute:
+    postgres:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 5Gi
+          - name: postgres-db
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta1
+    scheduler:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+    worker:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+    redash:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 5Gi
+    scheduled-worker:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+    redash-adhoc:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+    redis:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 2Gi
+        storage:
+          - size: 2Gi
+    nginx:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 2Gi
+        storage:
+          - size: 2Gi
+  placement:
+    akash:
+      pricing:
+        postgres:
+          denom: uakt
+          amount: 1000
+        scheduler:
+          denom: uakt
+          amount: 1000
+        worker:
+          denom: uakt
+          amount: 1000
+        redash:
+          denom: uakt
+          amount: 1000      
+        scheduled-worker:
+          denom: uakt
+          amount: 1000
+        redash-adhoc:
+          denom: uakt
+          amount: 1000
+        redis:
+          denom: uakt
+          amount: 1000
+        nginx:
+          denom: uakt
+          amount: 1000
+deployment:
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
+  scheduler:
+    akash:
+      profile: scheduler
+      count: 1
+  worker:
+    akash:
+      profile: worker
+      count: 1
+  redash:
+    akash:
+      profile: redash
+      count: 1
+  scheduled-worker:
+    akash:
+      profile: scheduled-worker
+      count: 1
+  redash-adhoc:
+    akash:
+      profile: redash-adhoc
+      count: 1
+  redis:
+    akash:
+      profile: redis
+      count: 1
+  nginx:
+    akash:
+      profile: nginx
+      count: 1
