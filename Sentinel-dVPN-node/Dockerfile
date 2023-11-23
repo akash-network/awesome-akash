@@ -33,16 +33,6 @@ RUN git clone https://github.com/NLnetLabs/unbound.git && \
     make install && \
     rm -rf /tmp/*
 
-# Install hnsd
-WORKDIR /tmp
-RUN git clone https://github.com/handshake-org/hnsd.git && \
-    cd hnsd && \
-    ./autogen.sh && \
-    ./configure && \
-    make && \
-    cp hnsd /usr/bin && \
-    rm -rf /tmp/*
-
 # Install dvpn-node
 WORKDIR /tmp
 RUN git clone https://github.com/sentinel-official/dvpn-node && \

@@ -5,7 +5,7 @@ endpoints:
     kind: ip
 services:
   app:
-    image: declab/sentinel_dvpn:0.7.0
+    image: declab/sentinel_dvpn:0.7.2
     env:
       - "MNEMONIC_BASE64=" # Mnemonic phrase encrypted with BASE64.
       - "MONIKER=dVPN on Akash Network v2RAY" # Your dVPN node name.
@@ -37,13 +37,13 @@ profiles:
         memory:
           size: 1Gi
         storage:
-          size: 10Gi         
+          size: 3Gi         
   placement:
     akash: 
       pricing:
         app:
           denom: uakt
-          amount: 100000
+          amount: 1000
 deployment:
   app:
     akash:
