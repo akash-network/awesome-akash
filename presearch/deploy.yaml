@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   presearch:
-    image: presearch/node:1.2.29
+    image: presearch/node:1.2.32
     #Check for the latest version here: https://hub.docker.com/r/presearch/node/tags
     expose:
       - port: 8080
