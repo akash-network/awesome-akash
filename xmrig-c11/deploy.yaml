@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   xmrig-c11:
-    image: cryptoandcoffee/akash-gpu-miner-xmrig-c11:9
+    image: cryptoandcoffee/akash-gpu-miner-xmrig-c11:10
     expose:
       - port: 8080
         as: 80
