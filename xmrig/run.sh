@@ -1,4 +1,31 @@
 #!/usr/bin/env bash
+
+
+remove_quotes() {
+  local str="$1"
+  str="${str%\"}"
+  str="${str#\"}"
+  echo "$str"
+}
+
+for var_name in CUSTOM_OPTIONS ALGO POOL WALLET WORKER TLS_FINGERPRINT RANDOMX_MODE; do
+  eval "value=\$$var_name"
+  value=$(remove_quotes "$value")
+
+  if [ -z "$value" ]; then
+    if [[ "$var_name" != "TLS_FINGERPRINT" && "$var_name" != "CUSTOM_OPTIONS" ]]; then
+      echo "Please examine the SDL and be sure to set the $var_name."
+      sleep 300
+      exit
+    fi
+  else
+    eval "$var_name=\"$value\""
+  fi
+done
+
+
+if [[ $AKASH_PROVIDER_STARTUP_CHECK == "true" ]]; then
+
 echo "Checking CPU in pod"
 if [ -f /sys/fs/cgroup/cpu/cpu.cfs_quota_us ]; then
 CPU_COUNT=$(cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us)
@@ -123,12 +150,28 @@ WORKER=$(echo ${WORKER}-${AKASH_CLUSTER_PUBLIC_HOSTNAME})
 cd /xmrig
 echo "Using POOL: ${POOL} WALLET: ${WALLET}  WORKER: ${WORKER} TLS: ${TLS} TLS_FINGERPRINT: ${TLS_FINGERPRINT}"
 
-CUSTOM_OPTIONS=$(sed -e 's/^"//' -e 's/"$//' <<<"$CUSTOM_OPTIONS") #Remove quotes
-
 if [[ ${TLS_FINGERPRINT} != "" && ${TLS} == "true" ]]; then
     ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --tls-fingerprint ${TLS_FINGERPRINT} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_COUNT --randomx-init=$CPU_COUNT $CUSTOM_OPTIONS
 elif [[ ${TLS_FINGERPRINT} == "" && ${TLS} == "true" ]]; then
     ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_COUNT --randomx-init=$CPU_COUNT $CUSTOM_OPTIONS
 else
     ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE -t $CPU_COUNT --randomx-init=$CPU_COUNT $CUSTOM_OPTIONS
+fi
+
+else
+
+echo "AKASH_PROVIDER_STARTUP_CHECK set to false, skipping..."
+#This mode disables the RandomX CPU_COUNT variable which is needed for randomx-init and to define threads, which optimizes Xmrig. Users who choose this will be advanced users.
+
+cd /xmrig
+echo "Using POOL: ${POOL} WALLET: ${WALLET}  WORKER: ${WORKER} TLS: ${TLS} TLS_FINGERPRINT: ${TLS_FINGERPRINT}"
+
+if [[ ${TLS_FINGERPRINT} != "" && ${TLS} == "true" ]]; then
+    ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --tls-fingerprint ${TLS_FINGERPRINT} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE $CUSTOM_OPTIONS
+elif [[ ${TLS_FINGERPRINT} == "" && ${TLS} == "true" ]]; then
+    ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --tls --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE $CUSTOM_OPTIONS
+else
+    ./xmrig -a ${ALGO} --url ${POOL} --user ${WALLET} --rig-id ${WORKER} --pass ${WORKER} --http-host 0.0.0.0 --http-port 8080 --syslog --no-color --verbose --randomx-mode=$RANDOMX_MODE $CUSTOM_OPTIONS
+fi
+
 fi

@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   miner-xmrig:
-    image: cryptoandcoffee/akash-xmrig:33
+    image: cryptoandcoffee/akash-xmrig:34
     expose:
       - port: 8080
         as: 80
@@ -13,7 +13,7 @@ services:
     env:
       - ALGO=rx/0
       #Set the algorithm you want xmrig to use.
-      - POOL=gulf.moneroocean.stream:20128
+      - POOL=gulf.moneroocean.stream:20032
       #The mining pool you want to connect to.
       - WALLET=
       #Your Monero Wallet Address for the default pool, otherwise any other wallet address for another pool/coin.
@@ -30,6 +30,8 @@ services:
       - CUSTOM_OPTIONS=
       #Customize the command line options of xmrig.  Full list of command available here:
       #https://xmrig.com/docs/miner/command-line-options
+      - AKASH_PROVIDER_STARTUP_CHECK=true
+      # Enable startup checks to validate CPU, memory, and configuration for optimal mining.
 profiles:
   compute:
     miner-xmrig:
