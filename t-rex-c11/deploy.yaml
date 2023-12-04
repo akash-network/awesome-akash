@@ -26,7 +26,7 @@ profiles:
         memory:
           size: 768Mi
         storage:
-          - size: 128Mi
+          - size: 512Mi
         gpu:
           units: 1
           attributes:
