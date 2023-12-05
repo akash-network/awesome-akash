@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   honeygain:
-    image: honeygain/honeygain:0.7.0
+    image: honeygain/honeygain:0.8.0
     expose:
       - port: 80
         to:
