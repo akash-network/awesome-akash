@@ -10,7 +10,7 @@ services:
         to:
           - global: true
     env:
-      - OPTIONS="-api 127.0.0.1:1880 -no-timestamps -uri ethproxy://YOUR_ETC_WALLET.akash@us-etc.2miners.com:1010"
+      - OPTIONS="-api 127.0.0.1:1880 -no-timestamps -uri ethproxy://YOUR_ETC_WALLET.akash@us-solo-etc.2miners.com:5050"
       #Replace "YOUR_ETC_WALLET" in the command
       #See more examples at https://bminer.me/examples/
 profiles:

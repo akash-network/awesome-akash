@@ -239,7 +239,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Iron Fish](iron-fish)
 - [MoneroOcean CPU with XMR payout](moneroocean)
 - [PacketStream](packetstream)
-- [Peer2Profit](peer2profit)
 - [pkt.cash](pkt-miner)
 - [RainbowMiner CPU](rainbowminer)
 - [Raptoreum](raptoreum-miner)
