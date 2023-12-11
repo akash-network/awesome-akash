@@ -10,6 +10,7 @@ ENV ALGO=rx/0
 ENV DONATE_LEVEL=0
 ENV RANDOMX_MODE=
 ENV CUSTOM_OPTIONS=
+ENV AKASH_PROVIDER_STARTUP_CHECK=true
 
 RUN apk --no-cache upgrade && \
     apk --no-cache add \

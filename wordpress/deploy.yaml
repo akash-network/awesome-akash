@@ -18,6 +18,12 @@ services:
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=testpass4you
       - WORDPRESS_DB_NAME=wordpress
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'grep -q upload_max_filesize /var/www/html/.htaccess 2>/dev/null || { echo -e "php_value upload_max_filesize 64M\nphp_value post_max_size 64M\nphp_value max_execution_time 300\nphp_value max_input_time 300" | tee -a /var/www/html/.htaccess; };
+      exec docker-entrypoint.sh apache2-foreground'
     params:
       storage:
         wordpress-data:
