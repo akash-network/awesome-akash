@@ -121,7 +121,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Data Visualization
 
-- [UFO Sightings](ufo-data-vis)
+-  [Redash Data Charts for Akash Analytics](Redash)
+-  [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
