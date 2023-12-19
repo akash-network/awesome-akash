@@ -121,7 +121,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Data Visualization
 
-- [UFO Sightings](ufo-data-vis)
+-  [Redash Data Charts for Akash Analytics](Redash)
+-  [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
@@ -239,7 +240,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Iron Fish](iron-fish)
 - [MoneroOcean CPU with XMR payout](moneroocean)
 - [PacketStream](packetstream)
-- [Peer2Profit](peer2profit)
 - [pkt.cash](pkt-miner)
 - [RainbowMiner CPU](rainbowminer)
 - [Raptoreum](raptoreum-miner)

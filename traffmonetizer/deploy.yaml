@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   traffmonetizer:
-    image: traffmonetizer/cli:latest
+    image: traffmonetizer/cli_v2:latest
     #image: traffmonetizer/cli:arm64v8 - ARM 64v8
     #image: traffmonetizer/cli:arm32v7 - ARM 32v7
     expose:
