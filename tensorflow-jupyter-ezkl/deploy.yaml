@@ -1,0 +1,20 @@
+---
+version: "2.0"
+services:
+  ezkl:
+    image: inferencelabs/ezkl-notebook:v1.1.1
+    expose:
+      - port: 8888
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    ezkl:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16GB
+        storage:
+          - size: 10Gi
