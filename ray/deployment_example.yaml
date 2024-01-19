@@ -1,0 +1,324 @@
+version: '2.0'
+services:
+  ray-head:
+      image:  thumperai/at1:v0.0.64
+      expose:
+      
+        - port: 8265
+          as: 8265
+          to: 
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4, ray-worker5
+            - global: true
+        - port: 6380
+          as: 6380
+          to:
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4,  ray-worker5
+            - global: true
+
+        - port: 8078
+          as: 8078
+          to:
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4,  ray-worker5
+        - port: 8079
+          as: 8079
+          to:
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4,  ray-worker5
+        - port: 10002
+          as: 10002
+          to:
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4,  ray-worker5
+        - port: 10003
+          as: 10003
+          to:
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4, ray-worker5
+        - port: 10004
+          as: 10004
+          to:
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4, ray-worker5
+        - port: 10005
+          as: 10005
+          to:
+            - service: ray-worker, ray-worker1, ray-worker2, ray-worker3, ray-worker4,  ray-worker5
+
+      # cmd:
+      #       - "ray start --head --port=6380 --dashboard-port=8265 --num-cpus=$MY_CPU_REQUEST --dashboard-host=0.0.0.0 --object-manager-port=8076 --node-manager-port=8077 --dashboard-agent-grpc-port=8078 --dashboard-agent-listen-port=8079 --min-worker-port=10002 --max-worker-port=10005 --redis-password='' --block"
+      env:
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - R2_BUCKET_URL=https://XXXXXXXXXXXXXXXXXXXXX
+        - S3_ENDPOINT_URL=https://XXXXXXXXXXXXXXx
+        - AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX
+        - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        - B2_APPLICATION_KEY_ID=XXXXXXXXXXXXXXXXXXxxx
+        - B2_APPLICATION_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - MINIO_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXx
+        - MINIO_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - AWS_DEFAULT_REGION=auto
+        #
+        - WANDB_API_KEYXXXXXXXXXXXXXXXXXXXXXXXXx
+        - WANDB_PROJECT=XXXXX
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - OPENBLAS_NUM_THREADS=1
+        # - NCCL_IB_GID_INDEX=3
+        # - NCCL_BLOCKING_WAIT=0
+        # # - NCCL_DEBUG=INFO
+        # - TORCH_DISTRIBUTED_DETAIL=DEBUG
+
+  ray-worker:
+    image:  thumperai/rayakash:nighly-gpu-worker-23
+    expose:
+      - port: 8078
+        as: 8078
+        to:
+          - global: true
+      - port: 8079
+        as: 8079
+        to:
+          - global: true
+    env:
+        - RAY_ADDRESS_HOST=ray-head
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - R2_BUCKET_URL=https://XXXXXXXXXXXXXXXXXXXXX
+        - S3_ENDPOINT_URL=https://XXXXXXXXXXXXXXx
+        - AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX
+        - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        - B2_APPLICATION_KEY_ID=XXXXXXXXXXXXXXXXXXxxx
+        - B2_APPLICATION_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - MINIO_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXx
+        - MINIO_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - AWS_DEFAULT_REGION=auto
+        #
+        - WANDB_API_KEYXXXXXXXXXXXXXXXXXXXXXXXXx
+        - WANDB_PROJECT=XXXXX
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - OPENBLAS_NUM_THREADS=1
+        # - NCCL_IB_GID_INDEX=3
+        # - NCCL_BLOCKING_WAIT=0
+        # # - NCCL_DEBUG=INFO
+        # - TORCH_DISTRIBUTED_DETAIL=DEBUG
+  ray-worker2:
+    image:  thumperai/rayakash:nighly-gpu-worker-23
+    expose:
+      - port: 8078
+        as: 8078
+        to:
+          - global: true
+      - port: 8079
+        as: 8079
+        to:
+          - global: true
+    # cmd: 
+    #       - 'python startworker.py'
+    #      - '"ray", "start", "--address=ray-head:6380", "--object-manager-port=8076". "--node-manager-port=8077", "--dashboard-agent-grpc-port=8078", "--dashboard-agent-listen-port=8079", "--min-worker-port=10002" "--max-worker-port=10005", "--block"'
+    env:
+        - RAY_ADDRESS_HOST=ray-head
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - R2_BUCKET_URL=https://XXXXXXXXXXXXXXXXXXXXX
+        - S3_ENDPOINT_URL=https://XXXXXXXXXXXXXXx
+        - AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX
+        - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        - B2_APPLICATION_KEY_ID=XXXXXXXXXXXXXXXXXXxxx
+        - B2_APPLICATION_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - MINIO_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXx
+        - MINIO_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - AWS_DEFAULT_REGION=auto
+        #
+        - WANDB_API_KEYXXXXXXXXXXXXXXXXXXXXXXXXx
+        - WANDB_PROJECT=XXXXX
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - OPENBLAS_NUM_THREADS=1
+        # - NCCL_IB_GID_INDEX=3
+        # - NCCL_BLOCKING_WAIT=0
+        # # - NCCL_DEBUG=INFO
+        # - TORCH_DISTRIBUTED_DETAIL=DEBUG
+  ray-worker3:
+    image:  thumperai/rayakash:nighly-gpu-worker-23
+    expose:
+      - port: 8078
+        as: 8078
+        to:
+          - global: true
+      - port: 8079
+        as: 8079
+        to:
+          - global: true
+    # cmd: 
+    #       - 'python startworker.py'
+    #      - '"ray", "start", "--address=ray-head:6380", "--object-manager-port=8076". "--node-manager-port=8077", "--dashboard-agent-grpc-port=8078", "--dashboard-agent-listen-port=8079", "--min-worker-port=10002" "--max-worker-port=10005", "--block"'
+    env:
+        - RAY_ADDRESS_HOST=ray-head
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - R2_BUCKET_URL=https://XXXXXXXXXXXXXXXXXXXXX
+        - S3_ENDPOINT_URL=https://XXXXXXXXXXXXXXx
+        - AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX
+        - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        - B2_APPLICATION_KEY_ID=XXXXXXXXXXXXXXXXXXxxx
+        - B2_APPLICATION_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - MINIO_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXx
+        - MINIO_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - AWS_DEFAULT_REGION=auto
+        #
+        - WANDB_API_KEYXXXXXXXXXXXXXXXXXXXXXXXXx
+        - WANDB_PROJECT=XXXXX
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - OPENBLAS_NUM_THREADS=1
+        # - NCCL_IB_GID_INDEX=3
+        # - NCCL_BLOCKING_WAIT=0
+        # # - NCCL_DEBUG=INFO
+        # - TORCH_DISTRIBUTED_DETAIL=DEBUG
+
+  ray-worker4:
+    image:  thumperai/rayakash:nighly-gpu-worker-23
+    expose:
+      - port: 8078
+        as: 8078
+        to:
+          - global: true
+      - port: 8079
+        as: 8079
+        to:
+          - global: true
+    # cmd: 
+    #       - 'python startworker.py'
+    #      - '"ray", "start", "--address=ray-head:6380", "--object-manager-port=8076". "--node-manager-port=8077", "--dashboard-agent-grpc-port=8078", "--dashboard-agent-listen-port=8079", "--min-worker-port=10002" "--max-worker-port=10005", "--block"'
+    env:
+       - RAY_ADDRESS_HOST=ray-head
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - R2_BUCKET_URL=https://XXXXXXXXXXXXXXXXXXXXX
+        - S3_ENDPOINT_URL=https://XXXXXXXXXXXXXXx
+        - AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXX
+        - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+        - B2_APPLICATION_KEY_ID=XXXXXXXXXXXXXXXXXXxxx
+        - B2_APPLICATION_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - MINIO_ACCESS_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXx
+        - MINIO_SECRET_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXX
+        - AWS_DEFAULT_REGION=auto
+        #
+        - WANDB_API_KEYXXXXXXXXXXXXXXXXXXXXXXXXx
+        - WANDB_PROJECT=XXXXX
+        - RAY_MULTIPLE_DEPLOYMENT=FALSE
+        - OPENBLAS_NUM_THREADS=1
+        # - NCCL_IB_GID_INDEX=3
+        # - NCCL_BLOCKING_WAIT=0
+        # # - NCCL_DEBUG=INFO
+        # - TORCH_DISTRIBUTED_DETAIL=DEBUG
+
+profiles:
+  compute:
+    ray-head:
+      resources:
+        cpu:
+          units: 24
+        memory:
+          size: 100Gi
+        gpu:
+            units: 1
+            attributes:
+              vendor:
+                nvidia:
+                  - model: v100
+        storage:
+          - size: 1020Gb
+
+    ray-worker:
+      resources:
+        cpu:
+          units: 50
+        memory:
+          size: 300Gi
+        gpu:
+          units: 7
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx8000
+        storage:
+          - size: 480Gi
+
+    ray-worker2:
+      resources:
+        cpu:
+          units: 50
+        memory:
+          size: 300Gi
+        gpu:
+          units: 7
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx8000
+        storage:
+          - size: 480Gi
+
+    ray-worker3:
+      resources:
+        cpu:
+          units: 50
+        memory:
+          size: 300Gi
+        gpu:
+          units: 7
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx8000
+
+        storage:
+          - size: 300Gi
+
+    ray-worker4:
+      resources:
+        cpu:
+          units: 50
+        memory:
+          size: 300Gi
+        gpu:
+          units: 6
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx8000
+
+        storage:
+          - size: 300Gi
+
+
+  placement:
+    westcoast:
+      pricing:
+        ray-head:
+          denom: uakt
+          amount: 1000000
+        ray-worker:
+          denom: uakt
+          amount: 1000000
+        ray-worker2:
+          denom: uakt
+          amount: 1000000
+        ray-worker3:
+          denom: uakt
+          amount: 1000000
+        ray-worker4:
+          denom: uakt
+          amount: 1000000
+          
+deployment:
+  ray-head:
+    westcoast:
+      profile: ray-head
+      count: 1
+  ray-worker:
+    westcoast:
+      profile: ray-worker
+      count: 1
+  ray-worker2:
+    westcoast:
+      profile: ray-worker2
+      count: 1
+  ray-worker3:
+    westcoast:
+      profile: ray-worker3
+      count: 1
+  ray-worker4:
+    westcoast:
+      profile: ray-worker4
+      count: 1
