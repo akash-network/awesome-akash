@@ -35,7 +35,7 @@ services:
       - --keep-alive=true
       - --max-connections=50
       - --dns-discovery=true
-      - --dns-discovery-url=enrtree://AOGECG2SPND25EEFMAJ5WF3KSGJNSGV356DSTL2YVLLZWIV6SAYBM@prod.waku.nodes.status.im
+      - --dns-discovery-url=enrtree://ANEDLO25QVUGJOUTQFRYKWX6P4Z4GKVESBMHML7DZ6YK4LGS5FC5O@prod.wakuv2.nodes.status.im
       - --discv5-discovery=true
       - --discv5-udp-port=9005
       - --discv5-enr-auto-update=True
