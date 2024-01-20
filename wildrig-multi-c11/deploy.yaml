@@ -1,0 +1,61 @@
+---
+version: "2.0"
+
+services:
+  wildrig-multi-c11:
+    image: cryptoandcoffee/akash-gpu-miner-wildrig-multi-c11:5
+    expose:
+      - port: 21550
+        as: 80
+        to:
+          - global: true
+    env:
+      - ALGO="kawpow"
+      - WALLET_ADDRESS=""
+      - POOL="stratum+ssl://kawpow.mine.zergpool.com:13638"
+      - PASSWORD="c=ETC,m=solo" #Example mines kawpow algorithm and payout out in Ethereum Classic
+      - OPTIONS=""
+#The default command. Adjust OPTIONS as needed.
+#/root/wildrig-multi -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
+profiles:
+  compute:
+    wildrig-multi-c11:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 768Mi
+        storage:
+          - size: 128Mi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                #- model: 3090
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Miners: You can receive more bids from more providers by removing this section
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        wildrig-multi-c11:
+          denom: uakt
+          amount: 100000 #Keep high to show all bids
+deployment:
+  wildrig-multi-c11:
+    akash:
+      profile: wildrig-multi-c11
+      count: 1
+      #Max replica count : 50
+
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti

@@ -1,0 +1,73 @@
+version: "2.0"
+services:
+  text-generation-webui:
+    # v1.7 of text-generation-webui change this if you want to use a newer/older version
+    image: zjuuu/text-generation-webui:v1.7.3
+    expose:
+      # ui port
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+      # api port
+      - port: 5000
+        as: 5000
+        to:
+          - global: true
+      # api-stream port
+      - port: 5005
+        as: 5005
+        to:
+          - global: true
+    env:
+      - CLI_ARGS=--listen --auto-devices --api
+      # the following examples have been tested with the files linked in docs/README_docker.md:
+      # example running 13b with 4bit/128 groupsize        : CLI_ARGS=--model llama-13b-4bit-128g --wbits 4 --listen --groupsize 128 --pre_layer 25
+      # example with loading api extension and public share: CLI_ARGS=--model llama-7b-4bit --wbits 4 --listen --auto-devices --no-stream --extensions api --share
+      # example running 7b with 8bit groupsize             : CLI_ARGS=--model llama-7b --load-in-8bit --listen --auto-devices
+profiles:
+  compute:
+    text-generation-webui:
+      resources:
+        cpu:
+          units: 6
+        memory:
+          size: 16Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                # some models require a lot of vram to run please research the requirements of the model you want to deploy and use a capable gpu
+                # uncomment or leave it empty to receive bids with any available gpu
+                #- model: a40
+                #- model: a10
+                #- model: 4090
+                #- model: 3090Ti
+                #- model: 4080
+                #- model: 3090
+                #- model: h100
+                #- model: a100
+                #- model: v100
+                #- model: 3060
+                #- model: p100
+                #- model: 4000
+                #- model: a4000
+                #- model: a6000
+                #- model: 2070
+                #- model: 1080
+                #- model: 1080Ti
+        # Size of the storage depends on the models you want to download
+        storage:
+          - size: 30Gi
+  placement:
+    westcoast:
+      pricing:
+        text-generation-webui:
+          denom: uakt
+          amount: 1000000
+deployment:
+  text-generation-webui:
+    westcoast:
+      profile: text-generation-webui
+      count: 1

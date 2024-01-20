@@ -1,0 +1,51 @@
+---
+version: "2.0"
+
+services:
+  app:
+    image: yuravorobei/gpt-neo:0.1
+    env:
+      - "MODEL_NAME=gpt-neo-2.7B" # options [gpt-neo-125M, gpt-neo-1.3B, gpt-neo-2.7B, gpt-neox-20b]
+      - "MAX_INPUT_TOKEN_LENGTH=30"
+      - "MAX_NEW_TOKENS=50"
+    expose:
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          # gpt-neo-125M - 4Gi
+          # gpt-neo-1.3B - 10Gi
+          # gpt-neo-2.7B - 20Gi
+          # gpt-neox-20b - 50Gi
+          size: 20Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+        storage:
+          # gpt-neo-125M - 1Gi
+          # gpt-neo-1.3B - 10Gi
+          # gpt-neo-2.7B - 15Gi
+          # gpt-neox-20b - 50Gi
+          - size: 20Gi
+  placement:
+    akash:
+      attributes:
+      pricing:
+        app:
+          denom: uakt
+          amount: 100000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1

@@ -1,4 +1,4 @@
-# Awesome Akash
+# Awesome Akash <!-- omit in toc -->
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
@@ -7,14 +7,44 @@ Instructions on how to deploy the SDL files in this repository can be found [her
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
+
+- [Official](#official)
+- [AI](#ai)
+- [Blogging](#blogging)
+- [Built with Cosmos-SDK](#built-with-cosmos-sdk)
+- [Chat](#chat)
+- [Machine Learning](#machine-learning)
+- [CI/CD, DevOps](#cicd-devops)
+- [Data Visualization](#data-visualization)
+- [Databases and Administration](#databases-and-administration)
+- [DeFi](#defi)
+- [Benchmarking](#benchmarking)
+- [Blockchain](#blockchain)
+- [Business](#business)
+- [Games](#games)
+- [Game Servers](#game-servers)
+- [Hosting](#hosting)
+- [Media](#media)
+- [Search Engines](#search-engines)
+- [Mining](#mining)
+- [Mining Pools](#mining-pools)
+- [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
+- [Project Management](#project-management)
+- [Social](#social)
+- [Tools](#tools)
+- [Network](#network)
+- [Databases](#databases)
+- [Video Conferencing](#video-conferencing)
+- [Wallet](#wallet)
+- [Web Frameworks](#web-frameworks)
 
 ### Official
 
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
 
-### AI
+### AI - CPU
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
@@ -25,10 +55,35 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Daila](daila)
 - [Flowise](flowise)
 - [GPT4ALL](gpt4all)
-- [Serge](serge)
+- [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+
+### AI - GPU
+
+- [AI-Image-App](AI-Image-App)
+- [AUTOMATIC1111](AUTOMATIC1111)
+- [BERT](bert)
+- [BERT Sentiment Analysis](bert-sentiment-analysis)
+- [ChatGLM-6B](ChatGLM-6B)
+- [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [ComfyUI](comfyui)
+- [Dolly-v2-12b](dolly-v2-12b)
+- [Falcon-7B](Falcon-7B)
+- [FastChat](FastChat)
+- [Flan-T5 XXL](flan-t5-xxl)
+- [GPT-Neo](gpt-neo)
+- [Llama-2-70B](Llama-2-70B)
+- [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
+- [Semantra](semantra)
+- [Serge](serge-gpu)
+- [Stable Diffusion](stable-diffusion-ui)
+- [Stable Diffusion Webui](stable-diffusion-webui)
+- [StableStudio](StableStudio)
+- [Text generation WebUi](text-generation-webui)
+- [TTS](TTS)
+- [XLM-roBERTa](XLM-roBERTa)
 
 ### Blogging
 
@@ -51,9 +106,11 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Machine Learning
 
+- [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+- [Doccano](doccano)
 
 ### CI/CD, DevOps
 
@@ -64,7 +121,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Data Visualization
 
-- [UFO Sightings](ufo-data-vis)
+-  [Redash Data Charts for Akash Analytics](Redash)
+-  [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
@@ -115,27 +173,20 @@ Awesome DeFi apps you can deploy on Akash
 - [Speedtest Tracker](speedtest-tracker)
 
 ### Blockchain
+
 - [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
 - [Near Node](near)
 - [Vidulum](vidulum)
 - [Ethereum 2.0](Ethereum_2.0)
-- [POKT Network](pokt_network)
+- [POKT Network](pokt-network)
+- [Polkadot](polkadot)
 - [Kadena](Kadena)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Handshake](handshake)
 - [Fuse Network Node](fuse-network-node)
-
-### Blogging
-
-- [SteemCN](steemcn)
-- [Ghost](ghost)
-- [Grav](Grav)
-- [Wordpress](wordpress)
-- [Confluence](confluence)
-- [Drupal](drupal)
-- [Wiki.js](wikijs)
+- [Injective](injective)
 
 ### Business
 
@@ -169,11 +220,6 @@ Awesome DeFi apps you can deploy on Akash
 - [IPFS](ipfs)
 - [Flame](flame)
 
-### Machine Learning
-
-- [Jupyter Notebook](jupyter)
-- [Doccano](doccano)
-
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
@@ -182,12 +228,9 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Whoogle Search](whoogle-search)
 - [Presearch](presearch)
-
-### Search Engine
-
 - [YaCy](yacy)
 
-### Mining
+### Mining - CPU
 
 - [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
@@ -195,14 +238,31 @@ Awesome DeFi apps you can deploy on Akash
 - [Honeygain](honeygain)
 - [IPRoyal Pawns](iproyal-pawns)
 - [Iron Fish](iron-fish)
-- [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
+- [MoneroOcean CPU with XMR payout](moneroocean)
 - [PacketStream](packetstream)
-- [Peer2Profit](peer2profit)
 - [pkt.cash](pkt-miner)
-- [RainbowMiner](rainbowminer)
+- [RainbowMiner CPU](rainbowminer)
 - [Raptoreum](raptoreum-miner)
 - [Traffmonetizer](traffmonetizer)
-- [xmrig](xmrig)
+- [XMRig CPU](xmrig)
+
+### Mining - GPU
+
+- [Bminer](bminer-c11)
+- [BzMiner](bzminer-c11)
+- [CryptoDredge](cryptodredge-c11)
+- [GMiner](gminer-c11)
+- [lolMiner](lolminer-c11)
+- [MoneroOcean GPU with XMR payout](xmrig-moneroocean-c11)
+- [Nanominer](nanominer-c11)
+- [NBMiner](nbminer-c11)
+- [OneZeroMiner](onezerominer-c11)
+- [RainbowMiner GPU](rainbowminer-c11)
+- [Rigel](rigel-c11)
+- [SRBMiner-MULTI](srbminer-multi-c11)
+- [T-Rex](t-rex-c11)
+- [WildRig Multi](wildrig-multi-c11)
+- [XMRig GPU](xmrig-c11)
 
 ### Mining Pools
 
@@ -225,6 +285,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Discourse](discourse)
 - [TeamSpeak](teamspeak)
+- [Waku](waku)
 
 ### Tools
 
