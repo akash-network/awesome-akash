@@ -47,7 +47,6 @@ cd ray-worker-gpu && docker build -t  thumperai/rayakash:ray-worker-py310-cu118 
 The deployment utilizes several environment variables for configuration. These include:
 
 - `RAY_ADDRESS_HOST`: Specifies the address of the head node. Only edit if you are trying to use ray across multiple providers.
-- `RAY_MULTIPLE_DEPLOYMENT`: Indicates whether deployments across multiple providers are being are being used.
 - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`: Credentials for AWS services.
 - `R2_BUCKET_URL`, `S3_ENDPOINT_URL`: URLs for S3-compatible storage services.
 - `B2_APPLICATION_KEY_ID`, `B2_APPLICATION_KEY`: Credentials for Backblaze B2 storage.
@@ -75,21 +74,3 @@ To modify the deployment based on the desired resources including CPU, GPU, Disk
 For example, to allocate specific resources to the head node and worker nodes, you would set the following under `ray-head` and `ray-worker` profiles respectively:
 
 Remember to review and update the `placement` and `deployment` sections to reflect the correct pricing and count of nodes for your deployment.
-
-## Cross Provider Ray Clusters - Experimental Feature
-
-Cross provider Ray clusters are an experimental feature that allows for the deployment of Ray clusters across multiple akash providers. To enable this you need to set environment variable`RAY_MULTIPLE_DEPLOYMENT` to `TRUE `.This feature is currently limited by the number of ports required for Raylet services and the handling of large numbers of tasks. 
-
-When setting up a cross-provider Ray worker, it is necessary to hard code a sufficient number of Raylet ports for the head node and update their port mapping for the workers. The exact number of required ports is not well-defined and can vary significantly depending on the size of the cluster. For a small cluster, you may need to allocate between 10-20 ports, while a large cluster could require anywhere from 200-500 ports.
-
-## Configuring Raylet Ports for Cross Provider Deployment
-
-1. Determine the estimated size of your Ray cluster and the potential number of tasks it will handle.
-2. Based on the size, decide on the number of Raylet ports to allocate. Use the guidelines above as a starting point.
-3. In the head node configuration, explicitly set the range of ports for Raylet services to match the number you have decided on.
-4. Ensure that the chosen ports are open and accessible across all the providers you intend to use.
-
-Remember, this is an experimental setup, and the requirements may change as the feature evolves and improves.
-
-
-
