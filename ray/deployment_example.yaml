@@ -1,7 +1,7 @@
 version: '2.0'
 services:
   ray-head:
-      image:  thumperai/at1:v0.0.64
+      image: thumperai/rayakash:ray-head-gpu-py310
       expose:
       
         - port: 8265
@@ -64,7 +64,7 @@ services:
         # - TORCH_DISTRIBUTED_DETAIL=DEBUG
 
   ray-worker:
-    image:  thumperai/rayakash:nighly-gpu-worker-23
+    image:  thumperai/rayakash:ray-worker-py310-cu118
     expose:
       - port: 8078
         as: 8078
@@ -96,7 +96,7 @@ services:
         # # - NCCL_DEBUG=INFO
         # - TORCH_DISTRIBUTED_DETAIL=DEBUG
   ray-worker2:
-    image:  thumperai/rayakash:nighly-gpu-worker-23
+    image:   thumperai/rayakash:ray-worker-py310-cu118
     expose:
       - port: 8078
         as: 8078
@@ -131,7 +131,7 @@ services:
         # # - NCCL_DEBUG=INFO
         # - TORCH_DISTRIBUTED_DETAIL=DEBUG
   ray-worker3:
-    image:  thumperai/rayakash:nighly-gpu-worker-23
+    image:   thumperai/rayakash:ray-worker-py310-cu118
     expose:
       - port: 8078
         as: 8078
@@ -167,7 +167,7 @@ services:
         # - TORCH_DISTRIBUTED_DETAIL=DEBUG
 
   ray-worker4:
-    image:  thumperai/rayakash:nighly-gpu-worker-23
+    image:   thumperai/rayakash:ray-worker-py310-cu118
     expose:
       - port: 8078
         as: 8078
