@@ -14,7 +14,7 @@ services:
       - WALLET_ADDRESS=""
       - POOL="stratum+ssl://us-solo-etc.2miners.com:15050"
       - PASSWORD=x
-      - OPTIONS="--api-bind-http 0.0.0.0:4067"
+      - OPTIONS=""
 #The default command. Adjust OPTIONS as needed.
 #/root/miner -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
 profiles:

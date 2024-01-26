@@ -68,6 +68,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [ComfyUI](comfyui)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
@@ -120,7 +121,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Data Visualization
 
-- [UFO Sightings](ufo-data-vis)
+-  [Redash Data Charts for Akash Analytics](Redash)
+-  [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
@@ -238,7 +240,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Iron Fish](iron-fish)
 - [MoneroOcean CPU with XMR payout](moneroocean)
 - [PacketStream](packetstream)
-- [Peer2Profit](peer2profit)
 - [pkt.cash](pkt-miner)
 - [RainbowMiner CPU](rainbowminer)
 - [Raptoreum](raptoreum-miner)
