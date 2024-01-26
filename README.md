@@ -106,6 +106,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Machine Learning
 
+- [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
