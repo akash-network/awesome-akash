@@ -36,9 +36,9 @@ cd ray-worker-gpu && docker build -t  thumperai/rayakash:ray-worker-py310-cu118 
 ```docker push thumperai/rayakash:ray-head-gpu-py310-cu118
    docker push thumperai/rayakash:ray-worker-py310-cu118
  ```
-3. Use the `deployment_example.yaml` file as a template to configure your Ray cluster deployment.
+3. Use the `deploy.yaml` file as a template to configure your Ray cluster deployment.
 
-4. Modify the `resources` section under `profiles` in the `deployment_example.yaml` to match the desired number of CPUs and other resources for each node type.  Remmember that providers will sometimes have different gpu model tags in use.  This example deployment may need to be scaled down to bid on your preferred provider. 
+4. Modify the `resources` section under `profiles` in the `deploy.yaml` to match the desired number of CPUs and other resources for each node type.  Remmember that providers will sometimes have different gpu model tags in use.  This example deployment may need to be scaled down to bid on your preferred provider. 
 
 5. Deploy the Ray cluster using the configured YAML file.  Go to https://console.akash.network/ and paste in your yaml file to deploy your cluster. 
 
@@ -62,7 +62,7 @@ Ensure to replace the placeholder values (denoted by `XXXXXXXXXXXXXXXXXXXXX`) wi
 
 To modify the deployment based on the desired resources including CPU, GPU, Disk, and RAM:
 
-1. Open the `deployment_example.yaml` file.
+1. Open the `deploy.yaml` file.
 2. Locate the `profiles` section.
 3. Under each service (e.g., `ray-head`, `ray-worker`), adjust the resource values to match your requirements:
    - For CPU, modify the `cpu.units` value.
