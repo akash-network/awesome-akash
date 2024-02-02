@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   ezkl:
-    image: inferencelabs/ezkl-notebook:v2.0.0
+    image: inferencelabs/ezkl-notebook
     expose:
       - port: 8888
         as: 80
