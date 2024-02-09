@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   app:
-    image: zjuuu/comfyui:0.8
+    image: zjuuu/comfyui:0.15
     expose:
       - port: 8080
         as: 8080
@@ -14,6 +14,7 @@ services:
       - "MODELURLS="
       - "UPSCALEURLS="
       - "COMMANDLINE_ARGS=--listen --port 8080"
+      - "DELETE_EVERY_12HRS=true"
 profiles:
   compute:
     app:

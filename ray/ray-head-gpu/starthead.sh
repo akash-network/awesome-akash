@@ -1,0 +1,1 @@
+ray start  --head --port=6380 --dashboard-port=8265 --dashboard-host=0.0.0.0 --object-manager-port=8076 --node-manager-port=8077 --dashboard-agent-grpc-port=8078 --dashboard-agent-listen-port=8079 --min-worker-port=13105 --max-worker-port=14305 --block

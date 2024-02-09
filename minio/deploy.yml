@@ -1,0 +1,61 @@
+version: '2.0'
+endpoints:
+#  myendpoint:  #if you want to use a dedicated IP address
+#    kind: ip
+services:
+  minio:
+    image: minio/minio:latest
+    expose:
+      - port: 9000
+        as: 9000
+        to:
+            global: true
+            # ip: myendpoint #if you want to use a dedicated IP address
+      - port: 9090
+        as: 9090
+        to:
+          - global: true
+    env:
+      - MINIO_ACCESS_KEY=minio9880707009008
+      - MINIO_SECRET_KEY=minio1236585895980
+      - AWS_DEFAULT_REGION=us-east-1
+      # - S3_ENDPOINT_URL=myendpoint
+      - AWS_ACCESS_KEY_ID=minio
+      - AWS_SECRET_ACCESS_KEY=minio123
+
+    cmd:
+        - /bin/bash
+        - -c
+    args:
+        - server
+        - /storage 
+        - --console-address=:9090
+  
+profiles:
+  compute:
+    minio:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 20Gi
+        storage:
+          - size: 100Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+        capabilities/storage/1/class: beta3
+      pricing:
+        minio:
+          denom: uakt
+          amount: 10000000
+deployment:
+  minio:
+    westcoast:
+      profile: minio
+      count: 1
+ 
