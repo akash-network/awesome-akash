@@ -10,7 +10,7 @@ Juno is a golang [**Starknet**](https://starknet.io/) node implementation by [**
 
 1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap) wallet as a browser extension
 2. Fund your wallet with at least 5 AKT. How to get AKT? Read at https://akash.network/token
-3. Open [Cloudmos](https://deploy.cloudmos.io/) and connect your Keplr wallet
+3. Open [Cloudmos](https://deploy.cloudmos.io/) or [Akash Console](https://console.akash.network/) and connect your Keplr wallet
 5. Create a certificate
 3. Create deployment
 4. Choose `Empty` for the template and copy-and-paste the `deploy.yaml` file from this repository
@@ -21,6 +21,7 @@ Click [here](https://docs.akash.network/guides/deploy) to learn more about deplo
 Juno is compatible with the following Starknet API versions:
 - v0.6.0 (Endpoint: /v0_6 or default /)
 - v0.5.0 (Endpoint: /v0_5)
+
 To interact with a specific API version, you can specify the version endpoint in your RPC calls. For example:
 ```
 curl -X POST http://localhost:6060 -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"juno_version","id":1}'
