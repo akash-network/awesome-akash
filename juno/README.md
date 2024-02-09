@@ -25,7 +25,7 @@ To interact with a specific API version, you can specify the version endpoint in
 ```
 curl -X POST http://localhost:6060 -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"juno_version","id":1}'
 ```
-Use URI in Cloudmos or Akash Console after deployment instead of http://localhost:6060
+Use URI from Cloudmos or Akash Console after deployment instead of http://localhost:6060
 
 ## Documentation
 
