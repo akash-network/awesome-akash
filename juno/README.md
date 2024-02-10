@@ -1,12 +1,8 @@
-# What is Akash?
-
-Akash Network's [**open source**](https://github.com/ovrclk/akash) cloud platform lets you quickly deploy a Docker container to the provider of choice (for less than AWS).
-
 # What is Juno?
 
 Juno is a golang [**Starknet**](https://starknet.io/) node implementation by [**Nethermind**](https://nethermind.io/) with the aim of decentralising Starknet.
 
-# How to deploy Starknet node on Akash
+## Deploy Starknet node on Akash
 
 1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap) wallet as a browser extension
 2. Fund your wallet with at least 5 AKT. How to get AKT? Read at https://akash.network/token
@@ -14,6 +10,8 @@ Juno is a golang [**Starknet**](https://starknet.io/) node implementation by [**
 5. Create a certificate
 3. Create deployment
 4. Choose `Empty` for the template and copy-and-paste the `deploy.yaml` file from this repository
+
+Don't forget to use your own API key from Infura in SDL. Node will sync after deployment.
 
 Click [here](https://docs.akash.network/guides/deploy) to learn more about deploying.
 
@@ -34,3 +32,4 @@ Use URI from Cloudmos or Akash Console after deployment instead of http://localh
 [Juno on Github](https://github.com/NethermindEth/juno)
 [Infura](https://app.infura.io/)
 [JSON-RPC methods](https://docs.infura.io/api/networks/starknet/json-rpc-methods)
+[Starknet Website](https://www.starknet.io/en)
