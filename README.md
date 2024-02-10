@@ -189,7 +189,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Handshake](handshake)
 - [Fuse Network Node](fuse-network-node)
 - [Injective](injective)
-- [StarkNet Node by Juno](juno)
+- [Juno](juno)
 
 ### Business
 
