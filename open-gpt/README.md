@@ -17,7 +17,7 @@ Set up language models
 
 By default, this uses OpenAI, but there are also options for Azure OpenAI and Anthropic. If you are using those, you may need to set different environment variables.
 
-Currently it's setup as it uses OPEN AI Api - for this to work you need openai paid api access. Enable billing in platform.openai.com and add some balance to perform tasks throught GPT turbo 3.5 or GPT 4.
+For OpenAI, you need openai paid api access. Enable billing in platform.openai.com and add some balance to perform tasks throught GPT turbo 3.5 or GPT 4.
 
 OPENAI_API_KEY=
 
