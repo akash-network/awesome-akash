@@ -1,6 +1,6 @@
 ## OPENGPT on Akash Network
 
-___
+---
 
 OpenGPT is an open source effort to create a similar experience to OpenAI's GPTs. It builds upon LangChain, LangServe and LangSmith. OpenGPTs gives you more control, allowing you to configure:
 
@@ -17,9 +17,7 @@ Set up language models
 
 By default, this uses OpenAI, but there are also options for Azure OpenAI and Anthropic. If you are using those, you may need to set different environment variables.
 
-Set up language models
-
-By default, this uses OpenAI, but there are also options for Azure OpenAI and Anthropic. If you are using those, you may need to set different environment variables.
+Currently it's setup as it uses OPEN AI Api - for this to work you need openai paid api access. Enable billing in platform.openai.com and add some balance to perform tasks throught GPT turbo 3.5 or GPT 4.
 
 OPENAI_API_KEY=
 
@@ -27,6 +25,7 @@ Other language models can be used, and in order to use them you will need to set
 
 Set up tools By default this uses a lot of tools. Some of these require additional environment variables. You do not need to use any of these tools, and the environment variables are not required to spin up the app (they are only required if that tool is called).
 
-Currently it's setup as it uses OPEN AI Api - for this to work you need openai paid api access. Enable billing in platform.openai.com and add some balance to perform tasks throught GPT turbo 3.5 or GPT 4. 
+      - YDC_API_KEY=test
+      - TAVILY_API_KEY=test
+      - KAY_API_KEY=test
 
-Please visit - https://github.com/langchain-ai/opengpts/tree/main for more detailed env variables.

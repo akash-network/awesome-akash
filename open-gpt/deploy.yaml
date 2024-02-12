@@ -42,7 +42,7 @@ profiles:
               nvidia:
 
         storage:
-          - size: 150Gi
+          - size: 20Gi
     redis:
       resources:
         cpu:
