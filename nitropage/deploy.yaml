@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   nitropage:
-    image: wirelos/nitropage-starter:0.33.1
+    image: wirelos/nitropage:0.54.1
     expose:
       - port: 3000
         as: 80
@@ -17,8 +17,8 @@ services:
       - NITRO_AUTH_SALT=change_this
       # Password used to encrypt iron session cookies
       - NP_AUTH_IRON_PASSWORD=some_not_random_password_that_is_at_least_32_characters
-      # Set to 0 to disable demo content
-      - NP_DEMO=1
+      # disable demo content
+      - NP_DEMO=0
     params:
       storage:
         data:
@@ -37,7 +37,7 @@ profiles:
             size: 1Gi
             attributes:
               persistent: true
-              class: beta2
+              class: beta1
   placement:
     dcloud:
       signedBy:
@@ -47,7 +47,7 @@ profiles:
       pricing:
         nitropage:
           denom: uakt
-          amount: 1000
+          amount: 10000
 deployment:
   nitropage:
     dcloud:

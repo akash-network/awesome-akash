@@ -11,15 +11,30 @@ This Akash template can be deployed as is using the pre-built Docker image or re
 
 - deploy this template with your favorite deployment tool for Akash (e.g. [Cloudmos](https://deploy.cloudmos.io/))
     - change `NITRO_AUTH_SALT` and `NP_AUTH_IRON_PASSWORD`
-    - set `NP_DEMO` to 0 to disable demo content
-- when the deployment is up and running, visit http://your-deployment-url/admin to create an admin account or login with admin / 1234 if you did not disable demo content
+- when the deployment is up and running, visit http://your-deployment-url/admin to create an admin account
 - after first login you can now create a Nitropage project
     - set the domain name to your Akash deployment domain, in case you intend to create multiple projects
 - now you're ready to create your website
 
+## Build your own Docker image
+
+To build the Docker image, run following command:
+
+```
+docker build -t myorg/nitropage:0.54.1 --build-arg VERSION=0.54.1 .
+```
+
+The build argument is the version of Nitropage you'd like to build, in this case `0.54.1`
+
+And of course, push the image to the Docker registry:
+
+```
+docker push myorg/nitropage:0.54.1
+```
+
 ## About
 
-From [Nitropage](https://git.lufrai.org/nitropage/nitropage)
+From [Nitropage](https://codeberg.org/nitropage/nitropage)
 
 Nitropage is a completely free, open-source, self-hostable alternative to premium, visual drag-and-drop website builders such as [Squarespace](https://www.squarespace.com/) and [Wix](https://www.wix.com/). Write your own building blocks with [SolidJS](https://www.solidjs.com/) and enjoy the power of HMR!
 
