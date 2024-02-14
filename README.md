@@ -84,6 +84,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [XLM-roBERTa](XLM-roBERTa)
+- [Open GPT](open-gpt)
 
 ### Blogging
 
