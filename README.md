@@ -94,6 +94,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Confluence](confluence)
 - [Drupal](drupal)
 - [Wiki.js](wikijs)
+- [Nitropage](nitropage)
 
 ### Built with Cosmos-SDK
 
