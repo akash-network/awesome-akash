@@ -1,0 +1,72 @@
+---
+version: "2.0"
+
+services:
+  opengpt:
+    image: arc10/opengpt:v0.0.1
+    depends_on:
+    - redis
+    env:
+      - OPENAI_API_KEY=
+      - PORT=5173
+      - REDIS_URL=redis://redis:6379
+      - YDC_API_KEY=test
+      - TAVILY_API_KEY=test
+      - KAY_API_KEY=test
+
+    expose:
+      - port: 5173
+        as: 80
+        to:
+          - global: true
+
+  redis:
+    image: redislabs/redisearch:latest
+    expose:
+      - port: 6379
+        to:
+          - service: opengpt     
+
+profiles:
+  compute:
+    opengpt:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 15Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+
+        storage:
+          - size: 20Gi
+    redis:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+      pricing:
+        opengpt:
+          denom: uakt
+          amount: 100000
+        redis:
+          denom: uakt
+          amount: 100000
+deployment:
+  redis:
+    akash:
+      profile: redis
+      count: 1
+  opengpt:
+    akash:
+      profile: opengpt
+      count: 1
