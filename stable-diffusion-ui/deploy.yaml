@@ -35,7 +35,7 @@ profiles:
     akash:
       #######################################################
       #Keep this section to deploy on trusted providers
-    
+
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers

@@ -1,37 +1,47 @@
 ---
-version: "2.0"
-
+version: '2.0'
 services:
-  uptime:
-    image: louislam/uptime-kuma:1.18.0
+  uptime-kuma-persistent:
+    image: louislam/uptime-kuma:1.23.1
+
     expose:
       - port: 3001
         as: 80
         to:
           - global: true
+    params:
+      storage:
+        data:
+          mount: /app/data
+          readOnly: false
 profiles:
   compute:
-    uptime:
+    uptime-kuma-persistent:
       resources:
         cpu:
           units: 0.5
         memory:
-          size: 128Mi
+          size: 512Mb
         storage:
-          - size: 512Mi
+          - size: 128Mb
+          - name: data
+            size: 1GB
+            attributes:
+              persistent: true
+              class: beta1
   placement:
     akash:
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"        
       pricing:
-        uptime: 
+        uptime-kuma-persistent:
           denom: uakt
           amount: 10000
-
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+          - akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4
 deployment:
-  uptime:
+  uptime-kuma-persistent:
     akash:
-      profile: uptime
+      profile: uptime-kuma-persistent
       count: 1
+

@@ -13,26 +13,27 @@ The Tags of the Docker Image is the same as the release on the official reposito
 
 ## Features
 
-* 3 interface modes: default, notebook, and chat
-* Multiple model backends: tranformers, llama.cpp, AutoGPTQ, GPTQ-for-LLaMa, ExLlama, RWKV, FlexGen
+* 3 interface modes: default (two columns), notebook, and chat
+* Multiple model backends: [transformers](https://github.com/huggingface/transformers), [llama.cpp](https://github.com/ggerganov/llama.cpp), [ExLlama](https://github.com/turboderp/exllama), [ExLlamaV2](https://github.com/turboderp/exllamav2), [AutoGPTQ](https://github.com/PanQiWei/AutoGPTQ), [GPTQ-for-LLaMa](https://github.com/qwopqwop200/GPTQ-for-LLaMa), [CTransformers](https://github.com/marella/ctransformers), [AutoAWQ](https://github.com/casper-hansen/AutoAWQ)
 * Dropdown menu for quickly switching between different models
-* LoRA: load and unload LoRAs on the fly, load multiple LoRAs at the same time, train a new LoRA
-* Precise instruction templates for chat mode, including Alpaca, Vicuna, Open Assistant, Dolly, Koala, ChatGLM, MOSS, RWKV-Raven, Galactica, StableLM, WizardLM, Baize, Ziya, Chinese-Vicuna, MPT, INCITE, Wizard Mega, KoAlpaca, Vigogne, Bactrian, h2o, and OpenBuddy
+* LoRA: load and unload LoRAs on the fly, train a new LoRA using QLoRA
+* Precise instruction templates for chat mode, including Llama-2-chat, Alpaca, Vicuna, WizardLM, StableLM, and many others
+* 4-bit, 8-bit, and CPU inference through the transformers library
+* Use llama.cpp models with transformers samplers (`llamacpp_HF` loader)
 * [Multimodal pipelines, including LLaVA and MiniGPT-4](https://github.com/oobabooga/text-generation-webui/tree/main/extensions/multimodal)
-* 8-bit and 4-bit inference through bitsandbytes
-* CPU mode for transformers models
-* [DeepSpeed ZeRO-3 inference](docs/DeepSpeed.md)
-* [Extensions](docs/Extensions.md)
-* [Custom chat characters](docs/Chat-mode.md)
+* [Extensions framework](https://github.com/oobabooga/text-generation-webui/wiki/07-%E2%80%90-Extensions)
+* [Custom chat characters](https://github.com/oobabooga/text-generation-webui/wiki/03-%E2%80%90-Parameters-Tab#character)
 * Very efficient text streaming
 * Markdown output with LaTeX rendering, to use for instance with [GALACTICA](https://github.com/paperswithcode/galai)
-* Nice HTML output for GPT-4chan
-* API, including endpoints for websocket streaming ([see the examples](https://github.com/oobabooga/text-generation-webui/blob/main/api-examples))
+* OpenAI-compatible API server
 
-To learn how to use the various features, check out the Documentation: https://github.com/oobabooga/text-generation-webui/tree/main/docs
+To learn how to use the various features, check out the Documentation: https://github.com/oobabooga/text-generation-webui/wiki
 
 ## Acknowledgements
 
  - [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui/tree/main)
  - [Prebuild Docker Images by zjuuu](hhttps://hub.docker.com/r/zjuuu/text-generation-webui)
 
+## How to build the Docker image
+
+Clone the original repository: [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui/tree/main). Copy & paste the [Dockerfile](/text-generation-webui/Dockerfile). Run `docker build -t yourimagename .`

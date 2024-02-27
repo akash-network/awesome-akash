@@ -68,6 +68,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
 - [ChatGPT Self-Hosted Chat](ai-chat-app)
+- [ComfyUI](comfyui)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
@@ -83,6 +84,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [XLM-roBERTa](XLM-roBERTa)
+- [Open GPT](open-gpt)
 
 ### Blogging
 
@@ -93,6 +95,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Confluence](confluence)
 - [Drupal](drupal)
 - [Wiki.js](wikijs)
+- [Nitropage](nitropage)
 
 ### Built with Cosmos-SDK
 
@@ -105,7 +108,9 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Machine Learning
 
+- [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)
+- [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
@@ -120,7 +125,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Data Visualization
 
-- [UFO Sightings](ufo-data-vis)
+-  [Redash Data Charts for Akash Analytics](Redash)
+-  [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
@@ -134,6 +140,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [InfluxDB](influxdb)
 - [SurrealDB](SurrealDB)
 - [MariaDB](mariadb)
+- [DefraDB](defradb)
 
 ### DeFi
 
@@ -186,6 +193,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Handshake](handshake)
 - [Fuse Network Node](fuse-network-node)
 - [Injective](injective)
+- [Starknet Node by Juno](juno)
 
 ### Business
 
@@ -237,26 +245,31 @@ Awesome DeFi apps you can deploy on Akash
 - [Honeygain](honeygain)
 - [IPRoyal Pawns](iproyal-pawns)
 - [Iron Fish](iron-fish)
-- [MoneroOcean / auto-switching CPU miner with XMR payout](moneroocean)
+- [MoneroOcean CPU with XMR payout](moneroocean)
 - [PacketStream](packetstream)
-- [Peer2Profit](peer2profit)
 - [pkt.cash](pkt-miner)
-- [RainbowMiner](rainbowminer)
+- [RainbowMiner CPU](rainbowminer)
 - [Raptoreum](raptoreum-miner)
 - [Traffmonetizer](traffmonetizer)
-- [xmrig](xmrig)
+- [XMRig CPU](xmrig)
 
 ### Mining - GPU
 
+- [Bminer](bminer-c11)
 - [BzMiner](bzminer-c11)
+- [CryptoDredge](cryptodredge-c11)
 - [GMiner](gminer-c11)
 - [lolMiner](lolminer-c11)
+- [MoneroOcean GPU with XMR payout](xmrig-moneroocean-c11)
+- [Nanominer](nanominer-c11)
+- [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
-- [RainbowMiner](rainbowminer-c11)
+- [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
 - [T-Rex](t-rex-c11)
 - [WildRig Multi](wildrig-multi-c11)
+- [XMRig GPU](xmrig-c11)
 
 ### Mining Pools
 
@@ -311,6 +324,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [SoftEther VPN](softether-vpn)
 - [Sentinel dVPN node](Sentinel-dVPN-node)
+- [Tor Proxy](tor-proxy)
 
 ### Databases
 

@@ -1,0 +1,55 @@
+---
+version: "2.0"
+services:
+  nitropage:
+    image: wirelos/nitropage:0.54.1
+    expose:
+      - port: 3000
+        as: 80
+        http_options:
+          max_body_size: 104857600
+        to:
+          - global: true
+    env:
+      # Path to database file
+      - DATABASE_URL=file:/srv/db/dev.db
+      # Additional salt used while hashing passwords with bcrypt
+      - NITRO_AUTH_SALT=change_this
+      # Password used to encrypt iron session cookies
+      - NP_AUTH_IRON_PASSWORD=some_not_random_password_that_is_at_least_32_characters
+      # disable demo content
+      - NP_DEMO=0
+    params:
+      storage:
+        data:
+          mount: /srv
+profiles:
+  compute:
+    nitropage:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 256Mi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta1
+  placement:
+    dcloud:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        nitropage:
+          denom: uakt
+          amount: 10000
+deployment:
+  nitropage:
+    dcloud:
+      profile: nitropage
+      count: 1

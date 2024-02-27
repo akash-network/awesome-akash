@@ -25,14 +25,15 @@ profiles:
           units: 0.5
         memory:
           size: 768Mi
+        storage:
+          - size: 128Mi
         gpu:
           units: 1
           attributes:
             vendor:
               nvidia:
                 #- model: 3090
-        storage:
-          - size: 128Mi
+            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
   placement:
     akash:
       #######################################################
@@ -49,13 +50,12 @@ profiles:
       pricing:
         bzminer-c11:
           denom: uakt
-          amount: 1000000 #Keep high to show all bids
+          amount: 100000 #Keep high to show all bids
 deployment:
   bzminer-c11:
     akash:
       profile: bzminer-c11
       count: 1
+      #Max replica count : 50
 
-##Total deployment size cannot exceed 512vCPU / 512Gi / 32Ti
-##You can reduce vCPU and increase count:1 to see more bids
-##Example: cpu.units:2 and akash.count:10 will show more bids than 10 cpu.units and akash.count 2.
+## Total deployment size including all replicas cannot exceed 512vCPU / 512Gi / 32Ti
