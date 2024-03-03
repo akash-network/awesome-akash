@@ -1,0 +1,37 @@
+#updated bert-sentiment-analysis
+version: "2.0"
+services:
+  bert-sentiment-analysis:
+    image: clydedevv/bert-sentiment-analysis:0.0.2
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    bert-sentiment-analysis:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: v100
+        storage:
+          - size: 10Gi
+  placement:
+    akash:
+      pricing:
+        bert-sentiment-analysis:
+          denom: uakt
+          amount: 100000
+deployment:
+  bert-sentiment-analysis:
+    akash:
+      profile: bert-sentiment-analysis
+      count: 1

@@ -1,0 +1,36 @@
+version: "2.0"
+services:
+  bert:
+    image: clydedevv/bert-base-uncased:0.0.8
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    bert:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: v100
+        storage:
+          - size: 10Gi
+  placement:
+    akash:
+      pricing:
+        bert:
+          denom: uakt
+          amount: 100000
+deployment:
+  bert:
+    akash:
+      profile: bert
+      count: 1

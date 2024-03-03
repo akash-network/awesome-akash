@@ -1,0 +1,37 @@
+#updated roberta
+version: "2.0"
+services:
+  roberta:
+    image: clydedevv/xlm-roberta-app:0.0.9
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    roberta:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 4Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: v100
+        storage:
+          - size: 10Gi
+  placement:
+    akash:
+      pricing:
+        roberta:
+          denom: uakt
+          amount: 100000
+deployment:
+  roberta:
+    akash:
+      profile: roberta
+      count: 1

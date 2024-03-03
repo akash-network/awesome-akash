@@ -1,0 +1,81 @@
+---
+version: '2.0'
+services:
+  chatchat:
+    image: cryptoandcoffee/akash-chatchat:1
+    depends_on:
+    - postgres
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - "BASE_URL=http://localhost:3000"
+      - "DATABASE_URL=postgresql://akash:squarekingzebrahello@postgres:5432/chatchat"
+      - "NEXTAUTH_URL=localhost:3000"
+      - "NEXTAUTH_SECRET=0x3A7F" #Generate Random hash (16 bits is best)
+      - "OPENAI_API_KEY=your-openai-key"
+      - "OPENAI_API_ENDPOINT=https://api.openai.com"
+      #- "EMAIL_HOST="
+      #- "EMAIL_PORT="
+      #- "EMAIL_USERNAME="
+      #- "EMAIL_PASSWORD="
+      #- "EMAIL_FROM="
+      - "POSTGRES_USER=admin"
+  postgres:
+    image: postgres
+    expose:
+      - port: 5432
+        to:
+          - service: chatchat
+    env:
+      - "POSTGRES_USER=admin"
+      - "POSTGRES_PASSWORD=squarekingzebrahello"
+      - "POSTGRES_DB=chatchat"
+profiles:
+  compute:
+    chatchat:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 4.75Gi
+        storage:
+          - size: 16Gi
+    postgres:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 256Mi
+        storage:
+          - size: 1Gi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        chatchat:
+          denom: uakt
+          amount: 10000
+        postgres:
+          denom: uakt
+          amount: 10000
+deployment:
+  chatchat:
+    akash:
+      profile: chatchat
+      count: 1
+  postgres:
+    akash:
+      profile: postgres
+      count: 1

@@ -1,0 +1,36 @@
+version: '2.0'
+services:
+  gpu-app:
+    image: sxk1633/gpu-chat-thudm:6b
+    expose:
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    gpu-app:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 20Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: 3080
+        storage:
+          - size: 30Gi
+  placement:
+    westcoast:
+      pricing:
+        gpu-app:
+          denom: uakt
+          amount: 100000
+deployment:
+  gpu-app:
+    westcoast:
+      profile: gpu-app
+      count: 1

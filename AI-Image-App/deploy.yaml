@@ -1,0 +1,36 @@
+##sdl yaml
+version: "2.0"
+services:
+  gpu-app:
+    image: overshard/ai-art
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    gpu-app:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 38Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+        storage:
+          - size: 100Gi
+  placement:
+    westcoast:
+      pricing:
+        gpu-app:
+          denom: uakt
+          amount: 100000
+deployment:
+  gpu-app:
+    westcoast:
+      profile: gpu-app
+      count: 1

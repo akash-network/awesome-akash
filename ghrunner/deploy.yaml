@@ -1,0 +1,48 @@
+# Github Runner
+# used by https://github.com/<org>/<repo>
+# https://github.com/<org>/<repo>/settings/actions/runners
+---
+version: "2.0"
+
+services:
+  ghrunner:
+    image: andrey01/ghrunner:2.311.0@sha256:f0701972b32f35d0e45d3dd05115b634b76c29780bbd9d77da348aed2de4c56e
+    # Refer to https://github.com/myoung34/docker-github-actions-runner for more options
+    env:
+      # Do not enable auto update, otherwise the container will end up in CrashLoopBackoff state eventually getting closed by the Akash Provider due to https://github.com/orgs/akash-network/discussions/160
+      - 'DISABLE_AUTO_UPDATE=1'
+      - 'REPO_URL=https://github.com/<org>/<repo>'
+      - 'RUNNER_TOKEN=<get from https://github.com/<org>/<repo>/settings/actions/runners/new>'
+      - 'LABELS=ghrunner'
+      - 'RUNNER_NAME=ghrunner'
+    expose:
+      # HTTP
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    ghrunner:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 16Gi
+        storage:
+          size: 20Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        ghrunner:
+          denom: uakt
+          amount: 1000000
+
+deployment:
+  ghrunner:
+    akash:
+      profile: ghrunner
+      count: 1

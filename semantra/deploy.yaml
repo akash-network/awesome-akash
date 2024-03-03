@@ -1,0 +1,68 @@
+---
+version: "2.0"
+
+services:
+  app:
+    image: ubuntu:latest     
+    
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'apt-get update ;
+        apt-get upgrade -y ;
+        apt-get install python3 -y;
+        apt-get install pip -y;
+        apt-get install python3.10-venv -y ;
+        apt-get install wget unzip -y ;
+        python3 -m pip install pipx ;
+        python3 -m pipx install semantra ;
+        cd home ;
+        wget https://github.com/freedmand/semantra/raw/main/docs/example_docs/us_inaugural_speeches.zip;
+        unzip * ; 
+        /root/.local/bin/semantra --transformer-model Muennighoff/SGPT-1.3B-weightedmean-msmarco-specb-bitfit us_inaugural_speeches/*; 
+        sleep infinity ;'
+
+        # your files can be in txt or pdf
+        # installation may take a while since models are large
+        # you can also change the language models that you want to use 
+        # Muennighoff/SGPT-1.3B-weightedmean-msmarco-specb-bitfit -> requires 20GB ram and gpus with 20 GB vram
+        # Muennighoff/SGPT-2.7B-weightedmean-msmarco-specb-bitfit -> requires 30GB ram and gpus with 30GB vram
+        # Muennighoff/SGPT-5.8B-weightedmean-msmarco-specb-bitfit -> requires H100
+
+    
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 20Gi
+        storage:
+          size: 20Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+          
+  placement:
+    akash: 
+      attributes:
+            
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1 

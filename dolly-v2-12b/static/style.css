@@ -1,0 +1,46 @@
+body {
+  --text: hsl(0 0% 15%);
+  padding: 2.5rem;
+  font-family: sans-serif;
+  color: var(--text);
+}
+
+body.dark-theme {
+  --text: hsl(0 0% 90%);
+  background-color: hsl(223 39% 7%);
+}
+
+main {
+  max-width: 80rem;
+  text-align: center;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  color: var(--text);
+}
+
+form {
+  width: 30rem;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+.text-gen-output {
+  min-height: 1.2rem;
+  margin: 1rem;
+  border: 0.5px solid grey;
+  text-align: left;
+}

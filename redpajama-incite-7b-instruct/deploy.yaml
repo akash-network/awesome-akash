@@ -1,0 +1,41 @@
+---
+version: "2.0"
+
+services:
+  app:
+    image: yuravorobei/redpajama_incite_7b_instruct:0.3
+
+    expose:
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 30Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+        storage:
+          - size: 35Gi
+  placement:
+    akash:
+      attributes:
+      pricing:
+        app:
+          denom: uakt
+          amount: 100000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1

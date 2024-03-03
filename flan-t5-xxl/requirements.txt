@@ -1,0 +1,10 @@
+accelerate
+fastapi
+requests
+sentencepiece
+git+https://github.com/huggingface/transformers@main
+uvicorn
+scipy
+google
+google-api-python-client
+scipy
