@@ -1,0 +1,39 @@
+---
+version: "2.0"
+services:
+  juno:
+    image: nomorelies/juno
+    expose:
+      - port: 6060
+        as: 6060
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - "juno --http --http-port 6060 --http-host 0.0.0.0 --eth-node wss://mainnet.infura.io/ws/v3/<PASTE YOUR OWN INFURA KEY HERE>"
+
+# --eth-node string | Websocket endpoint of the Ethereum node. In order to verify the correctness of the L2 chain, Juno must connect to an Ethereum node and parse events in the Starknet contract.
+
+profiles:
+  compute:
+    juno:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 600Gi
+  placement:
+    dcloud:
+      pricing:
+        juno:
+          denom: uakt
+          amount: 1000
+deployment:
+  juno:
+    dcloud:
+      profile: juno
+      count: 1

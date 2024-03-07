@@ -1,0 +1,37 @@
+---
+version: "2.0"
+services:
+  ezkl:
+    image: inferencelabs/ezkl-notebook
+    expose:
+      - port: 8888
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    ezkl:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 256GB
+        storage:
+          - size: 100Gi
+  placement:
+    akash:
+      pricing:
+        ezkl:
+          denom: uakt
+          amount: 1000
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+          - akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4
+      attributes:
+        host: akash
+deployment:
+  ezkl:
+    akash:
+      profile: ezkl
+      count: 1
