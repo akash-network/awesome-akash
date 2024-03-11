@@ -4,8 +4,6 @@ services:
   web:
     image: itzg/minecraft-server
 
-     
-
     expose:
       - port: 25565
         as: 25565
