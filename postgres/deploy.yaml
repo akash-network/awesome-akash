@@ -9,9 +9,15 @@ services:
         to:
           - global: true
     env:
+      - PGDATA=/var/lib/postgresql/data/pgdata
       - "POSTGRES_USER=admin"
       - "POSTGRES_PASSWORD=let-me-in"
       - "POSTGRES_DB=mydb"
+    params:
+      storage:
+        data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
 profiles:
   compute:
     postgres:
@@ -21,7 +27,13 @@ profiles:
         memory:
           size: 1Gi
         storage:
-          size: 1Gi
+          - size: 1Gi
+          - name: data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
+          
   placement:
     akash:
       attributes:
