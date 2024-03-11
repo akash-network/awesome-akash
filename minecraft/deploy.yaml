@@ -13,11 +13,7 @@ services:
         as: 3333
         to:
           - global: true
-      - port: 22
-        as: 22
-        to:
-          - global: true 
-      
+           
     env:
       - FORCE_REDOWNLOAD=true
       - EULA=TRUE
