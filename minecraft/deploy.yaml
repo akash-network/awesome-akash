@@ -3,7 +3,6 @@ version: "2.0"
 services:
   web:
     image: itzg/minecraft-server
-
     expose:
       - port: 25565
         as: 25565
