@@ -193,6 +193,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Fuse Network Node](fuse-network-node)
 - [Injective](injective)
 - [Starknet Node by Juno](juno)
+- [Zcash Node](Zcash)
 
 ### Business
 
