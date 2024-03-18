@@ -1,0 +1,37 @@
+---
+version: "2.0"
+services:
+  service-1:
+    image: zblocker64/grok-2-main-server:latest
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    service-1:
+      resources:
+        cpu:
+          units: 128
+        memory:
+          size: 730GB
+        storage:
+          - size: 2000Gi
+        gpu:
+          units: 8
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+  placement:
+    dcloud:
+      pricing:
+        service-1:
+          denom: uakt
+          amount: 1000
+deployment:
+  service-1:
+    dcloud:
+      profile: service-1
+      count: 1
