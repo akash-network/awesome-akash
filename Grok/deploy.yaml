@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   service-1:
-    image: zblocker64/grok-1-main-server:1.4
+    image: zblocker64/grok-1-main-server:1.7
     expose:
       - port: 8080
         as: 80
