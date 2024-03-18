@@ -2,9 +2,9 @@
 version: "2.0"
 services:
   service-1:
-    image: zblocker64/grok-3-main-server:latest
+    image: zblocker64/grok-1-main-server:1.4
     expose:
-      - port: 80
+      - port: 8080
         as: 80
         to:
           - global: true
@@ -13,9 +13,9 @@ profiles:
     service-1:
       resources:
         cpu:
-          units: 128
+          units: 16
         memory:
-          size: 730GB
+          size: 700GB
         storage:
           - size: 2000Gi
         gpu:
