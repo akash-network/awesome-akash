@@ -1,0 +1,44 @@
+---
+version: "2.0"
+
+services:
+  grok:
+    image: idiombytes/xaigrok:0.1
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    grok:
+      resources:
+        cpu:
+          units: 16.0 # Ensure high clock speed and I/O capabilities
+        memory:
+          size: 512Gi # This is on the edge; consider upgrading if possible
+        storage:
+          size: 1Ti # Accommodate model, cache, and operational data
+        gpu:
+          units: 8 # Targeting 630/80VRAM ~= 8 GPUs
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        grok: 
+          denom: uakt
+          amount: 10000
+deployment:
+  grok:
+    akash:
+      profile: grok
+      count: 1

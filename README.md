@@ -73,6 +73,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
 - [Flan-T5 XXL](flan-t5-xxl)
+- [Grok](grok)
 - [GPT-Neo](gpt-neo)
 - [Llama-2-70B](Llama-2-70B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
