@@ -1,0 +1,56 @@
+---
+version: "2.0"
+services:
+  app:
+    image: nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >-
+        apt-get update ; apt-get upgrade -y ;
+        apt-get install pip wget git -y;
+        pip install dm_haiku==0.0.12;
+        pip install jax[cuda12_pip]==0.4.23 -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+        pip install numpy==1.26.4;
+        pip install sentencepiece==0.2.0;
+        pip install -U "huggingface_hub[cli]";
+        git clone https://github.com/xai-org/grok-1;
+        wget https://github.com/yudai/gotty/releases/download/v2.0.0-alpha.3/gotty_2.0.0-alpha.3_linux_amd64.tar.gz;
+        tar -zxvf gotty_2.0.0-alpha.3_linux_amd64.tar.gz ; chmod +x gotty ; rm -rf gotty_2.0.0-alpha.3_linux_amd64.tar.gz ; mv gotty /usr/local/bin/;
+        huggingface-cli download xai-org/grok-1 --repo-type model --include ckpt/tensor* --local-dir /grok-1/checkpoints --local-dir-use-symlinks False;
+        mv /grok-1/checkpoints/ckpt /grok-1/checkpoints/ckpt-0;
+        cd /grok-1 && gotty -w python3 ./run.py;
+        sleep infinity
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 15Gi
+        storage:
+          - size: 600Gi
+        gpu:
+          units: 8
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    akash:
+      pricing:
+        app:
+          denom: uakt
+          amount: 100000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1
