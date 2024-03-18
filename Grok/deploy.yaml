@@ -15,7 +15,7 @@ profiles:
         cpu:
           units: 16
         memory:
-          size: 700GB
+          size: 700Gi
         storage:
           - size: 2000Gi
         gpu:
@@ -26,6 +26,12 @@ profiles:
                 - model: h100
   placement:
     dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
         service-1:
           denom: uakt
