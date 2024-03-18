@@ -26,6 +26,8 @@ services:
         tar -zxvf gotty_2.0.0-alpha.3_linux_amd64.tar.gz ; chmod +x gotty ; rm -rf gotty_2.0.0-alpha.3_linux_amd64.tar.gz ; mv gotty /usr/local/bin/;
         huggingface-cli download xai-org/grok-1 --repo-type model --include ckpt/tensor* --local-dir /grok-1/checkpoints --local-dir-use-symlinks False;
         mv /grok-1/checkpoints/ckpt /grok-1/checkpoints/ckpt-0;
+        mkdir /root/shm;
+        sed -i "s;/dev/shm/;/root/shm/;g" /grok-1/checkpoint.py;
         cd /grok-1 && gotty -w python3 ./run.py;
         sleep infinity
 profiles:
@@ -33,9 +35,9 @@ profiles:
     app:
       resources:
         cpu:
-          units: 4
+          units: 8
         memory:
-          size: 15Gi
+          size: 256Gi
         storage:
           - size: 600Gi
         gpu:
@@ -43,12 +45,13 @@ profiles:
           attributes:
             vendor:
               nvidia:
+              
   placement:
     akash:
       pricing:
         app:
           denom: uakt
-          amount: 100000
+          amount: 1000000
 deployment:
   app:
     akash:
