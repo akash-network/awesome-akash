@@ -2,68 +2,65 @@
 version: "2.0"
 
 endpoints: 
-  nodeendpoint-pg:
+  nodeendpoint123:
     kind: ip
 
 services:
   node:
-    image: quay.io/vpavlin0/wakash:7023f48
-    depends_on:
-      - postgres
+    image: quay.io/vpavlin0/wakash:8beb904
     expose:
       - port: 60000
         as: 60000
         proto: tcp
         to:
           - global: true
-            ip: nodeendpoint-pg
+            ip: nodeendpoint123
 
       - port: 8003
         as: 8003
         proto: tcp
         to:
           - global: true
-            ip: nodeendpoint-pg
+            ip: nodeendpoint123
 
       - port: 9005
         proto: udp
         to:
           - global: true
-            ip: nodeendpoint-pg
+            ip: nodeendpoint123
 
       - port: 8000
         as: 8000
         proto: tcp
         to:
           - global: true
-            ip: nodeendpoint-pg
+            ip: nodeendpoint123
 
       - port: 80
         as: 80
         to:
           - global: true
-            ip: nodeendpoint-pg
+            ip: nodeendpoint123
     params:
       storage:
         certs:
           mount: /etc/letsencrypt
     env:
+#Mandatory
+      - ETH_CLIENT_ADDRESS=
+#Optional
       - DOMAIN=
-      - IP_ADDR=
       - NODEKEY=
-      - POSTGRES_USER=waku
-      - "POSTGRES_PASSWORD=secretpassword"
+      - RLN_RELAY_CRED_BASE64=
+      - RLN_RELAY_CRED_PASSWORD=
     args:
       - --relay=true
       - --filter=true
       - --lightpush=true
-      - --pubsub-topic=/waku/2/default-waku/proto
-      - --pubsub-topic=/waku/2/dev-waku/proto
       - --keep-alive=true
+      - --cluster-id=1
       - --peer-exchange=true
       - --max-connections=300
-      - --dns-discovery=true
-      - --dns-discovery-url=enrtree://ANEDLO25QVUGJOUTQFRYKWX6P4Z4GKVESBMHML7DZ6YK4LGS5FC5O@prod.wakuv2.nodes.status.im
       - --discv5-discovery=true
       - --discv5-udp-port=9005
       - --discv5-enr-auto-update=True
@@ -72,36 +69,10 @@ services:
       - --metrics-server-port=8003
       - --metrics-server-address=0.0.0.0
       - --store=true
-      - --store-message-retention-policy=time:2592000
+      - --store-message-retention-policy=size:3GB
 
-  postgres:
-    image: postgres 
-    expose:
-      - port: 5432
-        to:
-          - service: node
-    params:
-      storage:
-          data:
-              mount: /var/lib/postgresql/
-    env:
-      - POSTGRES_USER=waku
-      - "POSTGRES_PASSWORD=secretpassword"
-      - POSTGRES_DB=waku
 profiles:
   compute:
-    postgres:
-      resources:
-        cpu:
-          units: 0.5
-        memory:
-          size: 1Gi
-        storage:
-          - name: data
-            size: 5Gi
-            attributes:
-              persistent: true
-              class: beta3
     node:
       resources:
         cpu:
@@ -109,8 +80,9 @@ profiles:
         memory:
           size: 1Gi
         storage:
+          - size: 1Gi
           - name: certs
-            size: 100Mi
+            size: 5Gi
             attributes:
               persistent: true
               class: beta3
@@ -125,18 +97,11 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
           - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
-        postgres:
-          denom: uakt
-          amount: 100000
         node: 
           denom: uakt
           amount: 100000
 
 deployment:
-  postgres:
-    westcoast:
-      profile: postgres
-      count: 1 
   node:
     westcoast:
       profile: node
