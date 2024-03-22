@@ -22,6 +22,8 @@ Waku nodes connecting to The Waku Network require access to an Ethereum (Sepolia
 
 The RPC node URL needs to be configured in `ETH_CLIENT_ADDRESS` environment variable of the deployment manifest.
 
+Another mandatory environment variable is `IP_ADDR`. This is the IP address leased for this deplyoment. Sadly, it cannot be obtained before the actual deployment happens neither can it be resolved from inside the deployment. This means that after deploying first with **empty** `IP_ADDR`, you need to get the address of the IP lease and **update the deployment** by adding the value to the environment variable. Only after you do that, the node will be able to properly announce itself to the network and other peers will be able to connect to it.
+
 ## Deploying as Relayer
 
 If you just want to support the network without intent to publish your own messages, you can simple add the RPC node URL and submit the deployment manifest. After the node syncs the RLN membership tree it will start relaying messages. You don't need to do anything else.
