@@ -1,11 +1,14 @@
 # Grok on Akash Network
 
+<img src="grok-app.png">
+
 Grok repository: https://github.com/xai-org/grok-1
 
-This deployment uses 4 CPU and 8 GPU (using H100 each). If you are trying to use 1 GPU would result to an error. Currently, this deployment requires `/dev/shm` to be enabled by the provider or this error will occur:
+This deployment requires 8x H100 80GB or equivalent GPUs. Downloading grok model can take up to 40 minutes, while loading checkpoints can take up to 10 minutes.
 
-`OSError: [Errno 28] No space left on device: './checkpoints/ckpt-0/tensor00000_000' -> '/dev/shm/tmp238nenvh'`
+## Steps
 
-Some modifications:
-- Uses jax[cuda12_pip]==0.4.23 instead of jax[cuda12_pip]==0.4.25
-- Models downloaded from huggingface instead of torrent for faster download
+1. Deploy on [Cloudmos](https://deploy.cloudmos.io) using this [SDL.](deploy.yaml)
+2. After deployed, look at the "Logs" tab and wait until the grok model downloaded and checkpoints loaded.
+3. Go to "Leases" tab and click the deployment link.
+4. Test your grok by entering your prompt and click "Submit".
