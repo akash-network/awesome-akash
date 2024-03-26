@@ -59,12 +59,12 @@ services:
       - RLN_RELAY_CRED_BASE64=
       - RLN_RELAY_CRED_PASSWORD=
     command:
-    - sh
-    - '-c'
+      - sh
+      - '-c'
     args:
       - >
         if [ -z "${IP_ADDR}" ]; then
-            echo "You need to provide the IP leased to this service in `\$IP_ADDR env var"
+            echo "You need to provide the IP leased to this service in \$IP_ADDR env var"
             sleep 120
             exit 1
         fi
