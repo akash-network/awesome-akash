@@ -1,0 +1,6 @@
+torch>=2.1.0,<2.2.0
+sentencepiece==0.1.99
+transformers==4.35.0
+accelerate==0.28.0
+fastapi==0.110.0
+uvicorn==0.29.0
