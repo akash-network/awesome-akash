@@ -82,12 +82,18 @@ a {
   background-color: rgb(233, 8, 8);
 }
 
+#submit-button:active {
+  background-color: rgb(226, 78, 78);
+}
+
 .output-container {
   width: 100%;
   height: 100%;
   border: 1px solid;
   min-height: 50px;
   margin: 0 10px;
+  overflow: scroll;
+  position: relative;
 }
 
 #output-text {
@@ -95,4 +101,24 @@ a {
   height: 100%;
   word-wrap: break-word;
   padding: 15px;
+  position: absolute;
+  top: 0;
+}
+
+#loader {
+  display: none;
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color: rgb(255, 65, 76) white;
+  animation: l1 1s infinite;
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 25px);
+}
+@keyframes l1 {
+  to {
+    transform: rotate(0.5turn);
+  }
 }

@@ -2,7 +2,9 @@
 version: "2.0"
 services:
   app:
-    image: cvpfus/grok-akash:0.6
+    image: cvpfus/grok-akash:0.20
+    env:
+      - MAX_NEW_TOKENS=256
     expose:
       - port: 8080
         as: 80
@@ -16,7 +18,7 @@ profiles:
         cpu:
           units: 64
         memory:
-          size: 640Gi
+          size: 1280Gi
         storage:
           size: 2048Gi
         gpu:

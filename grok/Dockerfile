@@ -3,7 +3,8 @@ FROM python:3.9
 WORKDIR /grok
 
 RUN apt-get update && \
-    apt-get install wget -y
+    apt-get install wget -y && \
+    mkdir -p grok-model
 
 RUN pip install --upgrade pip
 
