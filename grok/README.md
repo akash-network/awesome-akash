@@ -2,9 +2,9 @@
 
 <img src="grok-app.png">
 
-Grok repository: https://github.com/xai-org/grok-1
+Grok-1 is a 314 billion parameter Mixture-of-Experts model trained from scratch by xAI.
 
-This deployment requires 8x H100 80GB or equivalent GPUs. Downloading grok model can take up to 40 minutes, while loading checkpoints can take up to 10 minutes.
+This deployment requires 8x H100 80GB or equivalent GPUs. With ~400 MB/s download speed, downloading grok model can take up to 25 minutes, while loading checkpoints can take up to 10 minutes.
 
 ## Steps
 
