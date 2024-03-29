@@ -24,12 +24,11 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: 3090
-                - model: 4090
+                - model: rtx3090
+                - model: rtx4090
                 - model: v100
                 - model: a100
                 - model: h100
-                - model: a40
         storage:
           - size: 60Gi
   placement:

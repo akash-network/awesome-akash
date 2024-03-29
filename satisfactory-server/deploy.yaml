@@ -1,0 +1,61 @@
+version: "2.0"
+services:
+  satisfactory-server:
+    image: wolveix/satisfactory-server
+    expose:
+      - port: 15000
+        as: 15000
+        proto: udp
+        to:
+          - global: true
+            ip: satisfactorytwo
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 15777
+        as: 15777
+        proto: udp
+        to:
+          - global: true
+            ip: satisfactorytwo
+      - port: 7777
+        as: 7777
+        proto: udp
+        to:
+          - global: true
+            ip: satisfactorytwo
+    params:
+      storage:
+        data:
+          mount: /config
+          readOnly: false
+profiles:
+  compute:
+    satisfactory-server:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16GB
+        storage:
+          - size: 10GB
+          - name: data
+            size: 15GB
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        satisfactory-server:
+          denom: uakt
+          amount: 100000
+deployment:
+  satisfactory-server:
+    dcloud:
+      profile: satisfactory-server
+      count: 1
+endpoints:
+  satisfactorytwo:
+    kind: ip 

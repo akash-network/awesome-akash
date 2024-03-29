@@ -40,23 +40,14 @@ profiles:
               nvidia:
                 # some models require a lot of vram to run please research the requirements of the model you want to deploy and use a capable gpu
                 # uncomment or leave it empty to receive bids with any available gpu
-                #- model: a40
-                #- model: a10
-                #- model: 4090
-                #- model: 3090Ti
-                #- model: 4080
-                #- model: 3090
+                #- model: rtx4090
+                #- model: rtx3090
+                #- model: rtx3090
                 #- model: h100
                 #- model: a100
                 #- model: v100
-                #- model: 3060
+                #- model: rtx3060ti
                 #- model: p100
-                #- model: 4000
-                #- model: a4000
-                #- model: a6000
-                #- model: 2070
-                #- model: 1080
-                #- model: 1080Ti
         # Size of the storage depends on the models you want to download
         storage:
           - size: 30Gi

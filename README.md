@@ -2,7 +2,7 @@
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
-Instructions on how to deploy the SDL files in this repository can be found [here](//docs.akash.network/guides/deploy).
+Instructions on how to deploy the SDL files in this repository can be found [here](//https://akash.network/docs/deployments/overview/).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
@@ -10,7 +10,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 ## Table of Contents <!-- omit in toc -->
 
 - [Official](#official)
-- [AI](#ai)
+- [AI - CPU](#ai---cpu)
+- [AI - GPU](#ai---gpu)
 - [Blogging](#blogging)
 - [Built with Cosmos-SDK](#built-with-cosmos-sdk)
 - [Chat](#chat)
@@ -27,7 +28,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Hosting](#hosting)
 - [Media](#media)
 - [Search Engines](#search-engines)
-- [Mining](#mining)
+- [Mining - CPU](#mining---cpu)
+- [Mining - GPU](#mining---gpu)
 - [Mining Pools](#mining-pools)
 - [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
 - [Project Management](#project-management)
