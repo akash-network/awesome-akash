@@ -1,0 +1,50 @@
+---
+version: "2.0"
+
+services:
+  node:
+    image: quay.io/vpavlin0/radicle-seed:latest
+    
+    expose:
+      - port: 8776
+        as: 8776
+        to:
+          - global: true
+
+    params:
+      storage:
+        radicle:
+          mount: /root/.radicle/
+    env:
+      - RAD_ALIAS=
+      - RAD_SEEDS=rad:zNd4qti1Jc69mCBQAdBeK3Avzy4R
+      - RAD_EXTERNAL_ADDR=
+    
+profiles:
+  compute:
+    node:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi #Bump?
+        storage:
+          - name: radicle
+            size: 1Gi #Bump?
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      pricing:
+        node: 
+          denom: uakt
+          amount: 100000
+
+deployment:
+  node:
+    akash:
+      profile: node
+      count: 1
+
