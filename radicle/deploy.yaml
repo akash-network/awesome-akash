@@ -36,13 +36,7 @@ profiles:
               class: beta3
 
   placement:
-    westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+    akash:
       pricing:
         node: 
           denom: uakt
@@ -50,7 +44,7 @@ profiles:
 
 deployment:
   node:
-    westcoast:
+    akash:
       profile: node
       count: 1
 
