@@ -22,7 +22,7 @@ This tool is currently compatible with:
 Follow these simple steps to use this tool:
 
 1. **Set Environment Variables**: Replace `REPO_URL` in the environment variables section of the SDL file with your public repository URL.
-2. **Customize Build Settings** (Optional): Add `BUILD_DIRECTORY` and `BUILD_COMMAND` as environment variables, similar to `REPO_URL`, if you need to customize the build process. Do this only if they differ from standard conventions like dist or build etc.
+2. **Customize Build Settings** (Optional): Add `BUILD_DIRECTORY` and `BUILD_COMMAND` as environment variables, similar to `REPO_URL`, if you need to customize the build process. Do this only if they differ from standard conventions like dist or build etc. Add `BRANCH_NAME` env varaible as well if the branch name is not 'main'.
 3. **Deploy**: Use the SDL file to deploy your application. The tool handles the rest, from building to running your application.
 
 
