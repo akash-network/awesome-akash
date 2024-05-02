@@ -78,6 +78,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [GPT-Neo](gpt-neo)
 - [Grok](grok)
 - [Llama-2-70B](Llama-2-70B)
+- [Open GPT](open-gpt)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
@@ -86,8 +87,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [StableStudio](StableStudio)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
+- [vLLM](vLLM)
 - [XLM-roBERTa](XLM-roBERTa)
-- [Open GPT](open-gpt)
 
 ### Blogging
 
