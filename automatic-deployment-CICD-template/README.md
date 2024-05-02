@@ -1,4 +1,4 @@
-# Automatic Deployment Tool for JavaScript Applications on Akash Network
+# Automatic Deployment Tool for Web Applications on Akash Network
 
 This is an MVP of our new product, designed to streamline JavaScript deployments on the Akash Network by creating a Vercel-like pipeline. This tool automates the deployment process directly from your public repository, ensuring your applications are up-to-date with the latest changes pushed to your repo. It supports a variety of JavaScript frameworks and eliminates the need to containerize applications manually.
 
