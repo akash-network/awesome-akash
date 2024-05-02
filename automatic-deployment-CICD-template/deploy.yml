@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   service-1:
-    image: vector450/automation:1.1
+    image: vector450/automation:1.2
     expose:
       - port: 3000
         as: 80
@@ -10,16 +10,17 @@ services:
           - global: true
     env:
       - "REPO_URL=https://github.com/adrianpiatek99/portfolio-vite-react"
+      - "BRANCH_NAME=master"
 profiles:
   compute:
     service-1:
       resources:
         cpu:
-          units: 13
+          units: 3
         memory:
-          size: 10GB
+          size: 11GB
         storage:
-          - size: 3GB
+          - size: 4Gi
   placement:
     dcloud:
       pricing:
