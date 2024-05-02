@@ -1,4 +1,3 @@
----
 version: "2.0"
 services:
  vllm:
@@ -17,16 +16,25 @@ services:
    env:
      - HUGGING_FACE_HUB_TOKEN=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
      - VLLM_API_KEY=MYPASSWORD
- ui:
-   image: ghcr.io/open-webui/open-webui:main
+
+ jupyter-app:
+  # There are many other Jupyter images you can choose from here: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
+   image: jupyter/tensorflow-notebook
    expose:
-     - port: 8080
-       as: 8080
+     - port: 8888
+       as: 80
        to:
          - global: true
-   env:
-     - OPENAI_API_BASE_URLS=http://vllm:8000/v1
-     - OPENAI_API_KEYS=MYPASSWORD
+#  ui:
+#    image: ghcr.io/open-webui/open-webui:main
+#    expose:
+#      - port: 8080
+#        as: 8080
+#        to:
+#          - global: true
+#    env:
+#      - OPENAI_API_BASE_URLS=http://vllm:8000/v1
+#      - OPENAI_API_KEYS=MYPASSWORD
 profiles:
  compute:
    vllm:
@@ -46,7 +54,7 @@ profiles:
          attributes:
            vendor:
              nvidia:
-   ui:
+   jupyter-app:
      resources:
        cpu:
          units: 4
@@ -62,7 +70,7 @@ profiles:
        vllm:
          denom: uakt
          amount: 1000000
-       ui:
+       jupyter-app:
          denom: uakt
          amount: 1000000
 
@@ -72,7 +80,7 @@ deployment:
    dcloud:
      profile: vllm
      count: 1
- ui:
+ jupyter-app:
    dcloud:
-     profile: ui
+     profile: jupyter-app
      count: 1

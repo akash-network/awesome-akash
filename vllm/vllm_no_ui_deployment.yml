@@ -7,7 +7,8 @@ services:
      - port: 8000
        as: 8000
        to:
-         - service: vllm
+          - global: true
+
    command:
      - bash
      - "-c"

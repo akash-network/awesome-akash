@@ -34,6 +34,32 @@ Note: you should never use latest as a tag for your containers in Akash SDL and 
 4. **Use LLM API** : After deployment, utilize the Akash Console field to find the IP address of the vllm service and add the uri and api key variables to whatever client you are using.
  E.g.  "http://localhost:8000/v1"
 
+You can find an example of using crewai in the vllm_crew_notebook_deployment.yml
+
+Below is a code snippet using langchain in python
+
+```
+import os
+os.environ["OPENAI_API_KEY"]="MYPASSWORD"
+#if inside akash service
+os.environ["OPENAI_API_BASE"]="http://vllm:8000/v1"
+#if outside akash service update as needed based on provider, the port will change for every new deployment
+os.environ["OPENAI_API_BASE"]="https://provider.hurricane.akash.pub:31816/v1"
+#update for your model name
+os.environ["OPENAI_MODEL_NAME"] = "MaziyarPanahi/WizardLM-2-7B-AWQ" 
+
+from langchain_community.llms import VLLMOpenAI
+llm = VLLMOpenAI(
+    openai_api_key="MYPASSWORD",
+    openai_api_base="http://vllm:8000/v1",
+    model_name="MaziyarPanahi/WizardLM-2-7B-AWQ",
+)
+or 
+print(llm.invoke("Rome is"))
+
+```
+
+
 The vLLM server is designed to be compatible with the OpenAI API, allowing you to use it as a drop-in replacement for applications using the OpenAI API. 
 
 This Repo contains 4 example vllm yamls
@@ -43,6 +69,7 @@ One example without a user interface and 3 with the awesome openwebui tool
 * vllm_with_openwebui_dolphin2-9-llama3-70b.yml a l
 * vllm_with_openwebui_mistral7b.yml
 * vllm_with_openwebui_wizardlm2-8x22.yml
+* vllm_crew_notebook_deployment.yml
 
 The vLLM server supports the following OpenAI API endpoints:
 * List models
