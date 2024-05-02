@@ -9,7 +9,7 @@ services:
         to:
           - global: true
     env:
-      - "REPO_URL=https://github.com/adrianpiatek99/portfolio-vite-react"
+      - "REPO_URL=https://github.com/HoomanHQ/NetaAstroSL"
 profiles:
   compute:
     service-1:
