@@ -7,7 +7,7 @@ endpoints:
 
 services:
   node:
-    image: harbor.status.im/wakuorg/nwaku:v0.26.0
+    image: harbor.status.im/wakuorg/nwaku:v0.27.0
     depends_on:
       - postgres
     expose:
