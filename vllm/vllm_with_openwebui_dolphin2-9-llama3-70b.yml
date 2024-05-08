@@ -13,9 +13,9 @@ services:
      - "-c"
    args:
      - >-
-       huggingface-cli download cognitivecomputations/dolphin-2.9-llama3-70b && /usr/bin/python3 -m vllm.entrypoints.openai.api_server --model mistralai/Mistral-7B-v0.1
+       huggingface-cli download cognitivecomputations/dolphin-2.9-llama3-70b && /usr/bin/python3 -m vllm.entrypoints.openai.api_server --model cognitivecomputations/dolphin-2.9-llama3-70b
    env:
-     - HUGGING_FACE_HUB_TOKEN=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
+     - HUGGING_FACE_HUB_TOKEN=hf_******************
      - VLLM_API_KEY=MYPASSWORD
  ui:
    image: ghcr.io/open-webui/open-webui:main
@@ -36,7 +36,7 @@ profiles:
        memory:
          size: 100Gi
        storage:
-         - size: 40Gi
+         - size: 140Gi
          - name: shm
            size: 10Gi
            attributes:

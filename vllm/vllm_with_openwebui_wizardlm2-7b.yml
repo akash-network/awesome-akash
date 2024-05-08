@@ -15,7 +15,7 @@ services:
      - >-
        huggingface-cli download MaziyarPanahi/WizardLM-2-7B-AWQ && /usr/bin/python3 -m vllm.entrypoints.openai.api_server --model MaziyarPanahi/WizardLM-2-7B-AWQ
    env:
-     - HUGGING_FACE_HUB_TOKEN=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
+     - HUGGING_FACE_HUB_TOKEN=hf_*******************8
      - VLLM_API_KEY=MYPASSWORD
  ui:
    image: ghcr.io/open-webui/open-webui:main
@@ -36,7 +36,7 @@ profiles:
        memory:
          size: 100Gi
        storage:
-         - size: 40Gi
+         - size: 80Gi
          - name: shm
            size: 10Gi
            attributes:

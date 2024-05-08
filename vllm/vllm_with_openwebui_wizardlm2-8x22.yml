@@ -15,7 +15,7 @@ services:
      - >-
        huggingface-cli download alpindale/WizardLM-2-8x22B && /usr/bin/python3 -m vllm.entrypoints.openai.api_server --model alpindale/WizardLM-2-8x22B
    env:
-     - HUGGING_FACE_HUB_TOKEN=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
+     - HUGGING_FACE_HUB_TOKEN=hf_***************
      - VLLM_API_KEY=MYPASSWORD
  ui:
    image: ghcr.io/open-webui/open-webui:main
@@ -36,7 +36,7 @@ profiles:
        memory:
          size: 100Gi
        storage:
-         - size: 40Gi
+         - size: 140Gi
          - name: shm
            size: 10Gi
            attributes:

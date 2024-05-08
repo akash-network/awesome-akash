@@ -88,6 +88,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [TTS](TTS)
 - [XLM-roBERTa](XLM-roBERTa)
 - [Open GPT](open-gpt)
+- [vllm](vllm)
 
 ### Blogging
 
