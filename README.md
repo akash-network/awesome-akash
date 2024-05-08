@@ -78,6 +78,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [GPT-Neo](gpt-neo)
 - [Grok](grok)
 - [Llama-2-70B](Llama-2-70B)
+- [Open GPT](open-gpt)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
@@ -127,7 +128,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Azure Devops Agent](azure-devops-agent)
 - [Github Runner](ghrunner)
 - [Radicle](radicle)
-
+- [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
+  
 ### Data Visualization
 
 -  [Redash Data Charts for Akash Analytics](Redash)
