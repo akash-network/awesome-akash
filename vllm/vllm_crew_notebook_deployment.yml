@@ -19,7 +19,7 @@ services:
 
  jupyter-app:
   # There are many other Jupyter images you can choose from here: https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
-   image: jupyter/tensorflow-notebook
+   image: thumperai/vllm_crew_jupyter:v0.0.1
    expose:
      - port: 8888
        as: 80
