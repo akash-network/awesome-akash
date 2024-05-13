@@ -1,11 +1,7 @@
 # Running vLLM on Akash
 By Logan Cerkovnik and Anil Murty
 
-html <iframe width="560" height="315" src="https://www.loom.com/share/762513876f164ec6bc559e24fd45b5cc?sid=57ba16f8-e49d-4d7f-9448-3e7223deddb0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe
-
-<iframe width="560" height="315" src="https://www.loom.com/share/762513876f164ec6bc559e24fd45b5cc?sid=57ba16f8-e49d-4d7f-9448-3e7223deddb0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>>
-
-<video src="https://www.loom.com/share/762513876f164ec6bc559e24fd45b5cc?sid=57ba16f8-e49d-4d7f-9448-3e7223deddb0" width="640" height="360" controls></video>
+[![Running vLLM on Akash](https://res.cloudinary.com/marcomontalbano/image/upload/v1715632074/video_to_markdown/images/youtube--q26V4tpg5OM-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/q26V4tpg5OM "Running vLLM on Akash")
 
 There has been a proliferation of LLM services over the last several months and it’s great to see some of these be made available open source. Ollama is one of the early solutions that gained a significant amount of popularity among developers and has helped many developers accelerate their AI application development using open source AI models. A more recent solution is vLLM - that aims to overcome some of the limitations of Ollama. This post delves into what vLLM is and when and why developers should consider using it. Lastly it also demonstrates how you can run vLLM easily on Akash Network
 
