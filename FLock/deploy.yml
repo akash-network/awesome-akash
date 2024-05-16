@@ -28,12 +28,14 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: v100
                 - model: h100
                 - model: a100
-                - model: t4
                 - model: rtx3090
                 - model: rtx4090
+                - model: rtx8000
+                - model: rtxa6000
+                - model: a40
+                - model: p40
   placement:
     akash:
       pricing:
