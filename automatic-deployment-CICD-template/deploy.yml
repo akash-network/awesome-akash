@@ -2,25 +2,25 @@
 version: "2.0"
 services:
   service-1:
-    image: vector450/automation:1.2
+    image: hoomanhq/automation:latest
     expose:
       - port: 3000
         as: 80
         to:
           - global: true
     env:
-      - "REPO_URL=https://github.com/adrianpiatek99/portfolio-vite-react"
-      - "BRANCH_NAME=master"
+      - "REPO_URL=https://github.com/onwidget/astrowind"
+      - "BRANCH_NAME=main"
 profiles:
   compute:
     service-1:
       resources:
         cpu:
-          units: 3
+          units: 2
         memory:
-          size: 11GB
+          size: 6GB
         storage:
-          - size: 4Gi
+          - size: 10Gi
   placement:
     dcloud:
       pricing:
