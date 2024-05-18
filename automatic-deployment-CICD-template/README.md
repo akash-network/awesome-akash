@@ -6,7 +6,7 @@ Note: This tool is currently in the MVP phase.
 
 ## Watch the Video
 
-[![Watch the video](https://img.youtube.com/vi/tGVmITjDKP4/maxresdefault.jpg)](https://youtu.be/tGVmITjDKP4)
+[![Watch the video](https://img.youtube.com/vi/bzPXWKgyEtw/maxresdefault.jpg)](https://youtu.be/bzPXWKgyEtw)
 
 ## Empowering Developers with Automation
 
