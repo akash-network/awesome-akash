@@ -275,6 +275,7 @@ Awesome DeFi apps you can deploy on Akash
 - [T-Rex](t-rex-c11)
 - [WildRig Multi](wildrig-multi-c11)
 - [XMRig GPU](xmrig-c11)
+- [FLock Validator](FLock)
 
 ### Mining Pools
 
