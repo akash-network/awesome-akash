@@ -47,7 +47,7 @@ For a practical application, here’s how you might set up your SDL file:
 version: "2.0"
 services:
   service-1:
-    image: hoomanhq/automation:latest
+    image: hoomanhq/automation:0.2
     expose:
       - port: 3000
         as: 80
