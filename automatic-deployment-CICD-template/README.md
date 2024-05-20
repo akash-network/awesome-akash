@@ -1,4 +1,4 @@
-# Introducing a Revolutionary Deployment Tool on the Akash Network to Deploy Applications Directly from GitHub
+# Introducing a Revolutionary Deployment Tool on the Akash Network to Deploy Applications Directly from GitHub/GitLab/BitBucket
 
 If you’ve ever found yourself bogged down by the complexities of deployment and CI/CD, especially on Akash Network, our new tool is here to change the game. Designed to provide a Vercel-like experience, this tool automates the deployment process, allowing you to focus on what you do best—coding!
 
