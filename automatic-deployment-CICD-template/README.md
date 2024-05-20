@@ -1,30 +1,105 @@
-# Automatic Deployment Tool for Web Applications on Akash Network
+# Introducing a Revolutionary Deployment Tool on the Akash Network to Deploy Applications Directly from GitHub/GitLab/BitBucket
 
-This is an MVP of our new product, designed to streamline JavaScript deployments on the Akash Network by creating a Vercel-like pipeline. This tool automates the deployment process directly from your public repository, ensuring your applications are up-to-date with the latest changes pushed to your repo. It supports a variety of JavaScript frameworks and eliminates the need to containerize applications manually.
+If you’ve ever found yourself bogged down by the complexities of deployment and CI/CD, especially on Akash Network, our new tool is here to change the game. Designed to provide a Vercel-like experience, this tool automates the deployment process, allowing you to focus on what you do best—coding!
+
+Note: This tool is currently in the MVP phase.
+
+## Watch the Video
+
+[![Watch the video](https://img.youtube.com/vi/bzPXWKgyEtw/maxresdefault.jpg)](https://youtu.be/bzPXWKgyEtw)
+
+## Empowering Developers with Automation
+
+Deploying applications can often involve a steep learning curve, particularly when dealing with containerization and CI/CD pipelines. Our tool simplifies this by automating deployments directly from your GitHub repository to the Akash Network. It supports several popular JavaScript frameworks, making it a versatile option for many developers.
+
+### Supported Frameworks Include:
+- React
+- React + Vite
+- Astro.js
+- Vue.js
+
+## Key Features That Set Our Tool Apart
+
+This deployment tool isn't just about automating processes; it's about enhancing your workflow and productivity. Here’s what it offers:
+
+- **Automated Builds and Deployments**: Simply link your public GitHub repository, and the tool takes care of the rest. Each commit you push triggers a build and deployment cycle, ensuring your application is always up-to-date.
+  
+- **Continuous Integration**: Never worry about out-of-sync versions or manual updates again. This tool ensures that your deployed application mirrors the latest changes in your repository.
+  
+- **Customizable Build Processes**: Tailor the deployment process to fit your project's specific needs. Whether it’s specifying a custom build directory or custom commands, you have the flexibility to configure as needed.
+
+## Getting Started: Simple Steps for Deployment
+
+To leverage this tool effectively, follow these straightforward steps:
+
+1. **Configure Environment Variables**: Adjust the SDL (Service Deployment Language) file to include your project specifics. Key environment variables like `REPO_URL` and `BRANCH_NAME` need to be set to align with your repository details.
+
+2. **Customize the Build Settings**: For projects that don’t fit the conventional build paths or commands, you can easily add custom configurations like `BUILD_DIRECTORY` and `BUILD_COMMAND`.
+
+3. **Deploy Your Application**: With your SDL file configured, deploying your application is as simple as executing the deployment command. The system handles everything from compiling to hosting.
+
+## Sample SDL Configuration for Quick Setup
+
+For a practical application, here’s how you might set up your SDL file:
+
+```yaml
+---
+version: "2.0"
+services:
+  service-1:
+    image: hoomanhq/automation:0.2
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - "REPO_URL=https://github.com/onwidget/astrowind"
+      - "BRANCH_NAME=main"
+profiles:
+  compute:
+    service-1:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 6GB
+        storage:
+          - size: 10Gi
+  placement:
+    dcloud:
+      pricing:
+        service-1:
+          denom: uakt
+          amount: 1000
+deployment:
+  service-1:
+    dcloud:
+      profile: service-1
+      count: 1
+```
+
+This setup details how to expose your service, manage environment variables, and define resource allocations, providing a seamless deployment experience.
+Awesome akash repo: [Click Here](https://github.com/akash-network/awesome-akash/blob/master/automatic-deployment-CICD-template/deploy.yml)
 
 
-## Supported Frameworks
+## Why This Tool Is a Game Changer
 
-This tool is currently compatible with:
-1. React
-2. React + Vite
-3. Astro.js
-4. Vue.js
+Our deployment tool is more than just a utility—it's a shift towards more efficient, less cumbersome development practices. By streamlining the traditional barriers associated with deployment on Akash Network, it allows you to deploy applications with the ease and agility that modern web development demands.
 
-## Key Features
+## What’s Next?
 
-- **Automatic Builds and Deployments**: Set your project to automatically build and deploy using just the URL of your public repository.
-- **Continuous Updates**: Changes pushed to your repository are automatically fetched and deployed, ensuring your application is always current without any manual intervention.
-- **Configuration Flexibility**: Optionally specify a build directory and custom build commands to tailor the deployment process to your project's needs.
+As we look to the future, we are excited to expand the capabilities of this tool. Our roadmap includes:
 
-## Getting Started
+- **Support for More Languages and Frameworks**: Plans are underway to include support for additional programming languages like Python and Go, broadening the scope of our tool to cater to a more diverse range of projects.
 
-Follow these simple steps to use this tool:
+- **Development of a User Interface**: To deliver a truly Vercel-like experience, we are in the process of creating a user-friendly interface. This will make the tool even more accessible and easier to use for all developers.
 
-1. **Set Environment Variables**: Replace `REPO_URL` in the environment variables section of the SDL file with your public repository URL.
-2. **Customize Build Settings** (Optional): Add `BUILD_DIRECTORY` and `BUILD_COMMAND` as environment variables, similar to `REPO_URL`, if you need to customize the build process. Do this only if they differ from standard conventions like dist or build etc. Add `BRANCH_NAME` env varaible as well if the branch name is not 'main'.
-3. **Deploy**: Use the SDL file to deploy your application. The tool handles the rest, from building to running your application.
+- **Email Notifications**: We will be introducing email notifications to keep you updated on the status of your deployments and other important events, enhancing the overall user experience.
 
+- **Direct Implementation on Cloudmos/Console**: To deliver a truly Vercel-like experience, we will be building user-friendly GUI directly onto cloudmos/console. This will make the tool even more accessible and easier to use for all developers.
 
-**NOTE**: This is still a work in progress and not built for production, this might fail for some repos.
-This tool is under continuous development, with future updates aimed at enhancing functionality and user experience. Stay tuned!
+As we continue to enhance this tool, we invite you to join us on this journey. Try it out, give us your feedback, and help us redefine the deployment landscape on the Akash Network. Happy coding and deploying!
+
+Thank you
+HoomanHq
