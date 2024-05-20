@@ -1,4 +1,4 @@
-# Introducing a Revolutionary Deployment Tool on the Akash Network to Deploy Applications Directly from GitHub
+# Introducing a Revolutionary Deployment Tool on the Akash Network to Deploy Applications Directly from GitHub/GitLab/BitBucket
 
 If you’ve ever found yourself bogged down by the complexities of deployment and CI/CD, especially on Akash Network, our new tool is here to change the game. Designed to provide a Vercel-like experience, this tool automates the deployment process, allowing you to focus on what you do best—coding!
 
@@ -47,7 +47,7 @@ For a practical application, here’s how you might set up your SDL file:
 version: "2.0"
 services:
   service-1:
-    image: hoomanhq/automation:latest
+    image: hoomanhq/automation:0.2
     expose:
       - port: 3000
         as: 80
