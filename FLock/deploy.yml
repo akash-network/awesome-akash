@@ -1,0 +1,50 @@
+---
+version: "2.0"
+
+services:
+  flock-validater:
+    image: public.ecr.aws/e7z6j8c3/flock:llm-loss-validator-gpu-latest
+    env:
+      - FLOCK_API_KEY=
+      - task_id=
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    flock-validater:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 24Gi
+        storage:
+          size: 100Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                - model: a100
+                - model: rtx3090
+                - model: rtx4090
+                - model: rtx8000
+                - model: rtxa6000
+                - model: a40
+                - model: p40
+  placement:
+    akash:
+      pricing:
+        flock-validater:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  flock-validater:
+    akash:
+      profile: flock-validater
+      count: 1
