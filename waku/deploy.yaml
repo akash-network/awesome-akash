@@ -7,7 +7,7 @@ endpoints:
 
 services:
   node:
-    image: harbor.status.im/wakuorg/nwaku:v0.27.0
+    image: harbor.status.im/wakuorg/nwaku:v0.28.0
     depends_on:
       - postgres
     expose:
@@ -197,12 +197,6 @@ profiles:
 
   placement:
     westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
         postgres:
           denom: uakt
