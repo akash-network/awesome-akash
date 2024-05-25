@@ -7,17 +7,58 @@ update_repo() {
     # Get the latest commit hash from the remote repository
     remote_hash=$(git ls-remote --heads origin $BRANCH_NAME | awk '{print $1}')
 
+    # Compare bad commit hash with remote hash
+    for hash in "${bad_commit_hashes[@]}"; do
+      echo "bad hash: $hash"
+      echo "remote hash: $remote_hash"
+      if [ "$remote_hash" = "$hash" ]; then
+        echo "[*] Bad commit detected on remote repository. Pull aborted..."
+        return 1
+      fi
+    done
+
     # Get the latest commit hash from the local repository
     local_hash=$(git rev-parse $BRANCH_NAME)
-
+    
     if [ "$remote_hash" != "$local_hash" ]; then
       echo "[*] Changes detected, pulling latest changes..."
       git pull
       return 0
     else
-      echo "[*] No changes detected."
       return 1
     fi
+}
+
+previous_commit() {
+  bad_commit_hashes=()
+  current_commit=$(git rev-parse HEAD)
+  bad_commit_hashes+=("$current_commit")
+  
+  if ! git checkout $BRANCH_NAME; then
+    echo "[*] Error: Failed to checkout the branch $BRANCH_NAME"
+    return 1
+  fi
+
+  previous_hash=$(git rev-parse HEAD^1)
+  if [ -z "$previous_hash" ]; then
+    echo "[*] Error: Failed to get the previous commit hash"
+    return 1
+  fi
+
+  if ! git reset --hard $previous_hash; then
+    echo "[*] Error: Failed to reset to the previous commit $previous_hash"
+    return 1
+  fi
+
+  current_hash=$(git rev-parse HEAD)
+ 
+  if [ "$current_hash" != "$previous_hash" ]; then
+    echo "[*] Error: The reset to the previous commit $previous_hash failed"
+    return 1
+  fi
+  
+  echo "[*] Successfully rolled back to the previous commit $previous_hash"
+  return 0
 }
 
 # Function to clone the repository
@@ -42,14 +83,21 @@ clone_repo() {
 # Function to determine the JavaScript framework
 determine_framework() {
   if command -v npm > /dev/null; then
+    # Check for React
     if npm ls --depth=0 | grep "react-scripts" > /dev/null; then
       FRAMEWORK="React (Create React App)"
+    # Check for Vue.js
     elif npm ls --depth=0 | grep "vue" > /dev/null; then
       FRAMEWORK="Vue.js (CLI)"
+    # Check for Vite with React
     elif npm ls --depth=0 | grep "vite-react" > /dev/null; then
       FRAMEWORK="Vite-react.js"
+    # Check for Astro
     elif npm ls --depth=0 | grep "astro" > /dev/null; then
       FRAMEWORK="Astro.js"
+    # Check for absence of common framework identifiers and presence of HTML files
+    elif [ "$(find . -maxdepth 1 -name '*.html' | wc -l)" -gt 0 ]; then
+      FRAMEWORK="Static"
     else
       FRAMEWORK="Unknown"
     fi
@@ -60,23 +108,10 @@ determine_framework() {
   echo "[*] FRAMEWORK DETECTED: $FRAMEWORK"
 }
 
+
+
 # Function to install dependencies and build the application
 install_and_build() {
-  # if [ -n "$NODE_VERSION" ]; then
-  #   if ! command -v nvm &> /dev/null; then
-  #     echo "nvm not installed. Installing it..."
-  #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
-  #     # Setting environment variables and sourcing the config file
-  #     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-  #     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  #   fi
-
-  #   # Switching to specified Node.js version
-  #   echo "Switching to Node.js version $NODE_VERSION..."
-  #   nvm use "$NODE_VERSION"
-  # fi
-
   source /usr/local/nvm/nvm.sh
 
   if [ -n "$NODE_VERSION" ]; then
@@ -100,6 +135,10 @@ install_and_build() {
     fi
   fi
 
+  if [ "$?" -eq 0 ]; then
+    echo "npm install successfull"
+  fi
+
   # Pre build commands
   echo "[*] Checking if any pre build commands are provided..."
   if [ -n "$PRE_BUILD" ]; then
@@ -115,6 +154,17 @@ install_and_build() {
     eval "$BUILD_COMMAND"
   else
     npm run build
+  fi
+  
+  if [ "$?" -eq 0 ]; then
+    echo "[*] Application built successfully. No broken changes detected..."
+  else
+    echo "[*] Broken changes detected. Rolling back to the previous commit..."
+    if previous_commit; then
+    	install_and_build
+    else
+	echo "[*] Something went wrong."
+    fi
   fi
 }
 
@@ -133,12 +183,17 @@ serve_app() {
 
   if [ "$FRAMEWORK" = "React (Create React App)" ]; then
     echo "[*] Serving the latest build from 'build' directory..."
-    nohup serve build & > /dev/null
+    nohup serve -s build & > /dev/null
     SERVE_PID=$!
 
   elif [ "$FRAMEWORK" = "Vue.js (CLI)" ] || [ "$FRAMEWORK" = "Astro.js" ] || [ "$FRAMEWORK" = "Vite-react.js" ]; then
     echo "[*] Serving the latest build from 'dist' directory..."
-    nohup serve dist & > /dev/null
+    nohup serve -s dist & > /dev/null
+    SERVE_PID=$!
+
+  elif [ "$FRAMEWORK" = "Static" ]; then
+    echo "[*] Serving directly"
+    nohup serve & > /dev/null
     SERVE_PID=$!
 
   else
@@ -147,16 +202,16 @@ serve_app() {
   fi
 }
 
-# Call the functions
-#echo "Enter the update interval in seconds: "
-#read UPDATE_INTERVAL
-
 clone_repo
 determine_framework
-install_and_build
+# Condition to skip install_and_build for static sites
+if [ "$FRAMEWORK" != "Static" ]; then
+  install_and_build
+fi
+
 serve_app
 
-# Call the update_repo function periodically based on the user input
+
 while true; do
   sleep 4
   if update_repo; then
