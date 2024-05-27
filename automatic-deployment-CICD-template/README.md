@@ -17,6 +17,7 @@ Deploying applications can often involve a steep learning curve, particularly wh
 - React + Vite
 - Astro.js
 - Vue.js
+- Simple HTML,CSS and JS application
 
 ## Key Features That Set Our Tool Apart
 
@@ -27,6 +28,8 @@ This deployment tool isn't just about automating processes; it's about enhancing
 - **Continuous Integration**: Never worry about out-of-sync versions or manual updates again. This tool ensures that your deployed application mirrors the latest changes in your repository.
   
 - **Customizable Build Processes**: Tailor the deployment process to fit your project's specific needs. Whether it’s specifying a custom build directory or custom commands, you have the flexibility to configure as needed.
+
+- **Roll back to previous good version in case of bad commits**: Incase of commits that break your application and cause error, the tool will automatically roll back to previous good version.
 
 ## Getting Started: Simple Steps for Deployment
 
@@ -47,7 +50,7 @@ For a practical application, here’s how you might set up your SDL file:
 version: "2.0"
 services:
   service-1:
-    image: hoomanhq/automation:0.2
+    image: hoomanhq/automation:0.201
     expose:
       - port: 3000
         as: 80
