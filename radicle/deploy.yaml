@@ -19,6 +19,7 @@ services:
       - RAD_ALIAS=
       - RAD_SEEDS=rad:zNd4qti1Jc69mCBQAdBeK3Avzy4R
       - RAD_EXTERNAL_ADDR=
+      - RAD_SEEDING_POLICY=block
     
 profiles:
   compute:
