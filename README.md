@@ -61,8 +61,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
-- [FLock-Validator](FLock-validator)
-- [FLock-Training-Node](FLock-training-node)
 
 ### AI - GPU
 
@@ -262,8 +260,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Raptoreum](raptoreum-miner)
 - [Traffmonetizer](traffmonetizer)
 - [XMRig CPU](xmrig)
-- [FLock Validator](FLock-validator)
-- [FLock-Training-Node](FLock-training-node)
 
 ### Mining - GPU
 
@@ -282,8 +278,6 @@ Awesome DeFi apps you can deploy on Akash
 - [T-Rex](t-rex-c11)
 - [WildRig Multi](wildrig-multi-c11)
 - [XMRig GPU](xmrig-c11)
-- [FLock Validator](FLock-validator)
-- [FLock-Training-Node](FLock-training-node)
 
 ### Mining Pools
 
