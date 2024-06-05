@@ -18,6 +18,7 @@ RUN pip install --upgrade pip
 RUN pip install torch
 RUN pip install wheel setuptools
 RUN pip install transformers einops xformers accelerate
+RUN pip install falcon
 
 # Set the working directory
 WORKDIR /usr/app/src

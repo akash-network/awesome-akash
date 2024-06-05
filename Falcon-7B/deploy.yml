@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   falcon7b:
-    image: andrey01/falcon7b:0.2
+    image: andrey01/falcon7b:0.3
     expose:
       - port: 8000
         as: 80
