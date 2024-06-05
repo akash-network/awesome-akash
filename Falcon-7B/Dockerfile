@@ -24,7 +24,7 @@ RUN pip install falcon
 WORKDIR /usr/app/src
 
 # Copy the script to the working directory
-COPY falcon7b.py ./
+COPY falcon7b.py index.html ./
 
 # Command to run the script
 CMD ["python3", "falcon7b.py"]
