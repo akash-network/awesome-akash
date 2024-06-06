@@ -7,10 +7,10 @@ services:
       - "ID=7142a3f6-5788-4c91-839a-25b06fe58f4b"
       #- "CONFIG_LINK="
     expose:
-      - port: 1010    # select ports, which use in your config.json
+      - port: 1010    # select ports (default 1010), which use in your config.json 
         to:
          - global: true
-      - port: 1080   # select ports, which use in your config.json
+      - port: 1080   # select ports (default 1080), which use in your config.json
         to:
          - global: true
 profiles:
