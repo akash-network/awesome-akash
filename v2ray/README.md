@@ -1,28 +1,13 @@
 # Deploy V2RAY vpn server on Akash Network
 # Развертка сервера V2RAY в Akash Network
-
-![image](https://user-images.githubusercontent.com/23629420/219872517-2adc32b1-5f64-4d48-9a81-1e2ef6b01a53.png)
-
-| [Akash Network](https://akash.network/) | [Decloud Nodes Lab](https://declab.pro/) | 
 ___
-Before you start - subscribe to our news channels: 
-
-Прежде чем начать - подпишитесь на наши новостные каналы:
-
-| [Discord Akash Network](https://discord.gg/WR56y8Wt) | [Telegram Akash Network](https://t.me/AkashNW) | [Telegram Akash Network RU](https://t.me/akash_ru) | [Twitter Akash Network](https://twitter.com/akashnet_) | 
-
-| [Discord Decloud Nodes Lab](https://discord.gg/rPENzerwZ8) | [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) | [Telegram channel Decloud Nodes Lab](https://t.me/NodesLab) |
-
-| [How to deploy in CloudMos?](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md) | [Как развернуть в CloudMos?](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md) |
-___
-
 Product documentation. | Документация по продукту. 
 
 | [Site V2RAY](https://www.v2fly.org/en_US) | [GitHub V2RAY](https://github.com/v2fly) | 
 
 ## Step 1 (Create and share your config.json)
 
-You can use example [config.json](/v2ray/example_config.json), replacing the `ID` ( [generator UUID](https://www.uuidgenerator.net/) ) in the file to have your id.
+You can use default `config.json` include in container, just set the `ID` using ( [generator UUID](https://www.uuidgenerator.net/) ) in the SDL, or or leave it unchanged.
 Or create your own `config.json` by going to the[ documentation](https://www.v2fly.org/en_US/guide/start.html).
 Place your `config.json` file on any platform where direct download will be available (github, google drive, etc.).
 
