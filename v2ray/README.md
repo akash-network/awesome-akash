@@ -7,7 +7,7 @@ Product documentation. | Документация по продукту.
 
 ## Step 1 (Create and share your config.json)
 
-You can use default `config.json`, included in container. Set the `ID`, in the SDL use ( [generator UUID](https://www.uuidgenerator.net/) ) , or or leave it unchanged.
+You can use default `config.json`, included in container. Set the `ID`, in the SDL, use ( [generator UUID](https://www.uuidgenerator.net/) ) , or or leave it unchanged.
 Or create your own `config.json` by going to the[ documentation](https://www.v2fly.org/en_US/guide/start.html).
 Place your `config.json` file on any platform where direct download will be available (github, google drive, etc.).
 
