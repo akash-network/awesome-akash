@@ -5,6 +5,8 @@ Product documentation. | Документация по продукту.
 
 | [Site V2RAY](https://www.v2fly.org/en_US) | [GitHub V2RAY](https://github.com/v2fly) | 
 
+[Инструкция на русском языке.](./README.md#%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F-%D0%BD%D0%B0-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%BE%D0%BC-%D1%8F%D0%B7%D1%8B%D0%BA%D0%B5)
+
 ## Step 1 (Create and share your config.json)
 
 You can use default `config.json`, included in container. Set the `ID`, in the SDL, use ( [generator UUID](https://www.uuidgenerator.net/) ) , or or leave it unchanged.
@@ -22,7 +24,7 @@ Deploy [deploy.yml](./deploy.yml) file on Akash Network.
 
 You can use the **v2ray** as a `socks` proxy for your browser or application. And in the role of a VPN connection. 
 
-For the browser - set the settings - `socks`, your provider's address and forwarded port from the **LEASES UI CloudMos** tab.
+For the browser - set the settings - `socks`, your provider's address and forwarded port from the **LEASES** tab.
 
 <img src=https://github.com/DecloudNodesLab/Projects/assets/23629420/862dca25-b57c-424f-8a3a-b394aabc558e width=50%>
 
@@ -40,21 +42,20 @@ More client's application in [v2ray github](https://github.com/v2fly/v2ray-core/
 
 ## Шаг 1 (Создайте и разместите свой config.json)
 
-Вы можете использовать пример [config.json](/v2ray/example_config.json), заменив `ID` ( [generator UUID](https://www.uuidgenerator.net/) ) в файле, где будет указан ваш идентификатор.
-Или создайте свой собственный `config.json`, перейдя в [документацию](https://www.v2fly.org/en_US/guide/start.html).
-Разместите файл `config.json` на любой платформе, где будет доступна прямая загрузка (github, Google Drive и т.д.).
+Вы можете использовать `config.json` по-умолчанию включенный в контейнер, заменив `ID` в SDL ( [сгенерировав уникальный](https://www.uuidgenerator.net/) ) , или оставить значение переменной `ID` как есть.
+Или создайте свой собственный `config.json`, перейдя в [документацию](https://www.v2fly.org/en_US/guide/start.html). Разместите файл `config.json` на любой платформе, где будет доступна прямая загрузка (github, Google Drive и т.д.).
 
 ## Шаг 2 (развертывание в сети Akash)
 
-Разверните файл [deploy.yml](/v2ray/deploy.yml) в Akash Network . При необходимости замените своей ссылкой значение переменной `CONFIG_LINK`. Выберите провайдера и дождитесь завершения развертывания.
+Разверните файл [deploy.yml](./deploy.yml) в Akash Network . При необходимости замените значение переменной `CONFIG_LINK` своей ссылкой . Выберите провайдера и дождитесь завершения развертывания.
 ![image](https://github.com/DecloudNodesLab/Projects/assets/23629420/f32076a4-fc11-4bb1-96a7-8ee812657f10)
 
 ![image](https://github.com/DecloudNodesLab/Projects/assets/23629420/ee285e15-9127-41da-8ea3-e61c00153409)
 
 ## Шаг 3 (Использование)
 
-Вы можете использовать **v2ray** в качестве прокси-сервера типа`socks` для вашего браузера или приложения. Так и в роли VPN-соединения.
-Для браузера - установите настройки - `socks`, адрес вашего провайдера и переадресованный порт из вкладки **LEASES UI CloudMos**.
+Вы можете использовать **v2ray** в качестве прокси-сервера типа `socks` для вашего браузера или приложения. Так и в роли VPN-соединения.
+Для браузера - установите настройки - `socks`, адрес вашего провайдера и переадресованный порт из вкладки **LEASES**.
 
 <img src=https://github.com/DecloudNodesLab/Projects/assets/23629420/862dca25-b57c-424f-8a3a-b394aabc558e width=50%>
 
