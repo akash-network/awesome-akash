@@ -20,6 +20,5 @@ RUN sed -i 's/\r//' /usr/bin/model && chmod +x /usr/bin/model
 COPY ./run.sh /
 RUN sed -i 's/\r//' /run.sh && chmod +x /run.sh
 USER fcb
-ENV COMMANDLINE_ARGS="--listen --port=8080"
 # Run stable-diffusion-webui
 CMD ["/run.sh"]
