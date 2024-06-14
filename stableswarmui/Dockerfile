@@ -14,4 +14,4 @@ COPY . .
 EXPOSE 7801
 
 # Set the run file to the launch script
-ENTRYPOINT ["bash", "docker.sh"]
+ENTRYPOINT ["bash", "launchtools/docker.sh"]
