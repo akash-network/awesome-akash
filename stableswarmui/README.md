@@ -2,7 +2,7 @@
 
 **Deploy StableSwarmUI 0.6.4 Beta on Akash Network**.
 
-Just deploy `deploy.yml` file on **Akash Network** and enjoy **StableSwarmUI**!
+Just deploy [deploy.yml](./deploy.yml) file on **Akash Network** and enjoy **StableSwarmUI**!
 
 > If your need download private model huggingface - uncomment and set `MODEL_LINK` & `HF_TOKEN` variables.
 
