@@ -85,6 +85,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Stable Diffusion](stable-diffusion-ui)
 - [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
+- [StableSwarmUI](stableswarmui)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [XLM-roBERTa](XLM-roBERTa)

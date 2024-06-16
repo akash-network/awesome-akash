@@ -1,0 +1,24 @@
+# StableSwarmUI Documentation
+
+- [Basic Usage](/docs/Basic%20Usage.md) to learn how to get started.
+- [Why Use Swarm](/docs/Why%20Use%20Swarm.md) to see what advanced Swarm offers you
+- [Advanced Usage](/docs/Advanced%20Usage.md) for various advanced usage topics (use from external device, comfy workflows, ...)
+- [Using more GPUs](/docs/Using%20More%20GPUs.md) for more info about splitting generations between multiple GPUs.
+- [Model Support](/docs/Model%20Support.md) for details about support of different model types.
+- TODO: Settings guide (server & user)
+- TODO: Account system
+- [Command line arguments](/docs/Command%20Line%20Arguments.md) describes the available command line arguments in detail.
+- TODO: Extensions (what an extension is, what it can do, where to find them, etc)
+    - [Making Extensions](/docs/Making%20Extensions.md) explains how to make extensions.
+    - TODO: Backends (what a 'backend' is, supported options, usage, etc)
+        - [ComfyUI Backend Extension](/src/BuiltinExtensions/ComfyUIBackend/README.md)
+        - [Auto WebUI Backend Extension](/src/BuiltinExtensions/AutoWebUIBackend/README.md)
+    - TODO: Tools (what a tool is, how to use em, etc)
+        - [GridGenerator](/src/BuiltinExtensions/GridGenerator/README.md)
+        - [ImageBatchTool](/src/BuiltinExtensions/ImageBatchTool/README.md)
+    - Other:
+        - [Dynamic Thresholding](/src/BuiltinExtensions/DynamicThresholding/README.md)
+- [API](/docs/API.md) for details about the HTTP&WebSocket network API, to use swarm externally.
+- TODO: Custom expansion
+    - TODO: Building your own extensions
+    - TODO: Building your own backends

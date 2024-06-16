@@ -1,0 +1,21 @@
+# C#
+bin/
+obj/
+.vs/
+.vscode/
+*.user
+*.suo
+Properties/
+
+# This project
+Output/
+Data/
+Models/
+tmp/
+Extensions/
+dlbackend/
+
+# Python
+__pycache__/
+venv/
+*.pth
