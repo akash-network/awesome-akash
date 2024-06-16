@@ -1,0 +1,273 @@
+@page
+@{
+    ViewData["Title"] = "StableSwarmUI Installer";
+}
+@section Header {
+    <link rel="stylesheet" href="/css/installer.css?vary=@Utilities.VaryID" />
+}
+
+@{
+    if (Program.ServerSettings.IsInstalled)
+    {
+        <script>
+            window.location.href = "/Text2Image";
+        </script>
+        return;
+    }
+}
+
+<div class="headline">
+    <h1>StableSwarmUI Installer</h1>
+    <span class="auto-input-name translate">Language</span>
+    <ul class="nav" style="display:inline-block" role="tablist">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="language_dropdown_link" style="color:var(--text)" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Language</a>
+            <div class="dropdown-menu translate-menu notranslate">
+                @foreach (string code in LanguagesHelper.PreferredLanguages)
+                {
+                    LanguagesHelper.Language lang = LanguagesHelper.Languages[code];
+                    <a class="dropdown-item" onclick="changeLanguage('@code')" href="#"><span class="translate-block-sm"><img class="translate-img" src="imgs/flags/@(code).jpg" /></span><span class="translate-block-sm2">@code</span> - @lang.Name - @lang.LocalName</a>
+                }
+                <div class="dropdown-divider"></div>
+                @foreach (string code in LanguagesHelper.SortedList.Except(LanguagesHelper.PreferredLanguages))
+                {
+                    LanguagesHelper.Language lang = LanguagesHelper.Languages[code];
+                    <a class="dropdown-item" onclick="changeLanguage('@code')" href="#"><span class="translate-block-sm"><img class="translate-img" src="imgs/flags/@(code).jpg" /></span><span class="translate-block-sm2">@code</span> - @lang.Name - @lang.LocalName</a>
+                }
+            </div>
+        </li>
+    </ul>
+    <input type="hidden" id="installer_language" value="en" />
+</div>
+<hr>
+
+<div id="section_wrapper" class="section_wrapper">
+    <div id="installer_section_license">
+        <div class="install_q_head">Legal Notice</div>
+        All Stable Diffusion models are subject to licensing defined by Stability AI and/or the model creator.
+        Generally all are free for personal usage, but commercial usage may come under restrictions.
+        For example, the SDXL 1.0 Base license can be found <a href="https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/blob/main/LICENSE.md">Here</a>.
+        <br>StableSwarmUI itself is free for personal usage as well, and licensing specifics can be found <a href="https://github.com/Stability-AI/StableSwarmUI/blob/master/LICENSE.txt">Here</a>.
+        <br>By using this software you agree to follow its license and the applicable licenses of any models included or separately downloaded.
+    </div>
+
+    @if (WebUtil.ProbablyHasAMDGpu())
+    {
+        <div id="installer_section_amd" style="display: none;">
+            <div class="install_q_head">You don't seem to have an nvidia GPU. Do you want to install an AMD compatible version?</div>
+            <div class="install_hint">Installation works differently if you an AMD GPU instead. This will use DirectML on Windows, or ROCm on Linux.
+                <br>If you do not have an AMD Radeon GPU, select 'No'.
+                <br><b>WARNING: This is untested and probably doesn't work due to painfully strict versioning requirements.</b>
+            </div>
+            <br>
+            <fieldset class="form-group" id="amd_selection_field">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amd_radio" id="amd_no" value="no">
+                    <label class="form-check-label" for="amd_no">No</label>
+                    <div class="install_hint">Do the standard install (nvidia-compatible).</div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amd_radio" id="amd_yes" value="yes" checked="">
+                    <label class="form-check-label" for="amd_yes">Yes</label>
+                    <div class="install_hint">Install the AMD version.</div>
+                </div>
+            </fieldset>
+        </div>
+    }
+
+    <div id="installer_section_skip" style="display: none;">
+        <div class="install_q_head">Choose install path:</div>
+        <div class="install_hint">You can always change settings later.</div>
+        <br>
+        <fieldset class="form-group" id="install_path_selection_field">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="install_path_radio" id="install_path_just_install" value="just_install" checked="">
+                <label class="form-check-label" for="install_path_just_install">Just Install</label>
+                <div class="install_hint">Installs with good defaults for personal usage (you can always customize settings later).</div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="install_path_radio" id="install_path_customize" value="customize">
+                <label class="form-check-label" for="install_path_customize">Customize Settings</label>
+                <div class="install_hint">Customize theme, backend, network config, etc. before installing.</div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="installer_section_themes" style="display: none;">
+        <div class="install_q_head">Choose a theme:</div>
+        <div class="install_hint">You can always change this later in the User Settings page.</div>
+        <br>
+        <fieldset class="form-group theme_preview" id="theme_selection_field">
+            <div class="form-check theme_preview_modern_dark" id="theme_input_modern_dark">
+                <input class="form-check-input" type="radio" name="theme_radio" id="theme_moderndark" value="modern_dark" checked="">
+                <label class="form-check-label" for="theme_moderndark">Modern Dark</label>
+                <span class="button_example">Example</span>
+            </div>
+            <div class="form-check theme_preview_modern_light" id="theme_input_modern_light">
+                <input class="form-check-input" type="radio" name="theme_radio" id="theme_modernlight" value="modern_light">
+                <label class="form-check-label" for="theme_modernlight">Modern Light</label>
+                <span class="button_example">Example</span>
+            </div>
+            <div class="form-check theme_preview_dark_dreams" id="theme_input_dark_dreams">
+                <input class="form-check-input" type="radio" name="theme_radio" id="theme_darkdreams" value="dark_dreams">
+                <label class="form-check-label" for="theme_darkdreams">Dark Dreams</label>
+                <span class="button_example">Example</span>
+            </div>
+            <div class="form-check theme_preview_cyber_swarm" id="theme_input_cyber_swarm">
+                <input class="form-check-input" type="radio" name="theme_radio" id="theme_cyberswarm" value="cyber_swarm">
+                <label class="form-check-label" for="theme_cyberswarm">Cyber Swarm</label>
+                <span class="button_example">Example</span>
+            </div>
+            <div class="form-check theme_preview_punked" id="theme_input_punked">
+                <input class="form-check-input" type="radio" name="theme_radio" id="theme_punked" value="punked">
+                <label class="form-check-label" for="theme_punked">Punked</label>
+                <span class="button_example">Example</span>
+            </div>
+            <div class="form-check theme_preview_gravity_blue" id="theme_input_gravity_blue">
+                <input class="form-check-input" type="radio" name="theme_radio" id="theme_gravityblue" value="gravity_blue">
+                <label class="form-check-label" for="theme_gravityblue">Gravity Blue</label>
+                <span class="button_example">Example</span>
+            </div>
+            <div class="form-check theme_preview_eyesear_white" id="theme_input_eyesear_white">
+                <input class="form-check-input" type="radio" name="theme_radio" id="theme_eyesearwhite" value="eyesear_white">
+                <label class="form-check-label" for="theme_eyesearwhite">Eyesear White</label>
+                <span class="button_example">Example</span>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="installer_section_installed_for" style="display: none;">
+        <div class="install_q_head">Who is this StableSwarmUI installation going to be used by?</div>
+        <div class="install_hint">This is to determine a preset of core settings. You can always change this later.</div>
+        <br>
+        <fieldset class="form-group" id="installed_for_selection_field">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="installed_for_radio" id="installed_for_radio_yourself" value="just_self" checked="">
+                <label class="form-check-label" for="installed_for_radio_yourself">Just Yourself On This PC</label>
+                <div class="install_hint">Disables external access entirely, sets you as always a full administrator of the installation.</div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="installed_for_radio" id="installed_for_radio_yourselflocal" value="just_self_lan">
+                <label class="form-check-label" for="installed_for_radio_yourselflocal">Just Yourself, with LAN access</label>
+                <div class="install_hint">Enables LAN access (so you can eg open from your phone), sets you as always a full administrator of the installation.</div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="installed_for_radio" id="installed_for_radio_friendsfamily" value="friends_and_family" disabled="">
+                <label class="form-check-label" for="installed_for_radio_friendsfamily">(COMING SOON): Friends & Family</label>
+                <div class="install_hint">Enables external access, makes it possible to register multiple accounts for the UI, generally trusted with access.</div>
+            </div>
+            <div class="form-check disabled">
+                <input class="form-check-input" type="radio" name="installed_for_radio" id="installed_for_radio_public" value="public" disabled="">
+                <label class="form-check-label" for="installed_for_radio_public">(COMING SOON): Public Access or Untrusted Users</label>
+                <div class="install_hint">Requires registering an account to use the UI, heavily restricts access.</div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="installer_section_backends" style="display: none;">
+        <div class="install_q_head">What backend would you like to use?</div>
+        <div class="install_hint">The backend is the internal engine that actually runs Stable Diffusion on the inside. You can change backends later.</div>
+        <br>
+        @WebUtil.ModalHeader("gpu_check_modal", "GPU Check")
+        <div class="modal-body">
+            Generally, you want a GPU with at least 8 GiB of VRAM to run properly. More is better. If you have at least 4, you'll be able to run SDv1 with lowered settings, but SDXL may be out of reach.
+            <br>&bullet; An Nvidia RTX 20-series or newer is recommended, though some older cards can still work.
+            <br>&bullet; AMD GPUs should work, but are not currently correctly scanned by StableSwarmUI.
+            <br>&bullet; Intel or Mac GPUs may work, but will require special configuration that this installer does not yet perform for you.
+            <br>&bullet; CPU execution is possible, but is extremely slow and not recommended.
+            <br>&bullet; If you have multiple GPUs, StableSwarmUI can use all of them. You will have to configure this manually in the Server Backends settings page later.
+            <hr>
+            You have: @WebUtil.CheckGPUIsSufficient()
+        </div>
+        @WebUtil.ModalFooter()
+        @if (Program.Backends.Count > 0)
+        {
+            <h4>You already have backends installed, you should probably select 'None' below.</h4>
+            <br>
+        }
+        <fieldset class="form-group" id="backend_selection_field">
+            <h3>For New Users: Install One Now</h3>
+            <br>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="backend_radio" id="backend_radio_comfy" value="comfyui" checked="">
+                <label class="form-check-label" for="backend_radio_comfy">ComfyUI (Local)</label>
+                <div class="install_hint">ComfyUI is a powerful node-based Stable Diffusion engine that runs entirely on your local PC. This option is best if you have a powerful GPU.
+                    <a href="#" onclick="javascript:$('#gpu_check_modal').modal('show')">Do I?</a> You can learn more about <a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI here</a>.
+                </div>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="backend_radio" id="backend_radio_stabilityapi" value="stabilityapi">
+                <label class="form-check-label" for="backend_radio_stabilityapi">Stability API (Remote)</label>
+                <div class="install_hint">The Stability API powers DreamStudio and services like it. If you don't have a powerful local PC, you can use the Stability API to power your generations.
+                    You must have a valid API key to use this. <a href="https://platform.stability.ai/docs/getting-started/authentication" target="_blank" rel="noopener noreferrer">Click Here for info about the Stability API and how to get an API key.</a>
+                </div>
+                <input type="password" id="stability_api_key" name="Stability API Key" placeholder="Stability API Key">
+            </div>
+            <hr>
+            <h3>For Experienced Users: Skip Backend Install</h3>
+            <div class="install_hint">You can configure custom backends post-install.</div>
+            <br>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="backend_radio" id="backend_radio_none" value="none">
+                <label class="form-check-label" for="backend_radio_none">None / Custom / Choose Later</label>
+                <div class="install_hint">If you have a pre-existing backend installation (eg ComfyUI, Auto WebUI, etc) or want to deal with it later, click here. You can configure backends under the Server tab of the main interface.</div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="installer_section_models" style="display: none;">
+        <div class="install_q_head">Download Models</div>
+        <div class="install_hint">You can select models to automatically download for local running here. If you selected 'Stability API' on the previous page, you can skip this page.</div>
+        Note: by downloading Stable Diffusion models, you agree to the terms of <a href="https://github.com/Stability-AI/stablediffusion/blob/main/LICENSE-MODEL" target="_blank" rel="noopener noreferrer">The CreativeML Open RAIL++-M License</a>.
+        <br>
+        <fieldset class="form-group" id="models_fieldset">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="downloadmodel_sd15">
+                <label class="form-check-label" for="downloadmodel_sd15">Stable Diffusion v1.5</label>
+                <div class="install_hint">The original SD version from 2022, uses 4 GiB of drive space, generates 512x512 images, able to run on low-end GPUs.</div>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="downloadmodel_sd21">
+                <label class="form-check-label" for="downloadmodel_sd21">Stable Diffusion v2.1</label>
+                <div class="install_hint">The second release of SD, v2.1 has the same requirements as 1.5 but is able to generate 768x768 images, with higher quality results.</div>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="downloadmodel_sdxl1" checked="">
+                <label class="form-check-label" for="downloadmodel_sdxl1">Stable Diffusion XL 1.0 (Base)</label>
+                <div class="install_hint">SDXL is the latest-and-greatest SD version (from July 2023), requiring 6.5 GiB of drive space and a more powerful GPU, but able to generate at 1024x1024, with noticably much higher quality results than past versions.</div>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="downloadmodel_sdxl1refiner">
+                <label class="form-check-label" for="downloadmodel_sdxl1refiner">Stable Diffusion XL 1.0 (Refiner)</label>
+                <div class="install_hint">Bonus model, can be added onto SDXL 1.0 Base to refine the small details of your output image to truly top-tier quality, at the cost of requiring more VRAM and time to generate. (Note: does not work well on its own, expects to be used as a Refiner over outputs from the Base).</div>
+            </div>
+        </fieldset>
+        <label>Or community models!</label>
+        <div class="install_hint">You can download an endless variety of community-made models from online sites such as <a href="https://huggingface.co/spaces/huggingface-projects/diffusers-gallery" target="_blank" rel="noopener noreferrer">HuggingFace</a> or <a href="https://civitai.com/" target="_blank" rel="noopener noreferrer">Civitai</a>. (NOTICE: These are examples of third-party websites featuring user-submitted models, Stability.AI offers no guarantees about what content may exist there, browse with caution.) Remember to only download '.safetensors' files, never '.ckpt' ones.</div>
+    </div>
+
+    <div id="installer_section_end" style="display: none;">
+        You have selected:
+        <br>&bullet; Theme: <span class="final_confirm_info" id="theme_val_info"></span>
+        <br>&bullet; UI Is For: <span class="final_confirm_info" id="installed_for_val_info"></span>
+        <br>&bullet; Backend: <span class="final_confirm_info" id="backend_val_info"></span>
+        <br>&bullet; Model: <span class="final_confirm_info" id="model_val_info"></span>
+        <br>Are you sure this is all correct?
+        <div class="install_hint">This is your last chance to go back and change before installing. If you want to change your choices later, there's a settings menu available within StableSwarmUI, and models can be downloaded any time you wish and put in the models folder.</div>
+        <br><button id="installer_button_confirm" class="btn btn-primary basic-button" autocomplete="off">Yes, I'm sure (Install Now)</button>
+        <div class="install_output" id="install_output"></div>
+        <div class="install_output" id="install_progress_spot"></div>
+        <div class="install_progress_bar" id="install_progress_bar"></div>
+        <div class="install_progress_step_bar" id="install_progress_step_bar"></div>
+    </div>
+    <hr>
+    <div class="section_buttons">
+        <span id="bottom_info"></span>
+        <button id="installer_button_back" class="btn btn-primary basic-button" disabled autocomplete="off">Back</button>
+        <button id="installer_button_next" class="btn btn-primary basic-button" autocomplete="off">Agree</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="/js/installer.js?vary=@Utilities.VaryID"></script>
+}

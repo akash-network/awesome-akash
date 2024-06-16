@@ -1,0 +1,155 @@
+/*
+ If you want to customize your stylesheet, please edit 'styles-user.css' instead of this.
+*/
+
+.sel_table tr td {
+    border: 1px solid black;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+.sel_table {
+    min-width: 60em;
+    width: 100%;
+}
+.secondary {
+    background-color: #202020;
+}
+.emptytab {
+    width: 0px;
+}
+.primary {
+    background-color: #303030;
+}
+.axis_table_cell {
+    width: calc(min(40em, max(10em, 100vw - 40em)));
+    max-height: 8em;
+    overflow: auto;
+}
+.tabval_subdiv {
+    min-width: calc(100vw - 5em - min(40em, max(10em, 100vw - 40em)));
+    max-height: 8em;
+    overflow: auto;
+}
+table tr td,
+table tr th {
+    vertical-align: top;
+    border: 1px solid black;
+    word-break: break-all;
+}
+th {
+    position: sticky;
+    top: -1px;
+    background-color: #202020;
+    background-clip: padding-box;
+}
+table tr td:first-child {
+    position: sticky;
+    left: -1px;
+}
+.nostickytable tr:first-child {
+    position: static !important;
+}
+.nostickytable tr th {
+    position: static !important;
+}
+.nostickytable tr td:first-child {
+    position: static !important;
+}
+.popup_modal_background {
+    font-family: monospace, monospace;
+    background-color: rgb(50, 50, 50, 0.7);
+    text-align: center;
+}
+.popup_modal_img {
+    height: 100%;
+    width: 100%;
+    max-height: calc(min(100vw, 100vh - 8em));
+    max-width: 90vw;
+    position: relative;
+    margin: auto;
+    object-fit: contain;
+}
+.popup_modal_undertext {
+    background-color: #404060;
+    overflow-wrap: break-word;
+}
+.modal_inner_div {
+    max-width: 90vw;
+    margin: auto;
+}
+.advanced_settings_section {
+    max-width: calc(max(1500px, 90em));
+    text-align: left;
+    margin: auto;
+}
+.timer_range {
+    vertical-align: bottom;
+}
+.tab_hidden {
+    display: none;
+}
+.nav-link:focus {
+    background-color: #909050 !important;
+}
+.axis_label_td {
+    left: 0px;
+    background-color: #202020;
+    background-clip: padding-box;
+    word-break: break-all;
+    min-width: 10em;
+}
+.superaxis_second {
+    background-color: #303030;
+}
+.axis_selectors {
+    text-align: right;
+    margin: auto;
+    width: fit-content;
+}
+.sticky_top {
+    position: sticky;
+    top: 0;
+}
+.accordion-button {
+    padding: 0.5rem;
+}
+.save_image_area {
+    text-align: center;
+}
+.save_image_area img {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border: 2px solid orange;
+    border-radius: 0.5rem;
+}
+.content_box {
+    display: inline-block;
+}
+.top_nav_bar {
+    position: sticky;
+    left: 2.5vw;
+    width: 95vw;
+}
+.image_table_box {
+    display: inline-block;
+    min-width: 100%;
+}
+.image_table {
+    margin: auto;
+} 
+.save_image_output {
+    text-align: center;
+}
+.save_image_output_img {
+    max-width: 100%;
+    max-height: 70vh;
+}
+.advanced-checkbox {
+    display: inline-block;
+    border-radius: 0.2rem;
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+    margin: 0.1rem;
+}
+label {
+    display: inline;
+}
