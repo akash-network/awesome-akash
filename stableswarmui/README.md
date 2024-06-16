@@ -40,6 +40,8 @@ See [the motivations document](/docs/Motivations.md) for motivations on technica
 
 # Legal
 
+- Original repository https://github.com/Stability-AI/StableSwarmUI
+
 This project:
 - has the ability to auto-install [ComfyUI](https://github.com/comfyanonymous/ComfyUI) (GPL).
 - has the option to use as a backend [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) (AGPL).
