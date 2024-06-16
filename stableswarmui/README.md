@@ -11,9 +11,6 @@ Just deploy `deploy.yml` file on **Akash Network** and enjoy **StableSwarmUI**!
 
 A Modular **Stable Diffusion** Web-User-Interface, with an emphasis on making powertools easily accessible, high performance, and extensibility.
 
-![ui-screenshot](.github/images/stableswarmui.jpg)
-
-
 # Status
 
 This project is in **Beta** status. This means for most tasks, Swarm has excellent tooling available to you, but there is much more planned. Swarm is recommended as an ideal UI for most users, beginners and pros alike. There are still some things to be worked out.
