@@ -12,7 +12,7 @@ To participate, you need to first [get whitelisted](https://blog.flock.io/news/t
 
 ## ⚡ Usage
 
-To use the validator, obtain your `FLOCK_API_KEY` and `task_id` from [FLock](https://train.flock.io) and fill in the `deploy.yaml` file accordingly.
+To use the validator, obtain your `FLOCK_API_KEY` and `task_id` from [FLock](https://train.flock.io),obtain your `HG_USERNAME` from [Hugging Face](https://huggingface.co/) and fill in the `deploy.yaml` file accordingly.
 
 ## 📖 Documentation
 
