@@ -3,12 +3,14 @@ version: "2.0"
 
 services:
   flock-train:
-    image: public.ecr.aws/e7z6j8c3/flock:training-quickstart-latest
+    image: public.ecr.aws/e7z6j8c3/flock:training-quickstart-akash
     env:
       - FLOCK_API_KEY=
-      - HG_USERNAME=
+      - HF_USERNAME=
       - TASK_ID=
       - HF_TOKEN=
+      # Choose whether to use your own dataset demo_data.jsonl or training_args.yml
+      #- GIT_URL=
     expose:
       - port: 3000
         as: 80
