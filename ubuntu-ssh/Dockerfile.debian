@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM debian:11
 
 RUN apt-get update; \
     apt-get install -y --no-install-recommends -- ssh; \
@@ -8,6 +8,7 @@ RUN apt-get update; \
     chmod 0600 ~/.ssh/authorized_keys;
 
 COPY ssh-entrypoint.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
 
 ENTRYPOINT ["/usr/local/bin/init.sh"]
 

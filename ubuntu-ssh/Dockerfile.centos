@@ -1,0 +1,20 @@
+FROM quay.io/centos/centos:stream9
+
+RUN dnf -y update && \
+    dnf -y install openssh-server && \
+    dnf clean all && \
+    mkdir -p /run/sshd && \
+    mkdir -p /root/.ssh && \
+    chmod 700 /root/.ssh && \
+    touch /root/.ssh/authorized_keys && \
+    chmod 600 /root/.ssh/authorized_keys && \
+    ssh-keygen -A
+
+COPY ssh-entrypoint.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
+
+ENTRYPOINT ["/usr/local/bin/init.sh"]
+
+CMD ["tail", "-f", "/dev/null"]
+
+EXPOSE 22
