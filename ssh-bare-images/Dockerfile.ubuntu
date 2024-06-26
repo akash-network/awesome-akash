@@ -1,0 +1,16 @@
+FROM ubuntu:24.04
+
+RUN apt-get update; \
+    apt-get install -y --no-install-recommends -- ssh; \
+    mkdir -p -m0755 /run/sshd; \
+    mkdir -m700 ~/.ssh; \
+    touch ~/.ssh/authorized_keys; \
+    chmod 0600 ~/.ssh/authorized_keys;
+
+COPY ssh-entrypoint.sh /usr/local/bin/init.sh
+
+ENTRYPOINT ["/usr/local/bin/init.sh"]
+
+CMD ["tail", "-f", "/dev/null"]
+
+EXPOSE 22
