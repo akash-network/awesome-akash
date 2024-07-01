@@ -149,6 +149,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [CouchDB](couchdb)
 - [InfluxDB](influxdb)
 - [SurrealDB](SurrealDB)
+- [MariaDB](mariadb)
 - [DefraDB](defradb)
 
 ### DeFi
