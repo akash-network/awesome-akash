@@ -12,7 +12,7 @@ To participate, you need to first [get whitelisted](https://blog.flock.io/news/t
 
 ## 💻 Usage
 
-To use the training node,obtain your `FLOCK_API_KEY` and `task_id` from [FLock](https://train.flock.io),obtain your `HG_USERNAME` and `HF_TOKEN` from [Hugging Face](https://huggingface.co/) and fill in the `deploy.yaml` file accordingly.
+To use the training node,obtain your `FLOCK_API_KEY` and `task_id` from [FLock](https://train.flock.io),obtain your `HG_USERNAME` and `HF_TOKEN` from [Hugging Face](https://huggingface.co/) and fill in the `deploy.yaml` file accordingly.To train with your own dataset or configure your training parameters, upload demo_data.jsonl and training_args.yml to your GitHub project (see [example](https://github.com/FLock-io/akash-hackthon-train-example)), and then enter the project URL in the GIT_URL field in deploy.yaml.
 
 ## 📖 Documentation
 

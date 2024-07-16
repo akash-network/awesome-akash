@@ -3,10 +3,12 @@ version: "2.0"
 
 services:
   flock-validater:
-    image: public.ecr.aws/e7z6j8c3/flock:llm-loss-validator-gpu-latest
+    image: ghcr.io/flock-io/llm-loss-validator:v0.0.6
     env:
       - FLOCK_API_KEY=
-      - task_id=
+      # support multi_task, such as 1,2,3
+      - TASK_ID=
+      - HF_TOKEN=
     expose:
       - port: 3000
         as: 80
