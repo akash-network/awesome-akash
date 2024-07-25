@@ -33,25 +33,15 @@ RUN git clone https://github.com/NLnetLabs/unbound.git && \
     make install && \
     rm -rf /tmp/*
 
-# Install hnsd
-WORKDIR /tmp
-RUN git clone https://github.com/handshake-org/hnsd.git && \
-    cd hnsd && \
-    ./autogen.sh && \
-    ./configure && \
-    make && \
-    cp hnsd /usr/bin && \
-    rm -rf /tmp/*
-
 # Install dvpn-node
 WORKDIR /tmp
 RUN git clone https://github.com/sentinel-official/dvpn-node && \
     cd dvpn-node && \
-    git checkout v0.7.0 && \
+    git checkout v0.7.1 && \
     make install && \
     rm -rf /tmp/*
 
 # Copy the main script and set CMD
-COPY ./main.sh /
-RUN sed -i 's/\r//' /main.sh && chmod +x /main.sh
-CMD ["/main.sh"]
+COPY ./main_ssh.sh /
+RUN sed -i 's/\r//' /main_ssh.sh && chmod +x /main_ssh.sh
+CMD ["/main_ssh.sh"]
