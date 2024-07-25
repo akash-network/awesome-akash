@@ -21,10 +21,12 @@ services:
          
     expose:
       - port: 8585 # REMOTE_URL_PORT
+        as: 8585
         to:
           - global: true
             ip: uniq_name_endpoint  # Name from string 3, for example "ip: dvpn_dimokus"
       - port: 3333 # LISTEN_PORT 
+        as: 3333
         to:
           - global: true
             ip: uniq_name_endpoint  # Name from string 3, for example "ip: dvpn_dimokus"    
