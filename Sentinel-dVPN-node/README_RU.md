@@ -46,16 +46,19 @@ ___
 
 ## Подготовка
 
-> Для разверки ноды, в этой инструкции, я воспользуюсь [WEB интерфейсом Cloudmos](https://deploy.cloudmos.io/). О том, как с ним работать, [описано в этом документе](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md).
+
+#### Внимание! Cloudmos теперь используется как Akash Console! Привычный интрефейс с новым названием!
+
+> Для разверки ноды, в этой инструкции, я воспользуюсь [WEB интерфейсом Akash Console](https://console.akash.network/). О том, как с ним работать, [описано в этом документе](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md).
 
 1. Создайте в `Keplr` отдельный аккаунт для dVPN ноды.
 2. Зашифруйте мнемоник фразу нового аккаунта с помощью `BASE64`, это можно сделать, как с помощью приложения [Notepad++](https://notepad-plus-plus.org/downloads/) (*Плагины-MIME Tools-Base64 Encode*), так и с помощью любого **безопасного** онлайн шифратора Base64.
-3. Пополните счет созданного dVPN аккаунта не менее, чем на `150dvpn` (~$0.10) для оплаты газа. Приобрести dvpn вы можете на биржах, например `OSMOSIS` или `KUCOIN`.
+3. Пополните счет созданного dVPN аккаунта не менее, чем на `1500dvpn` для оплаты газа. Приобрести dvpn вы можете на биржах, например `OSMOSIS` или `KUCOIN`.
 
 ## Развертка ноды
-Откройте [WEB интерфейс](https://deploy.cloudmos.io/) `Cloudmos`.
+Откройте [WEB интерфейс](https://console.akash.network/) `Console`.
 
-Убедитесь, что на вашем балансе есть **более 6 АКТ** и **присутсвует сертификат** (если нет, то обратитесь к [инструкции по использованию Cloudmos](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)). Далее, нажмите кнопку `DEPLOY`, выберите пустой темплейт `Empty` и скопируйте туда содержимое [deploy.yml](/Sentinel-dVPN-node/deploy.yml).
+Убедитесь, что на вашем балансе есть **более 0.5 АКТ** и **присутсвует сертификат** (если нет, то обратитесь к [инструкции по использованию Console](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)). Далее, нажмите кнопку `DEPLOY`, выберите пустой темплейт `Empty` и скопируйте туда содержимое [deploy.yml](/Sentinel-dVPN-node/deploy.yml).
 ___
 
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221607947-cdc2b2e6-cc96-4709-9278-e15369bb62bf.gif" width=70% </p>
@@ -79,7 +82,7 @@ ___
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221614307-09813671-ed36-4db3-86d8-5836245f05f1.gif" width=70% </p>
 
 До начала развертывания, мы не можем знать какой **IPv4** адрес нам будет назначен, поэтому мы начнем развертку с пустым `IPV4_ADDRESS`. Мы заполним его, как только получим адрес **IPv4** от провайдера и обновим наш деплой. <br/> 
-Пришло время запросить текущие предложения на рынке вычислительных мощностей. Нажимаем `CREATE DEPLOYMENT`, подтверждаем транзакцию (будет заморожено **5 АКТ**) и дожидаемся появления предложений от провайдеров.
+Пришло время запросить текущие предложения на рынке вычислительных мощностей. Нажимаем `CREATE DEPLOYMENT`, подтверждаем транзакцию (будет заморожено **0.5 АКТ**) и дожидаемся появления предложений от провайдеров.
   
 <br/> 
   
