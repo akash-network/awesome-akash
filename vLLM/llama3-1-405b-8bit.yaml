@@ -30,7 +30,7 @@ profiles:
     vllm:
       resources:
         cpu:
-          units: 64
+          units: 16
         memory:
           size: 128Gi
         storage:
