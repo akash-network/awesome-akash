@@ -51,7 +51,9 @@ profiles:
             vendor:
               nvidia:
                 - model: h100
+                  ram: 80Gi
                 - model: a100
+                  ram: 80Gi
   placement:
     dcloud:
       pricing:
