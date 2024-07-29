@@ -22,6 +22,8 @@ services:
         data:
           mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
           readOnly: false
+        shm:
+          mount: /dev/shm
 profiles:
   compute:
     vllm:
@@ -37,6 +39,11 @@ profiles:
             attributes:
               persistent: true
               class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
         gpu:
           units: 2
           attributes:

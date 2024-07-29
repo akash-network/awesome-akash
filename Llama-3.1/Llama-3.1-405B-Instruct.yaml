@@ -105,7 +105,7 @@ services:
         ray start --address $RAYHEAD_PORT_6380_TCP_ADDR:6380 --min-worker-port=10002 --min-worker-port=10010 --block
     env:
       - HF_TOKEN=hf_                          # Hugging Face API token required for Meta-Llama Models
-    #  - NCCL_DEBUG=TRACE
+    #  - NCCL_DEBUG=INFO
     params:
       storage:
         shm:
@@ -132,7 +132,7 @@ services:
         ray start --address $RAYHEAD_PORT_6380_TCP_ADDR:6380 --min-worker-port=10002 --min-worker-port=10010 --block
     env:
       - HF_TOKEN=hf_                          # Hugging Face API token required for Meta-Llama Models
-      #- NCCL_DEBUG=TRACE
+      #- NCCL_DEBUG=INFO
     params:
       storage:
         shm:
