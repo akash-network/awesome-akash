@@ -13,8 +13,7 @@ services:
       - "-c"
     args:
       - >- 
-        huggingface-cli download meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 --exclude "*consolidated*"* && 
-        python3 -m vllm.entrypoints.openai.api_server --model meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 
+        vllm serve meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 
         --tensor-parallel-size 8 --gpu-memory-utilization 0.99 --enforce-eager
     env:
       - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models

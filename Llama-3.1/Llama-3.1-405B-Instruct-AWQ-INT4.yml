@@ -13,10 +13,7 @@ services:
       - "-c"
     args:
       - >- 
-        huggingface-cli download hugging-quants/Meta-Llama-3.1-405B-Instruct-AWQ-INT4 
-        --exclude "*consolidated*"* && 
-        python3 -m vllm.entrypoints.openai.api_server 
-        --model hugging-quants/Meta-Llama-3.1-405B-Instruct-AWQ-INT4 
+        vllm serve hugging-quants/Meta-Llama-3.1-405B-Instruct-AWQ-INT4 
         --tensor-parallel-size 8 
         --speculative-model meta-llama/Meta-Llama-3.1-8B-Instruct 
         --num-speculative-tokens 5 
