@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   vllm:
-    image: vllm/vllm-openai:v0.4.1
+    image: vllm/vllm-openai:v0.5.3.post1
     expose:
       - port: 8000
         as: 8000
@@ -13,10 +13,10 @@ services:
       - "-c"
     args: # see https://docs.vllm.ai/en/latest/models/engine_args.html for all avaibale arguments
       - >-
-        python3 -m vllm.entrypoints.openai.api_server --model
-        meta-llama/Meta-Llama-3-8B-Instruct
+        vllm serve meta-llama/Meta-Llama-3-8B-Instruct --gpu-memory-utilization 0.99
     env:
       - "HF_TOKEN=" # Hugging Face API token required to download restricted or private models
+      #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
     params:
       storage:
         data:

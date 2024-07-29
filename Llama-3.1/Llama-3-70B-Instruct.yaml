@@ -13,10 +13,10 @@ services:
       - "-c"
     args: # see https://docs.vllm.ai/en/latest/models/engine_args.html for all available arguments
       - >-
-        python3 -m vllm.entrypoints.openai.api_server --model
-        meta-llama/Meta-Llama-3-70B-Instruct --tensor-parallel-size 2 --gpu-memory-utilization 0.99
+        vllm serve meta-llama/Meta-Llama-3-70B-Instruct --tensor-parallel-size 2 --gpu-memory-utilization 0.99
     env:
       - "HF_TOKEN=" # Hugging Face API token required to download restricted or private models
+      #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
     params:
       storage:
         data:

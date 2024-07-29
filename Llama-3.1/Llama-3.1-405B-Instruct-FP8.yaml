@@ -18,6 +18,7 @@ services:
         --tensor-parallel-size 8 --gpu-memory-utilization 0.99 --enforce-eager
     env:
       - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
+      #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
     params:
       storage:
         shm:
