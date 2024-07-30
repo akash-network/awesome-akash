@@ -11,32 +11,31 @@ services:
     command:
       - bash
       - "-c"
-    args:
-      - >- 
-        vllm serve meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 
-        --tensor-parallel-size 8 --gpu-memory-utilization 0.99 --enforce-eager
+    args: # see https://docs.vllm.ai/en/latest/models/engine_args.html for all avaibale arguments
+      - >-
+        vllm serve meta-llama/Meta-Llama-3-8B-Instruct --gpu-memory-utilization 0.99
     env:
-      - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
+      - "HF_TOKEN=" # Hugging Face API token required to download restricted or private models
       #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
     params:
       storage:
-        shm:
-          mount: /dev/shm
         data:
           mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
           readOnly: false
+        shm:
+          mount: /dev/shm
 profiles:
   compute:
     vllm:
       resources:
         cpu:
-          units: 16
+          units: 6
         memory:
-          size: 128Gi
+          size: 16Gi
         storage:
-          - size: 100Gi
+          - size: 10Gi
           - name: data
-            size: 700Gi
+            size: 50Gi
             attributes:
               persistent: true
               class: beta3
@@ -46,20 +45,22 @@ profiles:
               class: ram
               persistent: false
         gpu:
-          units: 8
+          units: 1
           attributes:
             vendor:
               nvidia:
-                - model: h100
-                  ram: 80Gi
                 - model: a100
                   ram: 80Gi
+                - model: h100
+                  ram: 80Gi
+                - model: rtxa6000
+                  ram: 48Gi
   placement:
     dcloud:
       pricing:
         vllm:
           denom: uakt
-          amount: 1000000
+          amount: 1000
 deployment:
   vllm:
     dcloud:
