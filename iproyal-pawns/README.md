@@ -17,7 +17,7 @@ Pawns.app enables you to make money instantly. All you need to do to start gener
 ```
 
 3.  Deploy and choose an Akash provider.  Try not to repeat using the same provider or you may get an IP error.
-4.  After a succesful deployment check Pawns app dashboard to verify the connection.
+4.  After a successful deployment check Pawns app dashboard to verify the connection.
 5.  Share your referral code and recommend Akash to friends!
 
 
