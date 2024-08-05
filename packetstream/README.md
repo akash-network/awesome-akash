@@ -10,7 +10,7 @@ Become A Packeter, Share your Bandwidth: $0.10/GB. Packeters share their un-util
 2.  Login to your dashboard and click on Download (https://packetstream.io/dashboard/download)
 3.  In the Linux command you will see : `CID=XXX` Copy this code.
 4.  Click Deploy and paste your CID into the `"REPLACE_ME"` field.
-5.  After a succesful deployment check "My network" tab in the Packetstream dashboard.
+5.  After a successful deployment check "My network" tab in the Packetstream dashboard.
 6.  Share your referral code and recommend Akash to friends!
 
 # Payment Rates : September 2022
