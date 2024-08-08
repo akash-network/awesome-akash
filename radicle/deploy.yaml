@@ -10,6 +10,10 @@ services:
         as: 8776
         to:
           - global: true
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
 
     params:
       storage:
@@ -20,6 +24,7 @@ services:
       - RAD_SEEDS=rad:zNd4qti1Jc69mCBQAdBeK3Avzy4R
       - RAD_EXTERNAL_ADDR=
       - RAD_SEEDING_POLICY=block
+      - RAD_HTTP_ENABLE=false
     
 profiles:
   compute:

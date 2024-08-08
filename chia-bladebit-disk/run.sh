@@ -126,7 +126,7 @@ else
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "Plots will be uploaded to $FINAL_LOCATION on $REMOTE_HOST.                                         "
-  echo "After the plot is succesfully uploaded it will be deleted automatically from the deployment        "
+  echo "After the plot is successfully uploaded it will be deleted automatically from the deployment        "
   echo "Starting in 5 seconds.                                                                            "
   echo "###################################################################################################"
   echo "###################################################################################################"

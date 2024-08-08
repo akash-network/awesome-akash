@@ -10,7 +10,7 @@ With Honeygain, you can make money by simply sharing your Internet. Start earnin
 1.  Sign up on https://dashboard.honeygain.com/
 2.  Click Deploy and enter the email and pass used for Honeygain in `-email REPLACE_ME -pass REPLACE_ME -device akash`
 3.  Deploy and choose an Akash provider.  Try not to repeat using the same provider or you may get an IP error.
-4.  After a succesful deployment check "My network" tab in the Honeygain dashboard.
+4.  After a successful deployment check "My network" tab in the Honeygain dashboard.
 5.  Share your referral code and recommend Akash to friends!
 
 # Payment Rates : September 2022

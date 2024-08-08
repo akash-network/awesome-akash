@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   vllm:
-    image: vllm/vllm-openai:v0.4.1
+    image: vllm/vllm-openai:v0.5.4@sha256:7ab0cf7b287876cec65752a1b7ac99790ecd2a609da80c4d1dd1fbeaf987abf6
     expose:
       - port: 8000
         as: 8000
@@ -11,17 +11,19 @@ services:
     command:
       - bash
       - "-c"
-    args: # see https://docs.vllm.ai/en/latest/models/engine_args.html for all avaibale arguments
+    args: # see https://docs.vllm.ai/en/latest/models/engine_args.html for all available arguments
       - >-
-        python3 -m vllm.entrypoints.openai.api_server --model
-        meta-llama/Meta-Llama-3-70B-Instruct --tensor-parallel-size 2 --gpu-memory-utilization 0.99
+        vllm serve meta-llama/Meta-Llama-3-70B-Instruct --tensor-parallel-size 2 --gpu-memory-utilization 0.99
     env:
       - "HF_TOKEN=" # Hugging Face API token required to download restricted or private models
+      #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
     params:
       storage:
         data:
           mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
           readOnly: false
+        shm:
+          mount: /dev/shm
 profiles:
   compute:
     vllm:
@@ -37,6 +39,11 @@ profiles:
             attributes:
               persistent: true
               class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
         gpu:
           units: 2
           attributes:

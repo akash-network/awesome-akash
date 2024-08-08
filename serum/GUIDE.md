@@ -299,7 +299,7 @@ You can access the application by visiting the hostnames mapped to your deployme
 
 ## Service Logs
 
-You can view the logs for your applicaiton using `akash provider service-logs`, for example:
+You can view the logs for your application using `akash provider service-logs`, for example:
 
 ```sh
 akash provider service-logs --node $AKASH_NODE --dseq $DSEQ --oseq $OSEQ --gseq $GSEQ --provider $PROVIDER --owner $ACCOUNT_ADDRESS --service web
