@@ -14,6 +14,8 @@ Akash Network exposes your service on a random port which is then forwarded to t
 1. Find the random port assigned to your deployment
 2. Update the `RAD_EXTERNAL_ADDR` variable with the public address and port (e.g. `RAD_EXTERNAL_ADDR=provider.url:65432`).
 
+The deployment also allows you to enable HTTP server by setting `RAD_HTTP_ENABLE` to `true`.
+
 ## Usage
 
 You can simply seed existing repositories, but you can also use your node to publish your own Git repos. To connect to your node, you will need to know the external addres and Node ID, which can be found at the start of the logs or by running the following command in the deplyoment console.
