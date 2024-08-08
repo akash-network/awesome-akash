@@ -13,8 +13,7 @@ services:
       - "-c"
     args:
       - >- 
-        vllm serve meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 
-        --tensor-parallel-size 8 --gpu-memory-utilization 0.99 --enforce-eager
+        vllm serve meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 --tensor-parallel-size 8 --gpu-memory-utilization 1 --max-model-len=32768 --enable-chunked-prefill=False
     env:
       - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
       #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
@@ -30,9 +29,9 @@ profiles:
     vllm:
       resources:
         cpu:
-          units: 16
+          units: 64
         memory:
-          size: 128Gi
+          size: 256Gi
         storage:
           - size: 100Gi
           - name: data
