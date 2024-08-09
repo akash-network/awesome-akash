@@ -19,21 +19,23 @@ services:
           - "-c"
     args:
           - >- 
-            while [ "$FIRST_START" = true ]; do
-                echo "Please set the A Record in your DNS to your leased IP and update the SDL with FIRST_START=false";
-                sleep 20;
-            done
-
-            apt-get update;
-            apt-get upgrade -y;
-            apt install -y certbot python3-certbot-nginx wget;
-
             if [ -f /etc/nginx-persistent/nginx.conf ]; then
                 echo "nginx.conf already exists";
             else
                 echo "Get NGINX config from $NGINX_CONF_URL";
                 wget $NGINX_CONF_URL -O /etc/nginx-persistent/nginx.conf;
             fi
+
+            while [ "$FIRST_START" = true ]; do
+                echo "Please set the A Record in your DNS to your leased IP and update the SDL with FIRST_START=false";
+                sleep 20;
+            done
+
+            cp /etc/nginx-persistent/nginx.conf /etc/nginx/nginx.conf;
+
+            apt-get update;
+            apt-get upgrade -y;
+            apt install -y certbot python3-certbot-nginx wget;
 
             certbot --nginx -d $DOMAIN --non-interactive --agree-tos --register-unsafely-without-email;
 
@@ -43,9 +45,11 @@ services:
       - "DOMAIN=YOURDOMAIN.COM" # Change this to your domain
       - "NGINX_CONF_URL=" # Set this to the URL of your NGINX config see example /nginx-letsencrypt-proxy/nginx.conf
       - "FIRST_START=true" # Set this to false after you have set the A Record in your DNS
-    data:
-        mount: /etc/nginx-persistent
-        readOnly: false
+    params:
+      storage:
+        data:
+            mount: /etc/nginx-persistent
+            readOnly: false
 profiles:
   compute:
     nginx-ssl:
