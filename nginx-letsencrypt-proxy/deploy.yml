@@ -28,8 +28,12 @@ services:
             apt-get upgrade -y;
             apt install -y certbot python3-certbot-nginx wget;
 
-            echo "Get NGINX config from $NGINX_CONF_URL";
-            wget $NGINX_CONF_URL -O /etc/nginx/nginx.conf;
+            if [ -f /etc/nginx-persistent/nginx.conf ]; then
+                echo "nginx.conf already exists";
+            else
+                echo "Get NGINX config from $NGINX_CONF_URL";
+                wget $NGINX_CONF_URL -O /etc/nginx-persistent/nginx.conf;
+            fi
 
             certbot --nginx -d $DOMAIN --non-interactive --agree-tos --register-unsafely-without-email;
 
@@ -39,6 +43,9 @@ services:
       - "DOMAIN=YOURDOMAIN.COM" # Change this to your domain
       - "NGINX_CONF_URL=" # Set this to the URL of your NGINX config see example /nginx-letsencrypt-proxy/nginx.conf
       - "FIRST_START=true" # Set this to false after you have set the A Record in your DNS
+    data:
+        mount: /etc/nginx-persistent
+        readOnly: false
 profiles:
   compute:
     nginx-ssl:
@@ -49,6 +56,11 @@ profiles:
           size: 4Gi
         storage:
           - size: 5Gi
+          - name: data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
   placement:
     dcloud:
       pricing:
