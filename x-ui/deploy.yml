@@ -6,6 +6,7 @@ services:
     env:
       - "DB=" # Optional, past link for direct download (google drive, etc) if you want use own x-ui database.
       - "ARG=-port 1111 -username Admin -password admin" 
+      - "XUI_LOG_LEVEL=error"
     expose:
       - port: 1111 # WebUI port
         to:
