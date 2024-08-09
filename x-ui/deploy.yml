@@ -10,7 +10,7 @@ services:
       - port: 1111 # WebUI port
         to:
           - global: true
-      - port: 1010 # vless connection port
+      - port: 1010 # vpn connection port
         to:
           - global: true
 profiles:
