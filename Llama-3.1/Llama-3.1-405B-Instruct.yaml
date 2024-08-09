@@ -72,7 +72,7 @@ services:
         --dashboard-port=8265 --dashboard-host=0.0.0.0 
         --object-manager-port=8076 --node-manager-port=8077 
         --dashboard-agent-grpc-port=8078 --dashboard-agent-listen-port=8079 
-        --min-worker-port=10002 --min-worker-port=10010 --block &
+        --min-worker-port=10002 --max-worker-port=10010 --block &
         echo "Waiting for Ray to start" && 
         sleep 15 && 
         vllm serve meta-llama/Meta-Llama-3.1-405B-Instruct --tensor-parallel-size 8 --pipeline-parallel-size 3 --gpu-memory-utilization 0.99 --enable-chunked-prefill=False
@@ -102,7 +102,7 @@ services:
       - "-c"
     args:
       - >- 
-        ray start --address $RAYHEAD_PORT_6380_TCP_ADDR:6380 --min-worker-port=10002 --min-worker-port=10010 --block
+        ray start --address $RAYHEAD_PORT_6380_TCP_ADDR:6380 --min-worker-port=10002 --max-worker-port=10010 --block
     env:
       - HF_TOKEN=hf_                          # Hugging Face API token required for Meta-Llama Models
     #  - NCCL_DEBUG=INFO
@@ -129,7 +129,7 @@ services:
       - "-c"
     args:
       - >- 
-        ray start --address $RAYHEAD_PORT_6380_TCP_ADDR:6380 --min-worker-port=10002 --min-worker-port=10010 --block
+        ray start --address $RAYHEAD_PORT_6380_TCP_ADDR:6380 --min-worker-port=10002 --max-worker-port=10010 --block
     env:
       - HF_TOKEN=hf_                          # Hugging Face API token required for Meta-Llama Models
       #- NCCL_DEBUG=INFO
