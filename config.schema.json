@@ -7,7 +7,11 @@
     "ssh": {
       "description": "If the template supports SSH connection",
       "type": "boolean"
+    },
+    "logoUrl": {
+      "description": "URL to the logo of the template",
+      "type": "string"
     }
   },
-  "required": ["ssh"]
+  "required": ["ssh", "logoUrl"]
 }
