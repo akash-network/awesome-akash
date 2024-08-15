@@ -1,4 +1,5 @@
 {
   "$schema": "../config.schema.json",
-  "ssh": true
+  "ssh": true,
+  "logoUrl": "https://raw.githubusercontent.com/akash-network/awesome-akash/b98585cd5aad694d1b81843976dca21994e3ffbc/base-ssh/ubuntu-logo-icon.png"
 }
