@@ -1,4 +1,3 @@
-
 ---
 version: "2.0"
 services:
@@ -10,7 +9,7 @@ services:
         to:
           - global: true
     env:
-      - MODEL="llama3.1:8b"
+      - MODEL=llama3.1:8b
     command:
       - /bin/sh
       - -c
