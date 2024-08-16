@@ -27,8 +27,8 @@ profiles:
                 - model: k80
                 - model: p4
                 - model: t4
-                - model: 1650
-             
+                - model: gtx1650ti
+
         storage:
           - size: 100Gi
   placement:

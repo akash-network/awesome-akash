@@ -32,8 +32,8 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                #- model: 3090
-            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
+                #- model: rtx3090
+            #To get the best price remove the comment and enter the GPU model such as 'rtx3090' or 'gtx1080ti'
   placement:
     akash:
       #######################################################
