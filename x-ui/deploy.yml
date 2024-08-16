@@ -1,0 +1,37 @@
+---
+version: "2.0"
+services:
+  app:
+    image: declab/x-ui:0.1
+    env:
+      - "DB=" # Optional, past link for direct download (google drive, etc) if you want use own x-ui database.
+      - "ARG=-port 1111 -username Admin -password admin" 
+      - "XUI_LOG_LEVEL=error"
+    expose:
+      - port: 1111 # WebUI port
+        to:
+          - global: true
+      - port: 1010 # vpn connection port
+        to:
+          - global: true
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+  placement:
+    akash:
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1

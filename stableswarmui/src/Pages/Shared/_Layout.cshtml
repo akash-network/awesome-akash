@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - StableSwarmUI</title>
+    @{
+        string themeId = "modern_dark";
+        // TODO: Identify user by auth header and use their settings to determine theme
+        if (ViewContext.HttpContext.Request.Cookies.TryGetValue("sui_theme_id", out string themeCookie) && Program.Web.RegisteredThemes.ContainsKey(themeCookie)) {
+            themeId = themeCookie;
+        }
+        WebServer.ThemeData theme = Program.Web.RegisteredThemes[themeId];
+        string bsUrl = theme.IsDark ? "/css/bootstrap.min.css" : "/css/bootstrap_light.min.css";
+        <link rel="stylesheet" id="bs_theme_header" href="@bsUrl" />
+        foreach (string path in theme.CSSPaths)
+        {
+            string themeUrl = $"{path}?vary={Utilities.VaryID}";
+            <link class="theme_sheet_header" rel="stylesheet" href="@themeUrl" />
+        }
+    }
+    <link rel="stylesheet" href="/css/select2.min.css" />
+    <link rel="stylesheet" href="/css/select2_bootstrap.min.css" />
+    <link rel="stylesheet" id="sitecssheader" href="/css/site.css?vary=@Utilities.VaryID" />
+    <link id="favicon" rel="shortcut icon" href="favicon.ico" />
+    @RenderSection("Header", required: false)
+    @WebServer.PageHeaderExtra
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+    <script src="/js/util.js?vary=@Utilities.VaryID"></script>
+    <script src="/js/translator.js?vary=@Utilities.VaryID"></script>
+</head>
+<body>
+    <div class="top-status-bar-wrapper"><div class="top-status-bar" id="top_status_bar"></div></div>
+    <div class="center-toast toast-error-box" id="center_toast">
+        @WebUtil.Toast("error_toast_box", "Error", "", "error_toast_content", "", false)
+    </div>
+    @RenderBody()
+    <script src="/js/site.js?vary=@Utilities.VaryID"></script>
+    @RenderSection("Scripts", required: false)
+    <div id="version_display" class="version-display">StableSwarmUI v<span>@Utilities.Version</span></div>
+</body>
+</html>

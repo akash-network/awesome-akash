@@ -1,0 +1,5 @@
+#!/bin/bash
+LINK_MODEL=$1
+MODEL_NAME=`basename $LINK_MODEL`
+rm /stable-diffusion-webui/models/Stable-diffusion/*
+wget -O /stable-diffusion-webui/models/Stable-diffusion/$MODEL_NAME $LINK_MODEL

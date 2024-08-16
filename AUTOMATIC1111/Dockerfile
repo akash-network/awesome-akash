@@ -1,12 +1,24 @@
-FROM nvidia/cuda:11.7.1-base-ubuntu22.04
-RUN TZ=Europe/Kiev && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN apt update && apt upgrade -y && apt install -y wget build-essential git make gcc nvme-cli pv unzip python3 python3-pip python3-venv libgl1-mesa-dev libglib2.0-0 libsm6 libxrender1 libxext6 pciutils
-RUN pip install wheel
-RUN pip install lit
-ENV PYTORCH_CUDA_ALLOC_CONF=garbage_collection_threshold:0.9,max_split_size_mb:512
-RUN git clone https://github.com/Dimokus88/stable-diffusion-webui.git
-RUN pip install diffusers transformers accelerate scipy safetensors
-COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-RUN sed -i 's/\r$//' /entrypoint.sh
-ENTRYPOINT ["bash", "/entrypoint.sh"]
+# Use a base image
+FROM nvidia/cuda:12.2.0-base-ubuntu22.04
+LABEL maintainer="decloudlab@gmail.com"
+LABEL description="Decloud Nodes Lab"
+LABEL site="https://declab.pro"
+ENV TZ=Europe/London
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN DEBIAN_FRONTEND=noninteractive
+# Install necessary packages
+RUN apt update && \
+	apt upgrade -y && \
+	apt install -y wget tzdata git python3.10-venv libgl1-mesa-dev libglib2.0-0 libsm6 libxrender1 libxext6 && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
+RUN useradd -s /bin/bash -m  fcb
+WORKDIR /
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && chmod 777 -R stable-diffusion-webui && chown -R fcb:fcb stable-diffusion-webui
+COPY ./model /usr/bin/model
+RUN sed -i 's/\r//' /usr/bin/model && chmod +x /usr/bin/model
+COPY ./run.sh /
+RUN sed -i 's/\r//' /run.sh && chmod +x /run.sh
+USER fcb
+# Run stable-diffusion-webui
+CMD ["/run.sh"]

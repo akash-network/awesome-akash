@@ -1,0 +1,71 @@
+<div id="comfy_workflow_buttons" class="comfy_workflow_buttons" style="display:none;">
+    <div id="comfy_workflow_buttons_actual" class="comfy_workflow_buttons_actual">
+        <div id="comfy_buttons_closeable_area">
+            <div class="comfy_workflow_buttons_left" id="comfy_workflow_buttons_left">
+                <button id="comfy_workflow_useme_button" onclick="comfyUseWorkflowNow()" class="basic-button translate" style="width: 10rem;white-space: pre-wrap;">Use This Workflow In Generate Tab</button>
+            </div>
+            <div class="comfy_workflow_buttons_right" id="comfy_workflow_buttons_right">
+                <button id="comfy_workflow_save_button" onclick="comfySaveWorkflowNow()" class="basic-button comfy-small-button translate">Save Workflow</button>
+                <br><button id="comfy_workflow_browse_button" onclick="comfyBrowseWorkflowsNow()" class="basic-button comfy-small-button translate">Browse Workflows</button>
+                <br>
+            </div>
+            <div class="comfy-second-button-row">
+                <button class="basic-button comfy-small-button comfy-left-button translate" onclick="comfyImportWorkflow()">Import From Generate Tab</button>
+                <div id="comfy_multigpu" class="comfy_multigpu">
+                    <select id="comfy_multigpu_select" style="width:5.8rem" onchange="comfyMultiGPUSelectChanged()">
+                        <option value="" selected>-- MultiGPU --</option>
+                        <option value="all">Use All</option>
+                        <option value="reserve">Reserve Exclusive</option>
+                        <option value="none">Use One</option>
+                    </select>
+                </div>
+            </div>
+            <div id="comfy_workflow_disable_button" style="display: none;">
+                <button class="basic-button interrupt-button translate" onclick="comfyParamsDisable()">Remove Workflow From Generate Tab</button>
+            </div>
+            <div id="comfy_quickload" class="comfy_quickload">
+                <select id="comfy_quickload_select" onchange="comfyQuickloadSelectChanged()">
+                    <option value="" selected>-- Quick Load --</option>
+                </select>
+            </div>
+        </div>
+        <div id="comfy_notice_slot"></div>
+        <div class="comfy_buttons_closer_wrapper">
+            <div class="comfy_buttons_closer" id="comfy_buttons_closer" onclick="comfyToggleButtonsVisible()">&#x2B9D;</div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="comfy_workflow_save_modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title translate">Save Custom Comfy Workflow</h5>
+        </div>
+        <div class="modal-body">
+            <p class="translate">Save workflow...</p>
+            <input type="text" id="comfy_save_modal_name" autocomplete="off" style="width: 100%;">
+            <p class="translate">Description:</p>
+            <textarea id="comfy_save_description" style="width: 100%;" placeholder="Description..."></textarea>
+            <br>
+            <span class="form-check form-switch display-inline-block translate">
+                <input class="form-check-input translate" type="checkbox" id="comfy_save_enable_simple" title="Enable this workflow in the Simple tab"> Enable In Simple Tab
+            </span>
+            <br>
+            <span class="form-check form-switch display-inline-block translate">
+                <input class="form-check-input translate" type="checkbox" id="comfy_save_use_image" title="Enable/disable image"> Use Image
+            </span>
+            <div id="comfy_save_image" class="comfy_save_image"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary translate" onclick="comfySaveModalSaveNow()">Save Workflow</button>
+            <button type="button" class="btn btn-secondary translate" onclick="comfyHideSaveModal()">Cancel</button>
+        </div>
+        </div>
+    </div>
+</div>
+<div id="comfy_workflow_topbar_holder" class="comfy_workflow_topbar_holder" style="display:none;">
+    <div class="browser_container" id="comfy_workflow_browser_container"></div>
+</div>
+<div id="comfy_workflow_frameholder" class="comfy_workflow_frameholder">
+    <h1 class="translate">Seems like the ComfyUI workflow editor direct-access hasn't loaded. Give it a second to load - if it doesn't there might be an error message in your browser console or the server logs.</h1>
+</div>

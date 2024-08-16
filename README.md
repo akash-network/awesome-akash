@@ -2,7 +2,7 @@
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
-Instructions on how to deploy the SDL files in this repository can be found [here](//docs.akash.network/guides/deploy).
+Instructions on how to deploy the SDL files in this repository can be found [here](https://akash.network/docs/deployments/overview/).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
@@ -10,7 +10,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 ## Table of Contents <!-- omit in toc -->
 
 - [Official](#official)
-- [AI](#ai)
+- [AI - CPU](#ai---cpu)
+- [AI - GPU](#ai---gpu)
 - [Blogging](#blogging)
 - [Built with Cosmos-SDK](#built-with-cosmos-sdk)
 - [Chat](#chat)
@@ -27,7 +28,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Hosting](#hosting)
 - [Media](#media)
 - [Search Engines](#search-engines)
-- [Mining](#mining)
+- [Mining - CPU](#mining---cpu)
+- [Mining - GPU](#mining---gpu)
 - [Mining Pools](#mining-pools)
 - [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
 - [Project Management](#project-management)
@@ -43,6 +45,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
+- [Ubuntu SSH](ssh-ubuntu)
 
 ### AI - CPU
 
@@ -74,16 +77,29 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [FastChat](FastChat)
 - [Flan-T5 XXL](flan-t5-xxl)
 - [GPT-Neo](gpt-neo)
+- [Grok](grok)
 - [Llama-2-70B](Llama-2-70B)
+- [Llama-3-8B](Llama-3-8B)
+- [Llama-3-70B](Llama-3-70B)
+- [Llama-3.1-8B](Llama-3.1-8B)
+- [Llama-3.1-405B-AWQ-INT4](Llama-3.1-405B-AWQ-INT4)
+- [Llama-3.1-405B-BF16](Llama-3.1-405B-BF16)
+- [Llama-3.1-405B-FP8](Llama-3.1-405B-FP8)
+- [Open GPT](open-gpt)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
+- [StableSwarmUI](stableswarmui)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [XLM-roBERTa](XLM-roBERTa)
+- [Open GPT](open-gpt)
+- [vllm](vllm)
+- [FLock Validator](FLock-validator)
+- [FLock-Training-Node](FLock-training-node)
 
 ### Blogging
 
@@ -121,7 +137,9 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Bitbucket](bitbucket)
 - [Azure Devops Agent](azure-devops-agent)
 - [Github Runner](ghrunner)
-
+- [Radicle](radicle)
+- [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
+  
 ### Data Visualization
 
 -  [Redash Data Charts for Akash Analytics](Redash)
@@ -322,6 +340,8 @@ Awesome DeFi apps you can deploy on Akash
 
 - [SoftEther VPN](softether-vpn)
 - [Sentinel dVPN node](Sentinel-dVPN-node)
+- [V2RAY](v2ray)
+- [X-UI](x-ui)
 - [Tor Proxy](tor-proxy)
 
 ### Databases

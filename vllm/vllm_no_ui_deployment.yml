@@ -1,0 +1,53 @@
+---
+version: "2.0"
+services:
+ vllm:
+   image: vllm/vllm-openai:v0.4.0.post1
+   expose:
+     - port: 8000
+       as: 8000
+       to:
+          - global: true
+
+   command:
+     - bash
+     - "-c"
+   args:
+     - >-
+       huggingface-cli download MaziyarPanahi/WizardLM-2-7B-AWQ && /usr/bin/python3 -m vllm.entrypoints.openai.api_server --model MaziyarPanahi/WizardLM-2-7B-AWQ
+   env:
+     - HUGGING_FACE_HUB_TOKEN=hf_********************
+     - VLLM_API_KEY=MYPASSWORD
+
+profiles:
+ compute:
+   vllm:
+     resources:
+       cpu:
+         units: 16
+       memory:
+         size: 100Gi
+       storage:
+         - size: 80Gi
+         - name: shm
+           size: 10Gi
+           attributes:
+             class: ram
+       gpu:
+         units: 1
+         attributes:
+           vendor:
+             nvidia:
+
+ placement:
+   dcloud:
+     pricing:
+       vllm:
+         denom: uakt
+         amount: 1000000
+     
+deployment:
+ vllm:
+   dcloud:
+     profile: vllm
+     count: 1

@@ -52,16 +52,18 @@ ___
 
 ## Preparation
 
-> To deploy a node, in this tutorial, I will use the [Cloudmos WEB interface](https://deploy.cloudmos.io/).
+#### Attention! Cloudmos is now used as Akash Console! The usual interface with a new name!
+
+> To deploy a node, in this tutorial, I will use the [Akash Console Web interface](https://console.akash.network/).
 How to work with it is [described in this document](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md).
 1. Create a separate account in `Keplr` for the dVPN node.
 2. Encrypt the mnemonic phrase of the new account using `BASE64`, this can be done using the application [Notepad++](https://notepad-plus-plus.org/downloads/) (*Plugins-MIME Tools-Base64 Encode* ) or any **secure** online Base64 encoder.
-3. Top up your created dVPN account with at least `150dvpn` (~$0.10) to pay for gas. You can buy dvpn on exchanges like `OSMOSIS` or `KUCOIN`.
+3. Top up your created dVPN account with at least `1500dvpn` to pay for gas. You can buy dvpn on exchanges like `OSMOSIS` or `KUCOIN`.
 
 ## Node deployment
-Open [WEB interface](https://deploy.cloudmos.io/) `Cloudmos`.
+Open [WEB interface](https://console.akash.network/) `Akash Console`.
 
-Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md#create-certificate)). Next, click the `DEPLOY` button, select the empty `Empty` template and copy the contents of [deploy.yml](/Sentinel-dVPN-node//deploy.yml) there .
+Make sure you have **more than 0.5 AKT** on your balance and **certificate present** (if not, refer to [Console instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md#create-certificate)). Next, click the `DEPLOY` button, select the empty `Empty` template and copy the contents of [deploy.yml](/Sentinel-dVPN-node//deploy.yml) there .
 ___
 
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221607947-cdc2b2e6-cc96-4709-9278-e15369bb62bf.gif" width=70% </p>
@@ -82,7 +84,7 @@ Pay attention to the correct filling of the variables, they must be INSIDE the q
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221614307-09813671-ed36-4db3-86d8-5836245f05f1.gif" width=70%</p>
 
 We don't know what **IPv4** address we'll be assigned before we start the deployment, so we'll start the deployment with an empty `IPV4_ADDRESS`. We will fill it in as soon as we get the **IPv4** address from the provider and update our deployment. <br/>
-It's time to ask for current offerings in the computing power market. We press `CREATE DEPLOYMENT`, confirm the transaction (**5 AKT** will be frozen) and wait for offers from providers.
+It's time to ask for current offerings in the computing power market. We press `CREATE DEPLOYMENT`, confirm the transaction (**0.5 AKT** will be frozen) and wait for offers from providers.
   
 <br/>
   

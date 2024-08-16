@@ -1,0 +1,7 @@
+#!/bin/bash
+LINK_MODEL=$1
+if [[ -n "$HF_TOKEN" ]];then
+wget --header="Authorization: Bearer $HF_TOKEN" -P /Models $LINK_MODEL
+exit
+fi
+wget -P /Models $LINK_MODEL
