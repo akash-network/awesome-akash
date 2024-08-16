@@ -26,20 +26,20 @@ profiles:
               nvidia:
                 - model: a40
                 - model: a10
-                - model: 4090
-                - model: 3090Ti
-                - model: 4080
-                - model: 3090
+                - model: rtx4090
+                - model: rtx3090Ti
+                - model: rtx4080
+                - model: rtx3090
                 - model: h100
                 - model: a100
                 - model: v100
-                - model: 3060
+                - model: rtx3060
                 - model: p100
                 - model: 4000
                 - model: a4000
-                - model: 2070
-                - model: 1080
-                - model: 1080Ti
+                - model: rtx2070
+                - model: gtx1080
+                - model: gtx1080ti
 
         storage:
           - size: 100Gi
