@@ -27,7 +27,7 @@ profiles:
                 - model: a40
                 - model: a10
                 - model: rtx4090
-                - model: rtx3090Ti
+                - model: rtx3090ti
                 - model: rtx4080
                 - model: rtx3090
                 - model: h100
