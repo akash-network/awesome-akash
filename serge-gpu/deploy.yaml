@@ -13,8 +13,8 @@ profiles:
     serge:
       resources:
         cpu:
-          units: 24
-        #Higher is better for AI! Be sure to change thread setting in app.
+          units: 4
+        #Be sure to change thread setting in app if you change this
         memory:
           size: 28Gi
         #7B requires about 4.5GB of free RAM
