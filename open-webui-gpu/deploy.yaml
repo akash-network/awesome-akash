@@ -1,0 +1,62 @@
+---
+version: "2.0"
+services:
+  ollama:
+    image: ollama/ollama
+    expose:
+      - port: 11434
+        as: 80
+        to:
+          - global: false
+          - service: open-webui
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+    env:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=
+profiles:
+  compute:
+    ollama:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 16Gi
+        storage:
+          - size: 128Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+    open-webui:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 4Gi
+        storage:
+          - size: 16Gi
+  placement:
+    akash:
+      pricing:
+        ollama:
+          denom: uakt
+          amount: 10000
+        open-webui:
+          denom: uakt
+          amount: 10000
+deployment:
+  ollama:
+    akash:
+      profile: ollama
+      count: 1
+  open-webui:
+    akash:
+      profile: open-webui
+      count: 1
