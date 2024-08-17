@@ -2,7 +2,7 @@
 
 # What is Akash?
 
-Akash is an [**open source** ](https://github.com/ovrclk/akash)Cloud platform that lets you quickly deploy a Docker container to the Cloud provider of your choice for less than the cost of AWS, right from the [**command-line**](https://docs.akash.network/guides/cli).
+Akash is an [**open source** ](https://github.com/ovrclk/akash)Cloud platform that lets you quickly deploy a Docker container to the Cloud provider of your choice for less than the cost of AWS, right from the [**command-line**](https://akash.network/docs/deployments/akash-cli/overview).
 
 # What is NEAR?
 
@@ -17,7 +17,7 @@ NEAR is a [sharded](https://near.org/downloads/Nightshade.pdf), [proof-of-stake]
 3. Install [Akashlytics](https://akashlytics.com/deploy) and import your AKT wallet address from Keplr
 4. Deploy a NEAR node
 
-Click [here](https://docs.akash.network/guides/deploy) to learn more about deploying.
+Click [here](https://akash.network/docs/guides/) to learn more about deploying.
 
 
 

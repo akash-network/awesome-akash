@@ -25,7 +25,7 @@ while not is_downloaded:
     if len(bin_files) == 65:
       is_downloaded = True
       print("Download finished. Checkpoints will be loaded and takes about 10 minutes.")
-      print("If after 10 minutes it still looks 'stuck', try reloading Cloudmos.")
+      print("If after 10 minutes it still looks 'stuck', try reloading Akash Console.")
       logging.info("Download finished.")
   except Exception as error:
     logging.error(error)

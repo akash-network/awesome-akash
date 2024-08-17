@@ -13,7 +13,7 @@ Original Facebook Research repo: https://github.com/facebookresearch/XLM
 
 ## Deployment
 
-To deploy the application on the Akash network, you can use the deploy.yaml in this repository on Akash's new GPU marketplace using Cloudmos, Akash Console, or Akash CLI
+To deploy the application on the Akash network, you can use the deploy.yaml in this repository on Akash's new GPU marketplace using Akash Console, or Akash CLI
 
 ## Usage
 

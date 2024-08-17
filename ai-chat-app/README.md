@@ -10,7 +10,7 @@ To use this app, you need a ChatGPT API key. [Get your key from OpenAI API Keys.
 
 ## Setting up the App
 
-By default, the server runs on port 3000 and is assigned an ephemeral port by the provider. Once deployed, access the web interface by clicking on "Forwarded Ports" in Cloudmos.
+By default, the server runs on port 3000 and is assigned an ephemeral port by the provider. Once deployed, access the web interface by clicking on "Forwarded Ports" in Akash Console.
 
 ![image](https://user-images.githubusercontent.com/19512127/224119623-47c80369-75c9-412d-a4fd-66d98c2cb778.png)
 

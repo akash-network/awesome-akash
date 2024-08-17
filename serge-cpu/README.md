@@ -10,7 +10,7 @@ A chat interface based on [llama.cpp](https://github.com/ggerganov/llama.cpp) fo
 
 ## Getting started
 
-Deploy and click the URI in Cloudmos.
+Deploy and click the URI in Akash Console.
 
 The API documentation can be found at http://localhost:8008/api/docs
 
