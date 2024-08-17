@@ -1,0 +1,35 @@
+---
+version: "2.0"
+services:
+  privategpt:
+    image: 3x3cut0r/privategpt:latest
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+
+profiles:
+  compute:
+    privategpt:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 8Gi
+        storage:
+          size: 128Gi
+
+  placement:
+    akash:
+      attributes:
+      pricing:
+        privategpt:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  privategpt:
+    akash:
+      profile: privategpt
+      count: 1
