@@ -5,7 +5,7 @@ The original repo is here: https://github.com/getredash
 [Redash](redash.io) is an open-source data visualization and dashboarding tool that allows users to connect to various data sources, create interactive dashboards, and build visualizations to analyze data. It provides a user-friendly interface for querying, visualizing, and sharing data insights within an organization. Redash can be used to create reports, charts, graphs, and dashboards to help businesses make data-driven decisions.
 
   
-### Cloudmos DeploySet Up
+### Akash Console DeploySet Up
 
 The provided deploy.yaml uses [IP leases](https://docs.akash.network/features/ip-leases) and [persistent storage](https://docs.akash.network/features/persistent-storage). Remove one or both of these features if you are not receving bids.
 
@@ -41,4 +41,4 @@ Expected outputs from the commands can be seen below.
 
 ### Example Queries
 
-The following queries are made to answer questions defined in Akash Networks [Sig-Analytics PRD](https://github.com/akash-network/community/blob/main/sig-analytics/prd.md) using the Cloudmos Database. More information on the database and schema can be found [here](https://github.com/akash-network/cloudmos).
+The following queries are made to answer questions defined in Akash Networks [Sig-Analytics PRD](https://github.com/akash-network/community/blob/main/sig-analytics/prd.md) using the Akash Console Database. More information on the database and schema can be found [here](https://github.com/akash-network/console).

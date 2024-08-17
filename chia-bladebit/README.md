@@ -7,7 +7,7 @@ A fast RAM-only, k32-only, Chia plotter.
 
 ## Providers
 
-For the following providers expect to see these prices in Cloudmos! Each provider has been benchmarked and tested to create a $0.20/plot. &#x20;
+For the following providers expect to see these prices in Akash Console! Each provider has been benchmarked and tested to create a $0.20/plot. &#x20;
 
 | Providers      | BladeBit Price / Month   |
 | ---------------------- | ------------------------ |

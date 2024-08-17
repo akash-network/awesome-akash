@@ -6,7 +6,7 @@ Chia is releasing new plotting software called Bladebit Disk, utilizing the high
 
 ## Providers
 
-For the following providers expect to see these prices in Cloudmos! Each provider has been benchmarked and tested to create a $0.15/plot. &#x20;
+For the following providers expect to see these prices in Akash Console! Each provider has been benchmarked and tested to create a $0.15/plot. &#x20;
 
 | On-Sale Providers      | BladeBit Disk Price / Month |
 | ---------------------- | ------------------------ |

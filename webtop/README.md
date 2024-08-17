@@ -20,7 +20,7 @@
 
 ___
 
-Open [WEB interface](https://deploy.cloudmos.io/) `Cloudmos`.
+Open [WEB interface](https://console.akash.network/) `Akash Console`.
 
 Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)).
 

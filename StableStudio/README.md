@@ -4,7 +4,7 @@
 
 # Quick Start
 
-Open URI in Cloudmos or Akash Console after deployment.
+Open URI in Akash Console after deployment.
 
 # API
 To get started, you'll need to sign up for a [DreamStudio](https://dreamstudio.ai/) account.

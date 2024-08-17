@@ -17,7 +17,7 @@ NEAR is a [sharded](https://near.org/downloads/Nightshade.pdf), [proof-of-stake]
 3. Install [Akashlytics](https://akashlytics.com/deploy) and import your AKT wallet address from Keplr
 4. Deploy a NEAR node
 
-Click [here](https://docs.akash.network/guides/deploy) to learn more about deploying.
+Click [here](https://akash.network/docs/guides/) to learn more about deploying.
 
 
 

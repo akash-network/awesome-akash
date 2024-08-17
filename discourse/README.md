@@ -18,7 +18,7 @@ Setup your wallet: https://docs.akash.network/token/keplr
 
 Step by step guides to Akash:
 
-- Desktop App (Cloudmos): https://docs.akash.network/guides/deploy
+- Desktop App (Akash Console): https://akash.network/docs/guides/
 - Web App: https://docs.akash.network/guides/web 
 - CLI: https://docs.akash.network/guides/cli
 
@@ -46,13 +46,7 @@ The provided SDL deploy a Multi-Tiered application with 4 services/containers:
 
 All you need to run your own Discourse services in Akash Network is deploy the SDL: [``deploy.yml``](./deploy.yml) script on Mainnet using your preferred "Step by step guides to Akash" mentioned above. 
 
-Additionally this guide show how to using [Cloudmos](https://docs.akash.network/guides/deploy):
-
-1. Download [Cloudmos](https://cloudmos.io/cloud-deploy) for your platform.
-2. Execute the installer and setup your wallet in Cloudmos, you will need your mnemonic (setup a new wallet is recommended).
-3. [Fund your wallet](https://docs.akash.network/guides/cli#part-3.-fund-your-account) (at least 6 AKT)
-4. If you want, customize the SDL [deploy.yml](deploy.yml)
-4. Deploy the SDL file Cloudmos (video):
+Additionally this guide show how to using [Akash Console](https://akash.network/docs/guides/):
 
 [![Discourse on Akash Network](https://img.youtube.com/vi/XFweRMMZ10s/0.jpg)](https://youtu.be/XFweRMMZ10s)
 
@@ -93,9 +87,9 @@ With the default setting this deployment aprox. cost 6 AKT per month (someting l
 
 ## Disclaimer
 
-Taken from [Cloudmos website](https://cloudmos.io/cloud-deploy):
+Taken from [Akash Console](https://console.akash.network/new-deployment):
 
-- Cloudmos Deploy is currently in BETA. We strongly suggest you start with a new wallet and a small amount of AKT until we further stabilize the product.
+- We strongly suggest you start with a new wallet and a small amount of AKT until we further stabilize the product.
 - We're not responsible for any loss or damages related to using the app.
 - The app has a high chance of containing bugs since it's in BETA, use at your own risk.
 
