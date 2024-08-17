@@ -212,7 +212,7 @@ fi
 
 COUNT=0
 
-#Add support for custom port : https://github.com/ovrclk/awesome-akash/issues/327
+#Add support for custom port : https://github.com/akash-network/awesome-akash/issues/327
 if [[ $PORT != "" ]]; then
 PORT="-x $PORT"
 fi

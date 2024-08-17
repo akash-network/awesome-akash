@@ -1,6 +1,6 @@
 # Residential Proxy Network
 
-![](https://github.com/ovrclk/awesome-akash/raw/packetstream/packetstream/packetstream.png)
+![](https://github.com/ovrclk/awesome-akash/blob/master/packetstream/packetstream.png)
 
 Become A Packeter, Share your Bandwidth: $0.10/GB. Packeters share their un-utilized bandwidth with the PacketStream network and get paid for participating. The PacketStream service measures the amount of bandwidth shared and credits your account accordingly.
 

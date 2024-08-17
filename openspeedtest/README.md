@@ -1,6 +1,6 @@
 # OpenSpeedTest
 
-![](https://github.com/ovrclk/awesome-akash/raw/benchmarking/openspeedtest/openspeedtest-logo.jpg)
+![](https://github.com/ovrclk/awesome-akash/blob/master/openspeedtest/openspeedtest-logo.jpg)
 
 Test connection speed to a provider. Lightweight and High Performance, OpenSpeedTest contains Only "STATIC" Files like HTML,CSS & JS. So you don't need to worry about Security Updates or Hidden Exploits that may compromise your secure environments.
 

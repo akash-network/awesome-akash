@@ -3,7 +3,7 @@
 Honeygain is the first-ever app that allows its users to make money online by sharing their Internet connection.
 With Honeygain, you can make money by simply sharing your Internet. Start earning now.
 
-![](https://github.com/ovrclk/awesome-akash/raw/honeygain/honeygain/honeygain.png)
+![](https://github.com/ovrclk/awesome-akash/blob/master/honeygain/honeygain.png)
 
 # How to?
 

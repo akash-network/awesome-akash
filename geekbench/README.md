@@ -1,6 +1,6 @@
 # Geekbench 5
 
-![](https://github.com/ovrclk/awesome-akash/raw/benchmarking/geekbench/geekbench5-logo.jpg)
+![](https://github.com/ovrclk/awesome-akash/blob/master/geekbench/geekbench5-logo.jpg)
 
 A cross-platform benchmark that measures your system's performance with the press of a button. How will your mobile device or desktop computer perform when push comes to crunch? How will it compare to the newest devices on the market? Find out today with Geekbench 5.
 
