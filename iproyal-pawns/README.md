@@ -2,7 +2,7 @@
 
 Pawns.app enables you to make money instantly. All you need to do to start generating income is to create a free account and install our app.
 
-![](https://github.com/ovrclk/awesome-akash/blob/master/iproyal-pawns/pawns.png)
+![](./pawns.png)
 
 # How to?
 
