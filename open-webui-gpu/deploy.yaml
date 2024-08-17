@@ -5,27 +5,27 @@ services:
     image: ollama/ollama
     expose:
       - port: 11434
-        as: 80
         to:
-          - global: false
           - service: open-webui
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
-    expose:
-      - port: 8080
-        as: 8080
-        to:
-          - global: true
+    depends_on:
+      - ollama
     env:
       - OLLAMA_BASE_URL=http://ollama:11434
       - WEBUI_SECRET_KEY=
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
 profiles:
   compute:
     ollama:
       resources:
         cpu:
           units: 8
-        #Higher is better for AI! 
+        #Higher is better for AI.
         memory:
           size: 28Gi
         #7B requires about 4.5GB of free RAM

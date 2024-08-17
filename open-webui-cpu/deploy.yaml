@@ -16,7 +16,7 @@ services:
       - WEBUI_SECRET_KEY=
     expose:
       - port: 8080
-        as: 8080
+        as: 80
         to:
           - global: true
 profiles:
@@ -25,7 +25,7 @@ profiles:
       resources:
         cpu:
           units: 24
-        #Higher is better for AI! Be sure to change thread setting in app.
+        #Higher is better for AI! 
         memory:
           size: 28Gi
         #7B requires about 4.5GB of free RAM
@@ -43,7 +43,6 @@ profiles:
           size: 4Gi
         storage:
           size: 16Gi
-
   placement:
     akash:
       #######################################################
