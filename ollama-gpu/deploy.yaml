@@ -2,14 +2,20 @@
 version: "2.0"
 services:
   ollama:
-    image: ollama/ollama
+    ############################
+    image: ollama/ollama:0.3.6
+    ############################
+    #Always check https://hub.docker.com/r/ollama/ollama/tags for the latest version tag!
     expose:
       - port: 11434
         as: 11434
         to:
           - global: true
     env:
-      - MODEL=llama3.1:8b
+    #######################
+      - MODEL=llama3.1:8b 
+    #######################
+    #Supports any model from : https://ollama.com/library
     command:
       - /bin/sh
       - -c
@@ -30,7 +36,7 @@ profiles:
           units: 8
         #Higher is better for AI! Be sure to change thread setting in app.
         memory:
-          size: 12Gi
+          size: 28Gi
         #7B requires about 4.5GB of free RAM
         #13B requires about 12GB free
         #30B requires about 20GB free // 24 not enough
