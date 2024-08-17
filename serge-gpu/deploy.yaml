@@ -5,7 +5,7 @@ services:
     image: ghcr.io/serge-chat/serge:latest
     expose:
       - port: 8008
-        as: 8008
+        as: 80
         to:
           - global: true
 profiles:
