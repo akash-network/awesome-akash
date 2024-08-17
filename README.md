@@ -82,6 +82,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
 - [GPT-Neo](gpt-neo)
+- [GPUStack](gpustack)
 - [Grok](grok)
 - [Llama-2-70B](Llama-2-70B)
 - [Llama-3-8B](Llama-3-8B)
