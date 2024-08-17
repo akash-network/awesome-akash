@@ -57,7 +57,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Daila](daila)
 - [Fast Whisper](fast-whisper-cpu)
 - [Flowise](flowise)
-- [GPT4ALL](gpt4all)
 - [Ollama](ollama-cpu)
 - [Open WebUI](open-webui-cpu)
 - [PrivateGPT](privategpt-cpu)

@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   alpaca-cpp:
-    image: cryptoandcoffee/akash-alpaca-cpp:1
+    image: cryptoandcoffee/akash-alpaca-cpp:2
     expose:
       - port: 8080
         as: 80
