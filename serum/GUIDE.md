@@ -147,7 +147,7 @@ docker push $IMAGE
 
 ## Create the Deployment
 
-Create a deployment configuration `deploy.yaml` to deploy the `ovrclk/serum-dex-ui` for [Serum DEX UI](https://github.com/project-serum/serum-dex-ui) Node JS app container using [SDL](https://docs.akash.network/documentation/sdl):
+Create a deployment configuration `deploy.yaml` to deploy the `ovrclk/serum-dex-ui` for [Serum DEX UI](https://github.com/project-serum/serum-dex-ui) Node JS app container using [SDL](https://akash.network/docs/getting-started/stack-definition-language):
 
 ```sh
 cat > deploy.yaml <<EOF
@@ -198,7 +198,7 @@ Alternatively, you can use cURL to download:
 curl -s https://raw.githubusercontent.com/ovrclk/awesome-akash/master/serum/deploy.yaml > deploy.yaml
 ```
 
-You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://docs.akash.network/documentation/sdl) documentation. 
+You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/getting-started/stack-definition-language) documentation. 
 
 {% hint style="warn" %}
 
