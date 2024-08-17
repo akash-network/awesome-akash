@@ -18,9 +18,8 @@ Setup your wallet: https://docs.akash.network/token/keplr
 
 Step by step guides to Akash:
 
-- Desktop App (Akash Console): https://akash.network/docs/guides/
-- Web App: https://docs.akash.network/guides/web 
-- CLI: https://docs.akash.network/guides/cli
+- Web App: https://console.akash.network
+- CLI: https://akash.network/docs/deployments/akash-cli/overview
 
 ## About Discourse
 
