@@ -22,7 +22,7 @@ ___
 
 Open [WEB interface](https://console.akash.network/) `Akash Console`.
 
-Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)).
+Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Akash Console instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)).
 
 Next, press the `DEPLOY` button, select the empty `Empty` template and copy the content of [deploy.yml](https://github.com/DecloudNodesLab/Projects/blob/main/Software/Webtop/deploy.yml).
 
