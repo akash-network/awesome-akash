@@ -5,21 +5,19 @@ services:
     image: 3x3cut0r/privategpt:latest
     expose:
       - port: 8080
-        as: 8080
+        as: 80
         to:
           - global: true
-
 profiles:
   compute:
     privategpt:
       resources:
         cpu:
-          units: 4.0
+          units: 24.0
         memory:
-          size: 8Gi
+          size: 16Gi
         storage:
-          size: 128Gi
-
+          size: 100Gi
   placement:
     akash:
       #######################################################
