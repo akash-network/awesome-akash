@@ -5,7 +5,7 @@ services:
     image: 3x3cut0r/whisper-gui:latest
     expose:
       - port: 7860
-        as: 7860
+        as: 80
         to:
           - global: true
 
@@ -14,11 +14,16 @@ profiles:
     whisper-gui:
       resources:
         cpu:
-          units: 24.0
+          units: 4.0
         memory:
           size: 16Gi
         storage:
-          size: 128Gi
+          size: 100Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia: 
   placement:
     akash:
       #######################################################
@@ -31,7 +36,6 @@ profiles:
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://docs.akash.network/providers/akash-audited-attributes
-
       attributes:
       pricing:
         whisper-gui:

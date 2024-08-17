@@ -64,7 +64,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
 - [Whisper](whisper-cpu)
-- [Whisper-UI](whisper-ui-cpu)
+- [Whisper GUI](whisper-ui-cpu)
 
 ### AI - GPU
 
@@ -104,7 +104,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [TTS](TTS)
 - [vllm](vllm)
 - [Whisper](whisper-gpu)
-- [Whisper-UI](whisper-ui-gpu)
+- [Whisper GUI](whisper-ui-gpu)
 - [XLM-roBERTa](XLM-roBERTa)
 
 ### Blogging
