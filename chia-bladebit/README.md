@@ -14,7 +14,7 @@ For the following providers expect to see these prices in Akash Console! Each pr
 | bigtractorplotting.com | $1080 \| 8 Minute Plots   |
 | xch.computer           | $713 \| 12 Minute Plots  |
 
-For a complete guide on how to customize the SDL, including configuring rclone and ssh destinations please see [Chia on Akash](https://docs.akash.network/integrations/chia-on-akash/)
+For a complete guide on how to customize the SDL, including configuring rclone and ssh destinations please see [Chia on Akash](https://akash.network/docs/guides/blockchain/chia-on-akash/)
 
 ## Why use Akash?
 

@@ -12,9 +12,9 @@ https://akash.network/
 
 ## Firsts steps on Akash
 
-Read the docs: https://docs.akash.network/ 
+Read the docs: https://akash.network/docs
 
-Setup your wallet: https://docs.akash.network/token/keplr
+Setup your wallet: https://akash.network/docs/getting-started/token-and-wallets/
 
 Step by step guides to Akash:
 
