@@ -12,15 +12,11 @@ services:
         to:
           - global: true
     env:
+#################This is the lead server. Deploy gpustack-worker with the Join Token and URI this deployment creates.
+      - GPUSTACK_DISABLE_WORKER=True
       - GPUSTACK_HOST=0.0.0.0
       - GPUSTACK_PORT=80
-      - GPUSTACK_DATABASE_URL=sqlite:///data/gpustack.db
-      - GPUSTACK_DATA_DIR=/data
-      - GPUSTACK_LOG_DIR=/logs
-      - GPUSTACK_DISABLE_WORKER=False
-      - GPUSTACK_ENABLE_METRICS=True
       - GPUSTACK_METRICS_PORT=10151
-      - GPUSTACK_DEBUG=False
     command:
       - /bin/sh
       - -c
@@ -31,16 +27,25 @@ services:
           echo '====================================='
           echo '===   INITIAL ADMIN PASSWORD     ==='
           echo '====================================='
-          echo "Check \"Leases\" tab for the deployment URI : *.ingress.${AKASH_CLUSTER_PUBLIC_HOSTNAME}"
+          echo
+          echo -n 'GPUStack URL : '
+          echo "?.ingress.${AKASH_CLUSTER_PUBLIC_HOSTNAME}"
+          echo 'Check "Leases" tab for the complete URL.'
           echo 'Login : admin'
           echo -n 'Password : '
           cat /var/lib/gpustack/initial_admin_password
           echo 
-          echo -n 'Join Token : '
+          echo
+          echo 'GPUStack Worker Configuration'
+          echo -n 'GPUSTACK_TOKEN : '
           cat /var/lib/gpustack/token
           echo
-          echo 'The Join Token can be used with gpustack-worker deployments'
+          echo -n 'GPUSTACK_SERVER_URL : '
+          echo "?.ingress.${AKASH_CLUSTER_PUBLIC_HOSTNAME}"
+          echo 'Check "Leases" tab for the complete URL.'
           echo
+          echo 'To connect GPUs, deploy gpustack-worker separately.'
+          echo 'This deployment is for the control server only.'
           echo '====================================='
           echo
         ) &
@@ -50,16 +55,11 @@ profiles:
     gpustack:
       resources:
         cpu:
-          units: 4.0
+          units: 1.0
         memory:
           size: 8Gi
         storage:
-          size: 128Gi
-        gpu:
-          units: 1
-          attributes:
-            vendor:
-              nvidia:
+          size: 100Gi
   placement:
     akash:
       attributes:

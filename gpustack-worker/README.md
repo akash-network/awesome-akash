@@ -14,11 +14,11 @@ GPUStack is an open-source GPU cluster manager for running large language models
 - **GPU metrics monitoring:** Monitor GPU performance and utilization in real-time.
 - **Token usage and rate metrics:** Track token usage and manage rate limits effectively.
 
-## Deploy GPUStack Control Server and multiple GPU workers
+## Deploy GPUStack workers
 
-1. Deploy this first - check the Logs tab once fully deployed for the GPUSTACK_TOKEN and GPUSTACK_SERVER_URL.
-2. Deploy gpustack-worker and use the values for GPUSTACK_TOKEN and GPUSTACK_SERVER_URL in the env variables.
-3. Log into this deployment with the temporary admin password in Logs and check that the GPU workers have been added.
+1. Deploy gpustack control server first and check the Logs tab for the GPUStack Worker Configuration - check the logs once fully deployed for the Join Token and get the URL from the Leases tab.
+2. Paste the values of GPUSTACK_TOKEN and GPUSTACK_SERVER_URL into the env section here.
+3. Deploy and then log into the GPUStack and check the available workers/GPUs.
 
 ---
 

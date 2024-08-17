@@ -12,9 +12,9 @@ services:
         to:
           - global: true
     env:
+      - GPUSTACK_TOKEN=92bc27c6701f27f6f21a1bcf74b979a6
+      - GPUSTACK_SERVER_URL=http://bt9262j9u9adn6be5rf5g1on50.ingress.sfo.computer
       - GPUSTACK_WORKER_PORT=80
-      - GPUSTACK_TOKEN=6f7784c27c2bcbd014dca8b7bbfa45db
-      - GPUSTACK_SERVER_URL=http://vaajbpjfqp92feilhq22eglcgg.ingress.a6000.mon.obl.akash.pub
 profiles:
   compute:
     gpustack-worker:
@@ -22,9 +22,9 @@ profiles:
         cpu:
           units: 4.0
         memory:
-          size: 8Gi
+          size: 24Gi
         storage:
-          size: 128Gi
+          size: 100Gi
         gpu:
           units: 1
           attributes:
