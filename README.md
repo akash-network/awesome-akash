@@ -57,10 +57,14 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Daila](daila)
 - [Flowise](flowise)
 - [GPT4ALL](gpt4all)
+- [Ollama](ollama-cpu)
+- [Open WebUI](open-webui-cpu)
 - [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+- [Whisper](whisper-cpu)
+- [Whisper-UI](whisper-ui-cpu)
 
 ### AI - GPU
 
@@ -75,6 +79,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
 - [Flan-T5 XXL](flan-t5-xxl)
+- [FLock Validator](FLock-validator)
+- [FLock-Training-Node](FLock-training-node)
 - [GPT-Neo](gpt-neo)
 - [Grok](grok)
 - [Llama-2-70B](Llama-2-70B)
@@ -84,7 +90,9 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Llama-3.1-405B-AWQ-INT4](Llama-3.1-405B-AWQ-INT4)
 - [Llama-3.1-405B-BF16](Llama-3.1-405B-BF16)
 - [Llama-3.1-405B-FP8](Llama-3.1-405B-FP8)
+- [Ollama](ollama-gpu)
 - [Open GPT](open-gpt)
+- [Open WebUI](open-webui-gpu)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
@@ -94,11 +102,10 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [StableSwarmUI](stableswarmui)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
-- [XLM-roBERTa](XLM-roBERTa)
-- [Open GPT](open-gpt)
 - [vllm](vllm)
-- [FLock Validator](FLock-validator)
-- [FLock-Training-Node](FLock-training-node)
+- [Whisper](whisper-gpu)
+- [Whisper-UI](whisper-ui-gpu)
+- [XLM-roBERTa](XLM-roBERTa)
 
 ### Blogging
 
