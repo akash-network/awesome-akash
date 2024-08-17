@@ -73,7 +73,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
-- [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [ComfyUI](comfyui)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
