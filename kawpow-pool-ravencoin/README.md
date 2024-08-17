@@ -21,7 +21,7 @@ After the deployment has started click on the URI / URL in the Deployment Detail
 # I don't have a Ravencoin wallet or private key.
 
 You need a Ravencoin wallet address and private key to setup the mining pool.  If you do not have one, simply deploy this default template without any WALLET or PRIVATE_KEY defined.
-In Cloudmos, select "Shell" and from the services tab click on "ravencoin".  In the "Type command window" use the 2 following commands to generate a new address and show the private key of the new address.
+In Akash Console, select "Shell" and from the services tab click on "ravencoin".  In the "Type command window" use the 2 following commands to generate a new address and show the private key of the new address.
 
 ```
 /raven-cli getnewaddress

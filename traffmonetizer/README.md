@@ -4,7 +4,7 @@ Internet connection that pays the bills.  Let’s face it, you don’t use even 
 
 Expected income from one device is about $1 to $30 per month, depending on location (country, city, network type). Connect more devices using different ISP and invite more referrals to increase your income!
 
-![](https://github.com/ovrclk/awesome-akash/raw/traffmonetizer/traffmonetizer/traffmonetizer.png)
+![](./traffmonetizer.png)
 
 # How much will I earn?
 

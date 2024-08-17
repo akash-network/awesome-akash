@@ -7,7 +7,7 @@ Drag & drop UI to build your customized LLM flow using [LangchainJS](https://git
 
 ## ⚡Quick Start
 
-Open URI in Cloudmos after deployment.
+Open URI in Akash Console after deployment.
 
 ## 🔒 Authentication
 
