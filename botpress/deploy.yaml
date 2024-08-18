@@ -1,0 +1,170 @@
+---
+version: "2.0"
+services:
+  botpress:
+    image: botpress/server:latest
+    #Stable Release : latest
+    #Pre-Release : master
+    #http://botpress-docs.s3-website-us-east-1.amazonaws.com/versions/
+    #https://hub.docker.com/r/botpress/server/tags
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - BP_PRODUCTION=true
+      - DATABASE_URL=postgres://bp_user:PG_PASSWORD@postgres:5432/botpress_db
+      - REDIS_URL=redis://redis:6379?password=redisPassword
+      - BP_MODULE_NLU_DUCKLINGURL=http://duckling:8000
+      - BP_MODULE_NLU_LANGUAGESOURCES=[{"endpoint":"http://lang:3100"}]
+      - CLUSTER_ENABLED=false
+      - BPFS_STORAGE=database
+      - BP_MAX_SERVER_REBOOT=999
+    depends_on:
+      - postgres
+      - duckling
+      - lang
+  duckling:
+    image: rasa/duckling:latest
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: false
+          - service: botpress
+  lang:
+    image: botpress/server:latest
+    #Stable Release : latest
+    #Pre-Release : master
+    #http://botpress-docs.s3-website-us-east-1.amazonaws.com/versions/
+    #https://hub.docker.com/r/botpress/server/tags
+    expose:
+      - port: 3100
+        as: 3100
+        to:
+          - global: false
+          - service: botpress
+    command:
+      - ./bp
+      - lang
+      - "--langDir"
+      - /botpress/language
+      - "--port"
+      - "3100"
+
+  redis:
+    image: redis:5.0.5-alpine
+    expose:
+      - port: 6379
+        as: 6379
+        to:
+          - service: botpress
+    command:
+      - redis-server
+      - --requirepass
+      - redisPassword
+
+  postgres:
+    image: postgres:13-alpine
+    expose:
+      - port: 5432
+        as: 5432
+        to:
+          - global: false
+          - service: botpress
+    env:
+      - POSTGRES_USER=bp_user
+      - POSTGRES_PASSWORD=PG_PASSWORD
+      - POSTGRES_DB=botpress_db
+profiles:
+  compute:
+    botpress:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 32Gi
+    duckling:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+    lang:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 8Gi
+        storage:
+          - size: 32Gi
+    postgres:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - size: 20Gi
+    redis:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - size: 2Gi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://akash.network/docs/providers/audited-attributes
+      pricing:
+        botpress:
+          denom: uakt
+          amount: 10000
+        duckling:
+          denom: uakt
+          amount: 10000
+        lang:
+          denom: uakt
+          amount: 10000
+        postgres:
+          denom: uakt
+          amount: 10000
+        redis:
+          denom: uakt
+          amount: 10000
+deployment:
+  botpress:
+    akash:
+      profile: botpress
+      count: 1
+  duckling:
+    akash:
+      profile: duckling
+      count: 1
+  lang:
+    akash:
+      profile: lang
+      count: 1
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
+  redis:
+    akash:
+      profile: redis
+      count: 1

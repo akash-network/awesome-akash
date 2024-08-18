@@ -53,10 +53,12 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
+- [Botpress](botpress)
 - [ChatChat](chatchat)
 - [Daila](daila)
 - [Fast Whisper](fast-whisper-cpu)
 - [Flowise](flowise)
+- [Langflow](langflow)
 - [Ollama](ollama-cpu)
 - [Open WebUI](open-webui-cpu)
 - [PrivateGPT](privategpt-cpu)
@@ -64,6 +66,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+- [Whisper ASR](whisper-asr-cpu)
 - [Whisper GUI](whisper-gui-cpu)
 
 ### AI - GPU
@@ -106,6 +109,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [vllm](vllm)
+- [Whisper ASR](whisper-asr-gpu)
 - [Whisper GUI](whisper-gui-gpu)
 - [XLM-roBERTa](XLM-roBERTa)
 
