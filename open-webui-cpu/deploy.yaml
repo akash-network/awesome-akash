@@ -2,13 +2,19 @@
 version: "2.0"
 services:
   ollama:
-    image: ollama/ollama
+    ############################
+    image: ollama/ollama:0.3.6
+    ############################
+    #Always check https://hub.docker.com/r/ollama/ollama/tags for the latest version tag!
     expose:
       - port: 11434
         to:
           - service: open-webui
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    ############################
+    image: ghcr.io/open-webui/open-webui:0.3.13
+    ############################
+    #Always check https://github.com/open-webui/open-webui/releases for the latest version 
     depends_on:
       - ollama
     env:
