@@ -35,7 +35,7 @@ profiles:
       pricing:
         surrealdb:
           denom: uakt
-          amount: 1000
+          amount: 10000
 deployment:
   surrealdb:
     akash:

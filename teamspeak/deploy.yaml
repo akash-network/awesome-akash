@@ -67,7 +67,7 @@ profiles:
       pricing:
         teamspeak:
           denom: uakt
-          amount: 1000
+          amount: 10000
         mariadb:
           denom: uakt
           amount: 10000
