@@ -25,7 +25,7 @@ profiles:
       pricing:
         service-1:
           denom: uakt
-          amount: 1000
+          amount: 10000
 deployment:
   service-1:
     dcloud:

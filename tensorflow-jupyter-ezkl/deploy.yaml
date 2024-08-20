@@ -23,7 +23,7 @@ profiles:
       pricing:
         ezkl:
           denom: uakt
-          amount: 1000
+          amount: 10000
       signedBy:
         anyOf:
           - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
