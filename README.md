@@ -240,9 +240,10 @@ Awesome DeFi apps you can deploy on Akash
 ### Hosting
 
 - [Caddy](caddy)
+- [Flame](flame)
 - [Grafana](grafana)
 - [IPFS](ipfs)
-- [Flame](flame)
+- [Nginx Let's Encrypt Proxy](nginx-letsencrypt-proxy)
 
 ### Media
 
