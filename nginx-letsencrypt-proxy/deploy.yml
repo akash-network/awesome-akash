@@ -14,6 +14,10 @@ services:
         to:
           - global: true
             ip: myendpointa
+    env:
+      - "DOMAIN=YOURDOMAIN.COM" # Change this to your domain
+      - "NGINX_CONF_URL=" # Set this to the URL of your NGINX config see example /nginx-letsencrypt-proxy/nginx.conf
+      - "FIRST_START=true" # Set this to false after you have set the A Record in your DNS
     command:
           - "bash"
           - "-c"
@@ -41,10 +45,6 @@ services:
 
             service nginx stop;
             nginx -g "daemon off;"
-    env:
-      - "DOMAIN=YOURDOMAIN.COM" # Change this to your domain
-      - "NGINX_CONF_URL=" # Set this to the URL of your NGINX config see example /nginx-letsencrypt-proxy/nginx.conf
-      - "FIRST_START=true" # Set this to false after you have set the A Record in your DNS
     params:
       storage:
         data:
