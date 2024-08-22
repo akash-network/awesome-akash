@@ -1,31 +1,38 @@
----
 version: "2.0"
 services:
-  serge:
-    image: ghcr.io/serge-chat/serge:latest
+  gpustack-worker:
+    image: gpustack/gpustack:main
     expose:
-      - port: 8008
+      - port: 80
         as: 80
         to:
           - global: true
+      - port: 10151
+        as: 10151
+        to:
+          - global: true
+    env:
+      - GPUSTACK_TOKEN=92bc27c6701f27f6f21a1bcf74b979a6
+      - GPUSTACK_SERVER_URL=http://bt9262j9u9adn6be5rf5g1on50.ingress.sfo.computer
+      - GPUSTACK_WORKER_PORT=80
 profiles:
   compute:
-    serge:
+    gpustack-worker:
       resources:
         cpu:
-          units: 24
-        #Higher is better for AI! Be sure to change thread setting in app.
+          units: 4.0
         memory:
-          size: 28Gi
-        #7B requires about 4.5GB of free RAM
-        #13B requires about 12GB free
-        #30B requires about 20GB free // 24 not enough
+          size: 24Gi
         storage:
           size: 100Gi
-        #Bigger models may require more storage.
-        #Increase as required.
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
   placement:
     akash:
+      attributes:
       #######################################################
       #Keep this section to deploy on trusted providers
       signedBy:
@@ -37,12 +44,13 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://akash.network/docs/providers/audited-attributes
       pricing:
-        serge:
+        gpustack-worker:
           denom: uakt
           amount: 10000
+
 deployment:
-  serge:
+  gpustack-worker:
     akash:
-      profile: serge
+      profile: gpustack-worker
       count: 1
 

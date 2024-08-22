@@ -2,7 +2,7 @@
 version: '2.0'
 services:
   chatchat:
-    image: cryptoandcoffee/akash-chatchat:1
+    image: cryptoandcoffee/akash-chatchat:2
     depends_on:
     - postgres
     expose:

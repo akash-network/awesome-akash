@@ -1,28 +1,23 @@
 ---
 version: "2.0"
-
 services:
-  ai-chat-app:
-    image: ghcr.io/imagegenius/ai-chat-app
+  privategpt:
+    image: 3x3cut0r/privategpt:latest
     expose:
-      - port: 3000
-        as: 3000 #Change to 80 to make available on public URL / be careful there is no security
+      - port: 8080
+        as: 80
         to:
           - global: true
-    env:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
 profiles:
   compute:
-    ai-chat-app:
+    privategpt:
       resources:
         cpu:
-          units: 4.0
+          units: 24.0
         memory:
-          size: 4Gi
+          size: 16Gi
         storage:
-          size: 4Gi
+          size: 100Gi
   placement:
     akash:
       #######################################################
@@ -34,14 +29,16 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
+      #https://docs.akash.network/providers/akash-audited-attributes
+
+      attributes:
       pricing:
-        ai-chat-app:
+        privategpt:
           denom: uakt
           amount: 10000
 
 deployment:
-  ai-chat-app:
+  privategpt:
     akash:
-      profile: ai-chat-app
+      profile: privategpt
       count: 1

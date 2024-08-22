@@ -1,19 +1,39 @@
 ---
 version: "2.0"
 services:
-  serge:
-    image: ghcr.io/serge-chat/serge:latest
+  ollama:
+    ############################
+    image: ollama/ollama:0.3.6
+    ############################
+    #Always check https://hub.docker.com/r/ollama/ollama/tags for the latest version tag!
     expose:
-      - port: 8008
-        as: 80
+      - port: 11434
+        as: 11434
         to:
           - global: true
+    env:
+    #######################
+      - MODEL=llama3.1:8b 
+    #######################
+    #Supports any model from : https://ollama.com/library
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ollama serve & 
+        while ! ollama pull ${MODEL}; do
+          echo "Waiting for ollama pull to succeed..."
+          sleep 2.5
+        done
+        ollama list
+        pkill ollama
+        ollama serve
 profiles:
   compute:
-    serge:
+    ollama:
       resources:
         cpu:
-          units: 24
+          units: 8
         #Higher is better for AI! Be sure to change thread setting in app.
         memory:
           size: 28Gi
@@ -24,6 +44,11 @@ profiles:
           size: 100Gi
         #Bigger models may require more storage.
         #Increase as required.
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia: 
   placement:
     akash:
       #######################################################
@@ -35,14 +60,13 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
+      #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
-        serge:
+        ollama:
           denom: uakt
           amount: 10000
 deployment:
-  serge:
+  ollama:
     akash:
-      profile: serge
+      profile: ollama
       count: 1
-

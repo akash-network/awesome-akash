@@ -1,29 +1,34 @@
 ---
 version: "2.0"
 services:
-  serge:
-    image: ghcr.io/serge-chat/serge:latest
+  faster-whisper:
+    image: lscr.io/linuxserver/faster-whisper:gpu
+    env:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - WHISPER_MODEL=tiny-int8
+      #Whisper model that will be used for transcription. 
+      #From tiny, base, small and medium, all with -int8 compressed variants
+      - WHISPER_BEAM=1
+      #Number of candidates to consider simultaneously during transcription.
+      - WHISPER_LANG=en
+      #Language that you will speak to the add-on.
     expose:
-      - port: 8008
-        as: 80
+      - port: 10300
+        as: 10300
         to:
           - global: true
 profiles:
   compute:
-    serge:
+    faster-whisper:
       resources:
         cpu:
-          units: 4
-        #Be sure to change thread setting in app if you change this
+          units: 4.0
         memory:
-          size: 28Gi
-        #7B requires about 4.5GB of free RAM
-        #13B requires about 12GB free
-        #30B requires about 20GB free // 24 not enough
+          size: 8Gi
         storage:
-          size: 100Gi
-        #Bigger models may require more storage.
-        #Increase as required.
+          size: 128Gi
         gpu:
           units: 1
           attributes:
@@ -40,14 +45,15 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
+      #https://docs.akash.network/providers/akash-audited-attributes
+
+      attributes:
       pricing:
-        serge:
+        faster-whisper:
           denom: uakt
           amount: 10000
 deployment:
-  serge:
+  faster-whisper:
     akash:
-      profile: serge
+      profile: faster-whisper
       count: 1
-

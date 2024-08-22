@@ -1,29 +1,28 @@
 ---
 version: "2.0"
 services:
-  serge:
-    image: ghcr.io/serge-chat/serge:latest
+  privategpt:
+    image: 3x3cut0r/privategpt:latest
     expose:
-      - port: 8008
+      - port: 8080
         as: 80
         to:
           - global: true
 profiles:
   compute:
-    serge:
+    privategpt:
       resources:
         cpu:
-          units: 24
-        #Higher is better for AI! Be sure to change thread setting in app.
+          units: 4
         memory:
-          size: 28Gi
-        #7B requires about 4.5GB of free RAM
-        #13B requires about 12GB free
-        #30B requires about 20GB free // 24 not enough
+          size: 16Gi
         storage:
           size: 100Gi
-        #Bigger models may require more storage.
-        #Increase as required.
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia: 
   placement:
     akash:
       #######################################################
@@ -35,14 +34,16 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
+      #https://docs.akash.network/providers/akash-audited-attributes
+
+      attributes:
       pricing:
-        serge:
+        privategpt:
           denom: uakt
           amount: 10000
-deployment:
-  serge:
-    akash:
-      profile: serge
-      count: 1
 
+deployment:
+  privategpt:
+    akash:
+      profile: privategpt
+      count: 1

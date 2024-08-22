@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   tgpt:
-    image: cryptoandcoffee/akash-tgpt:1
+    image: cryptoandcoffee/akash-tgpt:2
     expose:
       - port: 8080
         as: 80

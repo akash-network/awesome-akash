@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   babyagi:
-    image: cryptoandcoffee/akash-babyagi:1
+    image: cryptoandcoffee/akash-babyagi:2
     expose:
       - port: 3000
         as: 80

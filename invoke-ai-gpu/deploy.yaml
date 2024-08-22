@@ -1,29 +1,44 @@
 ---
 version: "2.0"
 services:
-  serge:
-    image: ghcr.io/serge-chat/serge:latest
+  invokeai:
+    image: ghcr.io/invoke-ai/invokeai:main-cuda
     expose:
-      - port: 8008
+      - port: 9090
         as: 80
         to:
           - global: true
+    env:
+      - INVOKEAI_HOST=0.0.0.0
+      - INVOKEAI_PORT=9090
+    #Additional Configuration : https://invoke-ai.github.io/InvokeAI/features/CONFIGURATION/#all-settings
+    #params:
+    #  storage:
+    #    data:
+    #      mount: /invokeai
+    #      readOnly: false
+    #Uncomment this section to enable persistent storage
 profiles:
   compute:
-    serge:
+    invokeai:
       resources:
         cpu:
-          units: 24
-        #Higher is better for AI! Be sure to change thread setting in app.
+          units: 8.0
         memory:
           size: 28Gi
-        #7B requires about 4.5GB of free RAM
-        #13B requires about 12GB free
-        #30B requires about 20GB free // 24 not enough
         storage:
           size: 100Gi
-        #Bigger models may require more storage.
-        #Increase as required.
+        #  - name: data
+        #    size: 100Gi
+        #    attributes:
+        #      persistent: true
+        #      class: beta3
+        #Uncomment this section to enable persistent storage
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
   placement:
     akash:
       #######################################################
@@ -37,12 +52,11 @@ profiles:
       #Beware* You may have deployment, security, or other issues on untrusted providers
       #https://akash.network/docs/providers/audited-attributes
       pricing:
-        serge:
+        invokeai:
           denom: uakt
           amount: 10000
 deployment:
-  serge:
+  invokeai:
     akash:
-      profile: serge
+      profile: invokeai
       count: 1
-

@@ -1,29 +1,24 @@
 ---
 version: "2.0"
 services:
-  serge:
-    image: ghcr.io/serge-chat/serge:latest
+  whisper-gui:
+    image: 3x3cut0r/whisper-gui:latest
     expose:
-      - port: 8008
+      - port: 7860
         as: 80
         to:
           - global: true
+
 profiles:
   compute:
-    serge:
+    whisper-gui:
       resources:
         cpu:
-          units: 24
-        #Higher is better for AI! Be sure to change thread setting in app.
+          units: 24.0
         memory:
-          size: 28Gi
-        #7B requires about 4.5GB of free RAM
-        #13B requires about 12GB free
-        #30B requires about 20GB free // 24 not enough
+          size: 16Gi
         storage:
           size: 100Gi
-        #Bigger models may require more storage.
-        #Increase as required.
   placement:
     akash:
       #######################################################
@@ -35,14 +30,15 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
+      #https://docs.akash.network/providers/akash-audited-attributes
+
+      attributes:
       pricing:
-        serge:
+        whisper-gui:
           denom: uakt
           amount: 10000
 deployment:
-  serge:
+  whisper-gui:
     akash:
-      profile: serge
+      profile: whisper-gui
       count: 1
-
