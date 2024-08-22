@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   node:
-    image: quay.io/vpavlin0/radicle-seed:latest
+    image: quay.io/vpavlin0/radicle-seed@sha256:c51be795e278e1c80bcb88cf5fab89858d54c7885a4764c711427334751b6289
     
     expose:
       - port: 8776
@@ -11,7 +11,7 @@ services:
         to:
           - global: true
       - port: 8080
-        as: 8080
+        as: 80
         to:
           - global: true
 
@@ -22,9 +22,10 @@ services:
     env:
       - RAD_ALIAS=
       - RAD_SEEDS=rad:zNd4qti1Jc69mCBQAdBeK3Avzy4R
+      - RAD_PINNED_REPOS=rad:zNd4qti1Jc69mCBQAdBeK3Avzy4R
       - RAD_EXTERNAL_ADDR=
       - RAD_SEEDING_POLICY=block
-      - RAD_HTTP_ENABLE=false
+      - RAD_HTTP_ENABLE=true
     
 profiles:
   compute:
