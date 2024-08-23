@@ -2,10 +2,9 @@
 version: "2.0"
 services:
   app:
-    image: ubuntu:latest 
+    image: ubuntu:22.04 
     env:
-      - "PASS_SSH=" # Password to connect to the node via SSH (root user).
-      - "LINK_BINARY=https://bitcoin.org/bin/bitcoin-core-22.0/bitcoin-22.0-x86_64-linux-gnu.tar.gz" # The download address of the binary file.
+      - "LINK_BINARY=https://bitcoin.org/bin/bitcoin-core-27.0/bitcoin-27.0-x86_64-linux-gnu.tar.gz" # The download address of the binary file.
       - "SNAPSHOT=" # Link to node snapshot (disable if you want to sync the full node). 
       - "PRUNE=20000" # Blockchain pruning, indicates the number of megabytes available for node storage (disable if you want to synchronize the full node).
     # Synchronization of a full bitcoin node needs more than 600 gigabytes of memory, and will take about 5 days.
