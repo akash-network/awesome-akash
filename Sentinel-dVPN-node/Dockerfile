@@ -40,7 +40,8 @@ RUN git clone https://github.com/sentinel-official/dvpn-node && \
     git checkout v0.7.1 && \
     make install && \
     rm -rf /tmp/*
-
+ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini /tini
+RUN chmod +x /tini
 # Copy the main script and set CMD
 COPY ./main.sh /
 RUN sed -i 's/\r//' /main.sh && chmod +x /main.sh
