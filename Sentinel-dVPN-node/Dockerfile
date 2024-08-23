@@ -44,4 +44,6 @@ RUN git clone https://github.com/sentinel-official/dvpn-node && \
 # Copy the main script and set CMD
 COPY ./main.sh /
 RUN sed -i 's/\r//' /main.sh && chmod +x /main.sh
-CMD ["/main.sh"]
+ENTRYPOINT ["/tini", "--", "/main.sh"]
+CMD ["tail", "-f", "/dev/null"]
+
