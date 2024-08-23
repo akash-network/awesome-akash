@@ -9,7 +9,7 @@ check_var() {
     if [[ -z ${!var_name} ]]; then
         echo "$error_message"
         echo "For example: $example"
-        tail -f /dev/null
+        sleep infinity
     fi
 }
 update_config() {
