@@ -15,5 +15,5 @@ OPTIONS=$(remove_quotes "$OPTIONS")
 
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/root
-sleep infinity
+exec "$@"
 /root/CryptoDredge -a $ALGO -o $POOL -u $WALLET_ADDRESS -p $PASSWORD $OPTIONS
