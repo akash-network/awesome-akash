@@ -21,7 +21,7 @@ services:
         wget https://github.com/freedmand/semantra/raw/main/docs/example_docs/us_inaugural_speeches.zip;
         unzip * ; 
         /root/.local/bin/semantra --transformer-model Muennighoff/SGPT-1.3B-weightedmean-msmarco-specb-bitfit us_inaugural_speeches/*; 
-        tail -f /LOG ;'
+        tail -f /dev/null ;'
 
         # your files can be in txt or pdf
         # installation may take a while since models are large
