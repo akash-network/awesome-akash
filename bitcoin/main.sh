@@ -38,4 +38,4 @@ ln -s /root/bitcoin /etc/service
 ln -s /var/log/bitcoin/current /LOG
 echo = Установка завершена, логи ноды доступны командой [tail -f /var/log/bitcoin/current] =
 echo == Installation complete, node logs available with [tail -f /var/log/bitcoin/current] =
-sleep infinity
+exec "$@"
