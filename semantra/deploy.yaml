@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   app:
-    image: ubuntu:latest     
+    image: ubuntu:22.04    
     
     command:
       - "bash"
