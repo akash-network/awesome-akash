@@ -13,4 +13,6 @@ RUN apt-get -y install make gcc openssl unzip goxkcdpwgen
 WORKDIR /opt/softether/vpnserver
 RUN make
 COPY launch /
-CMD /launch
+ENTRYPOINT ["/tini", "--", "/launch"]
+
+CMD ["tail", "-f", "/dev/null"]
