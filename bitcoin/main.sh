@@ -14,4 +14,4 @@ echo ==== Скачивание снепшота. Время скачивания
 echo = Downloading snapshot. The download time depends on the provider! =
 curl $SNAPSHOT | lz4 -dc - | tar -xf - -C /root/.bitcoin
 fi
-bitcoind -prune=$PRUNE
+bitcoind $ARG
