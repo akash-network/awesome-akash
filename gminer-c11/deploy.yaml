@@ -32,8 +32,8 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                #- model: 3090
-            #To get the best price remove the comment and enter the GPU model such as '3090' or '1080ti'
+                #- model: rtx3090
+            #To get the best price remove the comment and enter the GPU model such as 'rtx3090' or 'gtx1080ti'
   placement:
     akash:
       #######################################################
@@ -46,7 +46,7 @@ profiles:
       #Remove this section to deploy on untrusted providers
       #Miners: You can receive more bids from more providers by removing this section
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
+      #https://akash.network/docs/providers/audited-attributes
       pricing:
         gminer-c11:
           denom: uakt

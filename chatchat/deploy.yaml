@@ -2,7 +2,7 @@
 version: '2.0'
 services:
   chatchat:
-    image: cryptoandcoffee/akash-chatchat:1
+    image: cryptoandcoffee/akash-chatchat:2
     depends_on:
     - postgres
     expose:
@@ -62,7 +62,7 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
+      #https://akash.network/docs/providers/audited-attributes
       pricing:
         chatchat:
           denom: uakt

@@ -27,7 +27,7 @@ profiles:
       pricing:
         keycloak-iam:
           denom: uakt
-          amount: 1000
+          amount: 10000
 
 deployment:
   keycloak-iam:

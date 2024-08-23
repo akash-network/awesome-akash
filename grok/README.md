@@ -8,7 +8,7 @@ This deployment requires 8x H100 80GB or equivalent GPUs. With ~400 MB/s downloa
 
 ## Steps
 
-1. Deploy on [Cloudmos](https://deploy.cloudmos.io) using this [SDL.](deploy.yaml)
+1. Deploy on [Akash Console](https://console.akash.network/new-deployment) using this [SDL.](deploy.yaml)
 2. After deployed, look at the "Logs" tab and wait until the grok model downloaded and checkpoints loaded.
 3. Go to "Leases" tab and click the deployment link.
 4. Test your grok by entering your prompt and click "Submit".

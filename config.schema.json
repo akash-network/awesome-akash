@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "Awesome Akash template config",
+  "description": "A template configuration for usage in the Akash Console template gallery",
+  "type": "object",
+  "properties": {
+    "ssh": {
+      "description": "If the template supports SSH connection",
+      "type": "boolean"
+    },
+    "logoUrl": {
+      "description": "URL to the logo of the template",
+      "type": "string"
+    }
+  },
+  "required": ["ssh", "logoUrl"]
+}

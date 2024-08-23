@@ -1,0 +1,44 @@
+---
+version: "2.0"
+services:
+  whisper-gui:
+    image: 3x3cut0r/whisper-gui:latest
+    expose:
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    whisper-gui:
+      resources:
+        cpu:
+          units: 24.0
+        memory:
+          size: 16Gi
+        storage:
+          size: 100Gi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+
+      attributes:
+      pricing:
+        whisper-gui:
+          denom: uakt
+          amount: 10000
+deployment:
+  whisper-gui:
+    akash:
+      profile: whisper-gui
+      count: 1

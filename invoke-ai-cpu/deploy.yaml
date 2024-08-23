@@ -1,0 +1,57 @@
+---
+version: "2.0"
+services:
+  invokeai:
+    image: ghcr.io/invoke-ai/invokeai:main-cpu
+    expose:
+      - port: 9090
+        as: 80
+        to:
+          - global: true
+    env:
+      - INVOKEAI_HOST=0.0.0.0
+      - INVOKEAI_PORT=9090
+    #Additional Configuration : https://invoke-ai.github.io/InvokeAI/features/CONFIGURATION
+    #params:
+    #  storage:
+    #    data:
+    #      mount: /invokeai
+    #      readOnly: false
+    #Uncomment this section to enable persistent storage
+profiles:
+  compute:
+    invokeai:
+      resources:
+        cpu:
+          units: 24.0
+        memory:
+          size: 28Gi
+        storage:
+          size: 100Gi
+        #  - name: data
+        #    size: 100Gi
+        #    attributes:
+        #      persistent: true
+        #      class: beta3
+        #Uncomment this section to enable persistent storage
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://akash.network/docs/providers/audited-attributes
+      pricing:
+        invokeai:
+          denom: uakt
+          amount: 10000
+deployment:
+  invokeai:
+    akash:
+      profile: invokeai
+      count: 1

@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   daila:
-    image: cryptoandcoffee/akash-daila:5
+    image: cryptoandcoffee/akash-daila:6
     expose:
       - port: 3000
         as: 80

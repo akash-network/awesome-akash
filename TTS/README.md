@@ -4,7 +4,7 @@
 
 ## Quick Start
 
-Open URI in Cloudmos or Akash Console after deployment.
+Open URI in Akash Console after deployment.
 
 ## Documentation
 

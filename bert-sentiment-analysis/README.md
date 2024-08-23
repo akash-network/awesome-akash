@@ -23,7 +23,7 @@ To deploy the application on the Akash Network, you need to have an Akash accoun
 3. Update the `deploy.yaml` file with the correct Docker image path.
 4. Use the Akash CLI or Akash Console to deploy the `deploy.yaml` file.
 
-Please refer to the [Akash documentation](https://docs.akash.network/) for detailed instructions on deploying applications.
+Please refer to the [Akash Documentation](https://akash.network/docs) for detailed instructions on deploying applications.
 
 ## Testing the Application
 

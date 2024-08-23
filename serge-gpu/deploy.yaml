@@ -1,9 +1,8 @@
 ---
 version: "2.0"
-
 services:
   serge:
-    image: cryptoandcoffee/akash-serge:0.1.3
+    image: ghcr.io/serge-chat/serge:latest
     expose:
       - port: 8008
         as: 80
@@ -14,8 +13,8 @@ profiles:
     serge:
       resources:
         cpu:
-          units: 24
-        #Higher is better for AI! Be sure to change thread setting in app.
+          units: 4
+        #Be sure to change thread setting in app if you change this
         memory:
           size: 28Gi
         #7B requires about 4.5GB of free RAM
@@ -29,9 +28,19 @@ profiles:
           units: 1
           attributes:
             vendor:
-              nvidia:
+              nvidia: 
   placement:
     akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://akash.network/docs/providers/audited-attributes
       pricing:
         serge:
           denom: uakt
@@ -41,3 +50,4 @@ deployment:
     akash:
       profile: serge
       count: 1
+

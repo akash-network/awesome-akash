@@ -13,7 +13,7 @@ Semantra is built for individuals seeking needles in haystacks — journalists s
 
 ## Getting started
 
-Deploy and click the URI in Cloudmos.
+Deploy and click the URI in Akash Console.
 
 ## Models
 

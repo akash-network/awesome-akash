@@ -1,0 +1,79 @@
+---
+version: "2.0"
+services:
+  ollama:
+    ############################
+    image: ollama/ollama:0.3.6
+    ############################
+    #Always check https://hub.docker.com/r/ollama/ollama/tags for the latest version tag!
+    expose:
+      - port: 11434
+        to:
+          - service: open-webui
+  open-webui:
+    ############################
+    image: ghcr.io/open-webui/open-webui:0.3.13
+    ############################
+    #Always check https://github.com/open-webui/open-webui/releases for the latest version 
+    depends_on:
+      - ollama
+    env:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    ollama:
+      resources:
+        cpu:
+          units: 24
+        #Higher is better for AI! 
+        memory:
+          size: 28Gi
+        #7B requires about 4.5GB of free RAM
+        #13B requires about 12GB free
+        #30B requires about 20GB free // 24 not enough
+        storage:
+          size: 100Gi
+        #Bigger models may require more storage.
+        #Increase as required.
+    open-webui:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 4Gi
+        storage:
+          size: 16Gi
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        ollama:
+          denom: uakt
+          amount: 10000
+        open-webui:
+          denom: uakt
+          amount: 10000
+deployment:
+  ollama:
+    akash:
+      profile: ollama
+      count: 1
+  open-webui:
+    akash:
+      profile: open-webui
+      count: 1

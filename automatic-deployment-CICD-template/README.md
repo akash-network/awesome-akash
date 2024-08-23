@@ -74,7 +74,7 @@ profiles:
       pricing:
         service-1:
           denom: uakt
-          amount: 1000
+          amount: 10000
 deployment:
   service-1:
     dcloud:
@@ -100,7 +100,7 @@ As we look to the future, we are excited to expand the capabilities of this tool
 
 - **Email Notifications**: We will be introducing email notifications to keep you updated on the status of your deployments and other important events, enhancing the overall user experience.
 
-- **Direct Implementation on Cloudmos/Console**: To deliver a truly Vercel-like experience, we will be building user-friendly GUI directly onto cloudmos/console. This will make the tool even more accessible and easier to use for all developers.
+- **Direct Implementation on Console**: To deliver a truly Vercel-like experience, we will be building user-friendly GUI directly onto console. This will make the tool even more accessible and easier to use for all developers.
 
 As we continue to enhance this tool, we invite you to join us on this journey. Try it out, give us your feedback, and help us redefine the deployment landscape on the Akash Network. Happy coding and deploying!
 

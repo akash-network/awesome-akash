@@ -89,7 +89,7 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
+      #https://akash.network/docs/providers/audited-attributes
       pricing:
         mordhau:
           denom: uakt
