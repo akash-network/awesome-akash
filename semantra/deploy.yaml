@@ -20,7 +20,7 @@ services:
         cd home ;
         wget https://github.com/freedmand/semantra/raw/main/docs/example_docs/us_inaugural_speeches.zip;
         unzip * ; 
-        /root/.local/bin/semantra --transformer-model Muennighoff/SGPT-1.3B-weightedmean-msmarco-specb-bitfit us_inaugural_speeches/*; 
+        /root/.local/bin/semantra --port 80 --host 0.0.0.0 --transformer-model Muennighoff/SGPT-1.3B-weightedmean-msmarco-specb-bitfit us_inaugural_speeches/*; 
         tail -f /dev/null ;'
 
         # your files can be in txt or pdf
