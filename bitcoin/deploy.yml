@@ -20,16 +20,11 @@ services:
     #    data:
     #      mount: /root/
     expose:
-      - port: 80
+      - port: 8332 #RPC port
         as: 80
         to:
           - global: true
-      - port: 8333
-        as: 8333
-        to:
-          - global: true
-      - port: 22
-        as: 22
+      - port: 8333 #P2P port
         to:
           - global: true
 profiles:
