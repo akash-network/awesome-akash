@@ -14,7 +14,7 @@ Akash Network exposes your service on a random port which is then forwarded to t
 1. Find the random port assigned to your deployment
 2. Update the `RAD_EXTERNAL_ADDR` variable with the public address and port (e.g. `RAD_EXTERNAL_ADDR=provider.url:65432`).
 
-The deployment also allows you to enable HTTP server by setting `RAD_HTTP_ENABLE` to `true`.
+The deployment also allows enable radicle-httpd HTTP API server by setting `RAD_HTTP_ENABLE` to `true`. If ythe API is enabled, you can also pin repositories which will show up when you call `GET /api/v1/repos` by listing them in `RAD_PINNED_REPOS` (separated by `;`). Pinned repositories are also automatically seeded.
 
 ## Usage
 
