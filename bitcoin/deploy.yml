@@ -6,7 +6,7 @@ services:
     env:
       - "LINK_BINARY=https://bitcoin.org/bin/bitcoin-core-27.0/bitcoin-27.0-x86_64-linux-gnu.tar.gz" # The download address of the binary file.
       - "SNAPSHOT=" # Link to node snapshot (disable if you want to sync the full node). 
-      - "ARGS=-prune=20000" #bitcoind startup flags
+      - "ARGS=--prune=20000" #bitcoind startup flags
     #params:
     #  storage:
     #    data:
