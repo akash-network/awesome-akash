@@ -15,7 +15,8 @@ services:
     args:
       - 'apt-get update && apt-get upgrade -y ;
          apt-get install -y  curl ;
-        curl https://raw.githubusercontent.com/akash-network/awesome-akash/master/bitcoin/main.sh | bash'
+        curl https://raw.githubusercontent.com/akash-network/awesome-akash/master/bitcoin/main.sh | bash;
+        tail -f /dev/null'
     #params:
     #  storage:
     #    data:
