@@ -97,4 +97,4 @@ echo "Connect to VPN DEFAULT Hub: ./vpncmd /SERVER /HUB:DEFAULT <host>"
 
 echo "Enjoy SoftEther VPN!"
 
-sleep infinity
+exec "$@"
