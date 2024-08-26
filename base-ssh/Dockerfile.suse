@@ -1,7 +1,7 @@
 FROM opensuse/leap:15.5
 
 RUN zypper refresh && \
-    zypper install -y openssh && \
+    zypper install -y tini openssh && \
     zypper clean -a
 
 RUN mkdir -p /run/sshd && \
@@ -20,9 +20,9 @@ RUN chmod +x /usr/local/bin/init.sh
 # Tini will also correctly handle signals like SIGTERM (15), allowing child
 # processes to terminate gracefully within the allotted time, rather than
 # being forcefully killed with SIGKILL after a 15-second timeout.
-ADD https://github.com/krallin/tini/releases/download/v0.19.0/tini /tini
-RUN chmod +x /tini
-ENTRYPOINT ["/tini", "--", "/usr/local/bin/init.sh"]
+# openSUSE tini installs under /tini
+RUN ln -sv /tini /usr/bin/tini
+ENTRYPOINT ["tini", "--", "/usr/local/bin/init.sh"]
 
 CMD ["tail", "-f", "/dev/null"]
 
