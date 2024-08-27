@@ -9,7 +9,7 @@ services:
     args:
       - 'apt-get update ;
         apt-get upgrade -y ;
-        apt-get install -no-install-recommends python3 pip python3.10-venv wget unzip ca-certificates -y ;
+        apt-get install python3 pip python3.10-venv wget unzip -y ;
         python3 -m pip install pipx ;
         python3 -m pipx install semantra ;
         cd home ;
