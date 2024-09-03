@@ -1,0 +1,42 @@
+version: "2.0"
+
+services:
+  dolt:
+    image: dolthub/dolt:latest
+    expose:
+      - port: 3306
+        as: 3306
+        to:
+          - global: true
+    env:
+      - DOLT_ENABLE_VERSIONING=true
+      - DOLT_PASSWORD=<your_password>
+
+profiles:
+  compute:
+    dolt:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1024Mi
+        storage:
+          size: 5Gi
+  placement:
+    any:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        dolt:
+          denom: uakt
+          amount: 2000
+
+deployment:
+  dolt:
+    any:
+      profile: dolt
+      count: 1
+
