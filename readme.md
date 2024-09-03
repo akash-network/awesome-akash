@@ -173,6 +173,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [InfluxDB](influxdb)
 - [SurrealDB](SurrealDB)
 - [DefraDB](defradb)
+- [Dolt](dolt)
 
 ### DeFi
 
@@ -184,7 +185,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
 - [Bancor](bancor)
-- [Balancer](balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](sushiswap)
 - [Uma Protocol](uma-protocol)
