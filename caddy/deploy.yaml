@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   caddy:
-    image: stefanprodan/caddy 
+    image: caddy 
     expose:
       - port: 80 
         to:
