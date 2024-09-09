@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   vllm:
-    image: vllm/vllm-openai:v0.5.5@sha256:720915f190d686ac4449ef853dd4748153fbc0d45d9fb736a27f3a3e32d9572f
+    image: vllm/vllm-openai:v0.6.0@sha256:072427aa6f95c74782a9bc3fe1d1fcd1e1aa3fe47b317584ea2181c549ad2de8
     expose:
       - port: 8000
         as: 8000
