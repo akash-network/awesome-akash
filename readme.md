@@ -1,4 +1,4 @@
-# Awesome Akash <!-- omit in toc -->
+.md # Awesome Akash <!-- omit in toc -->
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
@@ -173,6 +173,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [InfluxDB](influxdb)
 - [SurrealDB](SurrealDB)
 - [DefraDB](defradb)
+- [Dolt](dolt)
 
 ### DeFi
 
@@ -184,7 +185,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
 - [Bancor](bancor)
-- [Balancer](balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](sushiswap)
 - [Uma Protocol](uma-protocol)
