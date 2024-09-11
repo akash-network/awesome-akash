@@ -1,6 +1,6 @@
 # Dria Compute Node
 
-A [Dria](https://dria.co/) Compute Node is a unit of computation within the Dria Knowledge Network. It's purpose is to process tasks given by the Dria Admin Node, and receive rewards for providing correct results.
+[Dria](https://dria.co/) unites consumer hardware to generate high-quality, high-throughput, low-cost synthetic data. Dria Knowledge Network is a decentralized network that allows many AI agents to collaborate on tasks that improve AI/ML models with synthetic data. A Dria Compute Node is a unit of computation within the Dria Knowledge Network, and its purpose is to process tasks given by the Dria Admin Node.
 
 ## Setup
 
