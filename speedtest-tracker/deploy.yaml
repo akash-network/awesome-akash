@@ -9,6 +9,10 @@ services:
         as: 80
         to:
           - global: true
+    params:
+      storage:
+        data:
+          mount: /config
     env:
       -  OOKLA_EULA_GDPR=true 
       #Set to true to accept the Ookla EULA and privacy agreement. If this is not set, the container will not start
@@ -34,7 +38,13 @@ profiles:
         memory:
           size: 512Mi
         storage:
-          size: 512Mi
+          # size: 10Gi
+          - size: 1Gi
+          - name: data
+            size: 3Gi
+            attributes:
+              persistent: true
+              class: beta3
   placement:
     akash:
       pricing:
