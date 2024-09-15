@@ -1,0 +1,23 @@
+FROM ubuntu:24.04
+
+RUN apt-get update; \
+    apt-get install -y --no-install-recommends -- tini ssh; \
+    mkdir -p -m0755 /run/sshd; \
+    mkdir -m700 ~/.ssh; \
+    touch ~/.ssh/authorized_keys; \
+    chmod 0600 ~/.ssh/authorized_keys;
+
+COPY ssh-entrypoint.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
+
+# Use tini as an init system to manage orphaned child processes, ensuring they
+# don't become zombie (defunct) processes by reaping (cleaning up) them when
+# their parent process doesn't.
+# Tini will also correctly handle signals like SIGTERM (15), allowing child
+# processes to terminate gracefully within the allotted time, rather than
+# being forcefully killed with SIGKILL after a 15-second timeout.
+ENTRYPOINT ["tini", "--", "/usr/local/bin/init.sh"]
+
+CMD ["tail", "-f", "/dev/null"]
+
+EXPOSE 22

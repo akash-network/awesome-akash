@@ -15,10 +15,10 @@ This is a technical guide, best suited to a reader with basic Linux command line
 
 You will need the below setup before we being:
 
-1. Install Akash: Make sure to have Akash client installed on your workstation, check [install guide](https://docs.akash.network/guides/install) for instructions.
-2. Choose Your Akash Network: You'll need to know information about the network you're connecting your node to. See [Choosing a Network](https://docs.akash.network/guides/version) for how to obtain any network-related information.
-3. Fund Your Account: You'll need a AKT wallet with funds to pay for your deployment. See the [funding guide](https://docs.akash.network/guides/funding)
-   creating a key and funding your account.
+1. Install Akash: Make sure to have Akash client installed on your workstation, check [install guide](https://akash.network/docs/getting-started/quickstart-guides/akash-cli/) for instructions.
+2. Choose Your Akash Network: You'll need to know information about the network you're connecting your node to. See [Choosing a Network](https://akash.network/docs/deployments/akash-cli/installation/#version) for how to obtain any network-related information.
+3. Fund Your Account: You'll need a AKT wallet with funds to pay for your deployment. See the [funding guide](https://akash.network/docs/getting-started/token-and-wallets)
+creating a key and funding your account.
 4. Install Docker: You'll need docker running on your workstation, follow this [guide](https://docs.docker.com/get-docker/) to setup Docker on your workstation..
 5. Setup Container Registry: To stage your containers to deploy onto Akash. We'll use Docker Hub in this guide. [Signup](https://docs.docker.com/docker-hub/) for a free Docker Hub account if you haven't.
 6. Setup Builpacks.io: Builpacks.io is a Cloud Native Buildpacks transform your application source code into images that can run on any cloud. Install `pack` tool using this [guide](https://buildpacks.io/docs/tools/pack/#install).
@@ -150,7 +150,7 @@ docker push $IMAGE
 
 ## Create the Deployment
 
-Create a deployment configuration [thorchain.yaml](deploy.yaml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://docs.akash.network/documentation/sdl):
+Create a deployment configuration [thorchain.yaml](deploy.yaml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://akash.network/docs/getting-started/stack-definition-language):
 
 ```sh
 cat > thorchain.yaml <<EOF
@@ -195,7 +195,7 @@ deployment:
 EOF>>
 ```
 
-You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://docs.akash.network/documentation/sdl) documentation.
+You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/getting-started/stack-definition-language) documentation.
 
 {% hint style="warn" %}
 
@@ -294,7 +294,7 @@ You can access the application by visiting the hostnames mapped to your deployme
 
 ## Service Logs
 
-You can view the logs for your applicaiton using `akash provider service-logs`, for example:
+You can view the logs for your application using `akash provider service-logs`, for example:
 
 ```sh
 akash provider service-logs --node $AKASH_NODE --dseq $DSEQ --oseq $OSEQ --gseq $GSEQ --provider $PROVIDER --owner $ACCOUNT_ADDRESS --service web

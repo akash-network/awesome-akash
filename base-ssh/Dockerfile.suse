@@ -1,0 +1,29 @@
+FROM opensuse/leap:15.5
+
+RUN zypper refresh && \
+    zypper install -y tini openssh && \
+    zypper clean -a
+
+RUN mkdir -p /run/sshd && \
+    mkdir -p /root/.ssh && \
+    chmod 700 /root/.ssh && \
+    touch /root/.ssh/authorized_keys && \
+    chmod 600 /root/.ssh/authorized_keys && \
+    ssh-keygen -A
+
+COPY ssh-entrypoint.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
+
+# Use tini as an init system to manage orphaned child processes, ensuring they
+# don't become zombie (defunct) processes by reaping (cleaning up) them when
+# their parent process doesn't.
+# Tini will also correctly handle signals like SIGTERM (15), allowing child
+# processes to terminate gracefully within the allotted time, rather than
+# being forcefully killed with SIGKILL after a 15-second timeout.
+# openSUSE tini installs under /tini
+RUN ln -sv /tini /usr/bin/tini
+ENTRYPOINT ["tini", "--", "/usr/local/bin/init.sh"]
+
+CMD ["tail", "-f", "/dev/null"]
+
+EXPOSE 22

@@ -4,7 +4,7 @@ Check out the [Project site](https://github.com/DistributedCollective/Sovryn-Nod
 
 The `deploy.yaml` uses an [unofficial Docker image](https://hub.docker.com/r/nrm55/sovryn-node) at-the-moment. Please read below for tips on deploying to Akash. There is a video of me running through this process [here](https://youtu.be/Iinsjgolmu8).
 
-### First: Setup envrionment variables first, edit deploy.yaml's env block:
+### First: Setup environment variables first, edit deploy.yaml's env block:
 Your `env:` block in `deploy.yaml` should look much like this. Addresses need to be properly checksummed, and wallets are web3keyfiles.
 ```
       - WHICHNET=test
@@ -19,7 +19,7 @@ Your `env:` block in `deploy.yaml` should look much like this. Addresses need to
 ```
 
 ### Second: Deploy to Akash:
-Please watch the video if any of these steps are confusing. Refer to Akash for missing stuff, you'll need to create your cert, get some envrionment variables setup (AKASH_NODE, AKASH_CHAIN_ID, KEY_NAME, KEY_BACKEND, ...)
+Please watch the video if any of these steps are confusing. Refer to Akash for missing stuff, you'll need to create your cert, get some environment variables setup (AKASH_NODE, AKASH_CHAIN_ID, KEY_NAME, KEY_BACKEND, ...)
 1. create deployment, get DSEQ into $DSEQ
 ```
 akash tx deployment create akash-deploy.yaml --from $KEY_NAME --keyring-backend $KEYRING_BACKEND --node $AKASH_NODE --chain-id $AKASH_CHAIN_ID -y --fees 5000uakt

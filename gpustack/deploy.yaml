@@ -1,0 +1,85 @@
+version: "2.0"
+services:
+  gpustack:
+    image: gpustack/gpustack:main
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 10151
+        as: 10151
+        to:
+          - global: true
+    env:
+#################This is the lead server. Deploy gpustack-worker with the Join Token and URI this deployment creates.
+      - GPUSTACK_DISABLE_WORKER=True
+      - GPUSTACK_HOST=0.0.0.0
+      - GPUSTACK_PORT=80
+      - GPUSTACK_METRICS_PORT=10151
+    command:
+      - /bin/sh
+      - -c
+      - |
+        (
+          sleep 10
+          echo
+          echo '====================================='
+          echo '===   INITIAL ADMIN PASSWORD     ==='
+          echo '====================================='
+          echo
+          echo -n 'GPUStack URL : '
+          echo "?.ingress.${AKASH_CLUSTER_PUBLIC_HOSTNAME}"
+          echo 'Check "Leases" tab for the complete URL.'
+          echo 'Login : admin'
+          echo -n 'Password : '
+          cat /var/lib/gpustack/initial_admin_password
+          echo 
+          echo
+          echo 'GPUStack Worker Configuration'
+          echo -n 'GPUSTACK_TOKEN : '
+          cat /var/lib/gpustack/token
+          echo
+          echo -n 'GPUSTACK_SERVER_URL : '
+          echo "?.ingress.${AKASH_CLUSTER_PUBLIC_HOSTNAME}"
+          echo 'Check "Leases" tab for the complete URL.'
+          echo
+          echo 'To connect GPUs, deploy gpustack-worker separately.'
+          echo 'This deployment is for the control server only.'
+          echo '====================================='
+          echo
+        ) &
+        gpustack start --port 80
+profiles:
+  compute:
+    gpustack:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 8Gi
+        storage:
+          size: 100Gi
+  placement:
+    akash:
+      attributes:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://akash.network/docs/providers/audited-attributes
+      pricing:
+        gpustack:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  gpustack:
+    akash:
+      profile: gpustack
+      count: 1

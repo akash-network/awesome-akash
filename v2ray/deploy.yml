@@ -1,0 +1,36 @@
+---
+version: "2.0"
+services:
+  app:
+    image: declab/v2ray:0.2
+    env:
+      - "ID=7142a3f6-5788-4c91-839a-25b06fe58f4b"
+      #- "CONFIG_LINK="
+    expose:
+      - port: 1010    # select ports (default 1010), which use in your config.json 
+        to:
+         - global: true
+      - port: 1080   # select ports (default 1080), which use in your config.json
+        to:
+         - global: true
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 256Mi
+        storage:
+          size: 256Mi
+  placement:
+    akash:
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1

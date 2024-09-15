@@ -1,0 +1,217 @@
+---
+version: "2.0"
+
+endpoints: 
+  nodeendpoint-pg:
+    kind: ip
+
+services:
+  node:
+    image: harbor.status.im/wakuorg/nwaku:v0.29.0
+    depends_on:
+      - postgres
+    expose:
+      - port: 60000
+        as: 60000
+        proto: tcp
+        to:
+          - global: true
+            ip: nodeendpoint-pg
+
+      - port: 8003
+        as: 8003
+        proto: tcp
+        to:
+          - global: true
+            ip: nodeendpoint-pg
+
+      - port: 9005
+        proto: udp
+        to:
+          - global: true
+            ip: nodeendpoint-pg
+
+      - port: 8000
+        as: 8000
+        proto: tcp
+        to:
+          - global: true
+            ip: nodeendpoint-pg
+
+      - port: 80
+        as: 80
+        to:
+          - global: true
+            ip: nodeendpoint-pg
+    params:
+      storage:
+        certs:
+          mount: /etc/letsencrypt
+    env:
+#Mandatory
+      - IP_ADDR=
+      - ETH_CLIENT_ADDRESS=
+      - POSTGRES_USER=waku
+      - "POSTGRES_PASSWORD=secretpassword"
+#Optional
+      - DOMAIN=
+      - NODEKEY=
+      - RLN_RELAY_CRED_BASE64=
+      - RLN_RELAY_CRED_PASSWORD=
+    command:
+      - sh
+      - '-c'
+    args:
+      - >
+        if [ -z "${IP_ADDR}" ]; then
+            echo "You need to provide the IP leased to this service in \$IP_ADDR env var"
+            sleep 120
+            exit 1
+        fi
+
+        DNS_WSS_CMD=
+
+        if [ -n "${DOMAIN}" ]; then
+            echo "==> Generating Let's Encrypt certificates!"
+            LETSENCRYPT_PATH=/etc/letsencrypt/live/${DOMAIN}
+
+            if ! [ -d "${LETSENCRYPT_PATH}" ]; then
+                apk add --no-cache certbot
+                certbot certonly\
+                    --non-interactive\
+                    --agree-tos\
+                    --no-eff-email\
+                    --no-redirect\
+                    --email user@${DOMAIN}\
+                    -d ${DOMAIN}\
+                    --standalone
+            fi
+
+            if ! [ -e "${LETSENCRYPT_PATH}/privkey.pem" ]; then
+                echo "The certificate does not exist"
+                sleep 120
+                exit 1
+            fi
+
+            WS_SUPPORT="--websocket-support=true"
+            WSS_SUPPORT="--websocket-secure-support=true"
+            WSS_KEY="--websocket-secure-key-path=${LETSENCRYPT_PATH}/privkey.pem"
+            WSS_CERT="--websocket-secure-cert-path=${LETSENCRYPT_PATH}/cert.pem"
+            DNS4_DOMAIN="--dns4-domain-name=${DOMAIN}"
+
+            DNS_WSS_CMD="${WS_SUPPORT} ${WSS_SUPPORT} ${WSS_CERT} ${WSS_KEY} ${DNS4_DOMAIN}"
+        fi
+
+        if [ "${NODEKEY}" != "" ]; then
+            NODEKEY=--nodekey=${NODEKEY}
+        fi
+
+        STORE_DB_URL=--store-message-db-url=sqlite:///etc/letsencrypt/wakustore.sqlite3
+
+        if [ "${POSTGRES_PASSWORD}" != "" ]; then
+            STORE_DB_URL="--store-message-db-url=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/waku"
+        fi
+
+        RLN_RELAY_CRED_PATH=${RLN_RELAY_CRED_PATH:-/keystore/keystore.json}
+
+        if [ -n "${RLN_RELAY_CRED_BASE64}" ]; then
+            mkdir -p `dirname ${RLN_RELAY_CRED_PATH}`
+            echo ${RLN_RELAY_CRED_BASE64}
+            echo ${RLN_RELAY_CRED_BASE64} | base64 -d > ${RLN_RELAY_CRED_PATH}
+
+            if [ -n "${RLN_RELAY_CRED_PATH}" ]; then
+                RLN_RELAY_CRED_ARG=--rln-relay-cred-path=${RLN_RELAY_CRED_PATH}
+            fi
+        fi
+
+        if [ -n "${RLN_RELAY_CRED_PASSWORD}" ]; then
+            RLN_RELAY_CRED_PASSWORD=--rln-relay-cred-password="${RLN_RELAY_CRED_PASSWORD}"
+        fi
+
+        exec "/usr/bin/wakunode"\
+            ${DNS_WSS_CMD}\
+            ${STORE_DB_URL}\
+            ${NODEKEY}\
+            ${RLN_RELAY_CRED_ARG}\
+            ${RLN_RELAY_CRED_PASSWORD}\
+            --rln-relay-eth-client-address="${ETH_CLIENT_ADDRESS}"\
+            --rln-relay-tree-path="/etc/letsencrypt/rln_tree"\
+            --nat=extip:${IP_ADDR}\
+            --relay=true\
+            --filter=true\
+            --lightpush=true\
+            --cluster-id=1\
+            --keep-alive=true\
+            --peer-exchange=true\
+            --max-connections=300\
+            --discv5-discovery=true\
+            --discv5-udp-port=9005\
+            --discv5-enr-auto-update=True\
+            --log-level=DEBUG\
+            --metrics-server=True\
+            --metrics-server-port=8003\
+            --metrics-server-address=0.0.0.0\
+            --store=true\
+            --store-message-retention-policy=size:3GB
+  postgres:
+    image: postgres 
+    expose:
+      - port: 5432
+        to:
+          - service: node
+    params:
+      storage:
+          data:
+              mount: /var/lib/postgresql/
+    env:
+      - POSTGRES_USER=waku
+      - "POSTGRES_PASSWORD=secretpassword"
+      - POSTGRES_DB=waku
+profiles:
+  compute:
+    postgres:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - name: data
+            size: 4Gi
+            attributes:
+              persistent: true
+              class: beta3
+    node:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - name: certs
+            size: 100Mi
+            attributes:
+              persistent: true
+              class: beta3
+
+
+  placement:
+    westcoast:
+      pricing:
+        postgres:
+          denom: uakt
+          amount: 100000
+        node: 
+          denom: uakt
+          amount: 100000
+
+deployment:
+  postgres:
+    westcoast:
+      profile: postgres
+      count: 1 
+  node:
+    westcoast:
+      profile: node
+      count: 1
+

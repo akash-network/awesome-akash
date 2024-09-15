@@ -1,0 +1,95 @@
+---
+version: "2.0"
+
+services:
+  dkn:
+    image: firstbatch/dkn-compute-node:v0.1.6
+    expose:
+    - port: 80
+      as: 80
+      to:
+        - global: true
+    env:
+    # You need to provide a wallet private key here
+    - DKN_WALLET_SECRET_KEY=
+    # You can modify list of supported/enabled models - check the resources, might need a bump with more/different models
+    - DKN_MODELS=,llama3.1:latest
+
+    # You can provide API keys to integrate with other services
+    - OPENAI_API_KEY=
+    - SERPER_API_KEY=
+    - BROWSERLESS_TOKEN=
+    - ANTHROPIC_API_KEY=
+
+
+    # You probably don't want to touch these
+    - OLLAMA_AUTO_PULL=true
+    - OLLAMA_HOST=http://ollama
+    - OLLAMA_PORT=11434
+    - RUST_LOG=none,dkn_compute=info
+
+    - DKN_ADMIN_PUBLIC_KEY=0208ef5e65a9c656a6f92fb2c770d5d5e2ecffe02a6aade19207f75110be6ae658
+
+  ollama:
+    image: ollama/ollama@sha256:532b563c005c1d60cf959d498418e0d3b5cc1f02f6a1608ae7d0c0a8a3c8a2f5 #this is the image `latest` pointed to on 2024-08-19, update if needed
+    expose:
+      - port: 11434
+        as: 11434
+        to:
+          - global: false
+          - service: dkn
+    params:
+      storage:
+        ollamadata:
+          mount: /root/.ollama
+          readOnly: false
+profiles:
+  compute:
+    dkn:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+    ollama:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 10Gi
+        storage:
+          - size: 10Gi
+          - name: ollamadata
+            size: 24Gi
+            attributes:
+              persistent: true
+              class: beta3
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+                  ram: 24Gi
+                  interface: pcie
+  placement:
+    dcloud:
+      pricing:
+        dkn:
+          denom: uakt
+          amount: 100000
+        ollama: 
+          denom: uakt
+          amount: 100000
+deployment:
+  dkn:
+    dcloud:
+      profile: dkn
+      count: 1 
+  ollama:
+    dcloud:
+      profile: ollama
+      count: 1 
+

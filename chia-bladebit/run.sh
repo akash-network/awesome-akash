@@ -110,7 +110,7 @@ if [[ "$FINAL_LOCATION" == "local" ]]; then
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "###################################################################################################"
-  echo "Plots will be created locally.  Please check Cloudmos for the Uri - you can find this on the   "
+  echo "Plots will be created locally.  Please check Akash Console for the Uri - you can find this on the   "
   echo "deployment details page.  Plots will only appear after creation.  Please be patient for your first"
   echo "plots to appear.  Starting in 5 seconds.                                                          "
   echo "###################################################################################################"
@@ -126,7 +126,7 @@ else
   echo "###################################################################################################"
   echo "###################################################################################################"
   echo "Plots will be uploaded to $FINAL_LOCATION on $REMOTE_HOST.                                         "
-  echo "After the plot is succesfully uploaded it will be deleted automatically from the deployment        "
+  echo "After the plot is successfully uploaded it will be deleted automatically from the deployment        "
   echo "Starting in 5 seconds.                                                                            "
   echo "###################################################################################################"
   echo "###################################################################################################"
@@ -212,7 +212,7 @@ fi
 
 COUNT=0
 
-#Add support for custom port : https://github.com/ovrclk/awesome-akash/issues/327
+#Add support for custom port : https://github.com/akash-network/awesome-akash/issues/327
 if [[ $PORT != "" ]]; then
 PORT="-x $PORT"
 fi

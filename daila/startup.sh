@@ -1,5 +1,6 @@
+echo "Get latest Dalai"
+npm install dalai
 echo "Starting download of models"
-
 if [[ $MODEL_SIZE == "7B" ]]; then
 MODEL_SIZE=7B
 elif [[ $MODEL_SIZE == "13B" ]]; then

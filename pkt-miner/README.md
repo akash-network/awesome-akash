@@ -42,4 +42,4 @@ Edit `deploy.yaml` so that it uses your wallet address and desired pool.
 
 ## Running
 
-Follow the steps at https://docs.akash.network to deploy to the https://akash.network cloud.
+Follow the steps at https://akash.network/docs to deploy to the https://akash.network cloud.

@@ -1,0 +1,42 @@
+---
+version: "2.0"
+services:
+  app:
+    image: cvpfus/grok-akash:0.20
+    env:
+      - MAX_NEW_TOKENS=256
+    expose:
+      - port: 8080
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 1280Gi
+        storage:
+          size: 2048Gi
+        gpu:
+          units: 8
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        app:
+          denom: uakt
+          amount: 1000000
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1

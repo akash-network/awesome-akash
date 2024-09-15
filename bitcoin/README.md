@@ -2,10 +2,9 @@
 
 |Variable|Description|
 | :-------: | :-------: |
-|`"PASS_SSH="`| Password to connect to the node via SSH (root user).|
 |`"LINK_BINARY="`|  The download address of the binary file.|
 |`"SNAPSHOT="`|  Link to `lz4` node snapshot (disable if you want to sync the full node).|
-|`"PRUNE="`|  Blockchain pruning, indicates the number of megabytes available for node storage (disable if you want to synchronize the full node).|
+|`"ARGS="`|  `bitcoind` startup flags.|
 
 ### Resources
 
@@ -55,10 +54,9 @@ profiles:
 
 |Переменная|Описание|
 | :-------: | :-------: |
-|`"PASS_SSH="`| Пароль, для подключения к контейнеру по протоколу SSH (пользователь root).|
 |`"LINK_BINARY="`|  Ссылка на скачивание архива бинарного файла.|
 |`"SNAPSHOT="`|  Сслыка на `lz4` снепшот ноды (отключите, если хотите загрузить полную историю блокчейна).|
-|`"PRUNE="`|  Обрезка блокчейна, указывается максимальный объем пространства в мегабайтах который будет занимать нода (отключите если хотите иметь полный архив блокчейна).|
+|`"ARGS="`|  Флаги запуска `bitcoind`. |
 
 ### Resources
 

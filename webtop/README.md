@@ -1,28 +1,9 @@
-![image](https://github.com/Dimokus88/awesome-akash/assets/23629420/7d65c5b3-1027-4008-9899-0911c8ed8552)
-
-
-| [Twitter Decloud Nodes Lab](https://twitter.com/NodesLab) |
-|:--:|
-  
-| [Delegate AKT](https://restake.app/akash/akashvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64gq0kaj4) | [Delegate DVPN](https://restake.app/sentinel/sentvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64grgugsr) | [Delegate Kava](https://restake.app/kava/kavavaloper1mrd5kqtq28p39wcrkm8tk8avtn57arrurxfah0) | [Delegate Desmos](https://restake.app/desmos/desmosvaloper1fkpnxtn4nvm27zkpyuvcz3rpa9rzxm70q4v8sn) | 
-|:--:|:--:|:--:|:--:|
-
-|[Delegate Kyve](https://restake.app/kyve/kyvevaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64gzgc27r) | [Delegate Vidulum](https://restake.app/vidulum/vdlvaloper1nuphu4p06dlgx2se0w58z5c7yv00r5gle0h5gs) | [Delegate Realio](https://restake.app/realio/realiovaloper1chee8l82uxqfduxr8x0pfrp9psl08cy4a20m0u) | 
-|:--:|:--:|:--:|
-  
-
-
-
-
 # Webtop on Akash Network
-
-</div>
-
 ___
 
-Open [WEB interface](https://deploy.cloudmos.io/) `Cloudmos`.
+Open [WEB interface](https://console.akash.network/) `Akash Console`.
 
-Make sure you have **more than 6 AKT** on your balance and **certificate present** (if not, refer to [Cloudmos instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)).
+Make sure you have **more than 0.6 AKT** on your balance and **certificate present** (if not, refer to [Akash Console instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md)).
 
 Next, press the `DEPLOY` button, select the empty `Empty` template and copy the content of [deploy.yml](https://github.com/DecloudNodesLab/Projects/blob/main/Software/Webtop/deploy.yml).
 

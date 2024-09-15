@@ -6,14 +6,14 @@ Chia is releasing new plotting software called Bladebit Disk, utilizing the high
 
 ## Providers
 
-For the following providers expect to see these prices in Cloudmos! Each provider has been benchmarked and tested to create a $0.15/plot. &#x20;
+For the following providers expect to see these prices in Akash Console! Each provider has been benchmarked and tested to create a $0.15/plot. &#x20;
 
 | On-Sale Providers      | BladeBit Disk Price / Month |
 | ---------------------- | ------------------------ |
 | bigtractorplotting.com | $335 \| 19 Minute Plots   |
 | xch.computer           | $303 \| 21 Minute Plots  |
 
-For a complete guide on how to customize the SDL, including configuring rclone and ssh destinations please see [Chia on Akash](https://docs.akash.network/integrations/chia-on-akash/)
+For a complete guide on how to customize the SDL, including configuring rclone and ssh destinations please see [Chia on Akash](https://akash.network/docs/guides/blockchain/chia-on-akash/)
 
 ## Why use Akash?
 

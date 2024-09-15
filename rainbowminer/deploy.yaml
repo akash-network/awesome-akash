@@ -80,7 +80,7 @@ profiles:
       #Remove this section to deploy on untrusted providers
       #Miners: You can receive more bids from more providers by removing this section
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
+      #https://akash.network/docs/providers/audited-attributes
       pricing:
         rainbowminer:
           denom: uakt

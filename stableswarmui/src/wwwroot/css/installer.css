@@ -1,0 +1,161 @@
+.headline {
+    text-align: center;
+}
+.section_wrapper {
+    margin: auto;
+    width: calc(min(90vw, 50rem));
+    border: 1px solid var(--light-border);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+}
+.section_buttons {
+    text-align: right;
+}
+.install_hint {
+    opacity: 0.8;
+    font-style: italic;
+}
+.install_q_head {
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-bottom: 1px solid var(--light-border);
+    margin-bottom: 0.5rem;
+}
+.form-check {
+    margin-bottom: 0.5rem;
+}
+.theme_preview .form-check {
+    display: inline-block;
+    width: 30%;
+    height: 10rem;
+    border: 1px solid var(--light-border);
+    border-radius: 0.5rem;
+}
+.theme_preview .form-check .button_example {
+    display: block;
+    height: 2rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    text-align: center;
+    width: fit-content;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3px;
+}
+.theme_preview_modern_dark {
+    background-color: #202020;
+    color: #E4E4E4;
+}
+.theme_preview_modern_dark .button_example {
+    border: 1px solid #3f3f46;
+    background-color: #4b4b4b;
+    color: #ffffff;
+}
+.theme_preview_modern_light {
+    background-color: #D9D9D9;
+    color: #101010;
+}
+.theme_preview_modern_light .button_example {
+    border: 1px solid #3f3f46;
+    background-color: #a1a1a1;
+    color: #101010;
+}
+.theme_preview_dark_dreams {
+    background-color: #18181b;
+    color: #eeeeee;
+}
+.theme_preview_dark_dreams .button_example {
+    border: 1px solid #3f3f46;
+    background-color: #7855e1;
+    color: #ffffff;
+}
+.theme_preview_cyber_swarm {
+    background-color: #18181b;
+    color: #eeeeee;
+}
+.theme_preview_cyber_swarm .button_example {
+    border: 1px solid #3f3f46;
+    background-color: #00bc8c;
+    color: #ffffff;
+    border-radius: 1rem;
+    padding-top: 0.1em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+.theme_preview_gravity_blue {
+    background-color: #0b0f20;
+    color: #eeeeee;
+}
+.theme_preview_gravity_blue .button_example {
+    border: 1px solid #3f3f46;
+    background-color: orange;
+    color: #101010;
+}
+.theme_preview_eyesear_white {
+    background-color: #f0f0f0;
+    color: #101010;
+}
+.theme_preview_eyesear_white .button_example {
+    border: 1px solid #3f3f46;
+    background-color: #a1a1a1;
+    color: #101010;
+}
+.theme_preview_punked {
+    background-color: #0a0a0a;
+    color: #eeeeee;
+}
+.theme_preview_punked .button_example {
+    border: 1px solid #00fff7;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    border-radius: 1rem;
+    padding-top: 0.1em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}
+label {
+    font-size: 120%;
+    vertical-align: top;
+    margin-top: -0.3rem;
+}
+.final_confirm_info {
+    font-weight: bold;
+}
+.install_output {
+    white-space: pre-wrap;
+    border: 1px solid var(--light-border);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 100%;
+    min-height: 2rem;
+}
+.license {
+    white-space: pre-wrap;
+    border: 1px solid var(--light-border);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 80%;
+}
+.install_progress_bar {
+    width: 0%;
+    display: block;
+    height: 5px;
+    background-color: #00ff00;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+.install_progress_step_bar {
+    width: 0%;
+    display: block;
+    height: 5px;
+    background-color: var(--emphasis);
+    position: relative;
+    left: 0;
+    top: 5px;
+}

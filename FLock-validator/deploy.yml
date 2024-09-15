@@ -1,0 +1,52 @@
+---
+version: "2.0"
+
+services:
+  flock-validater:
+    image: ghcr.io/flock-io/llm-loss-validator:v0.0.6
+    env:
+      - FLOCK_API_KEY=
+      # support multi_task, such as 1,2,3
+      - TASK_ID=
+      - HF_TOKEN=
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    flock-validater:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 24Gi
+        storage:
+          size: 100Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                - model: a100
+                - model: rtx3090
+                - model: rtx4090
+                - model: rtx8000
+                - model: rtxa6000
+                - model: a40
+                - model: p40
+  placement:
+    akash:
+      pricing:
+        flock-validater:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  flock-validater:
+    akash:
+      profile: flock-validater
+      count: 1

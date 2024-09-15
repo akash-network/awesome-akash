@@ -1,0 +1,32 @@
+FROM quay.io/centos/centos:stream9
+
+RUN dnf -y update && \
+    dnf -y install openssh-server && \
+    dnf clean all && \
+    mkdir -p /run/sshd && \
+    mkdir -p /root/.ssh && \
+    chmod 700 /root/.ssh && \
+    touch /root/.ssh/authorized_keys && \
+    chmod 600 /root/.ssh/authorized_keys && \
+    ssh-keygen -A
+
+COPY ssh-entrypoint.sh /usr/local/bin/init.sh
+RUN chmod +x /usr/local/bin/init.sh
+
+# Use tini as an init system to manage orphaned child processes, ensuring they
+# don't become zombie (defunct) processes by reaping (cleaning up) them when
+# their parent process doesn't.
+# Tini will also correctly handle signals like SIGTERM (15), allowing child
+# processes to terminate gracefully within the allotted time, rather than
+# being forcefully killed with SIGKILL after a 15-second timeout.
+ENV TINI_URL="https://github.com/krallin/tini/releases/download/v0.19.0/tini-static-amd64"
+RUN curl -o /usr/bin/tini -fsSL ${TINI_URL} && \
+    curl -o /usr/bin/tini.asc -fsSL ${TINI_URL}.asc && \
+    gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0x595E85A6B1B4779EA4DAAEC70B588DFF0527A9B7 && \
+    gpg --verify /usr/bin/tini.asc && \
+    chmod +x /usr/bin/tini
+ENTRYPOINT ["tini", "--", "/usr/local/bin/init.sh"]
+
+CMD ["tail", "-f", "/dev/null"]
+
+EXPOSE 22

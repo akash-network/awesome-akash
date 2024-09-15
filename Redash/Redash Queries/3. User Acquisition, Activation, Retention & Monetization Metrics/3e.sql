@@ -1,1 +1,1 @@
--- outside the scope of what is currently available in Cloudmos DB
+-- outside the scope of what is currently available in Akash Console DB

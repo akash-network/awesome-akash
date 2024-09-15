@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   babyagi:
-    image: cryptoandcoffee/akash-babyagi:1
+    image: cryptoandcoffee/akash-babyagi:2
     expose:
       - port: 3000
         as: 80
@@ -68,7 +68,7 @@ profiles:
       #######################################################
       #Remove this section to deploy on untrusted providers
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
+      #https://akash.network/docs/providers/audited-attributes
       pricing:
         babyagi:
           denom: uakt

@@ -1,0 +1,67 @@
+---
+version: "2.0"
+services:
+  ollama:
+    ############################
+    image: ollama/ollama:0.3.6 
+    ############################
+    #Always check https://hub.docker.com/r/ollama/ollama/tags for the latest version tag!
+    expose:
+      - port: 11434
+        as: 11434
+        to:
+          - global: true
+    env:
+    ################
+      - MODEL=phi3
+    ################
+    #Supports any model from : https://ollama.com/library
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ollama serve & 
+        while ! ollama pull ${MODEL}; do
+          echo "Waiting for ollama pull to succeed..."
+          sleep 2.5
+        done
+        ollama list
+        pkill ollama
+        ollama serve
+profiles:
+  compute:
+    ollama:
+      resources:
+        cpu:
+          units: 24
+        #Higher is better for AI! Be sure to change thread setting in app.
+        memory:
+          size: 28Gi
+        #7B requires about 4.5GB of free RAM
+        #13B requires about 12GB free
+        #30B requires about 20GB free // 24 not enough
+        storage:
+          size: 100Gi
+        #Bigger models may require more storage.
+        #Increase as required.
+  placement:
+    akash:
+      #######################################################
+      #Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      #######################################################
+      #Remove this section to deploy on untrusted providers
+      #Beware* You may have deployment, security, or other issues on untrusted providers
+      #https://docs.akash.network/providers/akash-audited-attributes
+      pricing:
+        ollama:
+          denom: uakt
+          amount: 10000
+deployment:
+  ollama:
+    akash:
+      profile: ollama
+      count: 1

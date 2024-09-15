@@ -8,9 +8,9 @@ Deploy to Akash:
 
 1. https://console.akash.network/new-deployment
 
-2. https://cloudmos.io/cloud-deploy 
+2. https://console.akash.network/new-deployment 
 
-Open Cloudmos and click "Deploy" 
+Open Akash Console and click "Deploy" 
 <br>
 
 Step 0: Choose the "Empty" option and paste the SDL file.

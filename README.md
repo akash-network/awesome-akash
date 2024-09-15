@@ -2,7 +2,7 @@
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
-Instructions on how to deploy the SDL files in this repository can be found [here](//https://akash.network/docs/deployments/overview/).
+Instructions on how to deploy the SDL files in this repository can be found [here](https://akash.network/docs/deployments/overview/).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
@@ -45,6 +45,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
+- [Ubuntu SSH](ssh-ubuntu)
 
 ### AI - CPU
 
@@ -52,15 +53,22 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
+- [Botpress](botpress)
 - [ChatChat](chatchat)
-- [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [Daila](daila)
+- [Faster Whisper](fast-whisper-cpu)
 - [Flowise](flowise)
-- [GPT4ALL](gpt4all)
+- [InvokeAI](invoke-ai-cpu)
+- [Langflow](langflow)
+- [Ollama](ollama-cpu)
+- [Open WebUI](open-webui-cpu)
+- [PrivateGPT](privategpt-cpu)
 - [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Weaviate](weaviate)
+- [Whisper ASR](whisper-asr-cpu)
+- [Whisper GUI](whisper-gui-cpu)
 
 ### AI - GPU
 
@@ -69,24 +77,44 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
-- [ChatGPT Self-Hosted Chat](ai-chat-app)
 - [ComfyUI](comfyui)
+- [Dria](dria)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
+- [Faster Whisper](fast-whisper-gpu)
 - [Flan-T5 XXL](flan-t5-xxl)
+- [FLock Validator](FLock-validator)
+- [FLock-Training-Node](FLock-training-node)
 - [GPT-Neo](gpt-neo)
+- [GPUStack](gpustack)
+- [GPUStack Worker](gpustack-worker)
+- [Grok](grok)
+- [InvokeAI](invoke-ai-gpu)
 - [Llama-2-70B](Llama-2-70B)
+- [Llama-3-8B](Llama-3-8B)
+- [Llama-3-70B](Llama-3-70B)
+- [Llama-3.1-8B](Llama-3.1-8B)
+- [Llama-3.1-405B-AWQ-INT4](Llama-3.1-405B-AWQ-INT4)
+- [Llama-3.1-405B-BF16](Llama-3.1-405B-BF16)
+- [Llama-3.1-405B-FP8](Llama-3.1-405B-FP8)
+- [Ollama](ollama-gpu)
+- [Open GPT](open-gpt)
+- [Open WebUI](open-webui-gpu)
+- [PrivateGPT](privategpt-gpu)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
+- [StableSwarmUI](stableswarmui)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
+- [vllm](vllm)
+- [Whisper ASR](whisper-asr-gpu)
+- [Whisper GUI](whisper-gui-gpu)
 - [XLM-roBERTa](XLM-roBERTa)
-- [Open GPT](open-gpt)
 
 ### Blogging
 
@@ -107,6 +135,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 ### Chat
 
 - [Mattermost](mattermost)
+- [Status](status)
 
 ### Machine Learning
 
@@ -124,7 +153,9 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Bitbucket](bitbucket)
 - [Azure Devops Agent](azure-devops-agent)
 - [Github Runner](ghrunner)
-
+- [Radicle](radicle)
+- [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
+  
 ### Data Visualization
 
 -  [Redash Data Charts for Akash Analytics](Redash)
@@ -224,9 +255,10 @@ Awesome DeFi apps you can deploy on Akash
 ### Hosting
 
 - [Caddy](caddy)
+- [Flame](flame)
 - [Grafana](grafana)
 - [IPFS](ipfs)
-- [Flame](flame)
+- [Nginx Let's Encrypt Proxy](nginx-letsencrypt-proxy)
 
 ### Media
 
@@ -325,6 +357,8 @@ Awesome DeFi apps you can deploy on Akash
 
 - [SoftEther VPN](softether-vpn)
 - [Sentinel dVPN node](Sentinel-dVPN-node)
+- [V2RAY](v2ray)
+- [X-UI](x-ui)
 - [Tor Proxy](tor-proxy)
 
 ### Databases
