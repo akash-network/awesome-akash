@@ -8,6 +8,9 @@ services:
         as: 80
         to:
           - global: true
+    env:
+      - "REPO_URL=https://github.com/onwidget/astrowind"
+      - "BRANCH_NAME=main"
 profiles:
   compute:
     service-1:
