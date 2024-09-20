@@ -4,4 +4,10 @@ The InterPlanetary File System (IPFS) is a protocol and peer-to-peer network for
 
 
 ## Setup
-After deploying the container the web ui will be accessible at port 80. However you will need to enter the IPFS API URL there to make it work. The IPFS API runs on port 5001, but AKASH publishes a random port and then forwards it to port 5001. With the lease-status command you have to look which port is forwarded under "forwarded_ports". Then enter the following as IPFS API URL `http://host:port` (ex: http://cluster.ews1p0.mainnet.akashian.io:30328).
+After deploying the IPFS WebUI will be available at assigned provider ingress URL. For the WebUI to work, you will need to update the deployment and set this URL in `IPFS_EXTERNAL_ADDR` (without trailing slash). 
+
+The IPFS node API is secured by nginx reverse proxy with basic auth - you can modify the user and password in the deployment via nginx service environment variables.
+
+IPFS Gateway is also available on the external address - simply use `${IPFS_EXTERNAL_ADDR}/ipfs/${CID}`.
+
+> NOTE: IPFS Kubo node requires HTTPS, so make sure your provider provides HTTPS for the ingress URL (e.g. [Europlots](https://console.akash.network/providers/akash18ga02jzaq8cw52anyhzkwta5wygufgu6zsz6xc?network=mainnet))
