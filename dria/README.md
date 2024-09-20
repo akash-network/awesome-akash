@@ -4,8 +4,12 @@
 
 ## Setup
 
+> NOTE: Prefer providers in Europe as the network will penalize nodes in US because of latency: https://github.com/firstbatchxyz/dkn-compute-node/issues/119 
+
 Check [dkn-compute-node](https://hub.docker.com/r/firstbatch/dkn-compute-node/tags) Docker repository to see if there is a new version and update `dkn` service `image`.
 
 You need to provide an Ethereum wallet private key in `DKN_WALLET_SECRET_KEY` environment variable. The walelt address derived from this key represents your identity in Dria network.
 
 You can also modify models supported by your node in `DKN_MODELS` environment variable. Consult the [guide](https://firstbatch.notion.site/How-to-Run-a-Node-ed2bef2c8eec4dd280286f2e081e51d2) to see the options.
+
+Make sure your node follows resource recommendations in [Minimum Specs](https://github.com/firstbatchxyz/dkn-node-specs) guide.
