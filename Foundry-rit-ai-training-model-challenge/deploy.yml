@@ -34,12 +34,8 @@ profiles:
               nvidia:
                 - model: h100
                 - model: a100
-                - model: rtx3090
-                - model: rtx4090
                 - model: rtx8000
-                - model: rtxa6000
-                - model: a40
-                - model: p40
+                - model: v100
   placement:
     akash:
       attributes:
