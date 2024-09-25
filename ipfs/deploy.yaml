@@ -3,24 +3,84 @@ version: "2.0"
 
 services:
   ipfs:
-    image: linuxserver/ipfs:version-v2.12.4
+    image: ipfs/kubo:v0.30.0
+    expose:
+      - port: 5001
+        as: 5001
+        to:
+          - service: nginx
+      - port: 8080
+        as: 8080
+        to:
+          - service: nginx
+    env:
+      - IPFS_EXTERNAL_ADDR= #Fill in the ingress URL assigned by the provider
+      - IPFS_LOGGING=info
+    command:
+    - sh
+    - -c
+    args:
+    - >      
+      #/usr/local/bin/start_ipfs config --json Addresses.API '"/ip4/0.0.0.0/tcp/80"'
+
+      if [ -n "${IPFS_EXTERNAL_ADDR}" ]; then
+
+        /usr/local/bin/start_ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["'${IPFS_EXTERNAL_ADDR}'", "http://ipfs:5001"]'
+        
+        /usr/local/bin/start_ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "POST", "OPTIONS"]'
+
+      fi
+      
+      exec /sbin/tini -- /usr/local/bin/start_ipfs daemon --migrate=true --agent-version-suffix=docker
+  nginx:
+    image: nginx:1.27
     expose:
       - port: 80
         as: 80
         to:
           - global: true
-      - port: 4001
-        as: 4001
-        to:
-          - global: true
-      - port: 5001
-        as: 5001
-        to:
-          - global: true
-      - port: 8080
-        as: 8080
-        to:
-          - global: true
+    env:
+      - BASIC_AUTH_USER=ipfs
+      - BASIC_AUTH_PASS=secretpass
+    command:
+      - sh
+      - -c
+    args:
+      - >
+        touch /etc/nginx/.htpasswd
+
+        if [ -n "${BASIC_AUTH_PASS}" ]; then
+          apt-get update &&\
+          apt-get install -y apache2-utils &&\
+          htpasswd -c -b /etc/nginx/.htpasswd $BASIC_AUTH_USER $BASIC_AUTH_PASS
+        fi
+
+        NGINX_CONFIG='
+        server {
+            listen       80 default_server;
+
+            client_max_body_size  100M;
+            proxy_read_timeout 300;
+            proxy_connect_timeout 300;
+            proxy_send_timeout 300;
+
+            location / {
+                auth_basic             "Restricted";
+                auth_basic_user_file   .htpasswd;
+                proxy_http_version    1.1;
+                proxy_pass            http://ipfs:5001/;
+            }
+
+              location /ipfs/ {
+                proxy_http_version    1.1;
+                proxy_pass            http://ipfs:8080/ipfs/;
+            }
+        }
+        '
+
+        echo ${NGINX_CONFIG} > /etc/nginx/conf.d/ipfs.conf
+
+        nginx -g "daemon off;"
 
 profiles:
   compute:
@@ -32,16 +92,23 @@ profiles:
           size: 4Gi
         storage:
           size: 1Gi
+    nginx:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 200Mi
+
+
   placement:
     akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"          
       pricing:
         ipfs:
+          denom: uakt
+          amount: 10000
+        nginx:
           denom: uakt
           amount: 10000
 
@@ -50,3 +117,7 @@ deployment:
     akash:
       profile: ipfs
       count: 1
+  nginx:
+      akash:
+        profile: nginx
+        count: 1
