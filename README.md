@@ -86,6 +86,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
+- [Foundry-RIT AI Training Model Challenge](Foundry-rit-ai-training-model-challenge)
 - [GPT-Neo](gpt-neo)
 - [GPUStack](gpustack)
 - [GPUStack Worker](gpustack-worker)
