@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   vllm:
-    image: vllm/vllm-openai:v0.5.5@sha256:720915f190d686ac4449ef853dd4748153fbc0d45d9fb736a27f3a3e32d9572f
+    image: vllm/vllm-openai:v0.6.2@sha256:730ef3d3c17a217b34cfdbfd99be80b3f459e37ef2fc0c5c43ba70752dad08ae
     expose:
       - port: 8000
         as: 8000
@@ -15,7 +15,6 @@ services:
       - >- 
         vllm serve meta-llama/Meta-Llama-3.1-8B-Instruct
         --tensor-parallel-size 1
-        --gpu-memory-utilization 0.99
     env:
       - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
       #- "NCCL_DEBUG=INFO" # Uncomment to enable NCCL debugging
@@ -53,7 +52,7 @@ profiles:
               nvidia:
                 - model: h100
                 - model: a100
-                - model: rtx4090
+                - model: rtxa6000
   placement:
     dcloud:
       pricing:
