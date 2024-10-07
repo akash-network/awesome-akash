@@ -13,11 +13,35 @@ Note: This tool is currently in the MVP phase.
 Deploying applications can often involve a steep learning curve, particularly when dealing with containerization and CI/CD pipelines. Our tool simplifies this by automating deployments directly from your GitHub repository to the Akash Network. It supports several popular JavaScript frameworks, making it a versatile option for many developers.
 
 ### Supported Frameworks Include:
-- React
-- React + Vite
-- Astro.js
-- Vue.js
-- Simple HTML,CSS and JS application
+
+#### JavaScript Frameworks:
+
+- **React**
+- **Vite-react**
+- **Vue.js**
+- **Astro**
+- **Angular**
+- **Express.js**
+- **Next.js**
+- **Ember.js**
+- **Gatsby.js**
+- **Vite**
+- **VitePress**
+- **Nuxt.js**
+- **Preact**
+- **Ionic React**
+- **Ionic Angular**
+- **Stencil**
+- **Gridsome**
+- **Umi.js**
+- **11ty.js**
+- **Remix**
+- **VuePress**
+
+#### Python Frameworks:
+
+- **Django**
+- **Flask**
 
 ## Key Features That Set Our Tool Apart
 
@@ -50,7 +74,7 @@ For a practical application, here’s how you might set up your SDL file:
 version: "2.0"
 services:
   service-1:
-    image: hoomanhq/automation:0.201
+    image: hoomanhq/automation:0.421
     expose:
       - port: 3000
         as: 80
