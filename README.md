@@ -210,6 +210,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Serverbench](serverbench)
 - [Speedtest by Ookla](speedtest-cli)
 - [Speedtest Tracker](speedtest-tracker)
+- [Persistent Storage benchmarking tool](persistent-storage-performance-testing)
 
 ### Blockchain
 
