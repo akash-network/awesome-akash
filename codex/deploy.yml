@@ -31,6 +31,7 @@ services:
       - PRIV_KEY=
       - CODEX_NAT=
       - CODEX_LOG_LEVEL=debug
+      - CODEX_BLOCK_TTL=30d
     command:
     - sh
     - -c
