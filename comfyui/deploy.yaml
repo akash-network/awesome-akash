@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   app:
-    image: zjuuu/comfyui:0.15
+    image: zjuuu/comfyui:0.17
     expose:
       - port: 8080
         as: 8080
