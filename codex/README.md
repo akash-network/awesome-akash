@@ -14,4 +14,4 @@ Private key is any Ethereum Wallet private key (keep in mind the security risks 
 openssl rand --hex 32
 ```
 
-The environment variable `CODEX_NAT` refers to the public IP of the deployment - once you perform initial deployment (with empty `CODEX_NAT`), check the assigned IP and update the dpeloyment, so that other nodes in the network can connect to your node.
+The environment variable `CODEX_NAT` refers to the public IP of the deployment - once you perform initial deployment (with empty `CODEX_NAT`), check the assigned IP and update the deployment, so that other nodes in the network can connect to your node.
