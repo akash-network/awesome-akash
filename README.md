@@ -356,6 +356,9 @@ Awesome DeFi apps you can deploy on Akash
 - [Keycloak IAM](keycloak-iam)
 - [vaultwarden](vaultwarden)
 
+### Validators
+- [Witness Chain Watchtower](witnesschain-watchtower)
+
 ### Network
 
 - [SoftEther VPN](softether-vpn)
