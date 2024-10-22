@@ -32,7 +32,6 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: h100
                 - model: a100
                 - model: rtx8000
                 - model: v100
