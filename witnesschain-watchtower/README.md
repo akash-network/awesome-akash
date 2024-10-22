@@ -4,7 +4,7 @@ This is a template for running a Witness Chain Watchtower on Akash. It enables u
 
 ## 👀 Usage
 
-To participate, you need to first [register your Challenger Keys](https://docs.witnesschain.com/depin-coordination-layer/proof-of-location/for-depin-node-providers/running-a-watchtower#id-2.-registering-the-challenger-key).  Afterwards, you can use this template to configure and run the Witness Chain watchtower with Akash compute; the watchtower will prove itself first and then turn into a PoL challenger automatically.
+To participate, you need to first [register your Challenger Keys](https://docs.witnesschain.com/depin-coordination-layer/proof-of-location/run-a-watchtower/as-depin-node-provider#id-1.-registering-the-challenger-key).  Afterwards, you can use this template to configure and run the Witness Chain watchtower with Akash compute; the watchtower will prove itself first and then turn into a PoL challenger automatically.
 
 # ⛓️ About [Witnes Chain](http://witnesschain.com/)
 
