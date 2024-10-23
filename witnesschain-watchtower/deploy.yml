@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   witnesschain-watchtower:
-    image: witnesschain/pol-challenger:0.3.4-internal
+    image: witnesschain/pol-challenger:0.3.4-alpha
     expose:
       - port: 80
         as: 80
@@ -59,7 +59,7 @@ services:
       - havePrivateIPv4Address=false
       - havePrivateIPv6Address=false
       - saveResultsInDatabase=false
-      - submitResultsToContract=false
+      - submitResultsToContract=true
       - rpcUrl=https://blue-orangutan-rpc.eu-north-2.gateway.fm
 profiles:
   compute:
