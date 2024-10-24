@@ -266,6 +266,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
+- [Invidious](invidious)
 
 ### Search Engines
 

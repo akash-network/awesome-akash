@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  invidious:
+    image: invidious/invidious:latest
+    env:
+      - DATABASE_URL=postgres://user:password@hostname:5432/invidiousdb
+      - DOMAIN=https://yourdomain.com  # Replace with your domain if applicable
+      - PORT=3000
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+        protocol: http
+
+profiles:
+  compute:
+    invidious:
+      resources:
+        cpu:
+          units: 0.5          # Adjust according to your needs
+        memory:
+          size: 512Mi          # Adjust according to your needs
+        storage:
+          size: 2Gi            # Adjust according to your needs
+  placement:
+    akash:
+      pricing:
+        invidious:
+          denom: uakt
+          amount: 100000        # Adjust according to your budget
+
+deployment:
+  invidious:
+    akash:
+      profile: invidious
+      count: 1
