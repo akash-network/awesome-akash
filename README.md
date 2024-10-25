@@ -77,6 +77,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
+- [Claude AI](claude)
 - [ComfyUI](comfyui)
 - [Dria](dria)
 - [Dolly-v2-12b](dolly-v2-12b)
@@ -161,6 +162,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 -  [Redash Data Charts for Akash Analytics](Redash)
 -  [UFO Sightings](ufo-data-vis)
+- [Kibana](kibana)
 
 ### Databases and Administration
 
