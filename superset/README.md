@@ -1,7 +1,7 @@
 # Superset
-![](image.png)
+![Superset](image.png)
 
-Superset is a modern data exploration and data visualization platform. Superset can replace or augment proprietary business intelligence tools for many teams. Superset integrates well with a variety of data sources.
+[Superset](https://superset.apache.org/) is a modern data exploration and data visualization platform. Superset can replace or augment proprietary business intelligence tools for many teams. Superset integrates well with a variety of data sources.
 
 Superset provides:
 

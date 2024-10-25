@@ -160,9 +160,11 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
   
 ### Data Visualization
 
+-  [Kibana](kibana)
+-  [Metabase](metabase)
 -  [Redash Data Charts for Akash Analytics](Redash)
+-  [Superset](superset)
 -  [UFO Sightings](ufo-data-vis)
-- [Kibana](kibana)
 
 ### Databases and Administration
 
