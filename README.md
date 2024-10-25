@@ -262,7 +262,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Caddy](caddy)
 - [Flame](flame)
 - [Grafana](grafana)
-- [IPFS](ipfs)
 - [Nginx Let's Encrypt Proxy](nginx-letsencrypt-proxy)
 
 ### Media
@@ -332,6 +331,10 @@ Awesome DeFi apps you can deploy on Akash
 - [Discourse](discourse)
 - [TeamSpeak](teamspeak)
 - [Waku](waku)
+
+### Decentralized Storage
+- [Codex](codex)
+- [IPFS](ipfs)
 
 ### Tools
 

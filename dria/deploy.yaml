@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   dkn:
-    image: firstbatch/dkn-compute-node:v0.2.2
+    image: firstbatch/dkn-compute-node:v0.2.14
     expose:
     - port: 80
       as: 80
@@ -26,7 +26,7 @@ services:
     - OLLAMA_AUTO_PULL=true
     - OLLAMA_HOST=http://ollama
     - OLLAMA_PORT=11434
-    - RUST_LOG=none,dkn_compute=debug,ollama_workflows=info
+    - RUST_LOG=none,dkn_compute=debug,dkn_workflows=debug,dkn_p2p=debug,ollama_workflows=info
 
     - DKN_ADMIN_PUBLIC_KEY=0208ef5e65a9c656a6f92fb2c770d5d5e2ecffe02a6aade19207f75110be6ae658
 
