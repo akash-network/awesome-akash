@@ -6,9 +6,9 @@ This is a template for running a Witness Chain Watchtower on Akash. It enables u
 
 To participate, you need to first [register your Challenger Keys](https://docs.witnesschain.com/depin-coordination-layer/proof-of-location/run-a-watchtower/for-independent-node-runners/running-on-akash-cloud#id-1.-registering-the-challenger-key).  Afterwards, you can use this template to configure and run the Witness Chain watchtower with Akash compute; the watchtower will prove itself first and then turn into a PoL challenger automatically.
 
-# ⛓️ About [Witnes Chain](http://witnesschain.com/)
+# ⛓️ About [Witness Chain](http://witnesschain.com/)
 
-[Witnes Chain](http://witnesschain.com/) is a decentralised verifiable observation network of watchtowers; witnessing and processing data from devices connecting physical world, spread all over the globe. This network of observed physical attributes are then programmed for state-of-the-art physical state consensus protocols like proof of location, proof of bandwith etc. Unlocking a whole new programmable witness paradigm. The watchtower network will soon support witnessing and verifying of GPUs and other AI applications as well!
+[Witness Chain](http://witnesschain.com/) is a decentralised verifiable observation network of watchtowers; witnessing and processing data from devices connecting physical world, spread all over the globe. This network of observed physical attributes are then programmed for state-of-the-art physical state consensus protocols like proof of location, proof of bandwith etc. Unlocking a whole new programmable witness paradigm. The watchtower network will soon support witnessing and verifying of GPUs and other AI applications as well!
 
 ## 📖 Documentation
 
