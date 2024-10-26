@@ -232,6 +232,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Fuse Network Node](fuse-network-node)
 - [Injective](injective)
 - [Starknet Node by Juno](juno)
+- [Witness Chain Watchtower](witnesschain-watchtower)
 
 ### Business
 
@@ -363,6 +364,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Budibase](budibase)
 - [Keycloak IAM](keycloak-iam)
 - [vaultwarden](vaultwarden)
+
 
 ### Network
 
