@@ -1,0 +1,49 @@
+version: "2.0"
+
+services:
+  mistral-service:
+    image: ghcr.io/mistralai/mistral-src/vllm:latest
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+        accept:
+          - tcp
+    args:
+      - "--host=0.0.0.0"
+      - "--model=mistralai/Mistral-7B-Instruct-v0.2"
+      - "--tensor-parallel-size=1"
+      - "--gpus=all"
+    resources:
+      cpu:
+        units: 1.0
+      memory:
+        size: 16Gi 
+      storage:
+        size: 100Gi
+      gpus:
+        units: 1  # Set this according to your GPU requirement
+
+profiles:
+  compute:
+    mistral-profile:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 16Gi
+        storage:
+          size: 100Gi
+        gpus:
+          units: 1  # Set this according to your GPU requirement
+
+  placement:
+    mistral-placement:
+      attributes:
+        region: us-west  # Specify region based on available providers with GPU support
+
+deployment:
+  mistral-deployment:
+    mistral-profile:
+      - mistral-placement

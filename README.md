@@ -117,6 +117,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Whisper ASR](whisper-asr-gpu)
 - [Whisper GUI](whisper-gui-gpu)
 - [XLM-roBERTa](XLM-roBERTa)
+- [Mistral 7B](mistral-7b)
+
 
 ### Blogging
 

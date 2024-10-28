@@ -41,4 +41,4 @@ Expected outputs from the commands can be seen below.
 
 ### Example Queries
 
-The following queries are made to answer questions defined in Akash Networks [Sig-Analytics PRD](https://github.com/akash-network/community/blob/main/sig-analytics/prd.md) using the Akash Console Database. More information on the database and schema can be found [here](https://github.com/akash-network/console).
+The following queries are made to answer questions defined in Akash Networks [Sig-Analytics PRD](https://github.com/akash-network/community/blob/main/sig-analytics/prd.md) using the Akash Console Database. More information on the database and schema can be found [here](https://github.com/akash-network/console). 

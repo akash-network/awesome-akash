@@ -1,0 +1,1 @@
+SDL to deploy the Mistral 7B model on Akash.
