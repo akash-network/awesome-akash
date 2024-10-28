@@ -149,6 +149,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
 - [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+-  [Dataiku](dataiku)
 - [Doccano](doccano)
 
 ### CI/CD, DevOps
@@ -162,7 +163,6 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
   
 ### Data Visualization
 
--  [Dataiku](dataiku)
 -  [Kibana](kibana)
 -  [KNIME](knime)
 -  [Metabase](metabase)
