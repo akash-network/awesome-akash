@@ -162,7 +162,9 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
   
 ### Data Visualization
 
+-  [Dataiku](dataiku)
 -  [Kibana](kibana)
+-  [KNIME](knime)
 -  [Metabase](metabase)
 -  [Redash Data Charts for Akash Analytics](Redash)
 -  [Superset](superset)
