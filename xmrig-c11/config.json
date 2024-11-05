@@ -1,5 +1,5 @@
 {
   "$schema": "../config.schema.json",
   "ssh": false,
-  "logoUrl": "https://raw.githubusercontent.com/akash-network/awesome-akash/master/wxmrig-c11/xmrminer.png"
+  "logoUrl": "https://raw.githubusercontent.com/akash-network/awesome-akash/master/xmrig-c11/xmrminer.png"
 }
