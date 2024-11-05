@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   vllm:
-    image: vllm/vllm-openai:v0.5.5@sha256:720915f190d686ac4449ef853dd4748153fbc0d45d9fb736a27f3a3e32d9572f
+    image: vllm/vllm-openai:v0.6.2@sha256:730ef3d3c17a217b34cfdbfd99be80b3f459e37ef2fc0c5c43ba70752dad08ae
     expose:
       - port: 8000
         as: 8000
@@ -12,11 +12,9 @@ services:
       - bash
       - "-c"
     args:
-      - >- 
-        vllm serve meta-llama/Meta-Llama-3.1-405B-Instruct-FP8 --tensor-parallel-size 8 --gpu-memory-utilization 1 --max-model-len=32768 --enable-chunked-prefill=False
+      - vllm serve meta-llama/Llama-3.2-3B-Instruct
     env:
       - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
-      #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
     params:
       storage:
         shm:
@@ -29,13 +27,13 @@ profiles:
     vllm:
       resources:
         cpu:
-          units: 64
+          units: 4
         memory:
-          size: 256Gi
+          size: 16Gi
         storage:
-          - size: 100Gi
+          - size: 10Gi
           - name: data
-            size: 700Gi
+            size: 10Gi
             attributes:
               persistent: true
               class: beta3
@@ -45,14 +43,14 @@ profiles:
               class: ram
               persistent: false
         gpu:
-          units: 8
+          units: 1
           attributes:
             vendor:
               nvidia:
                 - model: h100
                   ram: 80Gi
                 - model: a100
-                  ram: 80Gi
+                - model: rtxa6000
   placement:
     dcloud:
       pricing:

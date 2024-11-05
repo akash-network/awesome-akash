@@ -86,6 +86,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
+- [Foundry-RIT AI Training Model Challenge](Foundry-rit-ai-training-model-challenge)
 - [GPT-Neo](gpt-neo)
 - [GPUStack](gpustack)
 - [GPUStack Worker](gpustack-worker)
@@ -209,6 +210,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Serverbench](serverbench)
 - [Speedtest by Ookla](speedtest-cli)
 - [Speedtest Tracker](speedtest-tracker)
+- [Persistent Storage benchmarking tool](persistent-storage-performance-testing)
 
 ### Blockchain
 
@@ -226,10 +228,12 @@ Awesome DeFi apps you can deploy on Akash
 - [Fuse Network Node](fuse-network-node)
 - [Injective](injective)
 - [Starknet Node by Juno](juno)
+- [Witness Chain Watchtower](witnesschain-watchtower)
 
 ### Business
 
 - [Odoo](odoo)
+- [RAIR-Dapp](RAIR-Dapp)
 
 ### Games
 
@@ -257,7 +261,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Caddy](caddy)
 - [Flame](flame)
 - [Grafana](grafana)
-- [IPFS](ipfs)
 - [Nginx Let's Encrypt Proxy](nginx-letsencrypt-proxy)
 
 ### Media
@@ -327,6 +330,10 @@ Awesome DeFi apps you can deploy on Akash
 - [TeamSpeak](teamspeak)
 - [Waku](waku)
 
+### Decentralized Storage
+- [Codex](codex)
+- [IPFS](ipfs)
+
 ### Tools
 
 - [thirdweb](thirdweb)
@@ -352,6 +359,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Budibase](budibase)
 - [Keycloak IAM](keycloak-iam)
 - [vaultwarden](vaultwarden)
+
 
 ### Network
 

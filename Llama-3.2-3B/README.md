@@ -1,31 +1,39 @@
-Llama 3.1 is the latest iteration of the Llama series, an advanced AI language model developed to understand and generate human-like text. It leverages state-of-the-art machine learning techniques to provide high-quality, context-aware responses.
+# Llama 3.2 3B\
 
-### Key Features
+The Llama 3.2 3B model is a lightweight, text-only version of the Llama 3.2 model, designed to be highly capable with multilingual text generation and tool-calling abilities.
 
-- **Enhanced Natural Language Understanding (NLU)**: Llama 3.1 has significantly improved NLU capabilities, enabling it to comprehend and process complex language patterns more effectively.
-- **Contextual Awareness**: It maintains context over extended conversations, ensuring coherent and relevant responses even in lengthy interactions.
-- **Multilingual Support**: Llama 3.1 supports multiple languages, making it versatile for global applications.
-- **Customizability**: Developers can fine-tune the model on specific datasets to cater to niche requirements, enhancing its adaptability.
+## Key Features
 
-### Technical Specifications
+* Highly capable with multilingual text generation\
+* Tool-calling abilities for direct interaction with external tools and services\
+* Optimized for edge and mobile devices\
+* Supports context length of 128K tokens\
+* Available for fine-tuning and deployment on a variety of platforms\
+* Part of the Llama 3.2 ecosystem, providing seamless integration with other Llama models
 
-- **Architecture**: Transformer-based architecture with advanced attention mechanisms.
-- **Parameters**: The model contains billions of parameters, contributing to its high performance in various NLP tasks.
-- **Training Data**: Trained on a diverse corpus of text, including books, articles, and websites, to ensure a broad understanding of language.
-- **Fine-tuning**: Supports fine-tuning on domain-specific data to improve performance in targeted applications.
+## Technical Specifications
 
-### Performance Metrics
+* Model size: 3B parameters\
+* Context length: 128K tokens\
+* Input type: Text\
+* Output type: Text\
+* Pre-trained on: Large-scale noisy (text) pair data\
+* Fine-tuned on: Medium-scale high-quality in-domain and knowledge-enhanced (text) pair data\
+* Weights: Based on BFloat16 numerics
 
-- **Accuracy**: Achieves high accuracy in language comprehension and generation benchmarks.
-- **Latency**: Optimized for low-latency responses, ensuring real-time interaction capabilities.
-- **Scalability**: Designed to scale efficiently across multiple servers, supporting high-demand applications.
+## Performance Metrics
 
-### Use Cases
+* Outperforms Gemma 2 2.6B and Phi 3.5-mini models on tasks such as following instructions, summarization, prompt rewriting, and tool-use\
+* Competitive with Gemma 2 2.6B model on tasks such as summarization and prompt rewriting
 
-- **Chatbots and Virtual Assistants**: Provides human-like interactions, enhancing user experience.
-- **Content Generation**: Assists in creating articles, reports, and other textual content.
-- **Language Translation**: Offers accurate and context-aware translations across supported languages.
-- **Customer Support**: Automates responses to common queries, improving support efficiency.
+## Use Cases
+
+* Personalized on-device agentic applications with strong privacy\
+* Text summarization and generation\
+* Instruction following and prompt rewriting\
+* Tool-calling for direct interaction with external tools and services\
+* Multilingual text generation and translation
+
 
 ### Serve with vLLM
 
