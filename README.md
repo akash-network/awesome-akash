@@ -368,6 +368,7 @@ Awesome DeFi apps you can deploy on Akash
 - [V2RAY](v2ray)
 - [X-UI](x-ui)
 - [Tor Proxy](tor-proxy)
+- [CJDNS PKT](cjdns-pkt)
 
 ### Databases
 

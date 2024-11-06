@@ -1,0 +1,42 @@
+---
+version: "2.0"
+endpoints:
+ cjdns_endpoint_name: # UNIQUE name, for example "cjdns_dimokus:", and enter this name in line 21.
+    kind: ip
+services:
+  cjdns:
+    image: "declab/cjdns:0.1@sha256:252a1886c3b293fe5dd59fa32cb2b3320d612e3c8c7f7b150602880ec2a29ddb"
+    env: 
+      - "CJDNS_PEERID=PUB_Node_Name" # Peer ID or node name.
+      - "CJDNS_PORT=3479"
+      - "CJDNS_SETUSER=0"
+      - "CJDNS_IPV6=false"
+      - "CJDNS_IPV4=" # Public socket received from the provider, example: "CJDNS_IPV4=123.123.123.123:3479" 
+    expose:
+      - port: 3479
+        as: 3479
+        proto: udp
+        to:
+          - global: true
+            ip: cjdns_endpoint_name # Name from string 4, for example "cjdns_dimokus"
+profiles:
+  compute:
+    cjdns:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        cjdns:
+          denom: uakt
+          amount: 10000
+deployment:
+  cjdns:
+    dcloud:
+      profile: cjdns
+      count: 1
