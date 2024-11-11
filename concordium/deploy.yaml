@@ -77,7 +77,7 @@ services:
           - global: true
     env:
       # Settings that should be customized by the user.
-      - CONCORDIUM_NODE_COLLECTOR_NODE_NAME=pablo-akash
+      - CONCORDIUM_NODE_COLLECTOR_NODE_NAME=Concordium_node
       # Environment specific settings.
       - CONCORDIUM_NODE_COLLECTOR_URL=https://dashboard.mainnet.concordium.software/nodes/post
       # Collection settings.
