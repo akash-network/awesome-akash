@@ -229,6 +229,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Injective](injective)
 - [Starknet Node by Juno](juno)
 - [Witness Chain Watchtower](witnesschain-watchtower)
+- [Concordium node](concordium)
 
 ### Business
 
