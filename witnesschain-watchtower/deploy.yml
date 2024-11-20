@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   witnesschain-watchtower:
-    image: witnesschain/pol-challenger:0.3.4-alpha
+    image: witnesschain/pol-watchtower:0.4-alpha
     expose:
       - port: 80
         as: 80
@@ -50,7 +50,7 @@ services:
       - country=
       - region=
       - city=
-      - radius=
+      - radius=1000
       - privateKey=
       - walletPublicKey=
       - keyType=ethereum
@@ -60,6 +60,7 @@ services:
       - havePrivateIPv6Address=false
       - saveResultsInDatabase=false
       - submitResultsToContract=true
+      - projectName=akash
       - rpcUrl=https://blue-orangutan-rpc.eu-north-2.gateway.fm
 profiles:
   compute:
