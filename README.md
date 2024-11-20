@@ -229,6 +229,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Injective](injective)
 - [Starknet Node by Juno](juno)
 - [Witness Chain Watchtower](witnesschain-watchtower)
+- [Concordium node](concordium)
 
 ### Business
 
@@ -368,6 +369,7 @@ Awesome DeFi apps you can deploy on Akash
 - [V2RAY](v2ray)
 - [X-UI](x-ui)
 - [Tor Proxy](tor-proxy)
+- [CJDNS PKT](cjdns-pkt)
 
 ### Databases
 
