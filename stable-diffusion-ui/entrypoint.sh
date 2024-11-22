@@ -16,5 +16,5 @@ version=$(echo $url | sed 's/.*\([0-9]\.[0-9]\.[0-9]\).*/\1/')
 echo "Stable Diffusion UI version $version downloaded successfully."
 unzip Easy-Diffusion-Linux.zip
 echo "Starting Stable Diffusion UI."
-mv config.json ./easy-diffusion/scripts/config.json
+mv conf.json ./easy-diffusion/scripts/config.json
 cd easy-diffusion ; ./start.sh
