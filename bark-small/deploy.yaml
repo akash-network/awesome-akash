@@ -1,0 +1,59 @@
+---
+version: "2.0"
+services:
+  bark-small:
+    image: alexpedersen/audio-akash:0.1.5
+    expose:
+      - port: 7860
+        as: 7860
+        to:
+          - global: true
+        # accept:
+        #   - cars.ingress.europlots.com
+    params:
+      storage:
+        data:
+          mount: /mnt/
+          readOnly: false
+    # Optional but recommended
+    env:
+      - OUTPUT_DIR=/mnt/output # Use persistent storage for app generated files
+      - HF_HOME=/mnt/huggingface # Use persistent storage for model cache
+      # - PUBLIC_URL=http://provider.europlots.com:31360
+profiles:
+  compute:
+    bark-small:
+      resources:
+        cpu:
+          units: 6
+        memory:
+          size: 16Gi
+        storage:
+          - size: 4GB
+          - name: data
+            size: 40GB
+            attributes:
+              persistent: true
+              class: beta3
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                # min 8gb GPU, for example:
+                # - model: rtx4090
+                # - model: rtx4080
+                # - model: rtx4070
+                # - model: rtx3080
+                # - model: rtx3070
+  placement:
+    dcloud:
+      pricing:
+        bark-small:
+          denom: uakt
+          amount: 1000
+deployment:
+  bark-small:
+    dcloud:
+      profile: bark-small
+      count: 1
