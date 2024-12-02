@@ -53,6 +53,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
+- [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
 - [Daila](daila)
