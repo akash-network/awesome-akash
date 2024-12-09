@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   node:
-    image: quay.io/vpavlin0/radicle-seed@sha256:1dfb7d052466317f1e869be0b1ff3ee67c99491bea436ae59717fbaf3c3f466e
+    image: quay.io/vpavlin0/radicle-seed@sha256:d5070f85cd965bfbb4f9b22415b6ed19d9922c5afaa3e8a3320f5c32e2714b7e
     
     expose:
       - port: 8776
