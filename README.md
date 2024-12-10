@@ -303,6 +303,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Nanominer](nanominer-c11)
 - [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
+- [Quai Network](quai-gpu-miner)
 - [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
