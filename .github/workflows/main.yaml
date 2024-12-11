@@ -37,7 +37,7 @@ jobs:
         uses: bats-core/bats-action@main
       - name: Execute tests
         run:
-          bats -T -p ./javascript/main.bats
+          bats -T -p ./automatic-deployment-CICD-template/javascript/main.bats
           
   build:
     if: github.event_name == 'push'
