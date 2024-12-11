@@ -76,7 +76,6 @@ TY=(
   "https://github.com/kohrongying/11ty-blog-starter (11ty)"
   "https://github.com/5t3ph/11ty-netlify-jumpstart (11ty)"
   "https://github.com/11ty/11ty-website (11ty)"
-  "https://github.com/AleksandrHovhannisyan/aleksandrhovhannisyan.com (11ty)"
 )
 
 IONICREACT=(
