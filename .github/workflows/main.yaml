@@ -2,11 +2,16 @@ name: Shellcheck, Testing and GitHub Container Registry CI
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-  push:  
+    paths:
+      - 'automatic-deployment-CICD-template/**'
+  push:
+    paths:
+      - 'automatic-deployment-CICD-template/**'
     
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: consoleCICD
+
 jobs:
   shellcheck:
     name: Shellcheck
@@ -18,7 +23,7 @@ jobs:
         uses: ludeeus/action-shellcheck@master
         with:
           severity: error
-          scandir: './automatic-deployment-CICD-template'  # Only scan your project directory
+          scandir: './automatic-deployment-CICD-template'
           
   bats:
     strategy:
