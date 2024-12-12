@@ -53,6 +53,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
+- [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
 - [Daila](daila)
@@ -95,6 +96,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [InvokeAI](invoke-ai-gpu)
 - [Llama-2-70B](Llama-2-70B)
 - [Llama-3-8B](Llama-3-8B)
+- [Llama-3-Groq-8B-Tool-Use](Llama-3-Groq-8B-Tool-Use)
 - [Llama-3-70B](Llama-3-70B)
 - [Llama-3.1-8B](Llama-3.1-8B)
 - [Llama-3.1-405B-AWQ-INT4](Llama-3.1-405B-AWQ-INT4)
@@ -237,6 +239,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Injective](injective)
 - [Starknet Node by Juno](juno)
 - [Witness Chain Watchtower](witnesschain-watchtower)
+- [Concordium node](concordium)
 
 ### Business
 
@@ -309,6 +312,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Nanominer](nanominer-c11)
 - [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
+- [Quai Network](quai-gpu-miner)
 - [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
@@ -377,6 +381,7 @@ Awesome DeFi apps you can deploy on Akash
 - [V2RAY](v2ray)
 - [X-UI](x-ui)
 - [Tor Proxy](tor-proxy)
+- [CJDNS PKT](cjdns-pkt)
 
 ### Databases
 
