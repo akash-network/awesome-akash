@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  knime:
+    image: "knime/knime"  # Docker image for KNIME
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true   # Allow global access to KNIME UI
+        proto: tcp
+
+profiles:
+  compute:
+    knime-server:
+      resources:
+        cpu:
+          units: 1      # Adjust CPU units as needed
+        memory:
+          size: 2Gi     # Allocate at least 2GB of memory for KNIME
+        storage:
+          size: 5Gi     # Allocate storage space
+  placement:
+    west-coast:
+      attributes:
+        host: akash       # Provider attribute
+      pricing:
+        knime-server:
+          denom: uakt
+          amount: 100     # Specify the bid price per block
+
+deployment:
+  knime:
+    west-coast:
+      profile: knime-server
+      count: 1

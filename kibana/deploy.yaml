@@ -1,0 +1,36 @@
+---
+version: "2.0"
+
+services:
+  kibana:
+    image: kibana:latest # Specify the desired version of Kibana
+    env:
+      - ELASTICSEARCH_HOSTS=http://your_elasticsearch_url:9200  # Replace with actual Elasticsearch endpoint
+    expose:
+      - port: 5601 # Kibana default port
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    kibana:
+      resources:
+        cpu:
+          units: 0.5  # Adjust according to expected workload
+        memory:
+          size: 2Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      pricing:
+        kibana:
+          denom: uakt
+          amount: 100000  # Adjust based on the cost you want to set
+
+deployment:
+  kibana:
+    akash:
+      profile: kibana
+      count: 1

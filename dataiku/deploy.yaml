@@ -1,0 +1,34 @@
+---
+
+version: "2.0"
+
+services:
+  dataiku:
+    image: "dataiku/dss:latest"  # Replace with the specific Dataiku DSS image version if needed
+    expose:
+      - port: 10000              # The default port for Dataiku DSS
+        as: 80
+        to:
+          - global
+    env:
+      DSS_PORT: 10000             # Dataiku DSS environment variable for the port
+      DSS_USER: "dataiku"         # Default user for the DSS
+      DSS_LICENSE_KEY: "your-license-key" # Dataiku license key (replace this with a valid license key)
+    args:
+      - "start"                   # Command to start Dataiku DSS
+
+profiles:
+  compute:
+    dataiku:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: "4Gi"             # Memory allocation for the Dataiku instance
+        storage:
+          size: "10Gi"            # Storage space required for Dataiku installation and data processing
+
+deployment:
+  dataiku:
+    profile: dataiku
+    count: 1                      # Number of instances to deploy
