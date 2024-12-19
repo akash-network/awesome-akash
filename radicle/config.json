@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://seed.radicle.xyz/raw/rad:z371PVmDHdjJucejRoRYJcDEvD5pp/2dd07ea8d1cffdbef4e3b97eb084a625f04bad46/assets/images/logo-big.svg"
+}

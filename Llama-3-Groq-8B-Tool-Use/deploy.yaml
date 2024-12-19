@@ -1,0 +1,65 @@
+---
+version: "2.0"
+services:
+  vllm:
+    image: vllm/vllm-openai:v0.6.2@sha256:55a88146a4da0b6e193431b5b1d3492dfd7bebdc16919df4d031273e85a6157c
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args: # see https://docs.vllm.ai/en/latest/models/engine_args.html for all avaibale arguments
+      - >-
+        vllm serve Groq/Llama-3-Groq-8B-Tool-Use --gpu-memory-utilization 0.99
+    env:
+      - "HF_TOKEN=" # Hugging Face API token required to download restricted or private models
+      #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
+    params:
+      storage:
+        data:
+          mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
+          readOnly: false
+        shm:
+          mount: /dev/shm
+profiles:
+  compute:
+    vllm:
+      resources:
+        cpu:
+          units: 6
+        memory:
+          size: 16Gi
+        storage:
+          - size: 10Gi
+          - name: data
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                # - model: a100
+                # - model: h100
+                # - model: rtx4090
+  placement:
+    dcloud:
+      pricing:
+        vllm:
+          denom: uakt
+          amount: 10000
+deployment:
+  vllm:
+    dcloud:
+      profile: vllm
+      count: 1
