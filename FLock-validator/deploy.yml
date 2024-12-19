@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   flock-validater:
-    image: ghcr.io/flock-io/llm-loss-validator:v0.0.6
+    image: ghcr.io/flock-io/llm-loss-validator:latest
     env:
       - FLOCK_API_KEY=
       # support multi_task, such as 1,2,3
