@@ -6,14 +6,14 @@ on:
       - 'automatic-deployment-CICD-template/**'
   push:
     branches:
-      - main
+      - master  # Changed from main to master
     paths:
       - 'automatic-deployment-CICD-template/**'
     
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: consoleCICD
-  IMAGE_TAG: v1.0.0  # Hardcoded tag
+  IMAGE_TAG: v1.0.0
 
 jobs:
   shellcheck:
@@ -48,7 +48,7 @@ jobs:
           bats -T -p ./automatic-deployment-CICD-template/javascript/main.bats
           
   build:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'  # Changed from main to master
     name: Push Docker image to GitHub Container Registry
     runs-on: ubuntu-latest
     permissions:
@@ -67,12 +67,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
-        
       - name: Build and push Docker images
         id: push
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
           context: ./automatic-deployment-CICD-template
           dockerfile: ./automatic-deployment-CICD-template/Dockerfile
-          push: ${{ github.ref == 'refs/heads/main' }}
+          push: ${{ github.ref == 'refs/heads/master' }}  # Changed from main to master
           tags: ghcr.io/${{ github.repository }}/consoleCICD:${{ env.IMAGE_TAG }}
