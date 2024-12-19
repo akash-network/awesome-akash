@@ -5,6 +5,8 @@ on:
     paths:
       - 'automatic-deployment-CICD-template/**'
   push:
+    branches:
+      - main  # Only trigger on pushes to main
     paths:
       - 'automatic-deployment-CICD-template/**'
     
@@ -45,7 +47,7 @@ jobs:
           bats -T -p ./automatic-deployment-CICD-template/javascript/main.bats
           
   build:
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'  # Only build on push to main
     name: Push Docker image to GitHub Container Registry
     runs-on: ubuntu-latest
     permissions:
@@ -76,6 +78,6 @@ jobs:
         with:
           context: ./automatic-deployment-CICD-template
           dockerfile: ./automatic-deployment-CICD-template/Dockerfile
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}  # Only push if on main branch
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
