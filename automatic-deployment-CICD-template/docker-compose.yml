@@ -1,0 +1,32 @@
+services:
+  automation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: javascript-automation
+    image: javascript-automation 
+    container_name: automation
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    environment:
+      # MANDATORY VARIABLES
+      - "REPO_URL=https://github.com/moeyua/astro-theme-typography" # change it
+      - "BRANCH_NAME=main" # change branch name if different
+        #- "BUILD_DIRECTORY=httpserver/download"
+      #- "APP_NAME=server.py"
+
+      # OPTIONAL VARIABLES
+      #- FRONTEND_FOLDER=client # change it if your frontend folder is differents
+      #- "BUILD_DIRECTORY=.vercel/output" # change it if your build directory is different
+      #- "NODE_VERSION=14" # specify custom node version to overide the latest version
+      #- "PNPM_VERSION=7" # specify custom pnpm version to overide the latest version
+      #- "COMMIT_HASH=973" # rollback to a specific commit hash
+      #- "DISABLE_PULL=yes" # disable fetching latest changes
+      #- "INSTALL_COMMAND=npm install"
+      
+      # access private repositories from different sources
+      #- "GITHUB_ACCESS_TOKEN=123"
+      #- "GITLAB_ACCESS_TOKEN=123"
+      #- "BITBUCKET_ACCESS_TOKEN=123"
+      #- "BITBUCKET_USER=user"
