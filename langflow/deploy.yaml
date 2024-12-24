@@ -62,7 +62,6 @@ profiles:
       signedBy:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"  # Allows deployment by any of these authorized accounts.
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
       pricing:
         langflow: 
           denom: uakt
