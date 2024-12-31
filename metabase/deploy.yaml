@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  metabase:
+    image: metabase/metabase:v0.45.2 # specify the Metabase version
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    metabase:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+
+  placement:
+    westcoast:
+      attributes:
+        region: us-west
+      signedBy:
+        anyOf:
+          - "akash1....." # Add the Akash provider’s address
+      pricing:
+        metabase:
+          denom: uakt
+          amount: 100 # set based on the provider's cost structure
+
+deployment:
+  metabase:
+    westcoast:
+      profile: metabase
+      count: 1

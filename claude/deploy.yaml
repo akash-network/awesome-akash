@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  claude:
+    image: anthropic/claude:latest
+    expose:
+      - port: 5000                # Replace with the actual port used by Claude, if different.
+        as: 80
+        to:
+          - global
+
+profiles:
+  compute:
+    claude-compute:
+      resources:
+        cpu:
+          units: 1                # Adjust based on your expected load
+        memory:
+          size: 16Gi               # Adjust based on Claude's requirements
+        storage:
+          size: 50Gi               # Adjust based on Claude's requirements
+
+  placement:
+    claude-placement:
+      pricing:
+        claude:
+          denom: uakt
+          amount: 100             # Adjust price based on your budget
+
+deployment:
+  claude:
+    claude-compute:
+      profile: claude-compute
+      count: 1
+    claude-placement:
+      profile: claude-placement

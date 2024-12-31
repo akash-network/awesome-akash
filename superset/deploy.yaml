@@ -1,0 +1,43 @@
+---
+version: "2.0"
+
+services:
+  superset:
+    image: apache/superset:latest
+    expose:
+      - port: 8088
+        as: 80
+        to:
+          - global: true
+    env:
+      SUPERSET_ENV: production
+      SUPERSET_SECRET_KEY: <YOUR_SECRET_KEY>
+      DATABASE_URL: <YOUR_DATABASE_URL>  # Replace with your database URL
+    args:
+      - "--timeout 60"
+
+profiles:
+  compute:
+    superset:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+
+  placement:
+    akash:
+      pricing:
+        superset:
+          denom: uakt
+          amount: 100  # Set the price you are willing to pay
+
+deployment:
+  superset:
+    superset:
+      profile:
+        compute: superset
+        placement: akash
+      count: 1

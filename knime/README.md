@@ -1,0 +1,1 @@
+Configuration for deploying KNIME as a Docker container on Akash’s decentralized cloud infrastructure.
