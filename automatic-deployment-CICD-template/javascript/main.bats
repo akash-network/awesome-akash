@@ -9,7 +9,6 @@ setup() {
 
 
 NEXT=(
-  "https://github.com/HemanthGangula/next-js-app.git (Next.js)"
   "https://github.com/AykutSarac/jsoncrack.com.git (Next.js)"
   "https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web.git (Next.js)"
 )
