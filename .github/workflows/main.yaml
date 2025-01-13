@@ -12,8 +12,8 @@ on:
     
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: consoleCICD
-  IMAGE_TAG: v1.0.0
+  IMAGE_NAME: consolecicd
+  IMAGE_TAG: v1
 
 jobs:
   shellcheck:
@@ -74,4 +74,4 @@ jobs:
           context: ./automatic-deployment-CICD-template
           dockerfile: ./automatic-deployment-CICD-template/Dockerfile
           push: ${{ github.ref == 'refs/heads/master' }}  # Changed from main to master
-          tags: ghcr.io/${{ github.repository }}/consoleCICD:${{ env.IMAGE_TAG }}
+          tags: ghcr.io/akashnetwork/awesome-akash/consolecicd:${{ env.IMAGE_TAG }}
