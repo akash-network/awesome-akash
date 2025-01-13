@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   service-1:
-    image: ghcr.io/akashnetwork/awesome-akash/consolecicd:v1
+    image: ghcr.io/akash-network/awesome-akash/consolecicd:v1
     expose:
       - port: 3000
         as: 80
