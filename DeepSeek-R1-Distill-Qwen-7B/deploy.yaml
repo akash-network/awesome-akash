@@ -48,7 +48,7 @@ profiles:
               nvidia:
                 - model: a100
                 - model: h100
-                - model: 4090
+                - model: rtx4090
   placement:
     dcloud:
       pricing:
