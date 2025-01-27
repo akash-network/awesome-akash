@@ -46,6 +46,8 @@ profiles:
           attributes:
             vendor:
               nvidia:
+                - model: a100
+                - model: h100
   placement:
     dcloud:
       pricing:

@@ -46,6 +46,7 @@ profiles:
           attributes:
             vendor:
               nvidia:
+                - model: h200
   placement:
     dcloud:
       pricing:
