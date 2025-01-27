@@ -55,10 +55,6 @@ To support the research community, we have open-sourced DeepSeek-R1-Zero, DeepSe
 
 **NOTE: Before running DeepSeek-R1 series models locally, we kindly recommend reviewing the [Usage Recommendation](#usage-recommendations) section.**
 
-<p align="center">
-  <img width="80%" src="figures/benchmark.jpg">
-</p>
-
 ## 2. Model Summary
 
 ---
