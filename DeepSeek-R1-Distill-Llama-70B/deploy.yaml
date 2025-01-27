@@ -32,7 +32,7 @@ profiles:
         storage:
           - size: 50Gi
           - name: data
-            size: 100Gi
+            size: 200Gi
             attributes:
               persistent: true
               class: beta3
