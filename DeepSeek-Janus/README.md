@@ -62,7 +62,7 @@
 
 ## News
 
-**2025.01.27**: Janus-Pro is released, an advanced version of Janus, improving both multimodal understanding and visual generation significantly. See [paper](./janus_pro_tech_report.pdf)
+**2025.01.27**: Janus-Pro is released, an advanced version of Janus, improving both multimodal understanding and visual generation significantly. See [paper](https://raw.githubusercontent.com/deepseek-ai/Janus/refs/heads/main/janus_pro_tech_report.pdf)
 
 **2024.11.13**: JanusFlow is released, a new unified model with rectified flow for image generation. See [paper](https://arxiv.org/abs/2411.07975), [demo](https://huggingface.co/spaces/deepseek-ai/JanusFlow-1.3B) and [usage](https://github.com/deepseek-ai/Janus?tab=readme-ov-file#janusflow).
 
@@ -73,13 +73,13 @@
 
 ## 1. Introduction
 
-<a href="./janus_pro_tech_report.pdf"><b>Janus-Pro: Unified Multimodal Understanding and
+<a href="https://raw.githubusercontent.com/deepseek-ai/Janus/refs/heads/main/janus_pro_tech_report.pdf"><b>Janus-Pro: Unified Multimodal Understanding and
 Generation with Data and Model Scaling</b></a>
 
 **Janus-Pro** is an advanced version of the previous work Janus. Specifically, Janus-Pro incorporates (1) an optimized training strategy, (2) expanded training data, and (3) scaling to larger model size. With these improvements, Janus-Pro achieves significant advancements in both multimodal understanding and text-to-image instruction-following capabilities, while also enhancing the stability of text-to-image generation.
 
 <div align="center">
-<img alt="image" src="images/teaser_januspro.png" style="width:90%;">
+<img alt="image" src="https://raw.githubusercontent.com/deepseek-ai/Janus/refs/heads/main/images/teaser_januspro.png" style="width:90%;">
 </div>
 
 
@@ -88,7 +88,7 @@ Generation with Data and Model Scaling</b></a>
 **Janus** is a novel autoregressive framework that unifies multimodal understanding and generation. It addresses the limitations of previous approaches by decoupling visual encoding into separate pathways, while still utilizing a single, unified transformer architecture for processing. The decoupling not only alleviates the conflict between the visual encoder’s roles in understanding and generation, but also enhances the framework’s flexibility. Janus surpasses previous unified model and matches or exceeds the performance of task-specific models. The simplicity, high flexibility, and effectiveness of Janus make it a strong candidate for next-generation unified multimodal models.
 
 <div align="center">
-<img alt="image" src="images/teaser.png" style="width:90%;">
+<img alt="image" src="https://raw.githubusercontent.com/deepseek-ai/Janus/refs/heads/main/images/teaser.png" style="width:90%;">
 </div>
 
 <a href="https://arxiv.org/abs/2411.07975"><b>JanusFlow: Harmonizing Autoregression and Rectified Flow for Unified Multimodal Understanding and Generation</b></a>
@@ -96,7 +96,7 @@ Generation with Data and Model Scaling</b></a>
 **JanusFlow** introduces a minimalist architecture that integrates autoregressive language models with rectified flow, a state-of-the-art method in generative modeling. Our key finding demonstrates that rectified flow can be straightforwardly trained within the large language model framework, eliminating the need for complex architectural modifications. Extensive experiments show that JanusFlow achieves comparable or superior performance to specialized models in their respective domains, while significantly outperforming existing unified approaches across standard benchmarks. This work represents a step toward more efficient and versatile vision-language models.
 
 <div align="center">
-<img alt="image" src="images/teaser_janusflow.png" style="width:90%;">
+<img alt="image" src="https://raw.githubusercontent.com/deepseek-ai/Janus/refs/heads/main/images/teaser_janusflow.png" style="width:90%;">
 </div>
  
 

@@ -1,9 +1,13 @@
-# Use NVIDIA CUDA base image with Python
-FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04
+# Use the PyTorch base image
+FROM pytorch/pytorch:latest
+
+# Set the working directory inside the container
+WORKDIR /app
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
+ENV HF_HOME=/root/.cache/huggingface
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,17 +16,15 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# Create and set working directory
-WORKDIR /app
-
-# Clone the Janus repository
+# Copy the current directory into the container
 RUN git clone https://github.com/deepseek-ai/Janus.git .
 
-# Install Python requirements
-RUN pip3 install --no-cache-dir .[gradio]
+# Install necessary Python packages
+RUN pip install -e .
+RUN pip install gradio diffusers
 
 # Expose the port that Gradio typically uses
 EXPOSE 7860
 
 # Run the Gradio demo
-CMD ["python3", "demo/app_januspro.py"]
+CMD ["python", "demo/app_januspro.py"]
