@@ -54,9 +54,6 @@ profiles:
         janus-gradio:
           denom: uakt
           amount: 1000000
-        sglang2:
-          denom: uakt
-          amount: 1000000
 deployment:
   janus-gradio:
     dcloud:
