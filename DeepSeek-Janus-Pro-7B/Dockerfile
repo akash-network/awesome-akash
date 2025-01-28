@@ -19,7 +19,7 @@ WORKDIR /app
 RUN git clone https://github.com/deepseek-ai/Janus.git .
 
 # Install Python requirements
-RUN pip3 install --no-cache-dir -e .[gradio]
+RUN pip3 install --no-cache-dir .[gradio]
 
 # Expose the port that Gradio typically uses
 EXPOSE 7860
