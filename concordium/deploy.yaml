@@ -68,7 +68,7 @@ services:
       - 'apt-get update && apt-get upgrade -y; apt install nano -y; /concordium-node --config-dir=/mnt/ --data-dir=/mnt/ --genesis-data-file=/mainnet-genesis.dat --bootstrap-node=bootstrap.mainnet.concordium.software:8888'
 
   mainnet-node-collector:
-    image: concordium/mainnet-node:6.3.0-0
+    image: concordium/mainnet-node:7.0.5-0
     params:
     expose:
       - port: 20000
@@ -106,7 +106,7 @@ profiles:
           size: 8Gi
         storage:
           - name: data
-            size: 200Gi
+            size: 300Gi
             attributes:
               persistent: true
               class: beta3

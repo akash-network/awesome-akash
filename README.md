@@ -7,6 +7,15 @@ Instructions on how to deploy the SDL files in this repository can be found [her
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
+## How to add a template to the console api <!-- omit in toc -->
+
+1. Create a new folder in the root directory with the name of the template.
+2. Add the `deploy.yaml` file to the folder.
+3. Add the `README.md` file to the folder.
+4. (Optional) There's a `config.json` file that you can add to the template folder to add a custom config for the template, like a logo url. It follows the same schema as the [config.schema.json](config.schema.json) file. (ex. [DeepSeek config](DeepSeek-R1/config.json)).
+5. Add the name of the template with the name of the template that will be displayed in the console api and name of the template folder under the [Table of Contents](#table-of-contents) section in the appropriate category. (ex. `[DeepSeek-R1](#DeepSeek-R1)`)
+6. Done! There's a 5 minutes cache time for the console api to update.
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Official](#official)
@@ -53,6 +62,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
+- [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
 - [Daila](daila)
@@ -78,6 +88,14 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
 - [ComfyUI](comfyui)
+- [DeepSeek-Janus](DeepSeek-Janus)
+- [DeepSeek-R1](DeepSeek-R1)
+- [DeepSeek-R1-Distill-Qwen-7B](DeepSeek-R1-Distill-Qwen-7B)
+- [DeepSeek-R1-Distill-Qwen-1.5B](DeepSeek-R1-Distill-Qwen-1.5B)
+- [DeepSeek-R1-Distill-Qwen-14B](DeepSeek-R1-Distill-Qwen-14B)
+- [DeepSeek-R1-Distill-Qwen-32B](DeepSeek-R1-Distill-Qwen-32B)
+- [DeepSeek-R1-Distill-Llama-70B](DeepSeek-R1-Distill-Llama-70B)
+- [DeepSeek-R1-Distill-Llama-8B](DeepSeek-R1-Distill-Llama-8B)
 - [Dria](dria)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
@@ -94,6 +112,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [InvokeAI](invoke-ai-gpu)
 - [Llama-2-70B](Llama-2-70B)
 - [Llama-3-8B](Llama-3-8B)
+- [Llama-3-Groq-8B-Tool-Use](Llama-3-Groq-8B-Tool-Use)
 - [Llama-3-70B](Llama-3-70B)
 - [Llama-3.1-8B](Llama-3.1-8B)
 - [Llama-3.1-405B-AWQ-INT4](Llama-3.1-405B-AWQ-INT4)
@@ -156,11 +175,11 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Github Runner](ghrunner)
 - [Radicle](radicle)
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
-  
+
 ### Data Visualization
 
--  [Redash Data Charts for Akash Analytics](Redash)
--  [UFO Sightings](ufo-data-vis)
+- [Redash Data Charts for Akash Analytics](Redash)
+- [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
@@ -301,6 +320,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Nanominer](nanominer-c11)
 - [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
+- [Quai Network](quai-gpu-miner)
 - [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
@@ -332,6 +352,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Waku](waku)
 
 ### Decentralized Storage
+
 - [Codex](codex)
 - [IPFS](ipfs)
 
@@ -360,7 +381,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Budibase](budibase)
 - [Keycloak IAM](keycloak-iam)
 - [vaultwarden](vaultwarden)
-
 
 ### Network
 
