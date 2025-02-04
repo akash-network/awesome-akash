@@ -1,5 +1,5 @@
 {
   "$schema": "../config.schema.json",
   "ssh": false,
-  "logoUrl": "https://raw.githubusercontent.com/akash-network/awesome-akash/master/dria/Dria.png"
+  "logoUrl": "https://raw.githubusercontent.com/firstbatchxyz/.github/refs/heads/master/branding/dria-logo-square.svg"
 }
