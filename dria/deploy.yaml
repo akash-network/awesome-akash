@@ -3,32 +3,32 @@ version: "2.0"
 
 services:
   dkn:
-    image: firstbatch/dkn-compute-node:v0.3.2
+    image: firstbatch/dkn-compute-node:v0.3.5
     expose:
-    - port: 80
-      as: 80
-      to:
-        - global: true
+      - port: 80
+        as: 80
+        to:
+          - global: true
     env:
-    # You need to provide a wallet private key here
-    - DKN_WALLET_SECRET_KEY=
-    # You can modify list of supported/enabled models - check the resources, might need a bump with more/different models
-    - DKN_MODELS=,llama3.1:latest
+      # You need to provide a wallet private key here
+      - DKN_WALLET_SECRET_KEY=
+      # You can modify list of supported/enabled models - check the resources, might need a bump with more/different models
+      - DKN_MODELS=,llama3.1:latest
 
-    # You can provide API keys to integrate with other services
-    - OPENAI_API_KEY=
-    - GEMINI_API_KEY
-    - OPENROUTER_API_KEY=
+      # You can provide API keys to integrate with other services
+      - OPENAI_API_KEY=
+      - GEMINI_API_KEY
+      - OPENROUTER_API_KEY=
 
-    # These are optional (not model related) but will make you return better results
-    - SERPER_API_KEY=
-    - JINA_API_KEY=
+      # These are optional (not model related) but will make you return better results
+      - SERPER_API_KEY=
+      - JINA_API_KEY=
 
-    # You probably don't want to touch these
-    - OLLAMA_AUTO_PULL=true
-    - OLLAMA_HOST=http://ollama
-    - OLLAMA_PORT=11434
-    - RUST_LOG=none,dkn_compute=debug,dkn_workflows=debug,dkn_p2p=debug,ollama_workflows=info
+      # You probably don't want to touch these
+      - OLLAMA_AUTO_PULL=true
+      - OLLAMA_HOST=http://ollama
+      - OLLAMA_PORT=11434
+      - RUST_LOG=none,dkn_compute=debug,dkn_workflows=debug,dkn_p2p=debug,ollama_workflows=info
 
   ollama:
     image: ollama/ollama@sha256:a45c1ae866f0ad115b5b2b5048cb80e02a8c49c36f60d49f449b0d6a3825cdbf #this is the image `latest` pointed to on 2024-08-19, update if needed
@@ -61,7 +61,7 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: rtx3090  #or e.g. rtx3070, 8Gi
+                - model: rtx3090 #or e.g. rtx3070, 8Gi
                   ram: 24Gi
                   interface: pcie
   placement:
@@ -70,16 +70,15 @@ profiles:
         dkn:
           denom: uakt
           amount: 100000
-        ollama: 
+        ollama:
           denom: uakt
           amount: 100000
 deployment:
   dkn:
     dcloud:
       profile: dkn
-      count: 1 
+      count: 1
   ollama:
     dcloud:
       profile: ollama
-      count: 1 
-
+      count: 1
