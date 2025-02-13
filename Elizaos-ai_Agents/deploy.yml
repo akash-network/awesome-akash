@@ -1,0 +1,47 @@
+---
+version: "2.0"
+services:
+  eiza:
+    image: fenildocker/elizaos-test
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+    command:
+      - pnpm 
+      - start
+    args:
+      - ""
+    env:
+      - DEEPSEEK_API_KEY=         # add akashchat api key
+      - DEEPSEEK_API_URL=https://chatapi.akash.network/api/v1
+      - SMALL_DEEPSEEK_MODEL=   #choose model from chatapi.akash.network
+      - MEDIUM_DEEPSEEK_MODEL= #choose model from chatapi.akash.network
+      - LARGE_DEEPSEEK_MODEL= #choose model from chatapi.akash.network
+      - SERVER_PORT=3000
+profiles:
+  compute:
+    eiza:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 5Gb
+        storage:
+          - size: 16Gb
+  placement:
+    dcloud:
+      pricing:
+        eiza:
+          denom: uakt
+          amount: 10000
+deployment:
+  eiza:
+    dcloud:
+      profile: eiza
+      count: 3
