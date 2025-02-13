@@ -7,7 +7,7 @@
 **Next-Gen AI Agent Deployment Framework**  
 *Scalable • Decentralized • Cost-Efficient*
 
-![ElizaOS Demo](https://raw.githubusercontent.com/akash-network/awesome-akash/master/Elizaos-ai_Agents/image.png)
+![ElizaOS Demo](https://raw.githubusercontent.com/fenilmodi00/awesome-akash/refs/heads/master/Elizaos-ai_Agents/image.png)
 
 ## 🌟 Features
 
