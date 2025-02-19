@@ -68,6 +68,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Daila](daila)
 - [Faster Whisper](fast-whisper-cpu)
 - [Flowise](flowise)
+- [Eliza AI Agent](elizaos-ai_Agents)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
 - [Ollama](ollama-cpu)
