@@ -29,14 +29,20 @@ To launch an Eliza Agent using Venice API through Akash, you need to follow the 
 * View the "Logs" to ensure the Eliza agent properly connects to twitter and starts up
 * Identify the port that is being forwarded to "3000" and click on it. You should see "Welcome, this is the REST API!"
 * Interact with your character through the API. 
-    1. Identify the agent id: curl --location 'http://<provider>:<port>/agents'
-    2. Chat with the agent: 
-    
+    Identify the agent id:
+    ```
+    curl --location 'http://<provider>:<port>/agents'
+    ```
+  
+    Chat with the agent:
+    ```
     curl --location 'http://<provider>:<port>/<agentid>/message' \
     --header 'Content-Type: application/json' \
     --data '{
         "text": "what is your name"
         }'
+    ```
+  
 * Go to the twitter account that was configured and see what your agent is posting!
 
 ## Documentation
