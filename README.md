@@ -77,6 +77,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
+- [Venice-ElizaOS](Venice-ElizaOS)
 - [Weaviate](weaviate)
 - [Whisper ASR](whisper-asr-cpu)
 - [Whisper GUI](whisper-gui-cpu)
