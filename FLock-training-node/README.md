@@ -4,7 +4,7 @@ This is a template for running a FLock Training Node on Akash. It enables users 
 
 [train.flock.io](http://train.flock.io/) is the gateway to [FLock.io](http://flock.io/)'s decentralized AI training platform, AI Arena. It is currently on incentivised testnet, and all participants who have earned FML rewards will receive mainnet airdrops.
 
-To participate, you need to first [get whitelisted](https://blog.flock.io/news/trainflock), acquire [FML test tokens](https://train.flock.io/faucet) and test tokens for Base Sepolia, then [stake FML](https://train.flock.io/stake) on the task you wish to train models for.  Afterwards, you can use this template to run training tasks with Akash compute; the script automates the entire Training Node process, from downloading training dataset, model training, uploading to a Hugging Face repo, and submitting the training task.
+To participate,verify your github on [train.flock.io](http://train.flock.io/) after which you will be sent 30FML, acquire test tokens for Base Sepolia, then [stake FML](https://train.flock.io/stake) on the task you wish to train models for.  Afterwards, you can use this template to run training tasks with Akash compute; the script automates the entire Training Node process, from downloading training dataset, model training, uploading to a Hugging Face repo, and submitting the training task.
 
 # 🚀 About [FLock.io](http://flock.io/)
 
