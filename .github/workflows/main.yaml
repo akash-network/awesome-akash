@@ -1,0 +1,77 @@
+name: Shellcheck, Testing and GitHub Container Registry CI
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'automatic-deployment-CICD-template/**'
+  push:
+    branches:
+      - master  # Changed from main to master
+    paths:
+      - 'automatic-deployment-CICD-template/**'
+    
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: consolecicd
+  IMAGE_TAG: v1
+
+jobs:
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          severity: error
+          scandir: './automatic-deployment-CICD-template'
+          
+  bats:
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["latest"]
+    runs-on: ubuntu-latest
+    env:
+      BATS_LIB_PATH: "/usr/lib"
+      TERM: xterm
+    name: Script testing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Bats and Bats-libs
+        uses: bats-core/bats-action@main
+      - name: Execute tests
+        run:
+          bats -T -p ./automatic-deployment-CICD-template/javascript/main.bats
+          
+  build:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'  # Changed from main to master
+    name: Push Docker image to GitHub Container Registry
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      attestations: write
+      id-token: write
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Build and push Docker images
+        id: push
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: ./automatic-deployment-CICD-template
+          dockerfile: ./automatic-deployment-CICD-template/Dockerfile
+          push: ${{ github.ref == 'refs/heads/master' }}  # Changed from main to master
+          tags: ghcr.io/akash-network/awesome-akash/consolecicd:${{ env.IMAGE_TAG }}

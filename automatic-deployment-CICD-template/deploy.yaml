@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   service-1:
-    image: hoomanhq/automation:0.421
+    image: ghcr.io/akash-network/awesome-akash/consolecicd:v1
     expose:
       - port: 3000
         as: 80

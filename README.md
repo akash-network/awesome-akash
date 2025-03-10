@@ -7,6 +7,15 @@ Instructions on how to deploy the SDL files in this repository can be found [her
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
+## How to add a template to the console api <!-- omit in toc -->
+
+1. Create a new folder in the root directory with the name of the template.
+2. Add the `deploy.yaml` file to the folder.
+3. Add the `README.md` file to the folder.
+4. (Optional) There's a `config.json` file that you can add to the template folder to add a custom config for the template, like a logo url. It follows the same schema as the [config.schema.json](config.schema.json) file. (ex. [DeepSeek config](DeepSeek-R1/config.json)).
+5. Add the name of the template with the name of the template that will be displayed in the console api and name of the template folder under the [Table of Contents](#table-of-contents) section in the appropriate category. (ex. `[DeepSeek-R1](#DeepSeek-R1)`)
+6. Done! There's a 5 minutes cache time for the console api to update.
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Official](#official)
@@ -59,6 +68,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Daila](daila)
 - [Faster Whisper](fast-whisper-cpu)
 - [Flowise](flowise)
+- [Eliza AI Agent](elizaos-ai_Agents)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
 - [Ollama](ollama-cpu)
@@ -67,6 +77,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
+- [Venice-ElizaOS](Venice-ElizaOS)
 - [Weaviate](weaviate)
 - [Whisper ASR](whisper-asr-cpu)
 - [Whisper GUI](whisper-gui-cpu)
@@ -79,6 +90,14 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
 - [ComfyUI](comfyui)
+- [DeepSeek-Janus](DeepSeek-Janus)
+- [DeepSeek-R1](DeepSeek-R1)
+- [DeepSeek-R1-Distill-Qwen-7B](DeepSeek-R1-Distill-Qwen-7B)
+- [DeepSeek-R1-Distill-Qwen-1.5B](DeepSeek-R1-Distill-Qwen-1.5B)
+- [DeepSeek-R1-Distill-Qwen-14B](DeepSeek-R1-Distill-Qwen-14B)
+- [DeepSeek-R1-Distill-Qwen-32B](DeepSeek-R1-Distill-Qwen-32B)
+- [DeepSeek-R1-Distill-Llama-70B](DeepSeek-R1-Distill-Llama-70B)
+- [DeepSeek-R1-Distill-Llama-8B](DeepSeek-R1-Distill-Llama-8B)
 - [Dria](dria)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
@@ -105,6 +124,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Open GPT](open-gpt)
 - [Open WebUI](open-webui-gpu)
 - [PrivateGPT](privategpt-gpu)
+- [Qwen-QwQ-32B](QwQ-32B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
@@ -158,11 +178,11 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Github Runner](ghrunner)
 - [Radicle](radicle)
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
-  
+
 ### Data Visualization
 
--  [Redash Data Charts for Akash Analytics](Redash)
--  [UFO Sightings](ufo-data-vis)
+- [Redash Data Charts for Akash Analytics](Redash)
+- [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
@@ -335,6 +355,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Waku](waku)
 
 ### Decentralized Storage
+
 - [Codex](codex)
 - [IPFS](ipfs)
 
@@ -363,7 +384,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Budibase](budibase)
 - [Keycloak IAM](keycloak-iam)
 - [vaultwarden](vaultwarden)
-
 
 ### Network
 
