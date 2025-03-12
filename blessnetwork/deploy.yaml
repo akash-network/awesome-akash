@@ -1,0 +1,45 @@
+# this is an example of launching a node on akash
+---
+version: "2.0"
+
+services:
+  web:
+    image: ghcr.io/blessnetwork/b7s:0.6.6.patch3
+    env:
+      # Node configuration
+      - NODE_ROLE=worker
+      # S3 Storage credentials
+      - AWS_ACCESS_KEY_ID=s3_id
+      - AWS_SECRET_ACCESS_KEY=s3_key
+      # Blessnetwork authentication
+      - KEY_PATH=my_backup_key_path
+      - KEY_PASSWORD=my_key_password
+      # Network bootstrap
+      - BOOT_NODES=/ip4/143.244.211.194/tcp/9010/p2p/12D3KooWGuBya7RYHTzZmR7uLJYUXffSPuBUPKnmYSfsgwyjqFuw
+    expose:
+      - port: 9527
+        to:
+          - global: true
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1024Mi
+        storage:
+          size: 512Mi
+
+  placement:
+    dcloud:
+      pricing:
+        web:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  web:
+    dcloud:
+      profile: web
+      count: 1
