@@ -6,7 +6,7 @@ Codex recently announced launch of `testnet` - please follow a [Discord](https:/
 
 ## Deploy
 
-You will need to provide a `PRIV_KEY` and `CODEX_NAT` environment variables in the deployment.
+You will need to provide a `PRIV_KEY` and `PUBLIC_IP` environment variables in the deployment.
 
 Private key is any Ethereum Wallet private key (keep in mind the security risks of pasting your key into an Akash deployment manifest!). You can generate one using any wallet or by using a CLI command
 
@@ -14,4 +14,4 @@ Private key is any Ethereum Wallet private key (keep in mind the security risks 
 openssl rand --hex 32
 ```
 
-The environment variable `CODEX_NAT` refers to the public IP of the deployment - once you perform initial deployment (with empty `CODEX_NAT`), check the assigned IP and update the deployment, so that other nodes in the network can connect to your node.
+The environment variable `PUBLIC_IP` refers to the public IP of the deployment - once you perform initial deployment (with empty `PUBLIC_IP`), check the assigned IP and update the deployment, so that other nodes in the network can connect to your node.
