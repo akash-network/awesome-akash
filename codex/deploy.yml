@@ -7,7 +7,7 @@ endpoints:
 
 services:
   codex:
-    image: codexstorage/nim-codex:0.1.6
+    image: codexstorage/nim-codex:0.2.0
     expose:
 #    - port: 8080 # You probably don't want to expose the API globally:) Consider using reverse proxy with some auth?
 #      as: 8080
