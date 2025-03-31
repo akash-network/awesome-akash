@@ -1,5 +1,7 @@
 # Codex
 
+This deployment only deploys Codex the node, refer to [codex/full](../codex/full/) for full setup.
+
 [Codex](https://codex.storage) is a durable, decentralised storage protocol designed to safeguard the world's most valuable information. Join the testnet to help secure a resilient digital future.
 
 Codex recently announced launch of `testnet` - please follow a [Discord](https://discord.gg/codex-storage) guide to participate!
