@@ -356,8 +356,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Decentralized Storage
 
-- [Codex (node)](codex/node)
-- [Codex (node & UI)](codex/full)
+- [Codex](codex)
 - [IPFS](ipfs)
 
 ### Tools

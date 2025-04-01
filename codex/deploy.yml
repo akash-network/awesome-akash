@@ -27,10 +27,10 @@ services:
         - service: nginx
     env:
       - DATA_DIR=/codex/data
-      - ETH_PRIVATE_KEY=
+      - ETH_PRIVATE_KEY=   # Wallet private key to be used to purchase storage from Codex Marketplace
       - PUBLIC_IP=
-      - CODEX_LOG_LEVEL=debug
-      - CODEX_BLOCK_TTL=30d
+ #     - CODEX_LOG_LEVEL=debug
+ #     - CODEX_BLOCK_TTL=30d
     command:
     - sh
     - -c
@@ -81,6 +81,10 @@ services:
         to:
           - global: true
             ip: nodeip2
+        http_options:
+          max_body_size: 1073741824
+          read_timeout: 500000
+          send_timeout: 510000
       - port: 443
         as: 443
         to:
@@ -88,8 +92,8 @@ services:
             ip: nodeip2
     env:
       - BASIC_AUTH_USER=codex
-      - BASIC_AUTH_PASS=passsecret
-      - DOMAIN=
+      - BASIC_AUTH_PASS=passsecret #CHANGE THIS!!!
+      - DOMAIN=         # DNS A record pointing to the PUBLIC_IP defined above, it is needed to get Let's Encrypt certificates to secure your communication with the Codex App and the API
     command:
       - sh
       - -c
@@ -113,18 +117,41 @@ services:
             proxy_connect_timeout 500000;
             proxy_send_timeout 510000;
 
-              location / {
+            location / {
                 auth_basic             "Restricted";
                 auth_basic_user_file   .htpasswd;
                 proxy_http_version    1.1;
                 proxy_pass            http://codexapp:80/;
             }
 
-              location /api/ {
-                auth_basic             "Restricted";
-                auth_basic_user_file   .htpasswd;
+            location /api/ {
+                if ($request_method = "OPTIONS") {
+                    add_header Access-Control-Allow-Origin $http_origin always;
+
+                    add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" always;
+                    add_header Access-Control-Allow-Headers "Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Content-Disposition" always;
+                    add_header Access-Control-Allow-Credentials true;
+                    add_header Content-Length 0;
+                    add_header Content-Type text/plain;
+                    return 200;
+                }
+
+                if ($request_method = "GET") {
+                  add_header Access-Control-Allow-Origin $http_origin always;
+                  add_header Access-Control-Allow-Credentials true;
+                }
+
+                if ($request_method = "POST") {
+                  add_header Access-Control-Allow-Origin $http_origin always;
+                  add_header Access-Control-Allow-Credentials true;
+                }
+
+
                 proxy_http_version    1.1;
                 proxy_pass            http://codex:8080/api/;
+
+                auth_basic             "Restricted";
+                auth_basic_user_file   .htpasswd;
             }
         }
         '
