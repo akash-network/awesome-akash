@@ -1,13 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft-07/schema",
-  "title": "Morpheus Lumerin Node template config",
-  "description": "Morpheus Lumerin Node template config",
-  "type": "object",
-  "properties": {
-    "logoUrl": {
-      "description": "https://raw.githubusercontent.com/akash-network/awesome-akash/master/morpheus-lumerin-node/morpheus-lumerin-node.jpg",
-      "type": "string"
-    }
-  },
-  "required": ["logoUrl"]
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://raw.githubusercontent.com/akash-network/awesome-akash/master/morpheus-lumerin-node/morpheus_logo.png"
 }
