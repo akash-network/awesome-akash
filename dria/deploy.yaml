@@ -4,7 +4,7 @@ version: "2.0"
 services:
   dkn:
     # see images at: https://hub.docker.com/r/firstbatch/dkn-compute-node/tags
-    image: firstbatch/dkn-compute-node:v0.4.0
+    image: firstbatch/dkn-compute-node:v0.4.1
     expose:
       - port: 80
         as: 80
