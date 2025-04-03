@@ -71,6 +71,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Eliza AI Agent](elizaos-ai_Agents)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
+- [Morpheus Lumerin Node](morpheus-lumerin-node)
 - [Ollama](ollama-cpu)
 - [Open WebUI](open-webui-cpu)
 - [PrivateGPT](privategpt-cpu)

@@ -1,0 +1,60 @@
+---
+version: "2.0"
+services:
+  morpheus-lumerin-node:
+    image: ghcr.io/lumerin-protocol/morpheus-lumerin-node:v3.0.0
+    expose:
+      - port: 8082
+        as: 8082
+        to:
+          - global: true
+      - port: 3333
+        as: 3333
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - COOKIE_CONTENT=admin:superpassword
+      - WALLET_PRIVATE_KEY=
+      - WEB_PUBLIC_URL=http://localhost:8082
+      - WEB_ADDRESS=0.0.0.0:8082
+      - PROXY_ADDRESS=0.0.0.0:3333
+      - >-
+        MODELS_CONFIG_CONTENT={
+          "$schema": "https://raw.githubusercontent.com/Lumerin-protocol/Morpheus-Lumerin-Node/v3.0.0/proxy-router/internal/config/models-config-schema.json",
+          "models": [
+            {
+              "modelId": "<MODEL_ID>",
+              "modelName": "<MODEL_NAME",
+              "apiType": "openai",
+              "apiUrl": "<http://llmprovider.dns_or_ip:port>",
+              "concurrentSlots": 8,
+              "capacityPolicy": "simple"
+            }
+          ]
+        }
+      - ETH_NODE_CHAIN_ID=42161
+      - DIAMOND_CONTRACT_ADDRESS=0xDE819AaEE474626E3f34Ef0263373357e5a6C71b
+      - MOR_TOKEN_ADDRESS=0x092bAaDB7DEf4C3981454dD9c0A0D7FF07bCFc86
+      - BLOCKSCOUT_API_URL=https://arbitrum.blockscout.com/api/v2
+profiles:
+  compute:
+    morpheus-lumerin-node:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        morpheus-lumerin-node:
+          denom: uakt
+          amount: 10000
+deployment:
+  morpheus-lumerin-node:
+    dcloud:
+      profile: morpheus-lumerin-node
+      count: 1
