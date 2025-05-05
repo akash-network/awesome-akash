@@ -1,0 +1,57 @@
+---
+version: "2.0"
+
+services:
+  anubis:
+    image: ghcr.io/techarohq/anubis:latest
+    expose:
+    - port: 8080
+      as: 80
+      proto: tcp
+      to:
+        - global: true
+    env:
+      - BIND=:8080
+      - DIFFICULTY=4
+      - METRICS_BIND=:9090
+      - SERVE_ROBOTS_TXT=true
+      - TARGET=http://nginx
+     # - POLICY_FNAME=/data/cfg/botPolicy.yaml
+      - OG_PASSTHROUGH=true
+      - OG_EXPIRY_TIME=24h
+
+  nginx:
+    image: nginx
+    expose:
+    - port: 80
+      as: 80
+      to:
+        - service: anubis
+ 
+
+ 
+profiles:
+  compute:
+    anubis:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 200Mi
+
+    
+  placement:
+    dcloud:
+      pricing:
+        anubis:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  anubis:
+    dcloud:
+      profile: anubis
+      count: 1
+

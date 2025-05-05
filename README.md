@@ -371,6 +371,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Tools
 
+- [anubis](anubis)
 - [thirdweb](thirdweb)
 - [authsteem](authsteem)
 - [Code-Server](code-server)
