@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   app:
-    image: zjuuu/comfyui:0.17
+    image: quay.io/vpavlin0/comfyui@sha256:7004b016a86612da13273dabdfbbf021202f16362aaf71c794502696af424e45
     expose:
       - port: 8080
         as: 80
