@@ -1,0 +1,66 @@
+---
+version: "2.0"
+services:
+  app:
+    image: andrey01/bitcoin-knots:v28.1.0@sha256:f272b90297f89d9fe819548b5928367396359e3eea172d622758b90151ce12a3
+    expose:
+      - port: 8332
+        as: 80
+        accept:
+          - bitcoinrpc.changeme.com
+        to:
+          - global: true
+      - port: 8333
+        to:
+          - global: true
+    env:
+      - RPCUSER=user
+      - RPCPASSWORD=changeme123
+      - BITCOIN_ARGS=-txindex=1 -dbcache=2048
+      # BITCOIN_ARGS defaults to "-txindex=1" when it isn't set
+      # and it defaults to the following args when RPCUSER & RPCPASSWORD are set:
+      # -rpcauthfile=/root/.bitcoin/rpcauth.conf -server=1 -rpcbind=0.0.0.0 -rpcallowip=0.0.0.0/0
+      # the image script generates the rpcauth.conf file.
+    ## Uncomment to debug
+    #command:
+    #  - /bin/sh
+    #  - "-c"
+    #args:
+    #  - >-
+    #    sleep infinity
+    ## echo $RPCUSER $RPCPASSWORD
+    ## /usr/local/bin/rpcauth.py "$RPCUSER" "$RPCPASSWORD" --output /root/.bitcoin/rpcauth.conf >/dev/null
+    ## bitcoind -rpcauthfile=/root/.bitcoin/rpcauth.conf -txindex=1 -dbcache=2048 -server=1 -rpcbind=0.0.0.0 -rpcallowip=0.0.0.0/0
+    params:
+      storage:
+        data:
+          # For persistent storage
+          mount: /root
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 8Gi
+        storage:
+          - size: 10Gi
+          - name: data
+            size: 1024Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1

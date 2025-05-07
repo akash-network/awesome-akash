@@ -246,6 +246,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Blockchain
 
+- [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
