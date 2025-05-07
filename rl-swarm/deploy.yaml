@@ -1,0 +1,66 @@
+---
+version: "2.0"
+services:
+  rl-swarm:
+    image: ghcr.io/cosyndev/rl-swarm-akash:0.0.7 # See https://github.com/COSYNDEV/rl-swarm-akash/pkgs/container/rl-swarm-akash for latest version
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      #- PEER_MULTI_ADDRS="/ip4/38.101.215.13/tcp/30002/p2p/QmQ2gEXoPJg6iMBSUFWGzAabS2VhnzuS782Y637hGjfsRJ"
+      #- HOST_MULTI_ADDRS="/ip4/0.0.0.0/tcp/38331"
+      - "IDENTITY_PATH=/root/.cache/swarm.pem"
+      - "CONNECT_TO_TESTNET=true"
+      - HF_HUB_DOWNLOAD_TIMEOUT=120
+      - "PARAM_B=32" # Allowed values: 0.5, 1.5, 7, 32, 72
+      - "USE_BIG_SWARM=true" # Allowed values: true, false
+      #- "HF_TOKEN=" # HF token for model upload to hub
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache
+          readOnly: false
+profiles:
+  compute:
+    rl-swarm:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 256Gi
+        storage:
+          - size: 100Gi
+          - name: data
+            size: 500Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                  ram: 80Gi
+                - model: a100
+                  ram: 80Gi
+  placement:
+    dcloud:
+      pricing:
+        rl-swarm:
+          denom: uakt
+          amount: 1000000
+deployment:
+  rl-swarm:
+    dcloud:
+      profile: rl-swarm
+      count: 1
