@@ -6,7 +6,7 @@ Run a [Bitcoin Knots](https://bitcoinknots.org) full node on the Akash Network w
 
 ```
 
-andrey01/bitcoin-knots\:v28.1.0\@sha256\:f272b90297f89d9fe819548b5928367396359e3eea172d622758b90151ce12a3
+andrey01/bitcoin-knots:v28.1.0@sha256:f272b90297f89d9fe819548b5928367396359e3eea172d622758b90151ce12a3
 
 ```
 
