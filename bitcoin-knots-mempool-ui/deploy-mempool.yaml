@@ -13,11 +13,12 @@ services:
       - port: 8332
         to:
           - service: api
+          - service: mempoolelectrs
       - port: 8333
         to:
           - global: true
     env:
-      # Make sure to update CORE_RPC_USERNAME & CORE_RPC_PASSWORD for "api" service when updating RPCUSER & RPCPASSWORD
+      # Make sure to update CORE_RPC_USERNAME & CORE_RPC_PASSWORD for "api" service and "mempoolelectrs" service's --cookie <user>:<pass> when updating RPCUSER & RPCPASSWORD for "app" service!
       - RPCUSER=user
       - RPCPASSWORD=changeme123
       - BITCOIN_ARGS=-txindex=1 -dbcache=2048
@@ -41,6 +42,54 @@ services:
           # For persistent storage
           mount: /root
 
+  mempoolelectrs:
+    image: mempool/electrs:v3.2.0
+    expose:
+      # when using MEMPOOL_BACKEND=electrum & ELECTRUM_* (in "api" service)
+      - port: 50001
+        to:
+          - service: api
+      # when using MEMPOOL_BACKEND=esplora & ESPLORA_REST_API_URL (in "api" service)
+      #- port: 3000
+      #  to:
+      #    - service: api
+    ## Uncomment to debug
+    #command:
+    #  - /bin/sh
+    #  - "-c"
+    #args:
+    #  - >-
+    #    sleep infinity
+    ##  apt --no-install-recommends -y install net-tools procps iproute2 ncdu file bsdextrautils less
+    ##  echo >/dev/tcp/app/8332
+    ##  curl -s -u user:changeme123 -X POST -H 'Content-Type: application/json' --data '{"jsonrpc":"1.0","id":"curl","method":"getblockchaininfo","params":[]}' http://app:8332
+    command:
+      - /bin/sh
+      - "-c"
+    # --cookie <user>:<pass> - should be matching RPCUSER & RPCPASSWORD set in the "app" service
+    # --precache-threads [default: 4 * CORE_COUNT]
+    # (NOTE: CORE_COUNT is the number of vCPUs assigned to the container via K8s CPU limit;
+    # in this case: 4 cores → 4 * 4 = 16 threads)
+    args:
+      - >-
+        /bin/electrs
+        --address-search
+        --cookie user:changeme123
+        --db-dir /electrs
+        --network mainnet
+        --electrum-rpc-addr 0.0.0.0:50001
+        --http-addr 0.0.0.0:3000
+        --cors '*'
+        --daemon-rpc-addr app:8332
+        --jsonrpc-import
+        --precache-threads 16
+        --electrum-txs-limit 1000000
+        -v
+    params:
+      storage:
+        data:
+          mount: /electrs
+
   web:
     image: mempool/frontend:latest
     expose:
@@ -56,6 +105,13 @@ services:
     args:
       - >-
         /patch/entrypoint.sh ./wait-for db:3306 --timeout=720 -- nginx -g 'daemon off;'
+    # debug:
+    # echo >/dev/tcp/db/3306
+    # curl http://api:8999/api/v1/blocks/tip/height
+    # (1 tx) time -p curl http://api:8999/api/v1/address/bc1pe635ss7xaqj44czuz0sxfz8v6cpp8w3fmmk2cp62htwawcart9pssm8twq
+    # (+3k txs) time -p curl http://api:8999/api/v1/address/126cLS46uhg5KuKFeaQMpSjnPq8gBy44S6
+    # (+400k txs) time -p curl http://api:8999/api/v1/address/bc1qryhgpmfv03qjhhp2dj8nw8g4ewg08jzmgy3cyx
+    # https://mempool.space/docs/api/rest
     env:
       - FRONTEND_HTTP_PORT=8080
       - BACKEND_MAINNET_HTTP_HOST=api
@@ -75,13 +131,40 @@ services:
     args:
       - >-
         ./wait-for-it.sh db:3306 --timeout=720 --strict -- ./start.sh
+    # debug:
+    # echo >/dev/tcp/db/3306
+    # echo >/dev/tcp/app/8332
+    # echo >/dev/tcp/mempoolelectrs/50001
+    # mysql -u root -padmin -e "SHOW GRANTS FOR 'mempool'@'%';"
+    # mysql -u mempool -pmempool -D mempool -e "SELECT * FROM blocks LIMIT 10\G"
+    # mysql -u mempool -pmempool -D mempool -e "SELECT height, hash, blockTimestamp FROM blocks ORDER BY height DESC LIMIT 10\G"
+    # mysql -u root -padmin -e "SELECT table_schema AS 'Database', ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS 'Size (MB)' FROM information_schema.tables GROUP BY table_schema ORDER BY \`Size (MB)\` DESC;"
     env:
-      - MEMPOOL_BACKEND=none
+      # Use the high-performance Electrum protocol for backend access
+      # mempool/electrs (Blockstream's Esplora fork) supports both Electrum and Esplora (REST), but Electrum is preferred
+      - MEMPOOL_BACKEND=electrum
+      - ELECTRUM_HOST=mempoolelectrs
+      - ELECTRUM_PORT=50001
+      - ELECTRUM_TLS_ENABLED=false
+
+      # Note: electrs will not be responsive until bitcoind ("app" service) has fully synced.
+      # During initial sync, address lookups and mempool-related queries may fail temporarily.
+
+      # Alternatively, to use the REST API backend (not recommended):
+      #- MEMPOOL_BACKEND=esplora
+      #- ESPLORA_REST_API_URL=http://mempoolelectrs:3000
+
+      # Backend may still rely on bitcoind ("app" service) for certain calls/fallback while electrum is still initializing, so set CORE_RPC_* regardless
       - CORE_RPC_HOST=app
       - CORE_RPC_PORT=8332
-      # should be matching RPCUSER & RPCPASSWORD set in the "app" service
+      # Must match RPCUSER & RPCPASSWORD set in the "app" service
       - CORE_RPC_USERNAME=user
       - CORE_RPC_PASSWORD=changeme123
+
+      # To disable both electrs and esplora and connect only to bitcoind:
+      # 1. Set MEMPOOL_BACKEND=none
+      # 2. Remove or comment out the "mempoolelectrs" service entirely
+
       - DATABASE_ENABLED=true
       - DATABASE_HOST=db
       - DATABASE_DATABASE=mempool
@@ -120,11 +203,27 @@ profiles:
         cpu:
           units: 4.0
         memory:
-          size: 8Gi
+          # minimum 12Gi for bitcoind Bitcoin Knots (tested on May 11, 2025)
+          size: 16Gi
         storage:
-          - size: 10Gi
+          - size: 1Gi
           - name: data
             size: 1024Gi
+            attributes:
+              persistent: true
+              class: beta3
+    mempoolelectrs:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          # minimum 24Gi (tested on May 11, 2025)
+          size: 32Gi
+        storage:
+          - size: 1Gi
+          - name: data
+            # minimum 3Ti (tested on May 11, 2025)
+            size: 4096Gi
             attributes:
               persistent: true
               class: beta3
@@ -135,7 +234,7 @@ profiles:
         memory:
           size: 2Gi
         storage:
-          size: 4Gi
+          size: 2Gi
     api:
       resources:
         cpu:
@@ -143,10 +242,10 @@ profiles:
         memory:
           size: 4Gi
         storage:
-          size: 10Gi
+          size: 8Gi
           #- size: 1Gi
           #- name: cache
-          #  size: 10Gi
+          #  size: 8Gi
           #  attributes:
           #    persistent: true
           #    class: beta3
@@ -169,6 +268,9 @@ profiles:
         app:
           denom: uakt
           amount: 10000
+        mempoolelectrs:
+          denom: uakt
+          amount: 5000
         web:
           denom: uakt
           amount: 5000
@@ -183,6 +285,10 @@ deployment:
   app:
     akash:
       profile: app
+      count: 1
+  mempoolelectrs:
+    akash:
+      profile: mempoolelectrs
       count: 1
   web:
     akash:
