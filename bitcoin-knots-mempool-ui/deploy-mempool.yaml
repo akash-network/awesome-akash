@@ -17,6 +17,10 @@ services:
       - port: 8333
         to:
           - global: true
+      # auxiliary port (e.g. for rclone serve to restore backup)
+      - port: 8080
+        to:
+          - global: true
     env:
       # Make sure to update CORE_RPC_USERNAME & CORE_RPC_PASSWORD for "api" service and "mempoolelectrs" service's --cookie <user>:<pass> when updating RPCUSER & RPCPASSWORD for "app" service!
       - RPCUSER=user
@@ -26,7 +30,7 @@ services:
       # and it defaults to the following args when RPCUSER & RPCPASSWORD are set:
       # -rpcauthfile=/root/.bitcoin/rpcauth.conf -server=1 -rpcbind=0.0.0.0 -rpcallowip=0.0.0.0/0
       # the image script generates the rpcauth.conf file.
-    ## Uncomment to debug
+    ### Uncomment to debug or restore/backup
     #command:
     #  - /bin/sh
     #  - "-c"
@@ -49,23 +53,28 @@ services:
       - port: 50001
         to:
           - service: api
-    ## Uncomment to debug
-    #command:
-    #  - /bin/sh
-    #  - "-c"
+      # auxiliary port (e.g. for rclone serve to restore backup)
+      - port: 8080
+        to:
+          - global: true
+    ### Uncomment to debug or restore/backup
     #args:
     #  - >-
     #    sleep infinity
+    #
+    # Useful for debugging:
     ##  apt --no-install-recommends -y install net-tools procps iproute2 ncdu file bsdextrautils less
     ##  echo >/dev/tcp/app/8332
     ##  curl -s -u user:changeme123 -X POST -H 'Content-Type: application/json' --data '{"jsonrpc":"1.0","id":"curl","method":"getblockchaininfo","params":[]}' http://app:8332
-    command:
-      - /bin/sh
-      - "-c"
+    #
+    # Notes:
     # --cookie <user>:<pass> - should be matching RPCUSER & RPCPASSWORD set in the "app" service
     # --precache-threads [default: 4 * CORE_COUNT]
     # (NOTE: CORE_COUNT is the number of vCPUs assigned to the container via K8s CPU limit;
     # in this case: 4 cores → 4 * 4 = 16 threads)
+    command:
+      - /bin/sh
+      - "-c"
     args:
       - >-
         /bin/electrs
