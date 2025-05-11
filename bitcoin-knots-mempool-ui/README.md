@@ -99,7 +99,124 @@ This setup enables a fully integrated block explorer UI, REST API, and WebSocket
 
 > **Note:** Persistent backend cache (`/backend/cache`) is currently **not backed by a persistent volume** due to permission issues with `USER 1000` and root-owned persistent storage (Ceph) mounts. The cache functionality itself still works, but it is **ephemeral** and will be lost on Pod restart. You can rebuild the Docker image with `USER root` to enable persistent volume mounting, though this reduces container isolation and is not recommended for production ([ref](https://github.com/mempool/mempool/blob/v3.2.1/docker/backend/Dockerfile#L43)).
 
-![Mempool](mempool.png)
+![Mempool Main](mempool1-main.png)
+
+![Mempool Addr](mempool2-addr.png)
+
+![Mempool TX](mempool3-tx.png)
+
+---
+
+### ⚡ Why Use `mempool/electrs`?
+
+`mempool/electrs` is Blockstream's Esplora fork used for address lookups.
+
+When using **bitcoind alone as the backend**, the Mempool UI does **not support address lookups** and will show errors like:
+
+> ❌ `405 Method Not Allowed: Address lookups cannot be used with bitcoind as backend.`
+> ❌ *"Error loading address data. There are too many transactions on this address, more than your backend can handle."*
+
+To enable full **address lookup support**, we integrate [**mempool/electrs**](https://github.com/mempool/electrs) — the same high-performance backend used by [mempool.space](https://mempool.space).
+
+This Electrum server enables:
+
+* Rich **transaction history per address**
+* Fast lookup performance (even for addresses with thousands of UTXOs)
+* Better UI support for wallets and explorers
+
+#### Backend Options for Address Lookups
+
+| Backend           | Address Lookup  | Notes                                                               |
+| ----------------- | --------------- | ------------------------------------------------------------------- |
+| `bitcoind`        | ❌ No           | Basic Esplora-only mode — no address history                        |
+| `romanz/electrs`  | ⚠️ Limited       | Lightweight, but struggles with high-UTXO addresses                 |
+| `Fulcrum`         | ✅ Yes          | More scalable, but not officially supported by mempool developers   |
+| `mempool/electrs` | ✅ Best choice  | Official high-performance fork for full mempool.space compatibility |
+
+We recommend `mempool/electrs` for **production deployments** or if you need **address-level transaction history**.
+
+---
+
+### 🧠 Electrum Sync Dependency
+
+`mempool/electrs` uses `--jsonrpc-import`, which connects to `bitcoind` via RPC instead of reading `blk*.dat` files directly. This means:
+
+* You do **not** need to mount raw `.dat` files or share storage between Pods.
+* You **must** wait for `bitcoind` to fully sync before Electrum becomes responsive. Fully sync can take a day and ~728GiB disk space (as of May 8, 2025).
+
+Until the sync is complete:
+
+* Address lookups will return errors
+* The Mempool UI may appear unresponsive
+* The mempoolelectrs service backend will log messages like:
+
+```
+WARN - waiting for bitcoind sync and mempool load to finish: 816535/895785 blocks, verification progress: 76.456%, mempool loaded: true
+```
+
+---
+
+### ⚠️ Known Issues
+
+> ⚠️ **Slow first-time address queries**: When using `mempool/electrs`, querying addresses with large transaction histories (50k+ txs) can take **several minutes** on the first request. Subsequent requests are much faster (seconds), suggesting RocksDB cache warming. This performance issue is [under investigation](https://gist.github.com/andy108369/4559d42f7189e8e277acb2d8f87516b7) — cache size appears limited to 8 MB and may not be configurable in the current release.
+
+---
+
+### 🔍 Under the Hood: What Happens After Deployment
+
+When you deploy the full `deploy-mempool.yaml` SDL (Bitcoin Knots + Mempool stack), here’s what happens behind the scenes:
+
+1. **`app` (bitcoind)**
+   The `app` service begins downloading the full Bitcoin blockchain into `/root/.bitcoin`.
+   ⚠️ This can take **1–2 days** depending on provider disk and bandwidth.
+   💾 As of **May 8, 2025**, full sync requires \~**766 GiB** of disk space.
+
+2. **`mempoolelectrs` (efficient Electrum indexer)**
+   This service **waits for `bitcoind` to fully sync** before it starts. It uses `--jsonrpc-import` to communicate with `bitcoind` via RPC — no raw `.dat` file access is needed.
+
+3. **Indexing Phase**
+   Once sync is complete, `mempoolelectrs` starts **indexing the entire blockchain**, writing to its own RocksDB store under `/electrs`.
+   ⚠️ This indexing process may take several hours and will consume up to **1.5 TiB** of storage after compaction. However, during the compaction phase, twice more - **up to 3.0 TiB** of temporary space may be required — so we recommend provisioning a volume of at least **3-4 TiB** to avoid out-of-disk errors.
+
+4. **`api` and `web` services**
+
+   * The **`web` UI** talks to the `api` backend and MariaDB (`db`).
+   * The **`api` service** queries the `mempoolelectrs` Electrum API (`50001`) for transaction/address/block data.
+     If Electrum is unavailable or still syncing, the `api` service falls back to `bitcoind` (using the `CORE_RPC_*` config).
+
+5. **`db` (MariaDB)**
+   Used by the Mempool backend for caching and statistics.
+   If the API loses connection to `db`, the UI will freeze or lag behind.
+   If possible, ensure `api` and `db` are scheduled on the **same node** to avoid cross-node latency or packet loss.
+
+---
+
+### 🧪 Runtime Tips
+
+* ✅ Wait for `bitcoind` to finish syncing before expecting Electrum or Mempool UI to respond
+* ✅ See the logs on `api`, `mempoolelectrs` services to diagnose startup delays / sync progress / issues
+* ✅ You can use `curl http://api:8999/api/v1/blocks/tip/height` inside itself or inside the `web` Pod to verify sync progress
+* ⚠️ If Mempool UI gets stuck on an old block height, the cause is usually DB connection loss or Electrum still syncing / starting up (verify size of /electrs directory is growing)
+
+---
+
+#### ⚙️ Don't Want to Use `mempool/electrs`?
+
+If you prefer to **avoid running `mempool/electrs`** (Blockstream's Esplora fork), you can simplify your deployment with the following changes:
+
+1. Set `MEMPOOL_BACKEND=none` in the `api` service.
+2. Remove or comment out the entire `mempoolelectrs` service section.
+3. Ensure the `CORE_RPC_*` environment variables are **enabled** in the `api` service (not commented out):
+
+   ```yaml
+   - CORE_RPC_HOST=app
+   - CORE_RPC_PORT=8332
+   - CORE_RPC_USERNAME=user
+   - CORE_RPC_PASSWORD=changeme123
+   ```
+
+> ⚠️ Note: This disables address lookup functionality and any Mempool UI features that depend on Electrum.
+> You’ll still get block/mempool data from `bitcoind`, but without per-address transaction history or UTXO queries.
 
 ---
 

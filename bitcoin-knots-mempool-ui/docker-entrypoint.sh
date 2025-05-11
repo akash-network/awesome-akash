@@ -9,7 +9,12 @@ if [ -z "$BITCOIN_ARGS" ]; then
   BITCOIN_ARGS="-txindex=1"
 fi
 
-# Conditionally add -server=1 -rpcbind=0.0.0.0 if RPC credentials are set
+# If both RPCUSER and RPCPASSWORD are set, generate rpcauth credentials and
+# add default RPC-related flags to BITCOIN_ARGS unless already present:
+#   -server=1              → enable RPC server
+#   -rpcbind=0.0.0.0       → bind RPC to all interfaces
+#   -rpcallowip=0.0.0.0/0  → allow RPC from any IP (safe within pod as it's scoped to pod CIDR)
+# Also prepend -rpcauthfile to load the generated credentials.
 if [ -n "$RPCUSER" ] && [ -n "$RPCPASSWORD" ]; then
   echo "Generating rpcauth for user=$RPCUSER"
   /usr/local/bin/rpcauth.py "$RPCUSER" "$RPCPASSWORD" --output /root/.bitcoin/rpcauth.conf >/dev/null
