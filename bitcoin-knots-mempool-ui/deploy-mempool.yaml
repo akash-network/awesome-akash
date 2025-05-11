@@ -146,7 +146,7 @@ services:
     # mysql -u root -padmin -e "SELECT table_schema AS 'Database', ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS 'Size (MB)' FROM information_schema.tables GROUP BY table_schema ORDER BY \`Size (MB)\` DESC;"
     env:
       # Use the high-performance Electrum protocol for backend access
-      # mempool/electrs (Blockstream's Esplora fork) supports both Electrum and Esplora (REST), but Electrum is preferred
+      # mempool/electrs (Blockstream's electrs fork)
       - MEMPOOL_BACKEND=electrum
       - ELECTRUM_HOST=mempoolelectrs
       - ELECTRUM_PORT=50001

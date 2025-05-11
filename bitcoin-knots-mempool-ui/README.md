@@ -109,7 +109,7 @@ This setup enables a fully integrated block explorer UI, REST API, and WebSocket
 
 ### ⚡ Why Use `mempool/electrs`?
 
-`mempool/electrs` is Blockstream's Esplora fork used for address lookups.
+`mempool/electrs` is Blockstream's electrs fork used for address lookups.
 
 When using **bitcoind alone as the backend**, the Mempool UI does **not support address lookups** and will show errors like:
 
@@ -203,7 +203,7 @@ When you deploy the full `deploy-mempool.yaml` SDL (Bitcoin Knots + Mempool stac
 
 #### ⚙️ Don't Want to Use `mempool/electrs`?
 
-If you prefer to **avoid running `mempool/electrs`** (Blockstream's Esplora fork), you can simplify your deployment with the following changes:
+If you prefer to **avoid running `mempool/electrs`** (Blockstream's electrs fork), you can simplify your deployment with the following changes:
 
 1. Set `MEMPOOL_BACKEND=none` in the `api` service.
 2. Remove or comment out the entire `mempoolelectrs` service section.
