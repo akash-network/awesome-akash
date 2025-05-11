@@ -13,6 +13,10 @@ services:
       - port: 8333
         to:
           - global: true
+      # auxiliary port (e.g. for rclone serve to restore backup)
+      - port: 8080
+        to:
+          - global: true
     env:
       - RPCUSER=user
       - RPCPASSWORD=changeme123
@@ -21,7 +25,7 @@ services:
       # and it defaults to the following args when RPCUSER & RPCPASSWORD are set:
       # -rpcauthfile=/root/.bitcoin/rpcauth.conf -server=1 -rpcbind=0.0.0.0 -rpcallowip=0.0.0.0/0
       # the image script generates the rpcauth.conf file.
-    ## Uncomment to debug
+    ### Uncomment to debug or restore/backup
     #command:
     #  - /bin/sh
     #  - "-c"
@@ -44,9 +48,10 @@ profiles:
         cpu:
           units: 4.0
         memory:
-          size: 8Gi
+          # minimum 12Gi for bitcoind Bitcoin Knots with -dbcache=2048 (tested on May 11, 2025)
+          size: 16Gi
         storage:
-          - size: 10Gi
+          - size: 1Gi
           - name: data
             size: 1024Gi
             attributes:

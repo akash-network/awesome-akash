@@ -126,12 +126,13 @@ This Electrum server enables:
 
 #### Backend Options for Address Lookups
 
-| Backend           | Address Lookup  | Notes                                                               |
-| ----------------- | --------------- | ------------------------------------------------------------------- |
-| `bitcoind`        | ❌ No           | Basic Esplora-only mode — no address history                        |
-| `romanz/electrs`  | ⚠️ Limited       | Lightweight, but struggles with high-UTXO addresses                 |
-| `Fulcrum`         | ✅ Yes          | More scalable, but not officially supported by mempool developers   |
-| `mempool/electrs` | ✅ Best choice  | Official high-performance fork for full mempool.space compatibility |
+| Backend               | Address Lookup  | MEMPOOL\_BACKEND | Notes                                                               |
+| --------------------- | --------------- | ---------------- | ------------------------------------------------------------------- |
+| `bitcoind`            | ❌ No           | `none`           | Basic Esplora-only mode — no address history                        |
+| `romanz/electrs`      | ⚠️  Limited      | `electrum`       | Lightweight, but struggles with high-UTXO addresses                 |
+| `cculianu/Fulcrum`    | ✅ Yes          | `electrum`       | More scalable, but not officially supported by Mempool developers   |
+| `mempool/electrs`     | ✅ Best choice  | `electrum`       | Official high-performance fork for full mempool.space compatibility |
+| `Blockstream/electrs` | ✅ Yes          | `esplora`        | Exposes REST API; required with `MEMPOOL_BACKEND=esplora`            |
 
 We recommend `mempool/electrs` for **production deployments** or if you need **address-level transaction history**.
 
@@ -217,6 +218,55 @@ If you prefer to **avoid running `mempool/electrs`** (Blockstream's Esplora fork
 
 > ⚠️ Note: This disables address lookup functionality and any Mempool UI features that depend on Electrum.
 > You’ll still get block/mempool data from `bitcoind`, but without per-address transaction history or UTXO queries.
+
+---
+
+## 🔁 Backup & Restore via Rclone over Port 8080
+
+To **transfer data between deployments** (e.g., the `/electrs` index from one provider to another), this setup exposes auxiliary port **8080** for the `app` (bitcoind) and `mempoolelectrs` services, enabling `rclone serve sftp` over the internet.
+
+### 📤 Restore Workflow (From Another Deployment)
+
+> 💤 **Important:** Ensure both **source** and **target** containers are running `sleep infinity`. This avoids interference and allows safe, manual control over the backup process.
+
+#### 1. On the **target** (new deployment), serve the destination path:
+
+> 📝 **Note:** For the `app` (bitcoind) service, use `/root/.bitcoin` as the source or destination directory instead of `/electrs`.
+
+```bash
+nohup rclone serve sftp /electrs \
+  --addr :8080 \
+  --user myuser \
+  --pass mypass123 &
+```
+
+This starts an SFTP server on port `8080`, exposing `/electrs` for incoming transfers.
+
+#### 2. On the **source** (old deployment), copy data to the new instance:
+
+> 📝 **Note:** The `30353` port is the external nodePort mapped to `8080` for the `mempoolelectrs` service in the **target** deployment.
+
+```bash
+rclone --config /dev/null \
+  --sftp-host provider.europlots.com \
+  --sftp-port 30353 \
+  --sftp-user myuser \
+  --sftp-pass "$(rclone obscure mypass123)" \
+  copy /electrs/ :sftp: \
+  --progress --transfers=16 --checkers=16 --multi-thread-streams=4
+```
+
+### 🧠 Tips for Performance & Reliability
+
+| Option                   | Purpose                                      |
+| ------------------------ | -------------------------------------------- |
+| `--transfers`            | Number of simultaneous file uploads          |
+| `--multi-thread-streams` | Parallel chunks per file (better throughput) |
+| `--checksum`             | Optional: End-to-end data integrity check    |
+| `--bwlimit 50M`          | Optional: Bandwidth throttle                 |
+| `--retries 10`           | Optional: Retry logic on transient failures  |
+
+> ✅ Re-running the `rclone copy` command is safe and **resumable** — it will skip already copied files.
 
 ---
 
