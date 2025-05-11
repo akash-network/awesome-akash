@@ -44,9 +44,10 @@ profiles:
         cpu:
           units: 4.0
         memory:
-          size: 8Gi
+          # minimum 12Gi for bitcoind Bitcoin Knots with -dbcache=2048 (tested on May 11, 2025)
+          size: 16Gi
         storage:
-          - size: 10Gi
+          - size: 1Gi
           - name: data
             size: 1024Gi
             attributes:

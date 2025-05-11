@@ -126,12 +126,13 @@ This Electrum server enables:
 
 #### Backend Options for Address Lookups
 
-| Backend           | Address Lookup  | Notes                                                               |
-| ----------------- | --------------- | ------------------------------------------------------------------- |
-| `bitcoind`        | ❌ No           | Basic Esplora-only mode — no address history                        |
-| `romanz/electrs`  | ⚠️ Limited       | Lightweight, but struggles with high-UTXO addresses                 |
-| `Fulcrum`         | ✅ Yes          | More scalable, but not officially supported by mempool developers   |
-| `mempool/electrs` | ✅ Best choice  | Official high-performance fork for full mempool.space compatibility |
+| Backend               | Address Lookup  | MEMPOOL\_BACKEND | Notes                                                               |
+| --------------------- | --------------- | ---------------- | ------------------------------------------------------------------- |
+| `bitcoind`            | ❌ No           | `none`           | Basic Esplora-only mode — no address history                        |
+| `romanz/electrs`      | ⚠️  Limited      | `electrum`       | Lightweight, but struggles with high-UTXO addresses                 |
+| `cculianu/Fulcrum`    | ✅ Yes          | `electrum`       | More scalable, but not officially supported by Mempool developers   |
+| `mempool/electrs`     | ✅ Best choice  | `electrum`       | Official high-performance fork for full mempool.space compatibility |
+| `Blockstream/electrs` | ✅ Yes          | `esplora`        | Exposes REST API; required with `MEMPOOL_BACKEND=esplora`            |
 
 We recommend `mempool/electrs` for **production deployments** or if you need **address-level transaction history**.
 
