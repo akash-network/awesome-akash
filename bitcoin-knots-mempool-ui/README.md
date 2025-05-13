@@ -90,6 +90,58 @@ bitcoin-cli \
 * Never expose RPC with full access (`-rpcallowip=0.0.0.0/0`) without authentication
 
 ---
+## 🌍 Enabling Inbound P2P Connectivity with IP Leasing
+
+By default, Akash assigns random **NodePorts** (in the `30000–32767` range) when you expose services like the Bitcoin P2P port `8333`. This means your node:
+- Can make outbound connections (sync, broadcast, etc.)
+- **Cannot accept inbound P2P connections over port 8333 (default)** unless the correct port mapping is manually advertised (which is not currently possible to detect from inside the container)
+
+To support full **peer-to-peer functionality** and help the Bitcoin network, you can request a **leased static public IP** using Akash’s IP leasing feature.
+
+### How to Lease an IP
+
+> NOTE: Not all Akash providers currently enabled the IP leasing, so this option is kept commented out by default.
+
+1. Define an `endpoints:` block in your SDL:
+   ```yaml
+   endpoints:
+     bitcoind:
+       kind: ip
+````
+
+2. Use the endpoint under `expose` for the P2P tcp port `8333`:
+
+   ```yaml
+   expose:
+     - port: 8333
+       proto: tcp
+       to:
+         - global: true
+           ip: bitcoind
+   ```
+
+3. Update `BITCOIN_ARGS` to advertise the correct IP:
+
+   ```yaml
+   - BITCOIN_ARGS=-txindex=1 -dbcache=2048 -externalip=${IP_ADDR}
+   ```
+
+   > ℹ️ As of now, **leased IPs are not injected into the container as environment variables**.
+   > See [GitHub issue #284](https://github.com/akash-network/support/issues/284).
+   > As a workaround, you can retrieve the public IP at runtime with:
+   >
+   > ```bash
+   > export IP_ADDR=$(curl -s ifconfig.me)
+   > ```
+
+### ⚠️ Important Notes
+
+* **Fallback behavior**: Without a leased IP, Akash maps exposed ports to random NodePorts, making your node **unreachable for inbound P2P connections over port 8333 (default)**.
+  JSON-RPC (port `8332`) remains reachable via Akash ingress and is unaffected.
+* **Provider support**: Not all Akash providers currently support IP leasing. For this reason, the IP-related expose rule (`ip: bitcoind`) is often **commented out by default** in the SDL.
+* Always confirm that your chosen provider supports IP leases and that one has been allocated to your deployment before enabling this feature.
+
+---
 
 ## 🧭 Optional: Deploy with Mempool.space
 

@@ -1,5 +1,8 @@
 ---
 version: "2.0"
+#endpoints:
+#  bitcoind:
+#    kind: ip
 services:
   app:
     image: andrey01/bitcoin-knots:v28.1.0@sha256:f272b90297f89d9fe819548b5928367396359e3eea172d622758b90151ce12a3
@@ -17,6 +20,13 @@ services:
       - port: 8333
         to:
           - global: true
+            # "ip" - Leases a static public IP for port 8333 to allow inbound P2P connections.
+            # This ensures your Bitcoin node is reachable by peers and contributes to the Bitcoin network's decentralization and resiliency.
+            # Without this, the port would be randomly mapped (NATed) to a NodePort in the 30000–32767 range,
+            # making your node unreachable for inbound P2P unless manually advertised with workarounds.
+            # NOTE: Not all Akash Providers currently enable IP leasing, so this option is kept commented out by default.
+            # You may want to update your BITCOIN_ARGS with "-externalip=<LEASED_IP>" argument.
+            # ip: bitcoind
       # auxiliary port (e.g. for rclone serve to restore backup)
       - port: 8080
         to:
