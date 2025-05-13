@@ -107,7 +107,7 @@ To support full **peer-to-peer functionality** and help the Bitcoin network, you
    endpoints:
      bitcoind:
        kind: ip
-````
+   ```
 
 2. Use the endpoint under `expose` for the P2P tcp port `8333`:
 
