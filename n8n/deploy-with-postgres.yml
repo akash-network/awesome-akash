@@ -1,0 +1,104 @@
+---
+version: "2.0"
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:1.100.0
+    expose:
+      - port: 5678
+        as: 80
+        accept:
+          - https
+        to:
+          - global: true
+    env:
+      - N8N_ENCRYPTION_KEY=your-encryption-key-here
+      - GENERIC_TIMEZONE=UTC
+      - TZ=UTC
+      - N8N_HOST=${AKASH_HOST}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://${AKASH_HOST}/
+      - N8N_SECURE_COOKIE=false
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=720
+      - N8N_DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n_user
+      - DB_POSTGRESDB_PASSWORD=n8n_secure_password_2024
+      - >-
+        NODES_EXCLUDE=["n8n-nodes-base.executeCommand",
+        "n8n-nodes-base.readFile", "n8n-nodes-base.writeFile",
+        "n8n-nodes-base.ssh"]
+      - N8N_RUNNERS_ENABLED=true
+      - N8N_DISABLE_PRODUCTION_MAIN_PROCESS=true
+      - N8N_METRICS=true
+      - N8N_PAYLOAD_DEFAULT_MAX_SIZE=16
+    command:
+      - n8n
+      - start
+
+  postgres:
+    image: postgres:15-alpine
+    expose:
+      - port: 5432
+        to:
+          - service: n8n
+    env:
+      - POSTGRES_DB=n8n
+      - POSTGRES_USER=n8n_user
+      - POSTGRES_PASSWORD=n8n_secure_password_2024
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    params:
+      storage:
+        pgdata:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+
+profiles:
+  compute:
+    n8n:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+    postgres:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+          - name: pgdata
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        n8n:
+          denom: uakt
+          amount: 200000
+        postgres:
+          denom: uakt
+          amount: 150000
+
+deployment:
+  n8n:
+    akash:
+      profile: n8n
+      count: 1
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
