@@ -399,7 +399,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Budibase](budibase)
 - [Keycloak IAM](keycloak-iam)
 - [vaultwarden](vaultwarden)
-- [n8n](n8n)
 
 ### Network
 
