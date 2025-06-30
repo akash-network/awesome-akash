@@ -270,6 +270,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Odoo](odoo)
 - [RAIR-Dapp](RAIR-Dapp)
+- [n8n](n8n)
 
 ### Games
 
