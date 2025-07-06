@@ -1,5 +1,5 @@
 FROM python:3.12
-RUN apt update && apt upgrade -y && apt install -y wget git libgl1 libjpeg-dev libpng-dev libglib2.0-0 && useradd -s /bin/bash -m  fcb
+RUN apt update && apt upgrade -y && apt install -y wget git libgl1 libjpeg-dev libpng-dev libglib2.0-0 libegl-mesa0 libegl1-mesa-dev mesa-utils && useradd -s /bin/bash -m  fcb
 RUN pip install --upgrade pip
 
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git comfyui && chmod 777 -R comfyui && chown -R fcb:fcb comfyui
