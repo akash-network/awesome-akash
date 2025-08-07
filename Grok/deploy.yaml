@@ -1,0 +1,43 @@
+---
+version: "2.0"
+services:
+  service-1:
+    image: zblocker64/grok-akash:latest
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    service-1:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 700Gi
+        storage:
+          - size: 2000Gi
+        gpu:
+          units: 8
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
+      pricing:
+        service-1:
+          denom: uakt
+          amount: 1000
+deployment:
+  service-1:
+    dcloud:
+      profile: service-1
+      count: 1
