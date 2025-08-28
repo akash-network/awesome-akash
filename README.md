@@ -115,6 +115,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [GPUStack](gpustack)
 - [GPUStack Worker](gpustack-worker)
 - [Grok](grok)
+- [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
 - [InvokeAI](invoke-ai-gpu)
 - [Llama-2-70B](Llama-2-70B)
 - [Llama-3.1-Nemotron-Super-49B-v1](Llama-3.1-Nemotron-Super-49B-v1)
