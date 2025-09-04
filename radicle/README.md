@@ -18,7 +18,7 @@ The deployment also allows enable radicle-httpd HTTP API server by setting `RAD_
 
 ## Usage
 
-You can simply seed existing repositories, but you can also use your node to publish your own Git repos. To connect to your node, you will need to know the external addres and Node ID, which can be found at the start of the logs or by running the following command in the deplyoment console.
+You can simply seed existing repositories, but you can also use your node to publish your own Git repos. To connect to your node, you will need to know the external addres and Node ID, which can be found at the start of the logs or by running the following command in the deployment console.
 
 ```
 rad self --nid

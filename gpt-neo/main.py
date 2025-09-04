@@ -7,7 +7,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 # Get tokens length settings variables
 MAX_INPUT_TOKEN_LENGTH = int(os.environ.get('MAX_INPUT_TOKEN_LENGTH', 13))
 MAX_NEW_TOKENS = int(os.environ.get('MAX_NEW_TOKENS', 11))
-MODEL_NAME = os.environ.get('MODEL_NAME', 'gpt-neo-125M') # Get model name from enviroment variables
+MODEL_NAME = os.environ.get('MODEL_NAME', 'gpt-neo-125M') # Get model name from environment variables
 
 models_dict = {
     'gpt-neo-125M': ["GPT-Neo 125M", "https://huggingface.co/EleutherAI/gpt-neo-125m"],
