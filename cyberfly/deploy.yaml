@@ -1,0 +1,97 @@
+version: "2.0"
+
+services:
+  cyberflynodeui:
+    image: cyberfly/cyberfly_node_ui:latest
+    expose:
+      - port: 80
+        as: 31000
+        to:
+          - global: true
+
+  cyberflynode:
+    image: cyberfly/cyberfly_node:latest
+    expose:
+      - port: 31001
+        to:
+          - global: true
+      - port: 31002
+        to:
+          - global: true
+      - port: 31003
+        to:
+          - global: true
+    env:
+      - KADENA_ACCOUNT=k:your_kadena_address
+      - NODE_PRIV_KEY=your_node_private_key
+      - MQTT_HOST=mqtt://cyberflymqtt
+      - REDIS_HOST=redisstackserver
+    depends_on:
+      - cyberflymqtt
+      - redisstackserver
+
+  cyberflymqtt:
+    image: cyberfly/cyberfly_mqtt:latest
+    expose:
+      - port: 1883
+        as: 31004
+        to:
+          - global: true
+      - port: 9001
+        as: 31005
+        to:
+          - global: true
+
+  redisstackserver:
+    image: redis/redis-stack-server:latest
+
+profiles:
+  compute:
+    cyberflynodeui:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    cyberflynode:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 5Gi
+    cyberflymqtt:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    redisstackserver:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 2Gi
+
+placement:
+  dcloud:
+    pricing:
+      cyberflynodeui:
+        denom: uakt
+        amount: 1000
+      cyberflynode:
+        denom: uakt
+        amount: 2000
+      cyberflymqtt:
+        denom: uakt
+        amount: 1000
+      redisstackserver:
+        denom: uakt
+        amount: 1000
