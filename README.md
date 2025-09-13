@@ -144,6 +144,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Qwen3-235B-A22B-Thinking-2507](Qwen3-235B-A22B-Thinking-2507)
 - [Qwen3-235B-A22B-Thinking-2507-FP8](Qwen3-235B-A22B-Thinking-2507-FP8)
 - [Qwen3-Coder-480B-A35B-Instruct](Qwen3-Coder-480B-A35B-Instruct)
+- [Qwen3-Next-80B-A3B-Instruct](Qwen3-Next-80B-A3B-Instruct)
 - [Qwen-QwQ-32B](QwQ-32B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
