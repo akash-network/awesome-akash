@@ -1,0 +1,59 @@
+---
+version: "2.0"
+services:
+  axolotl-trainer:
+    image: axolotlai/axolotl-cloud:main-latest #change to your preferred image tag 
+    expose:
+      - port: 8888
+        as: 80
+        to:
+          - global: true
+    env:
+      - HF_DATASETS_CACHE=/workspace/data/huggingface-cache/datasets
+      - HUGGINGFACE_HUB_CACHE=/workspace/data/huggingface-cache/hub
+      - TRANSFORMERS_CACHE=/workspace/data/huggingface-cache/hub
+      - WANDB_API_KEY=${WANDB_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
+      - BASE_VOLUME=/workspace/data
+      - AXOLOTL_CONFIG_DIR=/src/config
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=mysecretpass  # change this to a strong password
+    params:
+      storage:
+        axolotl-config:
+          mount: /src/config
+          readOnly: false
+profiles:
+  compute:
+    axolotl-trainer:
+      resources:
+        cpu:
+          units: 24
+        memory:
+          size: 251Gi
+        storage:
+          - size: 550Gi
+            attributes:
+              persistent: true
+              class: beta3          #change to your preferable storage type
+          - name: axolotl-config
+            size: 2Gi
+            attributes:
+              persistent: true
+              class: beta3        #change to your preferable storage type 
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    gpu-providers:
+      pricing:
+        axolotl-trainer:
+          denom: uakt
+          amount: 2000000
+deployment:
+  axolotl-trainer:
+    gpu-providers:
+      profile: axolotl-trainer
+      count: 1
