@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://www.flaticon.com/free-icon/microservice_6357632"
+}

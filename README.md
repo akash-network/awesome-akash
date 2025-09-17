@@ -199,6 +199,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Github Runner](ghrunner)
 - [Radicle](radicle)
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
+- [Micro-services Example](micro-services-example)
 
 ### Data Visualization
 
