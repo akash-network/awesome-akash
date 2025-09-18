@@ -87,6 +87,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [AI-Image-App](AI-Image-App)
 - [AUTOMATIC1111](AUTOMATIC1111)
+- [Axolotl AI](axolotlai)
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
