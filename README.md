@@ -139,6 +139,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Open WebUI](open-webui-gpu)
 - [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
 - [PrivateGPT](privategpt-gpu)
+- [Pluralis-Node](Pluralis-Node)
 - [Qwen3-235B-A22B-FP8](Qwen3-235B-A22B-FP8)
 - [Qwen3-235B-A22B-Instruct-2507](Qwen3-235B-A22B-Instruct-2507)
 - [Qwen3-235B-A22B-Instruct-2507-FP8](Qwen3-235B-A22B-Instruct-2507-FP8)
