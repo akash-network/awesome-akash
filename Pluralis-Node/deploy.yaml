@@ -1,0 +1,56 @@
+---
+version: "2.0"
+services:
+  pluralis:
+    image: >-
+      zjuuu/pluralis:latest@sha256:b9db648ae8949b16f9a3bfc4fd0c9c5b77e474a33487ceaa3095a8f0a5a7738c
+    expose:
+      - port: 49200
+        as: 49200
+        proto: tcp
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /persistent
+          readOnly: false
+        shm:
+          mount: /dev/shm
+          readOnly: false
+profiles:
+  compute:
+    pluralis:
+      resources:
+        cpu:
+          units: 12
+        memory:
+          size: 64Gi
+        storage:
+          - size: 80Gi
+          - name: data
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 32Gi
+            attributes:
+              persistent: false
+              class: ram
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia: 
+  placement:
+    dcloud:
+      pricing:
+        pluralis:
+          denom: uakt
+          amount: 100000
+deployment:
+  pluralis:
+    dcloud:
+      profile: pluralis
+      count: 1
