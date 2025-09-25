@@ -3,13 +3,15 @@ version: "2.0"
 services:
   pluralis:
     image: >-
-      zjuuu/pluralis:latest@sha256:b9db648ae8949b16f9a3bfc4fd0c9c5b77e474a33487ceaa3095a8f0a5a7738c
+      zjuuu/pluralis:latest@sha256:fdf0f7b348fdf5289f7547a1a0c7edd3c7bc8d7d7056da8ac062056bbabb8187
     expose:
       - port: 49200
         as: 49200
         proto: tcp
         to:
           - global: true
+    env:
+      - "PERSISTENT_FOLDER=/persistent"
     params:
       storage:
         data:

@@ -60,8 +60,10 @@ After successful deployment, copy the assigned external port in the Forwarded Po
 Then head over to the Shell and run the following commands:
 ```bash
 cd node0
-python3 generate_script.py --announce_port EXTERNAL_49200_PORT # Use the assigned external port
+python3 generate_script.py --identity_path /persistent/private.key --announce_port EXTERNAL_49200_PORT # Use the assigned external port
 # follow the prompts and provide your huggingface token
+cp start_server.sh /persistent/
+cd /persistent/
 pm2 start python3.11 --name "pluralis" -- $(grep "python3.11" start_server.sh | sed 's/.*python3.11 //')
 ```
 After that, you can see the server running in the Logs tab.
