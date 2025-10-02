@@ -7,14 +7,25 @@ Instructions on how to deploy the SDL files in this repository can be found [her
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
-## How to add a template to the console api <!-- omit in toc -->
+## Contributing
 
-1. Create a new folder in the root directory with the name of the template.
-2. Add the `deploy.yaml` file to the folder.
-3. Add the `README.md` file to the folder.
-4. (Optional) There's a `config.json` file that you can add to the template folder to add a custom config for the template, like a logo url. It follows the same schema as the [config.schema.json](config.schema.json) file. (ex. [DeepSeek config](DeepSeek-R1/config.json)).
-5. Add the name of the template with the name of the template that will be displayed in the console api and name of the template folder under the [Table of Contents](#table-of-contents) section in the appropriate category. (ex. `[DeepSeek-R1](#DeepSeek-R1)`)
-6. Done! There's a 5 minutes cache time for the console api to update.
+See our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding new templates and resources.
+
+To add a new template/resource:
+
+1. **Create a New Folder:**
+   - Name your folder using lowercase, hyphen-separated naming (e.g., `my-template`).
+   - Place it in the root directory.
+
+2. **Required Files:**
+   - `deploy.yaml` — Main deployment SDL.
+   - `README.md` — Include instructions for setup, usage, and details about your template/resource.
+   - *(Optional)* `config.json` — Custom configuration (e.g., logo). Must follow the schema in `config.schema.json`. See [DeepSeek-R1/config.json](DeepSeek-R1/config.json) for an example.
+
+3. **Update Table of Contents:**
+   - Add your template/resource in the appropriate category section in the Table of Contents below, maintaining alphabetical order within the category.
+   - Use the format: `[Display Name](#folder-name)` where "folder-name" matches your actual folder name.
+   - Note: The console API has a 5-minute cache, so changes may take up to 5 minutes to appear.
 
 ## Table of Contents <!-- omit in toc -->
 
