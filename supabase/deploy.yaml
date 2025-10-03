@@ -1,0 +1,108 @@
+version: "2.0"
+
+#endpoints:
+# supabase-endpoint:
+#   kind: ip
+# Remove comment to enable IP lease if you want a static IP
+
+services:
+  db:
+    image: supabase/postgres:15.1.0.132
+    env:
+      POSTGRES_PASSWORD: postgres
+    expose:
+      - port: 5432
+        as: 5432
+        to:
+          - global: false
+
+  api:
+    image: supabase/postgrest:v10.2.0
+    env:
+      PGRST_DB_URI: postgres://postgres:postgres@db:5432/postgres
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_DB_SCHEMA: public
+    expose:
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+#          ip: "supabase-endpoint" # Remove comment if you enabled endpoints
+
+  studio:
+    image: supabase/studio:latest
+    env:
+      SUPABASE_URL: http://api:3000
+      SUPABASE_ANON_KEY: super-secret-anon-key
+    expose:
+      - port: 3000
+        as: 8080
+        to:
+          - global: true
+#          ip: "supabase-endpoint" # Remove comment if you enabled endpoints
+
+profiles:
+  compute:
+    db:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 10Gi
+    api:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    studio:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+#        ip-lease: true #Remove comment to enable IP lease
+      #######################################################
+      # Keep this section to deploy on trusted providers
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      #######################################################
+      # Remove this section to deploy on untrusted providers
+      # Beware* You may have deployment, security, or other issues on untrusted providers
+      # https://akash.network/docs/providers/audited-attributes
+      pricing:
+        db:
+          denom: uakt
+          amount: 10000
+        api:
+          denom: uakt
+          amount: 10000
+        studio:
+          denom: uakt
+          amount: 5000
+
+deployment:
+  db:
+    akash:
+      profile: db
+      count: 1
+  api:
+    akash:
+      profile: api
+      count: 1
+  studio:
+    akash:
+      profile: studio
+      count: 1
