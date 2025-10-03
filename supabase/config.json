@@ -1,0 +1,6 @@
+{
+  "name": "Supabase",
+  "logo": "https://raw.githubusercontent.com/supabase/supabase/master/web/static/favicon/android-chrome-512x512.png",
+  "categories": ["Backend as a Service", "Database"],
+  "description": "An open-source Firebase alternative built on Postgres. This deploys a full Supabase stack (Postgres, API, Auth, Realtime, Storage, and Studio) on Akash Network."
+}
