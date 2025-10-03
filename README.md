@@ -225,6 +225,7 @@ To add a new template/resource:
 - [pgAdmin](pgadmin4)
 - [mongoDB](mongoDB)
 - [postgresSQL](postgres)
+- [Supabase](supabase)
 - [adminer](adminer)
 - [MySQL](MySQL)
 - [CouchDB](couchdb)
