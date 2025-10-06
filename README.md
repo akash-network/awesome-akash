@@ -415,6 +415,7 @@ Awesome DeFi apps you can deploy on Akash
 - [owncloud](owncloud)
 - [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
+  [Swagger UI](swagger-ui)
 - [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
 - [Webtop](webtop)
