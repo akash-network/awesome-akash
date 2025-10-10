@@ -447,5 +447,5 @@ Awesome DeFi apps you can deploy on Akash
 - [tronwallet](tronwallet)
 
 ### Web Frameworks
-- [GIN](#gin)
+- [GIN](gin)
 - [NextJS](nextjs)
