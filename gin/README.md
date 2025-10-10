@@ -5,7 +5,7 @@ This repository provides a template to deploy a Gin (Go web framework) applicati
 ## Table of Contents
 
 - [Requirements](#requirements)
-- [Files Overview](#file-overview)
+- [Files Overview](#files-overview)
 - [Deploying the Application](#deploying-the-application)
 
 ## Requirements
@@ -18,14 +18,14 @@ This repository provides a template to deploy a Gin (Go web framework) applicati
 ## Files Overview
 
 - **deploy.yaml**: Main SDL file for deploying the Gin app on Akash (exposes port 8080, sets resource limits, etc.)
-- **README.md**: This file, containing setup instructions, usage, and template details.
+- **README.md**: This file contains setup instructions, usage, and template details.
 
 ## Deploying the Application
 
 1.  **Update `deploy.yaml`:**
     * Change the `image:` value under the `services:web:` section to point to your Gin application's Docker image.
     * (Optional) Adjust `resources:` and `pricing:` based on your application's needs and budget
-2. Deploy your application using akash Cli using this steps provided [Here](https://akash.network/docs/deployments/akash-cli/installation/)
+2. Deploy your application using akash CLI using these steps provided [Here](https://akash.network/docs/deployments/akash-cli/installation/)
      
 3. Alternatively, you can deploy and manage your application through the Akash Console:
    - Open the Akash Console in your browser.
