@@ -1,0 +1,37 @@
+---
+version: "2.0"
+
+services:
+  gin:
+    image: <your-dockerhub-username>/gin-app:latest # Replace with your Gin app image
+    env:
+      - PORT=8080
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    
+profiles:
+  compute:
+    gin:
+      resources:
+      cpu:
+        units: 0.5 # Minimum CPU requirements
+      memory:
+        size: 512Mi # Minimum memory requirements
+      storage:
+        size: 1024Mi # Disk space
+
+  placement:
+    dcloud:
+      pricing:
+        gin:
+          denom: uakt
+          amount: 10000 
+
+deployment:
+  gin:
+    dcloud:
+      profile: gin
+      count: 1
