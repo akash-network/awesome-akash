@@ -1,0 +1,40 @@
+---
+version: "2.0"
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui:v5.29.3 # https://hub.docker.com/r/swaggerapi/swagger-ui/tags
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    env:
+      - SWAGGER_JSON_URL=https://petstore3.swagger.io/api/v3/openapi.json # you can provide a URL to a swagger.json on an external host
+      #- API_KEY=
+      #- SWAGGER_JSON=/app/swagger.json # you can provide your own swagger.json on your host
+      #- PORT=8080 # you can specify a different port for accessing the application, default is 8080
+      #- PORT_IPV6= # by default, IPv6 port is not set
+      #- BASE_URL=/ # base URL of the web application can be changed by specifying the BASE_URL
+      #- CORS=true
+      #- EMBEDDING=false # by default, embedding is disabled
+profiles:
+  compute:
+    swagger-ui:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        swagger-ui:
+          denom: uakt
+          amount: 100000
+deployment:
+  swagger-ui:
+    dcloud:
+      profile: swagger-ui
+      count: 1
