@@ -449,3 +449,4 @@ Awesome DeFi apps you can deploy on Akash
 ### Web Frameworks
 
 - [NextJS](nextjs)
+- [Ruby on Rails](ruby-on-rails)
