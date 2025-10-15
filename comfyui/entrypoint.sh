@@ -55,5 +55,6 @@ if [ "$DELETE_EVERY_12HRS" = true ] ; then
 fi
 
 echo "Starting ComfyUI ..."
+. /comfyui/.venv/bin/activate
 python /comfyui/main.py $COMMANDLINE_ARGS
 
