@@ -3,8 +3,6 @@ version: "2.0"
 services:
   gin:
     image: hxrh/gin-on-akash:latest
-    env:
-      - PORT=8080
     expose:
       - port: 8080
         as: 80
@@ -20,7 +18,7 @@ profiles:
       memory:
         size: 512Mi 
       storage:
-        size: 1024Mi
+        size: 1Gi
 
   placement:
     dcloud:
