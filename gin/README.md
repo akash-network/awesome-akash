@@ -12,7 +12,7 @@ This repository provides a template to deploy a Gin (Go web framework) applicati
 
 - Go 1.12+ installed
 - Akash CLI or Akash Console configured with an account that has sufficient funds
-- **Docker Image:** You need a compiled Gin application bundled into a Docker image, hosted on a public registry (like Docker Hub). The `deploy.yaml` uses a placeholder image name: `<your-dockerhub-username>/gin-app:latest`. **You must update this with your actual image.**
+- **Docker Image:** You need a compiled Gin application bundled into a Docker image, hosted on a public registry (like Docker Hub). The `deploy.yaml` has an image.  This should be updated with the image you want to deploy.
 
 
 ## Files Overview
