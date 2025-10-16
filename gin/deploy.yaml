@@ -1,9 +1,8 @@
----
 version: "2.0"
 
 services:
   gin:
-    image: <your-dockerhub-username>/gin-app:latest # Replace with your Gin app image
+    image: hxrh/gin-on-akash:latest
     env:
       - PORT=8080
     expose:
@@ -17,11 +16,11 @@ profiles:
     gin:
       resources:
       cpu:
-        units: 0.5 # Minimum CPU requirements
+        units: 0.5 
       memory:
-        size: 512Mi # Minimum memory requirements
+        size: 512Mi 
       storage:
-        size: 1024Mi # Disk space
+        size: 1024Mi
 
   placement:
     dcloud:
