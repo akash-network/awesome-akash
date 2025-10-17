@@ -384,6 +384,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Jira Software](jira)
 - [Redmine](redmine)
 - [Kanboard](kanboard)
+- [Crosterix](https://crosterix.network)
 
 ### Social
 
