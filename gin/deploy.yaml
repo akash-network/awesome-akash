@@ -14,12 +14,12 @@ profiles:
   compute:
     gin:
       resources:
-      cpu:
-        units: 0.5 
-      memory:
-        size: 512Mi 
-      storage:
-        size: 1Gi
+        cpu:
+          units: 0.5 
+        memory:
+          size: 512Mi 
+        storage:
+          size: 1Gi
 
   placement:
     dcloud:
