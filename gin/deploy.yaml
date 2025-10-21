@@ -1,0 +1,35 @@
+---
+version: "2.0"
+
+services:
+  gin:
+    image: hxrh/gin-on-akash:1.0
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    
+profiles:
+  compute:
+    gin:
+      resources:
+        cpu:
+          units: 0.5 
+        memory:
+          size: 512Mi 
+        storage:
+          size: 1Gi
+
+  placement:
+    dcloud:
+      pricing:
+        gin:
+          denom: uakt
+          amount: 10000 
+
+deployment:
+  gin:
+    dcloud:
+      profile: gin
+      count: 1
