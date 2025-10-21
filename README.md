@@ -436,6 +436,7 @@ Awesome DeFi apps you can deploy on Akash
 ### Databases
 
 - [redis](redis)
+- [Supabase](supabase)
 
 ### Video Conferencing
 
