@@ -1,0 +1,18 @@
+FROM golang:1.25.3
+WORKDIR /app
+
+# Copy go.mod and go.sum first (for caching)
+COPY go.mod go.sum ./
+
+# Download dependencies
+RUN go mod tidy
+
+# Copy the rest of the app
+COPY . .
+
+# Build the app
+RUN go build -o main .
+
+EXPOSE 8080
+
+CMD ["./main"]
