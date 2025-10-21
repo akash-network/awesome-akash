@@ -1,6 +1,6 @@
 # Cross Platform Disk Test (CPDT)
 
-Measuring storage performance (SSD, HDD, USB Flash etc.) and RAM speed.  Random and sequential throughput (read/write operations) is calculted in MB/s and can be compared in consistent and reliable manner between mobile and desktop platfotms and devices.
+Measuring storage performance (SSD, HDD, USB Flash etc.) and RAM speed.  Random and sequential throughput (read/write operations) is calculated in MB/s and can be compared in consistent and reliable manner between mobile and desktop platfotms and devices.
 
 ![UI](https://raw.githubusercontent.com/maxim-saplin/CrossPlatformDiskTest/master/Img%203.png)
 
