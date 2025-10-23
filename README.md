@@ -168,6 +168,7 @@ To add a new template/resource:
 - [StableSwarmUI](stableswarmui)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
+- - [Unsloth AI](unsloth-ai)
 - [vllm](vllm)
 - [Whisper ASR](whisper-asr-gpu)
 - [Whisper GUI](whisper-gui-gpu)
