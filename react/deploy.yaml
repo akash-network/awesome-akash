@@ -1,0 +1,34 @@
+---
+version: "2.0"
+
+services:
+  react:
+    image: hxrh/quote-app:v1.0
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    react:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        react:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  react:
+    dcloud:
+      profile: react
+      count: 1

@@ -34,7 +34,7 @@ In case your goal is to use this node to publish messages, you will need to obta
 
 ## Deploying with Postgres
 
-This deployment not only deploys Waku node, but also a Postgres database serving as an archive for the `store` protocol. The manifest including Postgres instance is availabale in [deploy.yaml](./deploy.yaml)
+This deployment not only deploys Waku node, but also a Postgres database serving as an archive for the `store` protocol. The manifest including Postgres instance is available in [deploy.yaml](./deploy.yaml)
 
 You may want to change the `POSTGRES_PASSWORD` in `services.node.env` and `services.postgres.env` (make sure both values match!)
 

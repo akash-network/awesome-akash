@@ -18,7 +18,7 @@ QwQ is the reasoning model of the Qwen series. Compared with conventional instru
 - Training Stage: Pretraining & Post-training (Supervised Finetuning and Reinforcement Learning)
 - Architecture: transformers with RoPE, SwiGLU, RMSNorm, and Attention QKV bias
 - Number of Parameters: 32.5B
-- Number of Paramaters (Non-Embedding): 31.0B
+- Number of Parameters (Non-Embedding): 31.0B
 - Number of Layers: 64
 - Number of Attention Heads (GQA): 40 for Q and 8 for KV
 - Context Length: Full 131,072 tokens
