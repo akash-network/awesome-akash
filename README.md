@@ -77,7 +77,7 @@ To add a new template/resource:
 - [Botpress](botpress)
 - [ChatChat](chatchat)
 - [Daila](daila)
-- [Faster Whisper](fast-whisper-cpu)
+- [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
 - [Eliza AI Agent](elizaos-ai_Agents)
 - [InvokeAI](invoke-ai-cpu)
@@ -117,7 +117,7 @@ To add a new template/resource:
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
-- [Faster Whisper](fast-whisper-gpu)
+- [Faster Whisper](faster-whisper-gpu)
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
@@ -130,7 +130,6 @@ To add a new template/resource:
 - [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
 - [InvokeAI](invoke-ai-gpu)
 - [Llama-2-70B](Llama-2-70B)
-- [Llama-3.1-Nemotron-Super-49B-v1](Llama-3.1-Nemotron-Super-49B-v1)
 - [Llama-3-8B](Llama-3-8B)
 - [Llama-3-Groq-8B-Tool-Use](Llama-3-Groq-8B-Tool-Use)
 - [Llama-3-70B](Llama-3-70B)
@@ -142,6 +141,7 @@ To add a new template/resource:
 - [Llama-3.2-11B-Vision-Instruct](Llama-3.2-11B-Vision-Instruct)
 - [Llama-3.2-90B-Vision-Instruct](Llama-3.2-90B-Vision-Instruct)
 - [Llama-3.3-70B](Llama-3.3-70B)
+- [Llama-3_3-Nemotron-Super-49B-v1](Llama-3_3-Nemotron-Super-49B-v1)
 - [Llama-4-Maverick-17B-128E-Instruct-FP8](Llama-4-Maverick-17B-128E-Instruct-FP8)
 - [Llama-4-Scout-17B-16E-Instruct](Llama-4-Scout-17B-16E-Instruct)
 - [Mistral-7B](Mistral-7B)
@@ -171,7 +171,7 @@ To add a new template/resource:
 - [vllm](vllm)
 - [Whisper ASR](whisper-asr-gpu)
 - [Whisper GUI](whisper-gui-gpu)
-- [XLM-roBERTa](XLM-roBERTa)
+- [XLM-RoBERTa](XLM-RoBERTa)
 
 ### Blogging
 
@@ -444,7 +444,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Wallet
 
-- [MyetherWallet](MyetherWallet)
+- [MyEtherWallet](MyEtherWallet)
 - [tronwallet](tronwallet)
 
 ### Web Frameworks

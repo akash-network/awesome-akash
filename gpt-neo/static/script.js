@@ -15,7 +15,7 @@ $(document).ready(function() {
         const responseJson = await response.json(); // parse response as JSON
 
         if (responseJson.error == undefined) { // if there are no errors
-          output_text = responseJson.output; // get result text from responce
+          output_text = responseJson.output; // get result text from response
           console.log(output_text);
 
           // call typing effect of the result text to the text-box
