@@ -32,7 +32,7 @@ For more details, please refer to our blog post [Qwen3-Next](https://qwenlm.gith
 - Type: Causal Language Models
 - Training Stage: Pretraining (15T tokens) & Post-training
 - Number of Parameters: 80B in total and 3B activated
-- Number of Paramaters (Non-Embedding): 79B
+- Number of Parameters (Non-Embedding): 79B
 - Number of Layers: 48
 - Hidden Dimension: 2048
 - Hybrid Layout: 12 \* (3 \* (Gated DeltaNet -> MoE) -> (Gated Attention -> MoE))
