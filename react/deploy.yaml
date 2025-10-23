@@ -22,7 +22,9 @@ profiles:
         memory:
           size: 128Mi
         storage:
-          size: 128Mi
+          - size: 128Mi
+          - name: data
+            size: 128Mi
   placement:
     akash:
       pricing:
