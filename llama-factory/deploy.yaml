@@ -31,7 +31,12 @@ profiles:
             vendor:
               nvidia:
         storage:
-          size: 500Gi
+          - size: 500Gi
+          - name: data
+            size: 500Gi
+            attributes:
+              persistent: true
+              class: beta3
   placement:
     dcloud:
       pricing:
