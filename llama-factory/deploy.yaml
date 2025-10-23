@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   app:
-    image: ljxha471758/llama-factory
+    image: hiyouga/llamafactory:latest
     expose:
       - port: 7860
         to:
@@ -33,13 +33,13 @@ profiles:
         storage:
           size: 500Gi
   placement:
-    akash:
+    dcloud:
       pricing:
         app:
           denom: uakt
-          amount: 10000
+          amount: 1000000
 deployment:
   app:
-    akash:
+    dcloud:
       profile: app
       count: 1
