@@ -450,4 +450,5 @@ Awesome DeFi apps you can deploy on Akash
 ### Web Frameworks
 - [GIN](gin)
 - [NextJS](nextjs)
+- [React](#react)
 - [Ruby on Rails](ruby-on-rails)
