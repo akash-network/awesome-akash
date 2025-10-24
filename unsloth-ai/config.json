@@ -1,8 +1,4 @@
 {
-  "name": "Unsloth AI",
-  "description": "Open-source AI acceleration framework deployed on Akash with GPU support.",
-  "logo": "https://unsloth.ai/favicon.ico",
-  "color": "#0EA5A4",
-  "maintainer": "https://unsloth.ai/"
+  "ssh": false,
+  "logoUrl": "https://unsloth.ai/cgi/image/unsloth_logo_no_shadow_KgfOV6keeBZnffQsKUny3.png"
 }
-
