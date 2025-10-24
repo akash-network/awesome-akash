@@ -1,0 +1,65 @@
+---
+version: "2.0"
+
+services:
+  neo4j:
+    image: neo4j:5.15.0
+    env:
+      - NEO4J_AUTH=neo4j/admin
+    params:
+      storage:
+        data:
+          mount: /data
+          readOnly: false
+        logs:
+          mount: /logs
+          readOnly: false
+    expose:
+      - port: 7474
+        as: 7474
+        to:
+          - global: true
+        accept:
+          - web
+      - port: 7687
+        as: 7687
+        to:
+          - global: true
+        accept:
+          - bolt
+
+profiles:
+  compute:
+    neo4j:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - size: 5Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+      pricing:
+        neo4j:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  neo4j:
+    akash:
+      profile: neo4j
+      count: 1
