@@ -21,7 +21,9 @@ Quick deployment steps
 2. If you need persistent model storage, mount a persistent volume and set `MODEL_CACHE_PATH` accordingly.
 3. Create a deployment with the Akash CLI (adapt to your CLI version):
 
+   ```bash
    akash tx deployment create deploy.yaml --from <WALLET> --fees <fees>
+   ```
 
    Follow the normal Akash workflow to accept provider bids and create a lease.
 4. Once the lease is active you can reach the service on the exposed port (default: 8080). Use port forwarding or the provider's public endpoint if available.

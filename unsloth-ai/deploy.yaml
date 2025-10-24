@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   unsloth:
-    image: ghcr.io/unsloth/unsloth:latest
+    image: ghcr.io/unsloth/unsloth:REPLACE_WITH_TAG
     expose:
       - port: 8080
         as: 8080
@@ -46,7 +46,6 @@ profiles:
             vendor:
               nvidia:
                 - model: a100
-                  ram: 40Gi
   placement:
     dcloud:
       pricing:
