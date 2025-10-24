@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://qdrant.tech/img/brand-resources-logos/logo-red-black.svg"
+}
