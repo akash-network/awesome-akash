@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://neo4j.design/uploads/x7ffSNBjAiuXYUl8-lAxiA.png"
+}
