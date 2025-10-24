@@ -91,6 +91,7 @@ To add a new template/resource:
 - [Terminal GPT](tgpt)
 - [Venice-ElizaOS](Venice-ElizaOS)
 - [Weaviate](weaviate)
+- [Qdrant](qdrant)
 - [Whisper ASR](whisper-asr-cpu)
 - [Whisper GUI](whisper-gui-cpu)
 
