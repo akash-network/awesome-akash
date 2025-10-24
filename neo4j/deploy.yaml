@@ -34,10 +34,12 @@ profiles:
           size: 4Gi
         storage:
           - size: 10Gi
+          - name: data
             attributes:
               persistent: true
               class: beta3
-          - size: 5Gi
+          - name: logs
+            size: 5Gi
             attributes:
               persistent: true
               class: beta3
