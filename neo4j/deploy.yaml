@@ -19,14 +19,10 @@ services:
         as: 7474
         to:
           - global: true
-        accept:
-          - web
       - port: 7687
         as: 7687
         to:
           - global: true
-        accept:
-          - bolt
 
 profiles:
   compute:
