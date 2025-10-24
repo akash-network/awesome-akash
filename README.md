@@ -141,7 +141,7 @@ To add a new template/resource:
 - [Llama-3.2-11B-Vision-Instruct](Llama-3.2-11B-Vision-Instruct)
 - [Llama-3.2-90B-Vision-Instruct](Llama-3.2-90B-Vision-Instruct)
 - [Llama-3.3-70B](Llama-3.3-70B)
-- [LLaMA-Factory](#llama-factory)
+- [LLaMA-Factory](llama-factory)
 - [Llama-3_3-Nemotron-Super-49B-v1](Llama-3_3-Nemotron-Super-49B-v1)
 - [Llama-4-Maverick-17B-128E-Instruct-FP8](Llama-4-Maverick-17B-128E-Instruct-FP8)
 - [Llama-4-Scout-17B-16E-Instruct](Llama-4-Scout-17B-16E-Instruct)
