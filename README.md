@@ -29,57 +29,51 @@ To add a new template/resource:
 
 ## Table of Contents <!-- omit in toc -->
 
-- [Official](#official)
 - [AI - CPU](#ai---cpu)
 - [AI - GPU](#ai---gpu)
-- [Blogging](#blogging)
-- [Built with Cosmos-SDK](#built-with-cosmos-sdk)
-- [Chat](#chat)
-- [Machine Learning](#machine-learning)
-- [CI/CD, DevOps](#cicd-devops)
-- [Data Visualization](#data-visualization)
-- [Databases and Administration](#databases-and-administration)
-- [DeFi](#defi)
 - [Benchmarking](#benchmarking)
 - [Blockchain](#blockchain)
+- [Blogging](#blogging)
+- [Built with Cosmos-SDK](#built-with-cosmos-sdk)
 - [Business](#business)
-- [Games](#games)
+- [CI/CD, DevOps](#cicd-devops)
+- [Chat](#chat)
+- [Data Visualization](#data-visualization)
+- [Databases and Administration](#databases-and-administration)
+- [Decentralized Storage](#decentralized-storage)
+- [DeFi](#defi)
 - [Game Servers](#game-servers)
+- [Games](#games)
 - [Hosting](#hosting)
+- [Machine Learning](#machine-learning)
 - [Media](#media)
-- [Search Engines](#search-engines)
 - [Mining - CPU](#mining---cpu)
 - [Mining - GPU](#mining---gpu)
 - [Mining Pools](#mining-pools)
+- [Network](#network)
+- [OS](#os)
 - [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
 - [Project Management](#project-management)
+- [Search Engines](#search-engines)
 - [Social](#social)
 - [Tools](#tools)
-- [Network](#network)
-- [Databases](#databases)
 - [Video Conferencing](#video-conferencing)
 - [Wallet](#wallet)
 - [Web Frameworks](#web-frameworks)
-
-### Official
-
-- [Lunie Wallet for Cosmos SDK](lunie-lite)
-- [Cosmos SDK Node](https://github.com/ovrclk/akash-on-akash)
-- [Ubuntu SSH](ssh-ubuntu)
 
 ### AI - CPU
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Auto-GPT](auto-gpt)
-- [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
+- [BabyAGI](babyagi)
 - [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
 - [Daila](daila)
+- [Eliza AI Agent](Elizaos-ai_Agents)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
-- [Eliza AI Agent](elizaos-ai_Agents)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
 - [Morpheus Lumerin Node](morpheus-lumerin-node)
@@ -99,22 +93,22 @@ To add a new template/resource:
 - [AI-Image-App](AI-Image-App)
 - [AUTOMATIC1111](AUTOMATIC1111)
 - [Axolotl AI](axolotlai)
-- [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
+- [BERT](bert)
 - [ChatGLM-6B](ChatGLM-6B)
 - [ComfyUI](comfyui)
 - [DeepSeek-Janus](DeepSeek-Janus)
-- [DeepSeek-R1](DeepSeek-R1)
 - [DeepSeek-R1-0528](DeepSeek-R1-0528)
-- [DeepSeek-R1-Distill-Qwen-7B](DeepSeek-R1-Distill-Qwen-7B)
+- [DeepSeek-R1-Distill-Llama-70B](DeepSeek-R1-Distill-Llama-70B)
+- [DeepSeek-R1-Distill-Llama-8B](DeepSeek-R1-Distill-Llama-8B)
 - [DeepSeek-R1-Distill-Qwen-1.5B](DeepSeek-R1-Distill-Qwen-1.5B)
 - [DeepSeek-R1-Distill-Qwen-14B](DeepSeek-R1-Distill-Qwen-14B)
 - [DeepSeek-R1-Distill-Qwen-32B](DeepSeek-R1-Distill-Qwen-32B)
-- [DeepSeek-R1-Distill-Llama-70B](DeepSeek-R1-Distill-Llama-70B)
-- [DeepSeek-R1-Distill-Llama-8B](DeepSeek-R1-Distill-Llama-8B)
+- [DeepSeek-R1-Distill-Qwen-7B](DeepSeek-R1-Distill-Qwen-7B)
+- [DeepSeek-R1](DeepSeek-R1)
 - [DeepSeek-V3.1](DeepSeek-V3.1)
-- [Dria](dria)
 - [Dolly-v2-12b](dolly-v2-12b)
+- [Dria](dria)
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
 - [Faster Whisper](faster-whisper-gpu)
@@ -124,21 +118,21 @@ To add a new template/resource:
 - [Foundry-RIT AI Training Model Challenge](Foundry-rit-ai-training-model-challenge)
 - [Gensyn RL Swarm](gensyn-rl-swarm)
 - [GPT-Neo](gpt-neo)
-- [GPUStack](gpustack)
 - [GPUStack Worker](gpustack-worker)
+- [GPUStack](gpustack)
 - [Grok](grok)
 - [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
 - [InvokeAI](invoke-ai-gpu)
 - [Llama-2-70B](Llama-2-70B)
+- [Llama-3-70B](Llama-3-70B)
 - [Llama-3-8B](Llama-3-8B)
 - [Llama-3-Groq-8B-Tool-Use](Llama-3-Groq-8B-Tool-Use)
-- [Llama-3-70B](Llama-3-70B)
-- [Llama-3.1-8B](Llama-3.1-8B)
 - [Llama-3.1-405B-AWQ-INT4](Llama-3.1-405B-AWQ-INT4)
 - [Llama-3.1-405B-BF16](Llama-3.1-405B-BF16)
 - [Llama-3.1-405B-FP8](Llama-3.1-405B-FP8)
-- [Llama-3.2-3B](Llama-3.2-3B)
+- [Llama-3.1-8B](Llama-3.1-8B)
 - [Llama-3.2-11B-Vision-Instruct](Llama-3.2-11B-Vision-Instruct)
+- [Llama-3.2-3B](Llama-3.2-3B)
 - [Llama-3.2-90B-Vision-Instruct](Llama-3.2-90B-Vision-Instruct)
 - [Llama-3.3-70B](Llama-3.3-70B)
 - [Llama-3_3-Nemotron-Super-49B-v1](Llama-3_3-Nemotron-Super-49B-v1)
@@ -151,19 +145,19 @@ To add a new template/resource:
 - [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
 - [Pluralis-Node](Pluralis-Node)
 - [PrivateGPT](privategpt-gpu)
+- [Qwen-QwQ-32B](QwQ-32B)
 - [Qwen3-235B-A22B-FP8](Qwen3-235B-A22B-FP8)
-- [Qwen3-235B-A22B-Instruct-2507](Qwen3-235B-A22B-Instruct-2507)
 - [Qwen3-235B-A22B-Instruct-2507-FP8](Qwen3-235B-A22B-Instruct-2507-FP8)
-- [Qwen3-235B-A22B-Thinking-2507](Qwen3-235B-A22B-Thinking-2507)
+- [Qwen3-235B-A22B-Instruct-2507](Qwen3-235B-A22B-Instruct-2507)
 - [Qwen3-235B-A22B-Thinking-2507-FP8](Qwen3-235B-A22B-Thinking-2507-FP8)
+- [Qwen3-235B-A22B-Thinking-2507](Qwen3-235B-A22B-Thinking-2507)
 - [Qwen3-Coder-480B-A35B-Instruct](Qwen3-Coder-480B-A35B-Instruct)
 - [Qwen3-Next-80B-A3B-Instruct](Qwen3-Next-80B-A3B-Instruct)
-- [Qwen-QwQ-32B](QwQ-32B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
-- [Stable Diffusion](stable-diffusion-ui)
 - [Stable Diffusion Webui](stable-diffusion-webui)
+- [Stable Diffusion](stable-diffusion-ui)
 - [StableStudio](StableStudio)
 - [StableSwarmUI](stableswarmui)
 - [Text generation WebUi](text-generation-webui)
@@ -173,88 +167,6 @@ To add a new template/resource:
 - [Whisper GUI](whisper-gui-gpu)
 - [XLM-RoBERTa](XLM-RoBERTa)
 
-### Blogging
-
-- [SteemCN](steemcn)
-- [Ghost](ghost)
-- [Grav](Grav)
-- [Wordpress](wordpress)
-- [Confluence](confluence)
-- [Drupal](drupal)
-- [Wiki.js](wikijs)
-- [Nitropage](nitropage)
-
-### Built with Cosmos-SDK
-
-- [Dharani](Dharani)
-- [Big Dipper](big-dipper)
-
-### Chat
-
-- [Mattermost](mattermost)
-- [Status](status)
-
-### Machine Learning
-
-- [Ray Cluster](ray)
-- [Jupyter Notebook](jupyter)
-- [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
-- [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
-- [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
-- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
-- [Doccano](doccano)
-
-### CI/CD, DevOps
-
-- [Jenkins](jenkins)
-- [Bitbucket](bitbucket)
-- [Azure Devops Agent](azure-devops-agent)
-- [Github Runner](ghrunner)
-- [Radicle](radicle)
-- [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
-- [Micro-services Example](micro-services-example)
-
-### Data Visualization
-
-- [Redash Data Charts for Akash Analytics](Redash)
-- [UFO Sightings](ufo-data-vis)
-
-### Databases and Administration
-
-- [json-server](json-server)
-- [pgAdmin](pgadmin4)
-- [mongoDB](mongoDB)
-- [postgresSQL](postgres)
-- [adminer](adminer)
-- [MySQL](MySQL)
-- [CouchDB](couchdb)
-- [InfluxDB](influxdb)
-- [SurrealDB](SurrealDB)
-- [DefraDB](defradb)
-
-### DeFi
-
-Awesome DeFi apps you can deploy on Akash
-
-- [Serum DEX UI](serum)
-- [Uniswap](uniswap)
-- [dFed](dfed)
-- [Pancake Swap](pancake-swap)
-- [Augur](augur)
-- [Bancor](bancor)
-- [Balancer](balancer)
-- [Luaswap](luaswap)
-- [SushiSwap](sushiswap)
-- [Uma Protocol](uma-protocol)
-- [Yearn.finance](Yearn.finance)
-- [ThorChain BEPSwap](Thorchain-BEPSwap)
-- [Curve](curve)
-- [Synthetix.Exchange](synthetix.exchange)
-- [Ren Protocol](renprotocol)
-- [yfii](yfii)
-- [Sifchain DEX](sifchain-ui)
-- [Osmosis DEX](osmosis-fe)
-
 ### Benchmarking
 
 - [Fast.com by Netflix](fast)
@@ -263,31 +175,48 @@ Awesome DeFi apps you can deploy on Akash
 - [LibreSpeed](librespeed)
 - [MonkeyTest](monkeytest)
 - [OpenSpeedTest](openspeedtest)
+- [Persistent Storage benchmarking tool](persistent-storage-performance-testing)
 - [Phoronix](phoronix)
 - [Serverbench](serverbench)
-- [Speedtest by Ookla](speedtest-cli)
 - [Speedtest Tracker](speedtest-tracker)
-- [Persistent Storage benchmarking tool](persistent-storage-performance-testing)
+- [Speedtest by Ookla](speedtest-cli)
 
 ### Blockchain
 
+- [Akash On Akash](https://github.com/ovrclk/akash-on-akash)
+- [Bitcoin Cash Node](bitcoincashnode)
 - [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Bitcoin](bitcoin)
-- [Prysm Beacon](prysm-beacon)
-- [Substrate Node](substrate-node)
-- [Near Node](near)
-- [Vidulum](vidulum)
+- [Concordium node](concordium)
 - [Ethereum 2.0](Ethereum_2.0)
+- [Fuse Network Node](fuse-network-node)
+- [Handshake](handshake)
+- [Injective](injective)
+- [Kadena](Kadena)
+- [Near Node](near)
 - [POKT Network](pokt-network)
 - [Polkadot](polkadot)
-- [Kadena](Kadena)
-- [Bitcoin Cash Node](bitcoincashnode)
-- [Handshake](handshake)
-- [Fuse Network Node](fuse-network-node)
-- [Injective](injective)
+- [Prysm Beacon](prysm-beacon)
 - [Starknet Node by Juno](juno)
+- [Substrate Node](substrate-node)
+- [Vidulum](vidulum)
 - [Witness Chain Watchtower](witnesschain-watchtower)
-- [Concordium node](concordium)
+
+### Blogging
+
+- [Confluence](confluence)
+- [Drupal](drupal)
+- [Ghost](ghost)
+- [Grav](Grav)
+- [Nitropage](nitropage)
+- [SteemCN](steemcn)
+- [Wiki.js](wikijs)
+- [Wordpress](wordpress)
+
+### Built with Cosmos-SDK
+
+- [Big Dipper](big-dipper)
+- [Dharani](Dharani)
 
 ### Business
 
@@ -295,16 +224,66 @@ Awesome DeFi apps you can deploy on Akash
 - [RAIR-Dapp](RAIR-Dapp)
 - [n8n](n8n)
 
-### Games
+### Chat
 
-- [Minecraft](minecraft)
-- [Tetris](tetris)
-- [Pac-Man](pacman)
-- [Supermario](supermario)
-- [Minesweeper](minesweeper)
-- [Tetris2](tetris2)
-- [MemoryGame](MemoryGame)
-- [Snake Game](snake-game)
+- [Mattermost](mattermost)
+- [Status](status)
+
+### CI/CD, DevOps
+
+- [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
+- [Azure Devops Agent](azure-devops-agent)
+- [Bitbucket](bitbucket)
+- [Github Runner](ghrunner)
+- [Jenkins](jenkins)
+- [Micro-services Example](micro-services-example)
+- [Radicle](radicle)
+
+### Data Visualization
+
+- [Redash Data Charts for Akash Analytics](Redash)
+- [UFO Sightings](ufo-data-vis)
+
+### Databases and Administration
+
+- [Adminer](adminer)
+- [CouchDB](couchdb)
+- [DefraDB](defradb)
+- [InfluxDB](influxdb)
+- [JSON Server](json-server)
+- [MongoDB](mongoDB)
+- [MySQL](MySQL)
+- [pgAdmin](pgadmin4)
+- [PostgreSQL](postgres)
+- [Redis](redis)
+- [Supabase](supabase)
+- [SurrealDB](SurrealDB)
+
+### Decentralized Storage
+
+- [Codex](codex)
+- [IPFS](ipfs)
+
+### DeFi
+
+- [Augur](augur)
+- [Balancer](balancer)
+- [Bancor](bancor)
+- [Curve](curve)
+- [dFed](dfed)
+- [Luaswap](luaswap)
+- [Osmosis DEX](osmosis-fe)
+- [Pancake Swap](pancake-swap)
+- [Ren Protocol](renprotocol)
+- [Serum DEX UI](serum)
+- [Sifchain DEX](sifchain-ui)
+- [SushiSwap](sushiswap)
+- [Synthetix.Exchange](synthetix.exchange)
+- [ThorChain BEPSwap](Thorchain-BEPSwap)
+- [Uma Protocol](uma-protocol)
+- [Uniswap](uniswap)
+- [Yearn.finance](Yearn.finance)
+- [yfii](yfii)
 
 ### Game Servers
 
@@ -316,6 +295,17 @@ Awesome DeFi apps you can deploy on Akash
 - [SteamPipe](steampipe)
 - [Team Fortress 2](tf2)
 
+### Games
+
+- [MemoryGame](MemoryGame)
+- [Minecraft](minecraft)
+- [Minesweeper](minesweeper)
+- [Pac-Man](pacman)
+- [Snake Game](snake-game)
+- [Supermario](supermario)
+- [Tetris by bsord](tetris)
+- [Tetris by uzyexe](tetris2)
+
 ### Hosting
 
 - [Caddy](caddy)
@@ -323,20 +313,24 @@ Awesome DeFi apps you can deploy on Akash
 - [Grafana](grafana)
 - [Nginx Let's Encrypt Proxy](nginx-letsencrypt-proxy)
 
+### Machine Learning
+
+- [Doccano](doccano)
+- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
+- [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
+- [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
+- [Jupyter Notebook](jupyter)
+- [Ray Cluster](ray)
+- [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
+
 ### Media
 
 - [FreeFlix Nucleus](freeflix-nucleus)
 
-### Search Engines
-
-- [Whoogle Search](whoogle-search)
-- [Presearch](presearch)
-- [YaCy](yacy)
-
 ### Mining - CPU
 
-- [Chia Bladebit](chia-bladebit)
 - [Chia Bladebit Disk](chia-bladebit-disk)
+- [Chia Bladebit](chia-bladebit)
 - [Chia Madmax](chia-madmax)
 - [Honeygain](honeygain)
 - [IPRoyal Pawns](iproyal-pawns)
@@ -370,10 +364,23 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Mining Pools
 
-- [monero-pool by jtgrassie](monero-pool)
 - [Meowcoin Pool](kawpow-pool-meowcoin)
+- [monero-pool by jtgrassie](monero-pool)
 - [Neoxa Pool](kawpow-pool-neoxa)
 - [Ravencoin Pool](kawpow-pool-ravencoin)
+
+### Network
+
+- [CJDNS PKT](cjdns-pkt)
+- [Sentinel dVPN node](Sentinel-dVPN-node)
+- [SoftEther VPN](softether-vpn)
+- [Tor Proxy](tor-proxy)
+- [V2RAY](v2ray)
+- [X-UI](x-ui)
+
+### OS
+
+- [Ubuntu SSH](ssh-ubuntu)
 
 ### Peer-to-peer File Sharing
 
@@ -382,8 +389,14 @@ Awesome DeFi apps you can deploy on Akash
 ### Project Management
 
 - [Jira Software](jira)
-- [Redmine](redmine)
 - [Kanboard](kanboard)
+- [Redmine](redmine)
+
+### Search Engines
+
+- [Presearch](presearch)
+- [Whoogle Search](whoogle-search)
+- [YaCy](yacy)
 
 ### Social
 
@@ -391,22 +404,18 @@ Awesome DeFi apps you can deploy on Akash
 - [TeamSpeak](teamspeak)
 - [Waku](waku)
 
-### Decentralized Storage
-
-- [Codex](codex)
-- [IPFS](ipfs)
-
 ### Tools
 
 - [anubis](anubis)
-- [thirdweb](thirdweb)
 - [authsteem](authsteem)
+- [Budibase](budibase)
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)
 - [dart-hello](dart)
 - [DEGO Stats](dego-stats)
 - [Folding@home](folding-at-home)
 - [Hashicorp Vault](hashicorp-vault)
+- [Keycloak IAM](keycloak-iam)
 - [KnowYourDeFi](knowyourdefi)
 - [Matomo](matomo)
 - [microbox](microbox)
@@ -415,28 +424,13 @@ Awesome DeFi apps you can deploy on Akash
 - [owncloud](owncloud)
 - [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
-- [Swagger UI](swagger-ui)
 - [Quill editor](quill-editor)
+- [Swagger UI](swagger-ui)
+- [thirdweb](thirdweb)
 - [Uptime Kuma](uptime-kuma)
+- [vaultwarden](vaultwarden)
 - [Webtop](webtop)
 - [Zammad](zammad)
-- [Budibase](budibase)
-- [Keycloak IAM](keycloak-iam)
-- [vaultwarden](vaultwarden)
-
-### Network
-
-- [SoftEther VPN](softether-vpn)
-- [Sentinel dVPN node](Sentinel-dVPN-node)
-- [V2RAY](v2ray)
-- [X-UI](x-ui)
-- [Tor Proxy](tor-proxy)
-- [CJDNS PKT](cjdns-pkt)
-
-### Databases
-
-- [redis](redis)
-- [Supabase](supabase)
 
 ### Video Conferencing
 
@@ -444,11 +438,12 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Wallet
 
+- [Lunie Wallet for Cosmos SDK](lunie-lite)
 - [MyEtherWallet](MyEtherWallet)
-- [tronwallet](tronwallet)
+- [Tron Wallet](tronwallet)
 
 ### Web Frameworks
-- [GIN](gin)
+- [Gin](gin)
 - [NextJS](nextjs)
-- [React](#react)
+- [React](react)
 - [Ruby on Rails](ruby-on-rails)
