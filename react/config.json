@@ -1,6 +1,4 @@
 {
-    "$schema": "../config.schema.json",
-    "ssh": false,
-    "logoUrl": "https://raw.githubusercontent.com/akash-network/awesome-akash/master/react/react.png"
-  }
-  
+  "ssh": false,
+  "logoUrl": "https://react.dev/images/brand/logo.svg"
+}
