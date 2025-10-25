@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://unsloth.ai/cgi/image/unsloth_logo_no_shadow_KgfOV6keeBZnffQsKUny3.png"
+}
