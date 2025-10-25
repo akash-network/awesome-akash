@@ -233,6 +233,7 @@ To add a new template/resource:
 - [InfluxDB](influxdb)
 - [SurrealDB](SurrealDB)
 - [DefraDB](defradb)
+- [neo4j](neo4j)
 
 ### DeFi
 
