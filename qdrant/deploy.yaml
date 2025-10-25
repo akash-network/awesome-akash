@@ -1,0 +1,50 @@
+---
+version: "2.0"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.12.1
+    env:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    expose:
+      - port: 6333
+        as: 80
+        to:
+          - global: true
+      - port: 6334
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /qdrant/storage
+          readOnly: false
+
+profiles:
+  compute:
+    qdrant:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 10Gi
+          - name: data
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      pricing:
+        qdrant:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  qdrant:
+    akash:
+      profile: qdrant
+      count: 1
