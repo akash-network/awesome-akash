@@ -1,0 +1,60 @@
+---
+version: "2.0"
+services:
+  sglang1:
+    image: lmsysorg/sglang:v0.4.1.post4-cu124-srt
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >- 
+        python3 -m sglang.launch_server --model deepseek-ai/DeepSeek-R1 --tp 8 --trust-remote-code --host 0.0.0.0 --port 8000
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
+          readOnly: false
+profiles:
+  compute:
+    sglang1:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 256Gi
+        storage:
+          - size: 100Gi
+          - name: data
+            size: 900Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 32Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 8
+          attributes:
+            vendor:
+              nvidia:
+                - model: h200
+  placement:
+    dcloud:
+      pricing:
+        sglang1:
+          denom: uakt
+          amount: 1000000
+deployment:
+  sglang1:
+    dcloud:
+      profile: sglang1
+      count: 1

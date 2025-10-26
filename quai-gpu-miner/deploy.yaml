@@ -1,0 +1,43 @@
+version: "2.0"
+services:
+  quai-miner:
+    image: quainetwork/quai-gpu-miner-run:v0.5.0
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+    env:
+      - STRATUM_IP=
+      - STRATUM_PORT=
+      - PLATFORM=U
+profiles:
+  compute:
+    quai-miner:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia: 
+                - model: p100
+                - model: a100
+                - model: v100
+                - model: t4
+  placement:
+    dcloud:
+      pricing:
+        quai-miner:
+          denom: uakt
+          amount: 10000
+deployment:
+  quai-miner:
+    dcloud:
+      profile: quai-miner
+      count: 1

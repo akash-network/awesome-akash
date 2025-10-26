@@ -1,0 +1,250 @@
+---
+version: "2.0"
+
+endpoints: 
+  nodeip2:
+    kind: ip
+
+services:
+  codex:
+    image: codexstorage/nim-codex:0.2.0
+    expose:
+    - port: 8070
+      as: 8070
+      proto: tcp
+      to:
+        - global: true
+          ip: nodeip2
+    - port: 8090
+      as: 8090
+      proto: udp
+      to:
+        - global: true
+          ip: nodeip2
+    - port: 8080
+      as: 8080
+      to:
+        - service: nginx
+    env:
+      - DATA_DIR=/codex/data
+      - ETH_PRIVATE_KEY=   # Wallet private key to be used to purchase storage from Codex Marketplace
+      - PUBLIC_IP=
+ #     - CODEX_LOG_LEVEL=debug
+ #     - CODEX_BLOCK_TTL=30d
+    command:
+    - sh
+    - -c
+    args:
+    - >
+        if [ -z "${PUBLIC_IP}" ]; then
+          echo "Missing \$PUBLIC_IP=public_ip_of_the_deplyoment"
+          sleep 120
+          exit 1
+        fi
+
+        mkdir -p ${DATA_DIR}
+        chmod 0700 ${DATA_DIR}
+
+        quota=$(df --output=size --block-size=1 /codex | tail -1)
+
+        BOOTSTRAP_NODES=$(for i in $(curl https://spr.codex.storage/testnet 2> /dev/null); do echo --bootstrap-node=${i}; done)
+
+        exec /docker-entrypoint.sh codex \
+          --storage-quota=${quota} \
+          --data-dir=${DATA_DIR} \
+          --api-port=8080 \
+          --api-bindaddr=0.0.0.0 \
+          --disc-port=8090 \
+          --listen-addrs=/ip4/0.0.0.0/tcp/8070 \
+          --nat=extip:${PUBLIC_IP}\
+          ${BOOTSTRAP_NODES}\
+          persistence \
+          --eth-provider=https://rpc.testnet.codex.storage
+
+    params:
+      storage:
+        codex:
+          mount: /codex
+          readOnly: false
+  codexapp:
+    image: codexstorage/codex-marketplace-ui:sha-4b2e179
+    expose:
+    - port: 80
+      as: 80
+      to:
+        - service: nginx
+  nginx:
+    image: nginx:1.27
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+            ip: nodeip2
+        http_options:
+          max_body_size: 1073741824
+          read_timeout: 500000
+          send_timeout: 510000
+      - port: 443
+        as: 443
+        to:
+          - global: true
+            ip: nodeip2
+    env:
+      - BASIC_AUTH_USER=codex
+      - BASIC_AUTH_PASS=passsecret #CHANGE THIS!!!
+      - DOMAIN=         # DNS A record pointing to the PUBLIC_IP defined above, it is needed to get Let's Encrypt certificates to secure your communication with the Codex App and the API
+    command:
+      - sh
+      - -c
+    args:
+      - >
+        touch /etc/nginx/.htpasswd
+
+        if [ -n "${BASIC_AUTH_PASS}" ]; then
+          apt-get update &&\
+          apt-get install -y apache2-utils &&\
+          htpasswd -c -b /etc/nginx/.htpasswd $BASIC_AUTH_USER $BASIC_AUTH_PASS
+        fi
+
+        NGINX_CONFIG='
+        server {
+            server_name '${DOMAIN}';
+            listen       80 default_server;
+
+            client_max_body_size  0;
+            proxy_read_timeout 500000;
+            proxy_connect_timeout 500000;
+            proxy_send_timeout 510000;
+
+            location / {
+                auth_basic             "Restricted";
+                auth_basic_user_file   .htpasswd;
+                proxy_http_version    1.1;
+                proxy_pass            http://codexapp:80/;
+            }
+
+            location /api/ {
+                if ($request_method = "OPTIONS") {
+                    add_header Access-Control-Allow-Origin $http_origin always;
+
+                    add_header Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" always;
+                    add_header Access-Control-Allow-Headers "Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Content-Disposition" always;
+                    add_header Access-Control-Allow-Credentials true;
+                    add_header Content-Length 0;
+                    add_header Content-Type text/plain;
+                    return 200;
+                }
+
+                if ($request_method = "GET") {
+                  add_header Access-Control-Allow-Origin $http_origin always;
+                  add_header Access-Control-Allow-Credentials true;
+                }
+
+                if ($request_method = "POST") {
+                  add_header Access-Control-Allow-Origin $http_origin always;
+                  add_header Access-Control-Allow-Credentials true;
+                }
+
+
+                proxy_http_version    1.1;
+                proxy_pass            http://codex:8080/api/;
+
+                auth_basic             "Restricted";
+                auth_basic_user_file   .htpasswd;
+            }
+        }
+        '
+
+        echo ${NGINX_CONFIG} > /etc/nginx/conf.d/${DOMAIN}.conf
+
+        if [ -n ${DOMAIN} ];then
+          echo "==> Obtaining certificates for ${DOMAIN}"
+          LETSENCRYPT_PATH=/etc/letsencrypt/live/${DOMAIN}
+
+          if ! [ -d "${LETSENCRYPT_PATH}" ]; then
+              apt-get -y install certbot python3-certbot-nginx
+              certbot \
+                  --non-interactive\
+                  --agree-tos\
+                  --no-eff-email\
+                  --no-redirect\
+                  --email user@${DOMAIN}\
+                  -d ${DOMAIN}\
+                  --nginx
+          fi
+
+          if ! [ -e "${LETSENCRYPT_PATH}/privkey.pem" ]; then
+              echo "The certificate does not exist"
+              sleep 120
+              exit 1
+          fi
+
+        fi
+
+
+
+        service nginx stop;
+        nginx -g "daemon off;"
+
+ 
+profiles:
+  compute:
+    codex:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+          - size: 10Gi
+            name: codex
+            attributes:
+              persistent: true
+              class: beta3
+    nginx:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 200Mi
+    codexapp:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 200Mi
+
+    
+  placement:
+    dcloud:
+      pricing:
+        codex:
+          denom: uakt
+          amount: 100000
+        codexapp:
+          denom: uakt
+          amount: 100000
+        nginx:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  codex:
+    dcloud:
+      profile: codex
+      count: 1 
+  codexapp:
+    dcloud:
+      profile: nginx
+      count: 1
+  nginx:
+    dcloud:
+      profile: codexapp
+      count: 1
+

@@ -1,0 +1,319 @@
+---
+version: "2.0"
+#endpoints:
+#  bitcoind:
+#    kind: ip
+services:
+  app:
+    image: andrey01/bitcoin-knots:v28.1.0@sha256:f272b90297f89d9fe819548b5928367396359e3eea172d622758b90151ce12a3
+    expose:
+      - port: 8332
+        as: 80
+        accept:
+          - bitcoinrpc.changeme.com
+        to:
+          - global: true
+      - port: 8332
+        to:
+          - service: api
+          - service: mempoolelectrs
+      - port: 8333
+        to:
+          - global: true
+            # "ip" - Leases a static public IP for port 8333 to allow inbound P2P connections.
+            # This ensures your Bitcoin node is reachable by peers and contributes to the Bitcoin network's decentralization and resiliency.
+            # Without this, the port would be randomly mapped (NATed) to a NodePort in the 30000–32767 range,
+            # making your node unreachable for inbound P2P unless manually advertised with workarounds.
+            # NOTE: Not all Akash Providers currently enable IP leasing, so this option is kept commented out by default.
+            # You may want to update your BITCOIN_ARGS with "-externalip=<LEASED_IP>" argument.
+            # ip: bitcoind
+      # auxiliary port (e.g. for rclone serve to restore backup)
+      - port: 8080
+        to:
+          - global: true
+    env:
+      # Make sure to update CORE_RPC_USERNAME & CORE_RPC_PASSWORD for "api" service and "mempoolelectrs" service's --cookie <user>:<pass> when updating RPCUSER & RPCPASSWORD for "app" service!
+      - RPCUSER=user
+      - RPCPASSWORD=changeme123
+      - BITCOIN_ARGS=-txindex=1 -dbcache=2048
+      # BITCOIN_ARGS defaults to "-txindex=1" when it isn't set
+      # and it defaults to the following args when RPCUSER & RPCPASSWORD are set:
+      # -rpcauthfile=/root/.bitcoin/rpcauth.conf -server=1 -rpcbind=0.0.0.0 -rpcallowip=0.0.0.0/0
+      # the image script generates the rpcauth.conf file.
+    ### Uncomment to debug or restore/backup
+    #command:
+    #  - /bin/sh
+    #  - "-c"
+    #args:
+    #  - >-
+    #    sleep infinity
+    ## echo $RPCUSER $RPCPASSWORD
+    ## /usr/local/bin/rpcauth.py "$RPCUSER" "$RPCPASSWORD" --output /root/.bitcoin/rpcauth.conf >/dev/null
+    ## bitcoind -rpcauthfile=/root/.bitcoin/rpcauth.conf -txindex=1 -dbcache=2048 -server=1 -rpcbind=0.0.0.0 -rpcallowip=0.0.0.0/0
+    params:
+      storage:
+        data:
+          # For persistent storage
+          mount: /root
+
+  mempoolelectrs:
+    image: mempool/electrs:v3.2.0
+    expose:
+      # when using MEMPOOL_BACKEND=electrum & ELECTRUM_* (in "api" service)
+      - port: 50001
+        to:
+          - service: api
+      # auxiliary port (e.g. for rclone serve to restore backup)
+      - port: 8080
+        to:
+          - global: true
+    ### Uncomment to debug or restore/backup
+    #args:
+    #  - >-
+    #    sleep infinity
+    #
+    # Useful for debugging:
+    ##  apt --no-install-recommends -y install net-tools procps iproute2 ncdu file bsdextrautils less
+    ##  echo >/dev/tcp/app/8332
+    ##  curl -s -u user:changeme123 -X POST -H 'Content-Type: application/json' --data '{"jsonrpc":"1.0","id":"curl","method":"getblockchaininfo","params":[]}' http://app:8332
+    #
+    # Notes:
+    # --cookie <user>:<pass> - should be matching RPCUSER & RPCPASSWORD set in the "app" service
+    # --precache-threads [default: 4 * CORE_COUNT]
+    # (NOTE: CORE_COUNT is the number of vCPUs assigned to the container via K8s CPU limit;
+    # in this case: 4 cores → 4 * 4 = 16 threads)
+    command:
+      - /bin/sh
+      - "-c"
+    args:
+      - >-
+        /bin/electrs
+        --address-search
+        --cookie user:changeme123
+        --db-dir /electrs
+        --network mainnet
+        --electrum-rpc-addr 0.0.0.0:50001
+        --cors '*'
+        --daemon-rpc-addr app:8332
+        --jsonrpc-import
+        --precache-threads 16
+        --electrum-txs-limit 1000000
+        -v
+    params:
+      storage:
+        data:
+          mount: /electrs
+
+  web:
+    image: mempool/frontend:latest
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+        accept:
+          - mempool.changeme.com
+    command:
+      - /bin/sh
+      - "-c"
+    args:
+      - >-
+        /patch/entrypoint.sh ./wait-for db:3306 --timeout=720 -- nginx -g 'daemon off;'
+    # debug:
+    # echo >/dev/tcp/db/3306
+    # curl http://api:8999/api/v1/blocks/tip/height
+    # (1 tx) time -p curl http://api:8999/api/v1/address/bc1pe635ss7xaqj44czuz0sxfz8v6cpp8w3fmmk2cp62htwawcart9pssm8twq
+    # (+3k txs) time -p curl http://api:8999/api/v1/address/126cLS46uhg5KuKFeaQMpSjnPq8gBy44S6
+    # (+16k txs) time -p curl http://api:8999/api/v1/address/37jKPSmbEGwgfacCr2nayn1wTaqMAbA94Z
+    # (+400k txs) time -p curl http://api:8999/api/v1/address/bc1qryhgpmfv03qjhhp2dj8nw8g4ewg08jzmgy3cyx
+    # https://mempool.space/docs/api/rest
+    env:
+      - FRONTEND_HTTP_PORT=8080
+      - BACKEND_MAINNET_HTTP_HOST=api
+      - BACKEND_MAINNET_HTTP_PORT=8999
+
+  api:
+    image: mempool/backend:latest
+    expose:
+      - port: 8999
+        to:
+          - service: web
+    command:
+      - /bin/sh
+      - "-c"
+    # ISSUE: mempool/backend image starts as USER 1000; can't chown persistent storage mount point as it is owned by root.
+    #chown -Rh 1000:1000 /backend/cache;
+    args:
+      - >-
+        ./wait-for-it.sh db:3306 --timeout=720 --strict -- ./start.sh
+    # debug:
+    # echo >/dev/tcp/db/3306
+    # echo >/dev/tcp/app/8332
+    # echo >/dev/tcp/mempoolelectrs/50001
+    # mysql -u root -padmin -e "SHOW GRANTS FOR 'mempool'@'%';"
+    # mysql -u mempool -pmempool -D mempool -e "SELECT * FROM blocks LIMIT 10\G"
+    # mysql -u mempool -pmempool -D mempool -e "SELECT height, hash, blockTimestamp FROM blocks ORDER BY height DESC LIMIT 10\G"
+    # mysql -u root -padmin -e "SELECT table_schema AS 'Database', ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS 'Size (MB)' FROM information_schema.tables GROUP BY table_schema ORDER BY \`Size (MB)\` DESC;"
+    env:
+      # Use the high-performance Electrum protocol for backend access
+      # mempool/electrs (Blockstream's electrs fork)
+      - MEMPOOL_BACKEND=electrum
+      - ELECTRUM_HOST=mempoolelectrs
+      - ELECTRUM_PORT=50001
+      - ELECTRUM_TLS_ENABLED=false
+
+      # Note: electrs will not be responsive until bitcoind ("app" service) has fully synced.
+      # During initial sync, address lookups and mempool-related queries may fail temporarily.
+
+      # Alternatively, you can use [Blockstream/esplora](https://github.com/Blockstream/esplora) backend:
+      #- MEMPOOL_BACKEND=esplora
+      #- ESPLORA_REST_API_URL=http://esplora:3000
+
+      # Backend may still rely on bitcoind ("app" service) for certain calls/fallback while electrum is still initializing, so set CORE_RPC_* regardless
+      - CORE_RPC_HOST=app
+      - CORE_RPC_PORT=8332
+      # Must match RPCUSER & RPCPASSWORD set in the "app" service
+      - CORE_RPC_USERNAME=user
+      - CORE_RPC_PASSWORD=changeme123
+
+      # To disable electrs/esplora and connect only to bitcoind:
+      # 1. Set MEMPOOL_BACKEND=none
+      # 2. Remove or comment out the "mempoolelectrs" service entirely
+
+      - DATABASE_ENABLED=true
+      - DATABASE_HOST=db
+      - DATABASE_DATABASE=mempool
+      - DATABASE_USERNAME=mempool
+      - DATABASE_PASSWORD=mempool
+      - STATISTICS_ENABLED=true
+    ## ISSUE: mempool/backend image starts as USER 1000; can't chown persistent storage mount point as it is owned by root.
+    #params:
+    #  storage:
+    #    cache:
+    #      # For persistent storage
+    #      mount: /backend/cache
+
+  db:
+    image: mariadb:10.5.21
+    expose:
+      - port: 3306
+        to:
+          - service: web
+          - service: api
+    env:
+      - MYSQL_DATABASE=mempool
+      - MYSQL_USER=mempool
+      - MYSQL_PASSWORD=mempool
+      - MYSQL_ROOT_PASSWORD=admin
+    params:
+      storage:
+        data:
+          # For persistent storage
+          mount: /var/lib/mysql
+
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          # minimum 12Gi for bitcoind Bitcoin Knots with -dbcache=2048 (tested on May 11, 2025)
+          size: 16Gi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 1024Gi
+            attributes:
+              persistent: true
+              class: beta3
+    mempoolelectrs:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          # minimum 24Gi (tested on May 11, 2025)
+          size: 32Gi
+        storage:
+          - size: 1Gi
+          - name: data
+            # minimum 3Ti (tested on May 11, 2025)
+            size: 4096Gi
+            attributes:
+              persistent: true
+              class: beta3
+    web:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 1Gi
+    api:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 10Gi
+          #- size: 1Gi
+          #- name: cache
+          #  size: 10Gi
+          #  attributes:
+          #    persistent: true
+          #    class: beta3
+    db:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      pricing:
+        app:
+          denom: uakt
+          amount: 10000
+        mempoolelectrs:
+          denom: uakt
+          amount: 10000
+        web:
+          denom: uakt
+          amount: 10000
+        api:
+          denom: uakt
+          amount: 10000
+        db:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  app:
+    akash:
+      profile: app
+      count: 1
+  mempoolelectrs:
+    akash:
+      profile: mempoolelectrs
+      count: 1
+  web:
+    akash:
+      profile: web
+      count: 1
+  api:
+    akash:
+      profile: api
+      count: 1
+  db:
+    akash:
+      profile: db
+      count: 1

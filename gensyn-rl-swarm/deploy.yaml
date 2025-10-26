@@ -1,0 +1,63 @@
+---
+version: "2.0"
+services:
+  rl-swarm:
+    image: ghcr.io/cosyndev/rl-swarm-akash:0.0.9
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - IDENTITY_PATH=/home/gensyn/rl_swarm/keys/swarm.pem
+      - CONNECT_TO_TESTNET=true
+      - HF_HUB_DOWNLOAD_TIMEOUT=120
+    params:
+      storage:
+        data:
+          mount: /home/gensyn/rl_swarm/keys
+          readOnly: false
+        shm:
+          mount: /dev/shm
+          readOnly: false
+profiles:
+  compute:
+    rl-swarm:
+      resources:
+        cpu:
+          units: 3
+        memory:
+          size: 16Gi
+        storage:
+          - size: 15Gi
+          - name: data
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              persistent: false
+              class: ram
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                - model: a100
+                - model: rtx4090
+                - model: rtx5090
+                - model: rtx3090
+  placement:
+    dcloud:
+      pricing:
+        rl-swarm:
+          denom: uakt
+          amount: 100000
+deployment:
+  rl-swarm:
+    dcloud:
+      profile: rl-swarm
+      count: 1

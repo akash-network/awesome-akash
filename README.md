@@ -7,6 +7,26 @@ Instructions on how to deploy the SDL files in this repository can be found [her
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
 
+## Contributing
+
+See our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on adding new templates and resources.
+
+To add a new template/resource:
+
+1. **Create a New Folder:**
+   - Name your folder using lowercase, hyphen-separated naming (e.g., `my-template`).
+   - Place it in the root directory.
+
+2. **Required Files:**
+   - `deploy.yaml` — Main deployment SDL.
+   - `README.md` — Include instructions for setup, usage, and details about your template/resource.
+   - *(Optional)* `config.json` — Custom configuration (e.g., logo). Must follow the schema in `config.schema.json`. See [DeepSeek-R1/config.json](DeepSeek-R1/config.json) for an example.
+
+3. **Update Table of Contents:**
+   - Add your template/resource in the appropriate category section in the Table of Contents below, maintaining alphabetical order within the category.
+   - Use the format: `[Display Name](#folder-name)` where "folder-name" matches your actual folder name.
+   - Note: The console API has a 5-minute cache, so changes may take up to 5 minutes to appear.
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Official](#official)
@@ -53,20 +73,25 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
+- [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
 - [Daila](daila)
-- [Faster Whisper](fast-whisper-cpu)
+- [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
+- [Eliza AI Agent](elizaos-ai_Agents)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
+- [Morpheus Lumerin Node](morpheus-lumerin-node)
 - [Ollama](ollama-cpu)
 - [Open WebUI](open-webui-cpu)
 - [PrivateGPT](privategpt-cpu)
 - [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
+- [Venice-ElizaOS](Venice-ElizaOS)
 - [Weaviate](weaviate)
+- [Chromadb](chromadb)
 - [Whisper ASR](whisper-asr-cpu)
 - [Whisper GUI](whisper-gui-cpu)
 
@@ -74,34 +99,68 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 - [AI-Image-App](AI-Image-App)
 - [AUTOMATIC1111](AUTOMATIC1111)
+- [Axolotl AI](axolotlai)
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
 - [ComfyUI](comfyui)
+- [DeepSeek-Janus](DeepSeek-Janus)
+- [DeepSeek-R1](DeepSeek-R1)
+- [DeepSeek-R1-0528](DeepSeek-R1-0528)
+- [DeepSeek-R1-Distill-Qwen-7B](DeepSeek-R1-Distill-Qwen-7B)
+- [DeepSeek-R1-Distill-Qwen-1.5B](DeepSeek-R1-Distill-Qwen-1.5B)
+- [DeepSeek-R1-Distill-Qwen-14B](DeepSeek-R1-Distill-Qwen-14B)
+- [DeepSeek-R1-Distill-Qwen-32B](DeepSeek-R1-Distill-Qwen-32B)
+- [DeepSeek-R1-Distill-Llama-70B](DeepSeek-R1-Distill-Llama-70B)
+- [DeepSeek-R1-Distill-Llama-8B](DeepSeek-R1-Distill-Llama-8B)
+- [DeepSeek-V3.1](DeepSeek-V3.1)
 - [Dria](dria)
 - [Dolly-v2-12b](dolly-v2-12b)
 - [Falcon-7B](Falcon-7B)
 - [FastChat](FastChat)
-- [Faster Whisper](fast-whisper-gpu)
+- [Faster Whisper](faster-whisper-gpu)
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
+- [Foundry-RIT AI Training Model Challenge](Foundry-rit-ai-training-model-challenge)
+- [Gensyn RL Swarm](gensyn-rl-swarm)
 - [GPT-Neo](gpt-neo)
 - [GPUStack](gpustack)
 - [GPUStack Worker](gpustack-worker)
 - [Grok](grok)
+- [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
 - [InvokeAI](invoke-ai-gpu)
 - [Llama-2-70B](Llama-2-70B)
 - [Llama-3-8B](Llama-3-8B)
+- [Llama-3-Groq-8B-Tool-Use](Llama-3-Groq-8B-Tool-Use)
 - [Llama-3-70B](Llama-3-70B)
 - [Llama-3.1-8B](Llama-3.1-8B)
 - [Llama-3.1-405B-AWQ-INT4](Llama-3.1-405B-AWQ-INT4)
 - [Llama-3.1-405B-BF16](Llama-3.1-405B-BF16)
 - [Llama-3.1-405B-FP8](Llama-3.1-405B-FP8)
+- [Llama-3.2-3B](Llama-3.2-3B)
+- [Llama-3.2-11B-Vision-Instruct](Llama-3.2-11B-Vision-Instruct)
+- [Llama-3.2-90B-Vision-Instruct](Llama-3.2-90B-Vision-Instruct)
+- [Llama-3.3-70B](Llama-3.3-70B)
+- [LLaMA-Factory](llama-factory)
+- [Llama-3_3-Nemotron-Super-49B-v1](Llama-3_3-Nemotron-Super-49B-v1)
+- [Llama-4-Maverick-17B-128E-Instruct-FP8](Llama-4-Maverick-17B-128E-Instruct-FP8)
+- [Llama-4-Scout-17B-16E-Instruct](Llama-4-Scout-17B-16E-Instruct)
+- [Mistral-7B](Mistral-7B)
 - [Ollama](ollama-gpu)
 - [Open GPT](open-gpt)
 - [Open WebUI](open-webui-gpu)
+- [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
+- [Pluralis-Node](Pluralis-Node)
 - [PrivateGPT](privategpt-gpu)
+- [Qwen3-235B-A22B-FP8](Qwen3-235B-A22B-FP8)
+- [Qwen3-235B-A22B-Instruct-2507](Qwen3-235B-A22B-Instruct-2507)
+- [Qwen3-235B-A22B-Instruct-2507-FP8](Qwen3-235B-A22B-Instruct-2507-FP8)
+- [Qwen3-235B-A22B-Thinking-2507](Qwen3-235B-A22B-Thinking-2507)
+- [Qwen3-235B-A22B-Thinking-2507-FP8](Qwen3-235B-A22B-Thinking-2507-FP8)
+- [Qwen3-Coder-480B-A35B-Instruct](Qwen3-Coder-480B-A35B-Instruct)
+- [Qwen3-Next-80B-A3B-Instruct](Qwen3-Next-80B-A3B-Instruct)
+- [Qwen-QwQ-32B](QwQ-32B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)
@@ -114,7 +173,7 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [vllm](vllm)
 - [Whisper ASR](whisper-asr-gpu)
 - [Whisper GUI](whisper-gui-gpu)
-- [XLM-roBERTa](XLM-roBERTa)
+- [XLM-RoBERTa](XLM-RoBERTa)
 
 ### Blogging
 
@@ -159,8 +218,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 
 ### Data Visualization
 
--  [Redash Data Charts for Akash Analytics](Redash)
--  [UFO Sightings](ufo-data-vis)
+- [Redash Data Charts for Akash Analytics](Redash)
+- [UFO Sightings](ufo-data-vis)
 
 ### Databases and Administration
 
@@ -210,9 +269,11 @@ Awesome DeFi apps you can deploy on Akash
 - [Serverbench](serverbench)
 - [Speedtest by Ookla](speedtest-cli)
 - [Speedtest Tracker](speedtest-tracker)
+- [Persistent Storage benchmarking tool](persistent-storage-performance-testing)
 
 ### Blockchain
 
+- [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Bitcoin](bitcoin)
 - [Prysm Beacon](prysm-beacon)
 - [Substrate Node](substrate-node)
@@ -227,10 +288,14 @@ Awesome DeFi apps you can deploy on Akash
 - [Fuse Network Node](fuse-network-node)
 - [Injective](injective)
 - [Starknet Node by Juno](juno)
+- [Witness Chain Watchtower](witnesschain-watchtower)
+- [Concordium node](concordium)
 
 ### Business
 
 - [Odoo](odoo)
+- [RAIR-Dapp](RAIR-Dapp)
+- [n8n](n8n)
 
 ### Games
 
@@ -258,7 +323,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Caddy](caddy)
 - [Flame](flame)
 - [Grafana](grafana)
-- [IPFS](ipfs)
 - [Nginx Let's Encrypt Proxy](nginx-letsencrypt-proxy)
 
 ### Media
@@ -298,6 +362,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Nanominer](nanominer-c11)
 - [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
+- [Quai Network](quai-gpu-miner)
 - [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
@@ -328,8 +393,14 @@ Awesome DeFi apps you can deploy on Akash
 - [TeamSpeak](teamspeak)
 - [Waku](waku)
 
+### Decentralized Storage
+
+- [Codex](codex)
+- [IPFS](ipfs)
+
 ### Tools
 
+- [anubis](anubis)
 - [thirdweb](thirdweb)
 - [authsteem](authsteem)
 - [Code-Server](code-server)
@@ -346,6 +417,7 @@ Awesome DeFi apps you can deploy on Akash
 - [owncloud](owncloud)
 - [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
+- [Swagger UI](swagger-ui)
 - [Quill editor](quill-editor)
 - [Uptime Kuma](uptime-kuma)
 - [Webtop](webtop)
@@ -361,10 +433,12 @@ Awesome DeFi apps you can deploy on Akash
 - [V2RAY](v2ray)
 - [X-UI](x-ui)
 - [Tor Proxy](tor-proxy)
+- [CJDNS PKT](cjdns-pkt)
 
 ### Databases
 
 - [redis](redis)
+- [Supabase](supabase)
 
 ### Video Conferencing
 
@@ -372,9 +446,11 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Wallet
 
-- [MyetherWallet](MyetherWallet)
+- [MyEtherWallet](MyEtherWallet)
 - [tronwallet](tronwallet)
 
 ### Web Frameworks
-
+- [GIN](gin)
 - [NextJS](nextjs)
+- [React](react)
+- [Ruby on Rails](ruby-on-rails)

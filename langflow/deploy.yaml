@@ -1,43 +1,81 @@
-version: "2.0"
+version: "2.0"  # Specifies the SDL version.
 
 services:
   langflow:
-    image: logspace/langflow:latest
+    image: langflowai/langflow:latest  # Uses the latest Langflow image.
     expose:
-      - port: 7860
-        as: 80
+      - port: 7860        # Port Langflow uses to serve traffic.
+        as: 80            # Exposes the service internally on port 80.
         to:
-          - global: true
+          - global: true  # Allows global access to Langflow.
+    depends_on:
+      - postgres          # Specifies dependency on the postgres service to start first.
+    env:
+      - LANGFLOW_DATABASE_URL=postgresql://langflow:langflow@postgres:5432/langflow  # Database connection string in URL format for PostgreSQL.
+      - LANGFLOW_CONFIG_DIR=/app/config  # Directory where Langflow will store its configuration files.
+      - LANGFLOW_HOST=0.0.0.0  # Host address for Langflow, set to 0.0.0.0 to allow external connections.
+      - LANGFLOW_PORT=7860     # Port Langflow will use; must match the exposed port.
+    volumes:
+      - langflow_data:/app/config  # Persistent storage for Langflow configurations.
+
+  postgres:
+    image: postgres:16  # Specifies the PostgreSQL version 16 image.
+    expose:
+      - port: 5432        # PostgreSQL default port.
+        as: 5432          # Exposes PostgreSQL on the same port.
+        to:
+          - service: langflow  # Restricts PostgreSQL access to the Langflow service.
+    env:
+      - POSTGRES_USER=langflow      # Database user.
+      - POSTGRES_PASSWORD=langflow  # Database password.
+      - POSTGRES_DB=langflow        # Database name.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persistent storage for PostgreSQL data.
 
 profiles:
   compute:
     langflow:
       resources:
         cpu:
-          units: 8.0
+          units: 8.0        # CPU units allocated to Langflow.
         memory:
-          size: 16Gi
+          size: 16Gi        # Memory allocated to Langflow.
         storage:
-          size: 100Gi
+          size: 100Gi       # Storage size allocated to Langflow.
+    postgres:
+      resources:
+        cpu:
+          units: 2.0        # CPU units allocated to PostgreSQL.
+        memory:
+          size: 4Gi         # Memory allocated to PostgreSQL.
+        storage:
+          size: 50Gi        # Storage size allocated to PostgreSQL.
+
+  storage:
+    langflow_data:
+      size: 5Gi  # Defines a persistent volume for Langflow data.
+    postgres_data:
+      size: 5Gi  # Defines a persistent volume for PostgreSQL data.
+
   placement:
     akash:
-      #######################################################
-      #Keep this section to deploy on trusted providers
       signedBy:
         anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-          - "akash18qa2a2ltfyvkyj0ggj3hkvuj6twzyumuaru9s4"
-      #######################################################
-      #Remove this section to deploy on untrusted providers
-      #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://docs.akash.network/providers/akash-audited-attributes
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"  # Allows deployment by any of these authorized accounts.
       pricing:
         langflow: 
           denom: uakt
-          amount: 10000
+          amount: 10000  # Pricing per unit for Langflow.
+        postgres:
+          denom: uakt
+          amount: 5000   # Pricing per unit for PostgreSQL.
 
 deployment:
   langflow:
     akash:
-      profile: langflow
-      count: 1
+      profile: langflow  # References the Langflow compute profile.
+      count: 1           # Specifies one instance of the Langflow service.
+  postgres:
+    akash:
+      profile: postgres  # References the PostgreSQL compute profile.
+      count: 1           # Specifies one instance of the PostgreSQL service.

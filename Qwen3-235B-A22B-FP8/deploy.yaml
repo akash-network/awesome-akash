@@ -1,0 +1,63 @@
+---
+version: "2.0"
+services:
+  sglang:
+    image: lmsysorg/sglang:v0.4.6.post1-cu125-srt
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >- 
+        python3 -m sglang.launch_server --model-path Qwen/Qwen3-235B-A22B-FP8 --tensor-parallel-size 4 --host 0.0.0.0 --port 8000 --reasoning-parser qwen3 --json-model-override-args '{"rope_scaling":{"rope_type":"yarn","factor":4.0,"original_max_position_embeddings":32768}}'
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
+          readOnly: false
+profiles:
+  compute:
+    sglang:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 128Gi
+        storage:
+          - size: 50Gi
+          - name: data
+            size: 300Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 4
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                  ram: 80Gi
+                - model: a100
+                  ram: 80Gi
+  placement:
+    dcloud:
+      pricing:
+        sglang:
+          denom: uakt
+          amount: 1000000
+deployment:
+  sglang:
+    dcloud:
+      profile: sglang
+      count: 1

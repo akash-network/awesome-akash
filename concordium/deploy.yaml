@@ -1,0 +1,142 @@
+---
+version: "2.0"
+services:
+  mainnet-node:
+    image: concordium/mainnet-node:9.0.7-3
+    params:
+      storage:
+        data:
+          mount: /mnt
+    expose:
+      - port: 20000
+        as: 20000
+        to:
+          - service: mainnet-node-collector
+          - global: true
+      - port: 8888
+        as: 8888
+        to:
+          - global: true
+    env:
+      # Environment specific configuration
+      # The url where IPs of the bootstrap nodes can be found.
+      - CONCORDIUM_NODE_CONNECTION_BOOTSTRAP_NODES=bootstrap.mainnet.concordium.software:8888
+      # Where the genesis is located
+      - CONCORDIUM_NODE_CONSENSUS_GENESIS_DATA_FILE=/mainnet-genesis.dat
+      # The url of the catchup file. This speeds up the catchup process.
+      - CONCORDIUM_NODE_CONSENSUS_DOWNLOAD_BLOCKS_FROM=https://catchup.mainnet.concordium.software/blocks.idx
+      # General node configuration Data and config directories (it's OK if they
+      # are the same). This should match the volume mount below. If the location
+      # of the mount inside the container is changed, then these should be
+      # changed accordingly as well.
+      - CONCORDIUM_NODE_DATA_DIR=/mnt/data
+      - CONCORDIUM_NODE_CONFIG_DIR=/mnt/data
+      # The port on which the node will listen for incoming connections. This is a
+      # port inside the container. It is mapped to an external port by the port
+      # mapping in the `ports` section below. If the internal and external ports
+      # are going to be different then you should also set
+      # `CONCORDIUM_NODE_EXTERNAL_PORT` variable to what the external port value is.
+      - CONCORDIUM_NODE_LISTEN_PORT=8888
+      # Desired number of nodes to be connected to.
+      - CONCORDIUM_NODE_CONNECTION_DESIRED_NODES=5
+      # Maximum number of __nodes__ the node will be connected to.
+      - CONCORDIUM_NODE_CONNECTION_MAX_ALLOWED_NODES=10
+      # Address of the V2 GRPC server.
+      - CONCORDIUM_NODE_GRPC2_LISTEN_ADDRESS=0.0.0.0
+      # And its port which has to be the same as in `CONCORDIUM_NODE_COLLECTOR_GRPC_HOST`
+      # that is defined for the collector.
+      - CONCORDIUM_NODE_GRPC2_LISTEN_PORT=20000
+      # Maximum number of __connections__ the node can have. This can temporarily be more than
+      # the number of peers when incoming connections are processed. This limit
+      # ensures that there cannot be too many of those.
+      - CONCORDIUM_NODE_CONNECTION_HARD_CONNECTION_LIMIT=20
+      # Number of threads to use to process network events. This should be
+      # adjusted based on the resources the node has (in combination with
+      # `CONCORDIUM_NODE_RUNTIME_HASKELL_RTS_FLAGS`) below.
+      - CONCORDIUM_NODE_CONNECTION_THREAD_POOL_SIZE=2
+      # The bootstrapping interval in seconds. This makes the node contact the
+      # specified bootstrappers at a given interval to discover new peers.
+      - CONCORDIUM_NODE_CONNECTION_BOOTSTRAPPING_INTERVAL=1800
+      # Haskell RTS flags to pass to consensus. `-N2` means to use two threads
+      # for consensus operations. `-I0` disables the idle garbage collector
+      # which reduces CPU load for non-validator nodes.
+      - CONCORDIUM_NODE_RUNTIME_HASKELL_RTS_FLAGS=-N2,-I0
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - 'apt-get update && apt-get upgrade -y; apt install nano -y; /concordium-node --config-dir=/mnt/ --data-dir=/mnt/ --genesis-data-file=/mainnet-genesis.dat --bootstrap-node=bootstrap.mainnet.concordium.software:8888'
+
+  mainnet-node-collector:
+    image: concordium/mainnet-node:9.0.7-3
+    params:
+    expose:
+      - port: 20000
+        as: 20000
+        to:
+          - global: true
+    env:
+      # Settings that should be customized by the user.
+      - CONCORDIUM_NODE_COLLECTOR_NODE_NAME=Concordium_node
+      # Environment specific settings.
+      - CONCORDIUM_NODE_COLLECTOR_URL=https://dashboard.mainnet.concordium.software/nodes/post
+      # Collection settings.
+      # How often to collect the statistics from the node.
+      - CONCORDIUM_NODE_COLLECTOR_COLLECT_INTERVAL=5000
+      # The URL where the node can be reached. Note that this will use the
+      # docker created network which maps `mainnet-node` to the internal IP of
+      # the `mainnet-node`. If the name of the node service is changed from
+      # `mainnet-node` then the name here must also be changed.
+      # The port also has to be the same as in `CONCORDIUM_NODE_GRPC2_LISTEN_PORT`
+      # that is defined for the node.
+      - CONCORDIUM_NODE_COLLECTOR_GRPC_HOST=http://mainnet-node:20000
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - '/node-collector'
+
+profiles:
+  compute:
+    mainnet-node:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - name: data
+            size: 300Gi
+            attributes:
+              persistent: true
+              class: beta3
+    mainnet-node-collector:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+    
+  placement:
+    westcoast:
+      attributes:
+        host: akash
+      pricing:
+        mainnet-node: 
+          denom: uakt
+          amount: 10000
+        mainnet-node-collector: 
+          denom: uakt
+          amount: 10000
+
+deployment:
+  mainnet-node:
+    westcoast:
+      profile: mainnet-node
+      count: 1 
+  mainnet-node-collector:
+    westcoast:
+      profile: mainnet-node-collector
+      count: 1

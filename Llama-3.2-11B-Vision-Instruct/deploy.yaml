@@ -1,0 +1,66 @@
+---
+version: "2.0"
+services:
+  vllm:
+    image: vllm/vllm-openai:v0.6.2@sha256:730ef3d3c17a217b34cfdbfd99be80b3f459e37ef2fc0c5c43ba70752dad08ae
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >- 
+        vllm serve meta-llama/Llama-3.2-11B-Vision-Instruct --enforce-eager --max-num-seqs 16
+    env:
+      - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
+      #- NCCL_DEBUG=INFO # Uncomment to enable NCCL debugging
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
+          readOnly: false
+profiles:
+  compute:
+    vllm:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 256Gi
+        storage:
+          - size: 50Gi
+          - name: data
+            size: 100Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                  ram: 80Gi
+                - model: a100
+                  ram: 80Gi
+  placement:
+    dcloud:
+      pricing:
+        vllm:
+          denom: uakt
+          amount: 1000000
+deployment:
+  vllm:
+    dcloud:
+      profile: vllm
+      count: 1

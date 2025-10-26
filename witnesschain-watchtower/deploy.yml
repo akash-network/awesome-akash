@@ -1,0 +1,82 @@
+---
+version: "2.0"
+services:
+  witnesschain-watchtower:
+    image: witnesschain/infinity-watch:1.0.0
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 11112
+        as: 11112
+        to:
+          - global: true
+      - port: 22223
+        as: 22223
+        to:
+          - global: true
+      - port: 33334
+        as: 33334
+        to:
+          - global: true
+      - port: 33335
+        as: 33335
+        to:
+          - global: true
+      - port: 33336
+        as: 33336
+        to:
+          - global: true
+      - port: 44445
+        as: 44445
+        to:
+          - global: true
+      - port: 44446
+        as: 44446
+        to:
+          - global: true
+      - port: 44447
+        as: 44447
+        to:
+          - global: true
+      - port: 55556
+        as: 55556
+        to:
+          - global: true
+    env:
+      - latitude=
+      - longitude=
+      - radius=1000
+      - privateKey=
+      - walletPublicKey=
+      - keyType=ethereum
+      - havePublicIPv4Address=false
+      - havePublicIPv6Address=false
+      - havePrivateIPv4Address=false
+      - havePrivateIPv6Address=false
+      - saveResultsInDatabase=false
+      - submitResultsToContract=false
+      - projectName=akash
+      - rpcUrl=https://rpc.witnesschain.com
+profiles:
+  compute:
+    witnesschain-watchtower:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 5Gi
+  placement:
+    dcloud:
+      pricing:
+        witnesschain-watchtower:
+          denom: uakt
+          amount: 500
+deployment:
+  witnesschain-watchtower:
+    dcloud:
+      profile: witnesschain-watchtower
+      count: 1

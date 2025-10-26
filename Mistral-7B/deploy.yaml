@@ -1,0 +1,68 @@
+---
+version: "2.0"
+services:
+  vllm:
+    image: lmsysorg/sglang:v0.4.5.post3-cu125-srt
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >-
+        python3 -m sglang.launch_server --model-path mistralai/Mistral-7B-Instruct-v0.3 --tp 1 --host 0.0.0.0 --port 8000
+    env:
+      - HF_TOKEN= # required for Mistral-7B-Instruct-v0.3
+    params:
+      storage:
+        data:
+          mount: /root/.cache
+          readOnly: false
+        shm:
+          mount: /dev/shm
+          readOnly: false
+profiles:
+  compute:
+    vllm:
+      resources:
+        cpu:
+          units: 12
+        memory:
+          size: 32Gi
+        storage:
+          - size: 30Gi
+          - name: data
+            size: 30Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              persistent: false
+              class: ram
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: a100
+                - model: rtx4090
+                  ram: 24Gi
+                  interface: pcie
+                - model: h100
+                  ram: 80Gi
+  placement:
+    dcloud:
+      pricing:
+        vllm:
+          denom: uakt
+          amount: 1000000
+deployment:
+  vllm:
+    dcloud:
+      profile: vllm
+      count: 1

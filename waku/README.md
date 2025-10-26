@@ -4,7 +4,7 @@
 
 In other words, Waku allows you to build decentralized applications which require any form of message transfer (e.g. chats, push notifications, event broadcasting, weak consensus/coordination, message queues). You can build your own application protocols on top of plug&play Waku protocols, which ensure your node will be well connected with the network and your messages will be broadcasted reliably.
 
-Waku also includes protocols friendly to resource restricted / adaptive devices like smartphones or laptops which may not have a lot of compute power or bandwith.
+Waku also includes protocols friendly to resource restricted / adaptive devices like smartphones or laptops which may not have a lot of compute power or bandwidth.
 
 # Who is this deployment for?
 
@@ -22,7 +22,7 @@ Waku nodes connecting to The Waku Network require access to an Ethereum (Sepolia
 
 The RPC node URL needs to be configured in `ETH_CLIENT_ADDRESS` environment variable of the deployment manifest.
 
-Another mandatory environment variable is `IP_ADDR`. This is the IP address leased for this deplyoment. Sadly, it cannot be obtained before the actual deployment happens neither can it be resolved from inside the deployment. This means that after deploying first with **empty** `IP_ADDR`, you need to get the address of the IP lease and **update the deployment** by adding the value to the environment variable. Only after you do that, the node will be able to properly announce itself to the network and other peers will be able to connect to it.
+Another mandatory environment variable is `IP_ADDR`. This is the IP address leased for this deployment. Sadly, it cannot be obtained before the actual deployment happens neither can it be resolved from inside the deployment. This means that after deploying first with **empty** `IP_ADDR`, you need to get the address of the IP lease and **update the deployment** by adding the value to the environment variable. Only after you do that, the node will be able to properly announce itself to the network and other peers will be able to connect to it.
 
 ## Deploying as Relayer
 
@@ -34,7 +34,7 @@ In case your goal is to use this node to publish messages, you will need to obta
 
 ## Deploying with Postgres
 
-This deployment not only deploys Waku node, but also a Postgres database serving as an archive for the `store` protocol. The manifest including Postgres instance is availabale in [deploy.yaml](./deploy.yaml)
+This deployment not only deploys Waku node, but also a Postgres database serving as an archive for the `store` protocol. The manifest including Postgres instance is available in [deploy.yaml](./deploy.yaml)
 
 You may want to change the `POSTGRES_PASSWORD` in `services.node.env` and `services.postgres.env` (make sure both values match!)
 

@@ -1,10 +1,10 @@
 # Dria Compute Node
 
-[Dria](https://dria.co/) unites consumer hardware to generate high-quality, high-throughput, low-cost synthetic data. Dria Knowledge Network is a decentralized network that allows many AI agents to collaborate on tasks that improve AI/ML models with synthetic data. A Dria Compute Node is a unit of computation within the Dria Knowledge Network, and its purpose is to process tasks given by the Dria Admin Node.
+[Dria](https://dria.co/) unites consumer hardware to generate high-quality, high-throughput, low-cost synthetic data. [Dria Knowledge Network](https://dria.co/edge-ai) is a decentralized network that allows many AI agents to collaborate on tasks that improve AI/ML models with synthetic data.
+
+A [Dria Compute Node](https://github.com/firstbatchxyz/dkn-compute-node) is a unit of computation within the Dria Knowledge Network, and it serves local / API-based LLMs to handle tasks within the network, and get rewards for it.
 
 ## Setup
-
-> NOTE: Prefer providers in Europe as the network will penalize nodes in US because of latency: https://github.com/firstbatchxyz/dkn-compute-node/issues/119 
 
 Check [dkn-compute-node](https://hub.docker.com/r/firstbatch/dkn-compute-node/tags) Docker repository to see if there is a new version and update `dkn` service `image`.
 

@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://raw.githubusercontent.com/TecharoHQ/anubis/refs/heads/main/docs/static/img/favicon.webp"
+}
