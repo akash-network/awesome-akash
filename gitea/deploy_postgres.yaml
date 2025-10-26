@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   gitea:
-    image: gitea/gitea:1.25.0-rc0-rootless
+    image: gitea/gitea:1.25.0-rc0-rootless # https://hub.docker.com/r/gitea/gitea
     expose:
       - port: 3000
         as: 3000
