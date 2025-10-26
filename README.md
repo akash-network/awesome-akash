@@ -214,6 +214,7 @@ To add a new template/resource:
 - [Github Runner](ghrunner)
 - [Radicle](radicle)
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
+- [Micro-services Example](micro-services-example)
 - [Gitea](gitea)
 
 ### Data Visualization
