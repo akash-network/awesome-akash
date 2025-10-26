@@ -215,6 +215,7 @@ To add a new template/resource:
 - [Radicle](radicle)
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
 - [Micro-services Example](micro-services-example)
+- [Gogs](gogs)
 
 ### Data Visualization
 
