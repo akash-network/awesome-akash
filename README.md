@@ -155,7 +155,8 @@ Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop wi
 - [Github Runner](ghrunner)
 - [Radicle](radicle)
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
-  
+- [Gitea](gitea)
+
 ### Data Visualization
 
 -  [Redash Data Charts for Akash Analytics](Redash)
