@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   neo4j:
-    image: neo4j:5.15.0
+    image: neo4j:5.15.0-community
     expose:
       - port: 7474
         as: 7474
