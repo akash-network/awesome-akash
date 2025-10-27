@@ -1,4 +1,3 @@
----
 version: "2.0"
 services:
   neo4j:
@@ -14,6 +13,7 @@ services:
           - global: true
     env:
       - NEO4J_AUTH=neo4j/admin
+      - NEO4J_server_config_strict__validation_enabled=false
     params:
       storage:
         data:
