@@ -31,9 +31,9 @@ profiles:
         memory:
           size: 4Gi
         storage:
-          - size: 10Gi
+          - size: 2Gi
           - name: data
-            size: 1Gi
+            size: 10Gi
             attributes:
               persistent: true
               class: beta3
@@ -46,7 +46,7 @@ profiles:
     akash:
       pricing:
         neo4j:
-          denom: ibc/170C677610AC31DF0904FFE09CD3B5C657492170E7E52372E48756B71E56F2F1
+          denom: uakt
           amount: 1000
       signedBy:
         anyOf:
