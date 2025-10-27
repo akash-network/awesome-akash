@@ -20,7 +20,7 @@ Over the past three months, we have continued to scale the **thinking capability
 - Type: Causal Language Models
 - Training Stage: Pretraining & Post-training
 - Number of Parameters: 235B in total and 22B activated
-- Number of Paramaters (Non-Embedding): 234B
+- Number of Parameters (Non-Embedding): 234B
 - Number of Layers: 94
 - Number of Attention Heads (GQA): 64 for Q and 4 for KV
 - Number of Experts: 128
