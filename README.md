@@ -442,7 +442,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Video Conferencing
 
-- Your project can be the first!
+- [Bigbluebutton](bigbluebutton)
 
 ### Wallet
 
