@@ -41,7 +41,7 @@ RUN git clone https://github.com/sentinel-official/sentinel-dvpnx && \
     make && \
     make install && \
     mv /root/go/bin/sentinel-dvpnx /usr/bin/sentinel-dvpnx
-    
+
 # Copy the main script and set CMD
 COPY ./main.sh /
 RUN sed -i 's/\r//' /main.sh && chmod +x /main.sh
