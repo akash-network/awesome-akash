@@ -3,7 +3,7 @@ Gitea is a painless, self-hosted, all-in-one software development service. It in
 
 ## Deploy on Akash
 1. Go to [Akash Console](https://console.akash.network/).
-2. Deploy SDL from this repository: [deploy_sqlite3.yaml](deploy_sqlite3.yaml) for standart deployment with SQLite3 database or [deploy_postgres.yaml](deploy_postgres.yaml) for deployment with Postgres database as second service.
+2. Deploy SDL from this repository: [deploy.yaml](deploy.yaml) for standart deployment with SQLite3 database or [deploy_postgres.yaml](deploy_postgres.yaml) for deployment with Postgres database as second service.
 3. Open URI from Leases tab with forwarded port 3000 to access Gitea.
 ---
 For more information, please see the [Gitea documentation](https://docs.gitea.com/installation/install-with-docker-rootless).
