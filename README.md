@@ -413,6 +413,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Folding@home](folding-at-home)
 - [Hashicorp Vault](hashicorp-vault)
 - [KnowYourDeFi](knowyourdefi)
+- [LibreTranslate](libretranslate)
 - [Matomo](matomo)
 - [microbox](microbox)
 - [Mintr](mintr)
