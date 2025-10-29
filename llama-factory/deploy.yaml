@@ -1,0 +1,50 @@
+---
+version: "2.0"
+services:
+  app:
+    image: hiyouga/llamafactory:latest
+    expose:
+      - port: 7860
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - llamafactory-cli webui --host 0.0.0.0 --port 7860
+    params:
+      storage:
+        data:
+          mount: /root/.cache
+          readOnly: false
+profiles:
+  compute:
+    app:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 128Gi
+        gpu:
+          units: 4
+          attributes:
+            vendor:
+              nvidia:
+        storage:
+          - size: 500Gi
+          - name: data
+            size: 500Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        app:
+          denom: uakt
+          amount: 1000000
+deployment:
+  app:
+    dcloud:
+      profile: app
+      count: 1

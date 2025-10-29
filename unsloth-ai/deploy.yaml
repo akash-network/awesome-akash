@@ -1,0 +1,60 @@
+---
+version: "2.0"
+services:
+  unsloth:
+    image: ghcr.io/unsloth/unsloth:REPLACE_WITH_TAG
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+    command:
+      - /bin/sh
+      - "-c"
+    args:
+      - >-
+        unsloth serve --port ${PORT:-8080}
+    env:
+      - "PORT=8080"
+      - "UNSLOTH_MODEL=auto"
+      - "UNSLOTH_WORKERS=1"
+      - "MODEL_CACHE_PATH=/mnt/models"
+    params:
+      storage:
+        data:
+          mount: /mnt/models
+          readOnly: false
+
+profiles:
+  compute:
+    unsloth:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 32Gi
+        storage:
+          - size: 50Gi
+          - name: data
+            size: 100Gi
+            attributes:
+              persistent: true
+              class: beta3
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: a100
+  placement:
+    dcloud:
+      pricing:
+        unsloth:
+          denom: uakt
+          amount: 15000
+
+deployment:
+  unsloth:
+    dcloud:
+      profile: unsloth
+      count: 1
