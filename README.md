@@ -253,7 +253,6 @@ To add a new template/resource:
 - [Adminer](adminer)
 - [CouchDB](couchdb)
 - [DefraDB](defradb)
-- [DefraDB](defradb)
 - [InfluxDB](influxdb)
 - [JSON Server](json-server)
 - [MongoDB](mongoDB)
