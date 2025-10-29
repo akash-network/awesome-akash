@@ -10,7 +10,7 @@ services:
       - "MNEMONIC_BASE64=" # Mnemonic phrase encrypted with BASE64.
       - "MONIKER=dVPN on Akash Network v2RAY" # Your dVPN node name.
       - "REMOTE_PORT=8585" # Remote port for are connection sentinel client service.
-      - "LISTEN_PORT=3332" # v2RAY listen port
+      - "LISTEN_PORT=3333" # v2RAY listen port
       - "IPV4_ADDRESS=1" # Node static IP address ( of leases section )
       - "RPC_ADDRESS=https://rpc.sentinel.co:443"
       - "GIGABYTE_PRICES=udvpn:0.0025,12_500_000"
