@@ -1,6 +1,6 @@
 #!/bin/bash
-CONFIG_PATH="/root/.sentinelnode/config.toml"
-V2RAY_CONFIG_PATH="/root/.sentinelnode/v2ray.toml"
+CONFIG_PATH="/root/.sentinel-dvpnx/config.toml"
+V2RAY_CONFIG_PATH="/root/.sentinel-dvpnx/v2ray/config.toml"
 # Function to check if a variable is set and print an error message if it's not.
 check_var() {
     local var_name="$1"
@@ -26,7 +26,7 @@ check_var "REMOTE_PORT" "CHECK YOUR FORWARDING REMOTE_PORT IN DEPLOY.YML !" "REM
 check_var "LISTEN_PORT" "CHECK YOUR FORWARDING LISTEN_PORT IN DEPLOY.YML !" "LISTEN_PORT=3333"
 check_var "MNEMONIC_BASE64" "CHECK YOUR MNEMONIC_BASE64 , BASE64 ENCODE, IN DEPLOY.YML!" "MNEMONIC_BASE64=YXJt5BBjb21mb3YlZ2xlb3IgCc2G9HJpY2ggZn3QgaWlkZSBwb25uZXIgd2VhciBmbGF2b3IjYW5keSgzdJlcXVlbnQ"
 
-sentinelnode config init && sentinelnode v2ray config init
+sentinel-dvpnx init --node.service-type "v2ray" --node.remote-addrs $IPV4_ADDRESS
 
 (echo ;echo ;echo ;echo ;echo ;echo ;echo )| openssl req -new -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 -x509 -sha256 -days 365 -nodes -out ${HOME}/tls.crt -keyout ${HOME}/tls.key
 API_ADDRESS="0.0.0.0:$REMOTE_PORT"
@@ -44,7 +44,7 @@ declare -A config_mappings=(
     ["RPC_ADDRESS"]="rpc_address"
     ["SIMULATE_AND_EXECUTE"]="simulate_and_execute"
     ["PEERS"]="peers"
-    ["IPV4_ADDRESS"]="ipv4_address"
+	["IPV4_ADDRESS"]="ipv4_address"
     ["REMOTE_URL"]="remote_url"
     ["INTERVAL_SET_SESSIONS"]="interval_set_sessions"
     ["INTERVAL_UPDATE_SESSIONS"]="interval_update_sessions"
@@ -66,8 +66,8 @@ sed -i.bak -e "s|^listen_port *=.*|listen_port = $LISTEN_PORT|;" "$V2RAY_CONFIG_
 [[ -z $HANDSHAKE ]] && HANDSHAKE=false && update_config "HANDSHAKE" "enable" "$CONFIG_PATH"
 [[ -n $BACKEND ]] || sed -i.bak -e "s/^backend *=.*/backend = \"test\"/;" "$CONFIG_PATH"
 [[ -n $TYPE ]] || sed -i.bak -e "s/^type *=.*/type = \"v2ray\"/;" "$CONFIG_PATH"
-
-(echo `echo $MNEMONIC_BASE64 | base64 -d`)|sentinelnode keys add --recover
-mv ${HOME}/tls.crt ${HOME}/.sentinelnode/tls.crt && mv ${HOME}/tls.key ${HOME}/.sentinelnode/tls.key
+mnemonic="$(printf '%s' "$MNEMONIC_BASE64" | base64 -d -w0)"
+printf '%s\n\n' "$mnemonic" | sentinel-dvpnx keys add main --keyring.backend test
+mv ${HOME}/tls.crt ${HOME}/.sentinel-dvpnx/tls.crt && mv ${HOME}/tls.key ${HOME}/.sentinel-dvpnx/tls.key
 PATH=$PATH:/root/v2ray
-sentinelnode start
+sentinel-dvpnx start

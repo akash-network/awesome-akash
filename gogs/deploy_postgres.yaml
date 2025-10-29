@@ -1,0 +1,78 @@
+---
+version: "2.0"
+services:
+  gogs:
+    image: gogs/gogs:0.13 # https://hub.docker.com/r/gogs/gogs
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+    env:
+      - TYPE=postgres
+      - HOST=postgres:5432
+      - NAME=gogs
+      - USER=gogs
+      - PASSWORD=gogs
+  postgres:
+    image: postgres:14.19-alpine3.21
+    expose:
+      - port: 5432
+        as: 5432
+        to:
+          - global: true
+          - service: gogs
+    env:
+      - POSTGRES_USER=gogs
+      - POSTGRES_PASSWORD=gogs
+      - POSTGRES_DB=gogs
+    params:
+      storage:
+        data:
+          mount: /var/lib/postgres
+          readOnly: false
+profiles:
+  compute:
+    gogs:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+    postgres:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        gogs:
+          denom: uakt
+          amount: 100000
+        postgres:
+          denom: uakt
+          amount: 100000
+deployment:
+  gogs:
+    dcloud:
+      profile: gogs
+      count: 1
+  postgres:
+    dcloud:
+      profile: postgres
+      count: 1

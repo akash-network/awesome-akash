@@ -5,7 +5,7 @@ endpoints:
     kind: ip
 services:
   app:
-    image: declab/sentinel_dvpn:0.7.1.1
+    image: ghcr.io/decloudnodeslab/sentinel_dvpn:sha-1d51d67
     env:
       - "MNEMONIC_BASE64=" # Mnemonic phrase encrypted with BASE64.
       - "MONIKER=dVPN on Akash Network v2RAY" # Your dVPN node name.
@@ -13,11 +13,10 @@ services:
       - "LISTEN_PORT=3333" # v2RAY listen port
       - "IPV4_ADDRESS=" # Node static IP address ( of leases section )
       - "RPC_ADDRESS=https://rpc.sentinel.co:443"
-      
-      - "GIGABYTE_PRICES=52573ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,9204ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1180852ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,122740ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn"
+      - "GIGABYTE_PRICES=udvpn:0.0025,12_500_000"
          # ^^Set the cost per 1 Gb of active traffic passed through your node.^^
          
-      - "HOURLY_PRICES=18480ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,770ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1871892ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,18897ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,13557200udvpn" # Set the cost per 1 hour of traffic passed through your node.
+      - "HOURLY_PRICES=udvpn:0.005,25_000_000" # Set the cost per 1 hour of traffic passed through your node.
          
     expose:
       - port: 8585 # REMOTE_URL_PORT

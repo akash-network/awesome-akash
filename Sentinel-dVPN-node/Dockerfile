@@ -12,11 +12,11 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Go
-RUN wget https://go.dev/dl/go1.19.4.linux-amd64.tar.gz && \
+RUN wget https://go.dev/dl/go1.25.1.linux-amd64.tar.gz && \
     rm -rf /usr/local/go && \
-    tar -C /usr/local -xzf go1.19.4.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go1.25.1.linux-amd64.tar.gz && \
     ln -s /usr/local/go/bin/go /usr/bin/go && \
-    rm -vf go1.19.4.linux-amd64.tar.gz
+    rm -vf go1.25.1.linux-amd64.tar.gz
 
 # Install v2ray
 WORKDIR /root/v2ray
@@ -35,11 +35,12 @@ RUN git clone https://github.com/NLnetLabs/unbound.git && \
 
 # Install dvpn-node
 WORKDIR /tmp
-RUN git clone https://github.com/sentinel-official/dvpn-node && \
-    cd dvpn-node && \
-    git checkout v0.7.1 && \
+RUN git clone https://github.com/sentinel-official/sentinel-dvpnx && \
+    cd sentinel-dvpnx && \
+    git checkout v8.2.0 && \
+    make && \
     make install && \
-    rm -rf /tmp/*
+    mv /root/go/bin/sentinel-dvpnx /usr/bin/sentinel-dvpnx
 
 # Copy the main script and set CMD
 COPY ./main.sh /
