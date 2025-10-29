@@ -1,0 +1,60 @@
+version: "2.0"
+services:
+  neo4j:
+    image: neo4j:5.15.0-community
+    expose:
+      - port: 7474
+        as: 7474
+        to:
+          - global: true
+      - port: 7687
+        as: 7687
+        to:
+          - global: true
+    env:
+      - NEO4J_AUTH=neo4j/admin
+      - NEO4J_server_config_strict__validation_enabled=false
+    params:
+      storage:
+        data:
+          mount: /data
+          readOnly: false
+        logs:
+          mount: /logs
+          readOnly: false
+profiles:
+  compute:
+    neo4j:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 2Gi
+          - name: data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: logs
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      pricing:
+        neo4j:
+          denom: uakt
+          amount: 1000
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+      attributes:
+        host: akash
+deployment:
+  neo4j:
+    akash:
+      profile: neo4j
+      count: 1

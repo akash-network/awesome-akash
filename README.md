@@ -170,6 +170,7 @@ To add a new template/resource:
 - [StableSwarmUI](stableswarmui)
 - [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
+- [Unsloth AI](unsloth-ai)
 - [vllm](vllm)
 - [Whisper ASR](whisper-asr-gpu)
 - [Whisper GUI](whisper-gui-gpu)
@@ -216,6 +217,7 @@ To add a new template/resource:
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
 - [Micro-services Example](micro-services-example)
 - [Gitea](gitea)
+- [Gogs](gogs)
 
 ### Data Visualization
 
@@ -234,6 +236,7 @@ To add a new template/resource:
 - [InfluxDB](influxdb)
 - [SurrealDB](SurrealDB)
 - [DefraDB](defradb)
+- [neo4j](neo4j)
 
 ### DeFi
 

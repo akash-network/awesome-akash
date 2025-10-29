@@ -1,0 +1,45 @@
+---
+version: "2.0"
+services:
+  gogs:
+    image: gogs/gogs:0.13 # https://hub.docker.com/r/gogs/gogs
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /var/gogs
+          readOnly: false
+profiles:
+  compute:
+    gogs:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        gogs:
+          denom: uakt
+          amount: 100000
+deployment:
+  gogs:
+    dcloud:
+      profile: gogs
+      count: 1
