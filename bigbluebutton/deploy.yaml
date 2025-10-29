@@ -1,0 +1,45 @@
+version: "2.0"
+
+services:
+  bigbluebutton:
+    image: bigbluebutton/bbb-html5:latest
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - BBB_ENV=production
+      - BBB_SECRET=your-secret-key
+    params:
+      storage:
+        bbb-data:
+          mount: /var/bigbluebutton
+          readOnly: false
+
+profiles:
+  compute:
+    bigbluebutton:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - name: bbb-data
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        bigbluebutton:
+          denom: uakt
+          amount: 200000
+
+deployment:
+  bigbluebutton:
+    dcloud:
+      profile: bigbluebutton
+      count: 1
