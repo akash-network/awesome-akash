@@ -1,0 +1,33 @@
+---
+version: "2.0"
+services:
+  ssh:
+    image: ghcr.io/akash-network/ubuntu-2404-ssh:1
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+    env:
+      - SSH_PUBKEY=YOUR_KEY_HERE
+profiles:
+  compute:
+    ssh:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        ssh:
+          denom: uakt
+          amount: 10000
+deployment:
+  ssh:
+    dcloud:
+      profile: ssh
+      count: 1
