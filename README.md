@@ -51,11 +51,11 @@ To add a new template/resource:
 - [Mining - GPU](#mining---gpu)
 - [Mining Pools](#mining-pools)
 - [Network](#network)
-- [OS](#os)
 - [Peer-to-peer File Sharing](#peer-to-peer-file-sharing)
 - [Project Management](#project-management)
 - [Search Engines](#search-engines)
 - [Social](#social)
+- [SSH](#ssh)
 - [Tools](#tools)
 - [Video Conferencing](#video-conferencing)
 - [Wallet](#wallet)
@@ -378,10 +378,6 @@ To add a new template/resource:
 - [V2RAY](v2ray)
 - [X-UI](x-ui)
 
-### OS
-
-- [Ubuntu SSH](ssh-ubuntu)
-
 ### Peer-to-peer File Sharing
 
 - [qBittorrent](qbittorrent)
@@ -397,6 +393,10 @@ To add a new template/resource:
 - [Presearch](presearch)
 - [Whoogle Search](whoogle-search)
 - [YaCy](yacy)
+
+### SSH
+
+- [base-ssh](base-ssh)
 
 ### Social
 
