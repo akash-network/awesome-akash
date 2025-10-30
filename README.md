@@ -91,7 +91,6 @@ To add a new template/resource:
 - [Terminal GPT](tgpt)
 - [Venice-ElizaOS](Venice-ElizaOS)
 - [Weaviate](weaviate)
-- [Qdrant](qdrant)
 - [Chromadb](chromadb)
 - [Whisper ASR](whisper-asr-cpu)
 - [Whisper GUI](whisper-gui-cpu)
@@ -237,6 +236,7 @@ To add a new template/resource:
 - [SurrealDB](SurrealDB)
 - [DefraDB](defradb)
 - [neo4j](neo4j)
+- [Qdrant](qdrant)
 
 ### DeFi
 
