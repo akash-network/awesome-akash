@@ -1,0 +1,35 @@
+---
+version: "2.0"
+services:
+  gitea:
+    image: gitea/gitea:1.25.0-rc0-rootless # https://hub.docker.com/r/gitea/gitea
+    expose:
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
+      - port: 2222
+        as: 2222
+        to:
+          - global: true
+profiles:
+  compute:
+    gitea:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1gi
+        storage:
+          - size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        gitea:
+          denom: uakt
+          amount: 100000
+deployment:
+  gitea:
+    dcloud:
+      profile: gitea
+      count: 1
