@@ -237,6 +237,7 @@ To add a new template/resource:
 - [SurrealDB](SurrealDB)
 - [DefraDB](defradb)
 - [neo4j](neo4j)
+- [Qdrant](qdrant)
 
 ### DeFi
 
