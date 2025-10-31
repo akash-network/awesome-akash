@@ -441,6 +441,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Databases
 
+- [CockroachDB](CockroachDB)
 - [redis](redis)
 - [Supabase](supabase)
 

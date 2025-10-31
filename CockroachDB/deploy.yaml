@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  cockroachdb:
+    image: cockroachdb/cockroach:latest
+    args: ["start", "--insecure", "--store=/cockroach/cockroach-data", "--listen-addr=0.0.0.0:26257", "--http-addr=0.0.0.0:8080"]
+    expose:
+      - port: 26257
+        to:
+          - global: true
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    cockroachdb:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        cockroachdb:
+          denom: uakt
+          amount: 10000
+deployment:
+  cockroachdb:
+    akash:
+      profile: cockroachdb
+      count: 1
