@@ -449,7 +449,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Video Conferencing
 
-- Your project can be the first!
+- [Jitsi Meet](jitsi-meet)
 
 ### Wallet
 
