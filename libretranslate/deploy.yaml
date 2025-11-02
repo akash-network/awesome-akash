@@ -1,0 +1,46 @@
+---
+version: "2.0"
+
+services:
+  libretranslate:
+    image: libretranslate/libretranslate:v1.7.3
+    expose:
+      - port: 5000
+        as: 80
+        to:
+          - global: true
+    env:
+      - LT_API_KEY=yourapikey  # Optional: set if you want to require API key
+      - LT_FRONTEND=true       # Enables the web UI
+    params:
+      storage:
+        lt-data:
+          mount: /data
+          readOnly: false
+
+profiles:
+  compute:
+    libretranslate:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - name: lt-data
+            size: 2Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        libretranslate:
+          denom: uakt
+          amount: 100000
+
+deployment:
+  libretranslate:
+    dcloud:
+      profile: libretranslate
+      count: 1

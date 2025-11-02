@@ -237,11 +237,12 @@ To add a new template/resource:
 - [Automatic Deployment and CICD Template](automatic-deployment-CICD-template)
 - [Azure Devops Agent](azure-devops-agent)
 - [Bitbucket](bitbucket)
+- [Gitea](gitea)
 - [Github Runner](ghrunner)
 - [Gogs](gogs)
 - [Jenkins](jenkins)
 - [Micro-services Example](micro-services-example)
-- [Radicle](radicle)
+- [Radicle](radicle)  
 
 ### Data Visualization
 
@@ -251,6 +252,7 @@ To add a new template/resource:
 ### Databases and Administration
 
 - [Adminer](adminer)
+- [CockroachDB](CockroachDB)
 - [CouchDB](couchdb)
 - [DefraDB](defradb)
 - [InfluxDB](influxdb)
@@ -260,6 +262,7 @@ To add a new template/resource:
 - [neo4j](neo4j)
 - [pgAdmin](pgadmin4)
 - [PostgreSQL](postgres)
+- [Qdrant](qdrant)
 - [Redis](redis)
 - [Supabase](supabase)
 - [SurrealDB](SurrealDB)
@@ -422,6 +425,7 @@ To add a new template/resource:
 - [Hashicorp Vault](hashicorp-vault)
 - [Keycloak IAM](keycloak-iam)
 - [KnowYourDeFi](knowyourdefi)
+- [LibreTranslate](libretranslate)
 - [Matomo](matomo)
 - [microbox](microbox)
 - [Mintr](mintr)
