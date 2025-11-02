@@ -22,11 +22,11 @@ profiles:
     avalanchego:
       resources:
         cpu:
-          units: 4
+          units: 8
         memory:
-          size: 8GB
+          size: 16gi
         storage:
-          - size: 100Gi
+          - size: 1ti
   placement:
     dcloud:
       pricing:
