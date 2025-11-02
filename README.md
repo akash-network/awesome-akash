@@ -417,6 +417,7 @@ Awesome DeFi apps you can deploy on Akash
 - [KnowYourDeFi](knowyourdefi)
 - [LibreTranslate](libretranslate)
 - [Matomo](matomo)
+- [Memos](memos)
 - [microbox](microbox)
 - [Mintr](mintr)
 - [Nextcloud](nextcloud)
