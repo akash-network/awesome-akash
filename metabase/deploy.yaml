@@ -1,0 +1,65 @@
+---
+version: "2.0"
+services:
+  metabase:
+    image: metabase/metabase:v0.54.19.3
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - MB_DB_TYPE=postgres
+      - MB_DB_DBNAME=metabaseappdb
+      - MB_DB_PORT=5432
+      - MB_DB_USER=metabase
+      - MB_DB_PASS=mysecretpassword
+      - MB_DB_HOST=postgres
+  postgres:
+    image: postgres:14.19-alpine3.21
+    expose:
+      - port: 5432
+        as: 5432
+        to:
+          - global: true
+          - service: metabase
+    env:
+      - POSTGRES_USER=metabase
+      - POSTGRES_DB=metabaseappdb
+      - POSTGRES_PASSWORD=mysecretpassword
+profiles:
+  compute:
+    metabase:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 2Gi
+    postgres:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 2Gi
+  placement:
+    dcloud:
+      pricing:
+        metabase:
+          denom: uakt
+          amount: 100000
+        postgres:
+          denom: uakt
+          amount: 100000
+deployment:
+  metabase:
+    dcloud:
+      profile: metabase
+      count: 1
+  postgres:
+    dcloud:
+      profile: postgres
+      count: 1
