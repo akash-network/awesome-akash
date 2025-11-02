@@ -221,6 +221,7 @@ To add a new template/resource:
 
 ### Data Visualization
 
+- [Metabase](metabase)
 - [Redash Data Charts for Akash Analytics](Redash)
 - [UFO Sightings](ufo-data-vis)
 
