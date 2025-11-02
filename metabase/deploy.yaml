@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   metabase:
-    image: metabase/metabase:v0.54.19.3
+    image: metabase/metabase:v0.54.19.3 # https://hub.docker.com/r/metabase/metabase
     expose:
       - port: 3000
         as: 80
