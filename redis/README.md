@@ -1,4 +1,4 @@
-Redis
-=======
-Redis is an in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
-More details [https://redis.io/](https://redis.io/)
+# Redis
+Redis is an open-source, in-memory data structure store used as a database, cache, and message broker. 
+
+Learn more on the [Redis website](https://redis.io/) and [Github](https://github.com/redis/redis).
