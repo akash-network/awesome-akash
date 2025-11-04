@@ -1,43 +1,35 @@
 ---
 version: "2.0"
-
 services:
   redis:
-    image: redis:latest
+    image: redis:8.2.2 # https://hub.docker.com/_/redis
+    expose:
+      - port: 6379
+        as: 6379
+        to:
+          - global: true
     env:
       - REDIS_AOF_ENABLED=no
       - ALLOW_EMPTY_PASSWORD=no
       - REDIS_PASSWORD=rootpassword
-    expose:
-      - port: 6379        
-        to:
-          - global: true       
-
 profiles:
   compute:
     redis:
       resources:
         cpu:
-          units: 1.0
+          units: 1
         memory:
           size: 1Gi
         storage:
-          size: 1Gi
+          - size: 1Gi
   placement:
-    akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
-        redis: 
+        redis:
           denom: uakt
-          amount: 10000
-
-
+          amount: 100000
 deployment:
   redis:
-    akash:
+    dcloud:
       profile: redis
       count: 1
