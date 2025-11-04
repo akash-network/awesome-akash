@@ -1,0 +1,143 @@
+---
+version: "2.0"
+services:
+  web:
+    image: jitsi/web:stable
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+      - port: 443
+        as: 443
+        to:
+          - global: true
+    env:
+      - PUBLIC_URL=https://your-domain.com
+      - ENABLE_LETSENCRYPT=1
+      - LETSENCRYPT_DOMAIN=your-domain.com
+      - LETSENCRYPT_EMAIL=your-email@example.com
+      - TZ=UTC
+      - DOCKER_HOST_ADDRESS=your-public-ip
+      - ENABLE_XMPP_WEBSOCKET=1
+      - XMPP_SERVER=prosody
+      - XMPP_DOMAIN=meet.jitsi
+      - XMPP_AUTH_DOMAIN=auth.meet.jitsi
+      - XMPP_MUC_DOMAIN=muc.meet.jitsi
+  prosody:
+    image: jitsi/prosody:stable
+    expose:
+      - port: 5222
+        as: 5222
+        proto: tcp
+        to:
+          - global: false
+      - port: 5280
+        as: 5280
+        proto: tcp
+        to:
+          - global: false
+    env:
+      - TZ=UTC
+      - XMPP_DOMAIN=meet.jitsi
+  jicofo:
+    image: jitsi/jicofo:stable
+    expose:
+      - port: 8888
+        as: 8888
+        proto: tcp
+        to:
+          - global: false
+    env:
+      - TZ=UTC
+      - XMPP_SERVER=prosody
+      - XMPP_DOMAIN=meet.jitsi
+      - XMPP_AUTH_DOMAIN=auth.meet.jitsi
+      - XMPP_MUC_DOMAIN=muc.meet.jitsi
+      - JICOFO_AUTH_USER=focus
+      - JICOFO_AUTH_PASSWORD=focuspassword
+  jvb:
+    image: jitsi/jvb:stable
+    expose:
+      - port: 10000
+        as: 10000
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - TZ=UTC
+      - XMPP_SERVER=prosody
+      - XMPP_AUTH_DOMAIN=auth.meet.jitsi
+      - JVB_AUTH_USER=jvb
+      - JVB_AUTH_PASSWORD=jvbpassword
+      - JVB_BREWERY_MUC=jvbbrewery
+      - JVB_STUN_SERVERS=stun.l.google.com:19302
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 5Gi
+    prosody:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+    jicofo:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+    jvb:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+  placement:
+    akash:
+      pricing:
+        web:
+          denom: uakt
+          amount: 10000
+        prosody:
+          denom: uakt
+          amount: 10000
+        jicofo:
+          denom: uakt
+          amount: 10000
+        jvb:
+          denom: uakt
+          amount: 10000
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+deployment:
+  web:
+    akash:
+      profile: web
+      count: 1
+  prosody:
+    akash:
+      profile: prosody
+      count: 1
+  jicofo:
+    akash:
+      profile: jicofo
+      count: 1
+  jvb:
+    akash:
+      profile: jvb
+      count: 1
