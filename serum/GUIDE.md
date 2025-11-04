@@ -86,7 +86,7 @@ pagination:
   total: "0"
 ```
 
-Please note the balance indicated is is denominated in uAKT (AKT * 10^-6), in the above example, the account has a balance of *93 AKT*. We're now setup to deploy.
+Please note the balance indicated is denominated in uAKT (AKT * 10^-6), in the above example, the account has a balance of *93 AKT*. We're now setup to deploy.
 
 ## Build Serum DEX UI Container
 
