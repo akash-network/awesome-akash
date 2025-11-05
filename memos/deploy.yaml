@@ -1,35 +1,31 @@
 ---
 version: "2.0"
 services:
-  redis:
-    image: redis:8.2.2 # https://hub.docker.com/_/redis
+  memos:
+    image: neosmemo/memos:0.25.2 # https://hub.docker.com/r/neosmemo/memos
     expose:
-      - port: 6379
-        as: 6379
+      - port: 5230
+        as: 5230
         to:
           - global: true
-    env:
-      - REDIS_AOF_ENABLED=no
-      - ALLOW_EMPTY_PASSWORD=no
-      - REDIS_PASSWORD=rootpassword
 profiles:
   compute:
-    redis:
+    memos:
       resources:
         cpu:
-          units: 1
+          units: 0.1
         memory:
-          size: 1Gi
+          size: 512Mi
         storage:
           - size: 1Gi
   placement:
     dcloud:
       pricing:
-        redis:
+        memos:
           denom: uakt
           amount: 100000
 deployment:
-  redis:
+  memos:
     dcloud:
-      profile: redis
+      profile: memos
       count: 1

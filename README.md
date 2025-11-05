@@ -187,6 +187,7 @@ To add a new template/resource:
 ### Blockchain
 
 - [Akash On Akash](https://github.com/ovrclk/akash-on-akash)
+- [AvalancheGo](avalanche)
 - [Bitcoin Cash Node](bitcoincashnode)
 - [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Bitcoin](bitcoin)
@@ -246,6 +247,7 @@ To add a new template/resource:
 
 ### Data Visualization
 
+- [Metabase](metabase)
 - [Redash Data Charts for Akash Analytics](Redash)
 - [UFO Sightings](ufo-data-vis)
 
@@ -427,6 +429,7 @@ To add a new template/resource:
 - [KnowYourDeFi](knowyourdefi)
 - [LibreTranslate](libretranslate)
 - [Matomo](matomo)
+- [Memos](memos)
 - [microbox](microbox)
 - [Mintr](mintr)
 - [Nextcloud](nextcloud)
@@ -434,6 +437,7 @@ To add a new template/resource:
 - [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
 - [Quill editor](quill-editor)
+- [Shiori](shiori)
 - [Swagger UI](swagger-ui)
 - [thirdweb](thirdweb)
 - [Uptime Kuma](uptime-kuma)
@@ -443,7 +447,7 @@ To add a new template/resource:
 
 ### Video Conferencing
 
-- Your project can be the first!
+- [Jitsi Meet](jitsi-meet)
 
 ### Wallet
 
