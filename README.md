@@ -130,6 +130,7 @@ To add a new template/resource:
 - [Grok](grok)
 - [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
 - [InvokeAI](invoke-ai-gpu)
+- [Kimi-K2-Thinking](Kimi-K2-Thinking)
 - [Llama-2-70B](Llama-2-70B)
 - [Llama-3-8B](Llama-3-8B)
 - [Llama-3-Groq-8B-Tool-Use](Llama-3-Groq-8B-Tool-Use)
