@@ -314,6 +314,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Search Engines
 
+- [Elasticsearch](elasticsearch)
 - [Whoogle Search](whoogle-search)
 - [Presearch](presearch)
 - [YaCy](yacy)
