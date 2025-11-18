@@ -124,6 +124,7 @@ To add a new template/resource:
 - [Grok](grok)
 - [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
 - [InvokeAI](invoke-ai-gpu)
+- [Kimi-K2-Thinking](Kimi-K2-Thinking)
 - [Llama-2-70B](Llama-2-70B)
 - [Llama-3-70B](Llama-3-70B)
 - [Llama-3-8B](Llama-3-8B)
@@ -192,6 +193,7 @@ To add a new template/resource:
 - [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Bitcoin](bitcoin)
 - [Concordium node](concordium)
+- [Centrifuge](centrifuge)
 - [Ethereum 2.0](Ethereum_2.0)
 - [Fuse Network Node](fuse-network-node)
 - [Handshake](handshake)
@@ -400,6 +402,7 @@ To add a new template/resource:
 
 ### Search Engines
 
+- [Elasticsearch](elasticsearch)
 - [Presearch](presearch)
 - [Whoogle Search](whoogle-search)
 - [YaCy](yacy)

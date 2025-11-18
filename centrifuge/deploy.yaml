@@ -1,0 +1,63 @@
+---
+version: "2.0"
+services:
+  centrifuge:
+    image: centrifugeio/centrifuge-chain:v0.15.6 # https://hub.docker.com/r/centrifugeio/centrifuge-chain
+    expose:
+      - port: 9933
+        as: 9933
+        to:
+          - global: true
+      - port: 9944
+        as: 9944
+        to:
+          - global: true
+      - port: 30333
+        as: 30333
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >-
+        centrifuge-chain
+        --port=30333
+        --rpc-port=9933
+        --rpc-external
+        --rpc-cors=all
+        --pruning=archive
+        --chain=centrifuge
+        --parachain-id=2031
+        --base-path=/data
+        --log=main,info
+        --wasm-execution=compiled
+        --rpc-max-connections=5000
+        --bootnodes=/ip4/34.159.117.205/tcp/30333/ws/p2p/12D3KooWMspZo4aMEXWBH4UXm3gfiVkeu1AE68Y2JDdVzU723QPc
+        --bootnodes=/dns4/node-7010781199623471104-0.p2p.onfinality.io/tcp/23564/ws/p2p/12D3KooWSN6VXWPvo1hoT5rb5hei5B7YdTWeUyDcc42oTPwLGF2p
+        --name=akash
+        --
+        --wasm-execution=compiled
+        --chain=polkadot
+        --sync=fast
+profiles:
+  compute:
+    centrifuge:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16GB
+        storage:
+          - size: 1Ti
+  placement:
+    dcloud:
+      pricing:
+        centrifuge:
+          denom: uakt
+          amount: 100000
+deployment:
+  centrifuge:
+    dcloud:
+      profile: centrifuge
+      count: 1
