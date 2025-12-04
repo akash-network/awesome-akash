@@ -419,7 +419,6 @@ Awesome DeFi apps you can deploy on Akash
 - [DEGO Stats](dego-stats)
 - [Folding@home](folding-at-home)
 - [Hashicorp Vault](hashicorp-vault)
-- [KnowYourDeFi](knowyourdefi)
 - [LibreTranslate](libretranslate)
 - [Matomo](matomo)
 - [Memos](memos)
