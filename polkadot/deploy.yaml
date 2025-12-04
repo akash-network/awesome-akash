@@ -1,9 +1,8 @@
 ---
 version: "2.0"
-
 services:
   polkadot:
-    image: parity/polkadot:stable2506-2
+    image: parity/polkadot:stable2509-2 # https://hub.docker.com/r/parity/polkadot https://github.com/paritytech/polkadot-sdk/releases
     expose:
       - port: 9933 # rpc port
         as: 9933
@@ -20,7 +19,6 @@ services:
     args:
     #https://github.com/paritytech/polkadot-sdk/blob/master/docs/contributor/docker.md
     - --chain=polkadot
-    - --ws-external
     - --rpc-external
     - --rpc-cors=all
     #- --pruning=256
