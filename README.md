@@ -252,7 +252,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Augur](augur)
 - [Bancor](bancor)
 - [Balancer](balancer)
-- [Luaswap](luaswap)
 - [SushiSwap](sushiswap)
 - [Uma Protocol](uma-protocol)
 - [Yearn.finance](Yearn.finance)
