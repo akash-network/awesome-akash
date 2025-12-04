@@ -245,7 +245,6 @@ To add a new template/resource:
 
 Awesome DeFi apps you can deploy on Akash
 
-- [Serum DEX UI](serum)
 - [Uniswap](uniswap)
 - [dFed](dfed)
 - [Pancake Swap](pancake-swap)
