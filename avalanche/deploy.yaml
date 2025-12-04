@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   avalanchego:
-    image: avaplatform/avalanchego:v1.13.5 # https://hub.docker.com/r/avaplatform/avalanchego
+    image: avaplatform/avalanchego:v1.14.0 # https://hub.docker.com/r/avaplatform/avalanchego
     expose:
       - port: 9650
         as: 9650
