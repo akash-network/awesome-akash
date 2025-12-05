@@ -1,0 +1,9 @@
+FROM node:20
+ENV NODE_OPTIONS=--openssl-legacy-provider
+WORKDIR /app
+RUN git clone https://github.com/bancorprotocol/webapp-v3.git .
+RUN yarn upgrade react react-dom redux react-redux
+RUN npx update-browserslist-db@latest
+RUN yarn install
+EXPOSE 3000
+CMD ["yarn", "start"]
