@@ -1,15 +1,13 @@
 ---
 version: "2.0"
-
 services:
   bancor:
-    image: sueinz/bancor:latest
+    image: nomorelies/bancor-webapp-v3:0.0.1
     expose:
       - port: 80
         as: 80
         to:
           - global: true
-
 profiles:
   compute:
     bancor:
@@ -19,21 +17,15 @@ profiles:
         memory:
           size: 512Mi
         storage:
-          size: 512Mi
+          - size: 512mi
   placement:
-    akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
         bancor:
           denom: uakt
-          amount: 10000
-
+          amount: 100000
 deployment:
   bancor:
-    akash:
+    dcloud:
       profile: bancor
       count: 1
