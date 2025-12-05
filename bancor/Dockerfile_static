@@ -1,0 +1,19 @@
+FROM node:20 as build
+ENV NODE_OPTIONS=--openssl-legacy-provider
+ENV REACT_APP_ALCHEMY_MAINNET=
+ENV REACT_APP_ALCHEMY_ROPSTEN=
+ENV REACT_APP_PORTIS_DAPP_ID=
+ENV REACT_APP_FORTMATIC_API_KEY=
+ENV REACT_APP_APY_VISION_TOKEN=
+ENV REACT_APP_INTOTHEBLOCK_KEY=
+WORKDIR /app
+RUN git clone https://github.com/bancorprotocol/webapp-v3.git .
+RUN yarn upgrade react react-dom redux react-redux
+RUN npx update-browserslist-db@latest
+RUN yarn install
+RUN yarn build
+
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
