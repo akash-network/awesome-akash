@@ -1,0 +1,31 @@
+---
+version: "2.0"
+services:
+  bancor:
+    image: nomorelies/bancor-webapp-v3:0.0.1
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    bancor:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 512mi
+  placement:
+    dcloud:
+      pricing:
+        bancor:
+          denom: uakt
+          amount: 100000
+deployment:
+  bancor:
+    dcloud:
+      profile: bancor
+      count: 1
