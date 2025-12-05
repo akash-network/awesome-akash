@@ -250,6 +250,7 @@ Awesome DeFi apps you can deploy on Akash
 - [dFed](dfed)
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
+- [Bancor](bancor)
 - [Balancer](balancer)
 - [Luaswap](luaswap)
 - [SushiSwap](sushiswap)
