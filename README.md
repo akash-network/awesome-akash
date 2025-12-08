@@ -421,7 +421,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Matomo](matomo)
 - [Memos](memos)
 - [microbox](microbox)
-- [Mintr](mintr)
 - [Nextcloud](nextcloud)
 - [owncloud](owncloud)
 - [PeerJS Server](peerjs-server)
