@@ -1,39 +1,31 @@
 ---
 version: "2.0"
-
 services:
   bitbucket:
-    image: atlassian/bitbucket-server:latest
+    image: atlassian/bitbucket-server:8.2.1 # https://hub.docker.com/r/atlassian/bitbucket-server
     expose:
       - port: 7990
-        as: 80
+        as: 7990
         to:
           - global: true
-
 profiles:
   compute:
     bitbucket:
       resources:
         cpu:
-          units: 0.8
+          units: 2
         memory:
-          size: 1Gi
+          size: 4gi
         storage:
-          size: 2Gi
+          - size: 4Gi
   placement:
-    akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
-        bitbucket: 
+        bitbucket:
           denom: uakt
-          amount: 10000
-
+          amount: 100000
 deployment:
   bitbucket:
-    akash:
+    dcloud:
       profile: bitbucket
       count: 1
