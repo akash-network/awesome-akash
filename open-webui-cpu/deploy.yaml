@@ -12,7 +12,7 @@ services:
           - service: open-webui
   open-webui:
     ############################
-    image: ghcr.io/open-webui/open-webui:0.3.13
+    image: ghcr.io/open-webui/open-webui:0.6.40
     ############################
     #Always check https://github.com/open-webui/open-webui/releases for the latest version 
     depends_on:
