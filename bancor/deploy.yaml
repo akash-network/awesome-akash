@@ -1,39 +1,38 @@
 ---
 version: "2.0"
-
 services:
   bancor:
-    image: sueinz/bancor:latest
+    image: nomorelies/bancor-webapp-v3:0.0.2
     expose:
-      - port: 80
-        as: 80
+      - port: 3000
+        as: 3000
         to:
           - global: true
-
+    env:
+      - REACT_APP_ALCHEMY_MAINNET=
+    # - REACT_APP_ALCHEMY_ROPSTEN=
+    # - REACT_APP_PORTIS_DAPP_ID=
+    # - REACT_APP_FORTMATIC_API_KEY=
+    # - REACT_APP_APY_VISION_TOKEN=
+    # - REACT_APP_INTOTHEBLOCK_KEY=
 profiles:
   compute:
     bancor:
       resources:
         cpu:
-          units: 0.1
+          units: 1
         memory:
-          size: 512Mi
+          size: 2gi
         storage:
-          size: 512Mi
+          - size: 2gi
   placement:
-    akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
         bancor:
           denom: uakt
-          amount: 10000
-
+          amount: 100000
 deployment:
   bancor:
-    akash:
+    dcloud:
       profile: bancor
       count: 1

@@ -1,0 +1,268 @@
+---
+version: "2.0"
+
+services:
+  db:
+    image: supabase/postgres:15.1.0.147
+    expose:
+      - port: 5432
+        to:
+          - service: studio
+          - service: api
+          - service: gotrue
+          - service: storage
+          - service: meta
+    command:
+      - /bin/sh
+      - -c
+      - |
+        chown -R postgres:postgres /var/lib/postgresql/data || true
+        chmod 700 /var/lib/postgresql/data || true
+        exec docker-entrypoint.sh postgres -c listen_addresses='*'
+    env:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=${POSTGRES_DB}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    params:
+      storage:
+        data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+
+  api:
+    image: postgrest/postgrest:v12.2.12
+    depends_on:
+      - db
+    expose:
+      - port: 3000
+        to:
+          - service: studio
+          - service: gotrue
+          - service: storage
+          - service: meta
+    env:
+      - PGRST_DB_URI=postgres://postgres:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - PGRST_DB_SCHEMAS=public
+      - PGRST_DB_ANON_ROLE=anon
+      - PGRST_JWT_SECRET=${JWT_SECRET}
+      - PGRST_LOG_LEVEL=info
+
+  studio:
+    image: supabase/studio:20241029-46e1e40
+    depends_on:
+      - db
+      - api
+      - gotrue
+      - storage
+      - meta
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - STUDIO_PG_META_URL=http://meta:8080
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SUPABASE_URL=http://api:3000
+      - SUPABASE_PUBLIC_URL=${PUBLIC_URL}
+      - SUPABASE_ANON_KEY=${ANON_KEY}
+      - SUPABASE_SERVICE_KEY=${SERVICE_KEY}
+
+  gotrue:
+    image: supabase/gotrue:v2.180.0
+    depends_on:
+      - db
+    expose:
+      - port: 9999
+        to:
+          - service: studio
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for database initialization..."
+        sleep 120
+        echo "Starting GoTrue..."
+        exec gotrue
+    env:
+      - API_EXTERNAL_URL=${PUBLIC_URL}
+      - GOTRUE_API_HOST=0.0.0.0
+      - GOTRUE_API_PORT=9999
+      - GOTRUE_DB_DRIVER=postgres
+      - GOTRUE_DB_DATABASE_URL=postgres://postgres:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - GOTRUE_SITE_URL=${PUBLIC_URL}
+      - GOTRUE_URI_ALLOW_LIST=${ALLOWED_REDIRECT_URLS}
+      - GOTRUE_DISABLE_SIGNUP=${DISABLE_SIGNUP}
+      - GOTRUE_JWT_SECRET=${JWT_SECRET}
+      - GOTRUE_JWT_EXP=3600
+      - GOTRUE_JWT_DEFAULT_GROUP_NAME=authenticated
+      - GOTRUE_EXTERNAL_EMAIL_ENABLED=false
+      - GOTRUE_MAILER_AUTOCONFIRM=true
+      - GOTRUE_SMS_AUTOCONFIRM=true
+
+  storage:
+    image: supabase/storage-api:v1.24.7
+    depends_on:
+      - db
+      - api
+    expose:
+      - port: 5000
+        to:
+          - service: studio
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for database and API..."
+        sleep 130
+        echo "Starting Storage API..."
+        exec node dist/app.js
+    env:
+      - ANON_KEY=${ANON_KEY}
+      - SERVICE_KEY=${SERVICE_KEY}
+      - POSTGREST_URL=http://api:3000
+      - PGRST_JWT_SECRET=${JWT_SECRET}
+      - DATABASE_URL=postgres://postgres:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - FILE_SIZE_LIMIT=50000000
+      - STORAGE_BACKEND=file
+      - FILE_STORAGE_BACKEND_PATH=/var/lib/storage
+      - TENANT_ID=stub
+    params:
+      storage:
+        storage-files:
+          mount: /var/lib/storage
+          readOnly: false
+
+  meta:
+    image: supabase/postgres-meta:v0.89.3
+    depends_on:
+      - db
+    expose:
+      - port: 8080
+        to:
+          - service: studio
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "Waiting for database..."
+        sleep 110
+        echo "Starting Meta API..."
+        exec node dist/server/app.js
+    env:
+      - PG_META_PORT=8080
+      - PG_META_DB_HOST=db
+      - PG_META_DB_PASSWORD=${POSTGRES_PASSWORD}
+      - PG_META_DB_PORT=5432
+      - PG_META_DB_NAME=${POSTGRES_DB}
+      - PG_META_DB_USER=postgres
+
+profiles:
+  compute:
+    db:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+    api:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+    studio:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+    gotrue:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+    storage:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+          - name: storage-files
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+    meta:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+
+  placement:
+    akash:
+      pricing:
+        db:
+          denom: uakt
+          amount: 10000
+        api:
+          denom: uakt
+          amount: 5000
+        studio:
+          denom: uakt
+          amount: 5000
+        gotrue:
+          denom: uakt
+          amount: 5000
+        storage:
+          denom: uakt
+          amount: 5000
+        meta:
+          denom: uakt
+          amount: 5000
+
+deployment:
+  db:
+    akash:
+      profile: db
+      count: 1
+  api:
+    akash:
+      profile: api
+      count: 1
+  studio:
+    akash:
+      profile: studio
+      count: 1
+  gotrue:
+    akash:
+      profile: gotrue
+      count: 1
+  storage:
+    akash:
+      profile: storage
+      count: 1
+  meta:
+    akash:
+      profile: meta
+      count: 1

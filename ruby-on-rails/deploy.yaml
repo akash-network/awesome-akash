@@ -1,0 +1,31 @@
+---
+version: "2.0"
+services:
+  ruby:
+    image: nomorelies/rubyonakash:0.4
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+profiles:
+  compute:
+    ruby:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+  placement:
+    dcloud:
+      pricing:
+        ruby:
+          denom: uakt
+          amount: 100000
+deployment:
+  ruby:
+    dcloud:
+      profile: ruby
+      count: 1

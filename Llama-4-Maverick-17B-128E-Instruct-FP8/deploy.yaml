@@ -1,0 +1,66 @@
+---
+version: "2.0"
+services:
+  vllm:
+    image: vllm/vllm-openai:v0.8.3
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >-
+        vllm serve meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8 \
+        --tensor-parallel-size 8 \
+        --max-model-len 430000 --override-generation-config='{"attn_temperature_tuning": true}'
+    env:
+      - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
+      - VLLM_DISABLE_COMPILE_CACHE=1
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
+          readOnly: false
+profiles:
+  compute:
+    vllm:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 256Gi
+        storage:
+          - size: 100Gi
+          - name: data
+            size: 500Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 32Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 8
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                  ram: 80Gi
+  placement:
+    dcloud:
+      pricing:
+        vllm:
+          denom: uakt
+          amount: 1000000
+deployment:
+  vllm:
+    dcloud:
+      profile: vllm
+      count: 1

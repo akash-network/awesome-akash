@@ -1,0 +1,65 @@
+---
+version: "2.0"
+services:
+  elasticsearch:
+    image: elasticsearch:9.2.0 # https://hub.docker.com/_/elasticsearch
+    expose:
+      - port: 9200
+        as: 9200
+        to:
+          - global: true
+          - service: kibana
+      - port: 9300
+        as: 9300
+        to:
+          - global: true
+    env:
+      - discovery.type=single-node
+      - http.host=0.0.0.0
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms4g -Xmx4g
+  kibana:
+    image: kibana:9.2.0 # https://hub.docker.com/_/kibana
+    expose:
+      - port: 5601
+        as: 5601
+        to:
+          - global: true
+    env:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+profiles:
+  compute:
+    elasticsearch:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 8gb
+        storage:
+          - size: 32gb
+    kibana:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2gb
+        storage:
+          - size: 2gb
+  placement:
+    dcloud:
+      pricing:
+        elasticsearch:
+          denom: uakt
+          amount: 100000
+        kibana:
+          denom: uakt
+          amount: 100000
+deployment:
+  elasticsearch:
+    dcloud:
+      profile: elasticsearch
+      count: 1
+  kibana:
+    dcloud:
+      profile: kibana
+      count: 1

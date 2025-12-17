@@ -1,9 +1,8 @@
 ---
 version: "2.0"
-
 services:
   polkadot:
-    image: parity/polkadot:v0.9.42
+    image: parity/polkadot:stable2509-2 # https://hub.docker.com/r/parity/polkadot https://github.com/paritytech/polkadot-sdk/releases
     expose:
       - port: 9933 # rpc port
         as: 9933
@@ -18,14 +17,13 @@ services:
         to:
           - global: true
     args:
-    #https://github.com/paritytech/polkadot/blob/master/doc/docker.md
+    #https://github.com/paritytech/polkadot-sdk/blob/master/docs/contributor/docker.md
     - --chain=polkadot
-    - --ws-external
     - --rpc-external
     - --rpc-cors=all
     #- --pruning=256
     #- --unsafe-pruning
-    #https://wiki.polkadot.network/docs/maintain-guides-how-to-validate-polkadot
+    #https://docs.polkadot.com/infrastructure/running-a-validator/onboarding-and-offboarding/set-up-validator/
     #- --name My_Validator_Name
     #- --validator
     #- --public-addr=/ip4/IP_ADDRESS/tcp/2435
@@ -53,7 +51,7 @@ profiles:
       #Remove this section to deploy on untrusted providers
       #Miners: You can receive more bids from more providers by removing this section
       #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
+      #https://akash.network/docs/deployments/audited-attributes/
       pricing:
         polkadot:
           denom: uakt

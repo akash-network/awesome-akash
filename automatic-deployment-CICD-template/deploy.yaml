@@ -1,0 +1,34 @@
+---
+version: "2.0"
+services:
+  service-1:
+    image: ghcr.io/akash-network/awesome-akash/consolecicd:v1
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+    env:
+      - "REPO_URL=https://github.com/onwidget/astrowind"
+      - "BRANCH_NAME=main"
+profiles:
+  compute:
+    service-1:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 6GB
+        storage:
+          - size: 10Gi
+  placement:
+    dcloud:
+      pricing:
+        service-1:
+          denom: uakt
+          amount: 10000
+deployment:
+  service-1:
+    dcloud:
+      profile: service-1
+      count: 1

@@ -1,0 +1,61 @@
+---
+version: "2.0"
+services:
+  janus-gradio:
+    image: decai0/janus-gradio:latest@sha256:71c5ea07030d530fe41f9d6dc8b0feeb32b2e11add9f8c304b43e6c33f652add
+    expose:
+      - port: 7860
+        as: 7860
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - python demo/app_januspro.py # for Janus-Pro-7B
+      #- python demo/app.py # for Janus
+    env:
+      - "GRADIO_SERVER_NAME=0.0.0.0"
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
+          readOnly: false
+profiles:
+  compute:
+    janus-gradio:
+      resources:
+        cpu:
+          units: 32
+        memory:
+          size: 64Gi
+        storage:
+          - size: 25Gi
+          - name: data
+            size: 80Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 16Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    dcloud:
+      pricing:
+        janus-gradio:
+          denom: uakt
+          amount: 1000000
+deployment:
+  janus-gradio:
+    dcloud:
+      profile: janus-gradio
+      count: 1

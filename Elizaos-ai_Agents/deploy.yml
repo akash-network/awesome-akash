@@ -1,0 +1,47 @@
+---
+  version: "2.0"
+  services:
+    eiza:
+      image: kylecohen01/elizatest
+      expose:
+        - port: 80
+          as: 80
+          to:
+            - global: true
+        - port: 3000
+          as: 3000
+          to:
+            - global: true
+        - port: 5371
+          as: 5371
+          to:
+            - global: true
+      env:
+        - DEEPSEEK_API_KEY=sk-1234567890          # get api key from https://chatapi.akash.network
+        - DEEPSEEK_API_URL=https://chatapi.akash.network/api/v1
+        - SMALL_DEEPSEEK_MODEL=DeepSeek-R1
+        - MEDIUM_DEEPSEEK_MODEL=DeepSeek-R1-Distill-Llama-70B
+        - LARGE_DEEPSEEK_MODEL=DeepSeek-R1-Distill-Llama-8B
+        - SERVER_PORT=3000
+  profiles:
+    compute:
+      eiza:
+        resources:
+          cpu:
+            units: 4
+          memory:
+            size: 15Gb
+          storage:
+            - size: 32Gb
+    placement:
+      dcloud:
+        pricing:
+          eiza:
+            denom: uakt
+            amount: 10000
+  deployment:
+    eiza:
+      dcloud:
+        profile: eiza
+        count: 1
+  

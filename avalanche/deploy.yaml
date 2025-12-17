@@ -1,0 +1,40 @@
+---
+version: "2.0"
+services:
+  avalanchego:
+    image: avaplatform/avalanchego:v1.14.0 # https://hub.docker.com/r/avaplatform/avalanchego
+    expose:
+      - port: 9650
+        as: 9650
+        to:
+          - global: true
+      - port: 9651
+        as: 9651
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - ./avalanchego --network-id=fuji --http-host=0.0.0.0 --http-allowed-hosts=*
+profiles:
+  compute:
+    avalanchego:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16gi
+        storage:
+          - size: 1ti
+  placement:
+    dcloud:
+      pricing:
+        avalanchego:
+          denom: uakt
+          amount: 100000
+deployment:
+  avalanchego:
+    dcloud:
+      profile: avalanchego
+      count: 1

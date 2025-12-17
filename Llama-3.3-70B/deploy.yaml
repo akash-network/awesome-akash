@@ -1,0 +1,65 @@
+---
+version: "2.0"
+services:
+  vllm:
+    image: vllm/vllm-openai:v0.8.4
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >- 
+        vllm serve meta-llama/Llama-3.3-70B-Instruct --tensor-parallel-size 2
+    env:
+      - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache # Mount the data storage to the cache directory for persistent storage of model files
+          readOnly: false
+profiles:
+  compute:
+    vllm:
+      resources:
+        cpu:
+          units: 64
+        memory:
+          size: 256Gi
+        storage:
+          - size: 100Gi
+          - name: data
+            size: 200Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 2
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                  ram: 80Gi
+                - model: a100
+                  ram: 80Gi
+  placement:
+    dcloud:
+      pricing:
+        vllm:
+          denom: uakt
+          amount: 1000000
+deployment:
+  vllm:
+    dcloud:
+      profile: vllm
+      count: 1

@@ -1,0 +1,63 @@
+---
+version: "2.0"
+services:
+  vllm:
+    image: vllm/vllm-openai:gptoss
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >- 
+        vllm serve openai/gpt-oss-120b
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /root/.cache
+          readOnly: false
+profiles:
+  compute:
+    vllm:
+      resources:
+        cpu:
+          units: 16
+        memory:
+          size: 128Gi
+        storage:
+          - size: 50Gi
+          - name: data
+            size: 200Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 10Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                  ram: 80Gi
+                - model: a100
+                  ram: 80Gi
+  placement:
+    dcloud:
+      pricing:
+        vllm:
+          denom: uakt
+          amount: 1000000
+deployment:
+  vllm:
+    dcloud:
+      profile: vllm
+      count: 1
