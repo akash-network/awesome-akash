@@ -181,6 +181,7 @@ To add a new template/resource:
 
 - [SteemCN](steemcn)
 - [Ghost](ghost)
+- [Ghost with Filebase Backup](ghost-filebase-backup)
 - [Grav](Grav)
 - [Wordpress](wordpress)
 - [Confluence](confluence)

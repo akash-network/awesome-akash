@@ -1,0 +1,61 @@
+---
+version: "2.0"
+
+services:
+  ghost:
+    image: ghcr.io/zhajingwen/ghost-ipfs-bkup:latest
+    expose:
+      - port: 2368
+        as: 80
+        to:
+          - global: true
+        accept:
+          - changeme.com
+    env:
+      - url=http://changeme.com
+      - NODE_ENV=production
+      - FILEBASE_BUCKET=test-bucket-name
+      - FILEBASE_ENDPOINT=https://s3.filebase.com
+      - FILEBASE_ACCESS_KEY_ID=your-filebase-access-key-id
+      - FILEBASE_SECRET_ACCESS_KEY=your-filebase-secret-access-key
+      # 在终端生成强密码: openssl rand -base64 32
+      - BACKUP_ENCRYPTION_PASSWORD=backup-password-for-database
+      # Optional: Specify backup directory path in bucket (e.g., "my-backup" or "project1/backup")
+      # If not set, backups will be stored at bucket root: s3://bucket/images and s3://bucket/data
+      # If set to "my-backup", backups will be at: s3://bucket/my-backup/images and s3://bucket/my-backup/data
+      - FILEBASE_BACKUP_PATH=my-backup
+      # Optional: Email service configuration (fixes "Failed to send email" errors)
+      # Ghost uses double underscores (__) as separator for nested config
+      # Example for Resend (recommended):
+      # - mail__transport=SMTP
+      # - mail__options__host=smtp.resend.com
+      # - mail__options__port=587
+      # - mail__options__secure=false
+      # - mail__options__requireTLS=true
+      # - mail__options__auth__user=resend
+      # - mail__options__auth__pass=re_xxxxxxxxxxxxx
+      # - mail__from=noreply@resend.dev
+      # Note: Using Resend's test domain, no domain verification needed
+
+profiles:
+  compute:
+    ghost:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 1.5Gi
+  placement:
+    akash:
+      pricing:
+        ghost:
+          denom: uakt
+          amount: 5000
+
+deployment:
+  ghost:
+    akash:
+      profile: ghost
+      count: 1
