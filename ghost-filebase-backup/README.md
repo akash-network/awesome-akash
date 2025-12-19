@@ -1,4 +1,8 @@
-# Deploy.yaml 使用指南 | Deploy.yaml Usage Guide
+# Ghost with Filebase Backup
+
+Deploy Ghost blog on Akash with automatic IPFS backup via Filebase.
+
+在 Akash 上部署 Ghost 博客，通过 Filebase 实现自动 IPFS 备份。
 
 [English Version](#english-version) | [中文版本](#中文版本)
 
