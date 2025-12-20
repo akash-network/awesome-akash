@@ -79,7 +79,7 @@ To add a new template/resource:
 - [Daila](daila)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
-- [Eliza AI Agent](elizaos-ai_Agents)
+- [Eliza AI Agent](Elizaos-ai_Agents)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
 - [Morpheus Lumerin Node](morpheus-lumerin-node)
