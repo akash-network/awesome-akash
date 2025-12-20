@@ -260,7 +260,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Synthetix.Exchange](synthetix.exchange)
 - [Ren Protocol](renprotocol)
 - [yfii](yfii)
-- [Sifchain DEX](sifchain-ui)
 - [Osmosis DEX](osmosis-fe)
 
 ### Benchmarking
