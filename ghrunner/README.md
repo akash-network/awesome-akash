@@ -1,14 +1,8 @@
 # Github Runner
 
+Deploy a [self-hosted runner](https://docs.github.com/en/actions/concepts/runners/self-hosted-runners) using this template.
+
 1. Get the token for registering your runner `https://github.com/<org>/<repo>/settings/actions/runners/new`
-2. Set your repo & token in deploy.yaml file
+2. Set your repo & token in [deploy.yaml](deploy.yaml) file
 
-## For devs
-
-If you want to build your own image:
-
-```
-docker login
-docker build -t <yourDockerHubUsername>/ghrunner:2.306.0 .
-docker push <yourDockerHubUsername>/ghrunner:2.306.0
-```
+Please see [the wiki](https://github.com/myoung34/docker-github-actions-runner/wiki/Usage) for examples and usage.
