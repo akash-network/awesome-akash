@@ -422,6 +422,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Memos](memos)
 - [microbox](microbox)
 - [Nextcloud](nextcloud)
+- [Onetimepad](onetimepad)
 - [owncloud](owncloud)
 - [PeerJS Server](peerjs-server)
 - [Periodic Table Creator](Periodic-Table-Creator)
