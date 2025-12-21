@@ -269,6 +269,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Fast.com by Netflix](fast)
 - [Flexible IO Tester](fio)
 - [Geekbench 5](geekbench)
+- [iPerf3](iperf3)
 - [LibreSpeed](librespeed)
 - [MonkeyTest](monkeytest)
 - [OpenSpeedTest](openspeedtest)
