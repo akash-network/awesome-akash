@@ -1,6 +1,5 @@
 ---
 version: "2.0"
-
 services:
   onetimepad:
     image: jenkinsplc/onetimepad
@@ -9,31 +8,24 @@ services:
         as: 80
         to:
           - global: true
-
 profiles:
   compute:
     onetimepad:
       resources:
         cpu:
-          units: 1.0
+          units: 1
         memory:
           size: 512Mi
         storage:
-          size: 512Mi
+          - size: 512mi
   placement:
-    akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
-        onetimepad: 
+        onetimepad:
           denom: uakt
-          amount: 10000
-
+          amount: 100000
 deployment:
   onetimepad:
-    akash:
+    dcloud:
       profile: onetimepad
       count: 1
