@@ -56,7 +56,6 @@ To add a new template/resource:
 - [Social](#social)
 - [Tools](#tools)
 - [Network](#network)
-- [Databases](#databases)
 - [Video Conferencing](#video-conferencing)
 - [Wallet](#wallet)
 - [Web Frameworks](#web-frameworks)
@@ -228,18 +227,21 @@ To add a new template/resource:
 
 ### Databases and Administration
 
-- [json-server](json-server)
-- [pgAdmin](pgadmin4)
-- [mongoDB](mongoDB)
-- [postgresSQL](postgres)
 - [adminer](adminer)
-- [MySQL](MySQL)
+- [CockroachDB](CockroachDB)
 - [CouchDB](couchdb)
-- [InfluxDB](influxdb)
-- [SurrealDB](SurrealDB)
 - [DefraDB](defradb)
+- [InfluxDB](influxdb)
+- [json-server](json-server)
+- [mongoDB](mongoDB)
+- [MySQL](MySQL)
 - [neo4j](neo4j)
+- [pgAdmin](pgadmin4)
+- [postgresSQL](postgres)
 - [Qdrant](qdrant)
+- [redis](redis)
+- [Supabase](supabase)
+- [SurrealDB](SurrealDB)
 
 ### DeFi
 
@@ -443,12 +445,6 @@ Awesome DeFi apps you can deploy on Akash
 - [X-UI](x-ui)
 - [Tor Proxy](tor-proxy)
 - [CJDNS PKT](cjdns-pkt)
-
-### Databases
-
-- [CockroachDB](CockroachDB)
-- [redis](redis)
-- [Supabase](supabase)
 
 ### Video Conferencing
 
