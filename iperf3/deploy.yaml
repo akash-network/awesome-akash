@@ -1,6 +1,5 @@
 ---
 version: "2.0"
-
 services:
   iperf:
     image: networkstatic/iperf3
@@ -14,8 +13,7 @@ services:
         as: 5201
         to:
           - global: true
-        proto: udp
-
+        proto: tcp
 profiles:
   compute:
     iperf:
@@ -27,19 +25,13 @@ profiles:
         storage:
           size: 128Mi
   placement:
-    akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
         iperf: 
           denom: uakt
-          amount: 10000
-
+          amount: 100000
 deployment:
   iperf:
-    akash:
+    dcloud:
       profile: iperf
       count: 1
