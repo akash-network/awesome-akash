@@ -249,6 +249,10 @@ env:
 
 不是必须的，但如果不配置邮件服务，Ghost 的邮件相关功能（如密码重置、会员通知）将无法使用。
 
+## 更多信息
+
+如果您需要了解更多信息，请访问：https://github.com/zhajingwen/ghost-ipfs-bkup
+
 ---
 
 # English Version
@@ -491,6 +495,10 @@ Data is backed up to Filebase (IPFS pinning service), accessible via S3 API.
 ### Q: Is email configuration required?
 
 No, it's not required. However, without email service configuration, Ghost's email-related features (password reset, member notifications) won't work.
+
+## More Information
+
+For more information, please visit: https://github.com/zhajingwen/ghost-ipfs-bkup
 
 ---
 
