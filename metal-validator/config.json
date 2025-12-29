@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://raw.githubusercontent.com/VirgilBB/Metal-Validator/main/assets/metalblockchain-logo.png"
+}
