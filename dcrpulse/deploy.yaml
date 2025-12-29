@@ -1,0 +1,62 @@
+---
+version: "2.0"
+
+services:
+  dcrpulse:
+    # Combined container: runs dcrd + dcrpulse dashboard in ONE container.
+    image: virgilbb/dcrpulse-combined-akash:v1.9.1
+    env:
+      - PORT=8080
+      - DCRD_RPC_USER=decred
+      - DCRD_RPC_PASS=decredpass
+      # Optional extra args passed to dcrd (example: --txindex)
+      - DCRD_EXTRA_ARGS=--txindex
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+        proto: tcp
+      # Optional: P2P port (inbound peers). You can set global:false if you prefer.
+      - port: 9108
+        as: 9108
+        to:
+          - global: false
+        proto: tcp
+    params:
+      storage:
+        dcrd-data:
+          mount: /app-data
+          readOnly: false
+
+profiles:
+  compute:
+    dcrpulse:
+      resources:
+        cpu:
+          units: 2.5
+        memory:
+          size: 5Gi
+        storage:
+          - name: dcrd-data
+            size: 30Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - size: 256Mi
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        dcrpulse:
+          denom: uakt
+          amount: 17000
+
+deployment:
+  dcrpulse:
+    akash:
+      profile: dcrpulse
+      count: 1
+
