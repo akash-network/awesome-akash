@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   n8n:
-    image: docker.n8n.io/n8nio/n8n:1.100.0
+    image: docker.n8n.io/n8nio/n8n:1.123.11
     expose:
       - port: 5678
         as: 80
@@ -102,3 +102,4 @@ deployment:
     akash:
       profile: postgres
       count: 1
+
