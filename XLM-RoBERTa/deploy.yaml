@@ -21,7 +21,6 @@ profiles:
           attributes:
             vendor:
               nvidia:
-                - model: v100
         storage:
           - size: 10Gi
   placement:
