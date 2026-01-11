@@ -1,4 +1,3 @@
-#updated roberta
 version: "2.0"
 services:
   roberta:
