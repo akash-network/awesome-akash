@@ -249,7 +249,6 @@ To add a new template/resource:
 Awesome DeFi apps you can deploy on Akash
 
 - [Uniswap](uniswap)
-- [dFed](dfed)
 - [Pancake Swap](pancake-swap)
 - [Augur](augur)
 - [Bancor](bancor)
