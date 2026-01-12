@@ -190,7 +190,6 @@ To add a new template/resource:
 
 ### Built with Cosmos-SDK
 
-- [Dharani](Dharani)
 - [Big Dipper](big-dipper)
 
 ### Chat
