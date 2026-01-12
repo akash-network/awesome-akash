@@ -417,7 +417,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)
 - [dart-hello](dart)
-- [DEGO Stats](dego-stats)
 - [Folding@home](folding-at-home)
 - [Hashicorp Vault](hashicorp-vault)
 - [LibreTranslate](libretranslate)
