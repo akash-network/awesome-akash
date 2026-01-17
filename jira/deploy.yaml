@@ -3,7 +3,13 @@ version: "2.0"
 
 services:
   jira:
-    image: atlassian/jira-software:latest
+    image: atlassian/jira-software:10.0.0
+    params:
+      storage:
+        jira-data:
+          mount: /var/atlassian/application-data/jira
+          readOnly: false
+
     expose:
       - port: 8080
         as: 80
@@ -17,9 +23,14 @@ profiles:
         cpu:
           units: 1.0
         memory:
-          size: 512Mi
+          size: 2Gi
         storage:
-          size: 1Gi
+          - size: 1Gi
+          - name: jira-data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
   placement:
     akash:
       attributes:
