@@ -1,5 +1,8 @@
 # Semantra
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-semantra)
+
+
 Deployment video: https://www.youtube.com/watch?v=LfoPUIn-Eug
 
 Project page: https://github.com/freedmand/semantra
@@ -32,4 +35,3 @@ Semantra will crash if you don't have enough available memory for your model.
 - 5.8B requires about 40GB free
 
 If you are analyzing a large file or multiple files, you may need more ram.
-

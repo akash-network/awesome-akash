@@ -1,5 +1,8 @@
 # Akash Code-Server
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-code-server)
+
+
 Launch a [Code-Server](https://coder.com/) server on the Akash blockchain. Run VS Code on any machine anywhere and access it in the browser.  Visit the [code-server](https://github.com/cdr/code-server) github repo to learn more.
 
 

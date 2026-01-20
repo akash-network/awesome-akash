@@ -1,5 +1,8 @@
 # Open WebUI (Formerly Ollama WebUI) 👋
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-open-webui-cpu)
+
+
 Open WebUI is an [extensible](https://github.com/open-webui/pipelines), feature-rich, and user-friendly self-hosted WebUI designed to operate entirely offline. It supports various LLM runners, including Ollama and OpenAI-compatible APIs. For more information, be sure to check out our [Open WebUI Documentation](https://docs.openwebui.com/).
 
 ![Open WebUI Demo](https://github.com/open-webui/open-webui/blob/13b0e7d64a708f69c5ce58cf0897d9951d0d16ad/demo.gif)

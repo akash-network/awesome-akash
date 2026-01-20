@@ -1,5 +1,8 @@
 # Llama-3.3-Nemotron-Super-49B-v1
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Llama-3_3-Nemotron-Super-49B-v1)
+
+
 ## Model Overview 
 
 Llama-3.3-Nemotron-Super-49B-v1 is a large language model (LLM) which is a derivative of [Meta Llama-3.3-70B-Instruct](https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct) (AKA the *reference model*). It is a reasoning model that is post trained for reasoning, human chat preferences, and tasks, such as RAG and tool calling. The model supports a context length of 128K tokens.

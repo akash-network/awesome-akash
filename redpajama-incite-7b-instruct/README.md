@@ -1,5 +1,8 @@
 # RedPajama-INCITE-7B-Instruct
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-redpajama-incite-7b-instruct)
+
+
 RedPajama-INCITE-7B-Instruct is a text generation application. It was developed by Together and leaders from the open-source AI community including Ontocord.ai, ETH DS3Lab, AAI CERC, Université de Montréal, MILA - Québec AI Institute, Stanford Center for Research on Foundation Models (CRFM), Stanford Hazy Research research group and LAION.
 The model was fine-tuned for few-shot applications on the data of GPT-JT, with exclusion of tasks that overlap with the HELM core scenarios.
 
@@ -21,5 +24,4 @@ Screenshot:
 
 ## Demo Video
 https://github.com/yuravorobei/awesome-akash/assets/19820490/c14f70b6-6eb1-496a-97f5-b686274a781a
-
 

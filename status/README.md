@@ -1,5 +1,8 @@
 # Status.app Bootnode
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-status)
+
+
 [Status](https://status.app) is an open source, decentralised crypto communication super app. This deployment manifest allows you to run a bootstrap and service node allowing your (and others) to discover peers and receive/publish messages from resource restricted devices (e.g. phones). Apart from potentially being useful to you as a user directy, it also helps harden and decentralize the communication infrastructure ([Waku](http://waku.org)) which Status leverages.
 
 # Setup

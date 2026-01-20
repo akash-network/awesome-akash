@@ -1,5 +1,8 @@
 # What is Waku?
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-waku)
+
+
 [Waku](https://waku.org/) is a family of robust, censorship-resistant communication protocols designed to enable privacy-focused messaging for web3 apps.
 
 In other words, Waku allows you to build decentralized applications which require any form of message transfer (e.g. chats, push notifications, event broadcasting, weak consensus/coordination, message queues). You can build your own application protocols on top of plug&play Waku protocols, which ensure your node will be well connected with the network and your messages will be broadcasted reliably.

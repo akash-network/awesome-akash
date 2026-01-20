@@ -1,3 +1,5 @@
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-persistent-storage-performance-testing)
+
 A modified Ubuntu server 22.04 SDL by Dimokus, built to test the performance of persistent storage subsystem of an Akash provider.
 
 How to use:
@@ -7,4 +9,3 @@ How to use:
 4. WAIT! On super-fast providers this test will take 10 minutes.
 
 The test results will be displayed under "logs" in Akash Console
-

@@ -1,5 +1,8 @@
 # LibreSpeed
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-librespeed)
+
+
 ![](https://github.com/librespeed/speedtest/blob/master/.logo/logo3.png?raw=true)
 
 Test your connection speed to a provider.  No Flash, No Java, No Websocket.  This is a very lightweight Speedtest implemented in Javascript, using XMLHttpRequest and Web Workers.

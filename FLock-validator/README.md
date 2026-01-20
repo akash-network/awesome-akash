@@ -1,5 +1,8 @@
 # 🔒 Run a FLock Validator on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-FLock-validator)
+
+
 This is a template for running a FLock Validator on Akash. It enables users to run FLock's [Validator Script](https://github.com/FLock-io/llm-loss-validator/tree/main) directly from the Akash Console and earn FML rewards on [train.flock.io](http://train.flock.io/)
 
 [train.flock.io](http://train.flock.io/) is the gateway to [FLock.io](http://flock.io/)'s decentralized AI training platform, AI Arena. It is currently on incentivised testnet, and all participants who have earned FML rewards will receive mainnet airdrops.

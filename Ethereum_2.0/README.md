@@ -1,5 +1,8 @@
 ## Ethereum 2.0 node deployment
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Ethereum_2.0)
+
+
 >If you don't have validator keys, go to [how to create one](/Ethereum_2.0/create_validator_key_en(Linux).md)).
 
 Fill in the variables in the [SDL file](/Ethereum_2.0/deploy.yml):

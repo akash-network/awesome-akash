@@ -1,5 +1,8 @@
 # MonkeyTest
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-monkeytest)
+
+
 ![monkeytest](https://cloud.githubusercontent.com/assets/16870636/12601547/7a3a4f14-c4aa-11e5-8b2e-48a20d7f7c17.png)
 
 A disk benchmark to test your hard drive read-write speed in Python.  A simplistic script to show that such system programming tasks are possible and convenient to be solved in Python
@@ -15,5 +18,4 @@ usage: monkeytest.py [-h] [-f FILE] [-s SIZE] [-w WRITE_BLOCK_SIZE]
 
 If you want to contribute, be sure to see our TODO list first
   https://github.com/thodnev/MonkeyTest/milestones
-
 

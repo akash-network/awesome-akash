@@ -1,5 +1,8 @@
 # React on Akash Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-react)
+
+
 Deploy your React applications on the decentralized Akash Network. This template provides a basic setup for serving a production-ready React app using Nginx.
 
 ## Prerequisites

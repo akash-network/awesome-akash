@@ -1,5 +1,8 @@
 # Pocket Network <!-- omit in toc -->
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-pokt-network)
+
+
 Pocket Network (POKT) tackles the RPC Trilemma by enabling an open protocol that empowers developers with Reliable, Performant, and Cost-Effective RPC access to the open internet.
 
 - [Overview](#overview)

@@ -1,3 +1,5 @@
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-valheim)
+
 [![](https://img.shields.io/codacy/grade/33ce0225cb214844b8995d24c75a3080.svg)](https://hub.docker.com/r/cm2network/valheim/) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/cm2network/valheim)](https://hub.docker.com/r/cm2network/valheim/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/valheim.svg)](https://hub.docker.com/r/cm2network/valheim/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/valheim.svg)](https://hub.docker.com/r/cm2network/valheim/) [![](https://img.shields.io/docker/image-size/cm2network/valheim)](https://img.shields.io/docker/image-size/cm2network/valheim) [![Discord](https://img.shields.io/discord/747067734029893653)](https://discord.gg/7ntmAwM)
 # Supported tags and respective `Dockerfile` links
 -	[`base`, `latest` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/Valheim/blob/master/bullseye/Dockerfile)

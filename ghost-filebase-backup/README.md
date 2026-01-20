@@ -1,5 +1,8 @@
 # Ghost with Filebase Backup
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-ghost-filebase-backup)
+
+
 Deploy Ghost blog on Akash with automatic IPFS backup via Filebase.
 
 在 Akash 上部署 Ghost 博客，通过 Filebase 实现自动 IPFS 备份。
@@ -505,4 +508,3 @@ For more information, please visit: https://github.com/zhajingwen/ghost-ipfs-bku
 ## License
 
 This documentation is provided as-is for the Ghost IPFS Backup project.
-

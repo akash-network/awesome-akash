@@ -1,5 +1,8 @@
 # NEAR on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-near)
+
+
 # What is Akash?
 
 Akash is an [**open source** ](https://github.com/ovrclk/akash)Cloud platform that lets you quickly deploy a Docker container to the Cloud provider of your choice for less than the cost of AWS, right from the [**command-line**](https://akash.network/docs/deployments/akash-cli/overview).
@@ -83,4 +86,3 @@ deployment:
       profile: nearup
       count: 1
 ```
-

@@ -1,5 +1,8 @@
 # WordPress
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-wordpress)
+
+
 WordPress is a free and open source blogging tool and a content management system (CMS) based on PHP and MySQL.  This SDL includes MariaDB (MySQL fork).
 
 ## Troubleshooting

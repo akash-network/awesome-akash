@@ -1,5 +1,8 @@
 ## OPENGPT on Akash Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-open-gpt)
+
+
 ---
 
 OpenGPT is an open source effort to create a similar experience to OpenAI's GPTs. It builds upon LangChain, LangServe and LangSmith. OpenGPTs gives you more control, allowing you to configure:
@@ -28,4 +31,3 @@ Set up tools By default this uses a lot of tools. Some of these require addition
       - YDC_API_KEY=test
       - TAVILY_API_KEY=test
       - KAY_API_KEY=test
-

@@ -1,5 +1,8 @@
 # GPUStack
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-gpustack-worker)
+
+
 ![demo](https://github.com/gpustack/gpustack/blob/7bd4c5db4fe910ce9bc1a3d7fb6e49f11872ab2c/docs/assets/gpustack-demo.gif)
 
 GPUStack is an open-source GPU cluster manager for running large language models(LLMs).

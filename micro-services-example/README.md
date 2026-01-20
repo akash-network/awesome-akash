@@ -1,5 +1,8 @@
 # Akash Microservices Example: Retail Store Application
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-micro-services-example)
+
+
 
 
 This repository demonstrates how to deploy a complete microservices-based retail store application on the Akash Network. The application is based on the [AWS Containers Retail Store Sample App](https://github.com/aws-containers/retail-store-sample-app), showcasing best practices for containerized microservices deployment in a decentralized cloud environment.
@@ -111,5 +114,4 @@ This example showcases several best practices for microservices deployment on Ak
 ## Acknowledgments
 
 Special thanks to the [AWS Containers team](https://github.com/aws-containers/retail-store-sample-app) for creating the original retail store sample application that this deployment is based on. This example demonstrates how enterprise-grade microservices architectures can be adapted for decentralized cloud deployment on Akash.
-
 

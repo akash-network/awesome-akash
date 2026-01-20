@@ -1,5 +1,8 @@
 # Announcing Bladebit Disk
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-chia-bladebit-disk)
+
+
 Chia is releasing new plotting software called Bladebit Disk, utilizing the high-performance code from the in-memory plotter Bladebit, with a new architecture optimized for mainstream storage devices (solid state drives, and hard disk drives). Major new features include DRAM caching to reduce writes and improve performance and brand new architecture for disk io that improves SSD endurance and takes advantage of high bandwidth SSDs, like PCIe 4.0. The plotter has broad compatibility across device types and operating systems as well as low minimum requirements for embedded and entry-level systems.
 
 [Announcing Bladebit 2.0 Full Blog](https://www.chia.net/2022/08/08/announcing-bladebit-2.en.html)

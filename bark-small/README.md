@@ -1,5 +1,8 @@
 # Bark Text-to-Speech Akash App
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-bark-small)
+
+
 [Bark small](https://github.com/suno-ai/bark) transformer-based text-to-audio model created by [Suno](https://suno.com/). Bark can generate highly realistic, multilingual speech as well as other audio - including music, background noise and simple sound effects.
 
 ## Quick Start
@@ -44,5 +47,4 @@ Access the app at http://localhost:7860
 - [Bark small Hugging Face](https://huggingface.co/suno/bark-small)
 - [Available Voices](https://suno-ai.notion.site/8b8e8749ed514b0cbf3f699013548683)
 - [Akash Network](https://akash.network/docs)
-
 

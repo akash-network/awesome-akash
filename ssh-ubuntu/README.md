@@ -1,5 +1,8 @@
 # Akash Plain Linux SSH Deployments
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-ssh-ubuntu)
+
+
 This repository contains Docker images configured for plain Linux deployments via SSH on the Akash console. These images are based on official distribution images and are configured with OpenSSH for secure SSH access.
 
 ## Available Images

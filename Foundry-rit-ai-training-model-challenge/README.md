@@ -1,4 +1,7 @@
 # 🚀 Foundry-RIT AI Training Model Challenge: Run a FLock Training Node on Akash
+
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Foundry-rit-ai-training-model-challenge)
+
  
 Welcome to the Foundry-RIT AI Training Model Challenge! This repository serves as your template for running a FLock Training Node on Akash, as part of our exciting competition running from October 1 to November 12.
  
