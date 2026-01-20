@@ -1,5 +1,8 @@
 # Unsloth AI on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-unsloth-ai)
+
+
 This folder contains an example Akash SDL to deploy Unsloth AI with GPU acceleration.
 
 Resources
@@ -50,4 +53,3 @@ Notes
 
 Acknowledgements
 - Thanks to the Akash community and Unsloth AI project for open tooling and guidance.
-

@@ -1,5 +1,8 @@
 # Budibase
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-budibase)
+
+
 From [Budibase](https://github.com/Budibase/budibase)
 
 Low code platform for creating internal apps, workflows, and admin panels in minutes. Supports PostgreSQL, MySQL, MSSQL, MongoDB, Rest API, Docker, K8s, and more. Budibase, the low code platform you'll enjoy using.

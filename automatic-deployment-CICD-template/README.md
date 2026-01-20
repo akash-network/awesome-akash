@@ -1,7 +1,10 @@
 # Console-CI/CD for JS/TS
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-automatic-deployment-CICD-template)
+
+
 **Quick Start**: Access this feature directly at:
-https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-automatic-deployment-CICD-template&gitProvider=github
+https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-automatic-deployment-CICD-template
 
 ## Overview
 

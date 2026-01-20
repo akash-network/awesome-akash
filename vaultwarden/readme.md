@@ -1,5 +1,8 @@
 # Vaultwarden Server
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-vaultwarden)
+
+
 From [the official Docker Hub image page](https://hub.docker.com/r/vaultwarden/server):
 
 Alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal. Image is based on Rust implementation of Bitwarden API.

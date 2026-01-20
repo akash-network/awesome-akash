@@ -1,5 +1,8 @@
 # 🗼 Run a Witness Chain Watchtower on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-witnesschain-watchtower)
+
+
 This is a template for running a Witness Chain Watchtower on Akash. It enables users to run Witness Chain's [watchtower](https://docs.witnesschain.com/infinity-watch/proof-of-location-mainnet/run-a-watchtower/for-partner-node-runners/running-on-akash-cloud) directly from the Akash Console and participate in the [Proof of Location](https://docs.witnesschain.com/infinity-watch/proof-of-location-mainnet) protocol.
 
 ## 👀 Usage
@@ -21,4 +24,3 @@ If you have any questions, encounter any issues, or have feature requests, feel 
 - Follow us on [X](https://x.com/witnesschain)
 - Join the [discussion on Discord](https://discord.gg/HwnzU5CYDp)
 - Connect with us on [LinkedIn](https://www.linkedin.com/company/witness-chain/)
-

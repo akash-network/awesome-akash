@@ -1,5 +1,8 @@
 # Launching an Eliza Agent using Venice API on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Venice-ElizaOS)
+
+
 This is a template for launching an Eliza Agent with direct interaction and Twitter/X integration on Akash. This enables users to input their Venice API Key, Twitter Credentials, and Character information to get the Eliza agent up and running. You will need a Venice API key for this to work properly. 
 
 # About Venice
@@ -56,4 +59,3 @@ To learn more and get support:
 * Check the Venice API documentation (https://docs.venice.ai/welcome/about-venice)
 * Review detailed model specifications in our model endpoints list (https://docs.venice.ai/api-reference/endpoint/models/list?_gl=1*1ij5ulr*_gcl_au*MzMxODkxODc3LjE3MzgwNDc3NTU._gl=1*1ij5ulr*_gcl_au*MzMxODkxODc3LjE3MzgwNDc3NTU.)
 * Join the Venice Discord for developer discussions and support in the #api channel (https://discord.gg/venice)
-

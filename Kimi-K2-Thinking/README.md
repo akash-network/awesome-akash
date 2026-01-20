@@ -1,3 +1,5 @@
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Kimi-K2-Thinking)
+
 <div align="center">
   <picture>
       <img src="https://huggingface.co/moonshotai/Kimi-K2-Thinking/resolve/main/figures/kimi-logo.png" width="30%" alt="Kimi K2: Open Agentic Intellignece">

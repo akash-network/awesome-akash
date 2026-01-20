@@ -1,5 +1,8 @@
 # Hermes 4 — Llama-3.1 405B - FP8
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Hermes-4-405B-FP8)
+
+
 ![image/jpeg](https://cdn-uploads.huggingface.co/production/uploads/6317aade83d8d2fd903192d9/roT9o5bMYBtQziRMlaSDf.jpeg)
 
 ## Model Description

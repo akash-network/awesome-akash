@@ -1,4 +1,7 @@
 # What is Holdfast: Nations At War ?
+
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-holdfastnaw)
+
 Fight on multiple fronts in Holdfast: Nations At War - A competitive multiplayer first and third person shooter set during the great Napoleonic Era. Charge into battle with over 150 players per server!
 
 >  [Holdfast: NaW](https://store.steampowered.com/app/589290/Holdfast_Nations_At_War/)

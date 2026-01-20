@@ -1,5 +1,8 @@
 # Qdrant Vector Database
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-qdrant)
+
+
 ## What is Qdrant?
 
 Qdrant is a high-performance vector similarity search engine and database. It's designed for machine learning applications requiring efficient vector search capabilities, including:

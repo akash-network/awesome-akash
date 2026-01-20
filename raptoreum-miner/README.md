@@ -1,5 +1,8 @@
 ## How to mine Raptoreum (RTM) on Akash Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-raptoreum-miner)
+
+
 ![AkashMiningRTM](https://user-images.githubusercontent.com/19512127/142097004-8c662e9a-e52a-4c36-a4dd-28b9b2bc3795.png)
 
 # Why use Akash?

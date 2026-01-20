@@ -1,5 +1,8 @@
 # T-Rex NVIDIA GPU miner (Ethash / Etchash / Autolykos2 / Kawpow / Blake3 / Octopus / Firopow)
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-t-rex-c11)
+
+
 ## Overview
 
 T-Rex is a versatile cryptocurrency mining software. It supports a variety of algorithms and we, as developers, are trying to do our best to make it as fast and as convenient to use as possible.

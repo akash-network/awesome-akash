@@ -1,3 +1,5 @@
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-gminer-c11)
+
 GMiner was created by a Russian group of specialists in the field of high performance computing and cryptography.<br/>
 The first version of GMiner was released on September 21, 2018 and was received quite warmly among users.<br/>
 Thanks to its unique developments and stability, in just six months, the miner became a favorite on the Equihash algorithms.<br/>

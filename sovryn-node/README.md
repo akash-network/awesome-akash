@@ -1,5 +1,8 @@
 # Sovryn Node
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-sovryn-node)
+
+
 Check out the [Project site](https://github.com/DistributedCollective/Sovryn-Node):
 
 The `deploy.yaml` uses an [unofficial Docker image](https://hub.docker.com/r/nrm55/sovryn-node) at-the-moment. Please read below for tips on deploying to Akash. There is a video of me running through this process [here](https://youtu.be/Iinsjgolmu8).

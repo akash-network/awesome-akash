@@ -1,5 +1,8 @@
 # Synthetix.Exchange
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-synthetix.exchange)
+
+
 The code for the [Synthetix.Exchange](https://synthetix.exchange) dApp.<br />
 It is powered by [synthetix-data](https://github.com/Synthetixio/synthetix-data) and [synthetix-js](https://github.com/Synthetixio/synthetix-js).
 

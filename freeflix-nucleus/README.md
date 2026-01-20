@@ -1,5 +1,8 @@
 # FreeFlix Nucleus
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-freeflix-nucleus)
+
+
 *FreeFlix Nucleus* is a publishing platform that enables creators and organizations to publish content and engage with their audience.
 
 *FreeFlix Nucleus* is powered by *FreeFlix Studio* which is a tool to manage, distribute and monetize media across platforms (FreeFlix Nucleus, YouTube, Twitch, etc.) and also across various blockchain networks as **Media NFTs**.

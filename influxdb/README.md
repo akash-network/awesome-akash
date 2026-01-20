@@ -1,5 +1,8 @@
 # InfluxDB
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-influxdb)
+
+
 InfluxDB is a time series database built from the ground up to handle high write and query loads.
 InfluxDB is meant to be used as a backing store for any use case involving large amounts of 
 timestamped data, including DevOps monitoring, application metrics, IoT sensor data, and 

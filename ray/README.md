@@ -1,5 +1,8 @@
 # Ray Deployment Summary
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-ray)
+
+
 This repository contains Dockerfiles and deployment configurations for Ray clusters, specifically optimized for GPU-based workloads with Python 3.10 and CUDA 11.8 support. The provided Docker images and deployment examples facilitate the setup of Ray clusters for scalable and distributed computing. 
 
 ## Deployment Details

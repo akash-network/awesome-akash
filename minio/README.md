@@ -1,5 +1,8 @@
 # minio deployment 
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-minio)
+
+
 minio is an open source s3 compatible object store. [https://github.com/minio/minio].  For many applications today services for logging and uploading files will assume an s3 compatible storage service.  IFPS is too slow for many machine learning applications where the files be synced are over 2Gb in size and not effective for anything other than archival storage.  
 
 ## Env Vars

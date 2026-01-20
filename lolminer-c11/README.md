@@ -1,4 +1,7 @@
 # lolMiner 
+
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-lolminer-c11)
+
 ### AMD & Nvidia & Intel Miner for Etchash, Autolykos2, Beam, Grin, Ae, ALPH, Flux, Equihash, Kaspa, Nexa, Ironfish and more
 ### Best Dual Miner for KASPA and ALPH with full Unlock LHR in all ALGOs
 

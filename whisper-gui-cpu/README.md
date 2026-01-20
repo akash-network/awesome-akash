@@ -1,5 +1,8 @@
 # whisper-gui
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-whisper-gui-cpu)
+
+
 **whisper-gui - A simple GUI made with gradio to use Whisper from https://github.com/Pikurrot/whisper-gui**
 
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/3x3cut0r/whisper-gui)

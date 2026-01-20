@@ -1,5 +1,8 @@
 # Anubis
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-anubis)
+
+
 Anubis weighs the soul of your connection using a proof-of-work challenge in order to protect upstream resources from scraper bots.
 
 TL;DR: If you don't want to use (centralized) solution like Cloudflare to protect your system from bots, use Anubis.

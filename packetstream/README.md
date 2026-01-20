@@ -1,5 +1,8 @@
 # Residential Proxy Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-packetstream)
+
+
 ![](./packetstream.png)
 
 Become A Packeter, Share your Bandwidth: $0.10/GB. Packeters share their un-utilized bandwidth with the PacketStream network and get paid for participating. The PacketStream service measures the amount of bandwidth shared and credits your account accordingly.

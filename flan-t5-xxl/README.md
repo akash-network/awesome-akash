@@ -1,5 +1,8 @@
 # FLAN-T5 XXL
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-flan-t5-xxl)
+
+
 FLAN-T5 is a combination of two: a network and a model. Here, FLAN is Finetuned Language Net and T5 is a language model developed and published by Google in 2020. This model provides an improvement on the T5 model by improving the effectiveness of the zero-shot learning. FLAN-T5 model comes with many variants based on the numbers of parameters: FLAN-T5 small (80M); FLAN-T5 base (250M); FLAN-T5 large (780M); FLAN-T5 XL (3B); FLAN-T5 XXL (11B).
 This deployment uses the XXL variant with 11B parameters.
 
@@ -16,5 +19,4 @@ The logs on the screenshot show that the loading of the models has completed and
 
 ## Demo Video
 https://github.com/urichPasser/awesome-akash/assets/75273628/b6988076-81d1-4c79-9a01-f795cd6279fc
-
 

@@ -1,5 +1,8 @@
 # The easiest passive income
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-traffmonetizer)
+
+
 Internet connection that pays the bills.  Let’s face it, you don’t use even 10% of the Internet bandwidth you pay for every month. Our app will help you get these money back and establish a passive, entirely effortless stream of income. Install it now to start monetizing your traffic today!
 
 Expected income from one device is about $1 to $30 per month, depending on location (country, city, network type). Connect more devices using different ISP and invite more referrals to increase your income!

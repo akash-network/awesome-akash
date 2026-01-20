@@ -1,5 +1,8 @@
 # Jira Software
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-jira)
+
+
 From [the official Docker Hub image page](https://hub.docker.com/r/atlassian/jira-software):
 
 Jira Software Data Center helps the world’s best agile teams plan, track, and release great software at scale.
@@ -8,4 +11,3 @@ Jira Software Data Center helps the world’s best agile teams plan, track, and 
 * Learn more about Jira Software: https://www.atlassian.com/software/jira
 
 The `deploy.yaml` uses the official Docker image to deploy a basic configuration of Jira Software on Akash.
-

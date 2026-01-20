@@ -1,3 +1,5 @@
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-RAIR-Dapp)
+
 With RAIRprotocol open deployment layer, developers can #buidl and scale new dApps 10x faster. Our philosophy is that by building an open source deployment layer, we can 10x the speed of innovation in the Web3 space. Devs + Integrations + Open DevOps = 1000x more dApps :rocket:)
 
 
