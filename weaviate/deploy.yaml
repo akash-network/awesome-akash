@@ -1,7 +1,7 @@
 version: '2.0'
 services:
   weaviate:
-    image: semitechnologies/weaviate:1.19.6
+    image: cr.weaviate.io/semitechnologies/weaviate:1.19.6
     expose:
       - port: 8080
         to:
