@@ -1,0 +1,66 @@
+[freegpt]: Running on port 1338
+[freegpt]:  * Serving Flask app 'server.app'
+[freegpt]:  * Debug mode: off
+[freegpt]: WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+[freegpt]:  * Running on all addresses (0.0.0.0)
+[freegpt]:  * Running on http://127.0.0.1:1338
+[freegpt]:  * Running on http://10.42.0.41:1338
+[freegpt]: Press CTRL+C to quit
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET / HTTP/1.1" 302 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /chat HTTP/1.1" 308 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /chat/ HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/js/highlight.min.js HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/js/icons.js HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/style.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/js/highlightjs-copy.min.js HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/js/chat.js HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/global.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/conversation.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/hljs.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/background.css HTTP/1.1" 404 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/main.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/sidebar.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/message.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/typing.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/stop-generating.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/checkbox.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/label.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/button.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/buttons.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/field.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/select.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/dropdown.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/css/options.css HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:29:34] "GET /assets/img/favicon-32x32.png HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:30:31] "GET /assets/img/user.png HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:30:32] "GET /assets/img/gpt.png HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:30:54] "POST /backend-api/v2/conversation HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /chat/ HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/style.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/js/icons.js HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/js/highlight.min.js HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/global.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/js/highlightjs-copy.min.js HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/js/chat.js HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/hljs.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/background.css HTTP/1.1" 404 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/main.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/sidebar.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/message.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/conversation.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/stop-generating.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/typing.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/checkbox.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/button.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/label.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/buttons.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/dropdown.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/field.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/select.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/css/options.css HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:29] "GET /assets/img/favicon-32x32.png HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:33] "GET /assets/img/gpt.png HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:33] "GET /assets/img/user.png HTTP/1.1" 304 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:31:58] "POST /backend-api/v2/conversation HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:33:06] "POST /backend-api/v2/conversation HTTP/1.1" 200 -
+[freegpt]: 10.42.0.1 - - [27/Jun/2023 16:34:03] "POST /backend-api/v2/conversation HTTP/1.1" 200 -
