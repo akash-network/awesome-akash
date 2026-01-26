@@ -11,7 +11,7 @@ services:
           - global: true
     env:
       - CLAWDBOT_GATEWAY_TOKEN=YOURSECRETTOKEN
-      - AKASHML_API_KEY=Claim on akashMl.com and claim $100 in free credits
+      - AKASHML_API_KEY=Visit akashMl.com to get started and receive $100 in free credits
       - TELEGRAM_BOT_TOKEN=GetYourTokenFromBothFather
     command:
       - bash
