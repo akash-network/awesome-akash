@@ -75,6 +75,7 @@ To add a new template/resource:
 - [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
+- [Clawd-Bot](Clawd-Bot)
 - [Daila](daila)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)

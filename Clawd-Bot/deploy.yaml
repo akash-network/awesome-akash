@@ -1,0 +1,69 @@
+---
+version: "2.0"
+services:
+  clawdbot:
+    image: >-
+      ghcr.io/clawdbot/clawdbot:2026.1.24-1
+    expose:
+      - port: 18789
+        as: 18789
+        to:
+          - global: true
+    env:
+      - CLAWDBOT_GATEWAY_TOKEN=YOURSECRETTOKEN
+      - AKASHML_API_KEY=Visit akashMl.com to get started and receive $100 in free credits
+      - TELEGRAM_BOT_TOKEN=GetYourTokenFromBothFather
+    command:
+      - bash
+      - "-c"
+    args:
+      - |
+        node dist/index.js config set gateway.mode local
+        node dist/index.js config set gateway.bind lan
+        node dist/index.js config set gateway.controlUi.allowInsecureAuth true
+        node dist/index.js config set gateway.auth.mode token
+        node dist/index.js config set gateway.auth.token "$CLAWDBOT_GATEWAY_TOKEN"
+        node dist/index.js config set models.providers.akashml "{\"baseUrl\":\"https://api.akashml.com/v1\",\"apiKey\":\"$AKASHML_API_KEY\",\"api\":\"openai-completions\",\"models\":[{\"id\":\"deepseek-ai/DeepSeek-V3.1\",\"name\":\"DeepSeek V3.1\",\"reasoning\":true,\"input\":[\"text\"],\"contextWindow\":65536,\"maxTokens\":8192}]}"
+        node dist/index.js config set agents.defaults.model '{"primary":"akashml/deepseek-ai/DeepSeek-V3.1"}'
+        node dist/index.js gateway run --bind lan --port 18789
+      
+      # After starting the bot in telegram run "node dist/index.js pairing approve telegram YOURCODE" in the shell
+    params:
+      storage:
+        data:
+          mount: /root/clawd
+          readOnly: false
+        data2:
+          mount: /root/.clawdbot
+          readOnly: false
+profiles:
+  compute:
+    clawdbot:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 8Gb
+        storage:
+          - size: 5Gi
+          - name: data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: data2
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        clawdbot:
+          denom: uakt
+          amount: 100000
+deployment:
+  clawdbot:
+    dcloud:
+      profile: clawdbot
+      count: 1
