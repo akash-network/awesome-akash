@@ -1,9 +1,9 @@
 ---
 version: "2.0"
 services:
-  clawdbot:
+  moltbot:
     image: >-
-      ghcr.io/clawdbot/clawdbot:2026.1.24-1
+      ghcr.io/moltbot/moltbot:main@sha256:a5e022e1a5d55ea3e35ec997eb16bbe9ec21aed8aff190bb0944977a1b72202c
     expose:
       - port: 18789
         as: 18789
@@ -28,17 +28,9 @@ services:
         node dist/index.js gateway run --bind lan --port 18789
       
       # After starting the bot in telegram run "node dist/index.js pairing approve telegram YOURCODE" in the shell
-    params:
-      storage:
-        data:
-          mount: /root/clawd
-          readOnly: false
-        data2:
-          mount: /root/.clawdbot
-          readOnly: false
 profiles:
   compute:
-    clawdbot:
+    moltbot:
       resources:
         cpu:
           units: 2
@@ -46,24 +38,14 @@ profiles:
           size: 8Gb
         storage:
           - size: 5Gi
-          - name: data
-            size: 1Gi
-            attributes:
-              persistent: true
-              class: beta3
-          - name: data2
-            size: 1Gi
-            attributes:
-              persistent: true
-              class: beta3
   placement:
     dcloud:
       pricing:
-        clawdbot:
+        moltbot:
           denom: uakt
           amount: 100000
 deployment:
-  clawdbot:
+  moltbot:
     dcloud:
-      profile: clawdbot
+      profile: moltbot
       count: 1
