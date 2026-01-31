@@ -1,22 +1,18 @@
 ---
 version: "2.0"
-
 services:
   flock-train:
     image: public.ecr.aws/e7z6j8c3/flock:training-quickstart-akash
-    env:
-      - FLOCK_API_KEY=
-      - HF_USERNAME=
-      - TASK_ID=
-      - HF_TOKEN=
-      # Choose whether to use your own dataset demo_data.jsonl or training_args.yml
-      #- GIT_URL=
     expose:
       - port: 3000
-        as: 80
+        as: 3000
         to:
           - global: true
-
+    env:
+      - FLOCK_API_KEY= # https://train.flock.io/flock_api
+      - HF_USERNAME=
+      - TASK_ID= # https://train.flock.io/stake-to-develop
+      - HF_TOKEN= # https://huggingface.co/settings/tokens
 profiles:
   compute:
     flock-train:
@@ -26,7 +22,7 @@ profiles:
         memory:
           size: 24Gi
         storage:
-          size: 100Gi
+          - size: 100Gi
         gpu:
           units: 1
           attributes:
@@ -46,7 +42,6 @@ profiles:
         flock-train:
           denom: uakt
           amount: 10000
-
 deployment:
   flock-train:
     akash:
