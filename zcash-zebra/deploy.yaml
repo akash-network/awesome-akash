@@ -7,7 +7,7 @@
 # Resource allocation (optimized for Mainnet):
 # - 4 vCPUs for block validation and P2P handling
 # - 16GB RAM for in-memory caching and peer management
-# - 150GB persistent storage (beta3 class for reliability)
+# - 350GB persistent storage (beta3 class for reliability)
 #
 # For Testnet, you can reduce resources:
 # - 2 vCPUs, 8GB RAM, 50GB storage is sufficient
@@ -28,11 +28,16 @@
 # Your node is accessible at provider.com:31234, NOT provider.com:8233
 
 version: "2.0"
-
 services:
   zebra:
     # NEVER use :latest in production. Akash requires explicit tags.
     image: zfnd/zebra:4.0.0
+
+    # Generate fresh config at startup to avoid deprecated fields in default config
+    command:
+      - "/bin/sh"
+    args:
+      - "-c zebrad generate -o /tmp/zebrad.toml && exec zebrad -c /tmp/zebrad.toml start"
 
     env:
       # --- MAINNET CONFIGURATION (default) ---
@@ -120,28 +125,16 @@ profiles:
           # 4 CPUs: Optimized for Mainnet
           # Reduce to 2 for Testnet if desired
           units: 4
-
         memory:
           # 16GB: Optimized for Mainnet
           # Reduce to 8Gi for Testnet if desired
           size: 16Gi
-
         storage:
           # Primary storage for blockchain state
-          # Mainnet: 150Gi (chain is 100GB+ and growing)
+          # Mainnet: 350Gi (chain is 100GB+ and growing)
           # Testnet: 50Gi is sufficient (uncomment below and comment out 150Gi)
-          - size: 150Gi
+          - size: 350Gi
             # - size: 50Gi  # Testnet alternative
-            attributes:
-              # Persistent storage is CRITICAL. Losing state = re-sync from scratch.
-              persistent: true
-              # beta3 class: Use this for database/blockchain workloads
-              # More reliable than beta2, worth the marginal cost increase
-              class: beta3
-
-          # Ephemeral storage for logs and temp files
-          - size: 1Gi
-
   placement:
     akash:
       attributes:
@@ -150,7 +143,6 @@ profiles:
         zebra:
           denom: uakt
           amount: 1000000
-
 deployment:
   zebra:
     akash:

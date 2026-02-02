@@ -130,17 +130,8 @@ profiles:
           # Primary storage for blockchain state
           # Mainnet: 150Gi (chain is 100GB+ and growing)
           # Testnet: 50Gi is sufficient (uncomment below and comment out 150Gi)
-          - size: 150Gi
+          - size: 350Gi
             # - size: 50Gi  # Testnet alternative
-            attributes:
-              # Persistent storage is CRITICAL. Losing state = re-sync from scratch.
-              persistent: true
-              # beta3 class: Use this for database/blockchain workloads
-              # More reliable than beta2, worth the marginal cost increase
-              class: beta3
-
-          # Ephemeral storage for logs and temp files
-          - size: 1Gi
 
   placement:
     akash:
