@@ -1,23 +1,23 @@
 ---
-# Akash SDL for Zebra Zcash Node
+# Akash SDL for zcashd Zcash Node
 #
-# Deploys a full Zebra node on Akash's decentralized cloud.
-# Defaults to Mainnet. Uncomment Testnet config below to switch.
+# Deploys a full zcashd node (Electric Coin Co implementation) on Akash.
+# Defaults to Mainnet. Change ZCASHD_NETWORK to switch networks.
 #
 # Resource allocation (optimized for Mainnet):
 # - 4 vCPUs for block validation and P2P handling
 # - 16GB RAM for in-memory caching and peer management
-# - 150GB persistent storage (beta3 class for reliability)
+# - 350GB persistent storage (beta3 class for reliability)
+#   + 10GB for zcash-params (cryptographic parameters)
 #
 # For Testnet, you can reduce resources:
 # - 2 vCPUs, 8GB RAM, 50GB storage is sufficient
 #
-# Network ports:
+# Network ports (same as Zebra):
 # - 8233: Mainnet P2P connections (MUST be exposed)
 # - 18233: Testnet P2P connections
 # - 8232/18232: RPC endpoint (optional, disabled by default)
-# - 9999: Prometheus metrics (optional)
-# - 8080: Health checks (optional)
+# - 9969: Prometheus metrics (optional)
 #
 # IMPORTANT: Port mapping on Akash
 # When you expose a port globally, Akash does NOT bind it to that exact port
@@ -30,39 +30,50 @@
 version: "2.0"
 
 services:
-  zebra:
-    # NEVER use :latest in production. Akash requires explicit tags.
-    image: zfnd/zebra:4.0.0
+  zcashd:
+    # Using specific SHA256 digest for reproducibility
+    # This is a verified Electric Coin Co build
+    # Note: Docker images use @ for digest, not : for tag
+    image: electriccoinco/zcashd@sha256:f8972b3638c2eafe74f501511168d64000870cc9502872b58c31ebf060e9d557
+
+    # Add deprecation acknowledgment to config file before starting
+    command:
+      - "/bin/sh"
+      - "-c"
+      - "echo 'i-am-aware-zcashd-will-be-replaced-by-zebrad-and-zallet-in-2025=1' >> /srv/zcashd/.zcash/zcash.conf && exec /entrypoint.sh"
 
     env:
-      # --- MAINNET CONFIGURATION (default) ---
-      - "ZEBRA_NETWORK__NETWORK=Mainnet"
-      - "ZEBRA_NETWORK__LISTEN_ADDR=[::]:8233"
+      # --- NETWORK SELECTION ---
+      # mainnet or testnet
+      - "ZCASHD_NETWORK=mainnet"
+      # - "ZCASHD_NETWORK=testnet"  # Uncomment for Testnet
 
-      # --- TESTNET CONFIGURATION (uncomment to use) ---
-      # - "ZEBRA_NETWORK__NETWORK=Testnet"
-      # - "ZEBRA_NETWORK__LISTEN_ADDR=[::]:18233"
+      # --- RPC CONFIGURATION (disabled by default) ---
+      # Uncomment to enable RPC access
+      # WARNING: Set strong credentials if exposing RPC
+      # - "ZCASHD_RPCUSER=yourusername"
+      # - "ZCASHD_RPCPASSWORD=your_very_strong_password_here"
+      # - "ZCASHD_RPCBIND=0.0.0.0"
+      # - "ZCASHD_RPCPORT=8232"  # Mainnet
+      # - "ZCASHD_RPCPORT=18232"  # Testnet
+      # - "ZCASHD_ALLOWIP=0.0.0.0/0"  # Allow from anywhere (use with caution)
 
-      # State cache directory (same for both networks)
-      - "ZEBRA_STATE__CACHE_DIR=/home/zebra/.cache/zebra"
+      # --- OPTIONAL FEATURES ---
+      # Enable transaction index (required for some RPC calls, uses more storage)
+      # - "ZCASHD_TXINDEX=1"
 
-      # RPC configuration (disabled by default for security)
-      # Uncomment for Mainnet RPC:
-      # - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:8232"
-      # - "ZEBRA_RPC__COOKIE_DIR=/home/zebra/.cache/zebra"
+      # Enable Insight Explorer (blockchain explorer API)
+      # - "ZCASHD_INSIGHTEXPLORER=1"
 
-      # Uncomment for Testnet RPC:
-      # - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:18232"
-      # - "ZEBRA_RPC__COOKIE_DIR=/home/zebra/.cache/zebra"
+      # Prometheus metrics endpoint
+      # - "ZCASHD_PROMETHEUSPORT=9969"
+      # - "ZCASHD_METRICSIP=0.0.0.0/0"
 
-      # Metrics endpoint (uncomment to enable Prometheus scraping)
-      # - "ZEBRA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
+      # Show metrics in logs (0=disabled, 1=enabled)
+      - "ZCASHD_SHOWMETRICS=1"
 
-      # Health check endpoint (uncomment for k8s-style probes)
-      # - "ZEBRA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
-
-      # Colored logs for readability
-      - "ZEBRA_TRACING__USE_COLOR=true"
+      # Log peer IPs (useful for debugging network issues)
+      # - "ZCASHD_LOGIPS=1"
 
     expose:
       # Port mapping: These ports get reverse-proxied to random high ports by the provider.
@@ -98,23 +109,16 @@ services:
       #     - global: false
       #   proto: tcp
 
-      # Metrics port (optional)
-      # - port: 9999
-      #   as: 9999
-      #   to:
-      #     - global: false
-      #   proto: tcp
-
-      # Health check port (optional)
-      # - port: 8080
-      #   as: 8080
+      # Prometheus metrics port (optional)
+      # - port: 9969
+      #   as: 9969
       #   to:
       #     - global: false
       #   proto: tcp
 
 profiles:
   compute:
-    zebra:
+    zcashd:
       resources:
         cpu:
           # 4 CPUs: Optimized for Mainnet
@@ -127,23 +131,31 @@ profiles:
           size: 16Gi
 
         storage:
-          # Primary storage for blockchain state
-          # Mainnet: 150Gi (chain is 100GB+ and growing)
-          # Testnet: 50Gi is sufficient (uncomment below and comment out 150Gi)
+          # Primary storage for blockchain data
+          # Mainnet: 350Gi (chain is 100GB+ and growing)
+          # Testnet: 50Gi is sufficient
           - size: 350Gi
-            # - size: 50Gi  # Testnet alternative
 
   placement:
     akash:
+      # Attributes for provider selection
+      # No GPU needed, no special requirements
       attributes:
         host: akash
       pricing:
-        zebra:
+        zcashd:
+          # Pricing in uakt (micro-AKT tokens)
+          # Mainnet: ~$50-80/month depending on AKT price
+          # Testnet: ~$25-40/month (use lower resources)
+          #
+          # This is set conservatively high to ensure bids.
+          # Providers will likely bid lower. Adjust after seeing actual bids.
           denom: uakt
-          amount: 1000000
+          amount: 1000000  # 1000000 uakt per block (~10 seconds)
+          # amount: 500000  # Testnet alternative
 
 deployment:
-  zebra:
+  zcashd:
     akash:
-      profile: zebra
-      count: 1
+      profile: zcashd
+      count: 1  # Single node deployment
