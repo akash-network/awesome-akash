@@ -1,0 +1,158 @@
+---
+# Akash SDL for Zebra Zcash Node
+#
+# Deploys a full Zebra node on Akash's decentralized cloud.
+# Defaults to Mainnet. Uncomment Testnet config below to switch.
+#
+# Resource allocation (optimized for Mainnet):
+# - 4 vCPUs for block validation and P2P handling
+# - 16GB RAM for in-memory caching and peer management
+# - 150GB persistent storage (beta3 class for reliability)
+#
+# For Testnet, you can reduce resources:
+# - 2 vCPUs, 8GB RAM, 50GB storage is sufficient
+#
+# Network ports:
+# - 8233: Mainnet P2P connections (MUST be exposed)
+# - 18233: Testnet P2P connections
+# - 8232/18232: RPC endpoint (optional, disabled by default)
+# - 9999: Prometheus metrics (optional)
+# - 8080: Health checks (optional)
+#
+# IMPORTANT: Port mapping on Akash
+# When you expose a port globally, Akash does NOT bind it to that exact port
+# on the provider's public IP. Instead, providers assign a random high port
+# (e.g., 31234) and reverse-proxy it to your container's port.
+# This prevents conflicts when multiple deployments use the same ports.
+# Example: You configure port 8233, Akash gives you provider.com:31234
+# Your node is accessible at provider.com:31234, NOT provider.com:8233
+
+version: "2.0"
+
+services:
+  zebra:
+    # NEVER use :latest in production. Akash requires explicit tags.
+    image: zfnd/zebra:4.0.0
+
+    env:
+      # --- MAINNET CONFIGURATION (default) ---
+      - "ZEBRA_NETWORK__NETWORK=Mainnet"
+      - "ZEBRA_NETWORK__LISTEN_ADDR=[::]:8233"
+
+      # --- TESTNET CONFIGURATION (uncomment to use) ---
+      # - "ZEBRA_NETWORK__NETWORK=Testnet"
+      # - "ZEBRA_NETWORK__LISTEN_ADDR=[::]:18233"
+
+      # State cache directory (same for both networks)
+      - "ZEBRA_STATE__CACHE_DIR=/home/zebra/.cache/zebra"
+
+      # RPC configuration (disabled by default for security)
+      # Uncomment for Mainnet RPC:
+      # - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:8232"
+      # - "ZEBRA_RPC__COOKIE_DIR=/home/zebra/.cache/zebra"
+
+      # Uncomment for Testnet RPC:
+      # - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:18232"
+      # - "ZEBRA_RPC__COOKIE_DIR=/home/zebra/.cache/zebra"
+
+      # Metrics endpoint (uncomment to enable Prometheus scraping)
+      # - "ZEBRA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
+
+      # Health check endpoint (uncomment for k8s-style probes)
+      # - "ZEBRA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
+
+      # Colored logs for readability
+      - "ZEBRA_TRACING__USE_COLOR=true"
+
+    expose:
+      # Port mapping: These ports get reverse-proxied to random high ports by the provider.
+      # Example: port 8233 might be accessible at provider.com:31234
+      # Check your deployment URIs to see the actual public endpoint.
+
+      # --- MAINNET P2P PORT (default) ---
+      - port: 8233
+        as: 8233
+        to:
+          - global: true
+        proto: tcp
+
+      # --- TESTNET P2P PORT (uncomment for Testnet) ---
+      # - port: 18233
+      #   as: 18233
+      #   to:
+      #     - global: true
+      #   proto: tcp
+
+      # RPC ports (uncomment as needed)
+      # Mainnet RPC:
+      # - port: 8232
+      #   as: 8232
+      #   to:
+      #     - global: false  # Keep internal unless you know what you're doing
+      #   proto: tcp
+
+      # Testnet RPC:
+      # - port: 18232
+      #   as: 18232
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+      # Metrics port (optional)
+      # - port: 9999
+      #   as: 9999
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+      # Health check port (optional)
+      # - port: 8080
+      #   as: 8080
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+profiles:
+  compute:
+    zebra:
+      resources:
+        cpu:
+          # 4 CPUs: Optimized for Mainnet
+          # Reduce to 2 for Testnet if desired
+          units: 4
+
+        memory:
+          # 16GB: Optimized for Mainnet
+          # Reduce to 8Gi for Testnet if desired
+          size: 16Gi
+
+        storage:
+          # Primary storage for blockchain state
+          # Mainnet: 150Gi (chain is 100GB+ and growing)
+          # Testnet: 50Gi is sufficient (uncomment below and comment out 150Gi)
+          - size: 150Gi
+            # - size: 50Gi  # Testnet alternative
+            attributes:
+              # Persistent storage is CRITICAL. Losing state = re-sync from scratch.
+              persistent: true
+              # beta3 class: Use this for database/blockchain workloads
+              # More reliable than beta2, worth the marginal cost increase
+              class: beta3
+
+          # Ephemeral storage for logs and temp files
+          - size: 1Gi
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        zebra:
+          denom: uakt
+          amount: 1000000
+
+deployment:
+  zebra:
+    akash:
+      profile: zebra
+      count: 1
