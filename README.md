@@ -5,7 +5,7 @@ Awesome Akash is a curated list of awesome resources people can use to familiari
 Instructions on how to deploy the SDL files in this repository can be found in the [deployments overview](https://akash.network/docs/deployments/overview/).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
-Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
+Also, follow [@akashnet](https://x.com/akashnet) to stay in the loop with updates and announcements.
 
 ## Contributing
 
@@ -122,7 +122,6 @@ To add a new template/resource:
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
-- [Foundry-RIT AI Training Model Challenge](Foundry-rit-ai-training-model-challenge)
 - [Gensyn RL Swarm](gensyn-rl-swarm)
 - [GPT-Neo](gpt-neo)
 - [GPUStack](gpustack)
