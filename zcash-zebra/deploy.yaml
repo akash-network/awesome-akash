@@ -34,40 +34,11 @@ services:
     image: zfnd/zebra:4.0.0
 
     # Generate fresh config at startup to avoid deprecated fields in default config
+    # Unset ALL ZEBRA_ env vars to avoid Akash-injected variables causing config errors
     command:
       - "/bin/sh"
-    args:
-      - "-c zebrad generate -o /tmp/zebrad.toml && exec zebrad -c /tmp/zebrad.toml start"
-
-    env:
-      # --- MAINNET CONFIGURATION (default) ---
-      - "ZEBRA_NETWORK__NETWORK=Mainnet"
-      - "ZEBRA_NETWORK__LISTEN_ADDR=[::]:8233"
-
-      # --- TESTNET CONFIGURATION (uncomment to use) ---
-      # - "ZEBRA_NETWORK__NETWORK=Testnet"
-      # - "ZEBRA_NETWORK__LISTEN_ADDR=[::]:18233"
-
-      # State cache directory (same for both networks)
-      - "ZEBRA_STATE__CACHE_DIR=/home/zebra/.cache/zebra"
-
-      # RPC configuration (disabled by default for security)
-      # Uncomment for Mainnet RPC:
-      # - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:8232"
-      # - "ZEBRA_RPC__COOKIE_DIR=/home/zebra/.cache/zebra"
-
-      # Uncomment for Testnet RPC:
-      # - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:18232"
-      # - "ZEBRA_RPC__COOKIE_DIR=/home/zebra/.cache/zebra"
-
-      # Metrics endpoint (uncomment to enable Prometheus scraping)
-      # - "ZEBRA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
-
-      # Health check endpoint (uncomment for k8s-style probes)
-      # - "ZEBRA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
-
-      # Colored logs for readability
-      - "ZEBRA_TRACING__USE_COLOR=true"
+      - "-c"
+      - "for v in $(env | grep '^ZEBRA_' | cut -d= -f1); do unset $v; done && zebrad generate -o /tmp/zebrad.toml && exec zebrad -c /tmp/zebrad.toml start"
 
     expose:
       # Port mapping: These ports get reverse-proxied to random high ports by the provider.
