@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   openclaw:
-    image: ghcr.io/zjuuu/openclaw-docker:openclaw-v2026.2.1
+    image: ghcr.io/zjuuu/openclaw-docker:openclaw-v2026.2.2
     env:
       # REQUIRED: Set a strong password for the setup UI
       - SETUP_PASSWORD=CHANGE_ME_TO_STRONG_PASSWORD
