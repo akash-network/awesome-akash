@@ -2,7 +2,7 @@
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
-Instructions on how to deploy the SDL files in this repository can be found [here](https://akash.network/docs/developers/deployment/).
+Instructions on how to deploy the SDL files in this repository can be found in the [deployments overview](https://akash.network/docs/deployments/overview/).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet](https://x.com/akashnet) to stay in the loop with updates and announcements.
@@ -299,6 +299,8 @@ Awesome DeFi apps you can deploy on Akash
 - [Substrate Node](substrate-node)
 - [Vidulum](vidulum)
 - [Witness Chain Watchtower](witnesschain-watchtower)
+- [Zcash - Zcashd](zcash-zcashd)
+- [Zcash - Zebra](zcash-zebra)
 
 ### Business
 
@@ -456,6 +458,7 @@ Awesome DeFi apps you can deploy on Akash
 - [tronwallet](tronwallet)
 
 ### Web Frameworks
+
 - [GIN](gin)
 - [NextJS](nextjs)
 - [React](react)
