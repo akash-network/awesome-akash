@@ -47,7 +47,7 @@ profiles:
       pricing:
         acestep:
           denom: uakt
-          amount: 10000  # Start with 10 AKT per block as a bid. Adjust based on market.
+          amount: 10000
 
 deployment:
   acestep:
