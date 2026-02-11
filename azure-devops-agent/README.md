@@ -1,5 +1,8 @@
 # Run azure devops agent on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-azure-devops-agent)
+
+
 This template is to deploy an azure devops agent on the Akash network.
 
 An azure devops agent can be used in azure devops pipelines to build and deploy applications.

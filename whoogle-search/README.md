@@ -1,5 +1,8 @@
 # Whoogle Search
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-whoogle-search)
+
+
 Whoogle Search is a self-hosted, ad-free/AMP-free/tracking-free, privacy respecting alternative to Google Search. It works by sitting between the user and Google, and filtering whatever Google returns back, to remove things like ads/sponsored content, cookies, JavaScript, tags on urls related to ad campaigns and site referrals, etc. Since all queries are forwarded through the Akash provider, the query made to Google only contains the IP address and information of the provider rather than the user's. And because it's easy to redeploy to a different provider on Akash, users can rotate providers once in a while to further obfuscate. To learn more about the project, see the original project page on [Github](https://github.com/benbusby/whoogle-search) and this [reddit post](https://www.reddit.com/r/selfhosted/comments/ggronz/whoogle_search_a_selfhosted/) from the author.
 
 ![Whoogle](whoogle.png)

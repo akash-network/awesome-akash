@@ -1,5 +1,8 @@
 ## What is Weaviate?
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-weaviate)
+
+
 Weaviate is an open source vector database that stores both objects and vectors. This allows for combining vector search with structured filtering.
 
 Weaviate in a nutshell:
@@ -141,4 +144,3 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'none'
       CLUSTER_HOSTNAME: 'node1'
 ```
-

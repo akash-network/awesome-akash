@@ -1,5 +1,8 @@
 # Supabase on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-supabase)
+
+
 This template deploys [Supabase](https://supabase.com/), an open source Firebase alternative offering all the backend features developers need to build a product: PostgreSQL database, authentication, instant APIs, realtime subscriptions, and storage.
 
 ## Features

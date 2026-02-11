@@ -1,5 +1,8 @@
 # AI-Art
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-AI-Image-App)
+
+
 ![AI-Art Screenshot](./Screenshot(234).png)
 
 Art generation using VQGAN + CLIP using docker containers. A simplified,

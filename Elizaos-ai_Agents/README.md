@@ -1,5 +1,8 @@
 # ElizaOS AI Agents 🤖
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Elizaos-ai_Agents)
+
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Akash Network](https://img.shields.io/badge/Powered%20by-Akash%20Network-blue)](https://akash.network)
 [![DeepSeek Models](https://img.shields.io/badge/Models-DeepSeek-important)](https://deepseek.com)

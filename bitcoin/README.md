@@ -1,5 +1,8 @@
 ## Bitcoin node on Akash Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-bitcoin)
+
+
 |Variable|Description|
 | :-------: | :-------: |
 |`"LINK_BINARY="`|  The download address of the binary file.|
@@ -101,4 +104,3 @@ profiles:
               persistent: true
               class: beta3
 ```
-

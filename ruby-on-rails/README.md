@@ -1,5 +1,8 @@
 # Ruby on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-ruby-on-rails)
+
+
 [Ruby](https://rubyonrails.org/) is a dynamic, reflective, object-oriented, general-purpose, open-source programming language.
 
 This template is a demonstration of the Ruby web framework on Akash. Check out [Ruby on Docker Hub](https://hub.docker.com/_/ruby) to learn how to Dockerize your project.

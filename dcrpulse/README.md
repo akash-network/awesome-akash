@@ -1,3 +1,5 @@
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-dcrpulse)
+
 <p align="center">
   <img src="assets/decred-logo.jpg" alt="Decred logo" width="220" />
 </p>

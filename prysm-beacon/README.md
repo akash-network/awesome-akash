@@ -1,5 +1,8 @@
 # Prysm's beacon node
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-prysm-beacon)
+
+
 The beacon-chain node shipped with Prysm is the keystone component of the Ethereum proof-of-stake protocol. It is responsible for running a full Proof-of-Stake blockchain, known as a beacon chain, which uses distributed consensus to agree on blocks both proposed and attested on by validators in the network. Beacon nodes communicate their processed blocks to their peers via a P2P (peer-to-peer) network, which also manages the lifecycle process of active validator clients.
 
 https://docs.prylabs.network/docs/getting-started

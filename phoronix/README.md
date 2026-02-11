@@ -1,5 +1,8 @@
 # Phoronix Test Suite
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-phoronix)
+
+
 ![Phoronix Test Suite](pts-core/static/images/pts-308x160.png)
 
 [Phoronix Test Suite
@@ -42,4 +45,3 @@ Phoromatic, and OpenBenchmarking.org is available by contacting
 Full details on the Phoronix Test Suite setup and usage is available from the
 included HTML/PDF documentation within the phoronix-test-suite package and from
 the [Phoronix Test Suite documentation directory](documentation/).
-

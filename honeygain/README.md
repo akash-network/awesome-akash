@@ -1,5 +1,8 @@
 # Honeygain: Passive Income - Effortlessly
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-honeygain)
+
+
 Honeygain is the first-ever app that allows its users to make money online by sharing their Internet connection.
 With Honeygain, you can make money by simply sharing your Internet. Start earning now.
 

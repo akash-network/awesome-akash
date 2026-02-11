@@ -1,5 +1,8 @@
 # GPT-Neo (multiple models)
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-gpt-neo)
+
+
 GPT-Neo is an open-source project that aims to replicate the architecture and functionality of OpenAI's GPT models, such as GPT-3, using a smaller number of parameters. It was developed by EleutherAI, a community-driven research organization focused on democratizing access to large-scale language models. It provides a valuable alternative for those who may not have access to or require the immense scale and resources of the original GPT models.
 
 GPT-Neo was trained as an autoregressive language model. This means that its core functionality is taking a string of text and predicting the next token. The models utilize a transformer architecture, which consists of multiple layers of self-attention mechanisms to capture relationships between words and generate high-quality text. GPT-Neo architecture intentionally resembles that of GPT-3, and is almost identical to that of GPT-J- 6B. Its training dataset contains a multitude of English-language texts, reflecting the general-purpose nature of this model.
@@ -36,6 +39,5 @@ For the demo video, I deployed the app with the following settings: `MODEL_NAME=
 
 
 https://github.com/yuravorobei/awesome-akash/assets/19820490/11b25cb9-801e-423a-b304-de67acdfbbac
-
 
 

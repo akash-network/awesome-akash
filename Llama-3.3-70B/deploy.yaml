@@ -13,7 +13,7 @@ services:
       - "-c"
     args:
       - >- 
-        vllm serve meta-llama/Llama-3.3-70B-Instruct --tensor-parallel-size 2
+        vllm serve meta-llama/Llama-3.3-70B-Instruct --tensor-parallel-size 2 --gpu-memory-utilization 0.95 --max-model-len 8192 --enforce-eager
     env:
       - "HF_TOKEN=" # Hugging Face API token required for Meta-Llama Models
     params:

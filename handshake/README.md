@@ -1,5 +1,8 @@
 # handshake-full-listening-node-akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-handshake)
+
+
 This is an SDL file that will deploy a full listening handshake node onto akash.
 
 [Link to Akash SDL File](https://github.com/akash-network/awesome-akash/blob/master/handshake/deploy.yaml)
@@ -40,5 +43,4 @@ hsd \
 --public-port=12038  \
 --max-inbound=1000	
 ```
-
 

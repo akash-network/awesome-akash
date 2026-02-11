@@ -1,5 +1,8 @@
 # XLM-RoBERTa on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-XLM-RoBERTa)
+
+
 This repository contains the necessary files to deploy a Flask application that uses the XLM-RoBERTa language model on the Akash network. XLM-RoBERTa is a powerful language model that can understand and generate text in multiple languages.
 
 Original Facebook Research repo: https://github.com/facebookresearch/XLM

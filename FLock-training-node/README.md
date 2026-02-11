@@ -1,5 +1,8 @@
 # 🌳 Run a FLock Training Node on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-FLock-training-node)
+
+
 This is a template for running a FLock Training Node on Akash. It enables users to run FLock's [Training Node Quickstart Script](https://github.com/FLock-io/testnet-training-node-quickstart) directly from the Akash Console and earn FML rewards on [train.flock.io](http://train.flock.io/).
 
 [train.flock.io](http://train.flock.io/) is the gateway to [FLock.io](http://flock.io/)'s decentralized AI training platform, AI Arena. It is currently on incentivised testnet, and all participants who have earned FML rewards will receive mainnet airdrops.

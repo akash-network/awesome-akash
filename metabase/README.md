@@ -1,5 +1,8 @@
 # What is Metabase?
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-metabase)
+
+
 [Metabase](https://www.metabase.com/) is the easy, open-source way for everyone in your company to ask questions and learn from data.
 
 ## Deploy on Akash

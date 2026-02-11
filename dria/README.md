@@ -1,5 +1,8 @@
 # Dria Compute Node
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-dria)
+
+
 [Dria](https://dria.co/) unites consumer hardware to generate high-quality, high-throughput, low-cost synthetic data. [Dria Knowledge Network](https://dria.co/edge-ai) is a decentralized network that allows many AI agents to collaborate on tasks that improve AI/ML models with synthetic data.
 
 A [Dria Compute Node](https://github.com/firstbatchxyz/dkn-compute-node) is a unit of computation within the Dria Knowledge Network, and it serves local / API-based LLMs to handle tasks within the network, and get rewards for it.

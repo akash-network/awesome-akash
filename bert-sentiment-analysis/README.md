@@ -1,5 +1,8 @@
 # BERT Sentiment Analysis on Akash Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-bert-sentiment-analysis)
+
+
 This repository contains the necessary files to deploy a sentiment analysis model based on the BERT architecture on the Akash Network. The model is capable of classifying text into five sentiment categories: very negative, negative, neutral, positive, and very positive.
 
 ## Model

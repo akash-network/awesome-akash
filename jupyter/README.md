@@ -1,5 +1,8 @@
 # Jupyter Notebook
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-jupyter)
+
+
 The `deploy.yaml` deploys a [Jupyter notebook](https://jupyter.org/) environment, which is a popular user interface for data scientists today. More specifically, the `deploy.yaml` specifies the `jupyter/tensorflow-notebook` image that includes popular Python deep learning libraries, but one can easily swap it out with the various Jupyter environment images provided by [Jupyter Docker Stacks](https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html).
 
 ## Usage

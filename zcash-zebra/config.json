@@ -1,0 +1,5 @@
+{
+    "$schema": "../config.schema.json",
+    "ssh": false,
+    "logoUrl": "https://zfnd.org/wp-content/uploads/2022/03/zebra-logotype.png"
+}

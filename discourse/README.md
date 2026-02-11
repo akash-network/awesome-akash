@@ -1,5 +1,8 @@
 # Discourse on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-discourse)
+
+
 This guide is intended to describe the process to run Discourse Multi-Tiered application on Akash Network.
 
 ## About Akash
@@ -91,4 +94,3 @@ Taken from [Akash Console](https://console.akash.network/new-deployment):
 - We strongly suggest you start with a new wallet and a small amount of AKT until we further stabilize the product.
 - We're not responsible for any loss or damages related to using the app.
 - The app has a high chance of containing bugs since it's in BETA, use at your own risk.
-

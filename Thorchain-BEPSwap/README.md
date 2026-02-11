@@ -1,5 +1,8 @@
 # Deploying ThorChain BEPSwap UI on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Thorchain-BEPSwap)
+
+
 This is a guide to containerizing [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) and deploying on [Akash](https://akash.network) in a non-custodial way. Akash is a permissionless and censorship-resistant cloud network that guarantees sovereignty over your data and your applications. With Akash, you’re in complete control of all aspects of the life cycle of an application with no middleman.
 
 Readme is adapted from [Serum on Akash](https://github.com/ovrclk/serum-on-akash), which is an excellent guide to getting started with DeFi deployments on Akash DeCloud.

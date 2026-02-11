@@ -1,5 +1,8 @@
 # Deploy X-UI on Akash Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-x-ui)
+
+
 > Based project repository https://github.com/MHSanaei/3x-ui/
 > 
 Detailed instructions on how to work with the application are posted on the project's [GitHub](https://github.com/MHSanaei/3x-ui/).

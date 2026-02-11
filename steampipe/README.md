@@ -1,4 +1,7 @@
 # What is SteamPipe?
+
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-steampipe)
+
 SteamPipe is the game/application content system that powers Steam. SteamPipe includes the following features: Efficient and fast content delivery. Unlimited public and private "beta" branches, allowing multiple builds to be tested (Source: [developer.valvesoftware.com](https://partner.steamgames.com/doc/sdk/uploading)). If you are developing a game on Steam, this is the tool you use to upload new builds of your game to Steam.
  
 # How to use this image

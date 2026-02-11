@@ -1,5 +1,8 @@
 # BERT on Akash
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-bert)
+
+
 This repository contains the necessary files to deploy a Flask application that uses the BERT language model on the Akash network. BERT is a powerful language model that can understand and generate text in English.
 
 Link to original Google Research Repo: https://github.com/google-research/bert
@@ -38,4 +41,3 @@ https://github.com/clydedevv/awesome-akash/assets/80094928/72b666ac-c743-42b4-b3
 
 
 Replace your-akash-deployment-url with the URL of your Akash deployment.
-

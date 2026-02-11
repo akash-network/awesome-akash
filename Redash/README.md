@@ -1,5 +1,8 @@
 # Redash V10
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Redash)
+
+
 The original repo is here: https://github.com/getredash
 
 [Redash](redash.io) is an open-source data visualization and dashboarding tool that allows users to connect to various data sources, create interactive dashboards, and build visualizations to analyze data. It provides a user-friendly interface for querying, visualizing, and sharing data insights within an organization. Redash can be used to create reports, charts, graphs, and dashboards to help businesses make data-driven decisions.

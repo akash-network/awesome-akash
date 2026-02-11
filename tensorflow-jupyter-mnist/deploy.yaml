@@ -6,7 +6,7 @@ services:
     image: wlouie1/mnist-train:1.0
     expose:
       - port: 8888
-        as: 80
+        as: 8888
         to:
           - global: true
       - port: 6006

@@ -1,5 +1,8 @@
 # Nitropage
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-nitropage)
+
+
 Visit [https://nitropage.com/](https://nitropage.com/) for more information about `Nitropage`.  
   
 This repository contains an example deployment for the `Nitropage Starter` project.  

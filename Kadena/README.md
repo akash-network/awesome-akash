@@ -1,5 +1,8 @@
 # Kadena node on Akash Network
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Kadena)
+
+
 The Kadena node needs a dedicated IP address. In `deploy.yml`, the standard settings for launch are already prepared.
 Replace all values of `your_endpoint_name` with your own, for example `my_kadena_endpoint_name` . It is important that the value is **unique, and also does not contain spaces and consists only of lowercase letters**.
 

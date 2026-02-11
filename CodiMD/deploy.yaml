@@ -1,70 +1,61 @@
 ---
 version: "2.0"
-
 services:
-  db:
+  database:
     image: postgres:11.6-alpine
+    expose:
+      - port: 5432
+        as: 5432
+        to:
+          - global: true
+          - service: codimd
     env:
       - POSTGRES_USER=codimd
       - POSTGRES_PASSWORD=change_password
       - POSTGRES_DB=codimd
-    expose:
-        - port: 3306
-          as: 3306
-        to: 
-            - service: db
   codimd:
-    image: hackmdio/hackmd:2.4.1
+    image: hackmdio/hackmd:2.6.1 # https://hub.docker.com/r/hackmdio/hackmd
+    expose:
+      - port: 3000
+        as: 3000
+        to:
+          - global: true
     env:
       - CMD_DB_URL=postgres://codimd:change_password@database/codimd
       - CMD_USECDN=false
-    depends-on:
-      - db
-    expose: 
-        - port: 3000
-          as: 3000
-        to:
-            - global: true
-
 profiles:
   compute:
-      db:
-        resources:
-          cpu:
-            units: 0.5
-        memory:
-            size: 512Mi
-        storage:
-            size: 512Mi
-    codimd:
+    database:
       resources:
         cpu:
-          units: 0.5
+          units: 1
         memory:
           size: 512Mi
         storage:
-          size: 1Gi
+          - size: 1Gi
+    codimd:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
   placement:
-    westcoast:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+    dcloud:
       pricing:
-          db:
-            denom: uakt
-          amount: 10000
-        codimd: 
+        database:
           denom: uakt
-          amount: 10000
-
+          amount: 100000
+        codimd:
+          denom: uakt
+          amount: 100000
 deployment:
-   db:
-      westcoast: 
-        profile: db
-        count: 1
+  database:
+    dcloud:
+      profile: database
+      count: 1
   codimd:
-    westcoast:
+    dcloud:
       profile: codimd
       count: 1

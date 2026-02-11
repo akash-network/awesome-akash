@@ -1,5 +1,8 @@
 # Llama 3.2 3B\
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Llama-3.2-3B)
+
+
 The Llama 3.2 3B model is a lightweight, text-only version of the Llama 3.2 model, designed to be highly capable with multilingual text generation and tool-calling abilities.
 
 ## Key Features

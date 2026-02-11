@@ -1,5 +1,8 @@
 # Serge - LLaMA made easy 🦙
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-serge-cpu)
+
+
 ![License](https://img.shields.io/github/license/serge-chat/serge)
 [![Discord](https://img.shields.io/discord/1088427963801948201?label=Discord)](https://discord.gg/62Hc6FEYQH)
 

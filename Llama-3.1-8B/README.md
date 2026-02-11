@@ -1,3 +1,5 @@
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Llama-3.1-8B)
+
 Llama 3.1 is the latest iteration of the Llama series, an advanced AI language model developed to understand and generate human-like text. It leverages state-of-the-art machine learning techniques to provide high-quality, context-aware responses.
 
 ### Key Features

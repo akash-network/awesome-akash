@@ -1,5 +1,8 @@
 # Llama-3 70B
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-Llama-3-70B)
+
+
 Meta developed and publicly released the Llama 3 family of large language models (LLMs), a collection of pretrained and fine-tuned generative text models ranging in scale from 8 billion to 70 billion parameters. Llama 3 is an auto-regressive language model that uses an optimized transformer architecture.
 
 In this deployment, the [meta-llama/Llama-3-70B-Instruct](https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct) pretrained model is used, which generates a continuation of the incoming text. But to access this model you must have access granted by the Meta that you can request from https://huggingface.co/meta-llama/Meta-Llama-3-70B-Instruct.

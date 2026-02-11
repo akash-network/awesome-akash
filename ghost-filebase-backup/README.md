@@ -1,5 +1,8 @@
 # Ghost with Filebase Backup
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-ghost-filebase-backup)
+
+
 Deploy Ghost blog on Akash with automatic IPFS backup via Filebase.
 
 在 Akash 上部署 Ghost 博客，通过 Filebase 实现自动 IPFS 备份。
@@ -249,6 +252,10 @@ env:
 
 不是必须的，但如果不配置邮件服务，Ghost 的邮件相关功能（如密码重置、会员通知）将无法使用。
 
+## 更多信息
+
+如果您需要了解更多信息，请访问：https://github.com/zhajingwen/ghost-ipfs-bkup
+
 ---
 
 # English Version
@@ -492,9 +499,12 @@ Data is backed up to Filebase (IPFS pinning service), accessible via S3 API.
 
 No, it's not required. However, without email service configuration, Ghost's email-related features (password reset, member notifications) won't work.
 
+## More Information
+
+For more information, please visit: https://github.com/zhajingwen/ghost-ipfs-bkup
+
 ---
 
 ## License
 
 This documentation is provided as-is for the Ghost IPFS Backup project.
-

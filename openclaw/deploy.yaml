@@ -1,0 +1,46 @@
+---
+version: "2.0"
+services:
+  openclaw:
+    image: ghcr.io/zjuuu/openclaw-docker:openclaw-v2026.2.2
+    env:
+      # REQUIRED: Set a strong password for the setup UI
+      - SETUP_PASSWORD=CHANGE_ME_TO_STRONG_PASSWORD
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /data
+          readOnly: false
+profiles:
+  compute:
+    openclaw:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          # Ephemeral storage for container
+          - size: 2Gi
+          # Persistent storage for data
+          - name: data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      pricing:
+        openclaw:
+          denom: uakt
+          amount: 1000
+deployment:
+  openclaw:
+    akash:
+      profile: openclaw
+      count: 1

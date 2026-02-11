@@ -1,5 +1,8 @@
 # OpenSpeedTest
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-openspeedtest)
+
+
 ![](./openspeedtest-logo.jpg)
 
 Test connection speed to a provider. Lightweight and High Performance, OpenSpeedTest contains Only "STATIC" Files like HTML,CSS & JS. So you don't need to worry about Security Updates or Hidden Exploits that may compromise your secure environments.

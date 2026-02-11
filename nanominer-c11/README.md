@@ -1,4 +1,7 @@
 # nanominer by nanopool
+
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-nanominer-c11)
+
 # version: 3.8
 # Table of Contents
 1. [Driver requirements](#driver-requirements)
@@ -754,4 +757,3 @@ devices = 2,3,4,6,7
 [RandomX]
 wallet=fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 ```
-

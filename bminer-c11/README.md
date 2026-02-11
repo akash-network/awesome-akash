@@ -1,5 +1,8 @@
 # Bminer: When Crypto-mining Made Fast
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-bminer-c11)
+
+
 Bminer is a highly optimized cryptocurrency miner that runs on modern AMD / NVIDIA GPUs. Bminer is one of the fastest publicly available miners today -- we use various techniques including tiling and pipelining to realize the full potentials of the hardware.
 
 ## Usage

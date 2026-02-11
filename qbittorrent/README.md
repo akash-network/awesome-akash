@@ -1,5 +1,8 @@
 # qBittorrent
 
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-qbittorrent)
+
+
 The [qBittorrent](https://www.qbittorrent.org/) project aims to provide an open-source software alternative to µTorrent. The provided deployment configuration ([`deploy-ssh-tunnel.yaml`](deploy-ssh-tunnel.yaml)) enables a relatively secure means of torrenting on Akash via qBittorrent. Please use this responsibly.
 
 ![qBittorrent](qBittorrent.png)
