@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   acestep:
-    image: youruser/yourimage:latest  # ← Your published image
+    image: rodrirr/acw:latest  # Or your own image
     expose:
       - port: 7860
         as: 80
