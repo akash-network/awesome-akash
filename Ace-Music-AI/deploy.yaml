@@ -1,0 +1,56 @@
+version: "2.0"
+
+services:
+  acestep:
+    image: youruser/yourimage:latest  # ← Your published image
+    expose:
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /app/models  # Persistent storage for downloaded models
+    command:
+      - "uv"
+      - "run"
+      - "acestep"
+      - "--server-name"
+      - "0.0.0.0"
+
+profiles:
+  compute:
+    acestep:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 16Gi
+        storage:
+           - size: 100Gi
+           - name: data
+             size: 200Gi
+             attributes:
+              persistent: true
+              class: beta3
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                #- model: h100  # Request a high-end GPU. Adjust based on market/needs (rtx3090, rtx4090, etc.)
+  placement:
+    dcloud:
+      attributes:
+        host: akash
+      pricing:
+        acestep:
+          denom: uakt
+          amount: 10000  # Start with 10 AKT per block as a bid. Adjust based on market.
+
+deployment:
+  acestep:
+    dcloud:
+      profile: acestep
+      count: 1
