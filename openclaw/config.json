@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/1f99e.png"
+}
