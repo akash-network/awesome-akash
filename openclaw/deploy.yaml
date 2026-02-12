@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   openclaw:
-    image: ghcr.io/zjuuu/openclaw-docker:openclaw-v2026.2.9
+    image: ghcr.io/zjuuu/openclaw-docker:openclaw-v2026.2.9@sha256:3812dc10248395a11720b9111b1ac98215b641fa96d4e138c821763d3dbd32ca
     env:
       # REQUIRED: Set a strong password for the setup UI
       - SETUP_PASSWORD=CHANGE_ME_TO_STRONG_PASSWORD
@@ -12,6 +12,15 @@ services:
         as: 80
         to:
           - global: true
+        http_options:
+          max_body_size: 104857600
+          read_timeout: 60000
+          send_timeout: 60000
+          next_cases:
+            - error
+            - timeout
+          next_tries: 3
+          next_timeout: 60000
     params:
       storage:
         data:
@@ -22,12 +31,12 @@ profiles:
     openclaw:
       resources:
         cpu:
-          units: 2
+          units: 3
         memory:
-          size: 4Gi
+          size: 6Gi
         storage:
           # Ephemeral storage for container
-          - size: 2Gi
+          - size: 5Gi
           # Persistent storage for data
           - name: data
             size: 10Gi
