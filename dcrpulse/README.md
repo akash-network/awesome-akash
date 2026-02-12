@@ -87,3 +87,4 @@ Compare your node's block height with the network: https://dcrdata.decred.org/
 - **Issues?** Open an issue in [this repository](https://github.com/VirgilBB/dcrpulse)
 - **Questions?** Join [Akash Discord](https://discord.com/invite/akash)
 - **Decred Support?** Join [Decred Discord](https://discord.com/invite/dXSmwvYury)
+
