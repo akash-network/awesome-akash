@@ -1,0 +1,34 @@
+version: "2.0"
+
+services:
+  agentzero:
+    image: agent0ai/agent-zero:v0.9.8
+    expose:
+      - port: 80
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+
+profiles:
+  compute:
+    agentzero:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 2Gi
+        storage:
+          size: 10Gi
+  placement:
+    akash:
+      pricing:
+        agentzero:
+          denom: uakt
+          amount: 3000
+
+deployment:
+  agentzero:
+    akash:
+      profile: agentzero
+      count: 1
