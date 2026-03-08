@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   acestep-api:
-    image: yourdockerimage
+    image: rodrirr/akash-ai-music-gen:0.1
     expose:
       - port: 80
         as: 80
