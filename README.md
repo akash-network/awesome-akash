@@ -100,6 +100,7 @@ To add a new template/resource:
 
 - [Ace Music AI](Ace-Music-AI)
 - [AI-Image-App](AI-Image-App)
+- [Akash-AI-Music-Generator](akash-music-ai-generator)
 - [AUTOMATIC1111](AUTOMATIC1111)
 - [Axolotl AI](axolotlai)
 - [BERT](bert)
