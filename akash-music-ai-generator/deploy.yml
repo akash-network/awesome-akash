@@ -15,7 +15,7 @@ profiles:
     acestep-api:
       resources:
         cpu:
-          units: 5Gi
+          units: 5
         memory:
           size: 36Gi
         storage:
