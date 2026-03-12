@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   autoresearch:
-    image: nvidia/cuda:12.6.3-devel-ubuntu24.04
+    image: nvidia/cuda:12.6.2-devel-ubuntu22.04
     expose:
       - port: 3000
         as: 80
@@ -17,13 +17,18 @@ services:
         curl -LsSf https://astral.sh/uv/install.sh | sh &&
         export PATH="$HOME/.local/bin:$PATH" &&
         cd /workspace &&
-        git clone https://github.com/karpathy/autoresearch.git &&
+        if [ ! -d "autoresearch" ]; then
+          git clone https://github.com/karpathy/autoresearch.git;
+        fi &&
         cd autoresearch &&
+        git pull &&
         uv sync &&
-        echo "==> Running data preparation (one-time)..." &&
+        echo "==> Running data preparation..." &&
         uv run prepare.py &&
         echo "==> Starting training run (5-minute budget)..." &&
-        uv run train.py
+        uv run train.py &&
+        echo "==> Training complete. Keeping container alive for log inspection." &&
+        sleep infinity
     env:
       - "NVIDIA_VISIBLE_DEVICES=all"
     params:
