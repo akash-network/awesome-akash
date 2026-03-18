@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		<script>
+			// prevents the flash of light mode by applying theme before page renders
+			(function () {
+				let theme = localStorage.getItem("theme");
+				if (!theme) {
+					if (
+						window.matchMedia &&
+						window.matchMedia("(prefers-color-scheme: dark)").matches
+					) {
+						theme = "dark";
+					} else {
+						theme = "light";
+					}
+				}
+				if (theme === "dark") {
+					document.documentElement.classList.add("dark");
+				}
+			})();
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		
+		<link rel="modulepreload" href="/_app/immutable/entry/start.BEhwIvuc.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/C_QO4WwJ.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/J7sLjsv9.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/BzaBVjEJ.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/BXl3LOEh.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.BzDTAB7y.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/rbYMwl7p.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CHKo-XWa.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/DVWqOtce.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/jCCRBFIK.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CszCpEUQ.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/BqNzIQCU.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/Btm-fKMt.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CfgqCi7j.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/2CVuBtmK.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/BGTBQZCk.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CbVkJkaG.js">
+	</head>
+
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_i2iyc8 = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.BEhwIvuc.js"),
+						import("/_app/immutable/entry/app.BzDTAB7y.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
