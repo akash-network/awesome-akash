@@ -202,6 +202,7 @@ To add a new template/resource:
 
 ### Machine Learning
 
+- [Gradio](gradio-demo)
 - [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
