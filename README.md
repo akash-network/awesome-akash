@@ -100,6 +100,7 @@ To add a new template/resource:
 
 - [Ace Music AI](Ace-Music-AI)
 - [Autoresearch](autoresearch)
+- [Autoresearch at Home](autoresearch-at-home)
 - [AI-Image-App](AI-Image-App)
 - [AUTOMATIC1111](AUTOMATIC1111)
 - [Axolotl AI](axolotlai)
