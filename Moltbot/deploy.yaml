@@ -60,7 +60,7 @@ profiles:
     dcloud:
       pricing:
         clawdbot:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   clawdbot:

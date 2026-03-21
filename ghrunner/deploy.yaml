@@ -26,7 +26,7 @@ profiles:
     dcloud:
       pricing:
         ghrunner:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   ghrunner:

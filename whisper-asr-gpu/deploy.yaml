@@ -41,7 +41,7 @@ profiles:
       #https://docs.akash.network/providers/akash-audited-attributes
       pricing:
         whisper-asr: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

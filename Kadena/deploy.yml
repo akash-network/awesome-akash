@@ -42,7 +42,7 @@ profiles:
     akash:
       pricing:
         node:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   node:

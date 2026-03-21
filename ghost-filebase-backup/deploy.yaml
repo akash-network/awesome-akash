@@ -51,7 +51,7 @@ profiles:
     akash:
       pricing:
         ghost:
-          denom: uakt
+          denom: uact
           amount: 5000
 
 deployment:

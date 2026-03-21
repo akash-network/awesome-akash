@@ -49,7 +49,7 @@ profiles:
     dcloud:
       pricing:
         pluralis:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   pluralis:
