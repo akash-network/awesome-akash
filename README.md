@@ -2,10 +2,10 @@
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
-Instructions on how to deploy the SDL files in this repository can be found [here](https://akash.network/docs/deployments/overview/).
+Instructions on how to deploy the SDL files in this repository can be found in the [deployments overview](https://akash.network/docs/deployments/overview/).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
-Also, follow [@akashnet\_](https://twitter.com/akashnet_) to stay in the loop with updates and announcements.
+Also, follow [@akashnet](https://x.com/akashnet) to stay in the loop with updates and announcements.
 
 ## Contributing
 
@@ -69,13 +69,13 @@ To add a new template/resource:
 ### AI - CPU
 
 - [Alpaca.cpp](alpaca-cpp)
+- [Agent Zero](#agent-zero)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
-- [Clawd-Bot](Clawd-Bot)
 - [Daila](daila)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
@@ -84,6 +84,7 @@ To add a new template/resource:
 - [Langflow](langflow)
 - [Morpheus Lumerin Node](morpheus-lumerin-node)
 - [Ollama](ollama-cpu)
+- [OpenClaw](openclaw)
 - [Open WebUI](open-webui-cpu)
 - [PrivateGPT](privategpt-cpu)
 - [Serge](serge-cpu)
@@ -97,6 +98,8 @@ To add a new template/resource:
 
 ### AI - GPU
 
+- [Ace Music AI](Ace-Music-AI)
+- [Autoresearch](autoresearch)
 - [AI-Image-App](AI-Image-App)
 - [AUTOMATIC1111](AUTOMATIC1111)
 - [Axolotl AI](axolotlai)
@@ -122,7 +125,6 @@ To add a new template/resource:
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
-- [Foundry-RIT AI Training Model Challenge](Foundry-rit-ai-training-model-challenge)
 - [Gensyn RL Swarm](gensyn-rl-swarm)
 - [GPT-Neo](gpt-neo)
 - [GPUStack](gpustack)
@@ -200,6 +202,7 @@ To add a new template/resource:
 
 ### Machine Learning
 
+- [Gradio](gradio-demo)
 - [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
@@ -300,6 +303,8 @@ Awesome DeFi apps you can deploy on Akash
 - [Substrate Node](substrate-node)
 - [Vidulum](vidulum)
 - [Witness Chain Watchtower](witnesschain-watchtower)
+- [Zcash - Zcashd](zcash-zcashd)
+- [Zcash - Zebra](zcash-zebra)
 
 ### Business
 
@@ -457,6 +462,7 @@ Awesome DeFi apps you can deploy on Akash
 - [tronwallet](tronwallet)
 
 ### Web Frameworks
+
 - [GIN](gin)
 - [NextJS](nextjs)
 - [React](react)

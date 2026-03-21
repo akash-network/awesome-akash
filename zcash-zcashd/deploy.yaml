@@ -1,0 +1,161 @@
+---
+# Akash SDL for zcashd Zcash Node
+#
+# Deploys a full zcashd node (Electric Coin Co implementation) on Akash.
+# Defaults to Mainnet. Change ZCASHD_NETWORK to switch networks.
+#
+# Resource allocation (optimized for Mainnet):
+# - 4 vCPUs for block validation and P2P handling
+# - 16GB RAM for in-memory caching and peer management
+# - 350GB persistent storage (beta3 class for reliability)
+#   + 10GB for zcash-params (cryptographic parameters)
+#
+# For Testnet, you can reduce resources:
+# - 2 vCPUs, 8GB RAM, 50GB storage is sufficient
+#
+# Network ports (same as Zebra):
+# - 8233: Mainnet P2P connections (MUST be exposed)
+# - 18233: Testnet P2P connections
+# - 8232/18232: RPC endpoint (optional, disabled by default)
+# - 9969: Prometheus metrics (optional)
+#
+# IMPORTANT: Port mapping on Akash
+# When you expose a port globally, Akash does NOT bind it to that exact port
+# on the provider's public IP. Instead, providers assign a random high port
+# (e.g., 31234) and reverse-proxy it to your container's port.
+# This prevents conflicts when multiple deployments use the same ports.
+# Example: You configure port 8233, Akash gives you provider.com:31234
+# Your node is accessible at provider.com:31234, NOT provider.com:8233
+
+version: "2.0"
+
+services:
+  zcashd:
+    # Using specific SHA256 digest for reproducibility
+    # This is a verified Electric Coin Co build
+    # Note: Docker images use @ for digest, not : for tag
+    image: electriccoinco/zcashd@sha256:f8972b3638c2eafe74f501511168d64000870cc9502872b58c31ebf060e9d557
+
+    # Add deprecation acknowledgment to config file before starting
+    command:
+      - "/bin/sh"
+      - "-c"
+      - "echo 'i-am-aware-zcashd-will-be-replaced-by-zebrad-and-zallet-in-2025=1' >> /srv/zcashd/.zcash/zcash.conf && exec /entrypoint.sh"
+
+    env:
+      # --- NETWORK SELECTION ---
+      # mainnet or testnet
+      - "ZCASHD_NETWORK=mainnet"
+      # - "ZCASHD_NETWORK=testnet"  # Uncomment for Testnet
+
+      # --- RPC CONFIGURATION (disabled by default) ---
+      # Uncomment to enable RPC access
+      # WARNING: Set strong credentials if exposing RPC
+      # - "ZCASHD_RPCUSER=yourusername"
+      # - "ZCASHD_RPCPASSWORD=your_very_strong_password_here"
+      # - "ZCASHD_RPCBIND=0.0.0.0"
+      # - "ZCASHD_RPCPORT=8232"  # Mainnet
+      # - "ZCASHD_RPCPORT=18232"  # Testnet
+      # - "ZCASHD_ALLOWIP=0.0.0.0/0"  # Allow from anywhere (use with caution)
+
+      # --- OPTIONAL FEATURES ---
+      # Enable transaction index (required for some RPC calls, uses more storage)
+      # - "ZCASHD_TXINDEX=1"
+
+      # Enable Insight Explorer (blockchain explorer API)
+      # - "ZCASHD_INSIGHTEXPLORER=1"
+
+      # Prometheus metrics endpoint
+      # - "ZCASHD_PROMETHEUSPORT=9969"
+      # - "ZCASHD_METRICSIP=0.0.0.0/0"
+
+      # Show metrics in logs (0=disabled, 1=enabled)
+      - "ZCASHD_SHOWMETRICS=1"
+
+      # Log peer IPs (useful for debugging network issues)
+      # - "ZCASHD_LOGIPS=1"
+
+    expose:
+      # Port mapping: These ports get reverse-proxied to random high ports by the provider.
+      # Example: port 8233 might be accessible at provider.com:31234
+      # Check your deployment URIs to see the actual public endpoint.
+
+      # --- MAINNET P2P PORT (default) ---
+      - port: 8233
+        as: 8233
+        to:
+          - global: true
+        proto: tcp
+
+      # --- TESTNET P2P PORT (uncomment for Testnet) ---
+      # - port: 18233
+      #   as: 18233
+      #   to:
+      #     - global: true
+      #   proto: tcp
+
+      # RPC ports (uncomment as needed)
+      # Mainnet RPC:
+      # - port: 8232
+      #   as: 8232
+      #   to:
+      #     - global: false  # Keep internal unless you know what you're doing
+      #   proto: tcp
+
+      # Testnet RPC:
+      # - port: 18232
+      #   as: 18232
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+      # Prometheus metrics port (optional)
+      # - port: 9969
+      #   as: 9969
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+profiles:
+  compute:
+    zcashd:
+      resources:
+        cpu:
+          # 4 CPUs: Optimized for Mainnet
+          # Reduce to 2 for Testnet if desired
+          units: 4
+
+        memory:
+          # 16GB: Optimized for Mainnet
+          # Reduce to 8Gi for Testnet if desired
+          size: 16Gi
+
+        storage:
+          # Primary storage for blockchain data
+          # Mainnet: 350Gi (chain is 100GB+ and growing)
+          # Testnet: 50Gi is sufficient
+          - size: 350Gi
+
+  placement:
+    akash:
+      # Attributes for provider selection
+      # No GPU needed, no special requirements
+      attributes:
+        host: akash
+      pricing:
+        zcashd:
+          # Pricing in uakt (micro-AKT tokens)
+          # Mainnet: ~$50-80/month depending on AKT price
+          # Testnet: ~$25-40/month (use lower resources)
+          #
+          # This is set conservatively high to ensure bids.
+          # Providers will likely bid lower. Adjust after seeing actual bids.
+          denom: uakt
+          amount: 1000000  # 1000000 uakt per block (~10 seconds)
+          # amount: 500000  # Testnet alternative
+
+deployment:
+  zcashd:
+    akash:
+      profile: zcashd
+      count: 1  # Single node deployment
