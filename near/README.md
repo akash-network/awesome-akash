@@ -16,8 +16,8 @@ NEAR is a [sharded](https://near.org/downloads/Nightshade.pdf), [proof-of-stake]
 # Simple Steps
 
 1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap?hl=en) wallet as a browser extension
-2. Fund your wallet at least 5 AKT([how to get AKT](https://akash.network/token))
-3. Install [Akashlytics](https://akashlytics.com/deploy) and import your AKT wallet address from Keplr
+2. Fund your wallet at least 5 ACT([how to get ACT](https://akash.network/token))
+3. Install [Akashlytics](https://akashlytics.com/deploy) and import your ACT wallet address from Keplr
 4. Deploy a NEAR node
 
 Click [here](https://akash.network/docs/guides/) to learn more about deploying.
@@ -26,7 +26,7 @@ Click [here](https://akash.network/docs/guides/) to learn more about deploying.
 
 # Deploy a NEAR node on Akash
 
-1. import your AKT wallet address from Keplr
+1. import your ACT wallet address from Keplr
 2. create a certificate
 3. create deployment
 4. choose `Empty` for the template and copy-and-paste the `deploy.yaml` file from this repository
@@ -77,7 +77,7 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         nearup:
-          denom: uakt
+          denom: uact
           amount: 100
 
 deployment:

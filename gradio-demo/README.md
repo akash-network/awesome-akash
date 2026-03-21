@@ -23,7 +23,7 @@ You can easily customize `app.py` to add your own models or functions.
 
 ### Prerequisites
 - Akash CLI installed
-- Akash wallet with AKT tokens
+- Akash wallet with ACT tokens
 - Basic familiarity with Akash deployments
 
 ### Deploy on Akash

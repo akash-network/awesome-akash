@@ -7,7 +7,7 @@ Step 1 : Setup your Monero wallet - you will need the seed phrase and another wa
 
 Step 2 : Update the env: variables with your information, be sure NOT to use quotes for the seed phrase.
 
-Step 3 : Deploy and wait.  Be patient - deploying a pool takes at least 24 hours to be ready.  Be sure to fund your deployment with enough AKT!
+Step 3 : Deploy and wait.  Be patient - deploying a pool takes at least 24 hours to be ready.  Be sure to fund your deployment with enough ACT!
 
 Step 4 : Click the URI link.  You should now see the web interface.
 
