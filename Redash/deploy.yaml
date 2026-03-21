@@ -230,28 +230,28 @@ profiles:
     akash:
       pricing:
         postgres:
-          denom: uakt
+          denom: uact
           amount: 10000
         scheduler:
-          denom: uakt
+          denom: uact
           amount: 10000
         worker:
-          denom: uakt
+          denom: uact
           amount: 10000
         redash:
-          denom: uakt
+          denom: uact
           amount: 10000      
         scheduled-worker:
-          denom: uakt
+          denom: uact
           amount: 10000
         redash-adhoc:
-          denom: uakt
+          denom: uact
           amount: 10000
         redis:
-          denom: uakt
+          denom: uact
           amount: 10000
         nginx:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   postgres:

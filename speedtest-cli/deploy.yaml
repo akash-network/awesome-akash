@@ -22,7 +22,7 @@ profiles:
     akash:
       pricing:
         speedtest-cli:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   speedtest-cli:

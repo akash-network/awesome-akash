@@ -47,7 +47,7 @@ profiles:
     akash:
       pricing:
         openclaw:
-          denom: uakt
+          denom: uact
           amount: 1000
 deployment:
   openclaw:
