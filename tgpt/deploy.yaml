@@ -17,20 +17,11 @@ profiles:
         cpu:
           units: 8
         memory:
-          size: 4.75Gi #Increase this for larger local memory, can be lower if used external vector for memory.
+          size: 5Gi #Increase this for larger local memory, can be lower if used external vector for memory.
         storage:
           size: 16Gi
   placement:
     akash:
-      #######################################################
-      #Keep this section to deploy on trusted providers
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
-      #######################################################
-      #Remove this section to deploy on untrusted providers
-      #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
       pricing:
         tgpt:
           denom: uact
