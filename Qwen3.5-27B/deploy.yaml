@@ -1,0 +1,46 @@
+---
+version: "2.0"
+services:
+  service-1:
+    image: vllm/vllm-openai:nightly
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+    command:
+      - sh
+      - "-c"
+      - vllm serve Qwen/Qwen3.5-27B --host 0.0.0.0 --port 8000 --dtype bfloat16 --max-model-len 8192 --gpu-memory-utilization 0.92 --trust-remote-code
+    args:
+      - ""
+profiles:
+  compute:
+    service-1:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 32Gi
+        storage:
+          - size: 200Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    dcloud:
+      pricing:
+        service-1:
+          denom: ibc/170C677610AC31DF0904FFE09CD3B5C657492170E7E52372E48756B71E56F2F1
+          amount: 100000
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+        allOf: []
+deployment:
+  service-1:
+    dcloud:
+      profile: service-1
+      count: 1
