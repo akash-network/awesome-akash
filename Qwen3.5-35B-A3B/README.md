@@ -25,6 +25,8 @@ The included SDL uses:
 - `32Gi` RAM
 - `200Gi` storage
 
+Use an `H100` or `A100` provider when deploying this template.
+
 ## Files
 
 - [deploy.yaml](deploy.yaml)
