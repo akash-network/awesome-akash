@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   service-1:
-    image: vllm/vllm-openai:nightly
+    image: vllm/vllm-openai:nightly-c86b17cfe663afb46a46b8081e9fd4c81dc920a2
     expose:
       - port: 8000
         as: 8000
