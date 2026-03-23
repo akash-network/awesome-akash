@@ -24,7 +24,7 @@ profiles:
     akash:
       pricing:
         agentzero:
-          denom: uakt
+          denom: uact
           amount: 3000
 
 deployment:

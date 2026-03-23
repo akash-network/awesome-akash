@@ -59,7 +59,7 @@ profiles:
     dcloud:
       pricing:
         vllm:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   vllm:

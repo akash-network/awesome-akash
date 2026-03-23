@@ -54,7 +54,7 @@ profiles:
     dcloud:
       pricing:
         rl-swarm:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   rl-swarm:

@@ -33,7 +33,7 @@ profiles:
     dcloud:
       pricing:
         cjdns:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   cjdns:
