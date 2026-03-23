@@ -19,7 +19,7 @@ The model used is the `nlptown/bert-base-multilingual-uncased-sentiment` model f
 
 ## Deployment on Akash Network
 
-To deploy the application on the Akash Network, you need to have an Akash account with sufficient ACT balance. Follow the steps below:
+To deploy the application on the Akash Network, you need to have an Akash account with sufficient AKT balance. Follow the steps below:
 
 1. Clone this repository.
 2. Build the Docker image and push it to a Docker registry.
