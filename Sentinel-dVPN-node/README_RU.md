@@ -58,7 +58,7 @@ ___
 ## Развертка ноды
 Откройте [WEB интерфейс](https://console.akash.network/) `Console`.
 
-Убедитесь, что на вашем балансе есть **более 0.5 АКТ** и **присутсвует сертификат** (если нет, то обратитесь к [инструкции по использованию Console](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)). Далее, нажмите кнопку `DEPLOY`, выберите пустой темплейт `Empty` и скопируйте туда содержимое [deploy.yml](/Sentinel-dVPN-node/deploy.yml).
+Убедитесь, что на вашем балансе есть **более 0.5 АCТ** и **присутсвует сертификат** (если нет, то обратитесь к [инструкции по использованию Console](https://github.com/DecloudNodesLab/Guides/blob/main/Russian/Cloudmos.md#%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D0%B0-%D0%B8-%D0%BF%D0%BE%D0%B4%D0%B3%D0%BE%D1%82%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5)). Далее, нажмите кнопку `DEPLOY`, выберите пустой темплейт `Empty` и скопируйте туда содержимое [deploy.yml](/Sentinel-dVPN-node/deploy.yml).
 ___
 
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221607947-cdc2b2e6-cc96-4709-9278-e15369bb62bf.gif" width=70% </p>
