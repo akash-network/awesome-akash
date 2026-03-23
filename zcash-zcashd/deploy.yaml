@@ -144,14 +144,14 @@ profiles:
         host: akash
       pricing:
         zcashd:
-          # Pricing in uakt (micro-AKT tokens)
-          # Mainnet: ~$50-80/month depending on AKT price
+          # Pricing in uact (micro-ACT tokens)
+          # Mainnet: ~$50-80/month depending on ACT price
           # Testnet: ~$25-40/month (use lower resources)
           #
           # This is set conservatively high to ensure bids.
           # Providers will likely bid lower. Adjust after seeing actual bids.
-          denom: uakt
-          amount: 1000000  # 1000000 uakt per block (~10 seconds)
+          denom: uact
+          amount: 1000000  # 1000000 uact per block (~10 seconds)
           # amount: 500000  # Testnet alternative
 
 deployment:

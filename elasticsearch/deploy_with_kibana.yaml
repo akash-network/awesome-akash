@@ -49,10 +49,10 @@ profiles:
     dcloud:
       pricing:
         elasticsearch:
-          denom: uakt
+          denom: uact
           amount: 100000
         kibana:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   elasticsearch:

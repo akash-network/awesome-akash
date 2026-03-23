@@ -36,7 +36,7 @@ profiles:
     eastcoast:
       pricing:
         vaultwarden:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   vaultwarden:

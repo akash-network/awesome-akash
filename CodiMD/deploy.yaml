@@ -45,10 +45,10 @@ profiles:
     dcloud:
       pricing:
         database:
-          denom: uakt
+          denom: uact
           amount: 100000
         codimd:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   database:

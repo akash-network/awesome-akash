@@ -130,14 +130,14 @@ placement:
   akash:
     pricing:
       ghost:
-        denom: uakt      # 代币单位（微 AKT）
+        denom: uact      # 代币单位（微 AKT）
         amount: 5000     # 愿意支付的最高价格
 ```
 
 | 参数 | 说明 |
 |------|------|
-| `denom` | 代币单位，`uakt` = 1/1,000,000 AKT |
-| `amount` | 每区块愿意支付的最高 uAKT 数量 |
+| `denom` | 代币单位，`uact` = 1/1,000,000 AKT |
+| `amount` | 每区块愿意支付的最高 uACT 数量 |
 
 ### Deployment 部署配置
 
@@ -377,14 +377,14 @@ placement:
   akash:
     pricing:
       ghost:
-        denom: uakt      # Token unit (micro AKT)
+        denom: uact      # Token unit (micro AKT)
         amount: 5000     # Maximum price willing to pay
 ```
 
 | Parameter | Description |
 |-----------|-------------|
-| `denom` | Token unit, `uakt` = 1/1,000,000 AKT |
-| `amount` | Maximum uAKT per block willing to pay |
+| `denom` | Token unit, `uact` = 1/1,000,000 AKT |
+| `amount` | Maximum uACT per block willing to pay |
 
 ### Deployment Configuration
 

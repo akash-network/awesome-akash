@@ -82,7 +82,7 @@ profiles:
     akash:
       pricing:
         raptoreum:
-          denom: uakt
+          denom: uact
           amount: 2
 
 deployment:
@@ -100,7 +100,7 @@ Akash is a marketplace of compute.  Providers set their own prices for compute r
 
 # Not getting any bids?
 
-Akash providers bid in real-time on your deployment.  If the default of `amount: 2` UAKT is not producing any bids, consider adjusting it to something higher like `amount: 10` to get new bids from providers.
+Akash providers bid in real-time on your deployment.  If the default of `amount: 2` UACT is not producing any bids, consider adjusting it to something higher like `amount: 10` to get new bids from providers.
 
 # How to speed up mining?
 

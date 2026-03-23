@@ -466,7 +466,7 @@ profiles:
         ip-lease: true
       pricing:
         metal-blockchain:
-          denom: uakt
+          denom: uact
           amount: 120
 
 deployment:

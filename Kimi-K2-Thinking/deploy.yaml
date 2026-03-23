@@ -51,7 +51,7 @@ profiles:
     dcloud:
       pricing:
         sglang:
-          denom: uakt
+          denom: uact
           amount: 1000000
 deployment:
   sglang:
