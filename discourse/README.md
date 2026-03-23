@@ -85,12 +85,12 @@ Follow the comments in SDL file to enable passwords
 
 The costs depends on capacity described in section `profiles.compute` in [deploy.yml](deploy.yml) file. 
 
-With the default setting this deployment aprox. cost 6 ACT per month (someting like $14).
+With the default setting this deployment aprox. cost 6 AKT per month (someting like $14).
 
 ## Disclaimer
 
 Taken from [Akash Console](https://console.akash.network/new-deployment):
 
-- We strongly suggest you start with a new wallet and a small amount of ACT until we further stabilize the product.
+- We strongly suggest you start with a new wallet and a small amount of AKT until we further stabilize the product.
 - We're not responsible for any loss or damages related to using the app.
 - The app has a high chance of containing bugs since it's in BETA, use at your own risk.
