@@ -28,7 +28,6 @@
             size: 50Gi
     placement:
       akash: 
-        attributes:
         pricing:
           webtop:
             denom: uact
