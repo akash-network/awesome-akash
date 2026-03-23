@@ -65,7 +65,7 @@ How to work with it is [described in this document](https://github.com/DecloudNo
 ## Node deployment
 Open [WEB interface](https://console.akash.network/) `Akash Console`.
 
-Make sure you have **more than 0.5 AKT** on your balance and **certificate present** (if not, refer to [Console instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md#create-certificate)). Next, click the `DEPLOY` button, select the empty `Empty` template and copy the contents of [deploy.yml](/Sentinel-dVPN-node//deploy.yml) there .
+Make sure you have **more than 0.5 ACT** on your balance and **certificate present** (if not, refer to [Console instructions](https://github.com/DecloudNodesLab/Guides/blob/main/English/Cloudmos.md#create-certificate)). Next, click the `DEPLOY` button, select the empty `Empty` template and copy the contents of [deploy.yml](/Sentinel-dVPN-node//deploy.yml) there .
 ___
 
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221607947-cdc2b2e6-cc96-4709-9278-e15369bb62bf.gif" width=70% </p>
@@ -86,7 +86,7 @@ Pay attention to the correct filling of the variables, they must be INSIDE the q
 <p align="center"><img src="https://user-images.githubusercontent.com/23629420/221614307-09813671-ed36-4db3-86d8-5836245f05f1.gif" width=70%</p>
 
 We don't know what **IPv4** address we'll be assigned before we start the deployment, so we'll start the deployment with an empty `IPV4_ADDRESS`. We will fill it in as soon as we get the **IPv4** address from the provider and update our deployment. <br/>
-It's time to ask for current offerings in the computing power market. We press `CREATE DEPLOYMENT`, confirm the transaction (**0.5 AKT** will be frozen) and wait for offers from providers.
+It's time to ask for current offerings in the computing power market. We press `CREATE DEPLOYMENT`, confirm the transaction (**0.5 ACT** will be frozen) and wait for offers from providers.
   
 <br/>
   

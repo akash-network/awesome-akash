@@ -48,7 +48,7 @@ Check current Akash market rates and adjust the bid price:
 ```yaml
 pricing:
   neo4j:
-    denom: uakt
+    denom: uact
     amount: 1000     # Adjust based on current market rates
 ```
 

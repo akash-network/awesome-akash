@@ -15,7 +15,7 @@ You will need the below setup before we being:
 
 1) Install Akash: Make sure to have Akash client installed on your workstation, check [install guide](https://akash.network/docs/getting-started/quickstart-guides/akash-cli/) for instructions.
 2) Choose Your Akash Network: You'll need to know information about the network you're connecting your node to. See [Choosing a Network](https://akash.network/docs/deployments/akash-cli/installation/#version) for how to obtain any network-related information.
-3) Fund Your Account: You'll need a AKT wallet with funds to pay for your deployment. See the [funding guide](https://akash.network/docs/getting-started/token-and-wallets)
+3) Fund Your Account: You'll need a ACT wallet with funds to pay for your deployment. See the [funding guide](https://akash.network/docs/getting-started/token-and-wallets)
 creating a key and funding your account.
 4) Install Docker: You'll need docker running on your workstation, follow this [guide](https://docs.docker.com/get-docker/) to setup Docker on your workstation..
 5) Setup Container Registry: To stage your containers to deploy onto Akash. We'll Docker Hub in this guide. [Signup](https://docs.docker.com/docker-hub/) for a free Docker Hub account if you haven't.
@@ -80,13 +80,13 @@ You should see a response similar to:
 ```
 balances:
 - amount: "93000637"
-  denom: uakt
+  denom: uact
 pagination:
   next_key: null
   total: "0"
 ```
 
-Please note the balance indicated is denominated in uAKT (AKT * 10^-6), in the above example, the account has a balance of *93 AKT*. We're now setup to deploy.
+Please note the balance indicated is denominated in uAKT (ACT * 10^-6), in the above example, the account has a balance of *93 ACT*. We're now setup to deploy.
 
 ## Create the Deployment
 
@@ -123,7 +123,7 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         web: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:
@@ -172,13 +172,13 @@ akash query market lease list --owner $ACCOUNT_ADDRESS --node $AKASH_NODE --stat
     provider: akash1y8xhp9ekxctahvex7842h607lmwp50q0n89tw0
   price:
     amount: "51"
-    denom: uakt
+    denom: uact
   state: active
 pagination:
   next_key: null
   total: "0"
 ```
-In the above example, we can see that a lease is created using for *51 uakt* or *0.0000051 AKT* per block to execute the container.
+In the above example, we can see that a lease is created using for *51 uact* or *0.0000051 ACT* per block to execute the container.
 
 For convenience and clarity for future referencing, we can extract the below set of values to shell variables that we will be using to reference the deployment:
 
@@ -278,7 +278,7 @@ leases:
     provider: akash1y8xhp9ekxctahvex7842h607lmwp50q0n89tw0
   price:
     amount: "186"
-    denom: uakt
+    denom: uact
   state: closed
 pagination:
   next_key: null
