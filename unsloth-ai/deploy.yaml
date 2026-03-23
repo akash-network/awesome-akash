@@ -50,7 +50,7 @@ profiles:
     dcloud:
       pricing:
         unsloth:
-          denom: uakt
+          denom: uact
           amount: 15000
 
 deployment:

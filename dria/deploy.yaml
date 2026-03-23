@@ -69,10 +69,10 @@ profiles:
     dcloud:
       pricing:
         dkn:
-          denom: uakt
+          denom: uact
           amount: 100000
         ollama:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   dkn:

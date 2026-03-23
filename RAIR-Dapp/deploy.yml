@@ -173,22 +173,22 @@ profiles:
     dcloud:
       pricing:
         mongo:
-          denom: uakt
+          denom: uact
           amount: 1000
         rair-front:
-          denom: uakt
+          denom: uact
           amount: 1000
         rair-node:
-          denom: uakt
+          denom: uact
           amount: 1000
         rair-stream:
-          denom: uakt
+          denom: uact
           amount: 1000
         rair-sync:
-          denom: uakt
+          denom: uact
           amount: 1000
         redis:
-          denom: uakt
+          denom: uact
           amount: 1000
 deployment:
   mongo:

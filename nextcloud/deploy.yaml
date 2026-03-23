@@ -59,10 +59,10 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         nextcloud:
-          denom: uakt
+          denom: uact
           amount: 10000
         db:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   nextcloud:
