@@ -12,7 +12,7 @@ Launch a Metal blockchain validator node in minutes on Akash's decentralized clo
 
 Before deploying, ensure you have:
 
-- Akash wallet with ACT tokens (for deployment costs)
+- Akash wallet with AKT tokens (for deployment costs)
 - Metal wallet with 2,000+ METAL tokens (for mainnet staking)
 - Access to Akash Console (no CLI required)
 - 5-10 minutes for deployment and bootstrap
