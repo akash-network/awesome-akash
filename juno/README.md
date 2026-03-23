@@ -8,7 +8,7 @@ Juno is a golang [**Starknet**](https://starknet.io/) node implementation by [**
 ## Deploy Starknet node on Akash
 
 1. Install [Keplr](https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap) wallet as a browser extension
-2. Fund your wallet with at least 5 ACT. How to get ACT? Read at https://akash.network/token
+2. Fund your wallet with at least 5 AKT. How to get AKT? Read at https://akash.network/token
 3. Open [Akash Console](https://console.akash.network/) and connect your Keplr wallet
 5. Create a certificate
 3. Create deployment
