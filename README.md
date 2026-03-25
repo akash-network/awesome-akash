@@ -171,7 +171,6 @@ To add a new template/resource:
 - [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
 - [StableSwarmUI](stableswarmui)
-- [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [Unsloth AI](unsloth-ai)
 - [vllm](vllm)
@@ -284,7 +283,6 @@ Awesome DeFi apps you can deploy on Akash
 
 - [AvalancheGo](avalanche)
 - [Bitcoin](bitcoin)
-- [Bitcoin Cash Node](bitcoincashnode)
 - [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Centrifuge](centrifuge)
 - [Concordium node](concordium)
@@ -301,7 +299,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Prysm Beacon](prysm-beacon)
 - [Starknet Node by Juno](juno)
 - [Substrate Node](substrate-node)
-- [Vidulum](vidulum)
 - [Witness Chain Watchtower](witnesschain-watchtower)
 - [Zcash - Zcashd](zcash-zcashd)
 - [Zcash - Zebra](zcash-zebra)
@@ -342,7 +339,6 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Media
 
-- [FreeFlix Nucleus](freeflix-nucleus)
 
 ### Search Engines
 
@@ -378,7 +374,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Nanominer](nanominer-c11)
 - [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
-- [Quai Network](quai-gpu-miner)
 - [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
@@ -417,7 +412,6 @@ Awesome DeFi apps you can deploy on Akash
 ### Tools
 
 - [anubis](anubis)
-- [thirdweb](thirdweb)
 - [authsteem](authsteem)
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)
