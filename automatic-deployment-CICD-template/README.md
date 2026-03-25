@@ -87,7 +87,7 @@ profiles:
     dcloud:
       pricing:
         service-1:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   service-1:
