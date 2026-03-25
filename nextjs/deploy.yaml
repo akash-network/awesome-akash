@@ -1,15 +1,13 @@
 ---
 version: "2.0"
-
 services:
   web:
-    image: sunny0183/nextjs-docker
+    image: ghcr.io/decloudnodeslab/nextjs:latest
     expose:
       - port: 3000
         as: 80
         to:
           - global: true
-
 profiles:
   compute:
     web:
@@ -24,14 +22,10 @@ profiles:
     westcoast:
       attributes:
         host: akash
-      signedBy:
-        anyOf:
-          - "<youraddress>"
       pricing:
         web: 
           denom: uact
           amount: 10000
-
 deployment:
   web:
     westcoast:
