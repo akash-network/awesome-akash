@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  acestep-api:
+    image: rodrirr/akash-ai-music-gen:0.1
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    acestep-api:
+      resources:
+        cpu:
+          units: 5
+        memory:
+          size: 36Gi
+        storage:
+          size: 100Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+
+  placement:
+    akash:
+      pricing:
+        acestep-api:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  acestep-api:
+    akash:
+      profile: acestep-api
+      count: 1

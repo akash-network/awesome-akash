@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akash Music AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --akash-red:#d73426;--akash-black:#0a0e27;--akash-grey:#5a6783;
+    --bg:#0a0e27;--surface:#131829;--surface2:#1a202e;--surface3:#232f47;
+    --border:#2d3a52;--border-hl:#3d4a62;
+    --text:#e8e6e3;--text2:#9a9898;--text3:#5a6783;
+    --accent:#d73426;--accent-dim:#a01f1a;--accent-glow:rgba(215,52,38,.12);
+    --radius:10px;--radius-sm:6px;
+  }
+  html{font-size:15px}
+  body{
+    font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,var(--akash-black),#1a2544);
+    color:var(--text);min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;flex-direction:column;
+  }
+  .app{flex:1;max-width:900px;margin:0 auto;width:100%;padding:40px 24px 0}
+  .footer{margin-top:40px;padding:24px 0;border-top:1px solid var(--border);text-align:center;font-size:.8rem;color:var(--text2)}
+  .footer-links{display:flex;justify-content:center;gap:20px;margin-bottom:12px;flex-wrap:wrap}
+  .footer-links a{color:var(--accent);text-decoration:none;font-weight:600}
+  .footer-links a:hover{text-decoration:underline}
+  .header-simple{display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+  .logo-main{width:100px;height:100px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(215,52,38,.2))}
+  .tagline{font-size:.95rem;color:var(--text2);font-weight:500;letter-spacing:-.01em;text-align:center}
+  .status-banner{
+    display:flex;gap:10px;align-items:center;margin-bottom:28px;
+    padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  }
+  .status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;transition:all .3s}
+  .status-dot.ok{background:#22c55e;box-shadow:0 0 12px rgba(34,197,94,.6)}
+  .status-dot.err{background:var(--accent);box-shadow:0 0 12px rgba(215,52,38,.5)}
+  .status-text{font-size:.85rem;font-weight:500}
+  .status-text.ok{color:#22c55e}
+  .status-text.err{color:var(--accent)}
+  .tabs{display:flex;gap:2px;margin-bottom:24px;background:var(--surface);border-radius:var(--radius);padding:3px;border:1px solid var(--border)}
+  .tab{
+    flex:1;padding:10px 14px;border:none;background:transparent;color:var(--text3);
+    font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;
+    border-radius:calc(var(--radius) - 2px);transition:all .15s;text-align:center;text-transform:uppercase;letter-spacing:.05em;
+  }
+  .tab:hover{color:var(--text2)}
+  .tab.active{background:var(--accent);color:#fff}
+  .tab-content{display:none}
+  .tab-content.active{display:block;animation:fadeIn .25s ease-out}
+  .section{margin-bottom:22px}
+  .section-label{
+    font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--text3);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;
+  }
+  textarea,select,input[type=number],input[type=text]{
+    width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);
+    padding:12px 14px;border-radius:var(--radius);font-family:inherit;font-size:.93rem;
+    outline:none;transition:border-color .2s,box-shadow .2s;resize:vertical;
+  }
+  textarea:focus,select:focus,input[type=number]:focus,input[type=text]:focus{
+    border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow);
+  }
+  textarea{min-height:90px;line-height:1.6}
+  textarea.lyrics{min-height:140px;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.7}
+  textarea::placeholder,input::placeholder{color:var(--text3)}
+  .controls{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+  .controls-2{grid-template-columns:1fr 1fr}
+  .controls-3{grid-template-columns:1fr 1fr 1fr}
+  .control-group label{
+    display:block;font-size:.7rem;font-weight:700;color:var(--text3);
+    margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;
+  }
+  input[type=number]{padding:9px 12px;font-size:.85rem;font-family:'JetBrains Mono',monospace}
+  input[type=number]::-webkit-inner-spin-button{opacity:.4}
+  select{cursor:pointer;appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235a6783'%3E%3Cpath d='M6 8.5L1 3.5h10z'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;
+  }
+  .checkbox-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .checkbox-row label{
+    display:flex;align-items:center;gap:7px;cursor:pointer;
+    font-size:.82rem;color:var(--text2);user-select:none;font-weight:500;
+  }
+  .checkbox-row input[type=checkbox]{
+    appearance:none;width:18px;height:18px;border:1.5px solid var(--border);
+    border-radius:4px;background:var(--surface2);cursor:pointer;position:relative;
+    transition:all .15s;flex-shrink:0;
+  }
+  .checkbox-row input[type=checkbox]:checked{background:var(--accent);border-color:var(--accent)}
+  .checkbox-row input[type=checkbox]:checked::after{
+    content:'✓';position:absolute;inset:0;display:grid;place-items:center;
+    font-size:12px;font-weight:700;color:#fff;
+  }
+  .btn-row{display:flex;gap:10px}
+  .gen-btn{
+    flex:1;padding:14px 20px;border:none;border-radius:var(--radius);
+    background:var(--accent);color:#fff;font-family:inherit;
+    font-size:.95rem;font-weight:700;cursor:pointer;letter-spacing:-.01em;
+    transition:all .2s;position:relative;overflow:hidden;text-transform:uppercase;
+  }
+  .gen-btn:hover{background:#e53a32;transform:translateY(-2px);box-shadow:0 8px 24px rgba(215,52,38,.35)}
+  .gen-btn:active{transform:translateY(0)}
+  .gen-btn:disabled{background:var(--surface3);color:var(--text3);cursor:not-allowed;transform:none;box-shadow:none}
+  .gen-btn.running{background:var(--surface3);color:var(--text2)}
+  .secondary-btn{
+    padding:9px 16px;border:1px solid var(--border);border-radius:var(--radius);
+    background:transparent;color:var(--text2);font-family:inherit;font-size:.8rem;
+    cursor:pointer;transition:all .15s;white-space:nowrap;font-weight:600;
+  }
+  .secondary-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .status{
+    margin-top:14px;padding:12px 16px;border-radius:var(--radius);
+    font-size:.82rem;font-family:'JetBrains Mono',monospace;
+    background:var(--surface);border:1px solid var(--border);color:var(--text2);
+    display:none;word-break:break-word;
+  }
+  .status.visible{display:block;animation:slideDown .25s ease-out}
+  .status.error{border-color:var(--accent);background:rgba(215,52,38,.08);color:var(--accent)}
+  .status.success{border-color:#22c55e;background:rgba(34,197,94,.08);color:#22c55e}
+  .results{margin-top:32px;display:none}
+  .results.visible{display:block}
+  .results-header{
+    font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--text3);margin-bottom:14px;display:flex;align-items:center;gap:10px;
+  }
+  .results-count{
+    background:var(--accent);color:#fff;padding:2px 10px;
+    border-radius:10px;font-size:.65rem;font-weight:700;
+  }
+  .audio-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:16px;margin-bottom:12px;transition:all .2s;animation:slideUp .35s ease-out;
+  }
+  .audio-card:hover{border-color:var(--accent);background:var(--surface2)}
+  .audio-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+  .audio-card-title{font-size:.85rem;font-weight:600}
+  .audio-card-meta{font-size:.7rem;color:var(--text3);font-family:'JetBrains Mono',monospace}
+  audio{width:100%;height:40px;border-radius:6px;outline:none;margin:8px 0}
+  .download-btn{
+    display:inline-flex;align-items:center;gap:6px;margin-top:8px;
+    padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);
+    background:transparent;color:var(--text2);font-size:.75rem;font-family:inherit;
+    cursor:pointer;transition:all .15s;text-decoration:none;font-weight:600;
+  }
+  .download-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .gen-info{
+    margin-top:14px;padding:12px 14px;background:var(--surface);
+    border:1px solid var(--border);border-radius:var(--radius-sm);
+    font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--text3);
+    white-space:pre-wrap;line-height:1.5;display:none;max-height:200px;overflow-y:auto;
+  }
+  .gen-info.visible{display:block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner{
+    width:15px;height:15px;border:2px solid var(--text3);border-top-color:transparent;
+    border-radius:50%;animation:spin .7s linear infinite;display:inline-block;
+    vertical-align:middle;margin-right:7px;
+  }
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes slideDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:700px){
+    .controls,.controls-2,.controls-3{grid-template-columns:1fr}
+    .app{padding:24px 16px 0}
+    .btn-row{flex-direction:column}
+    .logo-main{width:80px;height:80px}
+    .footer-links{flex-direction:column;gap:10px}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header-simple">
+    <img src="https://akash.network/_astro/akash-logo-dark.BKNndxBB_13Hrr8.svg" alt="Akash Music AI" class="logo-main">
+    <p class="tagline">AI Music Generation on Decentralized GPU</p>
+  </div>
+
+  <div class="status-banner" id="apiBanner">
+    <div class="status-dot" id="apiDot"></div>
+    <div class="status-text" id="apiText">Checking API connection...</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="simple" onclick="switchTab(event)">Quick Generate</button>
+    <button class="tab" data-tab="custom" onclick="switchTab(event)">Advanced</button>
+  </div>
+
+  <!-- ── QUICK MODE ── -->
+  <div id="tab-simple" class="tab-content active">
+    <div class="section">
+      <div class="section-label">
+        Describe Your Music
+        <button class="secondary-btn" onclick="loadRandom('simple_mode')" style="font-size:.7rem;padding:4px 10px">🎲 Example</button>
+      </div>
+      <textarea id="simpleQuery" placeholder="e.g., 'upbeat electronic dance music with heavy bass and synths' or 'soft acoustic indie pop with female vocals'"></textarea>
+    </div>
+    <div class="section">
+      <div class="controls controls-3">
+        <div class="control-group">
+          <label>Duration</label>
+          <input type="number" id="simpleDuration" value="30" min="10" max="120" step="5">
+        </div>
+        <div class="control-group">
+          <label>Batch Size</label>
+          <input type="number" id="simpleBatch" value="1" min="1" max="2">
+        </div>
+        <div class="control-group">
+          <label>Format</label>
+          <select id="simpleFormat"><option value="mp3" selected>MP3</option><option value="wav">WAV</option><option value="flac">FLAC</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="section"><div class="btn-row">
+      <button class="gen-btn" id="simpleGenBtn" onclick="generateSimple()">Generate</button>
+    </div></div>
+  </div>
+
+  <!-- ── ADVANCED MODE ── -->
+  <div id="tab-custom" class="tab-content">
+    <div class="section">
+      <div class="section-label">
+        Caption
+        <button class="secondary-btn" onclick="loadRandom('custom_mode')" style="font-size:.7rem;padding:4px 10px">🎲 Example</button>
+      </div>
+      <textarea id="caption" placeholder="Musical style, instruments, mood, genre…"></textarea>
+    </div>
+    <div class="section">
+      <div class="section-label">Lyrics (optional)</div>
+      <textarea class="lyrics" id="lyrics" placeholder="[Verse 1]&#10;Your lyrics here...&#10;&#10;[Chorus]&#10;Chorus lyrics...&#10;&#10;(Leave blank for instrumental)"></textarea>
+    </div>
+    <div class="section">
+      <div class="controls">
+        <div class="control-group"><label>Duration</label><input type="number" id="duration" value="30" min="10" max="120" step="5"></div>
+        <div class="control-group"><label>BPM</label><input type="number" id="bpm" placeholder="auto" min="30" max="300"></div>
+        <div class="control-group"><label>Steps</label><input type="number" id="inferSteps" value="8" min="1" max="32"></div>
+        <div class="control-group"><label>Guidance</label><input type="number" id="guidanceScale" value="7.0" min="0" max="15" step="0.5"></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="controls controls-3">
+        <div class="control-group"><label>Language</label>
+          <select id="vocalLang"><option value="en" selected>English</option><option value="zh">Chinese</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="es">Spanish</option><option value="fr">French</option><option value="unknown">Auto</option></select>
+        </div>
+        <div class="control-group"><label>Key</label><input type="text" id="keyScale" placeholder="e.g. C major"></div>
+        <div class="control-group"><label>Time Sig</label><input type="text" id="timeSig" placeholder="4/4"></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="checkbox-row">
+        <label><input type="checkbox" id="thinking" checked> LM Enhancement</label>
+        <label><input type="checkbox" id="useFormat"> Format via LLM</label>
+        <label><input type="checkbox" id="cotCaption" checked> CoT Caption</label>
+      </div>
+    </div>
+    <div class="section"><div class="btn-row">
+      <button class="gen-btn" id="customGenBtn" onclick="generateCustom()">Generate</button>
+      <button class="secondary-btn" onclick="formatInput()" style="flex:0.4">✨ Format</button>
+    </div></div>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <div class="results" id="results">
+    <div class="results-header">Generated Tracks <span class="results-count" id="resultsCount">0</span></div>
+    <div id="audioList"></div>
+    <div class="gen-info" id="genInfo"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="https://akash.network" target="_blank">🌐 Website</a>
+    <a href="https://discord.gg/akashnetwork" target="_blank">💬 Discord</a>
+    <a href="https://twitter.com/akashnet" target="_blank">𝕏 Twitter/X</a>
+  </div>
+  <p>Powered by Akash Network — Decentralized GPU Compute</p>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const BASE = () => '';
+let polling = null;
+
+async function checkHealth() {
+  const dot = $('apiDot');
+  const text = $('apiText');
+  try {
+    const r = await fetch(BASE() + '/health', { signal: AbortSignal.timeout(4000) });
+    if (!r.ok) {
+      dot.className = 'status-dot err';
+      text.className = 'status-text err';
+      text.textContent = '❌ API Disconnected';
+      return;
+    }
+    const j = await r.json();
+    if (j.data && j.data.status === 'ok') {
+      dot.className = 'status-dot ok';
+      text.className = 'status-text ok';
+      text.textContent = '✓ API Connected & Ready';
+    } else {
+      dot.className = 'status-dot err';
+      text.className = 'status-text err';
+      text.textContent = '❌ API Disconnected';
+    }
+  } catch {
+    dot.className = 'status-dot err';
+    text.className = 'status-text err';
+    text.textContent = '❌ API Disconnected';
+  }
+}
+window.addEventListener('load', () => setTimeout(checkHealth, 400));
+
+function switchTab(e) {
+  const tab = e.target;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  $('tab-' + tab.dataset.tab).classList.add('active');
+}
+
+function setStatus(msg, type) {
+  const el = $('status');
+  el.textContent = msg;
+  el.className = 'status visible' + (type ? ' ' + type : '');
+}
+function hideStatus() { $('status').className = 'status'; }
+
+async function loadRandom(sampleType) {
+  try {
+    const r = await fetch(BASE() + '/create_random_sample', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sample_type: sampleType }),
+    });
+    const j = await r.json();
+    const d = j.data;
+    if (!d) { setStatus('No example data', 'error'); return; }
+    if (sampleType === 'simple_mode') {
+      $('simpleQuery').value = d.description || d.caption || d.prompt || '';
+    } else {
+      if (d.caption) $('caption').value = d.caption;
+      if (d.lyrics) $('lyrics').value = d.lyrics;
+      if (d.bpm) $('bpm').value = d.bpm;
+      if (d.duration) $('duration').value = Math.min(d.duration, 120);
+      if (d.key_scale) $('keyScale').value = d.key_scale;
+      if (d.time_signature) $('timeSig').value = d.time_signature;
+      if (d.vocal_language) { try { $('vocalLang').value = d.vocal_language; } catch {} }
+    }
+    setStatus('Loaded example ✓', 'success');
+    setTimeout(hideStatus, 2000);
+  } catch (err) { setStatus('Error: ' + err.message, 'error'); }
+}
+
+async function formatInput() {
+  setStatus('Formatting…');
+  try {
+    const r = await fetch(BASE() + '/format_input', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prompt: $('caption').value,
+        lyrics: $('lyrics').value,
+      }),
+    });
+    const j = await r.json();
+    if (j.code !== 200) { setStatus('Format error', 'error'); return; }
+    const d = j.data;
+    if (d.caption) $('caption').value = d.caption;
+    if (d.lyrics) $('lyrics').value = d.lyrics;
+    if (d.bpm) $('bpm').value = d.bpm;
+    if (d.duration) $('duration').value = Math.min(d.duration, 120);
+    setStatus('Enhanced ✓', 'success');
+    setTimeout(hideStatus, 2000);
+  } catch (err) { setStatus('Error: ' + err.message, 'error'); }
+}
+
+function generateSimple() {
+  const q = $('simpleQuery').value.trim();
+  if (!q) { setStatus('Please describe the music.', 'error'); return; }
+  submitJob({
+    sample_mode: true,
+    sample_query: q,
+    thinking: false,
+    audio_duration: Math.min(parseInt($('simpleDuration').value) || 30, 120),
+    batch_size: parseInt($('simpleBatch').value) || 1,
+    audio_format: $('simpleFormat').value,
+  }, $('simpleGenBtn'));
+}
+
+function generateCustom() {
+  const cap = $('caption').value.trim();
+  if (!cap) { setStatus('Please enter a description.', 'error'); return; }
+  const bv = parseInt($('bpm').value);
+  submitJob({
+    prompt: cap,
+    lyrics: $('lyrics').value || '',
+    thinking: $('thinking').checked,
+    use_format: $('useFormat').checked,
+    use_cot_caption: $('cotCaption').checked,
+    audio_duration: Math.min(parseInt($('duration').value) || 30, 120),
+    bpm: bv > 0 ? bv : undefined,
+    inference_steps: Math.min(parseInt($('inferSteps').value) || 8, 32),
+    guidance_scale: Math.min(parseFloat($('guidanceScale').value) || 7.0, 15),
+    use_random_seed: true,
+    batch_size: 1,
+    audio_format: $('simpleFormat').value,
+    vocal_language: $('vocalLang').value,
+    key_scale: $('keyScale').value || '',
+    time_signature: $('timeSig').value || '',
+  }, $('customGenBtn'));
+}
+
+async function submitJob(body, btn) {
+  btn.disabled = true;
+  btn.className = 'gen-btn running';
+  btn.innerHTML = '<span class="spinner"></span>Submitting…';
+  setStatus('Sending request…');
+
+  Object.keys(body).forEach(k => { if (body[k] === undefined) delete body[k]; });
+
+  try {
+    const res = await fetch(BASE() + '/release_task', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) throw new Error('Server ' + res.status);
+    const j = await res.json();
+    const taskId = j.data && j.data.task_id;
+    if (!taskId) throw new Error('No task_id');
+    setStatus('Task queued • ' + taskId.slice(0, 8));
+    btn.innerHTML = '<span class="spinner"></span>Generating…';
+    pollForResult(taskId, btn);
+  } catch (err) {
+    setStatus('Error: ' + err.message, 'error');
+    btn.disabled = false;
+    btn.className = 'gen-btn';
+    btn.textContent = 'Generate';
+  }
+}
+
+function pollForResult(taskId, btn) {
+  if (polling) clearInterval(polling);
+  let attempts = 0;
+  polling = setInterval(async () => {
+    attempts++;
+    try {
+      const res = await fetch(BASE() + '/query_result', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task_id_list: [taskId] }),
+      });
+      if (!res.ok) { if (attempts > 10) { clearInterval(polling); setStatus('Poll failed', 'error'); } return; }
+      const j = await res.json();
+      const item = j.data[0];
+      if (item.status === 1) {
+        clearInterval(polling);
+        setStatus('Complete ✓', 'success');
+        displayResults(item);
+        btn.disabled = false;
+        btn.className = 'gen-btn';
+        btn.textContent = 'Generate';
+      } else if (item.status === 2) {
+        clearInterval(polling);
+        setStatus('Failed — try shorter duration or lower quality settings', 'error');
+        btn.disabled = false;
+        btn.className = 'gen-btn';
+        btn.textContent = 'Generate';
+      } else {
+        setStatus('Generating… (' + attempts * 2 + 's)');
+      }
+    } catch {
+      if (attempts > 180) { clearInterval(polling); setStatus('Timeout', 'error'); }
+    }
+  }, 2000);
+}
+
+function displayResults(item) {
+  const container = $('audioList'), wrap = $('results'), infoDiv = $('genInfo');
+  let audios = [];
+  try {
+    audios = Array.isArray(item.result) ? item.result : JSON.parse(item.result);
+  } catch {}
+  if (!audios.length) return;
+
+  container.innerHTML = '';
+  wrap.className = 'results visible';
+  $('resultsCount').textContent = audios.length;
+
+  audios.forEach((a, i) => {
+    const fp = a.file || '';
+    if (!fp) return;
+    const url = fp.startsWith('http') ? fp : (fp.startsWith('/') ? BASE() + fp : BASE() + '/v1/audio?path=' + encodeURIComponent(fp));
+    const m = a.metas || {};
+    const parts = [];
+    if (m.bpm && m.bpm !== 'N/A') parts.push(m.bpm + ' BPM');
+    if (m.duration && m.duration !== 'N/A') parts.push(m.duration + 's');
+    if (m.keyscale && m.keyscale !== 'N/A') parts.push(m.keyscale);
+
+    const card = document.createElement('div');
+    card.className = 'audio-card';
+    card.innerHTML =
+      '<div class="audio-card-header"><div class="audio-card-title">Track ' + (i+1) + '</div><div class="audio-card-meta">' + esc(parts.join(' · ')) + '</div></div>' +
+      '<audio controls preload="auto" src="' + esc(url) + '"></audio>' +
+      '<a class="download-btn" href="' + esc(url) + '" download>↓ Download</a>';
+    container.appendChild(card);
+  });
+
+  if (audios[0].generation_info) { infoDiv.textContent = audios[0].generation_info; infoDiv.className = 'gen-info visible'; }
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+</script>
+</body>
+</html>
