@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   thorchain:
-    image: edouardl/thorchain-bepswap-thorchain-ui
+    image: edouardl/thorchain-bepswap-web-ui:latest
     expose:
       - port: 5000
         as: 80
