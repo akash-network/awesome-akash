@@ -1,0 +1,36 @@
+---
+version: "2.0"
+services:
+  service-1:
+    image: "ghcr.io/decloudnodeslab/claude-chat:latest@sha256:a8089d807cfa0ce640972145a04a413ba9f31dfb7612cd0de610a86f28811ca5"
+    env:
+      - ANTHROPIC_API_KEY=
+      - CLAUDE_MODEL=claude-haiku-4-5-20251001
+      - BASIC_AUTH_USERNAME=AWESOME_YOUR_USERNAME
+      - BASIC_AUTH_PASSWORD=VERY_SECRET_PASSWORD
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    service-1:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 15Gi
+  placement:
+    dcloud:
+      pricing:
+        service-1:
+          denom: uact
+          amount: 100000
+deployment:
+  service-1:
+    dcloud:
+      profile: service-1
+      count: 1
