@@ -2,7 +2,7 @@
 
 [![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-claude-chat-workspace)
 
-A self-hosted web interface for working with the Anthropic Claude API inside a Docker container.
+A self-hosted web interface for working with the Anthropic Claude API inside a container.
 
 ## Description
 
