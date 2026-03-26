@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   unsloth:
-    image: ghcr.io/unsloth/unsloth:REPLACE_WITH_TAG
+    image: ghcr.io/unslothai/unsloth:2026.2.1-pt2.9.0-cu12.8-fixed-gguf-conversion
     expose:
       - port: 8080
         as: 8080
