@@ -8,7 +8,6 @@ services:
       - CLAUDE_MODEL=claude-haiku-4-5-20251001
       - BASIC_AUTH_USERNAME=AWESOME_YOUR_USERNAME
       - BASIC_AUTH_PASSWORD=VERY_SECRET_PASSWORD
-      - test=tes
     expose:
       - port: 8000
         as: 80
