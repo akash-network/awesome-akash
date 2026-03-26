@@ -85,6 +85,7 @@ To add a new template/resource:
 - [Morpheus Lumerin Node](morpheus-lumerin-node)
 - [Ollama](ollama-cpu)
 - [OpenClaw](openclaw)
+- [ClaudeCode](claude-chat-workspace)
 - [Open WebUI](open-webui-cpu)
 - [PrivateGPT](privategpt-cpu)
 - [Serge](serge-cpu)
