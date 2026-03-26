@@ -7,6 +7,7 @@ A self-hosted web interface for working with the Anthropic Claude API inside a D
 ## Description
 
 Claude Workspace is a minimalist, fully functional web interface for Claude that runs in a single Docker container without requiring any additional privileges. The interface provides chat with Claude, file uploads, and a built-in terminal in the browser.
+**Claude can fully interact with the container from within, installing services, creating scripts, and other applications.**
 
 ## Features
 
