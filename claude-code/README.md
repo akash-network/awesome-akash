@@ -10,11 +10,13 @@ Interaction via the **VS Code** web interface.
 
 After deployment, follow the link in the **"Leases"** tab.
 
+<img alt="image" src="./URI.jpg" />
+
 Enter the password you specified during deployment.
 
 Use the terminal command `claude login` or log in via the pre-installed extension.
 
-<img width="1558" height="936" alt="image" src="./claude_vs.jpg" />
+<img alt="image" src="./claude_vs.jpg" />
 
 **Your Claude is ready to go!** 
 
