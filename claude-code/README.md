@@ -6,7 +6,7 @@ A ready-to-use isolated environment with Cloud Code installed.
 
 Interaction via the **VS Code** web interface.
 
-**We recommend using persistent storage for the `/home/coder/` folder to avoid data loss when restarting the container.**
+**We recommend using persistent storage for the `/root/.claude/` folder to avoid data loss when restarting the container.**
 
 After deployment, follow the link in the **"Leases"** tab.
 
