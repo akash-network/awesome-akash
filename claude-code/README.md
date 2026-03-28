@@ -14,7 +14,7 @@ After deployment, follow the link in the **"Leases"** tab.
 
 Enter the password you specified during deployment.
 
-Use the terminal command `claude login` or log in via the pre-installed extension.
+Use the terminal command `claude auth login` or log in via the pre-installed extension.
 
 <img alt="image" src="./claude_vs.jpg" />
 
