@@ -2,7 +2,7 @@
   version: "2.0"
   services:
     eiza:
-      image: kylecohen01/elizatest
+      image: kylecohen01/elizatest:1.22
       expose:
         - port: 80
           as: 80
@@ -37,7 +37,7 @@
       dcloud:
         pricing:
           eiza:
-            denom: uakt
+            denom: uact
             amount: 10000
   deployment:
     eiza:

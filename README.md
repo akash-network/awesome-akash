@@ -69,13 +69,14 @@ To add a new template/resource:
 ### AI - CPU
 
 - [Alpaca.cpp](alpaca-cpp)
-- [Agent Zero](#agent-zero)
+- [Agent Zero](agent-zero)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
+- [Claude Code](claude-code)
 - [Daila](daila)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
@@ -99,6 +100,7 @@ To add a new template/resource:
 ### AI - GPU
 
 - [Ace Music AI](Ace-Music-AI)
+- [Autoresearch](autoresearch)
 - [AI-Image-App](AI-Image-App)
 - [Akash-AI-Music-Generator](akash-music-ai-generator)
 - [AUTOMATIC1111](AUTOMATIC1111)
@@ -171,7 +173,6 @@ To add a new template/resource:
 - [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
 - [StableSwarmUI](stableswarmui)
-- [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [Unsloth AI](unsloth-ai)
 - [vllm](vllm)
@@ -202,6 +203,7 @@ To add a new template/resource:
 
 ### Machine Learning
 
+- [Gradio](gradio-demo)
 - [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
@@ -283,7 +285,6 @@ Awesome DeFi apps you can deploy on Akash
 
 - [AvalancheGo](avalanche)
 - [Bitcoin](bitcoin)
-- [Bitcoin Cash Node](bitcoincashnode)
 - [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Centrifuge](centrifuge)
 - [Concordium node](concordium)
@@ -300,7 +301,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Prysm Beacon](prysm-beacon)
 - [Starknet Node by Juno](juno)
 - [Substrate Node](substrate-node)
-- [Vidulum](vidulum)
 - [Witness Chain Watchtower](witnesschain-watchtower)
 - [Zcash - Zcashd](zcash-zcashd)
 - [Zcash - Zebra](zcash-zebra)
@@ -341,7 +341,6 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Media
 
-- [FreeFlix Nucleus](freeflix-nucleus)
 
 ### Search Engines
 
@@ -377,7 +376,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Nanominer](nanominer-c11)
 - [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
-- [Quai Network](quai-gpu-miner)
 - [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
@@ -416,7 +414,6 @@ Awesome DeFi apps you can deploy on Akash
 ### Tools
 
 - [anubis](anubis)
-- [thirdweb](thirdweb)
 - [authsteem](authsteem)
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)

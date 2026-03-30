@@ -87,10 +87,10 @@ profiles:
         host: akash
       pricing:
         n8n:
-          denom: uakt
+          denom: uact
           amount: 200000
         postgres:
-          denom: uakt
+          denom: uact
           amount: 150000
 
 deployment:

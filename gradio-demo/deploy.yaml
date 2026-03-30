@@ -2,26 +2,25 @@
 version: "2.0"
 
 services:
-  ffnucleus:
-    image: harish1551/ff_nucleus:latest
+  gradio:
+    image: eb1609/gradio-demo:latest
     expose:
-      - port: 80
+      - port: 7860
         as: 80
         to:
           - global: true
-        accept:
-          - dcloud.nucleus.freeflix.live
 
 profiles:
   compute:
-    ffnucleus:
+    gradio:
       resources:
         cpu:
-          units: 0.1
+          units: 1.0
         memory:
-          size: 512Mi
+          size: 1Gi
         storage:
-          size: 512Mi
+          size: 1Gi
+
   placement:
     akash:
       attributes:
@@ -30,13 +29,12 @@ profiles:
         anyOf:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
-        ffnucleus: 
-          denom: uakt
+        gradio:
+          denom: uact
           amount: 10000
 
 deployment:
-  ffnucleus:
+  gradio:
     akash:
-      profile: ffnucleus
+      profile: gradio
       count: 1
-

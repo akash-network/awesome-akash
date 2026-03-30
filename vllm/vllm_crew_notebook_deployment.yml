@@ -68,10 +68,10 @@ profiles:
    dcloud:
      pricing:
        vllm:
-         denom: uakt
+         denom: uact
          amount: 1000000
        jupyter-app:
-         denom: uakt
+         denom: uact
          amount: 1000000
 
 

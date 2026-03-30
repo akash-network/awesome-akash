@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   hashicorp-vault:
-    image: vault
+    image: hashicorp/vault:1.21
     env:
       - VAULT_DEV_ROOT_TOKEN_ID=mysecrettoken
       - VAULT_DEV_LISTEN_ADDRESS=0.0.0.0:8200
@@ -32,7 +32,7 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         hashicorp-vault: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

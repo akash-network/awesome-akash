@@ -132,19 +132,19 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         botpress:
-          denom: uakt
+          denom: uact
           amount: 10000
         duckling:
-          denom: uakt
+          denom: uact
           amount: 10000
         lang:
-          denom: uakt
+          denom: uact
           amount: 10000
         postgres:
-          denom: uakt
+          denom: uact
           amount: 10000
         redis:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   botpress:

@@ -281,19 +281,19 @@ profiles:
     akash:
       pricing:
         app:
-          denom: uakt
+          denom: uact
           amount: 10000
         mempoolelectrs:
-          denom: uakt
+          denom: uact
           amount: 10000
         web:
-          denom: uakt
+          denom: uact
           amount: 10000
         api:
-          denom: uakt
+          denom: uact
           amount: 10000
         db:
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

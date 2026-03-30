@@ -70,10 +70,10 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         weaviate:
-          denom: uakt
+          denom: uact
           amount: 10000
         t2v-transformers:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   weaviate:

@@ -125,10 +125,10 @@ profiles:
         host: akash
       pricing:
         mainnet-node: 
-          denom: uakt
+          denom: uact
           amount: 10000
         mainnet-node-collector: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

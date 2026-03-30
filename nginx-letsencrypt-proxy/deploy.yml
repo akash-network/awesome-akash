@@ -69,7 +69,7 @@ profiles:
     dcloud:
       pricing:
         nginx-ssl:
-          denom: uakt
+          denom: uact
           amount: 1000
 deployment:
   nginx-ssl:

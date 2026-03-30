@@ -31,7 +31,7 @@ profiles:
     dcloud:
       pricing:
         swagger-ui:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   swagger-ui:

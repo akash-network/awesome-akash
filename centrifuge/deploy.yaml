@@ -54,7 +54,7 @@ profiles:
     dcloud:
       pricing:
         centrifuge:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   centrifuge:

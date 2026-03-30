@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   openclaw:
-    image: ghcr.io/zjuuu/openclaw-docker:openclaw-v2026.2.12@sha256:54078e1fc41c781a94f48846cf286f18d0632a4e49c69d78aee799ba938fffa0
+    image: ghcr.io/zjuuu/openclaw-docker:openclaw-v2026.3.13-1
     env:
       # REQUIRED: Set a strong password for the setup UI
       - SETUP_PASSWORD=CHANGE_ME_TO_STRONG_PASSWORD
@@ -47,7 +47,7 @@ profiles:
     akash:
       pricing:
         openclaw:
-          denom: uakt
+          denom: uact
           amount: 1000
 deployment:
   openclaw:

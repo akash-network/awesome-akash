@@ -71,7 +71,7 @@ profiles:
         chia-plotting: "true"
       pricing:
         chia:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   chia:
