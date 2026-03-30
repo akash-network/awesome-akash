@@ -133,6 +133,7 @@ To add a new template/resource:
 - [GPUStack Worker](gpustack-worker)
 - [Grok](grok)
 - [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
+- [Insanely-Fast-Whisper-AI-CLI+API](Insanely-Fast-Whisper-AI-CLI+API)
 - [InvokeAI](invoke-ai-gpu)
 - [Kimi-K2-Thinking](Kimi-K2-Thinking)
 - [Llama-2-70B](Llama-2-70B)
