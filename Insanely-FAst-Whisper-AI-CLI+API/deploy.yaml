@@ -1,0 +1,83 @@
+version: "2.0"
+
+services:
+  whisper:
+    image: rodrirr/wa:0.3
+
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+
+    env:
+      # Whisper model to use. Other options:
+      #   distil-whisper/large-v2   (faster, slightly less accurate)
+      #   openai/whisper-medium
+      #   openai/whisper-small
+      - MODEL_NAME=openai/whisper-large-v3
+
+      # GPU device index inside the container (almost always 0 on Akash)
+      - DEVICE_ID=0
+
+      # Reduce if you hit out-of-memory errors (try 4 or 8)
+      - BATCH_SIZE=24
+
+      # transcribe | translate
+      - TASK=transcribe
+
+      # Leave blank for Whisper auto-detection, or set e.g. "en", "es", "fr"
+      - LANGUAGE=
+
+      # chunk | word  (word gives word-level timestamps but is slower)
+      - TIMESTAMP_TYPE=chunk
+
+      # Required only for diarization (pyannote gated models).
+      # Create a token at https://huggingface.co/settings/tokens
+      # - HF_TOKEN=hf_your_token_here
+
+profiles:
+  compute:
+    whisper:
+      resources:
+        cpu:
+          units: 4           # 4 vCPUs for data loading / pre-processing
+        memory:
+          size: 16Gi         # 16 GB RAM — large-v3 needs headroom
+        storage:
+          - size: 20Gi       # OS + model weights cache (~8 GB for large-v3)
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                # Leave blank to accept any NVIDIA GPU (widest provider choice).
+                # Uncomment ONE block below to pin to a specific model:
+
+                # Best performance (A100):
+                # - model: a100
+
+                # Good balance (RTX 4090 / 3090):
+                # - model: rtx4090
+                # - model: rtx3090
+
+                # Budget option (T4 — still fits large-v3 at batch_size 8-12):
+                # - model: t4
+
+  placement:
+    akash:
+      # Optional: restrict to specific countries.
+      # attributes:
+      #   - key: region
+      #     value: us-west
+
+      pricing:
+        whisper:
+          denom: uact
+          amount: 10000
+
+deployment:
+  whisper:
+    akash:
+      profile: whisper
+      count: 1               # run a single replica
