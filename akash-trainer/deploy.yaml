@@ -1,0 +1,56 @@
+---
+version: "2.0"
+
+services:
+  training:
+    image: andyhuynh24/akash-trainer:latest
+    env:
+      # ── Required ──
+      # GitHub repo URL to train
+      - REPO_URL=https://github.com/YOUR_USERNAME/YOUR_REPO.git
+      # Training command
+      - TRAIN_CMD=python3 train.py
+      # GitHub token with repo scope (for pushing results back)
+      - GITHUB_TOKEN=
+
+      # ── Optional ──
+      # Branch to clone (default: main, falls back to master)
+      - REPO_BRANCH=main
+      # Extra setup before training (install packages, download data, etc.)
+      - SETUP_CMD=
+      # Custom requirements file path (default: requirements.txt)
+      - REQUIREMENTS=requirements.txt
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    training:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+        storage:
+          - size: 20Gi
+
+  placement:
+    akash:
+      pricing:
+        training:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  training:
+    akash:
+      profile: training
+      count: 1
