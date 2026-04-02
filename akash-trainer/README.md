@@ -2,7 +2,7 @@
 
 **An openclaw-powered agent that let you train any ML/AI model on Akash GPUs with just a message. The agent would automate the whole training process. No setup. Just deploy.**
 
-Point it at a GitHub repo → it clones, installs, trains on a GPU, and pushes results back to your repo automatically.
+Point it at a GitHub repo → it clones, installs, trains on a GPU, and pushes results back to your repo + close the deployment automatically. 
 
 ---
 
