@@ -1,4 +1,4 @@
-# 🦞 Akash Trainer
+# 🤖 Akash Trainer
 
 **An openclaw-powered agent that let you train any ML/AI model on Akash GPUs with just a message. The agent would automate the whole training process. No setup. Just deploy.**
 
