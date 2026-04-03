@@ -207,7 +207,7 @@ To add a new template/resource:
 - [Status](status)
 
 ### Machine Learning
-
+- [Akash Trainer](akash-trainer)
 - [Gradio](gradio-demo)
 - [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)
