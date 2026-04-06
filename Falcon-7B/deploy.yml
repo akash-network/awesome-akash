@@ -35,7 +35,7 @@ profiles:
     akash:
       pricing:
         falcon7b: 
-          denom: uakt
+          denom: uact
           amount: 100000
 
 deployment:

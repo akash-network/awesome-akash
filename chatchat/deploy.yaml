@@ -64,10 +64,10 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         chatchat:
-          denom: uakt
+          denom: uact
           amount: 10000
         postgres:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   chatchat:

@@ -47,7 +47,7 @@ profiles:
     westcoast:
       pricing:
         gpu-test:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   gpu-test:

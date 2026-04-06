@@ -150,7 +150,7 @@ profiles:
           #
           # This is set conservatively high to ensure bids.
           # Providers will likely bid lower. Adjust after seeing actual bids.
-          denom: uakt
+          denom: uact
           amount: 1000000  # 1000000 uakt per block (~10 seconds)
           # amount: 500000  # Testnet alternative
 

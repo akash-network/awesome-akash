@@ -57,10 +57,10 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         web:
-          denom: uakt
+          denom: uact
           amount: 10000
         mongo: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

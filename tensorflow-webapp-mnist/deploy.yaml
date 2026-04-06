@@ -55,13 +55,13 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         tfserver:
-          denom: uakt
+          denom: uact
           amount: 10000
         flaskserver:
-          denom: uakt
+          denom: uact
           amount: 10000
         web:
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

@@ -33,7 +33,7 @@ profiles:
     akash:
       pricing:
         uptime-kuma-persistent:
-          denom: uakt
+          denom: uact
           amount: 10000
       signedBy:
         anyOf:

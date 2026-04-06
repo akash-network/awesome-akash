@@ -34,7 +34,7 @@ profiles:
     dcloud:
       pricing:
         quai-miner:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   quai-miner:

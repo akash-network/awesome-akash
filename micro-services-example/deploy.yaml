@@ -225,34 +225,34 @@ profiles:
     dcloud:
       pricing:
         carts:
-          denom: uakt
+          denom: uact
           amount: 100000
         carts-db:
-          denom: uakt
+          denom: uact
           amount: 100000
         catalog:
-          denom: uakt
+          denom: uact
           amount: 100000
         catalog-db:
-          denom: uakt
+          denom: uact
           amount: 100000
         checkout:
-          denom: uakt
+          denom: uact
           amount: 100000
         checkout-redis:
-          denom: uakt
+          denom: uact
           amount: 100000
         orders:
-          denom: uakt
+          denom: uact
           amount: 100000
         orders-db:
-          denom: uakt
+          denom: uact
           amount: 100000
         rabbitmq:
-          denom: uakt
+          denom: uact
           amount: 100000
         ui:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   carts:

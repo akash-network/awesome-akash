@@ -37,7 +37,7 @@
       dcloud:
         pricing:
           eiza:
-            denom: uakt
+            denom: uact
             amount: 10000
   deployment:
     eiza:

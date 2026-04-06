@@ -51,7 +51,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         csgo:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   csgo:
