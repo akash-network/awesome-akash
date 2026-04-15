@@ -56,15 +56,74 @@ services:
           cp cli-config.yaml.example /workspace/hermes-home/config.yaml
         fi
 
+        python3 - <<'PY'
+        import os
+        from pathlib import Path
+        import yaml
+
+        home = Path('/workspace/hermes-home')
+        env_path = home / '.env'
+        config_path = home / 'config.yaml'
+        marker_path = home / '.akash-telegram-autoconfigured'
+
+        telegram_token = os.getenv('TELEGRAM_BOT_TOKEN', '').strip()
+        telegram_home = os.getenv('TELEGRAM_HOME_CHANNEL', '').strip()
+        home_name = os.getenv('TELEGRAM_HOME_CHANNEL_NAME', 'Home').strip() or 'Home'
+        model_default = os.getenv('HERMES_MODEL', '').strip()
+        model_provider = os.getenv('HERMES_PROVIDER', '').strip()
+
+        if telegram_token:
+            existing = env_path.read_text(encoding='utf-8') if env_path.exists() else ''
+            additions = []
+            if 'TELEGRAM_BOT_TOKEN=' not in existing:
+                additions.append(f'TELEGRAM_BOT_TOKEN={telegram_token}')
+            if additions:
+                prefix = '' if not existing or existing.endswith('\n') else '\n'
+                env_path.write_text(existing + prefix + '\n'.join(additions) + '\n', encoding='utf-8')
+
+        if telegram_token and telegram_home and not marker_path.exists():
+            cfg = yaml.safe_load(config_path.read_text(encoding='utf-8')) or {}
+            platforms = cfg.setdefault('platforms', {})
+            telegram = platforms.setdefault('telegram', {})
+            telegram['enabled'] = True
+            telegram['reply_to_mode'] = telegram.get('reply_to_mode', 'first')
+            telegram['home_channel'] = {
+                'platform': 'telegram',
+                'chat_id': str(telegram_home),
+                'name': home_name,
+            }
+            cfg.setdefault('telegram', {})
+            if model_default:
+                cfg.setdefault('model', {})['default'] = model_default
+            if model_provider:
+                cfg.setdefault('model', {})['provider'] = model_provider
+            config_path.write_text(yaml.safe_dump(cfg, sort_keys=False, allow_unicode=True), encoding='utf-8')
+            marker_path.write_text('configured\n', encoding='utf-8')
+        PY
+
         printf '%s\n' '#!/usr/bin/env bash' 'export HERMES_HOME=/workspace/hermes-home' 'export HOME=/workspace/hermes-home/home' 'export PATH="/root/.local/bin:/workspace/hermes-agent/.venv/bin:$PATH"' 'cd /workspace/hermes-agent' 'exec hermes "$@"' > /usr/local/bin/hermes-akash
         chmod +x /usr/local/bin/hermes-akash
 
-        printf '%s\n' 'Hermes Agent is installed.' '' 'Persistent state:' '  HERMES_HOME=/workspace/hermes-home' '' 'Quick start after SSH:' '  hermes-akash setup' '  hermes-akash gateway setup' '  hermes-akash gateway start' > /etc/motd
+        printf '%s\n' 'Hermes Agent is installed.' '' 'Persistent state:' '  HERMES_HOME=/workspace/hermes-home' '' 'Quick start after SSH:' '  hermes-akash setup' '  hermes-akash gateway setup' '  hermes-akash gateway start' '' 'Hybrid autostart:' '  If TELEGRAM_BOT_TOKEN and TELEGRAM_HOME_CHANNEL are set,' '  Hermes will auto-configure Telegram and start the gateway.' > /etc/motd
+
+        if [ -n "${TELEGRAM_BOT_TOKEN:-}" ] && [ -n "${TELEGRAM_HOME_CHANNEL:-}" ]; then
+          echo 'Starting sshd in background and Hermes gateway in foreground...'
+          /usr/sbin/sshd -D -e &
+          exec hermes-akash gateway start
+        fi
 
         /usr/sbin/sshd -D -e
     env:
       - SSH_PUBKEY=YOUR_SSH_PUBLIC_KEY
       - HERMES_REF=main
+      - TELEGRAM_BOT_TOKEN=
+      - TELEGRAM_HOME_CHANNEL=
+      - TELEGRAM_HOME_CHANNEL_NAME=Home
+      - HERMES_MODEL=
+      - HERMES_PROVIDER=
+      - OPENROUTER_API_KEY=
+      - OPENAI_API_KEY=
+      - ANTHROPIC_API_KEY=
     params:
       storage:
         data:
