@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": true,
+  "logoUrl": "https://raw.githubusercontent.com/NousResearch/hermes-agent/main/assets/banner.png"
+}

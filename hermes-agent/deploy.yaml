@@ -1,0 +1,98 @@
+---
+version: "2.0"
+services:
+  hermes-agent:
+    image: ubuntu:24.04
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+    command:
+      - bash
+      - "-lc"
+    args:
+      - |
+        set -euo pipefail
+        export DEBIAN_FRONTEND=noninteractive
+
+        apt-get update
+        apt-get install -y --no-install-recommends ca-certificates curl ffmpeg git openssh-server procps python3 python3-dev python3-venv ripgrep build-essential gcc libffi-dev
+        rm -rf /var/lib/apt/lists/*
+
+        mkdir -p /run/sshd /workspace/hermes-home/home
+        mkdir -p /root/.ssh
+        chmod 700 /root/.ssh
+        if [ -n "${SSH_PUBKEY:-}" ]; then
+          printf "%s\n" "$SSH_PUBKEY" > /root/.ssh/authorized_keys
+          chmod 600 /root/.ssh/authorized_keys
+        fi
+
+        if [ ! -d /workspace/hermes-agent/.git ]; then
+          git clone --depth 1 --branch "$HERMES_REF" https://github.com/NousResearch/hermes-agent.git /workspace/hermes-agent
+        else
+          cd /workspace/hermes-agent
+          git fetch --depth 1 origin "$HERMES_REF"
+          git checkout FETCH_HEAD
+        fi
+
+        if [ ! -x /root/.local/bin/uv ]; then
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+        fi
+        export PATH="/root/.local/bin:$PATH"
+
+        cd /workspace/hermes-agent
+        if [ ! -d .venv ]; then
+          uv venv
+        fi
+        . .venv/bin/activate
+        uv pip install --upgrade pip setuptools wheel
+        uv pip install -e ".[messaging,cron,pty,mcp,honcho,web]"
+
+        if [ ! -f /workspace/hermes-home/.env ]; then
+          cp .env.example /workspace/hermes-home/.env
+        fi
+        if [ ! -f /workspace/hermes-home/config.yaml ]; then
+          cp cli-config.yaml.example /workspace/hermes-home/config.yaml
+        fi
+
+        printf '%s\n' '#!/usr/bin/env bash' 'export HERMES_HOME=/workspace/hermes-home' 'export HOME=/workspace/hermes-home/home' 'export PATH="/root/.local/bin:/workspace/hermes-agent/.venv/bin:$PATH"' 'cd /workspace/hermes-agent' 'exec hermes "$@"' > /usr/local/bin/hermes-akash
+        chmod +x /usr/local/bin/hermes-akash
+
+        printf '%s\n' 'Hermes Agent is installed.' '' 'Persistent state:' '  HERMES_HOME=/workspace/hermes-home' '' 'Quick start after SSH:' '  hermes-akash setup' '  hermes-akash gateway setup' '  hermes-akash gateway start' > /etc/motd
+
+        /usr/sbin/sshd -D -e
+    env:
+      - SSH_PUBKEY=YOUR_SSH_PUBLIC_KEY
+      - HERMES_REF=main
+    params:
+      storage:
+        data:
+          mount: /workspace
+          readOnly: false
+profiles:
+  compute:
+    hermes-agent:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 8Gi
+          - name: data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      pricing:
+        hermes-agent:
+          denom: uact
+          amount: 20000
+deployment:
+  hermes-agent:
+    akash:
+      profile: hermes-agent
+      count: 1
