@@ -61,6 +61,17 @@ And whichever provider keys you use, for example:
 
 If `TELEGRAM_BOT_TOKEN` or `TELEGRAM_HOME_CHANNEL` is left empty, the container does not auto-start the gateway. It behaves like a normal SSH workspace instead.
 
+## OAuth limitation
+
+The environment-variable bootstrap path is best for API-key based providers such as OpenRouter, OpenAI API, or Anthropic API.
+
+Providers that require an interactive OAuth or device-code login flow — for example `openai-codex` / ChatGPT-style login — are not fully bootstrapable from `deploy.yaml` alone today. They still need a post-deploy login step so Hermes can obtain and persist refreshable OAuth credentials in its auth store / credential pool.
+
+In other words:
+
+- API key providers: good fit for Akash env vars
+- OAuth-only / device-code providers: still require interactive login after deploy
+
 After SSH login, you can still run:
 
 ```bash
