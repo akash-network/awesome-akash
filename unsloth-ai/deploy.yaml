@@ -1,28 +1,80 @@
 ---
 version: "2.0"
+
 services:
   unsloth:
-    image: ghcr.io/unsloth/unsloth:REPLACE_WITH_TAG
+    image: unsloth/unsloth:2026.4.6-pt2.10.0-vllm-0.16.0-cu12.8-studio-release-v0.1.36-beta
+    # Akash sets no-new-privileges=true, which blocks the sudo calls
+    # in the default entrypoint.sh. This command bypasses it entirely,
+    # starting Studio and Jupyter directly as the unsloth user.
+    command:
+      - /bin/bash
+      - -c
+      - |
+        echo "[override] Bypassing sudo-based entrypoint for Akash compatibility"
+
+        export HOME=/home/unsloth
+        mkdir -p /workspace/work /workspace/.cache/huggingface
+
+        # Locate unsloth binary
+        UNSLOTH_BIN=""
+        for candidate in /opt/venv/bin/unsloth /home/unsloth/.local/bin/unsloth; do
+          if [ -x "$candidate" ]; then UNSLOTH_BIN="$candidate"; break; fi
+        done
+        if [ -z "$UNSLOTH_BIN" ]; then
+          UNSLOTH_BIN=$(which unsloth 2>/dev/null || true)
+        fi
+        echo "[override] Unsloth binary found at: ${UNSLOTH_BIN:-NOT FOUND}"
+
+        # Start Jupyter Lab in background (non-fatal if it fails)
+        echo "[override] Starting Jupyter Lab on port 8888..."
+        /opt/venv/bin/jupyter lab \
+          --ip=0.0.0.0 \
+          --port=8888 \
+          --no-browser \
+          --ServerApp.token="${JUPYTER_PASSWORD:-unsloth}" \
+          --ServerApp.allow_origin='*' \
+          --ServerApp.allow_remote_access=True \
+          --ServerApp.open_browser=False \
+          --ServerApp.root_dir=/workspace \
+          || echo "[override] Jupyter Lab failed to start (non-fatal)" &
+        echo "[override] Jupyter Lab launched (PID: $!)"
+
+        # Start Unsloth Studio in foreground
+        # exec replaces the shell so Studio receives signals directly.
+        echo "[override] Starting Unsloth Studio on port 8000..."
+        if [ -n "$UNSLOTH_BIN" ]; then
+          exec "$UNSLOTH_BIN" studio -H 0.0.0.0 -p 8000
+        else
+          echo "[override] ERROR: unsloth binary not found, falling back to Python module"
+          exec /opt/venv/bin/python -m unsloth_cli studio -H 0.0.0.0 -p 8000
+        fi
     expose:
-      - port: 8080
-        as: 8080
+      - port: 8888
+        as: 8888
         to:
           - global: true
-    command:
-      - /bin/sh
-      - "-c"
-    args:
-      - >-
-        unsloth serve --port ${PORT:-8080}
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
     env:
-      - "PORT=8080"
-      - "UNSLOTH_MODEL=auto"
-      - "UNSLOTH_WORKERS=1"
-      - "MODEL_CACHE_PATH=/mnt/models"
+      - "PATH=/home/unsloth/.local/bin:/opt/venv/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - "VIRTUAL_ENV=/opt/venv"
+      - "CUDA_HOME=/usr/local/cuda"
+      - "HF_HOME=/workspace/.cache/huggingface"
+      - "HF_HUB_ENABLE_HF_TRANSFER=1"
+      - "LD_LIBRARY_PATH=/usr/local/cuda-12.8/lib64:/opt/venv/lib/python3.12/site-packages/torch/lib:/usr/lib/x86_64-linux-gnu:/usr/local/lib"
+      - "PYTHONWARNINGS=ignore"
+      - "JUPYTER_PASSWORD=unsloth"
+      - "JUPYTER_PORT=8888"
+      - "USER_PASSWORD=unsloth2024"
+      - "UNSLOTH_DOCKER=1"
+      - "UNSLOTH_VLLM_STANDBY=1"
     params:
       storage:
         data:
-          mount: /mnt/models
+          mount: /workspace/work
           readOnly: false
 
 profiles:
@@ -34,9 +86,9 @@ profiles:
         memory:
           size: 32Gi
         storage:
-          - size: 50Gi
+          - size: 100Gi
           - name: data
-            size: 100Gi
+            size: 200Gi
             attributes:
               persistent: true
               class: beta3
@@ -46,11 +98,13 @@ profiles:
             vendor:
               nvidia:
                 - model: a100
+                - model: h100
+                - model: a100-80gb
   placement:
     dcloud:
       pricing:
         unsloth:
-          denom: uakt
+          denom: uact
           amount: 15000
 
 deployment:
