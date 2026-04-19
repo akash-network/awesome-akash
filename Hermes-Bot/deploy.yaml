@@ -1,0 +1,52 @@
+version: "2.0"
+services:
+  hermes-bot:
+    image: ghcr.io/sandeep-narahari/hermes-agent-akash:sha-0e91691
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    env:
+      - OPENAI_BASE_URL=https://api.akashml.com/v1
+      - OPENAI_API_KEY=xxxxxxxxxxxxxxxxx
+      - LLM_MODEL=MiniMaxAI/MiniMax-M2.5
+      - TELEGRAM_BOT_TOKEN=xxxxxxxxxxx
+      - TELEGRAM_ALLOWED_USERS=xxxxxxxxxx
+      - GATEWAY_ALLOW_ALL_USERS=false
+      - HERMES_HOME=/opt/data/data_dir
+    params:
+      storage:
+        data:
+          mount: /opt/data
+          readOnly: false
+profiles:
+  compute:
+    hermes-bot:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        hermes-bot:
+          denom: uact
+          amount: 1000
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+        allOf: []
+deployment:
+  hermes-bot:
+    dcloud:
+      profile: hermes-bot
+      count: 1
