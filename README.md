@@ -2,7 +2,7 @@
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
-Instructions on how to deploy the SDL files in this repository can be found in the [deployments overview](https://akash.network/docs/deployments/overview/).
+Instructions on how to deploy the SDL files in this repository can be found in the [deployments overview](https://akash.network/docs/developers/deployment/#overview).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet](https://x.com/akashnet) to stay in the loop with updates and announcements.
@@ -69,16 +69,19 @@ To add a new template/resource:
 ### AI - CPU
 
 - [Alpaca.cpp](alpaca-cpp)
+- [Agent Zero](agent-zero)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [Bark small](bark-small)
 - [Botpress](botpress)
 - [ChatChat](chatchat)
+- [Claude Code](claude-code)
 - [Daila](daila)
+- [Eliza AI Agent](Elizaos-ai_Agents)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
-- [Eliza AI Agent](Elizaos-ai_Agents)
+- [Hermes Agent](Hermes-Agent)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
 - [Morpheus Lumerin Node](morpheus-lumerin-node)
@@ -98,7 +101,10 @@ To add a new template/resource:
 ### AI - GPU
 
 - [Ace Music AI](Ace-Music-AI)
+- [Autoresearch](autoresearch)
+- [Autoresearch at Home](autoresearch-at-home)
 - [AI-Image-App](AI-Image-App)
+- [Akash-AI-Music-Generator](akash-music-ai-generator)
 - [AUTOMATIC1111](AUTOMATIC1111)
 - [Axolotl AI](axolotlai)
 - [BERT](bert)
@@ -123,12 +129,14 @@ To add a new template/resource:
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
+- [Gemma 3 4B](gemma3-4b)
 - [Gensyn RL Swarm](gensyn-rl-swarm)
 - [GPT-Neo](gpt-neo)
 - [GPUStack](gpustack)
 - [GPUStack Worker](gpustack-worker)
 - [Grok](grok)
 - [Hermes-4-405B-FP8](Hermes-4-405B-FP8)
+- [Insanely-Fast-Whisper-AI-CLI+API](Insanely-Fast-Whisper-AI-CLI+API)
 - [InvokeAI](invoke-ai-gpu)
 - [Kimi-K2-Thinking](Kimi-K2-Thinking)
 - [Llama-2-70B](Llama-2-70B)
@@ -161,6 +169,9 @@ To add a new template/resource:
 - [Qwen3-235B-A22B-Thinking-2507-FP8](Qwen3-235B-A22B-Thinking-2507-FP8)
 - [Qwen3-Coder-480B-A35B-Instruct](Qwen3-Coder-480B-A35B-Instruct)
 - [Qwen3-Next-80B-A3B-Instruct](Qwen3-Next-80B-A3B-Instruct)
+- [Qwen3.5-27B](Qwen3.5-27B)
+- [Qwen3.5-35B-A3B](Qwen3.5-35B-A3B)
+- [Qwen3.5-9B](Qwen3.5-9B)
 - [Qwen-QwQ-32B](QwQ-32B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
@@ -169,7 +180,6 @@ To add a new template/resource:
 - [Stable Diffusion Webui](stable-diffusion-webui)
 - [StableStudio](StableStudio)
 - [StableSwarmUI](stableswarmui)
-- [Text generation WebUi](text-generation-webui)
 - [TTS](TTS)
 - [Unsloth AI](unsloth-ai)
 - [vllm](vllm)
@@ -199,7 +209,8 @@ To add a new template/resource:
 - [Status](status)
 
 ### Machine Learning
-
+- [Akash Trainer](akash-trainer)
+- [Gradio](gradio-demo)
 - [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
@@ -281,7 +292,6 @@ Awesome DeFi apps you can deploy on Akash
 
 - [AvalancheGo](avalanche)
 - [Bitcoin](bitcoin)
-- [Bitcoin Cash Node](bitcoincashnode)
 - [Bitcoin Knots and mempool UI](bitcoin-knots-mempool-ui)
 - [Centrifuge](centrifuge)
 - [Concordium node](concordium)
@@ -298,7 +308,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Prysm Beacon](prysm-beacon)
 - [Starknet Node by Juno](juno)
 - [Substrate Node](substrate-node)
-- [Vidulum](vidulum)
 - [Witness Chain Watchtower](witnesschain-watchtower)
 - [Zcash - Zcashd](zcash-zcashd)
 - [Zcash - Zebra](zcash-zebra)
@@ -339,7 +348,6 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Media
 
-- [FreeFlix Nucleus](freeflix-nucleus)
 
 ### Search Engines
 
@@ -375,7 +383,6 @@ Awesome DeFi apps you can deploy on Akash
 - [Nanominer](nanominer-c11)
 - [NBMiner](nbminer-c11)
 - [OneZeroMiner](onezerominer-c11)
-- [Quai Network](quai-gpu-miner)
 - [RainbowMiner GPU](rainbowminer-c11)
 - [Rigel](rigel-c11)
 - [SRBMiner-MULTI](srbminer-multi-c11)
@@ -414,7 +421,6 @@ Awesome DeFi apps you can deploy on Akash
 ### Tools
 
 - [anubis](anubis)
-- [thirdweb](thirdweb)
 - [authsteem](authsteem)
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)

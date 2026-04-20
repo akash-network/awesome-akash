@@ -125,16 +125,16 @@ profiles:
         host: akash
       pricing:
         postgresql: 
-          denom: uakt
+          denom: uact
           amount: 10000
         redis: 
-          denom: uakt
+          denom: uact
           amount: 10000
         discourse: 
-          denom: uakt
+          denom: uact
           amount: 10000
         sidekiq: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 

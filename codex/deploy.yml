@@ -225,13 +225,13 @@ profiles:
     dcloud:
       pricing:
         codex:
-          denom: uakt
+          denom: uact
           amount: 100000
         codexapp:
-          denom: uakt
+          denom: uact
           amount: 100000
         nginx:
-          denom: uakt
+          denom: uact
           amount: 100000
 
 deployment:

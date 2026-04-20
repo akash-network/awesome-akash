@@ -1,6 +1,5 @@
 ---
 version: "2.0"
-
 services:
   anubis:
     image: ghcr.io/techarohq/anubis:latest
@@ -19,17 +18,13 @@ services:
      # - POLICY_FNAME=/data/cfg/botPolicy.yaml
       - OG_PASSTHROUGH=true
       - OG_EXPIRY_TIME=24h
-
   nginx:
     image: nginx
     expose:
     - port: 80
       as: 80
       to:
-        - service: anubis
- 
-
- 
+        - service: anubis 
 profiles:
   compute:
     anubis:
@@ -40,18 +35,29 @@ profiles:
           size: 1Gi
         storage:
           size: 200Mi
-
-    
+    nginx:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 256Mi
+        storage:
+          size: 100Mi    
   placement:
     dcloud:
       pricing:
         anubis:
-          denom: uakt
+          denom: uact
           amount: 100000
-
+        nginx:
+          denom: uact
+          amount: 100000
 deployment:
   anubis:
     dcloud:
       profile: anubis
       count: 1
-
+  nginx:
+    dcloud:
+      profile: nginx
+      count: 1

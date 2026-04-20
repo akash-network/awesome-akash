@@ -44,7 +44,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         gpustack-worker:
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

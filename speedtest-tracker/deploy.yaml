@@ -49,7 +49,7 @@ profiles:
     akash:
       pricing:
         speedtest-tracker:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   speedtest-tracker:

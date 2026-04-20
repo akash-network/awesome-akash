@@ -1,0 +1,40 @@
+---
+version: "2.0"
+
+services:
+  gradio:
+    image: eb1609/gradio-demo:latest
+    expose:
+      - port: 7860
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    gradio:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        gradio:
+          denom: uact
+          amount: 10000
+
+deployment:
+  gradio:
+    akash:
+      profile: gradio
+      count: 1

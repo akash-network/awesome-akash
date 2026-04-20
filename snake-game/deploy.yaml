@@ -43,10 +43,10 @@ profiles:
     akash:
       pricing:
         snake: 
-          denom: uakt
+          denom: uact
           amount: 10000
         mongo: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:
