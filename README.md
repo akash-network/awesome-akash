@@ -415,6 +415,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Decentralized Storage
 
+- [Akave](akave)
 - [Codex](codex)
 - [IPFS](ipfs)
 
