@@ -32,8 +32,8 @@ profiles:
     dcloud:
       pricing:
         akave-test:
-          denom: uakt
-          amount: 100000   # 0.1 AKT max per block
+          denom: uact
+          amount: 100000  
 
 deployment:
   akave-test:
