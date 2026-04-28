@@ -2,7 +2,7 @@
 
 Awesome Akash is a curated list of awesome resources people can use to familiarize themselves with [Akash](https://akash.network) and includes examples of several applications they can deploy on the platform. Please submit a pull request if you know any resources that might be helpful to other developers.
 
-Instructions on how to deploy the SDL files in this repository can be found in the [deployments overview](https://akash.network/docs/deployments/overview/).
+Instructions on how to deploy the SDL files in this repository can be found in the [deployments overview](https://akash.network/docs/developers/deployment/#overview).
 
 Join our [Discord](https://discord.akash.network) if you have questions or concerns. Our team is always eager to hear from you.
 Also, follow [@akashnet](https://x.com/akashnet) to stay in the loop with updates and announcements.
@@ -78,9 +78,10 @@ To add a new template/resource:
 - [ChatChat](chatchat)
 - [Claude Code](claude-code)
 - [Daila](daila)
+- [Eliza AI Agent](Elizaos-ai_Agents)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
-- [Eliza AI Agent](Elizaos-ai_Agents)
+- [Hermes Agent](Hermes-Agent)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
 - [Morpheus Lumerin Node](morpheus-lumerin-node)
@@ -101,6 +102,7 @@ To add a new template/resource:
 
 - [Ace Music AI](Ace-Music-AI)
 - [Autoresearch](autoresearch)
+- [Autoresearch at Home](autoresearch-at-home)
 - [AI-Image-App](AI-Image-App)
 - [Akash-AI-Music-Generator](akash-music-ai-generator)
 - [AUTOMATIC1111](AUTOMATIC1111)
@@ -127,6 +129,7 @@ To add a new template/resource:
 - [Flan-T5 XXL](flan-t5-xxl)
 - [FLock Validator](FLock-validator)
 - [FLock-Training-Node](FLock-training-node)
+- [Gemma 3 4B](gemma3-4b)
 - [Gensyn RL Swarm](gensyn-rl-swarm)
 - [GPT-Neo](gpt-neo)
 - [GPUStack](gpustack)
@@ -166,6 +169,9 @@ To add a new template/resource:
 - [Qwen3-235B-A22B-Thinking-2507-FP8](Qwen3-235B-A22B-Thinking-2507-FP8)
 - [Qwen3-Coder-480B-A35B-Instruct](Qwen3-Coder-480B-A35B-Instruct)
 - [Qwen3-Next-80B-A3B-Instruct](Qwen3-Next-80B-A3B-Instruct)
+- [Qwen3.5-27B](Qwen3.5-27B)
+- [Qwen3.5-35B-A3B](Qwen3.5-35B-A3B)
+- [Qwen3.5-9B](Qwen3.5-9B)
 - [Qwen-QwQ-32B](QwQ-32B)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
@@ -203,7 +209,7 @@ To add a new template/resource:
 - [Status](status)
 
 ### Machine Learning
-
+- [Akash Trainer](akash-trainer)
 - [Gradio](gradio-demo)
 - [Ray Cluster](ray)
 - [Jupyter Notebook](jupyter)

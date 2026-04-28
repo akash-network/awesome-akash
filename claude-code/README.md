@@ -10,13 +10,13 @@ Interaction via the **VS Code** web interface.
 
 After deployment, follow the link in the **"Leases"** tab.
 
-<img alt="image" src="./URI.jpg" />
+<img alt="image" src="https://github.com/akash-network/awesome-akash/blob/master/claude-code/URI.jpg" />
 
 Enter the password you specified during deployment.
 
 Use the terminal command `claude auth login` or log in via the pre-installed extension.
 
-<img alt="image" src="./claude_vs.jpg" />
+<img alt="image" src="https://github.com/akash-network/awesome-akash/blob/master/claude-code/claude_vs.jpg" />
 
 **Your Claude is ready to go!** 
 
