@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentral Voice - Powered by Akash Network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #2d2d2d;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 65, 77, 0.5);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            border: 2px solid #FF414D;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #FF414D;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #444;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: border-color 0.3s;
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #FF414D;
+        }
+
+        .char-count {
+            text-align: right;
+            color: #999;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #444;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            background: #1a1a1a;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #FF414D;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slider-value {
+            min-width: 50px;
+            text-align: center;
+            font-weight: 600;
+            color: #FF414D;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            padding: 0;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e0e0e0;
+            border: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #FF414D;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #FF414D;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: #FF414D;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: #e63946;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 65, 77, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .audio-player {
+            margin-top: 24px;
+            padding: 24px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 2px solid #FF414D;
+            display: none;
+        }
+
+        .audio-player.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .audio-player h3 {
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        audio {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2d2d2d;
+            color: #FF414D;
+            border: 2px solid #FF414D;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .download-btn:hover {
+            background: #FF414D;
+            color: white;
+        }
+
+        .error {
+            padding: 16px;
+            background: #ffe6e6;
+            border: 2px solid #FF414D;
+            border-radius: 8px;
+            color: #c33;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .config {
+            background: #1a1a1a;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border-left: 4px solid #FF414D;
+        }
+
+        .config input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-size: 13px;
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+
+        .config input:focus {
+            outline: none;
+            border-color: #FF414D;
+        }
+
+        .config-label {
+            font-size: 12px;
+            color: #cccccc;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #FF414D;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #FF414D;
+            margin-bottom: 8px;
+        }
+
+        .stat-card p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="akash-logo.png" alt="Akash Network" class="logo" />
+            <h1>🎙️ Decentral Voice</h1>
+            <p>AI-Powered Text-to-Speech on Decentralized Infrastructure</p>
+            <span class="badge">Running on Akash Network</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <h4>Voices</h4>
+                <p>6</p>
+            </div>
+            <div class="stat-card">
+                <h4>Languages</h4>
+                <p>5</p>
+            </div>
+            <div class="stat-card">
+                <h4>Speed</h4>
+                <p>~2s</p>
+            </div>
+        </div>
+
+        <!-- Configuration -->
+        <div class="config">
+            <div class="config-label">🌐 API Endpoint:</div>
+            <input type="text" id="apiUrl" placeholder="Enter your API endpoint (e.g., https://yourapp.provider.akash.network)" />
+            <div class="config-label" style="margin-top: 12px;">🔑 API Key:</div>
+            <input type="password" id="apiKey" placeholder="Enter your API key" />
+        </div>
+
+        <!-- Text Input -->
+        <div class="form-group">
+            <label for="text">📝 Text to Synthesize</label>
+            <textarea 
+                id="text" 
+                placeholder="Enter the text you want to convert to speech..."
+                maxlength="5000"
+            >Welcome to Decentral Voice, powered by Akash Network! This text-to-speech service runs on truly decentralized cloud infrastructure. Experience the future of AI services - permissionless, censorship-resistant, and unstoppable.</textarea>
+            <div class="char-count">
+                <span id="charCount">0</span> / 5000 characters
+            </div>
+        </div>
+
+        <!-- Voice Selection -->
+        <div class="form-group">
+            <label for="voice">🎤 Voice</label>
+            <select id="voice">
+                <option value="en_US-lessac-medium">Lessac (American English) - Recommended</option>
+                <option value="en_US-amy-medium">Amy (American English)</option>
+                <option value="en_GB-alan-medium">Alan (British English)</option>
+                <option value="es_ES-davefx-medium">DaveFX (Spanish)</option>
+                <option value="fr_FR-siwis-medium">Siwis (French)</option>
+                <option value="de_DE-thorsten-medium">Thorsten (German)</option>
+            </select>
+        </div>
+
+        <!-- Speed Control -->
+        <div class="form-group">
+            <label for="speed">⚡ Speed</label>
+            <div class="slider-container">
+                <span style="color: #999;">0.5x</span>
+                <input type="range" id="speed" min="0.5" max="2.0" step="0.1" value="1.0">
+                <span style="color: #999;">2.0x</span>
+                <span class="slider-value" id="speedValue">1.0x</span>
+            </div>
+        </div>
+
+        <!-- Generate Button -->
+        <button class="btn" id="generateBtn" onclick="generateSpeech()">
+            Generate Speech
+        </button>
+
+        <!-- Error Message -->
+        <div class="error" id="error"></div>
+
+        <!-- Audio Player -->
+        <div class="audio-player" id="audioPlayer">
+            <h3>🎵 Generated Audio</h3>
+            <audio id="audio" controls></audio>
+            <button class="download-btn" onclick="downloadAudio()">
+                ⬇️ Download WAV
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Powered by <a href="https://akash.network" target="_blank">Akash Network</a> 
+            • Open Source • Decentralized • Unstoppable
+        </div>
+    </div>
+
+    <script>
+        // Update character count
+        const textArea = document.getElementById('text');
+        const charCount = document.getElementById('charCount');
+        
+        function updateCharCount() {
+            charCount.textContent = textArea.value.length;
+        }
+        
+        textArea.addEventListener('input', updateCharCount);
+        updateCharCount();
+
+        // Update speed value display
+        const speedSlider = document.getElementById('speed');
+        const speedValue = document.getElementById('speedValue');
+        
+        speedSlider.addEventListener('input', (e) => {
+            speedValue.textContent = e.target.value + 'x';
+        });
+
+        let audioBlob = null;
+
+        async function generateSpeech() {
+            const text = document.getElementById('text').value;
+            const voice = document.getElementById('voice').value;
+            const speed = parseFloat(document.getElementById('speed').value);
+            const apiUrl = document.getElementById('apiUrl').value;
+            const apiKey = document.getElementById('apiKey').value;
+
+            const generateBtn = document.getElementById('generateBtn');
+            const errorDiv = document.getElementById('error');
+            const audioPlayer = document.getElementById('audioPlayer');
+            const audioElement = document.getElementById('audio');
+
+            // Validate
+            if (!text.trim()) {
+                showError('Please enter some text to synthesize');
+                return;
+            }
+
+            if (!apiKey) {
+                showError('Please enter your API key');
+                return;
+            }
+
+            // Reset UI
+            errorDiv.classList.remove('show');
+            audioPlayer.classList.remove('show');
+
+            // Show loading state
+            generateBtn.disabled = true;
+            generateBtn.innerHTML = '<span class="spinner"></span>Generating Speech...';
+
+            try {
+                const response = await fetch(`${apiUrl}/synthesize`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        voice: voice,
+                        speed: speed
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Failed to generate speech');
+                }
+
+                const data = await response.json();
+
+                // Convert base64 to blob
+                const audioData = atob(data.audio);
+                const audioArray = new Uint8Array(audioData.length);
+                for (let i = 0; i < audioData.length; i++) {
+                    audioArray[i] = audioData.charCodeAt(i);
+                }
+                audioBlob = new Blob([audioArray], { type: 'audio/wav' });
+
+                // Create URL and play
+                const audioUrl = URL.createObjectURL(audioBlob);
+                audioElement.src = audioUrl;
+                audioPlayer.classList.add('show');
+                
+                // Auto-play
+                setTimeout(() => audioElement.play(), 100);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(error.message || 'Failed to generate speech. Please try again.');
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.innerHTML = 'Generate Speech';
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+        }
+
+        function downloadAudio() {
+            if (!audioBlob) return;
+
+            const url = URL.createObjectURL(audioBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `decentral-voice-${Date.now()}.wav`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Allow Enter key to submit (with Shift+Enter for new line)
+        textArea.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                generateSpeech();
+            }
+        });
+    </script>
+</body>
+</html>
