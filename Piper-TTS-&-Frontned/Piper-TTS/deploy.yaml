@@ -1,0 +1,44 @@
+---
+# Akash SDL - Piper TTS Service (CPU-optimized)
+# Fast, affordable TTS without GPU requirement
+version: "2.0"
+
+services:
+  piper-tts:
+    image: rodrirr/decentral-voice:0.6
+    env:
+      - PORT=8080
+      - API_KEY=anapikey  # CHANGE THIS!
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+        #accept:
+        #  - tts.yourdomain.com  # Optional: Add your domain
+
+profiles:
+  compute:
+    piper-tts:
+      resources:
+        cpu:
+          units: 10  # Piper is CPU-efficient. Adjust if needed.
+        memory:
+          size: 24Gi  
+        storage:
+          - size: 100Gi  # For voice models. Adjust if needed.
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        piper-tts:
+          denom: uact
+          amount: 10000
+
+deployment:
+  piper-tts:
+    akash:
+      profile: piper-tts
+      count: 1
