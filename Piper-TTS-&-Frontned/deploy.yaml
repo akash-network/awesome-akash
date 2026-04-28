@@ -1,0 +1,59 @@
+---
+# Combined Akash SDL for Decentral Voice Frontend and Piper TTS Service
+version: "2.0"
+services:
+  frontend:
+    image: rodrirr/decentral-voice-frontend:0.4  # Replace with your Docker image
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+  piper-tts:
+    image: rodrirr/decentral-voice:0.6
+    env:
+      - PORT=8080
+      - API_KEY=anapikey  # CHANGE THIS!
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+profiles:
+  compute:
+    frontend:
+      resources:
+        cpu:
+          units: 0.5  # Very light - just serving static HTML
+        memory:
+          size: 512Mi
+        storage:
+          - size: 512Mi
+    piper-tts:
+      resources:
+        cpu:
+          units: 10  # Piper is CPU-efficient, Adjust if needed.
+        memory:
+          size: 24Gi  
+        storage:
+          - size: 100Gi  # For voice models, Adjust if needed.
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        frontend:
+          denom: uact
+          amount: 10000
+        piper-tts:
+          denom: uact
+          amount: 10000
+deployment:
+  frontend:
+    akash:
+      profile: frontend
+      count: 1
+  piper-tts:
+    akash:
+      profile: piper-tts
+      count: 1
