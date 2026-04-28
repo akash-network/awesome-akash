@@ -1,0 +1,41 @@
+---
+# Akash SDL - Decentral Voice Frontend
+# Static website hosting
+version: "2.0"
+
+services:
+  frontend:
+    image: rodrirr/decentral-voice-frontend:0.4  # Replace with your Docker image
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+        #accept:
+        #  - voice.yourdomain.com  # Optional: Add your domain
+
+profiles:
+  compute:
+    frontend:
+      resources:
+        cpu:
+          units: 0.5  # Very light - just serving static HTML
+        memory:
+          size: 512Mi
+        storage:
+          - size: 512Mi
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        frontend:
+          denom: uact
+          amount: 10000
+
+deployment:
+  frontend:
+    akash:
+      profile: frontend
+      count: 1
