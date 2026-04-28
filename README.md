@@ -173,6 +173,7 @@ To add a new template/resource:
 - [Qwen3.5-35B-A3B](Qwen3.5-35B-A3B)
 - [Qwen3.5-9B](Qwen3.5-9B)
 - [Qwen-QwQ-32B](QwQ-32B)
+- [Razer-AIKit](Razer-AIKit)
 - [RedPajama-INCITE-7B-Instruct](redpajama-incite-7b-instruct)
 - [Semantra](semantra)
 - [Serge](serge-gpu)

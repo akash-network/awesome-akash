@@ -1,0 +1,112 @@
+---
+version: "2.0"
+services:
+  razer-aikit-image-gen:
+    image: razerofficial/aikit:cuda13.0-torch2.10.0-vllm0.18.0-aikit0.3.2
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+      - port: 8888
+        as: 8888
+        to:
+          - global: true
+      - port: 7860
+        as: 7860
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - |
+        rzr-aikit ui run &
+
+        jupyter lab --ip="0.0.0.0" --port=8888 --no-browser
+        --IdentityProvider.token=''
+        --PasswordIdentityProvider.hashed_password=$(python -c "from
+        jupyter_server.auth import passwd; print(passwd('RazerAI'))")
+profiles:
+  compute:
+    razer-aikit-image-gen:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gb
+        storage:
+          - size: 200Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx3090
+                  ram: 24Gi
+                  interface: pcie
+                - model: rtx3090ti
+                  ram: 24Gi
+                  interface: pcie
+                - model: rtx4090
+                  ram: 24Gi
+                  interface: pcie
+                - model: rtx5090
+                  ram: 32Gi
+                  interface: pcie
+                - model: rtxa6000
+                  ram: 48Gi
+                  interface: pcie
+                - model: rtx6000
+                  ram: 24Gi
+                  interface: pcie
+                - model: rtx8000
+                  ram: 48Gi
+                  interface: pcie
+                - model: h100
+                  ram: 80Gi
+                  interface: pcie
+                - model: h200
+                  ram: 141Gi
+                  interface: sxm
+                - model: h200nvl
+                  ram: 141Gi
+                  interface: pcie
+                - model: a100
+                  ram: 80Gi
+                  interface: pcie
+                - model: a40
+                  ram: 48Gi
+                  interface: pcie
+                - model: p40
+                  ram: 24Gi
+                  interface: pcie
+                - model: pro6000we
+                  ram: 96Gi
+                  interface: pcie
+                - model: pro6000mq
+                  ram: 96Gi
+                  interface: pcie
+                - model: pro6000se
+                  ram: 96Gi
+                  interface: pcie
+                - model: a100
+                  ram: 40Gi
+                  interface: pcie
+                - model: a100
+                  ram: 64Gi
+                  interface: pcie
+  placement:
+    dcloud:
+      pricing:
+        razer-aikit-image-gen:
+          denom: uact
+          amount: 100000
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+deployment:
+  razer-aikit-image-gen:
+    dcloud:
+      profile: razer-aikit-image-gen
+      count: 1
