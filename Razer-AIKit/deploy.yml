@@ -22,11 +22,13 @@ services:
     args:
       - |
         rzr-aikit ui run &
-
-        jupyter lab --ip="0.0.0.0" --port=8888 --no-browser
-        --IdentityProvider.token=''
-        --PasswordIdentityProvider.hashed_password=$(python -c "from
-        jupyter_server.auth import passwd; print(passwd('RazerAI'))")
+        
+        jupyter lab \
+        --ip="0.0.0.0" \
+        --port=8888 \
+        --no-browser \
+        --IdentityProvider.token='' \
+        --PasswordIdentityProvider.hashed_password="$(python -c "from jupyter_server.auth import passwd; print(passwd('RazerAI'))")"
 profiles:
   compute:
     razer-aikit-image-gen:

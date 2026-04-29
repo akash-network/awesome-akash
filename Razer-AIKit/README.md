@@ -1,5 +1,7 @@
 # Razer AIKit
 
+<img src="https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/RZR_AIKIT_WHT.png" alt="Razer AIKit Header Image" style="width: 40%; min-width: 200px;">
+
 [![GitHub release](https://img.shields.io/github/v/release/razerofficial/aikit)](https://github.com/razerofficial/aikit/releases)
 [![Docker Pulls](https://img.shields.io/docker/pulls/razerofficial/aikit)](https://hub.docker.com/r/razerofficial/aikit)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/razerofficial/aikit/blob/main/LICENSE)
