@@ -88,6 +88,7 @@ To add a new template/resource:
 - [Ollama](ollama-cpu)
 - [OpenClaw](openclaw)
 - [Open WebUI](open-webui-cpu)
+- [Piper TTS](Piper-TTS)
 - [PrivateGPT](privategpt-cpu)
 - [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
