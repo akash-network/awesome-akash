@@ -21,14 +21,23 @@ services:
       - "-c"
     args:
       - |
+        source /etc/profile.d/set_cuda_toolkit_path.sh
+        source /etc/profile.d/add_scripts_to_path.sh
+        source /etc/profile.d/add_benchmarks_to_path.sh
+        source /etc/profile.d/fix_huggingface_owner.sh
+        source /etc/profile.d/remove_ray_leftover.sh
+        set -m
+
         rzr-aikit ui run &
-        
+        AIKIT_PID=$!
+        trap 'wait $AIKIT_PID' SIGCHLD SIGTERM SIGINT
+
         jupyter lab \
-        --ip="0.0.0.0" \
-        --port=8888 \
-        --no-browser \
-        --IdentityProvider.token='' \
-        --PasswordIdentityProvider.hashed_password="$(python -c "from jupyter_server.auth import passwd; print(passwd('RazerAI'))")"
+          --ip="0.0.0.0" \
+          --port=8888 \
+          --no-browser \
+          --IdentityProvider.token='' \
+          --PasswordIdentityProvider.hashed_password="$(python -c "from jupyter_server.auth import passwd; print(passwd('RazerAI'))")"
 profiles:
   compute:
     razer-aikit-image-gen:

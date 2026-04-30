@@ -1,6 +1,10 @@
 # Razer AIKit
 
-<img src="https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/RZR_AIKIT_WHT.png" alt="Razer AIKit Header Image" style="width: 40%; min-width: 200px;">
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/RZR_AIKIT_BLK.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/RZR_AIKIT_WHT.png">
+  <img src="https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/RZR_AIKIT_WHT.png" alt="Razer AIKit Header Image" style="width: 40%; min-width: 200px;">
+</picture>
 
 [![GitHub release](https://img.shields.io/github/v/release/razerofficial/aikit)](https://github.com/razerofficial/aikit/releases)
 [![Docker Pulls](https://img.shields.io/docker/pulls/razerofficial/aikit)](https://hub.docker.com/r/razerofficial/aikit)
