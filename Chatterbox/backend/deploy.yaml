@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  chatterbox:
+    image: rodrirr/akash-chatter-public:v1.0.0
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    env:
+      - HF_HOME=/app/models
+      - MODEL_TYPE=standard
+
+profiles:
+  compute:
+    chatterbox:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gi
+        storage:
+          size: 30Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    akash:
+      pricing:
+        chatterbox:
+          denom: uact
+          amount: 10000
+
+deployment:
+  chatterbox:
+    akash:
+      profile: chatterbox
+      count: 1
