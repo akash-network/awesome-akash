@@ -214,6 +214,7 @@ To add a new template/resource:
 - [Akash Trainer](akash-trainer)
 - [Gradio](gradio-demo)
 - [Ray Cluster](ray)
+- * [Streamlit](https://github.com/akash-network/awesome-akash/blob/master/streamlit-demo)
 - [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
