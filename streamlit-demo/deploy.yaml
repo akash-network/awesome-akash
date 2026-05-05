@@ -1,0 +1,81 @@
+---
+version: "2.0"
+
+services:
+  streamlit:
+    image: python:3.11-slim
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - |
+        pip install streamlit --quiet &&
+        cat << 'EOF' > /app/app.py
+        import streamlit as st
+        import random, time
+        st.set_page_config(page_title="Streamlit Demo on Akash", page_icon="🚀")
+        st.title("Streamlit Demo — Deployed on Akash Network")
+        st.markdown("This is a simple demo showing how to deploy Streamlit apps on Akash's decentralized cloud.")
+        tab1, tab2 = st.tabs(["Text Analysis", "Image Captioning"])
+        with tab1:
+            st.subheader("Sentiment Analysis")
+            text_input = st.text_area("Enter text", placeholder="Type something here...")
+            if st.button("Analyze"):
+                if not text_input.strip():
+                    st.warning("Please enter some text!")
+                else:
+                    with st.spinner("Analyzing..."):
+                        time.sleep(0.5)
+                    sentiments = ["Positive 😊", "Negative 😞", "Neutral 😐"]
+                    confidence = random.randint(60, 99)
+                    st.success(f"**Sentiment:** {random.choice(sentiments)}")
+                    st.metric(label="Confidence", value=f"{confidence}%")
+        with tab2:
+            st.subheader("Image Captioning")
+            uploaded = st.file_uploader("Upload an image", type=["png","jpg","jpeg","webp"])
+            if st.button("Generate Caption"):
+                if uploaded is None:
+                    st.warning("Please upload an image!")
+                else:
+                    st.image(uploaded, use_column_width=True)
+                    with st.spinner("Generating caption..."):
+                        time.sleep(0.5)
+                    captions = ["A beautiful landscape with mountains","A person standing in front of a building","An abstract colorful composition","A close-up of nature","A cityscape at sunset"]
+                    st.success(f"**Caption:** {random.choice(captions)}")
+        EOF
+        mkdir -p /root/.streamlit
+        echo '[server]\nheadless = true\naddress = "0.0.0.0"\nport = 8501\nenableCORS = false\nenableXsrfProtection = false' > /root/.streamlit/config.toml
+        streamlit run /app/app.py
+    expose:
+      - port: 8501
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    streamlit:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        streamlit:
+          denom: uakt
+          amount: 10000
+
+deployment:
+  streamlit:
+    akash:
+      profile: streamlit
+      count: 1
