@@ -1,6 +1,7 @@
 # Streamlit Demo on Akash
 
 [![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-streamlit-demo)
+<img width="2921" height="811" alt="streamlit-logo-primary-colormark-darktext" src="https://github.com/user-attachments/assets/f10e1237-8993-4f66-97f6-3ad3f7862578" />
 
 Deploy interactive machine learning apps and data dashboards using Streamlit on Akash Network's decentralized cloud.
 
