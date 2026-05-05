@@ -111,6 +111,7 @@ To add a new template/resource:
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
 - [ChatGLM-6B](ChatGLM-6B)
+- [Chatterbox](Chatterbox)
 - [ComfyUI](comfyui)
 - [DeepSeek-Janus](DeepSeek-Janus)
 - [DeepSeek-R1](DeepSeek-R1)
