@@ -14,6 +14,8 @@ Frontend: A minimal web interface for testing and using the TTS functionality
 Deployment
 The main deploy.yaml file will create both the Chatterbox backend and API, as well as a simple frontend to interact with basic functions.
 
+*** NOTE - IN FRONTEND DO NOT ADD BACKSLASH / FROM PROVIDED URL, OTHERWISE IT WILL NOT FETCH API CORRECTLY
+
 Individual Deployments
 
 If you prefer to deploy components separately:
