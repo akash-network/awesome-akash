@@ -1,0 +1,71 @@
+---
+version: "2.0"
+
+services:
+  # TTS Backend API
+  chatterbox-api:
+    image: rodrirr/akash-chatter-public:v1.0.0
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    env:
+      - HF_HOME=/app/models
+      - MODEL_TYPE=standard
+
+  # Frontend UI
+  chatterbox-frontend:
+    image: rodrirr/chatterbox-frontend:v1.0.1
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    chatterbox-api:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gi
+        storage:
+          size: 30Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+
+    chatterbox-frontend:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+
+  placement:
+    akash:
+      pricing:
+        chatterbox-api:
+          denom: uact
+          amount: 10000
+        chatterbox-frontend:
+          denom: uact
+          amount: 100
+
+deployment:
+  chatterbox-api:
+    akash:
+      profile: chatterbox-api
+      count: 1
+  
+  chatterbox-frontend:
+    akash:
+      profile: chatterbox-frontend
+      count: 1
+
