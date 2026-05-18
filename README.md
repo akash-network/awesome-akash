@@ -78,6 +78,7 @@ To add a new template/resource:
 - [ChatChat](chatchat)
 - [Claude Code](claude-code)
 - [Daila](daila)
+- [Dify](dify)
 - [Eliza AI Agent](Elizaos-ai_Agents)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
