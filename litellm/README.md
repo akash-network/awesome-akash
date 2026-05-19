@@ -4,18 +4,6 @@ LiteLLM Proxy is a self-hosted OpenAI-compatible AI gateway.
 
 [![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-litellm)
 
-## What this template deploys
-
-This Akash SDL deploys:
-
-- LiteLLM Proxy
-- PostgreSQL for proxy state, keys, users, models, and spend tracking
-- A small inline `config.yaml` with one example OpenAI model
-
-Public port:
-
-- `4000` — LiteLLM Proxy API and UI
-
 ## Before deployment
 
 Change these placeholder values in `deploy.yaml` before deploying:
