@@ -1,0 +1,9 @@
+{
+  "title": "Streamlit Demo",
+  "description": "Deploy interactive machine learning apps and data dashboards using Streamlit on Akash's decentralized cloud.",
+  "category": "Machine Learning",
+  "tags": ["streamlit", "machine-learning", "data-visualization", "python", "ai", "dashboard"],
+  "logoUrl": "https://streamlit.io/images/brand/streamlit-mark-color.svg",
+  "websiteUrl": "https://streamlit.io",
+  "docsUrl": "https://docs.streamlit.io"
+}
