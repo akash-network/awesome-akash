@@ -51,7 +51,7 @@ model_list:
 
 ## Using the proxy
 
-Use the Akash endpoint assigned to port `4000` as your OpenAI-compatible base URL.
+Use the Akash URIs assigned to port `4000` as your OpenAI-compatible base URL.
 
 Example:
 
