@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://raw.githubusercontent.com/BerriAI/litellm/refs/heads/litellm_internal_staging/ui/litellm-dashboard/public/assets/logos/litellm_logo.jpg"
+}

@@ -85,6 +85,7 @@ To add a new template/resource:
 - [Hermes Agent](Hermes-Agent)
 - [InvokeAI](invoke-ai-cpu)
 - [Langflow](langflow)
+- [LiteLLM Proxy](litellm)
 - [Morpheus Lumerin Node](morpheus-lumerin-node)
 - [Ollama](ollama-cpu)
 - [OpenClaw](openclaw)
