@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://raw.githubusercontent.com/Arize-ai/phoenix/refs/heads/main/docs/favicon.png"
+}

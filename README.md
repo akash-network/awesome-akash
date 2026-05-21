@@ -92,6 +92,7 @@ To add a new template/resource:
 - [Open WebUI](open-webui-cpu)
 - [Piper TTS](Piper-TTS)
 - [PrivateGPT](privategpt-cpu)
+- [Phoenix](phoenix)
 - [Serge](serge-cpu)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
