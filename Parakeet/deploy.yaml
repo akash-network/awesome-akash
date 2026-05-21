@@ -1,0 +1,64 @@
+version: "2.0"
+
+services:
+  parakeet:
+    image: rodrirr/park:2.5
+
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+
+    env:
+      - MODEL_NAME=nvidia/parakeet-ctc-1.1b
+      - DEVICE_ID=0
+
+      # Batch size for parallel processing
+      - BATCH_SIZE=16
+
+      # Optional: Set API key for authentication
+      # If not set, API is open
+      # - API_KEY=your-secret-key-here
+
+profiles:
+  compute:
+    parakeet:
+      resources:
+        cpu:
+          units: 6           
+        memory:
+          size: 16Gi         
+        storage:
+          - size: 50Gi       
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                # Accept any NVIDIA GPU for widest provider availability
+                # Uncomment to pin to specific model:
+
+                # Budget friendly
+                # - model: t4
+
+                # Mid-range options:
+                # - model: rtx3060ti
+                # - model: rtx3070
+
+                # High-end
+                # - model: rtx4090
+                # - model: a100
+
+  placement:
+    akash:
+      pricing:
+        parakeet:
+          denom: uact
+          amount: 10000
+
+deployment:
+  parakeet:
+    akash:
+      profile: parakeet
+      count: 1
