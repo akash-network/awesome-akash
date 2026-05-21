@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="banner.png" alt="Hermes Agent" width="100%">
+  <img src="https://raw.githubusercontent.com/akash-network/awesome-akash/master/Hermes-Agent/banner.png" alt="Hermes Agent" width="100%">
 </p>
 
 # Hermes Agent ☤
