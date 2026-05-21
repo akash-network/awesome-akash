@@ -316,6 +316,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Witness Chain Watchtower](witnesschain-watchtower)
 - [Zcash - Zcashd](zcash-zcashd)
 - [Zcash - Zebra](zcash-zebra)
+- [ZGC - Lightweight PoS chain (Python)](https://github.com/0riginal-claw/zgc) - Single-file Python proof-of-stake chain for anchoring AI agent state. Deployable on Akash with minimal resources.
 
 ### Business
 
