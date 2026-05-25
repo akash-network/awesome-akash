@@ -165,6 +165,7 @@ To add a new template/resource:
 - [Open GPT](open-gpt)
 - [Open WebUI](open-webui-gpu)
 - [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
+- [Parakeet](Parakeet)
 - [Pluralis-Node](Pluralis-Node)
 - [PrivateGPT](privategpt-gpu)
 - [Qwen3-235B-A22B-FP8](Qwen3-235B-A22B-FP8)
