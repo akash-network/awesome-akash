@@ -1,0 +1,413 @@
+---
+version: "2.0"
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    command:
+      - sh
+      - -c
+      - |
+        cat > /etc/caddy/Caddyfile <<'EOF'
+        :80 {
+          encode gzip zstd
+          reverse_proxy /* langfuse-web:3000
+        }
+        EOF
+
+        caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+  langfuse-web:
+    image: langfuse/langfuse:3
+    env:
+      - NODE_ENV=production
+      - NEXTAUTH_URL=CHANGE_ME_PUBLIC_URL
+      - NEXTAUTH_SECRET=CHANGE_ME_NEXTAUTH_SECRET
+      - SALT=CHANGE_ME_SALT
+      - ENCRYPTION_KEY=CHANGE_ME_ENCRYPTION_KEY_64_HEX
+      - TELEMETRY_ENABLED=false
+      - LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES=false
+
+      - DATABASE_URL=postgresql://postgres:CHANGE_ME_POSTGRES_PASSWORD@postgres:5432/postgres
+
+      - CLICKHOUSE_MIGRATION_URL=clickhouse://clickhouse:9000
+      - CLICKHOUSE_URL=http://clickhouse:8123
+      - CLICKHOUSE_USER=clickhouse
+      - CLICKHOUSE_PASSWORD=CHANGE_ME_CLICKHOUSE_PASSWORD
+      - CLICKHOUSE_CLUSTER_ENABLED=false
+
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_AUTH=CHANGE_ME_REDIS_PASSWORD
+      - REDIS_TLS_ENABLED=false
+
+      - LANGFUSE_USE_AZURE_BLOB=false
+      - LANGFUSE_USE_OCI_NATIVE_OBJECT_STORAGE=false
+
+      - LANGFUSE_S3_EVENT_UPLOAD_BUCKET=langfuse
+      - LANGFUSE_S3_EVENT_UPLOAD_REGION=auto
+      - LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID=CHANGE_ME_MINIO_ACCESS_KEY
+      - LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY=CHANGE_ME_MINIO_SECRET_KEY
+      - LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT=http://minio:9000
+      - LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE=true
+      - LANGFUSE_S3_EVENT_UPLOAD_PREFIX=events/
+
+      - LANGFUSE_S3_MEDIA_UPLOAD_BUCKET=langfuse
+      - LANGFUSE_S3_MEDIA_UPLOAD_REGION=auto
+      - LANGFUSE_S3_MEDIA_UPLOAD_ACCESS_KEY_ID=CHANGE_ME_MINIO_ACCESS_KEY
+      - LANGFUSE_S3_MEDIA_UPLOAD_SECRET_ACCESS_KEY=CHANGE_ME_MINIO_SECRET_KEY
+      - LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT=http://minio:9000
+      - LANGFUSE_S3_MEDIA_UPLOAD_FORCE_PATH_STYLE=true
+      - LANGFUSE_S3_MEDIA_UPLOAD_PREFIX=media/
+
+      - LANGFUSE_S3_BATCH_EXPORT_ENABLED=false
+      - LANGFUSE_S3_BATCH_EXPORT_BUCKET=langfuse
+      - LANGFUSE_S3_BATCH_EXPORT_PREFIX=exports/
+      - LANGFUSE_S3_BATCH_EXPORT_REGION=auto
+      - LANGFUSE_S3_BATCH_EXPORT_ENDPOINT=http://minio:9000
+      - LANGFUSE_S3_BATCH_EXPORT_EXTERNAL_ENDPOINT=CHANGE_ME_PUBLIC_URL
+      - LANGFUSE_S3_BATCH_EXPORT_ACCESS_KEY_ID=CHANGE_ME_MINIO_ACCESS_KEY
+      - LANGFUSE_S3_BATCH_EXPORT_SECRET_ACCESS_KEY=CHANGE_ME_MINIO_SECRET_KEY
+      - LANGFUSE_S3_BATCH_EXPORT_FORCE_PATH_STYLE=true
+
+      - LANGFUSE_INIT_ORG_ID=
+      - LANGFUSE_INIT_ORG_NAME=
+      - LANGFUSE_INIT_PROJECT_ID=
+      - LANGFUSE_INIT_PROJECT_NAME=
+      - LANGFUSE_INIT_PROJECT_PUBLIC_KEY=
+      - LANGFUSE_INIT_PROJECT_SECRET_KEY=
+      - LANGFUSE_INIT_USER_EMAIL=
+      - LANGFUSE_INIT_USER_NAME=
+      - LANGFUSE_INIT_USER_PASSWORD=
+    expose:
+      - port: 3000
+        to:
+          - service: caddy
+
+  langfuse-worker:
+    image: langfuse/langfuse-worker:3
+    env:
+      - NODE_ENV=production
+      - NEXTAUTH_URL=CHANGE_ME_PUBLIC_URL
+      - NEXTAUTH_SECRET=
+      - SALT=CHANGE_ME_SALT
+      - ENCRYPTION_KEY=CHANGE_ME_ENCRYPTION_KEY_64_HEX
+      - TELEMETRY_ENABLED=false
+      - LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES=false
+
+      - DATABASE_URL=postgresql://postgres:CHANGE_ME_POSTGRES_PASSWORD@postgres:5432/postgres
+
+      - CLICKHOUSE_MIGRATION_URL=clickhouse://clickhouse:9000
+      - CLICKHOUSE_URL=http://clickhouse:8123
+      - CLICKHOUSE_USER=clickhouse
+      - CLICKHOUSE_PASSWORD=CHANGE_ME_CLICKHOUSE_PASSWORD
+      - CLICKHOUSE_CLUSTER_ENABLED=false
+
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_AUTH=CHANGE_ME_REDIS_PASSWORD
+      - REDIS_TLS_ENABLED=false
+
+      - LANGFUSE_USE_AZURE_BLOB=false
+      - LANGFUSE_USE_OCI_NATIVE_OBJECT_STORAGE=false
+
+      - LANGFUSE_S3_EVENT_UPLOAD_BUCKET=langfuse
+      - LANGFUSE_S3_EVENT_UPLOAD_REGION=auto
+      - LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID=CHANGE_ME_MINIO_ACCESS_KEY
+      - LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY=CHANGE_ME_MINIO_SECRET_KEY
+      - LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT=http://minio:9000
+      - LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE=true
+      - LANGFUSE_S3_EVENT_UPLOAD_PREFIX=events/
+
+      - LANGFUSE_S3_MEDIA_UPLOAD_BUCKET=langfuse
+      - LANGFUSE_S3_MEDIA_UPLOAD_REGION=auto
+      - LANGFUSE_S3_MEDIA_UPLOAD_ACCESS_KEY_ID=CHANGE_ME_MINIO_ACCESS_KEY
+      - LANGFUSE_S3_MEDIA_UPLOAD_SECRET_ACCESS_KEY=CHANGE_ME_MINIO_SECRET_KEY
+      - LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT=http://minio:9000
+      - LANGFUSE_S3_MEDIA_UPLOAD_FORCE_PATH_STYLE=true
+      - LANGFUSE_S3_MEDIA_UPLOAD_PREFIX=media/
+
+      - LANGFUSE_S3_BATCH_EXPORT_ENABLED=false
+      - LANGFUSE_S3_BATCH_EXPORT_BUCKET=langfuse
+      - LANGFUSE_S3_BATCH_EXPORT_PREFIX=exports/
+      - LANGFUSE_S3_BATCH_EXPORT_REGION=auto
+      - LANGFUSE_S3_BATCH_EXPORT_ENDPOINT=http://minio:9000
+      - LANGFUSE_S3_BATCH_EXPORT_EXTERNAL_ENDPOINT=CHANGE_ME_PUBLIC_URL
+      - LANGFUSE_S3_BATCH_EXPORT_ACCESS_KEY_ID=CHANGE_ME_MINIO_ACCESS_KEY
+      - LANGFUSE_S3_BATCH_EXPORT_SECRET_ACCESS_KEY=CHANGE_ME_MINIO_SECRET_KEY
+      - LANGFUSE_S3_BATCH_EXPORT_FORCE_PATH_STYLE=true
+
+  postgres:
+    image: postgres:17-alpine
+    env:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=CHANGE_ME_POSTGRES_PASSWORD
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - TZ=UTC
+      - PGTZ=UTC
+    expose:
+      - port: 5432
+        to:
+          - service: langfuse-web
+          - service: langfuse-worker
+    params:
+      storage:
+        postgres-data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.8-alpine
+    env:
+      - CLICKHOUSE_DB=default
+      - CLICKHOUSE_USER=clickhouse
+      - CLICKHOUSE_PASSWORD=CHANGE_ME_CLICKHOUSE_PASSWORD
+      - TZ=UTC
+    expose:
+      - port: 8123
+        to:
+          - service: langfuse-web
+          - service: langfuse-worker
+      - port: 9000
+        to:
+          - service: langfuse-web
+          - service: langfuse-worker
+    params:
+      storage:
+        clickhouse-data:
+          mount: /var/lib/clickhouse
+          readOnly: false
+
+  redis:
+    image: redis:7-alpine
+    command:
+      - redis-server
+      - --requirepass
+      - CHANGE_ME_REDIS_PASSWORD
+      - --maxmemory-policy
+      - noeviction
+    expose:
+      - port: 6379
+        to:
+          - service: langfuse-web
+          - service: langfuse-worker
+    params:
+      storage:
+        redis-data:
+          mount: /data
+          readOnly: false
+
+  minio:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    command:
+      - sh
+      - -c
+      - |
+        minio server /data --address ":9000" --console-address ":9001"
+    env:
+      - MINIO_ROOT_USER=CHANGE_ME_MINIO_ACCESS_KEY
+      - MINIO_ROOT_PASSWORD=CHANGE_ME_MINIO_SECRET_KEY
+    expose:
+      - port: 9000
+        to:
+          - service: langfuse-web
+          - service: langfuse-worker
+          - service: minio-setup
+      - port: 9001
+        to:
+          - service: minio-setup
+    params:
+      storage:
+        minio-data:
+          mount: /data
+          readOnly: false
+
+  minio-setup:
+    image: minio/mc:RELEASE.2024-11-21T17-21-54Z
+    command:
+      - sh
+      - -c
+      - |
+        until mc alias set local http://minio:9000 CHANGE_ME_MINIO_ACCESS_KEY CHANGE_ME_MINIO_SECRET_KEY; do
+          echo "waiting for minio..."
+          sleep 3
+        done
+
+        mc mb --ignore-existing local/langfuse
+        mc anonymous set none local/langfuse || true
+
+        echo "minio bucket langfuse is ready"
+        tail -f /dev/null
+    expose:
+      - port: 8080
+        to:
+          - service: minio
+
+profiles:
+  compute:
+    caddy:
+      resources:
+        cpu:
+          units: 0.25
+        memory:
+          size: 256Mi
+        storage:
+          size: 512Mi
+
+    langfuse-web:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 2Gi
+
+    langfuse-worker:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 2Gi
+
+    postgres:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+          - name: postgres-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+    clickhouse:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+          - name: clickhouse-data
+            size: 30Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+    redis:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 512Mi
+          - name: redis-data
+            size: 4Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+    minio:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+          - name: minio-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+    minio-setup:
+      resources:
+        cpu:
+          units: 0.25
+        memory:
+          size: 256Mi
+        storage:
+          size: 512Mi
+
+  placement:
+    akash:
+      pricing:
+        caddy:
+          denom: uact
+          amount: 1000
+        langfuse-web:
+          denom: uact
+          amount: 5000
+        langfuse-worker:
+          denom: uact
+          amount: 5000
+        postgres:
+          denom: uact
+          amount: 5000
+        clickhouse:
+          denom: uact
+          amount: 10000
+        redis:
+          denom: uact
+          amount: 2000
+        minio:
+          denom: uact
+          amount: 5000
+        minio-setup:
+          denom: uact
+          amount: 1000
+
+deployment:
+  caddy:
+    akash:
+      profile: caddy
+      count: 1
+
+  langfuse-web:
+    akash:
+      profile: langfuse-web
+      count: 1
+
+  langfuse-worker:
+    akash:
+      profile: langfuse-worker
+      count: 1
+
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
+
+  clickhouse:
+    akash:
+      profile: clickhouse
+      count: 1
+
+  redis:
+    akash:
+      profile: redis
+      count: 1
+
+  minio:
+    akash:
+      profile: minio
+      count: 1
+
+  minio-setup:
+    akash:
+      profile: minio-setup
+      count: 1
