@@ -218,14 +218,15 @@ To add a new template/resource:
 
 ### Machine Learning
 - [Akash Trainer](akash-trainer)
+- [Doccano](doccano)
 - [Gradio](gradio-demo)
-- [Ray Cluster](ray)
+- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
 - [Jupyter Notebook](jupyter)
 - [Jupyter Notebook with ezkl](tensorflow-jupyter-ezkl)
 - [Jupyter Notebook with Python Kernel](tensorflow-jupyter-mnist)
+- [MLflow](mlflow)
+- [Ray Cluster](ray)
 - [TensorFlow Serving MNIST CNN Model](tensorflow-serving-mnist)
-- [Handwritten Digits Recognition Application](tensorflow-webapp-mnist)
-- [Doccano](doccano)
 
 ### CI/CD, DevOps
 
