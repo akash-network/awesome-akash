@@ -95,6 +95,7 @@ To add a new template/resource:
 - [PrivateGPT](privategpt-cpu)
 - [Phoenix](phoenix)
 - [Serge](serge-cpu)
+- [Space Agent AI](Space-Agent)
 - [Stable Diffusion](stable-diffusion-ui)
 - [Terminal GPT](tgpt)
 - [Venice-ElizaOS](Venice-ElizaOS)
