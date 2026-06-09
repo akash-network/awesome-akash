@@ -324,6 +324,7 @@ Awesome DeFi apps you can deploy on Akash
 
 ### Business
 
+- [Baserow](baserow)
 - [Odoo](odoo)
 - [RAIR-Dapp](RAIR-Dapp)
 - [n8n](n8n)

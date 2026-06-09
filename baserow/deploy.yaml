@@ -1,0 +1,49 @@
+---
+version: "2.0"
+
+services:
+  baserow:
+    image: baserow/baserow:2.2.2
+    env:
+      - BASEROW_PUBLIC_URL=http://CHANGE_ME_PUBLIC_URL
+      - BASEROW_CADDY_ADDRESSES=:80
+      - DISABLE_VOLUME_CHECK=no
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+    params:
+      storage:
+        baserow-data:
+          mount: /baserow/data
+          readOnly: false
+
+profiles:
+  compute:
+    baserow:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+          - name: baserow-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      pricing:
+        baserow:
+          denom: uact
+          amount: 10000
+
+deployment:
+  baserow:
+    akash:
+      profile: baserow
+      count: 1
