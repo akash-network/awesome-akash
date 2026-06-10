@@ -1,0 +1,101 @@
+---
+version: "2.0"
+
+services:
+  logos-blockchain-node:
+    image: ghcr.io/vpavlin/logos-blockchain-node:0.1.2-curl-3
+    env:
+      - "USER_CONFIG_BASE64=" # Optional: base64-encoded user_config.yaml. If set, skips init and uses this config instead.
+      - "EXTERNAL_IP="        # Optional: manual override for the leased IP. Auto-detected from Kubernetes API if not set.
+    command:
+      - "sh"
+      - "-c"
+    args:
+      - |
+        cd /state
+
+        # Restore or generate config
+        if [ -n "$USER_CONFIG_BASE64" ]; then
+          echo "$USER_CONFIG_BASE64" | base64 -d > user_config.yaml
+        elif [ ! -f user_config.yaml ]; then
+          logos-blockchain-node init \
+            -p /ip4/65.109.51.37/udp/3000/quic-v1 \
+            -p /ip4/65.109.51.37/udp/3001/quic-v1 \
+            -p /ip4/65.109.51.37/udp/3002/quic-v1 \
+            -p /ip4/65.109.51.37/udp/3003/quic-v1
+        fi
+
+        # Detect leased IP on every startup
+        DETECTED_IP=""
+        if [ -f /var/run/secrets/kubernetes.io/serviceaccount/token ]; then
+          KUBE_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+          KUBE_NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace 2>/dev/null || echo "default")
+          DETECTED_IP=$(curl -s --max-time 5 \
+            -H "Authorization: Bearer $KUBE_TOKEN" \
+            --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt \
+            "https://kubernetes.default.svc/api/v1/namespaces/$KUBE_NAMESPACE/services" 2>/dev/null | \
+            jq -r '.items[] | select(.spec.type=="LoadBalancer") | .status.loadBalancer.ingress[0].ip // empty' 2>/dev/null | head -1)
+        fi
+        PUBLIC_IP="${EXTERNAL_IP:-$DETECTED_IP}"
+        if [ -n "$PUBLIC_IP" ]; then
+          echo "Setting static external address: $PUBLIC_IP"
+          yq -i ".network.backend.swarm.nat = {\"type\": \"static\", \"external_address\": \"/ip4/$PUBLIC_IP/udp/3000/quic-v1\"}" user_config.yaml
+        else
+          echo "Warning: could not detect leased IP, node will rely on NAT traversal"
+        fi
+
+        logos-blockchain-node user_config.yaml || sleep infinity
+    expose:
+      - port: 3000
+        proto: udp
+        as: 3000
+        to:
+          - global: true
+            ip: logos-node-ip
+      - port: 3400
+        proto: udp
+        as: 3400
+        to:
+          - global: true
+            ip: logos-node-ip
+    params:
+      storage:
+        state:
+          mount: /state
+
+profiles:
+  compute:
+    logos-blockchain-node:
+      resources:
+        cpu:
+          units: 2.0
+        memory:
+          size: 4Gi
+        storage:
+          - size: 512Mi
+          - name: state
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      attributes:
+        host: akash
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        logos-blockchain-node:
+          denom: uact
+          amount: 10000
+
+endpoints:
+  logos-node-ip:
+    kind: ip
+
+deployment:
+  logos-blockchain-node:
+    akash:
+      profile: logos-blockchain-node
+      count: 1

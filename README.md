@@ -309,6 +309,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Handshake](handshake)
 - [Injective](injective)
 - [Kadena](Kadena)
+- [Logos Blockchain Node](logos-blockchain-node)
 - [Metal Validator](metal-validator)
 - [Near Node](near)
 - [POKT Network](pokt-network)
