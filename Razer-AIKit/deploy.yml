@@ -37,11 +37,11 @@ profiles:
     razer-aikit-image-gen:
       resources:
         cpu:
-          units: 1
+          units: 4
         memory:
-          size: 4Gi
+          size: 12Gi
         storage:
-          - size: 10Gi
+          - size: 100Gi
         gpu:
           units: 1
           attributes:
