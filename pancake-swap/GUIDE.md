@@ -90,7 +90,7 @@ Please note the balance indicated is denominated in uAKT (AKT * 10^-6), in the a
 
 ## Create the Deployment
 
-Create a deployment configuration `deploy.yaml` to deploy the `yuravorobei/pancake-swap` for [Pancake Swap Interface](https://github.com/pancakeswap/pancake-swap-interface) Node JS app container using [SDL](https://akash.network/docs/getting-started/stack-definition-language):
+Create a deployment configuration `deploy.yaml` to deploy the `yuravorobei/pancake-swap` for [Pancake Swap Interface](https://github.com/pancakeswap/pancake-swap-interface) Node JS app container using [SDL](https://akash.network/docs/developers/deployment/akash-sdl/):
 
 ```sh
 cat > deploy.yaml <<EOF
@@ -139,7 +139,7 @@ Alternatively, you can use cURL to download:
 curl -s https://raw.githubusercontent.com/ovrclk/awesome-akash/master/pancake-swap/deploy.yaml > deploy.yaml
 ```
 
-You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/getting-started/stack-definition-language) documentation. 
+You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/developers/deployment/akash-sdl/) documentation. 
 
 {% hint style="warn" %}
 
