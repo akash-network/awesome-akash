@@ -153,7 +153,7 @@ docker push $IMAGE
 
 ## Create the Deployment
 
-Create a deployment configuration [thorchain.yaml](deploy.yaml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://akash.network/docs/getting-started/stack-definition-language):
+Create a deployment configuration [thorchain.yaml](deploy.yaml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://akash.network/docs/developers/deployment/akash-sdl/):
 
 ```sh
 cat > thorchain.yaml <<EOF
@@ -198,7 +198,7 @@ deployment:
 EOF>>
 ```
 
-You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/getting-started/stack-definition-language) documentation.
+You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/developers/deployment/akash-sdl/) documentation.
 
 {% hint style="warn" %}
 
