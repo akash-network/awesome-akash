@@ -1,0 +1,88 @@
+---
+version: "2.0"
+services:
+  server:
+    image: ghcr.io/paperclipai/paperclip:sha-9ac2431 # https://github.com/paperclipai/paperclip/pkgs/container/paperclip
+    expose:
+      - port: 3100
+        as: 3100
+        to:
+          - global: true
+    env:
+      - DATABASE_URL=postgresql://paperclip:paperclip@db:5432/paperclip
+      - PORT=3100
+      - SERVE_UI=true
+      - PAPERCLIP_DEPLOYMENT_MODE=authenticated
+      - PAPERCLIP_DEPLOYMENT_EXPOSURE=private
+      - PAPERCLIP_PUBLIC_URL=http://provider.akash-palmito.org/ # Provider URL
+      - BETTER_AUTH_SECRET=0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+      - OPENAI_API_KEY=your_openai_api_key # Codex
+      - ANTHROPIC_API_KEY=your_anthropic_api_key # Claude
+    params:
+      storage:
+        paperclip-data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+  db:
+    image: postgres:15-alpine
+    expose:
+      - port: 5432
+        as: 5432
+        to:
+          - service: server
+    env:
+      - POSTGRES_USER=paperclip
+      - POSTGRES_PASSWORD=paperclip
+      - POSTGRES_DB=paperclip
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    params:
+      storage:
+        pgdata:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+profiles:
+  compute:
+    server:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1gi
+        storage:
+          - size: 1Gi
+          - name: paperclip-data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+    db:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+          - name: pgdata
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        server:
+          denom: uact
+          amount: 100000
+        db:
+          denom: uact
+          amount: 100000
+deployment:
+  server:
+    dcloud:
+      profile: server
+      count: 1
+  db:
+    dcloud:
+      profile: db
+      count: 1
