@@ -261,6 +261,7 @@ To add a new template/resource:
 - [neo4j](neo4j)
 - [pgAdmin](pgadmin4)
 - [postgresSQL](postgres)
+- [Postgres S3 Backup](postgres-s3-backup)
 - [Qdrant](qdrant)
 - [redis](redis)
 - [Supabase](supabase)
