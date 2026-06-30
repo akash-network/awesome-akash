@@ -91,6 +91,7 @@ To add a new template/resource:
 - [Ollama](ollama-cpu)
 - [OpenClaw](openclaw)
 - [Open WebUI](open-webui-cpu)
+- [Paperclip](paperclip)
 - [Piper TTS](Piper-TTS)
 - [PrivateGPT](privategpt-cpu)
 - [Phoenix](phoenix)
