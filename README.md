@@ -82,6 +82,7 @@ To add a new template/resource:
 - [Eliza AI Agent](Elizaos-ai_Agents)
 - [Faster Whisper](faster-whisper-cpu)
 - [Flowise](flowise)
+- [Future AGI](future-agi)
 - [Hermes Agent](Hermes-Agent)
 - [InvokeAI](invoke-ai-cpu)
 - [Langfuse](langfuse)
