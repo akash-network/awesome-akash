@@ -1,0 +1,441 @@
+---
+# Future AGI — open-source platform to simulate, evaluate, trace, guardrail and
+# optimize LLM and AI agent apps. Self-hostable, Apache-2.0.
+# Adapted from the official deploy/docker-compose.production.yml in
+# https://github.com/future-agi/future-agi (default profile; PeerDB CDC stack omitted).
+#
+# This template deploys the core platform: web UI, backend API, Temporal worker,
+# model-serving, code-executor, and the data stores (Postgres, ClickHouse, Redis,
+# RabbitMQ, MinIO, Temporal). The optional agentcc-gateway LLM proxy ships as a
+# config-less scratch image that requires a mounted config file and is therefore
+# not included here; see README.md to add it via a custom image.
+version: "2.0"
+
+services:
+  frontend:
+    image: futureagi/frontend:latest
+    env:
+      # Set this to the public URL of the backend lease (the `backend` service,
+      # port 8000) once the deployment is live, then update the lease.
+      - VITE_HOST_API=CHANGE_ME_PUBLIC_BACKEND_URL
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+  backend:
+    image: futureagi/future-agi:latest
+    env:
+      - SERVICE_TYPE=backend
+      - ENV_TYPE=production
+      - SECRET_KEY=CHANGE_ME_SECRET_KEY
+      - ENABLE_HTTP=true
+      - ENABLE_GRPC=false
+      - GRANIAN_WORKERS=2
+      - GRANIAN_THREADS=2
+      - PG_HOST=postgres
+      - PG_PORT=5432
+      - PG_USER=futureagi
+      - PG_PASSWORD=CHANGE_ME_PG_PASSWORD
+      - PG_DB=futureagi
+      - CH_HOST=clickhouse
+      - CH_PORT=9000
+      - CH_HTTP_PORT=8123
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USER=futureagi
+      - RABBITMQ_PASSWORD=CHANGE_ME_RABBITMQ_PASSWORD
+      - TEMPORAL_HOST=temporal:7233
+      - MINIO_ENDPOINT=http://minio:9000
+      - MINIO_ROOT_USER=futureagi
+      - MINIO_ROOT_PASSWORD=CHANGE_ME_MINIO_PASSWORD
+      # Optional bring-your-own-key LLM providers:
+      - OPENAI_API_KEY=
+      - ANTHROPIC_API_KEY=
+      - GOOGLE_API_KEY=
+    depends_on:
+      - postgres
+      - clickhouse
+      - redis
+      - rabbitmq
+      - temporal
+    expose:
+      - port: 80
+        as: 8000
+        to:
+          - global: true
+          - service: frontend
+          - service: serving
+          - service: code-executor
+
+  worker:
+    image: futureagi/future-agi:latest
+    env:
+      - SERVICE_TYPE=temporal-worker
+      - ENV_TYPE=production
+      - SECRET_KEY=CHANGE_ME_SECRET_KEY
+      - PG_HOST=postgres
+      - PG_PORT=5432
+      - PG_USER=futureagi
+      - PG_PASSWORD=CHANGE_ME_PG_PASSWORD
+      - PG_DB=futureagi
+      - CH_HOST=clickhouse
+      - CH_PORT=9000
+      - CH_HTTP_PORT=8123
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_USER=futureagi
+      - RABBITMQ_PASSWORD=CHANGE_ME_RABBITMQ_PASSWORD
+      - TEMPORAL_HOST=temporal:7233
+      - TEMPORAL_ALL_QUEUES=true
+      - MINIO_ENDPOINT=http://minio:9000
+      - MINIO_ROOT_USER=futureagi
+      - MINIO_ROOT_PASSWORD=CHANGE_ME_MINIO_PASSWORD
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+      - temporal
+
+  serving:
+    image: futureagi/serving:latest
+    env:
+      - ENV_TYPE=production
+      - SECRET_KEY=CHANGE_ME_SECRET_KEY
+    depends_on:
+      - backend
+    expose:
+      - port: 8080
+        to:
+          - service: backend
+
+  code-executor:
+    image: futureagi/code-executor:latest
+    expose:
+      - port: 8060
+        to:
+          - service: backend
+
+  postgres:
+    image: postgres:16
+    command:
+      - postgres
+      - -c
+      - wal_level=logical
+      - -c
+      - max_wal_senders=25
+      - -c
+      - max_replication_slots=25
+    env:
+      - POSTGRES_USER=futureagi
+      - POSTGRES_PASSWORD=CHANGE_ME_PG_PASSWORD
+      - POSTGRES_DB=futureagi
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    expose:
+      - port: 5432
+        to:
+          - service: backend
+          - service: worker
+          - service: temporal
+    params:
+      storage:
+        postgres-data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.10.2.80
+    env:
+      - CLICKHOUSE_DB=default
+      - CLICKHOUSE_USER=futureagi
+      - CLICKHOUSE_PASSWORD=CHANGE_ME_CH_PASSWORD
+    expose:
+      - port: 8123
+        to:
+          - service: backend
+          - service: worker
+      - port: 9000
+        to:
+          - service: backend
+          - service: worker
+    params:
+      storage:
+        clickhouse-data:
+          mount: /var/lib/clickhouse
+          readOnly: false
+
+  redis:
+    image: redis:7-alpine
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+    expose:
+      - port: 6379
+        to:
+          - service: backend
+          - service: worker
+    params:
+      storage:
+        redis-data:
+          mount: /data
+          readOnly: false
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    env:
+      - RABBITMQ_DEFAULT_USER=futureagi
+      - RABBITMQ_DEFAULT_PASS=CHANGE_ME_RABBITMQ_PASSWORD
+    expose:
+      - port: 5672
+        to:
+          - service: backend
+          - service: worker
+    params:
+      storage:
+        rabbitmq-data:
+          mount: /var/lib/rabbitmq
+          readOnly: false
+
+  minio:
+    image: minio/minio:RELEASE.2025-02-07T23-21-09Z
+    command:
+      - server
+      - /data
+      - --console-address
+      - ":9001"
+    env:
+      - MINIO_ROOT_USER=futureagi
+      - MINIO_ROOT_PASSWORD=CHANGE_ME_MINIO_PASSWORD
+    expose:
+      - port: 9000
+        to:
+          - service: backend
+          - service: worker
+          - service: serving
+    params:
+      storage:
+        minio-data:
+          mount: /data
+          readOnly: false
+
+  temporal:
+    image: temporalio/auto-setup:1.29.1
+    env:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=futureagi
+      - POSTGRES_PWD=CHANGE_ME_PG_PASSWORD
+      - POSTGRES_SEEDS=postgres
+      - DBNAME=temporal
+      - ENABLE_ES=false
+      - LOG_LEVEL=info
+    depends_on:
+      - postgres
+    expose:
+      - port: 7233
+        to:
+          - service: backend
+          - service: worker
+
+profiles:
+  compute:
+    frontend:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+    backend:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          size: 4Gi
+    worker:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          size: 2Gi
+    serving:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 2Gi
+    code-executor:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 2Gi
+    postgres:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+          - name: postgres-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+    clickhouse:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 1Gi
+          - name: clickhouse-data
+            size: 30Gi
+            attributes:
+              persistent: true
+              class: beta3
+    redis:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 512Mi
+          - name: redis-data
+            size: 4Gi
+            attributes:
+              persistent: true
+              class: beta3
+    rabbitmq:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - size: 512Mi
+          - name: rabbitmq-data
+            size: 4Gi
+            attributes:
+              persistent: true
+              class: beta3
+    minio:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+          - name: minio-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+    temporal:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          size: 1Gi
+
+  placement:
+    akash:
+      pricing:
+        frontend:
+          denom: uakt
+          amount: 1000
+        backend:
+          denom: uakt
+          amount: 5000
+        worker:
+          denom: uakt
+          amount: 5000
+        serving:
+          denom: uakt
+          amount: 2000
+        code-executor:
+          denom: uakt
+          amount: 2000
+        postgres:
+          denom: uakt
+          amount: 2000
+        clickhouse:
+          denom: uakt
+          amount: 5000
+        redis:
+          denom: uakt
+          amount: 1000
+        rabbitmq:
+          denom: uakt
+          amount: 1000
+        minio:
+          denom: uakt
+          amount: 2000
+        temporal:
+          denom: uakt
+          amount: 1000
+
+deployment:
+  frontend:
+    akash:
+      profile: frontend
+      count: 1
+  backend:
+    akash:
+      profile: backend
+      count: 1
+  worker:
+    akash:
+      profile: worker
+      count: 1
+  serving:
+    akash:
+      profile: serving
+      count: 1
+  code-executor:
+    akash:
+      profile: code-executor
+      count: 1
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
+  clickhouse:
+    akash:
+      profile: clickhouse
+      count: 1
+  redis:
+    akash:
+      profile: redis
+      count: 1
+  rabbitmq:
+    akash:
+      profile: rabbitmq
+      count: 1
+  minio:
+    akash:
+      profile: minio
+      count: 1
+  temporal:
+    akash:
+      profile: temporal
+      count: 1
