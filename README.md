@@ -91,6 +91,7 @@ To add a new template/resource:
 - [Ollama](ollama-cpu)
 - [OpenClaw](openclaw)
 - [Open WebUI](open-webui-cpu)
+- [Paperclip](paperclip)
 - [Piper TTS](Piper-TTS)
 - [PrivateGPT](privategpt-cpu)
 - [Phoenix](phoenix)
@@ -260,6 +261,7 @@ To add a new template/resource:
 - [neo4j](neo4j)
 - [pgAdmin](pgadmin4)
 - [postgresSQL](postgres)
+- [Postgres S3 Backup](postgres-s3-backup)
 - [Qdrant](qdrant)
 - [redis](redis)
 - [Supabase](supabase)
@@ -311,6 +313,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Handshake](handshake)
 - [Injective](injective)
 - [Kadena](Kadena)
+- [Logos Blockchain Node](logos-blockchain-node)
 - [Metal Validator](metal-validator)
 - [Near Node](near)
 - [POKT Network](pokt-network)
@@ -326,6 +329,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [Baserow](baserow)
 - [Odoo](odoo)
+- [Open-Project](Open-Project)
 - [RAIR-Dapp](RAIR-Dapp)
 - [n8n](n8n)
 

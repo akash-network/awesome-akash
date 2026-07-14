@@ -1,0 +1,24 @@
+FROM alpine:3.19
+
+RUN apk add --no-cache \
+    postgresql16-client \
+    rclone \
+    bash \
+    curl \
+    tzdata
+
+COPY backup.sh /backup.sh
+RUN chmod +x /backup.sh
+RUN mkdir -p /backups
+
+# Default schedule: every 6 hours. Override by rebuilding with a different
+# CRON_SCHEDULE build arg, or just edit this line.
+ARG CRON_SCHEDULE="0 */6 * * *"
+RUN echo "${CRON_SCHEDULE} /backup.sh >> /var/log/backup.log 2>&1" > /etc/crontabs/root
+
+RUN echo '#!/bin/sh' > /start.sh && \
+    echo '/backup.sh' >> /start.sh && \
+    echo 'crond -f -l 2' >> /start.sh && \
+    chmod +x /start.sh
+
+CMD ["/start.sh"]

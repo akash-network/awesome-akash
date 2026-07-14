@@ -10,7 +10,7 @@ The original repo is here: https://github.com/getredash
   
 ### Akash Console DeploySet Up
 
-The provided deploy.yaml uses [IP leases](https://akash.network/docs/network-features/ip-leases) and [persistent storage](https://akash.network/docs/network-features/persistent-storage). Remove one or both of these features if you are not receiving bids.
+The provided deploy.yaml uses [IP leases](https://akash.network/docs/learn/core-concepts/ip-leases/) and [persistent storage](https://akash.network/docs/learn/core-concepts/persistent-storage/). Remove one or both of these features if you are not receiving bids.
 
 After deploying, inside the shell of the deployment select "redash" and pass the following commands in order. 
 

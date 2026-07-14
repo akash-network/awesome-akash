@@ -1,8 +1,8 @@
 ---
 version: "2.0"
 services:
-  razer-aikit-image-gen:
-    image: razerofficial/aikit:cuda13.0-torch2.11.0-vllm0.20.0-aikit0.4.0
+  razer-aikit:
+    image: razerofficial/aikit:cuda13.0-torch2.11.0-vllm0.22.0-aikit0.5.0
     expose:
       - port: 8000
         as: 8000
@@ -34,14 +34,14 @@ services:
           --PasswordIdentityProvider.hashed_password="$(python -c "from jupyter_server.auth import passwd; print(passwd('RazerAI'))")"
 profiles:
   compute:
-    razer-aikit-image-gen:
+    razer-aikit:
       resources:
         cpu:
-          units: 1
+          units: 4
         memory:
-          size: 4Gi
+          size: 12Gi
         storage:
-          - size: 10Gi
+          - size: 100Gi
         gpu:
           units: 1
           attributes:
@@ -50,14 +50,14 @@ profiles:
   placement:
     dcloud:
       pricing:
-        razer-aikit-image-gen:
+        razer-aikit:
           denom: uact
           amount: 100000
       signedBy:
         anyOf:
           - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
 deployment:
-  razer-aikit-image-gen:
+  razer-aikit:
     dcloud:
-      profile: razer-aikit-image-gen
+      profile: razer-aikit
       count: 1
