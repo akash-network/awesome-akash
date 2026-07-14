@@ -20,11 +20,11 @@ Razer AIKit is built for engineers and researchers who want cloud-grade AI tooli
 
 ## What's inside
 
-| Service          | Port | Purpose                                                       |
-| ---------------- | ---- | ------------------------------------------------------------- |
-| Jupyter Lab      | 8888 | Full AIKit notebook environment (password: `RazerAI`)     
-| Razer AIKit UI   | 7860 | Web UI for image and audio generation (Gradio front end)      |    |
-| vLLM / API       | 8000 | OpenAI-compatible inference endpoint                          |
+| Service          | Port | Purpose                                                              |
+| ---------------- | ---- | -------------------------------------------------------------------- |
+| Jupyter Lab      | 8888 | Full AIKit notebook environment (password: `RazerAI`)                |
+| Razer AIKit UI   | 7860 | Web UI for image, audio and video generation (Gradio front end)      |
+| vLLM / API       | 8000 | OpenAI-compatible inference endpoint                                 |
 
 ---
 
@@ -58,6 +58,7 @@ Notebooks grouped by use case:
 
 - **Inferencing** — On-Device Inferencing, Distributed Inferencing (Head / Node)
 - **Image generation** — On-Device Image Generation
+- **Video generation** - On-Device Video Generation
 - **Fine-tuning** — On-Device Fine-Tuning (LoRA), Distributed Fine-Tuning LoRA (Head / Node)
 - **Integrations** — Integrating AIKit with the OpenAI API, Semantic Search
 
