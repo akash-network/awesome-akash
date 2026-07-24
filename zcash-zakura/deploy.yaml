@@ -48,11 +48,104 @@ services:
         SNAPSHOT_KIND="${SNAPSHOT_KIND:-pruned}"
         SNAPSHOT_ROLE="${SNAPSHOT_ROLE:-latest}"
         SNAPSHOT_NETWORK="${SNAPSHOT_NETWORK:-mainnet}"
-        SNAPSHOT_VERIFY="${SNAPSHOT_VERIFY:-false}"
+        # Verify after download (default true — cheap once the file is on disk).
+        SNAPSHOT_VERIFY="${SNAPSHOT_VERIFY:-true}"
+        # Fail a stall if fewer than N bytes / sec for M seconds (curl --speed-*).
+        SNAPSHOT_MIN_SPEED="${SNAPSHOT_MIN_SPEED:-1024}"
+        SNAPSHOT_STALL_SECS="${SNAPSHOT_STALL_SECS:-120}"
         TOOLS_DIR="${TOOLS_DIR:-/tmp/zakura-bootstrap-tools}"
         MARKER="${CACHE_DIR}/.snapshot-bootstrap.json"
+        DOWNLOAD_DIR="${CACHE_DIR}/.snapshot-download"
 
         log() { echo "[zakura-bootstrap] $*"; }
+
+        # Akash / kube inject service discovery envs named after the service, e.g.
+        #   ZAKURA_SERVICE_PORT, ZAKURA_NP_SERVICE_PORT, ZAKURA_PORT_8233_TCP, ...
+        # config-rs maps ZAKURA_FOO → top-level field `foo` and zakurad refuses unknown
+        # keys. Valid config only uses ZAKURA_SECTION__KEY (double underscore).
+        scrub_invalid_zakura_env() {
+          local name
+          while IFS= read -r name; do
+            log "Unsetting injected env ${name} (not a ZAKURA_SECTION__KEY config var)"
+            unset "${name}" || true
+          done < <(env | awk -F= '/^ZAKURA_/ && $1 !~ /__/ { print $1 }')
+        }
+
+        # Resumable download with stall detection + periodic size logs.
+        # Streaming curl|zstd|tar often looks "stuck" on Akash (no resume, weak progress).
+        download_snapshot() {
+          local url="$1"
+          local dest="$2"
+          local expected_bytes="${3:-}"
+          mkdir -p "$(dirname "${dest}")"
+
+          local attempt=1
+          local max_attempts="${SNAPSHOT_DOWNLOAD_ATTEMPTS:-8}"
+          while (( attempt <= max_attempts )); do
+            local have=0
+            [[ -f "${dest}" ]] && have="$(stat -c '%s' "${dest}" 2>/dev/null || echo 0)"
+            if [[ -n "${expected_bytes}" && "${expected_bytes}" =~ ^[0-9]+$ && "${have}" -ge "${expected_bytes}" ]]; then
+              log "Download already complete (${have} bytes): ${dest}"
+              return 0
+            fi
+            log "Download attempt ${attempt}/${max_attempts} → ${dest} (have ${have} bytes)"
+            if [[ -n "${expected_bytes}" && "${expected_bytes}" =~ ^[0-9]+$ ]]; then
+              log "Expected size ≈ ${expected_bytes} bytes (from manifest size_bytes)"
+            fi
+
+            # Progress watcher (Akash log scrapers often miss curl's interactive bar).
+            (
+              local last=-1
+              while true; do
+                sleep 30
+                [[ -f "${dest}" ]] || continue
+                local now
+                now="$(stat -c '%s' "${dest}" 2>/dev/null || echo 0)"
+                if [[ "${now}" != "${last}" ]]; then
+                  if [[ -n "${expected_bytes}" && "${expected_bytes}" =~ ^[0-9]+$ && "${expected_bytes}" -gt 0 ]]; then
+                    local pct
+                    pct="$(awk -v n="${now}" -v t="${expected_bytes}" 'BEGIN { printf "%.1f", (n/t)*100 }')"
+                    log "progress: ${now} bytes (${pct}% of expected)"
+                  else
+                    log "progress: ${now} bytes"
+                  fi
+                  last="${now}"
+                fi
+              done
+            ) &
+            local watcher_pid=$!
+
+            # Prefer IPv4 + HTTP/1.1: some providers stall on HTTP/2 or broken v6 routes.
+            set +e
+            curl -fL --http1.1 -4 \
+              --connect-timeout 30 \
+              --retry 5 \
+              --retry-delay 5 \
+              --retry-all-errors \
+              --speed-limit "${SNAPSHOT_MIN_SPEED}" \
+              --speed-time "${SNAPSHOT_STALL_SECS}" \
+              -C - \
+              --output "${dest}" \
+              --progress-bar \
+              "${url}"
+            local rc=$?
+            set -e
+            kill "${watcher_pid}" 2>/dev/null || true
+            wait "${watcher_pid}" 2>/dev/null || true
+
+            if [[ "${rc}" -eq 0 ]]; then
+              local final
+              final="$(stat -c '%s' "${dest}" 2>/dev/null || echo 0)"
+              log "Download finished: ${final} bytes"
+              return 0
+            fi
+            log "curl exit ${rc}; will retry in 15s (resume supported)"
+            sleep 15
+            attempt=$((attempt + 1))
+          done
+          log "ERROR: failed to download after ${max_attempts} attempts: ${url}"
+          return 1
+        }
 
         # Default manifest URLs from Valar Group (override with SNAPSHOT_MANIFEST_URL).
         if [[ -z "${SNAPSHOT_MANIFEST_URL:-}" ]]; then
@@ -114,13 +207,17 @@ services:
         }
 
         state_present() {
-          # Snapshot layout extracts under cache_dir (typically state/vN/...).
+          # Require a completed bootstrap marker, or a real state DB tree
+          # (state/vN/mainnet|testnet), not an empty/partial directory.
           if [[ -f "${MARKER}" ]]; then
             return 0
           fi
-          if [[ -d "${CACHE_DIR}/state" ]] && [[ -n "$(ls -A "${CACHE_DIR}/state" 2>/dev/null || true)" ]]; then
-            return 0
-          fi
+          local db
+          for db in "${CACHE_DIR}"/state/v*/mainnet "${CACHE_DIR}"/state/v*/testnet; do
+            if [[ -d "${db}" ]] && [[ -n "$(ls -A "${db}" 2>/dev/null || true)" ]]; then
+              return 0
+            fi
+          done
           return 1
         }
 
@@ -145,18 +242,20 @@ services:
           ensure_tools
           mkdir -p "${CACHE_DIR}"
 
-          local height size sha filename url kind
+          local height size size_bytes sha filename url kind
           if [[ -n "${SNAPSHOT_URL:-}" ]]; then
             url="${SNAPSHOT_URL}"
             filename="$(basename "${url}")"
             height="${SNAPSHOT_HEIGHT:-unknown}"
             size="${SNAPSHOT_SIZE:-unknown}"
+            size_bytes="${SNAPSHOT_SIZE_BYTES:-}"
             sha="${SNAPSHOT_SHA256:-}"
             kind="${SNAPSHOT_KIND}"
             log "Using pinned SNAPSHOT_URL=${url}"
           else
             log "Fetching snapshot manifest: ${SNAPSHOT_MANIFEST_URL}"
-            curl -fsSL "${SNAPSHOT_MANIFEST_URL}" -o /tmp/zakura-snapshots.json
+            curl -fsSL --http1.1 -4 --connect-timeout 30 --retry 5 \
+              "${SNAPSHOT_MANIFEST_URL}" -o /tmp/zakura-snapshots.json
 
             # Prefer role match (latest/daily/monthly); fall back to first entry.
             local jq_filter
@@ -164,7 +263,7 @@ services:
               (map(select((.roles // []) | index(\"${SNAPSHOT_ROLE}\"))) | .[0])
               // .[0]
               | {
-                  height, size, sha256, filename, url, snapshot_kind,
+                  height, size, size_bytes, sha256, filename, url, snapshot_kind,
                   urls
                 }
             "
@@ -172,6 +271,7 @@ services:
             meta="$(jq -c "${jq_filter}" /tmp/zakura-snapshots.json)"
             height="$(jq -r '.height // empty' <<<"${meta}")"
             size="$(jq -r '.size // empty' <<<"${meta}")"
+            size_bytes="$(jq -r '.size_bytes // empty' <<<"${meta}")"
             sha="$(jq -r '.sha256 // empty' <<<"${meta}")"
             filename="$(jq -r '.filename // empty' <<<"${meta}")"
             url="$(jq -r '.url // (.urls[0] // empty)' <<<"${meta}")"
@@ -188,6 +288,7 @@ services:
             log "  filename=${filename}"
             log "  url=${url}"
             log "  sha256=${sha}"
+            log "  size_bytes=${size_bytes}"
           fi
 
           # Pruned snapshots require pruned storage mode (one-way).
@@ -196,24 +297,28 @@ services:
             log "Using ZAKURA_STATE__STORAGE_MODE=${ZAKURA_STATE__STORAGE_MODE}"
           fi
 
-          rm -rf "${CACHE_DIR}/state"
+          local archive="${DOWNLOAD_DIR}/${filename:-zakura-snapshot.tar.zst}"
+          download_snapshot "${url}" "${archive}" "${size_bytes}"
 
-          if [[ "${SNAPSHOT_VERIFY}" == "true" || "${SNAPSHOT_VERIFY}" == "1" ]]; then
+          if [[ "${SNAPSHOT_VERIFY}" == "true" || "${SNAPSHOT_VERIFY}" == "1" || "${SNAPSHOT_VERIFY}" == "TRUE" ]]; then
             if [[ -z "${sha}" ]]; then
-              log "ERROR: SNAPSHOT_VERIFY requires sha256 (manifest or SNAPSHOT_SHA256)"
-              exit 1
+              log "WARNING: no sha256 in manifest; skipping checksum"
+            else
+              log "Verifying sha256..."
+              echo "${sha}  ${archive}" | sha256sum -c -
+              log "Checksum OK"
             fi
-            local archive="/tmp/${filename:-zakura-snapshot.tar.zst}"
-            log "Downloading snapshot to ${archive} (checksum verify enabled)"
-            curl -fL --retry 5 --retry-delay 5 -C - -o "${archive}" "${url}"
-            echo "${sha}  ${archive}" | sha256sum -c -
-            log "Extracting into ${CACHE_DIR}"
-            zstd -dc "${archive}" | tar -x -C "${CACHE_DIR}"
-            rm -f "${archive}"
           else
-            log "Streaming snapshot into ${CACHE_DIR} (set SNAPSHOT_VERIFY=true to sha256-check)"
-            curl -fL --retry 5 --retry-delay 5 "${url}" | zstd -dc | tar -x -C "${CACHE_DIR}"
+            log "Skipping sha256 verify (SNAPSHOT_VERIFY=${SNAPSHOT_VERIFY})"
           fi
+
+          log "Extracting snapshot into ${CACHE_DIR} (this can take several minutes)..."
+          rm -rf "${CACHE_DIR}/state"
+          # zstd -T0 uses all CPUs for decompress
+          zstd -T0 -dc "${archive}" | tar -x -C "${CACHE_DIR}"
+          log "Extract complete; removing archive to free disk"
+          rm -f "${archive}"
+          rmdir "${DOWNLOAD_DIR}" 2>/dev/null || true
 
           # Record bootstrap metadata for operators and restart idempotency.
           printf '%s\n' \
@@ -231,6 +336,7 @@ services:
         }
 
         bootstrap_snapshot
+        scrub_invalid_zakura_env
 
         # Prefer image entrypoint (ownership + setpriv). Fall back to zakurad.
         if [[ -x /usr/local/bin/entrypoint.sh ]]; then
@@ -273,8 +379,12 @@ services:
       # Optional pin (skips manifest parse):
       # - "SNAPSHOT_URL=https://zakura.valargroup.dev/mainnet-pruned/...."
       # - "SNAPSHOT_SHA256=..."
-      # Stream by default; set true to download + sha256sum before extract (needs extra free disk):
-      - "SNAPSHOT_VERIFY=false"
+      # Download to disk (resumable), verify sha256, then extract. Needs ~12 GiB free
+      # during download on top of extracted state; 50 GiB volume is sized for pruned.
+      - "SNAPSHOT_VERIFY=true"
+      # Stall detection: abort + resume if < 1 KiB/s for 120s
+      - "SNAPSHOT_MIN_SPEED=1024"
+      - "SNAPSHOT_STALL_SECS=120"
 
       # Docker/NAT: multiple peers may share one source IP through the provider proxy.
       - "ZAKURA_NETWORK__MAX_CONNECTIONS_PER_IP=8"
@@ -339,10 +449,10 @@ profiles:
         memory:
           size: 16Gi
         storage:
-          # Pruned mainnet default (~11 GiB snapshot + headroom).
+          # Pruned: ~11 GiB download + extract + headroom (resume file under .snapshot-download/).
           # Archive: raise to 350Gi+ and set SNAPSHOT_KIND=archive.
           - name: data
-            size: 50Gi
+            size: 64Gi
             attributes:
               persistent: true
               class: beta3

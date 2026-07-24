@@ -17,8 +17,9 @@ Deploys `zakuracore/zakura:1.0.3` on Akash with:
 - **Snapshot bootstrap** on first start when the volume is empty:
   1. Fetches a Valar Group `snapshots.json` manifest
   2. Selects the entry with role `latest` (configurable)
-  3. Streams `tar.zst` into the cache dir
-  4. Starts `zakurad` (via the image entrypoint) so the node continues from the snapshot height instead of genesis
+  3. Downloads the `tar.zst` to the persistent volume (resumable; progress logs every 30s)
+  4. Verifies sha256, extracts into the cache dir, deletes the archive
+  5. Starts `zakurad` (via the image entrypoint) so the node continues from the snapshot height instead of genesis
 
 ### Default: pruned snapshot (quick tip sync)
 
@@ -29,7 +30,7 @@ Deploys `zakuracore/zakura:1.0.3` on Akash with:
 | Snapshot kind | `pruned` (~11 GiB download) |
 | Manifest | `https://zakura.valargroup.dev/mainnet-pruned/snapshots.json` |
 | Storage mode | `pruned` |
-| Persistent disk | 50 GiB |
+| Persistent disk | 64 GiB |
 | CPU / RAM | 4 / 16 GiB |
 
 Pruned snapshots keep consensus state and a retention window of blocks (not full history). Ideal for a validating node that only needs to stay near the tip.
@@ -57,7 +58,12 @@ To bootstrap from the **archive** manifest the site documents as raw data
 | `SNAPSHOT_MANIFEST_URL` | _(derived)_ | Override full manifest URL |
 | `SNAPSHOT_URL` | _(empty)_ | Pin a specific tarball; skips manifest selection |
 | `SNAPSHOT_SHA256` | _(empty)_ | Optional pin checksum (used with verify / `SNAPSHOT_URL`) |
-| `SNAPSHOT_VERIFY` | `false` | If `true`, download fully and `sha256sum -c` before extract (needs extra free disk) |
+| `SNAPSHOT_VERIFY` | `true` | Run `sha256sum -c` after download (uses manifest `sha256`) |
+| `SNAPSHOT_MIN_SPEED` | `1024` | Curl abort threshold (bytes/sec) when stalled |
+| `SNAPSHOT_STALL_SECS` | `120` | Seconds under min speed before abort + resume retry |
+| `SNAPSHOT_DOWNLOAD_ATTEMPTS` | `8` | Max curl attempts for the archive |
+
+Download lands under `{cache}/.snapshot-download/` so a pod restart can **resume** instead of restarting a multi‑GB transfer from zero.
 
 Bootstrap is **idempotent**: if `state/` already exists or `.snapshot-bootstrap.json` is present on the volume, download is skipped.
 
@@ -82,8 +88,26 @@ Zebra-style config via `ZAKURA_*` env vars (legacy `ZEBRA_*` is translated by th
 
 Uncomment the Testnet network env vars and P2P port **18233** in `deploy.yaml`. Point manifests with `SNAPSHOT_NETWORK=testnet` if Valar publishes testnet snapshots at the same layout.
 
+## Local testing (same image + SDL command)
+
+From `zcash-zakura/`:
+
+```bash
+# Config/start smoke (injects fake Akash ZAKURA_SERVICE_PORT envs, no snapshot)
+./test-local.sh --config-only --fresh
+
+# Full path including pruned snapshot download (large)
+./test-local.sh --fresh
+
+# Skip snapshot, sync from genesis / existing volume
+./test-local.sh --no-snapshot
+```
+
+The script parses `image`, `env`, and `command` from `deploy.yaml` so local runs stay aligned with Akash.
+
 ## Notes
 
+- Akash/Kubernetes injects `ZAKURA_SERVICE_PORT`, `ZAKURA_NP_SERVICE_PORT`, etc. The bootstrap **unsets** any `ZAKURA_*` env that is not `ZAKURA_SECTION__KEY` form before starting, otherwise `zakurad` fails with `unknown field …`.
 - Akash does **not** bind your service to the literal public port 8233; check the lease URI for the published host:port. Set `ZAKURA_NETWORK__EXTERNAL_ADDR` to that endpoint if you want better inbound peer reachability.
 - Pruned mode is one-way: you cannot reopen a pruned DB as archive without resyncing.
 - Image starts as root only long enough for volume ownership, then drops to UID **10001** (`zebra`) via `entrypoint.sh`.
