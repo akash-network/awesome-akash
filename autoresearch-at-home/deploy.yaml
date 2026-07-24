@@ -1,0 +1,68 @@
+---
+version: "2.0"
+
+services:
+  autoresearch-at-home:
+    image: nvidia/cuda:12.6.3-devel-ubuntu24.04
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+    command:
+      - bash
+      - "-c"
+    args:
+      - >-
+        curl -s https://raw.githubusercontent.com/akash-network/awesome-akash/master/autoresearch-at-home/main.sh | bash
+    env:
+      - "NVIDIA_VISIBLE_DEVICES=all"
+      - "SSH_PUBKEY="
+      - "ENSUE_API_KEY="
+    params:
+      storage:
+        shm:
+          mount: /dev/shm
+        data:
+          mount: /workspace
+          readOnly: false
+
+profiles:
+  compute:
+    autoresearch-at-home:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 32Gi
+        storage:
+          - size: 50Gi
+          - name: data
+            size: 100Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 16Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: h100
+                - model: a100
+  placement:
+    dcloud:
+      pricing:
+        autoresearch-at-home:
+          denom: uact
+          amount: 100000
+
+deployment:
+  autoresearch-at-home:
+    dcloud:
+      profile: autoresearch-at-home
+      count: 1

@@ -1,0 +1,63 @@
+---
+version: "2.0"
+services:
+  razer-aikit:
+    image: razerofficial/aikit:cuda13.0-torch2.11.0-vllm0.22.0-aikit0.5.0
+    expose:
+      - port: 8000
+        as: 8000
+        to:
+          - global: true
+      - port: 8888
+        as: 8888
+        to:
+          - global: true
+      - port: 7860
+        as: 7860
+        to:
+          - global: true
+    command:
+      - bash
+      - "-lc"
+    args:
+      - |
+        set -m
+        export SHELL=`readlink -f /proc/$$$$/exe`
+        rzr-aikit ui run &
+        AIKIT_PID=$!
+        trap 'wait $AIKIT_PID' SIGCHLD SIGTERM SIGINT
+        jupyter lab \
+          --ip="0.0.0.0" \
+          --port=8888 \
+          --no-browser \
+          --IdentityProvider.token='' \
+          --PasswordIdentityProvider.hashed_password="$(python -c "from jupyter_server.auth import passwd; print(passwd('RazerAI'))")"
+profiles:
+  compute:
+    razer-aikit:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 12Gi
+        storage:
+          - size: 100Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    dcloud:
+      pricing:
+        razer-aikit:
+          denom: uact
+          amount: 100000
+      signedBy:
+        anyOf:
+          - akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63
+deployment:
+  razer-aikit:
+    dcloud:
+      profile: razer-aikit
+      count: 1

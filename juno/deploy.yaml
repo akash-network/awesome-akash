@@ -27,7 +27,7 @@ profiles:
     dcloud:
       pricing:
         juno:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   juno:

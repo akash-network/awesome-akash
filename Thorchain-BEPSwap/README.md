@@ -86,13 +86,13 @@ You should see a response similar to:
 ```
 balances:
 - amount: "93000637"
-  denom: uakt
+  denom: uact
 pagination:
   next_key: null
   total: "0"
 ```
 
-Please note the balance indicated is denominated in uAKT (AKT * 10^-6), in the above example, the account has a balance of *93 AKT\*. We're now setup to deploy.
+Please note the balance indicated is denominated in uACT (ACT * 10^-6), in the above example, the account has a balance of *93 ACT\*. We're now setup to deploy.
 
 ## Build Thorchain BEPSwap UI Container
 
@@ -153,7 +153,7 @@ docker push $IMAGE
 
 ## Create the Deployment
 
-Create a deployment configuration [thorchain.yaml](deploy.yaml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://akash.network/docs/getting-started/stack-definition-language):
+Create a deployment configuration [thorchain.yaml](deploy.yaml) to deploy the `edouardl/thorchain-bepswap-web-ui` for [ThorChain BEPSwap Web UI](https://github.com/thorchain/bepswap-web-ui) Node JS app container using [SDL](https://akash.network/docs/developers/deployment/akash-sdl/):
 
 ```sh
 cat > thorchain.yaml <<EOF
@@ -186,7 +186,7 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         web:
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:
@@ -198,7 +198,7 @@ deployment:
 EOF>>
 ```
 
-You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/getting-started/stack-definition-language) documentation.
+You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/developers/deployment/akash-sdl/) documentation.
 
 {% hint style="warn" %}
 
@@ -230,7 +230,7 @@ akash query market lease list --owner $ACCOUNT_ADDRESS --node $AKASH_NODE --stat
     provider: akash1uu8wfvxscqt7ax89hjkxral0r2k73c6ee97dzn
   price:
     amount: "51"
-    denom: uakt
+    denom: uact
   state: active
 pagination:
   next_key: null
@@ -337,7 +337,7 @@ leases:
       provider: akash1uu8wfvxscqt7ax89hjkxral0r2k73c6ee97dzn
     price:
       amount: "186"
-      denom: uakt
+      denom: uact
     state: closed
 pagination:
   next_key: null

@@ -1,0 +1,105 @@
+---
+version: "2.0"
+
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm-database:latest@sha256:069da8855c7bf0a39861fcd9884f134670128b79aa930a4af0c9219a0433b83f
+    command:
+      - sh
+      - -c
+      - |
+        cat > /app/config.yaml <<'CONFIG_EOF'
+        model_list:
+          - model_name: gpt-4o-mini
+            litellm_params:
+              model: openai/gpt-4o-mini
+              api_key: os.environ/OPENAI_API_KEY
+
+        general_settings:
+          master_key: os.environ/LITELLM_MASTER_KEY
+          database_url: os.environ/DATABASE_URL
+          store_model_in_db: true
+
+        litellm_settings:
+          drop_params: true
+        CONFIG_EOF
+
+        litellm --config /app/config.yaml --host 0.0.0.0 --port 4000
+    env:
+      - LITELLM_MASTER_KEY=CHANGE_ME_LITELLM_MASTER_KEY
+      - LITELLM_SALT_KEY=CHANGE_ME_LITELLM_SALT_KEY
+      - DATABASE_URL=postgresql://litellm:CHANGE_ME_POSTGRES_PASSWORD@db:5432/litellm
+      - STORE_MODEL_IN_DB=True
+      - OPENAI_API_KEY=CHANGE_ME_OPENAI_API_KEY
+      - LITELLM_LOG=INFO
+      - UI_USERNAME=admin
+      - UI_PASSWORD=CHANGE_ME_UI_PASSWORD
+    expose:
+      - port: 4000
+        as: 4000
+        to:
+          - global: true
+          - service: db
+
+  db:
+    image: postgres:15-alpine
+    env:
+      - POSTGRES_USER=litellm
+      - POSTGRES_PASSWORD=CHANGE_ME_POSTGRES_PASSWORD
+      - POSTGRES_DB=litellm
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    expose:
+      - port: 5432
+        to:
+          - service: litellm
+    params:
+      storage:
+        db-data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+
+profiles:
+  compute:
+    litellm:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 2Gi
+
+    db:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+          - name: db-data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      pricing:
+        litellm:
+          denom: uact
+          amount: 5000
+        db:
+          denom: uact
+          amount: 3000
+
+deployment:
+  litellm:
+    akash:
+      profile: litellm
+      count: 1
+
+  db:
+    akash:
+      profile: db
+      count: 1

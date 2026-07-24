@@ -51,7 +51,7 @@ profiles:
         capabilities/storage/1/class: beta3
       pricing:
         minio:
-          denom: uakt
+          denom: uact
           amount: 10000000
 deployment:
   minio:

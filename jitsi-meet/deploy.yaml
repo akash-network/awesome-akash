@@ -110,16 +110,16 @@ profiles:
     akash:
       pricing:
         web:
-          denom: uakt
+          denom: uact
           amount: 10000
         prosody:
-          denom: uakt
+          denom: uact
           amount: 10000
         jicofo:
-          denom: uakt
+          denom: uact
           amount: 10000
         jvb:
-          denom: uakt
+          denom: uact
           amount: 10000
       signedBy:
         anyOf:

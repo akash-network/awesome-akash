@@ -21,7 +21,7 @@ profiles:
     akash:
       pricing:
         sss:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   sss:

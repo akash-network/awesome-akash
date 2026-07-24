@@ -25,7 +25,7 @@ profiles:
     dcloud:
       pricing:
         gin:
-          denom: uakt
+          denom: uact
           amount: 10000 
 
 deployment:

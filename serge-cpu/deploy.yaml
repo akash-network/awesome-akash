@@ -37,7 +37,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         serge:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   serge:

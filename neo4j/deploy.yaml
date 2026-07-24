@@ -46,7 +46,7 @@ profiles:
     akash:
       pricing:
         neo4j:
-          denom: uakt
+          denom: uact
           amount: 1000
       signedBy:
         anyOf:

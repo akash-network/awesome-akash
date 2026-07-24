@@ -116,10 +116,10 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         kawpow-pool:
-          denom: uakt
+          denom: uact
           amount: 10000 #Keep high to show all bids
         neoxa:
-          denom: uakt
+          denom: uact
           amount: 10000 #Keep high to show all bids
 deployment:
   kawpow-pool:

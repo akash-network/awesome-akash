@@ -46,7 +46,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         bminer-c11:
-          denom: uakt
+          denom: uact
           amount: 100000 #Keep high to show all bids
 deployment:
   bminer-c11:

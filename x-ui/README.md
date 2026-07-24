@@ -27,4 +27,4 @@ You can use own x-ui database.Just place your **x-ui.db** in cloud *(ex. Google 
 |`-webCertKey string`|Set path to private key file for panel|
 
 *2024. Dimokus. Decloud Nodes Lab.*
-*[Delegate AKT.](https://wallet.keplr.app/?modal=staking&chain=akashnet-2&validator_address=akashvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64gq0kaj4&step_id=3&action_id=stake)*
+*[Delegate ACT.](https://wallet.keplr.app/?modal=staking&chain=akashnet-2&validator_address=akashvaloper1ax4c40gn3s74xxm75g6cmts3fw7rq64gq0kaj4&step_id=3&action_id=stake)*

@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  space-agent:
+    image: rodrirr/space-agent:0.1
+    env:
+      - HOST=0.0.0.0
+      - PORT=3000
+      - CUSTOMWARE_PATH=/data
+      - WORKERS=1
+      - ALLOW_GUEST_USERS=false  # Set to true if you want guest registration
+      - LOGIN_ALLOWED=true
+      - SINGLE_USER_APP=true  # Set to true for single-user mode (no auth)
+    expose:
+      - port: 3000
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    space-agent:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 8Gi
+        storage:
+          size: 50Gi
+  placement:
+    akash:
+      pricing:
+        space-agent:
+          denom: uact
+          amount: 1000
+
+deployment:
+  space-agent:
+    akash:
+      profile: space-agent
+      count: 1

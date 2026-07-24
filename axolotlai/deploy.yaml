@@ -50,7 +50,7 @@ profiles:
     gpu-providers:
       pricing:
         axolotl-trainer:
-          denom: uakt
+          denom: uact
           amount: 2000000
 deployment:
   axolotl-trainer:

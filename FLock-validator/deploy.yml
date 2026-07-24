@@ -39,7 +39,7 @@ profiles:
     akash:
       pricing:
         flock-validator:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   flock-validator:

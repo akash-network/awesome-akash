@@ -1,0 +1,42 @@
+---
+version: "2.0"
+
+services:
+  akave-test:
+    image: ghcr.io/akave-ai/akave-akash:latest
+    env:
+      - AKAVE_ENDPOINT=https://o3-rc2.akave.xyz    # replace with the endpoint URL for your credentials
+      - AKAVE_BUCKET=<bucket>      # replace with your bucket name
+      - AKAVE_ACCESS=<access>      # replace with your akave access key
+      - AKAVE_SECRET=<secret>      # replace with your secret key
+      - UPLOAD_INTERVAL=86400    # seconds between uploads (1 day)
+      - REFRESH_INTERVAL=60    # seconds between HTML refreshes
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    akave-test:
+      resources:
+        cpu:
+          units: 0.1
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+
+  placement:
+    dcloud:
+      pricing:
+        akave-test:
+          denom: uact
+          amount: 100000  
+
+deployment:
+  akave-test:
+    dcloud:
+      profile: akave-test
+      count: 1

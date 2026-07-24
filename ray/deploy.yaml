@@ -104,10 +104,10 @@ profiles:
     westcoast:
       pricing:
         ray-head:
-          denom: uakt
+          denom: uact
           amount: 1000000
         ray-worker:
-          denom: uakt
+          denom: uact
           amount: 1000000
           
 deployment:

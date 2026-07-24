@@ -80,7 +80,7 @@ You should see a response similar to:
 ```
 balances:
 - amount: "93000637"
-  denom: uakt
+  denom: uact
 pagination:
   next_key: null
   total: "0"
@@ -90,7 +90,7 @@ Please note the balance indicated is denominated in uAKT (AKT * 10^-6), in the a
 
 ## Create the Deployment
 
-Create a deployment configuration `deploy.yaml` to deploy the `yuravorobei/pancake-swap` for [Pancake Swap Interface](https://github.com/pancakeswap/pancake-swap-interface) Node JS app container using [SDL](https://akash.network/docs/getting-started/stack-definition-language):
+Create a deployment configuration `deploy.yaml` to deploy the `yuravorobei/pancake-swap` for [Pancake Swap Interface](https://github.com/pancakeswap/pancake-swap-interface) Node JS app container using [SDL](https://akash.network/docs/developers/deployment/akash-sdl/):
 
 ```sh
 cat > deploy.yaml <<EOF
@@ -123,7 +123,7 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         web: 
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:
@@ -139,7 +139,7 @@ Alternatively, you can use cURL to download:
 curl -s https://raw.githubusercontent.com/ovrclk/awesome-akash/master/pancake-swap/deploy.yaml > deploy.yaml
 ```
 
-You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/getting-started/stack-definition-language) documentation. 
+You may use the sample deployment file as-is or modify it for your own needs as desscribed in our [SDL (Stack Definition Language](https://akash.network/docs/developers/deployment/akash-sdl/) documentation. 
 
 {% hint style="warn" %}
 
@@ -172,13 +172,13 @@ akash query market lease list --owner $ACCOUNT_ADDRESS --node $AKASH_NODE --stat
     provider: akash1y8xhp9ekxctahvex7842h607lmwp50q0n89tw0
   price:
     amount: "51"
-    denom: uakt
+    denom: uact
   state: active
 pagination:
   next_key: null
   total: "0"
 ```
-In the above example, we can see that a lease is created using for *51 uakt* or *0.0000051 AKT* per block to execute the container.
+In the above example, we can see that a lease is created using for *51 uact* or *0.0000051 ACT* per block to execute the container.
 
 For convenience and clarity for future referencing, we can extract the below set of values to shell variables that we will be using to reference the deployment:
 
@@ -278,7 +278,7 @@ leases:
     provider: akash1y8xhp9ekxctahvex7842h607lmwp50q0n89tw0
   price:
     amount: "186"
-    denom: uakt
+    denom: uact
   state: closed
 pagination:
   next_key: null

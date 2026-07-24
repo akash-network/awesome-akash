@@ -35,7 +35,7 @@ profiles:
     akash:
       pricing:
         librespeed:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   librespeed:

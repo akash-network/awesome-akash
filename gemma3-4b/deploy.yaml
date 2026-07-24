@@ -1,0 +1,53 @@
+---
+version: "2.0"
+services:
+  gemma3:
+    image: ollama/ollama:0.13.4
+    expose:
+      - port: 11434
+        as: 11434
+        to:
+          - global: true
+    env:
+      - MODEL=gemma3:4b
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ollama serve &
+        while ! ollama pull ${MODEL}; do
+          echo "Waiting for ollama pull to succeed..."
+          sleep 2.5
+        done
+        ollama list
+        pkill ollama
+        ollama serve
+profiles:
+  compute:
+    gemma3:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gi
+        storage:
+          size: 50Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+  placement:
+    akash:
+      signedBy:
+        anyOf:
+          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
+      pricing:
+        gemma3:
+          denom: uact
+          amount: 10000
+deployment:
+  gemma3:
+    akash:
+      profile: gemma3
+      count: 1

@@ -1,0 +1,218 @@
+---
+version: "2.0"
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    command:
+      - sh
+      - -c
+      - |
+        cat > /etc/caddy/Caddyfile <<'CADDYEOF'
+        :80 {
+          encode gzip zstd
+          reverse_proxy mlflow:5000
+        }
+        CADDYEOF
+
+        caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+    expose:
+      - port: 80
+        as: 80
+        to:
+          - global: true
+
+  mlflow:
+    image: ghcr.io/decloudnodeslab/mlflow:latest@sha256:2e4546758aa21b75945ff5fb2c5216283741f939835d2a914664ce61877f11c4
+    env:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - POSTGRES_USER=mlflow
+      - POSTGRES_PASSWORD=CHANGE_ME_POSTGRES_PASSWORD
+      - POSTGRES_DB=mlflow
+      - MLFLOW_ARTIFACT_BUCKET=mlflow-artifacts
+      - MLFLOW_S3_ENDPOINT_URL=http://minio:9000
+      - AWS_ACCESS_KEY_ID=CHANGE_ME_MINIO_ACCESS_KEY
+      - AWS_SECRET_ACCESS_KEY=CHANGE_ME_MINIO_SECRET_KEY
+      - AWS_DEFAULT_REGION=us-east-1
+      - MLFLOW_TRACKING_USERNAME=
+      - MLFLOW_TRACKING_PASSWORD=
+      - DISABLE_MLFLOW_TELEMETRY=true
+    expose:
+      - port: 5000
+        to:
+          - service: caddy
+    params:
+      storage:
+        mlflow-data:
+          mount: /mlflow
+          readOnly: false
+
+  db:
+    image: postgres:15-alpine
+    env:
+      - POSTGRES_USER=mlflow
+      - POSTGRES_PASSWORD=CHANGE_ME_POSTGRES_PASSWORD
+      - POSTGRES_DB=mlflow
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    expose:
+      - port: 5432
+        to:
+          - service: mlflow
+    params:
+      storage:
+        db-data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+
+  minio:
+    image: minio/minio:RELEASE.2024-12-18T13-15-44Z
+    command:
+      - sh
+      - -c
+      - |
+        minio server /data --console-address ":9001"
+    env:
+      - MINIO_ROOT_USER=CHANGE_ME_MINIO_ACCESS_KEY
+      - MINIO_ROOT_PASSWORD=CHANGE_ME_MINIO_SECRET_KEY
+    expose:
+      - port: 9000
+        to:
+          - service: mlflow
+          - service: minio-setup
+      - port: 9001
+        to:
+          - service: minio-setup
+    params:
+      storage:
+        minio-data:
+          mount: /data
+          readOnly: false
+
+  minio-setup:
+    image: minio/mc:RELEASE.2024-11-21T17-21-54Z
+    command:
+      - sh
+      - -c
+      - |
+        until mc alias set local http://minio:9000 CHANGE_ME_MINIO_ACCESS_KEY CHANGE_ME_MINIO_SECRET_KEY; do
+          echo "waiting for minio..."
+          sleep 3
+        done
+
+        mc mb --ignore-existing local/mlflow-artifacts
+        mc anonymous set none local/mlflow-artifacts || true
+
+        echo "minio bucket mlflow-artifacts is ready"
+        tail -f /dev/null
+    expose:
+      - port: 8080
+        to:
+          - service: minio
+
+profiles:
+  compute:
+    caddy:
+      resources:
+        cpu:
+          units: 0.25
+        memory:
+          size: 256Mi
+        storage:
+          size: 512Mi
+
+    mlflow:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 2Gi
+          - name: mlflow-data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+    db:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+          - name: db-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+    minio:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+          - name: minio-data
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+    minio-setup:
+      resources:
+        cpu:
+          units: 0.25
+        memory:
+          size: 256Mi
+        storage:
+          size: 512Mi
+
+  placement:
+    akash:
+      pricing:
+        caddy:
+          denom: uact
+          amount: 1000
+        mlflow:
+          denom: uact
+          amount: 5000
+        db:
+          denom: uact
+          amount: 5000
+        minio:
+          denom: uact
+          amount: 5000
+        minio-setup:
+          denom: uact
+          amount: 1000
+
+deployment:
+  caddy:
+    akash:
+      profile: caddy
+      count: 1
+
+  mlflow:
+    akash:
+      profile: mlflow
+      count: 1
+
+  db:
+    akash:
+      profile: db
+      count: 1
+
+  minio:
+    akash:
+      profile: minio
+      count: 1
+
+  minio-setup:
+    akash:
+      profile: minio-setup
+      count: 1

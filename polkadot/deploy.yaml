@@ -54,7 +54,7 @@ profiles:
       #https://akash.network/docs/deployments/audited-attributes/
       pricing:
         polkadot:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   polkadot:

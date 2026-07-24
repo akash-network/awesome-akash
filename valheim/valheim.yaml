@@ -88,7 +88,7 @@ profiles:
           - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         valheim:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   valheim:

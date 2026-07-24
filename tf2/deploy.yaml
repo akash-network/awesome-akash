@@ -61,7 +61,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         tf2:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   tf2:

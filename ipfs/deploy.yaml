@@ -106,10 +106,10 @@ profiles:
     akash:
       pricing:
         ipfs:
-          denom: uakt
+          denom: uact
           amount: 10000
         nginx:
-          denom: uakt
+          denom: uact
           amount: 10000
 
 deployment:

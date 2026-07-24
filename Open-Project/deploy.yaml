@@ -1,0 +1,306 @@
+---
+# OpenProject - Production SDL for Akash Network
+# Architecture: db + cache + seeder + web + worker + cron + hocuspocus + backup
+# Attachments: stored directly to Cloudflare R2 (no persistent volume needed)
+# DB backup: nebula-sync to R2 on every change
+#
+# SETUP STEPS (fill these placeholders before deploying):
+# 1. Generate secrets: openssl rand -hex 64  (run 3x for 3 different values)
+# 2. Create R2 bucket + API token in Cloudflare dashboard first
+# 3. Deploy, get ingress URL and update OPENPROJECT_HOST__NAME + wss:// URL (step 4)
+# 4. Push "Update Deployment" with real URLs - do NOT redeploy or you lose your data
+#
+# Akash has no depends_on - expect web/worker to restart once or twice on fresh deploy.
+# This is normal. The seeder runs migrations first and web/worker recover automatically.
+
+version: "2.0"
+
+services:
+  db:
+    image: postgres:16
+    expose:
+      - port: 5432
+        to:
+          - service: web
+          - service: worker
+          - service: cron
+          - service: seeder
+          - service: backup
+    env:
+      - POSTGRES_PASSWORD=REPLACE_WITH_STRONG_DB_PASSWORD
+      - POSTGRES_DB=openproject
+
+  cache:
+    image: memcached
+    expose:
+      - port: 11211
+        to:
+          - service: web
+          - service: worker
+          - service: cron
+          - service: seeder
+
+  seeder:
+    image: openproject/openproject:17-slim
+    command:
+      - "./docker/prod/seeder"
+    env:
+      - SECRET_KEY_BASE=REPLACE_WITH_64_BYTE_HEX_SECRET
+      - OPENPROJECT_HOST__NAME=REPLACE_AFTER_DEPLOY_WITH_INGRESS_HOSTNAME
+      - OPENPROJECT_HTTPS=true
+      - OPENPROJECT_DEFAULT__LANGUAGE=en
+      - OPENPROJECT_RAILS__CACHE__STORE=memcache
+      - OPENPROJECT_CACHE__MEMCACHE__SERVER=cache:11211
+      - DATABASE_URL=postgres://postgres:REPLACE_WITH_STRONG_DB_PASSWORD@db/openproject?pool=20&encoding=unicode&reconnect=true
+      - OPENPROJECT_ATTACHMENTS__STORAGE=fog
+      - OPENPROJECT_FOG_DIRECTORY=REPLACE_WITH_R2_BUCKET_NAME
+      - OPENPROJECT_FOG_CREDENTIALS_PROVIDER=AWS
+      - OPENPROJECT_FOG_CREDENTIALS_ENDPOINT=https://REPLACE_WITH_R2_ACCOUNT_ID.r2.cloudflarestorage.com
+      - OPENPROJECT_FOG_CREDENTIALS_AWS__ACCESS__KEY__ID=REPLACE_WITH_R2_ACCESS_KEY
+      - OPENPROJECT_FOG_CREDENTIALS_AWS__SECRET__ACCESS__KEY=REPLACE_WITH_R2_SECRET_KEY
+      - OPENPROJECT_FOG_CREDENTIALS_PATH__STYLE=true
+      - OPENPROJECT_FOG__USE__COMPAT__DIRECT__UPLOAD=false
+
+  web:
+    image: openproject/openproject:17-slim
+    command:
+      - "./docker/prod/web"
+    env:
+      - SECRET_KEY_BASE=REPLACE_WITH_64_BYTE_HEX_SECRET
+      - OPENPROJECT_HOST__NAME=REPLACE_AFTER_DEPLOY_WITH_INGRESS_HOSTNAME
+      - OPENPROJECT_HTTPS=true
+      - OPENPROJECT_DEFAULT__LANGUAGE=en
+      - OPENPROJECT_RAILS__CACHE__STORE=memcache
+      - OPENPROJECT_CACHE__MEMCACHE__SERVER=cache:11211
+      - DATABASE_URL=postgres://postgres:REPLACE_WITH_STRONG_DB_PASSWORD@db/openproject?pool=20&encoding=unicode&reconnect=true
+      - OPENPROJECT_ATTACHMENTS__STORAGE=fog
+      - OPENPROJECT_FOG_DIRECTORY=REPLACE_WITH_R2_BUCKET_NAME
+      - OPENPROJECT_FOG_CREDENTIALS_PROVIDER=AWS
+      - OPENPROJECT_FOG_CREDENTIALS_ENDPOINT=https://REPLACE_WITH_R2_ACCOUNT_ID.r2.cloudflarestorage.com
+      - OPENPROJECT_FOG_CREDENTIALS_AWS__ACCESS__KEY__ID=REPLACE_WITH_R2_ACCESS_KEY
+      - OPENPROJECT_FOG_CREDENTIALS_AWS__SECRET__ACCESS__KEY=REPLACE_WITH_R2_SECRET_KEY
+      - OPENPROJECT_FOG_CREDENTIALS_PATH__STYLE=true
+      - OPENPROJECT_FOG__USE__COMPAT__DIRECT__UPLOAD=false
+      - OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__URL=wss://REPLACE_AFTER_DEPLOY_WITH_HOCUSPOCUS_INGRESS_HOSTNAME
+      - OPENPROJECT_COLLABORATIVE__EDITING__HOCUSPOCUS__SECRET=REPLACE_WITH_64_BYTE_HEX_SECRET_2
+      # SMTP via SendGrid — username is literally "apikey", password is your SG.xxx API key
+      - OPENPROJECT_EMAIL__DELIVERY__METHOD=smtp
+      - OPENPROJECT_SMTP__ADDRESS=smtp.sendgrid.net
+      - OPENPROJECT_SMTP__DOMAIN=REPLACE_WITH_YOUR_DOMAIN
+      - OPENPROJECT_SMTP__PORT=587
+      - OPENPROJECT_SMTP__USER__NAME=apikey
+      - OPENPROJECT_SMTP__PASSWORD=REPLACE_WITH_SENDGRID_API_KEY
+      - OPENPROJECT_SMTP__AUTHENTICATION=plain
+      - OPENPROJECT_SMTP__ENABLE__STARTTLS__AUTO=true
+      - OPENPROJECT_MAIL__FROM=REPLACE_WITH_VERIFIED_SENDER_EMAIL
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+        # Uncomment once you have a custom domain CNAMEd to the ingress hostname:
+        # accept:
+        #   - projects.yourcompany.com
+
+  worker:
+    image: openproject/openproject:17-slim
+    command:
+      - "./docker/prod/worker"
+    env:
+      - SECRET_KEY_BASE=REPLACE_WITH_64_BYTE_HEX_SECRET
+      - OPENPROJECT_HOST__NAME=REPLACE_AFTER_DEPLOY_WITH_INGRESS_HOSTNAME
+      - OPENPROJECT_HTTPS=true
+      - OPENPROJECT_RAILS__CACHE__STORE=memcache
+      - OPENPROJECT_CACHE__MEMCACHE__SERVER=cache:11211
+      - DATABASE_URL=postgres://postgres:REPLACE_WITH_STRONG_DB_PASSWORD@db/openproject?pool=20&encoding=unicode&reconnect=true
+      - OPENPROJECT_ATTACHMENTS__STORAGE=fog
+      - OPENPROJECT_FOG_DIRECTORY=REPLACE_WITH_R2_BUCKET_NAME
+      - OPENPROJECT_FOG_CREDENTIALS_PROVIDER=AWS
+      - OPENPROJECT_FOG_CREDENTIALS_ENDPOINT=https://REPLACE_WITH_R2_ACCOUNT_ID.r2.cloudflarestorage.com
+      - OPENPROJECT_FOG_CREDENTIALS_AWS__ACCESS__KEY__ID=REPLACE_WITH_R2_ACCESS_KEY
+      - OPENPROJECT_FOG_CREDENTIALS_AWS__SECRET__ACCESS__KEY=REPLACE_WITH_R2_SECRET_KEY
+      - OPENPROJECT_FOG_CREDENTIALS_PATH__STYLE=true
+      - OPENPROJECT_FOG__USE__COMPAT__DIRECT__UPLOAD=false
+      - OPENPROJECT_EMAIL__DELIVERY__METHOD=smtp
+      - OPENPROJECT_SMTP__ADDRESS=smtp.sendgrid.net
+      - OPENPROJECT_SMTP__DOMAIN=REPLACE_WITH_YOUR_DOMAIN
+      - OPENPROJECT_SMTP__PORT=587
+      - OPENPROJECT_SMTP__USER__NAME=apikey
+      - OPENPROJECT_SMTP__PASSWORD=REPLACE_WITH_SENDGRID_API_KEY
+      - OPENPROJECT_SMTP__AUTHENTICATION=plain
+      - OPENPROJECT_SMTP__ENABLE__STARTTLS__AUTO=true
+      - OPENPROJECT_MAIL__FROM=REPLACE_WITH_VERIFIED_SENDER_EMAIL
+
+  cron:
+    image: openproject/openproject:17-slim
+    command:
+      - "./docker/prod/cron"
+    env:
+      - SECRET_KEY_BASE=REPLACE_WITH_64_BYTE_HEX_SECRET
+      - OPENPROJECT_HOST__NAME=REPLACE_AFTER_DEPLOY_WITH_INGRESS_HOSTNAME
+      - OPENPROJECT_HTTPS=true
+      - OPENPROJECT_RAILS__CACHE__STORE=memcache
+      - OPENPROJECT_CACHE__MEMCACHE__SERVER=cache:11211
+      - DATABASE_URL=postgres://postgres:REPLACE_WITH_STRONG_DB_PASSWORD@db/openproject?pool=20&encoding=unicode&reconnect=true
+      - IMAP_ENABLED=false
+
+  hocuspocus:
+    image: openproject/hocuspocus:17.3.1
+    env:
+      - SECRET=REPLACE_WITH_64_BYTE_HEX_SECRET_2
+      - OPENPROJECT_URL=http://web:8080
+      - OPENPROJECT_HTTPS=true
+    expose:
+      - port: 1234
+        as: 80
+        to:
+          - global: true
+
+  backup:
+    image: rodrirr/nebula-sync:0.0.3
+    env:
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=openproject
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=REPLACE_WITH_STRONG_DB_PASSWORD
+      - S3_ENDPOINT=https://REPLACE_WITH_R2_ACCOUNT_ID.r2.cloudflarestorage.com/REPLACE_WITH_R2_BUCKET_NAME
+      - S3_BUCKET=REPLACE_WITH_R2_BUCKET_NAME
+      - S3_ACCESS_KEY=REPLACE_WITH_R2_ACCESS_KEY
+      - S3_SECRET_KEY=REPLACE_WITH_R2_SECRET_KEY
+      - BACKUP_MODE=on-change
+
+profiles:
+  compute:
+    db:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 10Gi
+
+    cache:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 256Mi
+        storage:
+          size: 1Gi
+
+    seeder:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 1Gi
+        storage:
+          size: 2Gi
+
+    web:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 3Gi
+        storage:
+          size: 2Gi
+
+    worker:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          size: 2Gi
+
+    cron:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+
+    hocuspocus:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          size: 1Gi
+
+    backup:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 512Mi
+        storage:
+          size: 2Gi
+
+  placement:
+    akash:
+      pricing:
+        db:
+          denom: uact
+          amount: 10000
+        cache:
+          denom: uact
+          amount: 2000
+        seeder:
+          denom: uact
+          amount: 3000
+        web:
+          denom: uact
+          amount: 10000
+        worker:
+          denom: uact
+          amount: 5000
+        cron:
+          denom: uact
+          amount: 3000
+        hocuspocus:
+          denom: uact
+          amount: 3000
+        backup:
+          denom: uact
+          amount: 5000
+
+deployment:
+  db:
+    akash:
+      profile: db
+      count: 1
+  cache:
+    akash:
+      profile: cache
+      count: 1
+  seeder:
+    akash:
+      profile: seeder
+      count: 1
+  web:
+    akash:
+      profile: web
+      count: 1
+  worker:
+    akash:
+      profile: worker
+      count: 1
+  cron:
+    akash:
+      profile: cron
+      count: 1
+  hocuspocus:
+    akash:
+      profile: hocuspocus
+      count: 1
+  backup:
+    akash:
+      profile: backup
+      count: 1

@@ -35,7 +35,7 @@ profiles:
     akash:
       pricing:
         fio:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   fio:

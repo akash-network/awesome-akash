@@ -82,7 +82,7 @@ profiles:
     akash:
       pricing:
         raptoreum:
-          denom: uakt
+          denom: uact
           amount: 2
 
 deployment:

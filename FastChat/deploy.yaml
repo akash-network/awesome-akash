@@ -28,7 +28,7 @@ profiles:
     westcoast:
       pricing:
         gpu-app:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   gpu-app:

@@ -51,7 +51,7 @@ profiles:
         host: akash
       pricing:
         dcrpulse:
-          denom: uakt
+          denom: uact
           amount: 17000
 
 deployment:

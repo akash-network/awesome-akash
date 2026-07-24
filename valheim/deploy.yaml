@@ -94,7 +94,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         valheim:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   valheim:

@@ -88,7 +88,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         holdfastnaw:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   holdfastnaw:

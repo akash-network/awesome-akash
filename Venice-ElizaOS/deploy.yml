@@ -66,7 +66,7 @@ profiles:
     dcloud:
       pricing:
         service-1:
-          denom: uakt
+          denom: uact
           amount: 1000000
       attributes:
         host: akash

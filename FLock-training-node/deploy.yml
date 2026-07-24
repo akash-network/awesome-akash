@@ -40,7 +40,7 @@ profiles:
     akash:
       pricing:
         flock-train:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   flock-train:

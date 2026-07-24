@@ -91,7 +91,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         mordhau:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   mordhau:

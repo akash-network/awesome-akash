@@ -51,7 +51,7 @@ profiles:
     dcloud:
       pricing:
         morpheus-lumerin-node:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   morpheus-lumerin-node:

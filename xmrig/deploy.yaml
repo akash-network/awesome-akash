@@ -63,7 +63,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         miner-xmrig:
-          denom: uakt
+          denom: uact
           amount: 10000 #Keep high to show all bids
 deployment:
   miner-xmrig:

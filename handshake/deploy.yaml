@@ -51,7 +51,7 @@ profiles:
 
       pricing:
         hnsnode:
-          denom: uakt
+          denom: uact
           amount: 3500
 deployment:
   hnsnode:

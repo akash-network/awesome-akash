@@ -66,7 +66,7 @@ This deployment is configured for the Akash Network with the following specifica
 - **Network Exposure**: 
   - Internal services are exposed only to dependent services
   - The UI service is exposed globally to allow external access
-- **Pricing**: Configured for the dcloud placement with pricing in uakt (Akash tokens)
+- **Pricing**: Configured for the dcloud placement with pricing in uact (Akash tokens)
 
 ## Getting Started
 
@@ -108,7 +108,7 @@ This example showcases several best practices for microservices deployment on Ak
 - Resource allocation optimized for each service's needs
 - Appropriate storage sizing with 1Gi for most services and 2Gi for orders-db
 - CPU and memory allocation based on service requirements
-- Pricing configuration for the dcloud placement in uakt (Akash tokens)
+- Pricing configuration for the dcloud placement in uact (Akash tokens)
 - Single replica for each service (count: 1) for this example deployment
 
 ## Acknowledgments

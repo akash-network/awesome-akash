@@ -1,0 +1,95 @@
+---
+version: "2.0"
+services:
+  phoenix:
+    image: arizephoenix/phoenix:latest@sha256:f94982a4dfa6b7852d2457d73a40015c5e8ab11a7863d77e159604019a67e8c5
+    env:
+      - PHOENIX_HOST=0.0.0.0
+      - PHOENIX_PORT=6006
+      - PHOENIX_GRPC_PORT=4317
+      - PHOENIX_SQL_DATABASE_URL=postgresql://phoenix:CHANGE_POSTGRES_PASSWORD@db:5432/phoenix
+      - PHOENIX_WORKING_DIR=/mnt/data
+      - PHOENIX_DEFAULT_ADMIN_INITIAL_PASSWORD=CHANGE_ADMIN_PASSWORD
+      - PHOENIX_ENABLE_STRONG_PASSWORD_POLICY=true
+      - PHOENIX_TELEMETRY_ENABLED=false
+      - PHOENIX_ALLOW_EXTERNAL_RESOURCES=true
+      - PHOENIX_ENABLE_PROMETHEUS=false
+      - PHOENIX_LOGGING_LEVEL=INFO
+    expose:
+      - port: 6006
+        as: 6006
+        to:
+          - global: true
+          - service: db
+      - port: 4317
+        as: 4317
+        to:
+          - global: true
+    params:
+      storage:
+        phoenix-data:
+          mount: /mnt/data
+          readOnly: false
+  db:
+    image: postgres:15-alpine
+    env:
+      - POSTGRES_USER=phoenix
+      - POSTGRES_PASSWORD=CHANGE_POSTGRES_PASSWORD
+      - POSTGRES_DB=phoenix
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    expose:
+      - port: 5432
+        to:
+          - service: phoenix
+    params:
+      storage:
+        db-data:
+          mount: /var/lib/postgresql/data
+          readOnly: false
+profiles:
+  compute:
+    phoenix:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 2Gi
+          - name: phoenix-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+    db:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 1Gi
+          - name: db-data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    akash:
+      pricing:
+        phoenix:
+          denom: uact
+          amount: 10000
+        db:
+          denom: uact
+          amount: 5000
+
+deployment:
+  phoenix:
+    akash:
+      profile: phoenix
+      count: 1
+  db:
+    akash:
+      profile: db
+      count: 1

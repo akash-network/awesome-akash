@@ -50,7 +50,7 @@ profiles:
     dcloud:
       pricing:
         bark-small:
-          denom: uakt
+          denom: uact
           amount: 1000
 deployment:
   bark-small:

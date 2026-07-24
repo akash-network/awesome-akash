@@ -73,7 +73,7 @@ profiles:
     dcloud:
       pricing:
         witnesschain-watchtower:
-          denom: uakt
+          denom: uact
           amount: 500
 deployment:
   witnesschain-watchtower:

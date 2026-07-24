@@ -51,7 +51,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         xmrig-moneroocean-c11:
-          denom: uakt
+          denom: uact
           amount: 100000 #Keep high to show all bids
 deployment:
   xmrig-moneroocean-c11:

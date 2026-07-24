@@ -49,7 +49,7 @@ profiles:
       attributes:
       pricing:
         faster-whisper:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   faster-whisper:

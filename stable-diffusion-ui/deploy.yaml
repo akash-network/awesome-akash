@@ -42,7 +42,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         stable-diffusion-ui:
-          denom: uakt
+          denom: uact
           amount: 100000
 
 deployment:

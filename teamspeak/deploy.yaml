@@ -65,10 +65,10 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         teamspeak:
-          denom: uakt
+          denom: uact
           amount: 10000
         mariadb:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   teamspeak:

@@ -32,7 +32,7 @@ profiles:
     dcloud:
       pricing:
         budibase:
-          denom: uakt
+          denom: uact
           amount: 10000
       #######################################################
       #Keep this section to deploy on trusted providers

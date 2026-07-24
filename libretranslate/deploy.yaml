@@ -36,7 +36,7 @@ profiles:
     dcloud:
       pricing:
         libretranslate:
-          denom: uakt
+          denom: uact
           amount: 100000
 
 deployment:

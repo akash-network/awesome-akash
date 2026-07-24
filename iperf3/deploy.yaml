@@ -28,7 +28,7 @@ profiles:
     dcloud:
       pricing:
         iperf: 
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   iperf:

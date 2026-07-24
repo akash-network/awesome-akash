@@ -33,7 +33,7 @@ profiles:
         host: akash
       pricing:
         app:
-          denom: uakt
+          denom: uact
           amount: 1000000
 deployment:
   app:

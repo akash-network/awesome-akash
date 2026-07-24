@@ -29,7 +29,7 @@ profiles:
     akash:
       pricing:
         app:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   app:

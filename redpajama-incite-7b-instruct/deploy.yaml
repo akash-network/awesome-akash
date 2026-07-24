@@ -32,7 +32,7 @@ profiles:
       attributes:
       pricing:
         app:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   app:

@@ -81,7 +81,7 @@ profiles:
       #https://akash.network/docs/providers/audited-attributes
       pricing:
         nanominer-c11:
-          denom: uakt
+          denom: uact
           amount: 100000 #Keep high to show all bids
 deployment:
   nanominer-c11:

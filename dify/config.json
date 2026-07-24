@@ -1,0 +1,5 @@
+{
+  "$schema": "../config.schema.json",
+  "ssh": false,
+  "logoUrl": "https://raw.githubusercontent.com/langgenius/dify/main/web/public/logo/logo-site.png"
+}

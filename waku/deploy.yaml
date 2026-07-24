@@ -199,10 +199,10 @@ profiles:
     westcoast:
       pricing:
         postgres:
-          denom: uakt
+          denom: uact
           amount: 100000
         node: 
-          denom: uakt
+          denom: uact
           amount: 100000
 
 deployment:

@@ -22,7 +22,7 @@ profiles:
     akash:
       pricing:
         ezkl:
-          denom: uakt
+          denom: uact
           amount: 10000
       signedBy:
         anyOf:

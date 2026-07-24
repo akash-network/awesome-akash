@@ -34,7 +34,7 @@ profiles:
       attributes:
       pricing:
         whisper-gui:
-          denom: uakt
+          denom: uact
           amount: 10000
 deployment:
   whisper-gui:

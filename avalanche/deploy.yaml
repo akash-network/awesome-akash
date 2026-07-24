@@ -31,7 +31,7 @@ profiles:
     dcloud:
       pricing:
         avalanchego:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   avalanchego:

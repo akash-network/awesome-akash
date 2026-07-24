@@ -223,22 +223,22 @@ profiles:
     akash:
       pricing:
         db:
-          denom: uakt
+          denom: uact
           amount: 10000
         api:
-          denom: uakt
+          denom: uact
           amount: 5000
         studio:
-          denom: uakt
+          denom: uact
           amount: 5000
         gotrue:
-          denom: uakt
+          denom: uact
           amount: 5000
         storage:
-          denom: uakt
+          denom: uact
           amount: 5000
         meta:
-          denom: uakt
+          denom: uact
           amount: 5000
 
 deployment:

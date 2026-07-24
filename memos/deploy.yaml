@@ -22,7 +22,7 @@ profiles:
     dcloud:
       pricing:
         memos:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   memos:

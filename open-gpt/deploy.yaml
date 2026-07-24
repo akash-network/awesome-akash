@@ -56,10 +56,10 @@ profiles:
       attributes:
       pricing:
         opengpt:
-          denom: uakt
+          denom: uact
           amount: 100000
         redis:
-          denom: uakt
+          denom: uact
           amount: 100000
 deployment:
   redis:
