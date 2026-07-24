@@ -1,6 +1,6 @@
 # Zcash - Zakura
 
-[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zakura)
+[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zakura)
 
 Zakura is a Zcash full node written in Rust (forked from Zebra), with faster sync, native pruning, snapshot bootstrap, optional zcashd compatibility mode, and an experimental high-performance P2P stack.
 
