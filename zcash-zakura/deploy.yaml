@@ -1,0 +1,363 @@
+---
+# Akash SDL for Zakura Zcash Node
+#
+# Deploys Zakura (zakuracore/zakura) on Akash with optional snapshot bootstrap
+# from Valar Group manifests:
+#   pruned (default, ~11 GiB): https://zakura.valargroup.dev/mainnet-pruned/snapshots.json
+#   archive (~251 GiB):        https://zakura.valargroup.dev/mainnet/snapshots.json
+#
+# Defaults to Mainnet + pruned snapshot for quick tip sync (headers + retained
+# blocks). Set SNAPSHOT_KIND=archive and raise storage for full history.
+#
+# Resource allocation (Mainnet pruned default):
+# - 4 vCPUs, 16 GiB RAM, 50 GiB persistent state
+#
+# For archive Mainnet:
+# - 4–8 vCPUs, 16–32 GiB RAM, 350+ GiB storage
+#
+# Network ports (same P2P layout as Zebra / zcashd):
+# - 8233: Mainnet P2P (expose globally)
+# - 18233: Testnet P2P
+# - 8232 / 18232: RPC (optional)
+# - 9999: Prometheus metrics (optional)
+# - 8080: Health probes (optional)
+#
+# IMPORTANT: Port mapping on Akash
+# Providers reverse-proxy your container port to a random high port on the
+# provider public IP. Check deployment URIs for the real endpoint.
+
+version: "2.0"
+
+services:
+  zakura:
+    # Pin a release tag (Akash rejects :latest in production templates).
+    # Image digests: https://hub.docker.com/r/zakuracore/zakura/tags
+    image: zakuracore/zakura:1.0.3
+
+    # Bootstrap snapshot (if needed), then hand off to the image entrypoint so
+    # cache dirs are owned correctly and privileges are dropped to UID 10001.
+    # Works whether the provider treats `command` as CMD or full entrypoint.
+    command:
+      - "/bin/bash"
+      - "-c"
+      - |
+        set -euo pipefail
+
+        CACHE_DIR="${ZAKURA_STATE__CACHE_DIR:-/home/zebra/.cache/zakura}"
+        SNAPSHOT_ENABLE="${SNAPSHOT_ENABLE:-true}"
+        SNAPSHOT_KIND="${SNAPSHOT_KIND:-pruned}"
+        SNAPSHOT_ROLE="${SNAPSHOT_ROLE:-latest}"
+        SNAPSHOT_NETWORK="${SNAPSHOT_NETWORK:-mainnet}"
+        SNAPSHOT_VERIFY="${SNAPSHOT_VERIFY:-false}"
+        TOOLS_DIR="${TOOLS_DIR:-/tmp/zakura-bootstrap-tools}"
+        MARKER="${CACHE_DIR}/.snapshot-bootstrap.json"
+
+        log() { echo "[zakura-bootstrap] $*"; }
+
+        # Default manifest URLs from Valar Group (override with SNAPSHOT_MANIFEST_URL).
+        if [[ -z "${SNAPSHOT_MANIFEST_URL:-}" ]]; then
+          case "${SNAPSHOT_KIND}" in
+            pruned)
+              SNAPSHOT_MANIFEST_URL="https://zakura.valargroup.dev/${SNAPSHOT_NETWORK}-pruned/snapshots.json"
+              ;;
+            archive)
+              SNAPSHOT_MANIFEST_URL="https://zakura.valargroup.dev/${SNAPSHOT_NETWORK}/snapshots.json"
+              ;;
+            *)
+              log "ERROR: SNAPSHOT_KIND must be pruned or archive (got: ${SNAPSHOT_KIND})"
+              exit 1
+              ;;
+          esac
+        fi
+
+        ensure_tools() {
+          if command -v zstd >/dev/null 2>&1 && command -v jq >/dev/null 2>&1; then
+            return 0
+          fi
+
+          mkdir -p "${TOOLS_DIR}"
+          export PATH="${TOOLS_DIR}/usr/bin:${TOOLS_DIR}/bin:${PATH}"
+          ARCH="$(uname -m)"
+          case "${ARCH}" in
+            x86_64|amd64) DEB_ARCH=amd64; JQ_ARCH=amd64; LIB_DIR=x86_64-linux-gnu ;;
+            aarch64|arm64) DEB_ARCH=arm64; JQ_ARCH=arm64; LIB_DIR=aarch64-linux-gnu ;;
+            *) log "ERROR: unsupported arch ${ARCH}"; exit 1 ;;
+          esac
+
+          if ! command -v zstd >/dev/null 2>&1; then
+            if [[ "$(id -u)" -eq 0 ]] && command -v apt-get >/dev/null 2>&1; then
+              log "Installing zstd via apt-get"
+              apt-get -qq update
+              DEBIAN_FRONTEND=noninteractive apt-get -qq install -y --no-install-recommends zstd
+            else
+              log "Fetching portable zstd for ${DEB_ARCH}"
+              ZSTD_VER="1.5.7+dfsg-1"
+              BASE="http://ftp.debian.org/debian/pool/main/libz/libzstd"
+              curl -fsSL -o /tmp/zstd.deb "${BASE}/zstd_${ZSTD_VER}_${DEB_ARCH}.deb"
+              curl -fsSL -o /tmp/libzstd1.deb "${BASE}/libzstd1_${ZSTD_VER}_${DEB_ARCH}.deb"
+              dpkg-deb -x /tmp/zstd.deb "${TOOLS_DIR}"
+              dpkg-deb -x /tmp/libzstd1.deb "${TOOLS_DIR}"
+              export LD_LIBRARY_PATH="${TOOLS_DIR}/usr/lib/${LIB_DIR}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+            fi
+          fi
+
+          if ! command -v jq >/dev/null 2>&1; then
+            log "Fetching static jq for ${JQ_ARCH}"
+            mkdir -p "${TOOLS_DIR}/bin"
+            curl -fsSL -o "${TOOLS_DIR}/bin/jq" "https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-${JQ_ARCH}"
+            chmod +x "${TOOLS_DIR}/bin/jq"
+            export PATH="${TOOLS_DIR}/bin:${PATH}"
+          fi
+
+          command -v zstd >/dev/null 2>&1 || { log "ERROR: zstd not available"; exit 1; }
+          command -v jq >/dev/null 2>&1 || { log "ERROR: jq not available"; exit 1; }
+        }
+
+        state_present() {
+          # Snapshot layout extracts under cache_dir (typically state/vN/...).
+          if [[ -f "${MARKER}" ]]; then
+            return 0
+          fi
+          if [[ -d "${CACHE_DIR}/state" ]] && [[ -n "$(ls -A "${CACHE_DIR}/state" 2>/dev/null || true)" ]]; then
+            return 0
+          fi
+          return 1
+        }
+
+        bootstrap_snapshot() {
+          case "${SNAPSHOT_ENABLE}" in
+            true|TRUE|1|yes|YES|on|ON) ;;
+            false|FALSE|0|no|NO|off|OFF|"")
+              log "Snapshot bootstrap disabled (SNAPSHOT_ENABLE=${SNAPSHOT_ENABLE})"
+              return 0
+              ;;
+            *)
+              log "ERROR: SNAPSHOT_ENABLE must be true or false"
+              exit 1
+              ;;
+          esac
+
+          if state_present; then
+            log "Existing state found under ${CACHE_DIR}; skipping snapshot download"
+            return 0
+          fi
+
+          ensure_tools
+          mkdir -p "${CACHE_DIR}"
+
+          local height size sha filename url kind
+          if [[ -n "${SNAPSHOT_URL:-}" ]]; then
+            url="${SNAPSHOT_URL}"
+            filename="$(basename "${url}")"
+            height="${SNAPSHOT_HEIGHT:-unknown}"
+            size="${SNAPSHOT_SIZE:-unknown}"
+            sha="${SNAPSHOT_SHA256:-}"
+            kind="${SNAPSHOT_KIND}"
+            log "Using pinned SNAPSHOT_URL=${url}"
+          else
+            log "Fetching snapshot manifest: ${SNAPSHOT_MANIFEST_URL}"
+            curl -fsSL "${SNAPSHOT_MANIFEST_URL}" -o /tmp/zakura-snapshots.json
+
+            # Prefer role match (latest/daily/monthly); fall back to first entry.
+            local jq_filter
+            jq_filter="
+              (map(select((.roles // []) | index(\"${SNAPSHOT_ROLE}\"))) | .[0])
+              // .[0]
+              | {
+                  height, size, sha256, filename, url, snapshot_kind,
+                  urls
+                }
+            "
+            local meta
+            meta="$(jq -c "${jq_filter}" /tmp/zakura-snapshots.json)"
+            height="$(jq -r '.height // empty' <<<"${meta}")"
+            size="$(jq -r '.size // empty' <<<"${meta}")"
+            sha="$(jq -r '.sha256 // empty' <<<"${meta}")"
+            filename="$(jq -r '.filename // empty' <<<"${meta}")"
+            url="$(jq -r '.url // (.urls[0] // empty)' <<<"${meta}")"
+            kind="$(jq -r '.snapshot_kind // empty' <<<"${meta}")"
+
+            if [[ -z "${url}" ]]; then
+              log "ERROR: could not parse snapshot URL from ${SNAPSHOT_MANIFEST_URL}"
+              log "Raw manifest (first 2k):"
+              head -c 2048 /tmp/zakura-snapshots.json || true
+              exit 1
+            fi
+
+            log "Selected snapshot role=${SNAPSHOT_ROLE} kind=${kind:-${SNAPSHOT_KIND}} height=${height} size=${size}"
+            log "  filename=${filename}"
+            log "  url=${url}"
+            log "  sha256=${sha}"
+          fi
+
+          # Pruned snapshots require pruned storage mode (one-way).
+          if [[ "${kind:-${SNAPSHOT_KIND}}" == "pruned" ]]; then
+            export ZAKURA_STATE__STORAGE_MODE="${ZAKURA_STATE__STORAGE_MODE:-pruned}"
+            log "Using ZAKURA_STATE__STORAGE_MODE=${ZAKURA_STATE__STORAGE_MODE}"
+          fi
+
+          rm -rf "${CACHE_DIR}/state"
+
+          if [[ "${SNAPSHOT_VERIFY}" == "true" || "${SNAPSHOT_VERIFY}" == "1" ]]; then
+            if [[ -z "${sha}" ]]; then
+              log "ERROR: SNAPSHOT_VERIFY requires sha256 (manifest or SNAPSHOT_SHA256)"
+              exit 1
+            fi
+            local archive="/tmp/${filename:-zakura-snapshot.tar.zst}"
+            log "Downloading snapshot to ${archive} (checksum verify enabled)"
+            curl -fL --retry 5 --retry-delay 5 -C - -o "${archive}" "${url}"
+            echo "${sha}  ${archive}" | sha256sum -c -
+            log "Extracting into ${CACHE_DIR}"
+            zstd -dc "${archive}" | tar -x -C "${CACHE_DIR}"
+            rm -f "${archive}"
+          else
+            log "Streaming snapshot into ${CACHE_DIR} (set SNAPSHOT_VERIFY=true to sha256-check)"
+            curl -fL --retry 5 --retry-delay 5 "${url}" | zstd -dc | tar -x -C "${CACHE_DIR}"
+          fi
+
+          # Record bootstrap metadata for operators and restart idempotency.
+          printf '%s\n' \
+            "{" \
+            "  \"height\": \"${height}\"," \
+            "  \"size\": \"${size}\"," \
+            "  \"sha256\": \"${sha}\"," \
+            "  \"filename\": \"${filename}\"," \
+            "  \"url\": \"${url}\"," \
+            "  \"snapshot_kind\": \"${kind:-${SNAPSHOT_KIND}}\"," \
+            "  \"manifest_url\": \"${SNAPSHOT_MANIFEST_URL}\"," \
+            "  \"bootstrapped_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"" \
+            "}" > "${MARKER}"
+          log "Snapshot bootstrap complete at height ${height}"
+        }
+
+        bootstrap_snapshot
+
+        # Prefer image entrypoint (ownership + setpriv). Fall back to zakurad.
+        if [[ -x /usr/local/bin/entrypoint.sh ]]; then
+          exec /usr/local/bin/entrypoint.sh zakurad start
+        fi
+        exec zakurad start
+
+    env:
+      # --- NETWORK (Mainnet default) ---
+      - "ZAKURA_NETWORK__NETWORK=Mainnet"
+      - "ZAKURA_NETWORK__LISTEN_ADDR=[::]:8233"
+      # If peers should dial a known public host:port, set after deploy:
+      # - "ZAKURA_NETWORK__EXTERNAL_ADDR=provider.example:31234"
+
+      # --- TESTNET (uncomment and switch P2P expose below) ---
+      # - "ZAKURA_NETWORK__NETWORK=Testnet"
+      # - "ZAKURA_NETWORK__LISTEN_ADDR=[::]:18233"
+      # - "SNAPSHOT_NETWORK=testnet"
+
+      # State + RPC cookie directory (must match storage mount)
+      - "ZAKURA_STATE__CACHE_DIR=/home/zebra/.cache/zakura"
+      - "ZAKURA_RPC__COOKIE_DIR=/home/zebra/.cache/zakura"
+      - "ZAKURA_NETWORK__CACHE_DIR=/home/zebra/.cache/zakura"
+
+      # Pruned mode matches default snapshot kind (required after pruned restore).
+      # For archive snapshots, set SNAPSHOT_KIND=archive and comment this out
+      # (or set ZAKURA_STATE__STORAGE_MODE=archive).
+      - "ZAKURA_STATE__STORAGE_MODE=pruned"
+
+      # --- SNAPSHOT BOOTSTRAP ---
+      # Parse Valar manifests at start when the cache is empty.
+      - "SNAPSHOT_ENABLE=true"
+      # pruned (~11 GiB, quick tip sync) | archive (~251 GiB, full history)
+      - "SNAPSHOT_KIND=pruned"
+      # Role in snapshots.json: latest | daily | monthly
+      - "SNAPSHOT_ROLE=latest"
+      - "SNAPSHOT_NETWORK=mainnet"
+      # Optional explicit manifest (overrides SNAPSHOT_KIND URL selection):
+      # - "SNAPSHOT_MANIFEST_URL=https://zakura.valargroup.dev/mainnet/snapshots.json"
+      # Optional pin (skips manifest parse):
+      # - "SNAPSHOT_URL=https://zakura.valargroup.dev/mainnet-pruned/...."
+      # - "SNAPSHOT_SHA256=..."
+      # Stream by default; set true to download + sha256sum before extract (needs extra free disk):
+      - "SNAPSHOT_VERIFY=false"
+
+      # Docker/NAT: multiple peers may share one source IP through the provider proxy.
+      - "ZAKURA_NETWORK__MAX_CONNECTIONS_PER_IP=8"
+
+      # --- RPC (disabled by default) ---
+      # - "ZAKURA_RPC__LISTEN_ADDR=0.0.0.0:8232"
+      # - "ZAKURA_RPC__ENABLE_COOKIE_AUTH=true"
+
+      # --- Metrics / health (optional) ---
+      # - "ZAKURA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
+      # - "ZAKURA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
+
+      - "ZAKURA_TRACING__USE_COLOR=true"
+      # - "ZAKURA_TRACING__FILTER=info"
+
+    params:
+      storage:
+        data:
+          mount: /home/zebra/.cache/zakura
+          readOnly: false
+
+    expose:
+      # --- MAINNET P2P ---
+      - port: 8233
+        as: 8233
+        to:
+          - global: true
+        proto: tcp
+
+      # --- TESTNET P2P ---
+      # - port: 18233
+      #   as: 18233
+      #   to:
+      #     - global: true
+      #   proto: tcp
+
+      # Mainnet RPC (internal unless you know what you are doing)
+      # - port: 8232
+      #   as: 8232
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+      # - port: 9999
+      #   as: 9999
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+      # - port: 8080
+      #   as: 8080
+      #   to:
+      #     - global: false
+      #   proto: tcp
+
+profiles:
+  compute:
+    zakura:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gi
+        storage:
+          # Pruned mainnet default (~11 GiB snapshot + headroom).
+          # Archive: raise to 350Gi+ and set SNAPSHOT_KIND=archive.
+          - name: data
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        zakura:
+          denom: uact
+          amount: 1000000
+
+deployment:
+  zakura:
+    akash:
+      profile: zakura
+      count: 1
