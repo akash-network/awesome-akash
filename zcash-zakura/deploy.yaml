@@ -32,7 +32,7 @@ services:
   zakura:
     # Pin a release tag (Akash rejects :latest in production templates).
     # Image digests: https://hub.docker.com/r/zakuracore/zakura/tags
-    image: zakuracore/zakura:1.0.3
+    image: zakuracore/zakura:1.0.4
 
     # Bootstrap snapshot (if needed), then hand off to the image entrypoint so
     # cache dirs are owned correctly and privileges are dropped to UID 10001.
