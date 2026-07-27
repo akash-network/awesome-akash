@@ -165,6 +165,7 @@ To add a new template/resource:
 - [Llama-4-Scout-17B-16E-Instruct](Llama-4-Scout-17B-16E-Instruct)
 - [Mistral-7B](Mistral-7B)
 - [Ollama](ollama-gpu)
+- [Ollama TEE](ollama-tee)
 - [Open GPT](open-gpt)
 - [Open WebUI](open-webui-gpu)
 - [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
