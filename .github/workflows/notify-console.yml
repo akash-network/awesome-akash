@@ -1,0 +1,30 @@
+name: Notify Console to publish templates
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint cross-repo token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.CONSOLE_DISPATCH_APP_ID }}
+          private-key: ${{ secrets.CONSOLE_DISPATCH_APP_PRIVATE_KEY }}
+          owner: akash-network
+          repositories: console
+
+      - name: Dispatch to console
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          gh api repos/akash-network/console/dispatches \
+            -f event_type=awesome-akash-updated \
+            -F "client_payload[sha]=$HEAD_SHA"
