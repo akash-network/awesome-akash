@@ -216,6 +216,7 @@ To add a new template/resource:
 
 ### Chat
 
+- [Buzz Relayer](Buzz-Relayer)
 - [Mattermost](mattermost)
 - [Status](status)
 
