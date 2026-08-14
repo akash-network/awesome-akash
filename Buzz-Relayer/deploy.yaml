@@ -1,0 +1,186 @@
+---
+# Buzz Relay - Akash Network SDL
+# https://github.com/block/buzz
+#
+# DEPLOY STEPS:
+#   1. Fill in REPLACE_WITH_* values before deploying
+#   2. Generate keys locally:
+#      openssl rand -hex 32
+#      Run twice: once for relay key, once for owner key
+#   3. Deploy and note the provider URL and port
+#   4. Update RELAY_URL with actual URL and redeploy
+#   5. Connect desktop app to ws://provider:port (no trailing slash)
+
+version: "2.0"
+
+services:
+
+  postgres:
+    image: postgres:17-alpine
+    expose:
+      - port: 5432
+        as: 5432
+        proto: tcp
+        to:
+          - service: relay
+    env:
+      - POSTGRES_USER=buzz
+      - POSTGRES_PASSWORD=REPLACE_WITH_DB_PASSWORD
+      - POSTGRES_DB=buzz
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    params:
+      storage:
+        postgres-data:
+          mount: /var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    expose:
+      - port: 6379
+        as: 6379
+        proto: tcp
+        to:
+          - service: relay
+
+  typesense:
+    image: typesense/typesense:27.1
+    env:
+      - TYPESENSE_DATA_DIR=/typesense-data
+      - TYPESENSE_API_KEY=REPLACE_WITH_TYPESENSE_API_KEY
+      - TYPESENSE_LISTEN_PORT=8108
+      - TYPESENSE_ENABLE_CORS=true
+    expose:
+      - port: 8108
+        as: 8108
+        proto: tcp
+        to:
+          - service: relay
+    params:
+      storage:
+        typesense-data:
+          mount: /typesense-data
+
+  relay:
+    image: rodrirr/buzz-relay:0.12
+    expose:
+      - port: 3000
+        as: 3000
+        proto: tcp
+        to:
+          - global: true
+      - port: 80
+        as: 80
+        proto: tcp
+        to:
+          - global: true
+    env:
+      - DATABASE_URL=postgres://buzz:REPLACE_WITH_DB_PASSWORD@postgres:5432/buzz
+      - PGHOST=postgres
+      - PGPORT=5432
+      - PGUSER=buzz
+      - PGPASSWORD=REPLACE_WITH_DB_PASSWORD
+      - PGDATABASE=buzz
+      - REDIS_URL=redis://redis:6379
+      - TYPESENSE_API_KEY=REPLACE_WITH_TYPESENSE_API_KEY
+      - TYPESENSE_URL=http://typesense:8108
+      - BUZZ_BIND_ADDR=0.0.0.0:3000
+      - BUZZ_AUTO_MIGRATE=true
+      - BUZZ_GIT_REPO_PATH=/repos
+      - BUZZ_GIT_PACK_CACHE_PATH=/repos/.pack-cache
+      # Relay identity key - generate with: openssl rand -hex 32
+      - BUZZ_RELAY_PRIVATE_KEY=REPLACE_WITH_RELAY_PRIVATE_KEY
+      # Owner pubkey - your Nostr hex pubkey (from desktop app or generate-key output)
+      - RELAY_OWNER_PUBKEY=REPLACE_WITH_OWNER_PUBKEY
+      # Step 1: deploy without this, get provider URL, update and redeploy
+      - RELAY_URL=REPLACE_WITH_WS_PROVIDER_URL
+      # Allow CORS from Tauri desktop app origins
+      - BUZZ_CORS_ORIGINS=tauri://localhost,http://tauri.localhost
+      - RUST_LOG=info
+    params:
+      storage:
+        relay-repos:
+          mount: /repos
+
+profiles:
+  compute:
+    postgres:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 1Gi
+        storage:
+          - size: 1Gi
+          - name: postgres-data
+            size: 10Gi
+            attributes:
+              persistent: true
+              class: beta3
+    redis:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 256Mi
+        storage:
+          - size: 1Gi
+    typesense:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+          - name: typesense-data
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta3
+    relay:
+      resources:
+        cpu:
+          units: 4.0
+        memory:
+          size: 8Gi
+        storage:
+          - size: 40Gi
+          - name: relay-repos
+            size: 40Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      pricing:
+        postgres:
+          denom: uact
+          amount: 1000
+        redis:
+          denom: uact
+          amount: 500
+        typesense:
+          denom: uact
+          amount: 800
+        relay:
+          denom: uact
+          amount: 2000
+
+deployment:
+  postgres:
+    akash:
+      profile: postgres
+      count: 1
+  redis:
+    akash:
+      profile: redis
+      count: 1
+  typesense:
+    akash:
+      profile: typesense
+      count: 1
+  relay:
+    akash:
+      profile: relay
+      count: 1
