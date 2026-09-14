@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   app:
-    image: declab/x-ui:0.1
+    image: ghcr.io/decloudnodeslab/3x-ui:latest@sha256:973f304dfb11e392bc66df9cf456f3f60491d9405113b97183feb1d4e7baa6c1
     env:
       - "DB=" # Optional, past link for direct download (google drive, etc) if you want use own x-ui database.
       - "ARG=-port 1111 -username Admin -password admin" 
