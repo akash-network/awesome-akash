@@ -74,6 +74,7 @@ To add a new template/resource:
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [Bark small](bark-small)
+- [Bifrost](bifrost)
 - [Botpress](botpress)
 - [Buzz Agent](Buzz-Agent)
 - [Buzz OpenCode Agent](Buzz-OpenCode-Agent)
