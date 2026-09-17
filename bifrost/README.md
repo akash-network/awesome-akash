@@ -4,7 +4,7 @@ Bifrost is an open-source, OpenAI-compatible AI gateway for routing requests to 
 
 ## Deployment
 
-Deploy `deploy.yaml` with the [Akash deployment workflow](https://akash.network/docs/developers/deployment/). The template uses the official `maximhq/bifrost:v1.3.9` image, exposes port `8080`, and persists Bifrost data under `/app/data`.
+Deploy `deploy.yaml` with the [Akash deployment workflow](https://akash.network/docs/developers/deployment/). The template uses the official `maximhq/bifrost:v1.3.9` image and exposes port `8080`. Bifrost stores its local state under `/app/data` in the container filesystem.
 
 The template intentionally contains no provider credentials. After deployment, open the assigned Bifrost URL and configure providers in the web interface, or mount a declarative configuration as described in the [Bifrost deployment documentation](https://github.com/maximhq/bifrost/blob/dev/docs/quickstart/gateway/setting-up.mdx).
 
@@ -25,4 +25,4 @@ See the [Bifrost overview](https://docs.getbifrost.ai/overview) for provider rou
 
 ## Notes
 
-For production use, review the image version, configure authentication and TLS, and keep provider credentials out of the SDL and source control.
+For production use, review the image version, configure authentication and TLS, use an external Bifrost store or a provider-tested persistent-volume setup, and keep provider credentials out of the SDL and source control. The included template uses ephemeral storage because Akash persistent-volume mounts are root-owned while this image runs as a non-root user, which prevents Bifrost from creating its local database and logs.

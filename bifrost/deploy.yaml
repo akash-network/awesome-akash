@@ -14,11 +14,6 @@ services:
         as: 8080
         to:
           - global: true
-    params:
-      storage:
-        data:
-          mount: /app/data
-          readOnly: false
 
 profiles:
   compute:
@@ -30,11 +25,6 @@ profiles:
           size: 2Gi
         storage:
           - size: 2Gi
-          - name: data
-            size: 10Gi
-            attributes:
-              persistent: true
-              class: beta3
   placement:
     akash:
       pricing:
