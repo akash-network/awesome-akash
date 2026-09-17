@@ -106,6 +106,7 @@ To add a new template/resource:
 - [Chromadb](chromadb)
 - [Whisper ASR](whisper-asr-cpu)
 - [Whisper GUI](whisper-gui-cpu)
+- [YuE2 AI Music Generator](YuE2)
 
 ### AI - GPU
 
