@@ -1,0 +1,81 @@
+---
+# OpenJev on Akash — Jev-compatible System One decision server on DiffusionGemma.
+# Source: https://github.com/cmcclellan79/openjev
+#
+# Before you deploy, edit the three env values marked CHANGE ME below.
+version: "2.0"
+
+services:
+  openjev:
+    image: razorback16/openjev:0.3.0
+    env:
+      # CHANGE ME — a long random string. The lease URI is public, so without
+      # this anyone who finds it can spend your GPU. Clients then send
+      # "Authorization: Bearer <this value>".
+      - OPENJEV_API_KEY=replace-with-a-long-random-string
+      # CHANGE ME — Hugging Face token with access to the DiffusionGemma repo
+      # (accept the model licence on huggingface.co first).
+      - HF_TOKEN=hf_replace_me
+      # Lower this if you land on a 32 GB card; 65536 is the image default.
+      - OPENJEV_MAX_MODEL_LEN=32768
+      - OPENJEV_GPU_UTIL=0.9
+      - OPENJEV_MAX_NUM_SEQS=64
+      - OPENJEV_CANVAS=64
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          # Model weights (~18 GB) and the vLLM compile cache live here, so a
+          # redeploy doesn't download and recompile everything again.
+          mount: /root/.cache
+          readOnly: false
+        shm:
+          # Stands in for docker-compose's `ipc: host`.
+          mount: /dev/shm
+
+profiles:
+  compute:
+    openjev:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 64Gi
+        storage:
+          - size: 100Gi
+          - name: data
+            size: 300Gi
+            attributes:
+              persistent: true
+              class: beta3
+          - name: shm
+            size: 16Gi
+            attributes:
+              class: ram
+              persistent: false
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                # NVFP4 weights want Blackwell (sm_120). These are the RTX PRO
+                # 6000 Blackwell Server / Workstation / Max-Q editions, 96 GB.
+                - model: pro6000se
+                - model: pro6000we
+                - model: pro6000mq
+  placement:
+    dcloud:
+      pricing:
+        openjev:
+          denom: uact
+          amount: 1000000
+
+deployment:
+  openjev:
+    dcloud:
+      profile: openjev
+      count: 1
