@@ -173,6 +173,7 @@ To add a new template/resource:
 - [Open GPT](open-gpt)
 - [Open WebUI](open-webui-gpu)
 - [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
+- [OpenJev][OpenJev(https://github.com/cmcclellan79/awesome-akash/tree/master/openjev)]
 - [Parakeet](Parakeet)
 - [Pluralis-Node](Pluralis-Node)
 - [PrivateGPT](privategpt-gpu)
