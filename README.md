@@ -74,8 +74,10 @@ To add a new template/resource:
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
 - [Bark small](bark-small)
+- [Bifrost](bifrost)
 - [Botpress](botpress)
 - [Buzz Agent](Buzz-Agent)
+- [Buzz Goose Agent](Buzz-Goose-Agent)
 - [Buzz OpenCode Agent](Buzz-OpenCode-Agent)
 - [ChatChat](chatchat)
 - [Claude Code](claude-code)
@@ -171,6 +173,7 @@ To add a new template/resource:
 - [Open GPT](open-gpt)
 - [Open WebUI](open-webui-gpu)
 - [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
+- [OpenJev](openjev)
 - [Parakeet](Parakeet)
 - [Pluralis-Node](Pluralis-Node)
 - [PrivateGPT](privategpt-gpu)
@@ -199,6 +202,7 @@ To add a new template/resource:
 - [Whisper ASR](whisper-asr-gpu)
 - [Whisper GUI](whisper-gui-gpu)
 - [XLM-RoBERTa](XLM-RoBERTa)
+- [YuE2 AI Music Generator](YuE2)
 
 ### Blogging
 

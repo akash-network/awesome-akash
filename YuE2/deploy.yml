@@ -1,0 +1,59 @@
+---
+version: "2.0"
+
+services:
+  yue:
+    image: nvidia/cuda:13.3.1-cudnn-devel-ubuntu24.04
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+    env:
+      - HF_HOME=/cache/huggingface
+      - DEBIAN_FRONTEND=noninteractive
+      - TZ=UTC
+    params:
+      storage:
+        models:
+          mount: /cache/huggingface
+          readOnly: false
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - "apt-get update -qq && apt-get install -y -qq curl && curl -fsSL https://gist.githubusercontent.com/rodri-r/ae77e36e19a2b25b4937747168f4c5fc/raw/e5f8979091e249329f8173e6fdbc6f07d0555565/gistfile1.txt | bash"
+
+profiles:
+  compute:
+    yue:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 32Gi
+        storage:
+          - size: 20Gi
+          - name: models
+            size: 60Gi
+            attributes:
+              persistent: true
+              class: beta3
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+
+  placement:
+    akash:
+      pricing:
+        yue:
+          denom: uact
+          amount: 10000
+
+deployment:
+  yue:
+    akash:
+      profile: yue
+      count: 1

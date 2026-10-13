@@ -1,0 +1,100 @@
+---
+version: "2.0"
+
+services:
+  buzz-goose-agent:
+    image: erenyegit/buzz-goose-agent:1.0
+    # Nothing listens on this port: the agent only makes outbound connections,
+    # to the relay and to the model provider. The endpoint is declared because
+    # Akash requires at least one service in a deployment to expose a port with
+    # `global: true`.
+    expose:
+      - port: 3000
+        as: 3000
+        proto: tcp
+        to:
+          - global: true
+    env:
+      # Agent Nostr Identity
+      # Generate with `buzz-admin generate-key` from a shell on your relay deployment
+      # Each agent needs its own unique keypair, never reuse the relay key
+      - BUZZ_PRIVATE_KEY=REPLACE_WITH_AGENT_SECRET_KEY
+
+      # Relay Connection
+      - BUZZ_RELAY_URL=ws://REPLACE_WITH_RELAY_PROVIDER_URL:PORT
+
+      # Access Control
+      # Your hex pubkey, get it from the Buzz Desktop app
+      - BUZZ_ACP_AGENT_OWNER=REPLACE_WITH_YOUR_HEX_PUBKEY
+      - BUZZ_ACP_RESPOND_TO=owner-only
+
+      # Agent Config
+      # buzz-acp spawns `goose acp`; the developer extension loads by default
+      - BUZZ_ACP_AGENT_COMMAND=goose
+      # mentions: reply when @mentioned. all: react to every owner message
+      - BUZZ_ACP_SUBSCRIBE=mentions
+      - BUZZ_ACP_MAX_TURN_DURATION=7200
+      - BUZZ_ACP_IDLE_TIMEOUT=120
+
+      # goose Runtime
+      - GOOSE_MODE=auto
+      # Containers have no desktop keyring
+      - GOOSE_DISABLE_KEYRING=1
+      # Keep goose sessions and config on the persistent volume
+      - GOOSE_PATH_ROOT=/data/goose
+
+      # LLM Provider - Option A: AkashML (recommended on Akash)
+      - GOOSE_PROVIDER=openai
+      - OPENAI_HOST=https://api.akashml.com
+      - OPENAI_BASE_PATH=v1/chat/completions
+      - OPENAI_API_KEY=REPLACE_WITH_AKASHML_KEY
+      - GOOSE_MODEL=zai-org/GLM-5.3
+
+      # LLM Provider - Option B: Anthropic (comment out Option A first)
+      # - GOOSE_PROVIDER=anthropic
+      # - ANTHROPIC_API_KEY=REPLACE_WITH_ANTHROPIC_KEY
+      # - GOOSE_MODEL=claude-sonnet-5
+
+      # LLM Provider - Option C: OpenRouter (comment out Option A first)
+      # - GOOSE_PROVIDER=openrouter
+      # - OPENROUTER_API_KEY=REPLACE_WITH_OPENROUTER_KEY
+      # - GOOSE_MODEL=deepseek/deepseek-chat
+
+      # LLM Provider - Option D: Groq (comment out Option A first)
+      # - GOOSE_PROVIDER=groq
+      # - GROQ_API_KEY=REPLACE_WITH_GROQ_KEY
+      # - GOOSE_MODEL=llama-3.3-70b-versatile
+
+    params:
+      storage:
+        agent-data:
+          mount: /data
+
+profiles:
+  compute:
+    buzz-goose-agent:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 10Gi
+          - name: agent-data
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    dcloud:
+      pricing:
+        buzz-goose-agent:
+          denom: uact
+          amount: 10000
+
+deployment:
+  buzz-goose-agent:
+    dcloud:
+      profile: buzz-goose-agent
+      count: 1

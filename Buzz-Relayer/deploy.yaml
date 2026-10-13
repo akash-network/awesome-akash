@@ -4,12 +4,11 @@
 #
 # DEPLOY STEPS:
 #   1. Fill in REPLACE_WITH_* values before deploying
-#   2. Generate keys locally:
-#      openssl rand -hex 32
-#      Run twice: once for relay key, once for owner key
-#   3. Deploy and note the provider URL and port
-#   4. Update RELAY_URL with actual URL and redeploy
-#   5. Connect desktop app to ws://provider:port (no trailing slash)
+#   2. Generate secrets with: openssl rand -hex 32
+#      Run 3 times: DB password, Typesense API key, relay private key
+#   3. WITH custom domain: set accept + RELAY_URL before deploying, point DNS to provider, deploy once
+#   4. WITHOUT custom domain: deploy first, get provider URL, update RELAY_URL and redeploy
+#   5. Connect desktop app to your relay URL (no trailing slash)
 
 version: "2.0"
 
@@ -61,16 +60,14 @@ services:
           mount: /typesense-data
 
   relay:
-    image: rodrirr/buzz-relay:0.12
+    image: rodrirr/buzz-relay:0.17
     expose:
       - port: 3000
-        as: 3000
-        proto: tcp
-        to:
-          - global: true
-      - port: 80
         as: 80
         proto: tcp
+        # Uncomment and set your domain to enable custom domain routing (required for wss:// and mobile pairing)
+        # accept:
+        #   - "REPLACE_WITH_YOUR_DOMAIN"
         to:
           - global: true
     env:
@@ -83,16 +80,19 @@ services:
       - REDIS_URL=redis://redis:6379
       - TYPESENSE_API_KEY=REPLACE_WITH_TYPESENSE_API_KEY
       - TYPESENSE_URL=http://typesense:8108
-      - BUZZ_BIND_ADDR=0.0.0.0:3000
       - BUZZ_AUTO_MIGRATE=true
-      - BUZZ_GIT_REPO_PATH=/repos
-      - BUZZ_GIT_PACK_CACHE_PATH=/repos/.pack-cache
       # Relay identity key - generate with: openssl rand -hex 32
       - BUZZ_RELAY_PRIVATE_KEY=REPLACE_WITH_RELAY_PRIVATE_KEY
-      # Owner pubkey - your Nostr hex pubkey (from desktop app or generate-key output)
+      # Owner pubkey - your Nostr hex pubkey shown in Buzz Desktop app
       - RELAY_OWNER_PUBKEY=REPLACE_WITH_OWNER_PUBKEY
-      # Step 1: deploy without this, get provider URL, update and redeploy
-      - RELAY_URL=REPLACE_WITH_WS_PROVIDER_URL
+      # Without custom domain: deploy first, get ws://provider:port, update and redeploy
+      # With custom domain: set wss://yourdomain.com before first deploy
+      - RELAY_URL=REPLACE_WITH_RELAY_URL
+      # Required for mobile pairing - set to wss://yourdomain.com/pair (requires custom domain)
+      # - BUZZ_PAIRING_RELAY_URL=wss://REPLACE_WITH_YOUR_DOMAIN/pair
+      # Access control - uncomment to restrict relay to members only
+      # - BUZZ_REQUIRE_RELAY_MEMBERSHIP=true
+      # - BUZZ_REQUIRE_AUTH_TOKEN=true
       # Allow CORS from Tauri desktop app origins
       - BUZZ_CORS_ORIGINS=tauri://localhost,http://tauri.localhost
       - RUST_LOG=info

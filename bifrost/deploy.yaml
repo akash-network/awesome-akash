@@ -1,0 +1,39 @@
+---
+version: "2.0"
+
+services:
+  bifrost:
+    image: maximhq/bifrost:v1.3.9
+    env:
+      - APP_HOST=0.0.0.0
+      - APP_PORT=8080
+      - LOG_LEVEL=info
+      - LOG_STYLE=json
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+
+profiles:
+  compute:
+    bifrost:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - size: 2Gi
+  placement:
+    akash:
+      pricing:
+        bifrost:
+          denom: uact
+          amount: 5000
+
+deployment:
+  bifrost:
+    akash:
+      profile: bifrost
+      count: 1
