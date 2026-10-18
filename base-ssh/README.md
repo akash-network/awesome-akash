@@ -33,7 +33,7 @@ This repository contains Docker images configured for plain Linux deployments vi
 
 - Based on official Linux distribution images.
 - OpenSSH server installed and configured for SSH access.
-- SSH host keys generated at build time.
+- SSH host keys generated at build time, or at container start for images that ship without them (Debian 13).
 - Custom entrypoint script to handle SSH public key setup.
 - Ports exposed for SSH access.
 

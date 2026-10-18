@@ -2,6 +2,7 @@ FROM debian:13
 
 RUN apt-get update; \
     apt-get install -y --no-install-recommends -- tini ssh; \
+    rm -f /etc/ssh/ssh_host_*; \
     mkdir -p -m0755 /run/sshd; \
     mkdir -m700 ~/.ssh; \
     touch ~/.ssh/authorized_keys; \
