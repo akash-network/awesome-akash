@@ -445,6 +445,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [anubis](anubis)
 - [authsteem](authsteem)
+- [Blender](blender)
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)
 - [dart-hello](dart)
