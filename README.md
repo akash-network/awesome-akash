@@ -120,6 +120,7 @@ To add a new template/resource:
 - [Axolotl AI](axolotlai)
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
+- [Blender + AkashML](blender-ai)
 - [ChatGLM-6B](ChatGLM-6B)
 - [Chatterbox](Chatterbox)
 - [ComfyUI](comfyui)
@@ -446,6 +447,7 @@ Awesome DeFi apps you can deploy on Akash
 
 - [anubis](anubis)
 - [authsteem](authsteem)
+- [Blender](blender)
 - [Code-Server](code-server)
 - [CodiMD](CodiMD)
 - [dart-hello](dart)
