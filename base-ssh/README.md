@@ -14,6 +14,11 @@ This repository contains Docker images configured for plain Linux deployments vi
 - **Repository**: `ghcr.io/akash-network/debian-11-ssh`
 - **Tags**: `1`, `latest`
 
+### Debian 13
+
+- **Repository**: `ghcr.io/akash-network/debian-13-ssh`
+- **Tags**: `1`, `latest`
+
 ### CentOS Stream 9
 
 - **Repository**: `ghcr.io/akash-network/centos-stream9-ssh`
@@ -28,7 +33,7 @@ This repository contains Docker images configured for plain Linux deployments vi
 
 - Based on official Linux distribution images.
 - OpenSSH server installed and configured for SSH access.
-- SSH host keys generated at build time.
+- SSH host keys generated at build time, or at container start for images that ship without them (Debian 13).
 - Custom entrypoint script to handle SSH public key setup.
 - Ports exposed for SSH access.
 
@@ -68,6 +73,7 @@ To build the images yourself, use the provided Dockerfiles:
 ```bash
 docker build -f Dockerfile.ubuntu -t ghcr.io/akash-network/ubuntu-2404-ssh .
 docker build -f Dockerfile.debian -t ghcr.io/akash-network/debian-11-ssh .
+docker build -f Dockerfile.debian13 -t ghcr.io/akash-network/debian-13-ssh .
 docker build -f Dockerfile.centos -t ghcr.io/akash-network/centos-stream9-ssh .
 docker build -f Dockerfile.opensuse -t ghcr.io/akash-network/opensuse-leap-155-ssh .
 ```
