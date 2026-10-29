@@ -70,6 +70,7 @@ To add a new template/resource:
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Agent Zero](agent-zero)
+- [AI Dev Box](ai-dev-box)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
