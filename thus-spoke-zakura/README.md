@@ -1,6 +1,8 @@
 # Thus Spoke Zakura (Regtest)
 
-[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-thus-spoke-zakura)
+**Web payments:** [Console](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-thus-spoke-zakura) (`console.akash.network`) — traditional web checkout.
+
+**Native Akash payments (Keplr):** [Air](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-thus-spoke-zakura) (`air.akash.network`).
 
 Disposable **Zcash Regtest** stack matching the local [`ths`](https://github.com/zcashlabs/thus-spoke-zakura) launcher: Zakura + lightwalletd + the Thus Spoke Zakura dashboard/API.
 

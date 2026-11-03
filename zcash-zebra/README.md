@@ -1,6 +1,8 @@
 # Zcash - Zebra
 
-[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zebra)
+**Web payments:** [Console](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zebra) (`console.akash.network`) — traditional web checkout.
+
+**Native Akash payments (Keplr):** [Air](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zebra) (`air.akash.network`).
 
 Zebra is the Zcash Foundation’s Rust full node (`zebrad`). This template deploys **Zebra 7.0.0** on Akash with persistent state, env-based configuration, Prometheus/health endpoints, and a colocated lightwalletd.
 
