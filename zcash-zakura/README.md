@@ -10,7 +10,7 @@ Docker: <https://hub.docker.com/r/zakuracore/zakura>
 
 ## What this template does
 
-Deploys `zakuracore/zakura:1.0.3` on Akash with:
+Deploys `zakuracore/zakura:1.8.1` on Akash with:
 
 - Mainnet P2P on container port **8233** (provider maps a public high port)
 - **Persistent** state volume at `/home/zebra/.cache/zakura`
@@ -25,7 +25,7 @@ Deploys `zakuracore/zakura:1.0.3` on Akash with:
 
 | Setting | Default |
 | --- | --- |
-| Image | `zakuracore/zakura:1.0.3` |
+| Image | `zakuracore/zakura:1.8.1` (digest-pinned) |
 | Network | Mainnet |
 | Snapshot kind | `pruned` (~11 GiB download) |
 | Manifest | `https://zakura.valargroup.dev/mainnet-pruned/snapshots.json` |
@@ -80,9 +80,18 @@ Zebra-style config via `ZAKURA_*` env vars (legacy `ZEBRA_*` is translated by th
 | `ZAKURA_NETWORK__EXTERNAL_ADDR` | Public `host:port` if peers should dial you |
 | `ZAKURA_STATE__CACHE_DIR` | Must match the storage mount |
 | `ZAKURA_STATE__STORAGE_MODE` | `pruned` or `archive` |
-| `ZAKURA_RPC__LISTEN_ADDR` | Enable JSON-RPC (off by default) |
-| `ZAKURA_METRICS__ENDPOINT_ADDR` | Prometheus (optional) |
-| `ZAKURA_HEALTH__LISTEN_ADDR` | `/healthy` and `/ready` (optional) |
+| `ZAKURA_RPC__LISTEN_ADDR` | JSON-RPC (on internally for lightwalletd) |
+| `ZAKURA_METRICS__ENDPOINT_ADDR` | Prometheus (`0.0.0.0:9999`) |
+| `ZAKURA_HEALTH__LISTEN_ADDR` | `/healthy` and `/ready` (`0.0.0.0:8080`) |
+| `ENABLE_METRICS` / `ENABLE_HEALTH` / `ENABLE_RPC` / `ENABLE_LIGHTWALLETD` | `true`/`false` flags applied by the bootstrap script |
+
+## lightwalletd
+
+The template colocates `electriccoinco/lightwalletd:v0.6.1` on gRPC **9067** (global). It talks to Zakura JSON-RPC on internal **8232** with cookie auth **off** (lightwalletd cannot read cookie files).
+
+Point Zashi / Zallet / other compact-client wallets at the lease URI for port 9067 (`grpc`, TLS off unless you terminate TLS yourself).
+
+For a disposable Regtest dashboard instead of Mainnet, see **Thus Spoke Zakura**.
 
 ## Testnet
 

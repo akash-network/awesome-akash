@@ -2,7 +2,7 @@
 
 [![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zebra)
 
-Zebra is the Zcash Foundation’s Rust full node (`zebrad`). This template deploys **Zebra 6.2.1** on Akash with persistent state and env-based configuration.
+Zebra is the Zcash Foundation’s Rust full node (`zebrad`). This template deploys **Zebra 7.0.0** on Akash with persistent state, env-based configuration, Prometheus/health endpoints, and a colocated lightwalletd.
 
 Source: <https://github.com/ZcashFoundation/zebra>  
 Docker: <https://hub.docker.com/r/zfnd/zebra>  
@@ -12,7 +12,7 @@ ZecHub Akash guide: <https://github.com/ZecHub/zechub/blob/main/site/guides/Akas
 
 | Item | Value |
 | --- | --- |
-| Image | `zfnd/zebra:6.2.1` |
+| Image | `zfnd/zebra:7.0.0` (digest-pinned) |
 | Network | Mainnet |
 | P2P | container `8233` (provider maps a public high port) |
 | State mount | `/home/zebra/.cache/zebra` (persistent, 350 GiB) |
@@ -36,14 +36,11 @@ Config is entirely via `ZEBRA_SECTION__KEY` environment variables (see [zebrad c
 - "ZEBRA_NETWORK__EXTERNAL_ADDR=<provider-host>:<mapped-p2p-port>"
 ```
 
-**RPC** — uncomment and expose carefully:
+**RPC** is on internally for lightwalletd (`ZEBRA_RPC__ENABLE_COOKIE_AUTH=false`). Keep the 8232 expose `global: false`.
 
-```yaml
-- "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:8232"
-- "ZEBRA_RPC__ENABLE_COOKIE_AUTH=true"
-```
+**Feature flags** — `ENABLE_METRICS`, `ENABLE_HEALTH`, `ENABLE_RPC`, `ENABLE_LIGHTWALLETD` (`true`/`false`). The start script applies them before `zebrad start`.
 
-Cookie file lives under the state mount (`ZEBRA_RPC__COOKIE_DIR`).
+**lightwalletd** — `electriccoinco/lightwalletd:v0.6.1` on container port 9067 (global). Wallets use the mapped lease URI. For a Regtest dashboard stack, see **Thus Spoke Zakura**.
 
 **Testnet** — switch network env, listen addr `18233`, P2P expose, and you can drop storage toward ~50 GiB.
 

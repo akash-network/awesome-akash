@@ -332,6 +332,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Starknet Node by Juno](juno)
 - [Substrate Node](substrate-node)
 - [Witness Chain Watchtower](witnesschain-watchtower)
+- [Thus Spoke Zakura (Regtest)](thus-spoke-zakura)
 - [Zcash - Zakura](zcash-zakura)
 - [Zcash - Zebra](zcash-zebra)
 
