@@ -23,9 +23,12 @@
 # - 9999: Prometheus metrics (internal)
 # - 8080: Health probes (internal)
 #
-# IMPORTANT: Port mapping on Akash
-# Providers reverse-proxy your container port to a random high port on the
-# provider public IP. Check deployment URIs for the real endpoint.
+# Port mapping (default, no dedicated IP in this SDL):
+#   port / as  = container listen ports (8233, 9067, 8232, …)
+#   global: true TCP  = provider assigns a random high port on a shared host
+#   Lease URIs (Console/Air) are the public host:port. Peers and wallets use
+#   those, not host:8233 or host:9067.
+# Dedicated IP endpoints (kind: ip) are a premium extra — omit them here.
 
 version: "2.0"
 

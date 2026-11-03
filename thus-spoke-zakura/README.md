@@ -18,15 +18,13 @@ Upstream: <https://github.com/zcashlabs/thus-spoke-zakura> (v0.4.1)
 | `zakura` | `zakuracore/zakura:1.6.0` (ths 0.4.1 pin) | 18232 RPC, 18233 P2P | Regtest consensus |
 | `lightwalletd` | `ghcr.io/zcashlabs/thus-spoke-zakura-lightwalletd:0.4.1` | 9067 | CompactTxStreamer gRPC |
 
-Akash maps each expose to a random high port on the provider. Use the lease URIs.
+**Ports:** container `8080` / `9067` / `18232` / `18233` stay inside the pod. This SDL does not request a dedicated IP. TCP `global: true` exposes become **random high ports** on the provider host. The dashboard (`8080 as 80` + `http_options`) is usually an **ingress hostname**. **Leases → URIs** is the public address for each service.
 
-After deploy, open the **`app` service URI** (container 8080 published as 80). That is the Thus Spoke Zakura dashboard and HTTP API. The stack self-bootstraps: `ths-server init` runs once on the wallet volume, then `serve` retries until Zakura RPC and lightwalletd answer.
+After deploy, open the **`app` URI** from the lease. That is the dashboard and HTTP API. The stack self-bootstraps: `ths-server init` once on the wallet volume, then `serve` retries until Zakura RPC and lightwalletd answer.
 
-Also published:
-
-1. **Dashboard / API** — `app` URI (port 80 mapping). Use this in a browser.
-2. **lightwalletd** — `lightwalletd` URI (9067 mapping, TLS off) for compact clients.
-3. **Zakura JSON-RPC** — `zakura` URI (18232 mapping) for `ths rpc`-style calls.
+1. **Dashboard / API** — `app` URI (ingress). Browser.
+2. **lightwalletd** — `lightwalletd` URI (`host:<random-port>`, TLS off).
+3. **Zakura JSON-RPC** — `zakura` URI for the 18232 expose (`host:<random-port>`).
 
 Images are **v0.4.1** (`thus-spoke-zakura-app` and `thus-spoke-zakura-lightwalletd`). Zakura is `zakuracore/zakura:1.6.0`, the pin compiled into the 0.4.1 launcher.
 

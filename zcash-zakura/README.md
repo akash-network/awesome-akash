@@ -119,7 +119,7 @@ The script parses `image`, `env`, and `command` from `deploy.yaml` so local runs
 ## Notes
 
 - Akash/Kubernetes injects `ZAKURA_SERVICE_PORT`, `ZAKURA_NP_SERVICE_PORT`, etc. The bootstrap **unsets** any `ZAKURA_*` env that is not `ZAKURA_SECTION__KEY` form before starting, otherwise `zakurad` fails with `unknown field …`.
-- Akash does **not** bind your service to the literal public port 8233; check the lease URI for the published host:port. Set `ZAKURA_NETWORK__EXTERNAL_ADDR` to that endpoint if you want better inbound peer reachability.
+- **Ports:** SDL `8233` / `9067` / `8232` are container ports. With the default shared-IP mapping, each `global: true` TCP expose becomes a **random high port** on the provider host. Use **Leases → URIs**. Set `ZAKURA_NETWORK__EXTERNAL_ADDR` to the mapped P2P URI. This template does not request a dedicated IP (`endpoints.kind: ip`); that is a paid extra if you later want a stable `host:8233`.
 - Pruned mode is one-way: you cannot reopen a pruned DB as archive without resyncing.
 - Image starts as root only long enough for volume ownership, then drops to UID **10001** (`zebra`) via `entrypoint.sh`.
 - For zcashd wallet/RPC compatibility, see Zakura’s [zcashd-compat](https://github.com/zakura-core/zakura/blob/main/book/src/user/zcashd-compat.md) docs (not enabled in this template).

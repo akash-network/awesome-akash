@@ -16,8 +16,11 @@
 #   9999  Prometheus
 #   8080  /healthy and /ready
 #
-# Akash maps global ports to random high ports on the provider IP. Use the
-# lease URI as ZEBRA_NETWORK__EXTERNAL_ADDR if you want inbound peers.
+# Port mapping (default, no dedicated IP in this SDL):
+#   port / as  = container listen ports (8233, 9067, 8232, …)
+#   global: true TCP  = provider assigns a random high port on a shared host
+#   Lease URIs are the public host:port. Set EXTERNAL_ADDR to that P2P URI.
+# Dedicated IP endpoints (kind: ip) are a premium extra — omit them here.
 
 version: "2.0"
 

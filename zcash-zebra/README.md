@@ -16,7 +16,7 @@ ZecHub Akash guide: <https://github.com/ZecHub/zechub/blob/main/site/guides/Akas
 | --- | --- |
 | Image | `zfnd/zebra:7.0.0` (digest-pinned) |
 | Network | Mainnet |
-| P2P | container `8233` (provider maps a public high port) |
+| P2P | container `8233` (`global: true` → random high port on the lease URI) |
 | State mount | `/home/zebra/.cache/zebra` (persistent, 350 GiB) |
 | CPU / RAM | 4 / 16 GiB |
 
@@ -32,11 +32,13 @@ Config is entirely via `ZEBRA_SECTION__KEY` environment variables (see [zebrad c
 
 ## Common tweaks
 
-**Public reachability** — after the lease is up, set:
+**Public reachability** — copy the P2P line from **Leases → URIs** (a random high port, not 8233) and set:
 
 ```yaml
 - "ZEBRA_NETWORK__EXTERNAL_ADDR=<provider-host>:<mapped-p2p-port>"
 ```
+
+This template does not request a dedicated IP. That is a paid `endpoints.kind: ip` extra if you want a stable public `host:8233`.
 
 **RPC** is on internally for lightwalletd (`ZEBRA_RPC__ENABLE_COOKIE_AUTH=false`). Keep the 8232 expose `global: false`.
 

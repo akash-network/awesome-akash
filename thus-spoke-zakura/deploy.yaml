@@ -7,8 +7,11 @@
 #   zakuracore/zakura:1.6.0   (image pin compiled into ths 0.4.1)
 #
 # Test coins have no value. Never send mainnet funds here.
-# The dashboard, JSON-RPC, and lightwalletd gRPC are published globally so
-# you can point wallets/apps at the lease URIs.
+# Port mapping (default, no dedicated IP in this SDL):
+#   app 8080 as 80 + http_options → ingress hostname (often :80/:443)
+#   TCP 9067 / 18232 / 18233     → random high ports on the provider host
+#   Open Leases → URIs; do not assume public :80, :8080, or :9067.
+# Dedicated IP endpoints (kind: ip) are a premium extra — omit them here.
 
 version: "2.0"
 
