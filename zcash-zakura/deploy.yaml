@@ -473,8 +473,8 @@ services:
   # Compact-tx streamer for wallets (Zashi, Zallet, DREGG). Talks to zakura JSON-RPC.
   lightwalletd:
     image: electriccoinco/lightwalletd:v0.6.1
-    depends_on:
-      - zakura
+    dependencies:
+      - service: zakura
     command:
       - "lightwalletd"
       - "--no-tls-very-insecure"

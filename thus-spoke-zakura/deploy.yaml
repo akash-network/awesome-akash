@@ -66,8 +66,8 @@ services:
 
   lightwalletd:
     image: ghcr.io/zcashlabs/thus-spoke-zakura-lightwalletd:0.4.1
-    depends_on:
-      - zakura
+    dependencies:
+      - service: zakura
     command:
       - "lightwalletd"
       - "--no-tls-very-insecure"
@@ -100,9 +100,9 @@ services:
 
   app:
     image: ghcr.io/zcashlabs/thus-spoke-zakura-app:0.4.1
-    depends_on:
-      - zakura
-      - lightwalletd
+    dependencies:
+      - service: zakura
+      - service: lightwalletd
     command:
       - "/bin/sh"
       - "-c"
