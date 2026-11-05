@@ -1,0 +1,216 @@
+---
+# Thus Spoke Zakura on Akash — disposable Zcash *Regtest* lab
+#
+# Mirrors the local `ths` runtime (v0.4.1):
+#   ghcr.io/zcashlabs/thus-spoke-zakura-app:0.4.1
+#   ghcr.io/zcashlabs/thus-spoke-zakura-lightwalletd:0.4.1
+#   zakuracore/zakura:1.6.0   (image pin compiled into ths 0.4.1)
+#
+# Test coins have no value. Never send mainnet funds here.
+# Port mapping (default, no dedicated IP in this SDL):
+#   app 8080 as 80 + http_options → ingress hostname (often :80/:443)
+#   TCP 9067 / 18232 / 18233     → random high ports on the provider host
+#   Open Leases → URIs; do not assume public :80, :8080, or :9067.
+# Dedicated IP endpoints (kind: ip) are a premium extra — omit them here.
+
+version: "2.0"
+
+services:
+  zakura:
+    image: zakuracore/zakura:1.6.0
+    command:
+      - "/bin/bash"
+      - "-c"
+      - |
+        set -euo pipefail
+        while IFS= read -r name; do
+          unset "${name}" || true
+        done < <(env | awk -F= '/^ZAKURA_/ && $1 !~ /__/ { print $1 }')
+        if [[ -x /usr/local/bin/entrypoint.sh ]]; then
+          exec /usr/local/bin/entrypoint.sh zakurad start
+        fi
+        exec zakurad start
+    env:
+      - "ZAKURA_NETWORK__NETWORK=Regtest"
+      - "ZAKURA_NETWORK__LISTEN_ADDR=[::]:18233"
+      - "ZAKURA_STATE__CACHE_DIR=/home/zebra/.cache/zakura"
+      - "ZAKURA_RPC__COOKIE_DIR=/home/zebra/.cache/zakura"
+      - "ZAKURA_RPC__LISTEN_ADDR=0.0.0.0:18232"
+      - "ZAKURA_RPC__ENABLE_COOKIE_AUTH=false"
+      - "ZAKURA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
+      - "ZAKURA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
+      - "ZAKURA_TRACING__USE_COLOR=true"
+    params:
+      storage:
+        data:
+          mount: /home/zebra/.cache/zakura
+          readOnly: false
+    expose:
+      - port: 18233
+        as: 18233
+        to:
+          - global: true
+        proto: tcp
+      - port: 18232
+        as: 18232
+        to:
+          - service: lightwalletd
+          - service: app
+          - global: true
+        proto: tcp
+      - port: 9999
+        as: 9999
+        to:
+          - global: false
+        proto: tcp
+
+  lightwalletd:
+    image: ghcr.io/zcashlabs/thus-spoke-zakura-lightwalletd:0.4.1
+    dependencies:
+      - service: zakura
+    command:
+      - "lightwalletd"
+      - "--no-tls-very-insecure"
+      - "--grpc-bind-addr"
+      - "0.0.0.0:9067"
+      - "--rpchost"
+      - "zakura"
+      - "--rpcport"
+      - "18232"
+      - "--rpcuser"
+      - "unused"
+      - "--rpcpassword"
+      - "unused"
+      - "--data-dir"
+      - "/var/lib/lightwalletd"
+      - "--log-file"
+      - "/dev/stdout"
+    params:
+      storage:
+        lwd:
+          mount: /var/lib/lightwalletd
+          readOnly: false
+    expose:
+      - port: 9067
+        as: 9067
+        to:
+          - service: app
+          - global: true
+        proto: tcp
+
+  app:
+    image: ghcr.io/zcashlabs/thus-spoke-zakura-app:0.4.1
+    dependencies:
+      - service: zakura
+      - service: lightwalletd
+    command:
+      - "/bin/sh"
+      - "-c"
+      - |
+        set -e
+        mkdir -p /data /tmp/ths-config
+        if [ ! -f /data/.ths-inited ]; then
+          ths-server init --data-dir /data --config-dir /tmp/ths-config
+          touch /data/.ths-inited
+        fi
+        # Serve retries until Zakura RPC and lightwalletd are up (self-bootstrap).
+        n=0
+        while [ "$n" -lt 60 ]; do
+          if ths-server serve --data-dir /data; then
+            exit 0
+          fi
+          n=$((n + 1))
+          echo "ths-server serve exited; waiting for zakura/lightwalletd ($n/60)"
+          sleep 5
+        done
+        echo "ths-server failed to stay up after 60 attempts"
+        exit 1
+    env:
+      - "THS_LISTEN=0.0.0.0:8080"
+      - "THS_ZAKURA_RPC=http://zakura:18232"
+      - "THS_LIGHTWALLETD=http://lightwalletd:9067"
+      - "THS_INSTANCE=akash"
+      - "THS_NETWORK=regtest"
+      - "THS_LIGHTWALLETD_TLS=false"
+    params:
+      storage:
+        wallet:
+          mount: /data
+          readOnly: false
+    expose:
+      # Dashboard + HTTP API. Akash maps this to a public URI — open that in a browser.
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+        proto: tcp
+        http_options:
+          max_body_size: 10485760
+
+profiles:
+  compute:
+    zakura:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 8Gi
+        storage:
+          - name: data
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+    lightwalletd:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 1Gi
+        storage:
+          - name: lwd
+            size: 8Gi
+            attributes:
+              persistent: true
+              class: beta3
+    app:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - name: wallet
+            size: 8Gi
+            attributes:
+              persistent: true
+              class: beta3
+
+  placement:
+    akash:
+      attributes:
+        host: akash
+      pricing:
+        zakura:
+          denom: uact
+          amount: 500000
+        lightwalletd:
+          denom: uact
+          amount: 50000
+        app:
+          denom: uact
+          amount: 100000
+
+deployment:
+  zakura:
+    akash:
+      profile: zakura
+      count: 1
+  lightwalletd:
+    akash:
+      profile: lightwalletd
+      count: 1
+  app:
+    akash:
+      profile: app
+      count: 1

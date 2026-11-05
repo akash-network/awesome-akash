@@ -1,7 +1,7 @@
 ---
 # Akash SDL for Zebra (zebrad) Zcash full node
 #
-# Image: zfnd/zebra:6.2.1
+# Image: zfnd/zebra:7.0.0 (digest-pinned; never :latest)
 # Config is driven by ZEBRA_SECTION__KEY env vars (config-rs). The image
 # entrypoint owns cache dirs and drops privileges to UID 10001.
 #
@@ -16,15 +16,18 @@
 #   9999  Prometheus
 #   8080  /healthy and /ready
 #
-# Akash maps global ports to random high ports on the provider IP. Use the
-# lease URI as ZEBRA_NETWORK__EXTERNAL_ADDR if you want inbound peers.
+# Port mapping (default, no dedicated IP in this SDL):
+#   port / as  = container listen ports (8233, 9067, 8232, …)
+#   global: true TCP  = provider assigns a random high port on a shared host
+#   Lease URIs are the public host:port. Set EXTERNAL_ADDR to that P2P URI.
+# Dedicated IP endpoints (kind: ip) are a premium extra — omit them here.
 
 version: "2.0"
 
 services:
   zebra:
     # Pin a release; never use :latest on Akash.
-    image: zfnd/zebra:6.2.1
+    image: zfnd/zebra:7.0.0@sha256:a70d2be8ffef3a4b6e37355724e36a0e6c1838e46baa28bfb216739f00cf2d34
 
     # Scrub invalid bare ZEBRA_* keys (no __) that some hosts inject, then
     # hand off to the image entrypoint for volume ownership + setpriv.
@@ -37,6 +40,22 @@ services:
         while IFS= read -r name; do
           unset "${name}" || true
         done < <(env | awk -F= '/^ZEBRA_/ && $1 !~ /__/ { print $1 }')
+        truthy() { case "${1:-}" in true|TRUE|1|yes|YES|on|ON) return 0 ;; *) return 1 ;; esac; }
+        if truthy "${ENABLE_METRICS:-true}"; then
+          export ZEBRA_METRICS__ENDPOINT_ADDR="${ZEBRA_METRICS__ENDPOINT_ADDR:-0.0.0.0:9999}"
+        fi
+        if truthy "${ENABLE_HEALTH:-true}"; then
+          export ZEBRA_HEALTH__LISTEN_ADDR="${ZEBRA_HEALTH__LISTEN_ADDR:-0.0.0.0:8080}"
+        fi
+        if truthy "${ENABLE_RPC:-true}"; then
+          export ZEBRA_RPC__LISTEN_ADDR="${ZEBRA_RPC__LISTEN_ADDR:-0.0.0.0:8232}"
+        fi
+        if truthy "${ENABLE_LIGHTWALLETD:-true}"; then
+          export ZEBRA_RPC__ENABLE_COOKIE_AUTH="${ZEBRA_RPC__ENABLE_COOKIE_AUTH:-false}"
+          export ZEBRA_RPC__LISTEN_ADDR="${ZEBRA_RPC__LISTEN_ADDR:-0.0.0.0:8232}"
+        elif truthy "${ENABLE_RPC:-true}"; then
+          export ZEBRA_RPC__ENABLE_COOKIE_AUTH="${ZEBRA_RPC__ENABLE_COOKIE_AUTH:-true}"
+        fi
         if [[ -x /usr/local/bin/entrypoint.sh ]]; then
           exec /usr/local/bin/entrypoint.sh zebrad start
         fi
@@ -65,14 +84,17 @@ services:
       # 0 = use all available CPUs for parallel verification
       - "ZEBRA_SYNC__PARALLEL_CPU_THREADS=0"
 
-      # --- RPC (disabled until listen_addr is set) ---
-      # - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:8232"
-      # - "ZEBRA_RPC__ENABLE_COOKIE_AUTH=true"
-      # Testnet RPC: 0.0.0.0:18232
+      - "ENABLE_METRICS=true"
+      - "ENABLE_HEALTH=true"
+      - "ENABLE_RPC=true"
+      - "ENABLE_LIGHTWALLETD=true"
 
-      # --- Observability (optional) ---
-      # - "ZEBRA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
-      # - "ZEBRA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
+      # Internal RPC for lightwalletd (cookie off; lwd cannot read cookie files)
+      - "ZEBRA_RPC__LISTEN_ADDR=0.0.0.0:8232"
+      - "ZEBRA_RPC__ENABLE_COOKIE_AUTH=false"
+
+      - "ZEBRA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
+      - "ZEBRA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
       - "ZEBRA_TRACING__USE_COLOR=true"
       # - "ZEBRA_TRACING__FILTER=info"
 
@@ -96,24 +118,57 @@ services:
       #     - global: true
       #   proto: tcp
 
-      # Mainnet RPC (prefer internal):
-      # - port: 8232
-      #   as: 8232
-      #   to:
-      #     - global: false
-      #   proto: tcp
+      - port: 8232
+        as: 8232
+        to:
+          - service: lightwalletd
+          - global: false
+        proto: tcp
 
-      # - port: 9999
-      #   as: 9999
-      #   to:
-      #     - global: false
-      #   proto: tcp
+      - port: 9999
+        as: 9999
+        to:
+          - global: false
+        proto: tcp
 
-      # - port: 8080
-      #   as: 8080
-      #   to:
-      #     - global: false
-      #   proto: tcp
+      - port: 8080
+        as: 8080
+        to:
+          - global: false
+        proto: tcp
+
+  lightwalletd:
+    image: electriccoinco/lightwalletd:v0.6.1
+    dependencies:
+      - service: zebra
+    command:
+      - "lightwalletd"
+      - "--no-tls-very-insecure"
+      - "--grpc-bind-addr"
+      - "0.0.0.0:9067"
+      - "--rpchost"
+      - "zebra"
+      - "--rpcport"
+      - "8232"
+      - "--rpcuser"
+      - "unused"
+      - "--rpcpassword"
+      - "unused"
+      - "--data-dir"
+      - "/var/lib/lightwalletd"
+      - "--log-file"
+      - "/dev/stdout"
+    params:
+      storage:
+        lwd:
+          mount: /var/lib/lightwalletd
+          readOnly: false
+    expose:
+      - port: 9067
+        as: 9067
+        to:
+          - global: true
+        proto: tcp
 
 profiles:
   compute:
@@ -130,6 +185,18 @@ profiles:
             attributes:
               persistent: true
               class: beta3
+    lightwalletd:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - name: lwd
+            size: 32Gi
+            attributes:
+              persistent: true
+              class: beta3
 
   placement:
     akash:
@@ -139,9 +206,16 @@ profiles:
         zebra:
           denom: uact
           amount: 1000000
+        lightwalletd:
+          denom: uact
+          amount: 100000
 
 deployment:
   zebra:
     akash:
       profile: zebra
+      count: 1
+  lightwalletd:
+    akash:
+      profile: lightwalletd
       count: 1
