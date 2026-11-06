@@ -6,7 +6,7 @@
 
 | Service | Image | Purpose |
 |---|---|---|
-| relay | rodrirr/buzz-relay:0.12 | Buzz relay + MinIO (bundled) |
+| relay | rodrirr/buzz-relay:0.17 | Buzz relay + MinIO + nginx proxy (bundled) |
 | postgres | postgres:17-alpine | Primary database |
 | redis | redis:7-alpine | Pub/sub and caching |
 | typesense | typesense/typesense:27.1 | Full-text search |
@@ -40,19 +40,38 @@ Edit `deploy.yaml` and replace all `REPLACE_WITH_*` values:
 | `REPLACE_WITH_TYPESENSE_API_KEY` | Output of `openssl rand -hex 32` |
 | `REPLACE_WITH_RELAY_PRIVATE_KEY` | Output of `openssl rand -hex 32` |
 | `REPLACE_WITH_OWNER_PUBKEY` | Your Nostr public key from Buzz Desktop |
-| `REPLACE_WITH_WS_PROVIDER_URL` | Leave blank for first deploy, see step 4 |
 
-### 3. First deploy
+### 3. Choose your deploy flow
 
-Deploy with `RELAY_URL` left blank. The relay will start but agents won't resolve the community yet, that's fine.
+**With a custom domain (single deploy)**
 
-### 4. Get provider URL and redeploy
+If you have a domain ready, point it to the Akash provider via Cloudflare (proxy enabled) before deploying:
 
-Once deployed, note your provider URL and port (e.g. `ws://provider.example.com:31234`). Update `RELAY_URL` in the SDL and redeploy. No data is lost as persistent volumes are retained.
+1. Uncomment the `accept` block in the SDL and set your domain
+2. Set `RELAY_URL=wss://yourdomain.com`
+3. Deploy once and connect Buzz Desktop to `wss://yourdomain.com`
 
-### 5. Connect the desktop app
+**Without a custom domain (deploy + update deployment)**
 
-Open Buzz Desktop and connect to your relay URL (no trailing slash). Update your community name and settings under Community Settings in the desktop app.
+1. Leave `RELAY_URL` blank and deploy
+2. Note the provider URL and port from the deployment (e.g. `ws://provider.example.com:31234`)
+3. Update `RELAY_URL=ws://provider.example.com:31234` and update deployment
+4. Connect Buzz Desktop to that URL (no trailing slash)
+
+### 4. Connect the desktop app
+
+Open Buzz Desktop and connect to your relay URL. Update your community name and settings under Community Settings in the desktop app.
+
+## Access Control (optional)
+
+By default the relay is open to anyone with the URL. To restrict access to members only, uncomment these two lines in the SDL:
+
+```
+BUZZ_REQUIRE_RELAY_MEMBERSHIP=true
+BUZZ_REQUIRE_AUTH_TOKEN=true
+```
+
+Members can be added via the Buzz Desktop app after connecting to the relay.
 
 ## Connecting AI Agents
 

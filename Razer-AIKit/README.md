@@ -52,15 +52,17 @@ RazerAI
 
 After logging in, Jupyter opens on the AIKit notebooks. Everything runs out of the box inside the container:
 
-![AIKit Jupyter Lab home with bundled notebooks](https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/jupyter-home.png)
+![AIKit Jupyter Lab landing page with bundled notebooks](https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/jupyter-notebooks-home.png)
 
 Notebooks grouped by use case:
 
 - **Inferencing** — On-Device Inferencing, Distributed Inferencing (Head / Node)
 - **Image generation** — On-Device Image Generation
-- **Video generation** - On-Device Video Generation
+- **Audio generation** — On-Device Audio Generation
+- **Video generation** — On-Device Video Generation
 - **Fine-tuning** — On-Device Fine-Tuning (LoRA), Distributed Fine-Tuning LoRA (Head / Node)
-- **Integrations** — Integrating AIKit with the OpenAI API, Semantic Search
+- **Voice Agent** — Local end-to-end STT <-> TTS AI interaction
+- **Integrations** — Integrating AIKit with the OpenAI API, Semantic Search, RAG, Jev-Style Decision Models
 
 For a first run, open **`3_On_Device_Image_Generation.ipynb`** and step through the cells. The notebook walks through pulling a diffusion model from Hugging Face and generating an image locally on the rented GPU:
 
@@ -74,7 +76,11 @@ Click the external-link icon next to **port 7860** to open the Razer AIKit web U
 
 Then just type a prompt and click **Generate Image**:
 
-![Razer AIKit UI generating a cat with Razer headphones](https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/aikit-ui-cat.png)
+![Razer AIKit UI Image Generation tab](https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/aikit-ui-image-generation.png)
+
+Switch to the **Voice Agent** tab to talk to a local voice agent — click **Record** and speak. As with image generation, set up the models first from the Voice Agent notebook (`10_Voice_Agent.ipynb`):
+
+![Razer AIKit UI Voice Agent tab](https://raw.githubusercontent.com/akash-network/awesome-akash/master/Razer-AIKit/images/aikit-ui-voice-agent.png)
 
 ---
 
@@ -83,10 +89,10 @@ Then just type a prompt and click **Generate Image**:
 Once the core flow works, the same deployment is a full AIKit workstation. A few directions to explore:
 
 - **Run any vLLM-supported LLM from Hugging Face** — use notebook **1 (On-Device Inferencing)** to pull and serve a model, e.g. `deepseek-ai/deepseek-coder-1.3b-instruct`. Browse the catalogue at [vLLM-compatible models on Hugging Face](https://huggingface.co/models?apps=vllm&sort=trending).
-- **Fine-tune with LoRA** — notebook **4** (On-Device Fine-Tuning LoRA) runs end-to-end on the single provisioned GPU.
-- **Use the OpenAI-compatible endpoint** on port 8000 — point any OpenAI SDK at `http://<provider-host>:<8000-forwarded-port>/v1` and treat the deployment as your private LLM API. Notebook **6** has a worked example.
+- **Fine-tune with LoRA** — notebook **6** (On-Device Fine-Tuning LoRA) runs end-to-end on the single provisioned GPU.
+- **Use the OpenAI-compatible endpoint** on port 8000 — point any OpenAI SDK at `http://<provider-host>:<8000-forwarded-port>/v1` and treat the deployment as your private LLM API. Notebook **8** has a worked example.
 
-> Distributed (multi-node) inferencing and fine-tuning notebooks (`2a`, `2b`, `5a`, `5b`) are present in the image but are **out of scope for this single-service template** — they require a head + worker topology and inter-node networking that isn't wired up here.
+> Distributed (multi-node) inferencing and fine-tuning notebooks (`2a`, `2b`, `7a`, `7b`) are present in the image but are **out of scope for this single-service template** — they require a head + worker topology and inter-node networking that isn't wired up here.
 
 ---
 

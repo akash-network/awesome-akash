@@ -1,0 +1,49 @@
+---
+version: "2.0"
+services:
+  devbox:
+    image: ghcr.io/costa2400/ai-dev-box:1.1
+    env:
+      # Local port served at the deployment URL
+      - APP_PORT=3000
+      # Optional: stable custom domain via Cloudflare Tunnel
+      # - CF_TUNNEL_TOKEN=
+    expose:
+      - port: 22
+        as: 22
+        to:
+          - global: true
+      - port: 80
+        as: 80
+        to:
+          - global: true
+    params:
+      storage:
+        home:
+          mount: /root
+profiles:
+  compute:
+    devbox:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 20Gi
+          - name: home
+            size: 50Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        devbox:
+          denom: uact
+          amount: 100000
+deployment:
+  devbox:
+    dcloud:
+      profile: devbox
+      count: 1

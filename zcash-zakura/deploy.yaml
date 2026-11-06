@@ -18,13 +18,17 @@
 # Network ports (same P2P layout as Zebra / zcashd):
 # - 8233: Mainnet P2P (expose globally)
 # - 18233: Testnet P2P
-# - 8232 / 18232: RPC (optional)
-# - 9999: Prometheus metrics (optional)
-# - 8080: Health probes (optional)
+# - 8232 / 18232: JSON-RPC (internal; required by colocated lightwalletd)
+# - 9067: lightwalletd CompactTxStreamer gRPC (global by default)
+# - 9999: Prometheus metrics (internal)
+# - 8080: Health probes (internal)
 #
-# IMPORTANT: Port mapping on Akash
-# Providers reverse-proxy your container port to a random high port on the
-# provider public IP. Check deployment URIs for the real endpoint.
+# Port mapping (default, no dedicated IP in this SDL):
+#   port / as  = container listen ports (8233, 9067, 8232, …)
+#   global: true TCP  = provider assigns a random high port on a shared host
+#   Lease URIs (Console/Air) are the public host:port. Peers and wallets use
+#   those, not host:8233 or host:9067.
+# Dedicated IP endpoints (kind: ip) are a premium extra — omit them here.
 
 version: "2.0"
 
@@ -32,7 +36,7 @@ services:
   zakura:
     # Pin a release tag (Akash rejects :latest in production templates).
     # Image digests: https://hub.docker.com/r/zakuracore/zakura/tags
-    image: zakuracore/zakura:1.1.1
+    image: zakuracore/zakura:1.8.1@sha256:75bc1c72f9a507b16a7801dad261c176af5365753e52a76707a73f8c22b3bf3f
 
     # Bootstrap snapshot (if needed), then hand off to the image entrypoint so
     # cache dirs are owned correctly and privileges are dropped to UID 10001.
@@ -338,6 +342,25 @@ services:
         bootstrap_snapshot
         scrub_invalid_zakura_env
 
+        # Feature flags (true/1/yes/on). Set via env without editing the rest of the SDL.
+        truthy() { case "${1:-}" in true|TRUE|1|yes|YES|on|ON) return 0 ;; *) return 1 ;; esac; }
+        if truthy "${ENABLE_METRICS:-true}"; then
+          export ZAKURA_METRICS__ENDPOINT_ADDR="${ZAKURA_METRICS__ENDPOINT_ADDR:-0.0.0.0:9999}"
+        fi
+        if truthy "${ENABLE_HEALTH:-true}"; then
+          export ZAKURA_HEALTH__LISTEN_ADDR="${ZAKURA_HEALTH__LISTEN_ADDR:-0.0.0.0:8080}"
+        fi
+        if truthy "${ENABLE_RPC:-true}"; then
+          export ZAKURA_RPC__LISTEN_ADDR="${ZAKURA_RPC__LISTEN_ADDR:-0.0.0.0:8232}"
+        fi
+        # lightwalletd cannot read Zebra/Zakura cookie files; disable cookie auth when LWD is on.
+        if truthy "${ENABLE_LIGHTWALLETD:-true}"; then
+          export ZAKURA_RPC__ENABLE_COOKIE_AUTH="${ZAKURA_RPC__ENABLE_COOKIE_AUTH:-false}"
+          export ZAKURA_RPC__LISTEN_ADDR="${ZAKURA_RPC__LISTEN_ADDR:-0.0.0.0:8232}"
+        elif truthy "${ENABLE_RPC:-true}"; then
+          export ZAKURA_RPC__ENABLE_COOKIE_AUTH="${ZAKURA_RPC__ENABLE_COOKIE_AUTH:-true}"
+        fi
+
         # Prefer image entrypoint (ownership + setpriv). Fall back to zakurad.
         if [[ -x /usr/local/bin/entrypoint.sh ]]; then
           exec /usr/local/bin/entrypoint.sh zakurad start
@@ -389,13 +412,19 @@ services:
       # Docker/NAT: multiple peers may share one source IP through the provider proxy.
       - "ZAKURA_NETWORK__MAX_CONNECTIONS_PER_IP=8"
 
-      # --- RPC (disabled by default) ---
-      # - "ZAKURA_RPC__LISTEN_ADDR=0.0.0.0:8232"
-      # - "ZAKURA_RPC__ENABLE_COOKIE_AUTH=true"
+      # --- Feature flags (bootstrap script applies these before zakurad start) ---
+      - "ENABLE_METRICS=true"
+      - "ENABLE_HEALTH=true"
+      - "ENABLE_RPC=true"
+      - "ENABLE_LIGHTWALLETD=true"
 
-      # --- Metrics / health (optional) ---
-      # - "ZAKURA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
-      # - "ZAKURA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
+      # RPC is on internally so lightwalletd can compact-scan. Cookie auth off for LWD.
+      - "ZAKURA_RPC__LISTEN_ADDR=0.0.0.0:8232"
+      - "ZAKURA_RPC__ENABLE_COOKIE_AUTH=false"
+
+      # Prometheus + health (internal expose below)
+      - "ZAKURA_METRICS__ENDPOINT_ADDR=0.0.0.0:9999"
+      - "ZAKURA_HEALTH__LISTEN_ADDR=0.0.0.0:8080"
 
       - "ZAKURA_TRACING__USE_COLOR=true"
       # - "ZAKURA_TRACING__FILTER=info"
@@ -421,24 +450,59 @@ services:
       #     - global: true
       #   proto: tcp
 
-      # Mainnet RPC (internal unless you know what you are doing)
-      # - port: 8232
-      #   as: 8232
-      #   to:
-      #     - global: false
-      #   proto: tcp
+      # JSON-RPC: internal only (lightwalletd + operators). Do not set global: true.
+      - port: 8232
+        as: 8232
+        to:
+          - service: lightwalletd
+          - global: false
+        proto: tcp
 
-      # - port: 9999
-      #   as: 9999
-      #   to:
-      #     - global: false
-      #   proto: tcp
+      - port: 9999
+        as: 9999
+        to:
+          - global: false
+        proto: tcp
 
-      # - port: 8080
-      #   as: 8080
-      #   to:
-      #     - global: false
-      #   proto: tcp
+      - port: 8080
+        as: 8080
+        to:
+          - global: false
+        proto: tcp
+
+  # Compact-tx streamer for wallets (Zashi, Zallet, DREGG). Talks to zakura JSON-RPC.
+  lightwalletd:
+    image: electriccoinco/lightwalletd:v0.6.1
+    dependencies:
+      - service: zakura
+    command:
+      - "lightwalletd"
+      - "--no-tls-very-insecure"
+      - "--grpc-bind-addr"
+      - "0.0.0.0:9067"
+      - "--rpchost"
+      - "zakura"
+      - "--rpcport"
+      - "8232"
+      - "--rpcuser"
+      - "unused"
+      - "--rpcpassword"
+      - "unused"
+      - "--data-dir"
+      - "/var/lib/lightwalletd"
+      - "--log-file"
+      - "/dev/stdout"
+    params:
+      storage:
+        lwd:
+          mount: /var/lib/lightwalletd
+          readOnly: false
+    expose:
+      - port: 9067
+        as: 9067
+        to:
+          - global: true
+        proto: tcp
 
 profiles:
   compute:
@@ -456,6 +520,18 @@ profiles:
             attributes:
               persistent: true
               class: beta3
+    lightwalletd:
+      resources:
+        cpu:
+          units: 1
+        memory:
+          size: 2Gi
+        storage:
+          - name: lwd
+            size: 32Gi
+            attributes:
+              persistent: true
+              class: beta3
 
   placement:
     akash:
@@ -465,9 +541,16 @@ profiles:
         zakura:
           denom: uact
           amount: 1000000
+        lightwalletd:
+          denom: uact
+          amount: 100000
 
 deployment:
   zakura:
     akash:
       profile: zakura
+      count: 1
+  lightwalletd:
+    akash:
+      profile: lightwalletd
       count: 1

@@ -70,6 +70,7 @@ To add a new template/resource:
 
 - [Alpaca.cpp](alpaca-cpp)
 - [Agent Zero](agent-zero)
+- [AI Dev Box](ai-dev-box)
 - [Auto-GPT](auto-gpt)
 - [BabyAGI](babyagi)
 - [BabyAGI-UI](babyagi-ui)
@@ -120,6 +121,7 @@ To add a new template/resource:
 - [Axolotl AI](axolotlai)
 - [BERT](bert)
 - [BERT Sentiment Analysis](bert-sentiment-analysis)
+- [Blender + AkashML](blender-ai)
 - [ChatGLM-6B](ChatGLM-6B)
 - [Chatterbox](Chatterbox)
 - [ComfyUI](comfyui)
@@ -173,6 +175,7 @@ To add a new template/resource:
 - [Open GPT](open-gpt)
 - [Open WebUI](open-webui-gpu)
 - [OpenAI gpt-oss-120b](openai-gpt-oss-120b)
+- [OpenJev](openjev)
 - [Parakeet](Parakeet)
 - [Pluralis-Node](Pluralis-Node)
 - [PrivateGPT](privategpt-gpu)
@@ -329,6 +332,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Starknet Node by Juno](juno)
 - [Substrate Node](substrate-node)
 - [Witness Chain Watchtower](witnesschain-watchtower)
+- [Thus Spoke Zakura (Regtest)](thus-spoke-zakura)
 - [Zcash - Zakura](zcash-zakura)
 - [Zcash - Zebra](zcash-zebra)
 
@@ -337,6 +341,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Baserow](baserow)
 - [Odoo](odoo)
 - [Open-Project](Open-Project)
+- [OpenSEO](OpenSEO)
 - [RAIR-Dapp](RAIR-Dapp)
 - [n8n](n8n)
 

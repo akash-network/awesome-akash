@@ -8,6 +8,8 @@ else
   echo "$(date): SSH_PUBKEY (${pubkey_preview}) written to ~/.ssh/authorized_keys"
 fi
 
+ssh-keygen -A
+
 /usr/sbin/sshd
 
 exec "$@"

@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   db:
-    image: mysql:8.0.25
+    image: mysql:9
     env:
       - MYSQL_ROOT_PASSWORD=awdnadpwbdnaiosd
       - MYSQL_DATABASE=matomo
@@ -13,18 +13,14 @@ services:
     expose:
       - port: 3306
         to:
-          - servcie: matomo
+          - service: matomo
   matomo:
     image: matomo:apache
-    depends-on:
-        - db
     expose:
       - port: 80
         as: 80
         to:
           - global: true
-
-
 profiles:
   compute:
     db:
@@ -47,9 +43,6 @@ profiles:
     akash:
       attributes:
         host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         db:
           denom: uact

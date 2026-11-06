@@ -1,6 +1,8 @@
 # Zcash - Zakura
 
-[![Deploy on Akash](https://raw.githubusercontent.com/akash-network/console/refs/heads/main/apps/deploy-web/public/images/deploy-with-akash-btn.svg)](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zakura)
+**Web payments:** [Console](https://console.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zakura) (`console.akash.network`) — traditional web checkout.
+
+**Native Akash payments (Keplr):** [Air](https://air.akash.network/new-deployment?step=edit-deployment&templateId=akash-network-awesome-akash-zcash-zakura) (`air.akash.network`).
 
 Zakura is a Zcash full node written in Rust (forked from Zebra), with faster sync, native pruning, snapshot bootstrap, optional zcashd compatibility mode, and an experimental high-performance P2P stack.
 
@@ -10,7 +12,7 @@ Docker: <https://hub.docker.com/r/zakuracore/zakura>
 
 ## What this template does
 
-Deploys `zakuracore/zakura:1.0.3` on Akash with:
+Deploys `zakuracore/zakura:1.8.1` on Akash with:
 
 - Mainnet P2P on container port **8233** (provider maps a public high port)
 - **Persistent** state volume at `/home/zebra/.cache/zakura`
@@ -25,7 +27,7 @@ Deploys `zakuracore/zakura:1.0.3` on Akash with:
 
 | Setting | Default |
 | --- | --- |
-| Image | `zakuracore/zakura:1.0.3` |
+| Image | `zakuracore/zakura:1.8.1` (digest-pinned) |
 | Network | Mainnet |
 | Snapshot kind | `pruned` (~11 GiB download) |
 | Manifest | `https://zakura.valargroup.dev/mainnet-pruned/snapshots.json` |
@@ -80,9 +82,18 @@ Zebra-style config via `ZAKURA_*` env vars (legacy `ZEBRA_*` is translated by th
 | `ZAKURA_NETWORK__EXTERNAL_ADDR` | Public `host:port` if peers should dial you |
 | `ZAKURA_STATE__CACHE_DIR` | Must match the storage mount |
 | `ZAKURA_STATE__STORAGE_MODE` | `pruned` or `archive` |
-| `ZAKURA_RPC__LISTEN_ADDR` | Enable JSON-RPC (off by default) |
-| `ZAKURA_METRICS__ENDPOINT_ADDR` | Prometheus (optional) |
-| `ZAKURA_HEALTH__LISTEN_ADDR` | `/healthy` and `/ready` (optional) |
+| `ZAKURA_RPC__LISTEN_ADDR` | JSON-RPC (on internally for lightwalletd) |
+| `ZAKURA_METRICS__ENDPOINT_ADDR` | Prometheus (`0.0.0.0:9999`) |
+| `ZAKURA_HEALTH__LISTEN_ADDR` | `/healthy` and `/ready` (`0.0.0.0:8080`) |
+| `ENABLE_METRICS` / `ENABLE_HEALTH` / `ENABLE_RPC` / `ENABLE_LIGHTWALLETD` | `true`/`false` flags applied by the bootstrap script |
+
+## lightwalletd
+
+The template colocates `electriccoinco/lightwalletd:v0.6.1` on gRPC **9067** (global). It talks to Zakura JSON-RPC on internal **8232** with cookie auth **off** (lightwalletd cannot read cookie files).
+
+Point Zashi / Zallet / other compact-client wallets at the lease URI for port 9067 (`grpc`, TLS off unless you terminate TLS yourself).
+
+For a disposable Regtest dashboard instead of Mainnet, see **Thus Spoke Zakura**.
 
 ## Testnet
 
@@ -108,7 +119,7 @@ The script parses `image`, `env`, and `command` from `deploy.yaml` so local runs
 ## Notes
 
 - Akash/Kubernetes injects `ZAKURA_SERVICE_PORT`, `ZAKURA_NP_SERVICE_PORT`, etc. The bootstrap **unsets** any `ZAKURA_*` env that is not `ZAKURA_SECTION__KEY` form before starting, otherwise `zakurad` fails with `unknown field …`.
-- Akash does **not** bind your service to the literal public port 8233; check the lease URI for the published host:port. Set `ZAKURA_NETWORK__EXTERNAL_ADDR` to that endpoint if you want better inbound peer reachability.
+- **Ports:** SDL `8233` / `9067` / `8232` are container ports. With the default shared-IP mapping, each `global: true` TCP expose becomes a **random high port** on the provider host. Use **Leases → URIs**. Set `ZAKURA_NETWORK__EXTERNAL_ADDR` to the mapped P2P URI. This template does not request a dedicated IP (`endpoints.kind: ip`); that is a paid extra if you later want a stable `host:8233`.
 - Pruned mode is one-way: you cannot reopen a pruned DB as archive without resyncing.
 - Image starts as root only long enough for volume ownership, then drops to UID **10001** (`zebra`) via `entrypoint.sh`.
 - For zcashd wallet/RPC compatibility, see Zakura’s [zcashd-compat](https://github.com/zakura-core/zakura/blob/main/book/src/user/zcashd-compat.md) docs (not enabled in this template).
