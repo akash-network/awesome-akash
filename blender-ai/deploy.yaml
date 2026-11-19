@@ -1,0 +1,68 @@
+---
+version: "2.0"
+
+services:
+  blender-web:
+    image: linuxserver/blender:latest
+    expose:
+      - port: 3000
+        as: 80
+        http_options:
+          max_body_size: 104857600
+          read_timeout: 600000
+          send_timeout: 600000
+        to:
+          - global: true
+    env:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      - CUSTOM_USER=changeme
+      - PASSWORD=changeme-too
+      # AkashML: get a key at https://akashml.com, pick any model from https://akashml.com/docs/platform/models
+      - AKASHML_API_KEY=your-akashml-key
+      - AKASHML_MODEL=openai/gpt-oss-120b
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    command:
+      - "bash"
+      - "-c"
+    args:
+      - "U=https://gist.githubusercontent.com/rodri-r/12e9a5ab5c5d54c79ae6b05e96c665fd/raw/f6e52017e2475e78177b1ee7a2cb8532b252706a/start.sh; curl -fsSL $U -o /tmp/start.sh || wget -qO /tmp/start.sh $U; exec bash /tmp/start.sh"
+    params:
+      storage:
+        config:
+          mount: /config
+
+profiles:
+  compute:
+    blender-web:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 16Gi
+        storage:
+          - size: 10Gi
+          - name: config
+            size: 20Gi
+            attributes:
+              persistent: true
+              class: beta3
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+
+  placement:
+    akash:
+      pricing:
+        blender-web:
+          denom: uact
+          amount: 10000
+
+deployment:
+  blender-web:
+    akash:
+      profile: blender-web
+      count: 1

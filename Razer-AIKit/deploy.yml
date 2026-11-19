@@ -2,7 +2,7 @@
 version: "2.0"
 services:
   razer-aikit:
-    image: razerofficial/aikit:cuda13.0-torch2.11.0-vllm0.22.0-aikit0.5.0
+    image: razerofficial/aikit:cuda13.0-torch2.13.0-vllm0.30.0-aikit0.8.0
     expose:
       - port: 8000
         as: 8000

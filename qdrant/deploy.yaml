@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   qdrant:
-    image: qdrant/qdrant:v1.12.1
+    image: qdrant/qdrant:v1.19.1
     env:
       - QDRANT__SERVICE__HTTP_PORT=6333
       - QDRANT__SERVICE__GRPC_PORT=6334

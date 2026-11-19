@@ -1,0 +1,102 @@
+---
+version: "2.0"
+
+# OpenSEO on Akash
+# - open-seo: official GHCR image (Docker self-host mode, AUTH_MODE=local_noauth, no built-in login)
+# - proxy:    Caddy sidecar that adds HTTP basic auth in front. open-seo is NOT exposed publicly.
+#
+# Replace every CHANGE_ME before deploying.
+
+services:
+  open-seo:
+    image: ghcr.io/every-app/open-seo:v0.1.6
+    env:
+      - CLOUDFLARE_INCLUDE_PROCESS_ENV=true
+      - PORT=3001
+      - AUTH_MODE=local_noauth
+      - VITE_SHOW_DEVTOOLS=false
+      - OPENSEO_TELEMETRY_DISABLED=1
+      # Required: base64 of "email:password" from DataForSEO (API Access page)
+      - DATAFORSEO_API_KEY=CHANGE_ME
+      # Optional: AI features (SAM in-app agent) via OpenRouter. Uncomment to enable.
+      # - OPENROUTER_API_KEY=CHANGE_ME
+      # - OPENROUTER_MODEL=
+    expose:
+      - port: 3001
+        as: 3001
+        to:
+          - service: proxy
+    params:
+      storage:
+        data:
+          mount: /app/.wrangler
+
+  proxy:
+    image: caddy:2.10.0-alpine
+    env:
+      - BASIC_AUTH_USER=admin
+      - BASIC_AUTH_PASSWORD=CHANGE_ME
+    command:
+      - sh
+      - -c
+    args:
+      - |
+        HASH=$(caddy hash-password --plaintext "$BASIC_AUTH_PASSWORD")
+        printf '%s\n' \
+          ':8080 {' \
+          '  basic_auth {' \
+          "    $BASIC_AUTH_USER $HASH" \
+          '  }' \
+          '  reverse_proxy open-seo:3001 {' \
+          '    header_up Host localhost:3001' \
+          '  }' \
+          '}' > /etc/caddy/Caddyfile
+        exec caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+    expose:
+      - port: 8080
+        as: 80
+        to:
+          - global: true
+
+profiles:
+  compute:
+    open-seo:
+      resources:
+        cpu:
+          units: 2
+        memory:
+          size: 4Gi
+        storage:
+          - size: 8Gi
+          - name: data
+            size: 5Gi
+            attributes:
+              persistent: true
+              class: beta3
+    proxy:
+      resources:
+        cpu:
+          units: 0.25
+        memory:
+          size: 128Mi
+        storage:
+          size: 256Mi
+  placement:
+    dcloud:
+      pricing:
+        open-seo:
+          denom: uact
+          amount: 10000
+        proxy:
+          denom: uact
+          amount: 1000
+
+deployment:
+  open-seo:
+    dcloud:
+      profile: open-seo
+      count: 1
+  proxy:
+    dcloud:
+      profile: proxy
+      count: 1
