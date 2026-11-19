@@ -1,45 +1,69 @@
 ---
+# Easy Diffusion (Stable Diffusion UI) on Akash
+#
+# - Easy Diffusion and CUDA PyTorch are preinstalled in the image (see Dockerfile), using
+#   Easy Diffusion's v3.0 engine (SD 1.5 and SDXL).
+# - On start, the models listed in MODELS are downloaded (Juggernaut XL v9 by default), then the
+#   UI starts. First start takes a few minutes; the UI is ready when the logs show "Launching uvicorn".
 version: "2.0"
 
 services:
   stable-diffusion-ui:
-    image: s20081428/stable-diffusion-ui:v2.3
+    image: rodrirr/easy-diffusion:1.0
     expose:
       - port: 9000
         as: 80
         to:
           - global: true
+    env:
+      # Models to download on start, as "folder|url" entries separated by spaces or commas.
+      # Folders: stable-diffusion, vae, lora, embeddings, controlnet, text-encoder, realesrgan.
+      # Easy Diffusion also downloads face-restoration, upscaler and VAE models on its own, plus
+      # SD 1.5 if no other Stable Diffusion model is present.
+      # Optional: remove the "#" from the line below to add the SDXL fp16-fix VAE (cleaner colors
+      # for SDXL). Keep it directly under the Juggernaut line.
+      - >-
+        MODELS=
+        stable-diffusion|https://huggingface.co/RunDiffusion/Juggernaut-XL-v9/resolve/main/Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors
+      #  vae|https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors
+      # Optional: Hugging Face token, only needed for gated repos.
+      - HF_TOKEN=
+      # Rendering engine: ed_diffusers = v3.0 (default, SD 1.5 / SDXL, most reliable),
+      # webui = v3.5 (Forge; adds Flux, SD 3.5, Chroma; experimental, installs ~10 GB on first start).
+      - ED_BACKEND=ed_diffusers
 
 profiles:
   compute:
     stable-diffusion-ui:
       resources:
         cpu:
-          units: 16
-          # For quicker performance of Stable Diffusion, it's recommended to increase the CPU capacity.
-          # You can try using 32, 64, or 128 units to achieve faster processing. In case you don't receive any bids,
-          # consider lowering theu requested CPU capacity. Note that the maximum CPU units allowed are 256.
+          units: 8
+          # Image generation runs on the GPU, so 8 CPU units is plenty. Fewer CPUs also means more bids.
         memory:
           size: 32Gi
-          # Stable Diffusion needs at least 8Gi of memory.
+          # Enough for SD 1.5 and SDXL. Use 48Gi if you switch to the v3.5 engine for Flux.
         storage:
-          size: 32Gi
-          # Stable Diffusion requires at least 25Gi of disk space.
+          size: 50Gi
+          # Juggernaut XL plus Easy Diffusion's helper models use ~10Gi; the rest is room for your
+          # own models. Add ~25Gi per Flux / SD 3.5 checkpoint, and ~20Gi for the v3.5 engine.
         gpu:
           units: 1
           attributes:
             vendor:
               nvidia:
-                - model: rtx4090
+                # SDXL runs well on any of these (16 GB+ VRAM).
+                # Listing several models gets you more bids; remove ones you don't want.
+               # - model: rtx4090
+               # - model: rtx5090
+               # - model: rtx3090
+               # - model: rtx4080
+               # - model: rtx4080s
+               # - model: a5000
+               # - model: rtxa6000
+               # - model: a100
+               # - model: h100
   placement:
     akash:
-      #######################################################
-      #Keep this section to deploy on trusted providers
-
-      #######################################################
-      #Remove this section to deploy on untrusted providers
-      #Beware* You may have deployment, security, or other issues on untrusted providers
-      #https://akash.network/docs/providers/audited-attributes
       pricing:
         stable-diffusion-ui:
           denom: uact
