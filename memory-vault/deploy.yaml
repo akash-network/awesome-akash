@@ -1,0 +1,54 @@
+---
+version: "2.0"
+services:
+  vault:
+    image: ghcr.io/costa2400/memory-vault:1.0
+    env:
+      # Set a password. Left empty, anyone with the URL can read and change your vault.
+      - VAULT_PASSWORD=
+      # Optional: back up every change to your own private Git repo, and restore from it on redeploy.
+      # - BACKUP_REPO=https://github.com/you/my-vault.git
+      # - BACKUP_TOKEN=
+      # Optional: set when you use your own domain.
+      # - PUBLIC_URL=https://vault.example.com
+    expose:
+      - port: 8080
+        as: 80
+        # Optional: your own domain. Point a CNAME at the deployment URL.
+        # accept:
+        #   - vault.example.com
+        # Lets Import accept zips up to 50 MB (the ingress default is 1 MB).
+        http_options:
+          max_body_size: 52428800
+        to:
+          - global: true
+    params:
+      storage:
+        data:
+          mount: /data
+profiles:
+  compute:
+    vault:
+      resources:
+        cpu:
+          units: 0.5
+        memory:
+          size: 512Mi
+        storage:
+          - size: 1Gi
+          - name: data
+            size: 1Gi
+            attributes:
+              persistent: true
+              class: beta3
+  placement:
+    dcloud:
+      pricing:
+        vault:
+          denom: uact
+          amount: 10000
+deployment:
+  vault:
+    dcloud:
+      profile: vault
+      count: 1
