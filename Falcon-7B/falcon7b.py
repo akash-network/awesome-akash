@@ -1,29 +1,34 @@
-# Based on https://huggingface.co/tiiuae/falcon-7b-instruct
+from wsgiref.simple_server import make_server
 
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import transformers
-import torch
 import falcon
-from falcon import Request, Response
+import torch
+from transformers import AutoTokenizer, pipeline
 
-model = "tiiuae/falcon-7b-instruct"
 
-tokenizer = AutoTokenizer.from_pretrained(model)
-pipeline = transformers.pipeline(
+MODEL_ID = "tiiuae/falcon-7b-instruct"
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
+generator = pipeline(
     "text-generation",
-    model=model,
+    model=MODEL_ID,
     tokenizer=tokenizer,
-    torch_dtype=torch.bfloat16,
-    trust_remote_code=True,
+    dtype=torch.float16,
     device_map="auto",
 )
 
-class GenerateResource:
-    def on_post(self, req: Request, res: Response):
-        data = req.media
-        text = data["text"]
 
-        sequences = pipeline(
+class GenerateResource:
+    def on_post(self, req: falcon.Request, res: falcon.Response):
+        data = req.get_media(default_when_empty=None)
+        text = data.get("text") if isinstance(data, dict) else None
+
+        if not isinstance(text, str) or not text.strip():
+            raise falcon.HTTPBadRequest(
+                title="Invalid input",
+                description="The 'text' field must be a non-empty string.",
+            )
+
+        sequences = generator(
             text,
             max_length=200,
             do_sample=True,
@@ -32,22 +37,24 @@ class GenerateResource:
             eos_token_id=tokenizer.eos_token_id,
         )
 
-        generated_texts = [seq["generated_text"] for seq in sequences]
+        res.media = {
+            "generated_texts": [sequence["generated_text"] for sequence in sequences]
+        }
 
-        res.media = {"generated_texts": generated_texts}
 
 class IndexResource:
-    def on_get(self, req: Request, res: Response):
-        res.content_type = "text/html"
-        with open("index.html", "r") as file:
-            res.body = file.read()
+    def on_get(self, req: falcon.Request, res: falcon.Response):
+        res.content_type = "text/html; charset=utf-8"
 
-app = falcon.API()
-app.add_route("/generate", GenerateResource())
+        with open("index.html", encoding="utf-8") as file:
+            res.text = file.read()
+
+
+app = falcon.App()
 app.add_route("/", IndexResource())
+app.add_route("/generate", GenerateResource())
+
 
 if __name__ == "__main__":
-    from wsgiref import simple_server
-
-    httpd = simple_server.make_server("0.0.0.0", 8000, app)
-    httpd.serve_forever()
+    with make_server("0.0.0.0", 8000, app) as httpd:
+        httpd.serve_forever()

@@ -458,6 +458,7 @@ Awesome DeFi apps you can deploy on Akash
 - [Hashicorp Vault](hashicorp-vault)
 - [LibreTranslate](libretranslate)
 - [Matomo](matomo)
+- [Memory Vault](memory-vault)
 - [Memos](memos)
 - [microbox](microbox)
 - [Nextcloud](nextcloud)
