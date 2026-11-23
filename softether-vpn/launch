@@ -2,7 +2,7 @@
 
 CONFIG=vpn_server.config
 
-cd /opt/softether/vpnserver
+cd /opt/softether/vpnserver || exit 1
 
 ./vpncmd /TOOLS /CMD Check
 
@@ -84,9 +84,8 @@ if ! test -f "$CONFIG"; then
   echo "Username: $USER"
   echo "Password: $USERPASS"
   echo ""
+  ./vpnserver stop || exit 1
 else
-  ./vpnserver start
-
   echo "$CONFIG file already exists! Skipping the configuration."
   echo "Delete that file should you want to reset your configuration."
 fi
@@ -95,6 +94,5 @@ echo ""
 echo "Connect to VPN Server as admin: ./vpncmd /SERVER <host>"
 echo "Connect to VPN DEFAULT Hub: ./vpncmd /SERVER /HUB:DEFAULT <host>"
 
-echo "Enjoy SoftEther VPN!"
-
-sleep infinity
+echo "[SoftEther] Starting VPN server in foreground (execsvc)."
+exec ./vpnserver execsvc
