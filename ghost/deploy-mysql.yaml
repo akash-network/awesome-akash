@@ -3,32 +3,31 @@ version: "2.0"
 
 services:
   ghost:
-    image: ghost:5.12.3
+    image: ghost:6.78.0
     expose:
       - port: 2368
         as: 80
         to:
           - global: true
-        accept:
-          - changeme.com
     env:
-      - url=http://changeme.com
       - NODE_ENV=production
-      # ref. https://ghost.org/docs/config/#configuration-options
-      - database__connection__host=mysql
+      - database__client=mysql
       - database__connection__host=db
-      - database__connection__user=changeme
+      - database__connection__port=3306
+      - database__connection__user=ghost
       - database__connection__password=changeme
       - database__connection__database=ghost
     params:
       storage:
-        blog_data:
+        blog-data:
           mount: /var/lib/ghost/content
+          readOnly: false
+
   db:
-    image: mysql:8.0.30-debian
+    image: mysql:8.0
     env:
       - MYSQL_DATABASE=ghost
-      - MYSQL_USER=changeme
+      - MYSQL_USER=ghost
       - MYSQL_PASSWORD=changeme
       - MYSQL_RANDOM_ROOT_PASSWORD=true
     expose:
@@ -37,8 +36,10 @@ services:
           - service: ghost
     params:
       storage:
-        db_data:
+        db-data:
           mount: /var/lib/mysql
+          readOnly: false
+
 profiles:
   compute:
     ghost:
@@ -48,30 +49,29 @@ profiles:
         memory:
           size: 1Gi
         storage:
-          size: 5Gi
-          name: blog_data
-          attributes:
-            persistent: true
-            class: beta2
+          - size: 5Gi
+          - name: blog-data
+            size: 6Gi
+            attributes:
+              persistent: true
+              class: beta3
+
     db:
       resources:
         cpu:
           units: 1.0
         memory:
-          size: 1Gi
+          size: 2Gi
         storage:
-          size: 1Gi
-          name: db_data
-          attributes:
-            persistent: true
-            class: beta2
+          - size: 5Gi
+          - name: db-data
+            size: 6Gi
+            attributes:
+              persistent: true
+              class: beta3
+
   placement:
     akash:
-      attributes:
-        host: akash
-      signedBy:
-        anyOf:
-          - "akash1365yvmc4s7awdyj3n2sav7xfx76adc6dnmlx63"
       pricing:
         ghost:
           denom: uact
