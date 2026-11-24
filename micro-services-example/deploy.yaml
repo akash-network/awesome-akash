@@ -43,7 +43,7 @@ services:
       - RETAIL_CATALOG_PERSISTENCE_PASSWORD=mypassword123
       - RETAIL_CATALOG_PERSISTENCE_ENDPOINT=catalog-db:3306
   catalog-db:
-    image: mariadb:10.9
+    image: mariadb:11.8.9
     expose:
       - port: 3306
         as: 3306
