@@ -14,7 +14,7 @@ services:
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
   db:
-    image: mariadb:10.5
+    image: mariadb:11.8.9-ubi9
     expose:
       - port: 3306
         to:
