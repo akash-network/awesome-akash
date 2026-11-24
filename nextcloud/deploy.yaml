@@ -1,7 +1,7 @@
 version: '2.0'
 services:
   nextcloud:
-    image: nextcloud:24.0.5
+    image: nextcloud:35.0.3
     #https://hub.docker.com/_/nextcloud
     expose:
       - port: 80
@@ -14,7 +14,7 @@ services:
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
   db:
-    image: mariadb:10.5
+    image: mariadb:11.8.9-ubi9
     expose:
       - port: 3306
         to:

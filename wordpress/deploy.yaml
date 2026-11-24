@@ -3,8 +3,6 @@ version: '2.0'
 services:
   wordpress:
     image: wordpress
-    depends_on:
-    - db
     expose:
       - port: 80
         http_options:
@@ -22,8 +20,11 @@ services:
       - "bash"
       - "-c"
     args:
-      - 'grep -q upload_max_filesize /var/www/html/.htaccess 2>/dev/null || { echo -e "php_value upload_max_filesize 64M\nphp_value post_max_size 64M\nphp_value max_execution_time 300\nphp_value max_input_time 300" | tee -a /var/www/html/.htaccess; };
-      exec docker-entrypoint.sh apache2-foreground'
+      - |
+        grep -q upload_max_filesize /var/www/html/.htaccess 2>/dev/null || {
+          printf 'php_value upload_max_filesize 64M\nphp_value post_max_size 64M\nphp_value max_execution_time 300\nphp_value max_input_time 300\n' >> /var/www/html/.htaccess
+        }
+        exec docker-entrypoint.sh apache2-foreground
     params:
       storage:
         wordpress-data:
@@ -31,7 +32,7 @@ services:
           readOnly: false
   db:
     # We use a mariadb image which supports both amd64 & arm64 architecture
-    image: mariadb:10.6.4
+    image: mariadb:11.8.9
     # If you really want to use MySQL, uncomment the following line
     #image: mysql:8.0.27
     expose:
