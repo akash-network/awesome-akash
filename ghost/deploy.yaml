@@ -3,7 +3,7 @@ version: "2.0"
 
 services:
   ghost:
-    image: ghost:5.12.3
+    image: ghost:6.78.0
     expose:
       - port: 2368
         as: 80
