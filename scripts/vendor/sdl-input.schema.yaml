@@ -1,0 +1,605 @@
+$schema: http://json-schema.org/draft-07/schema#
+additionalProperties: false
+description: |
+  Schema for Akash Stack Definition Language (SDL) YAML input files.
+
+  Note: This schema validates structure only. Semantic validations (cross-references,
+  unused endpoints, profile references, etc.) are performed at runtime by the Go parser.
+  See README.md for details.
+
+definitions:
+  stringArrayOrNull:
+    description: String array or null value (used for command args and env vars)
+    oneOf:
+      - items:
+          type: string
+        type: array
+      - type: 'null'
+
+  portNumber:
+    description: Valid TCP/UDP port number (1-65535)
+    type: integer
+    minimum: 1
+    maximum: 65535
+
+  httpErrorCode:
+    description: HTTP error codes for proxy retry logic
+    enum:
+      - error
+      - timeout
+      - "500"
+      - "502"
+      - "503"
+      - "504"
+      - "403"
+      - "404"
+      - "429"
+      - off
+    type: string
+
+  httpTimeout:
+    description: HTTP timeout. Integers and unitless strings are milliseconds; duration strings use ms, s, m, or h. The normalized value must fit uint32 milliseconds.
+    oneOf:
+      - type: integer
+        minimum: 0
+        maximum: 4294967295
+      - type: string
+        pattern: '^[0-9]+(ms|s|m|h)?$'
+
+  priceCoin:
+    description: Price definition with amount and denomination
+    additionalProperties: false
+    properties:
+      amount:
+        oneOf:
+          - type: string
+            pattern: '^[0-9]+(\.[0-9]+)?$'
+            description: Positive number as string
+          - type: number
+            minimum: 0
+            description: Positive number
+      denom:
+        enum: [uakt, uact]
+        type: string
+    required:
+      - denom
+      - amount
+    type: object
+
+  storageRamClassMustNotBePersistent:
+    description: RAM storage class must not have persistent=true
+    not:
+      properties:
+        class: { const: ram }
+        persistent:
+          oneOf:
+            - { const: true }
+            - { const: "true" }
+      required: [class, persistent]
+
+  storageNonRamClassRequiresPersistent:
+    description: Non-RAM storage classes (beta1, beta2, beta3, default) require persistent=true
+    if:
+      properties:
+        class: { enum: [beta1, beta2, beta3, default] }
+      required: [class]
+    then:
+      properties:
+        persistent:
+          oneOf:
+            - { const: true }
+            - { const: "true" }
+      required: [persistent]
+
+  storageAttributesValidation:
+    description: |
+      Storage attributes validation:
+      1. RAM class must not be persistent
+      2. Non-RAM classes (beta1, beta2, beta3, default) require persistent=true
+    additionalProperties: false
+    properties:
+      class:
+        type: string
+      persistent:
+        oneOf:
+          - type: boolean
+          - type: string
+    allOf:
+      - $ref: '#/definitions/storageRamClassMustNotBePersistent'
+      - $ref: '#/definitions/storageNonRamClassRequiresPersistent'
+    required: [class, persistent]
+    type: object
+
+  storageVolume:
+    description: Storage volume definition with size and optional attributes
+    additionalProperties: false
+    properties:
+      attributes:
+        $ref: '#/definitions/storageAttributesValidation'
+      name:
+        type: string
+      size:
+        type: string
+    required:
+      - size
+    type: object
+
+  absolutePath:
+    description: Absolute filesystem path starting with /
+    type: string
+    minLength: 1
+    pattern: '^/'
+
+  gpuUnitsGt0RequiresAttributes:
+    description: GPU units > 0 requires attributes to be present
+    if:
+      properties:
+        units:
+          oneOf:
+            - type: number
+              exclusiveMinimum: 0
+            - type: string
+              not:
+                pattern: '^0+(\.0+)?$'
+      required:
+        - units
+    then:
+      required:
+        - attributes
+
+  gpuAttributesRequireUnitsGt0:
+    description: GPU attributes present requires units > 0
+    if:
+      required:
+        - attributes
+    then:
+      properties:
+        units:
+          oneOf:
+            - type: number
+              exclusiveMinimum: 0
+            - type: string
+              not:
+                pattern: '^0+(\.0+)?$'
+      required:
+        - units
+
+  exposeToWithIpEnforcesGlobal:
+    description: Expose to with IP enforces global
+    if:
+      properties:
+        ip:
+          type: string
+          minLength: 1
+      required:
+        - ip
+    then:
+      properties:
+        global:
+          const: true
+      required:
+        - global
+
+properties:
+  deployment:
+    additionalProperties:
+      additionalProperties:
+        additionalProperties: false
+        properties:
+          count:
+            minimum: 1
+            type: integer
+          profile:
+            type: string
+        required:
+          - profile
+          - count
+        type: object
+      type: object
+    type: object
+
+  endpoints:
+    additionalProperties: false
+    patternProperties:
+      '^[a-z]+[-_0-9a-z]+$':
+        additionalProperties: false
+        properties:
+          kind:
+            enum:
+              - ip
+            type: string
+        required:
+          - kind
+        type: object
+    type: object
+
+  include:
+    description: Optional list of files to include
+    items:
+      type: string
+    type: array
+
+  profiles:
+    additionalProperties: false
+    properties:
+      compute:
+        additionalProperties:
+          additionalProperties: false
+          properties:
+            resources:
+              additionalProperties: false
+              properties:
+                cpu:
+                  additionalProperties: false
+                  properties:
+                    attributes:
+                      additionalProperties: false
+                      description: |
+                        CPU attributes. `arch` is the only recognised key, and it
+                        is optional: omitting it leaves the group spec with zero
+                        CPU attributes, which is what every pre-arch deployment
+                        already has. There is deliberately no default — writing an
+                        implicit `amd64` would change the group spec of every
+                        existing deployment and break bid matching.
+                        Mirrors `v2CPUAttributes.UnmarshalYAML` in go/sdl/cpu.go.
+                      properties:
+                        arch:
+                          enum:
+                            - amd64
+                            - arm64
+                          type: string
+                      type: object
+                    units:
+                      oneOf:
+                        - type: string
+                          pattern: '^[0-9]+(\.[0-9]+)?[a-zA-Z]*$'
+                          not:
+                            pattern: '^0+(\.0+)?m?$'
+                        - type: number
+                          exclusiveMinimum: 0
+                  required:
+                    - units
+                  type: object
+                gpu:
+                  description: |
+                    GPU resource specification.
+                    - units defaults to 0 if omitted
+                    - Bidirectional validation: units > 0 requires attributes, and attributes require units > 0
+                  additionalProperties: false
+                  properties:
+                    attributes:
+                      additionalProperties: false
+                      properties:
+                        vendor:
+                          additionalProperties: false
+                          minProperties: 1
+                          properties:
+                            nvidia:
+                              oneOf:
+                                - type: array
+                                  items:
+                                    additionalProperties: false
+                                    properties:
+                                      interface:
+                                        enum:
+                                          - pcie
+                                          - sxm
+                                        type: string
+                                      model:
+                                        type: string
+                                      ram:
+                                        type: string
+                                    type: object
+                                - type: 'null'
+                          type: object
+                        interconnect:
+                          description: |
+                            Opt this resource into GPU interconnect.
+                            Accepts two forms:
+                              - `[]` (empty sequence) — implicit group,
+                                the parser auto-names it `auto` within
+                                the placement. All services that opt in
+                                with `[]` under one placement land in
+                                the same `auto` group.
+                              - `{ group: <name> }` — explicit named
+                                group. The name `auto` is reserved.
+                            The bare boolean `true` is no longer
+                            accepted. Fabric (InfiniBand vs RoCE) is
+                            chosen by the provider, not the SDL.
+                          oneOf:
+                            - type: array
+                              maxItems: 0
+                            - additionalProperties: false
+                              properties:
+                                group:
+                                  type: string
+                                  minLength: 1
+                              required:
+                                - group
+                              type: object
+                      type: object
+                    units:
+                      oneOf:
+                        - type: string
+                        - type: number
+                  allOf:
+                    - $ref: '#/definitions/gpuUnitsGt0RequiresAttributes'
+                    - $ref: '#/definitions/gpuAttributesRequireUnitsGt0'
+                  type: object
+                memory:
+                  additionalProperties: false
+                  properties:
+                    size:
+                      type: string
+                  required:
+                    - size
+                  type: object
+                storage:
+                  oneOf:
+                    - $ref: '#/definitions/storageVolume'
+                    - items:
+                        $ref: '#/definitions/storageVolume'
+                      type: array
+              required:
+                - cpu
+                - memory
+                - storage
+              type: object
+          required:
+            - resources
+          type: object
+        type: object
+      placement:
+        additionalProperties:
+          additionalProperties: false
+          properties:
+            attributes:
+              type: object
+            pricing:
+              additionalProperties:
+                $ref: '#/definitions/priceCoin'
+              type: object
+            signedBy:
+              additionalProperties: false
+              properties:
+                allOf:
+                  items:
+                    type: string
+                  type: array
+                anyOf:
+                  items:
+                    type: string
+                  type: array
+              type: object
+          required:
+            - pricing
+          type: object
+        type: object
+    required:
+      - compute
+      - placement
+    type: object
+
+  services:
+    additionalProperties:
+      properties:
+        args:
+          $ref: '#/definitions/stringArrayOrNull'
+        command:
+          $ref: '#/definitions/stringArrayOrNull'
+        credentials:
+          additionalProperties: false
+          properties:
+            email:
+              type: string
+              minLength: 5
+            host:
+              type: string
+              minLength: 1
+            password:
+              type: string
+              minLength: 6
+            username:
+              type: string
+              minLength: 1
+          required:
+            - host
+            - username
+            - password
+          type: object
+        dependencies:
+          items:
+            additionalProperties: false
+            properties:
+              service:
+                type: string
+            type: object
+          type: array
+        env:
+          $ref: '#/definitions/stringArrayOrNull'
+        expose:
+          oneOf:
+            - type: array
+              items:
+                additionalProperties: false
+                properties:
+                  accept:
+                    items:
+                      type: string
+                    type: array
+                  as:
+                    $ref: '#/definitions/portNumber'
+                  http_options:
+                    additionalProperties: false
+                    properties:
+                      max_body_size:
+                        type: integer
+                        minimum: 0
+                        maximum: 104857600
+                        description: Maximum body size in bytes (max 100 MB)
+                      next_cases:
+                        oneOf:
+                          - type: array
+                            items:
+                              $ref: '#/definitions/httpErrorCode'
+                            contains:
+                              const: off
+                            maxItems: 1
+                            minItems: 1
+                          - type: array
+                            items:
+                              $ref: '#/definitions/httpErrorCode'
+                            not:
+                              contains:
+                                const: off
+                      next_timeout:
+                        type: integer
+                        minimum: 0
+                      next_tries:
+                        type: integer
+                        minimum: 0
+                      proxy:
+                        additionalProperties: false
+                        description: >-
+                          Optional proxy tuning for this route. All fields are optional and
+                          buffers_number and buffers_size must be set together (both present and >= 1);
+                          an empty block is unset.
+                        dependencies:
+                          buffers_number:
+                            - buffers_size
+                          buffers_size:
+                            - buffers_number
+                        properties:
+                          buffer_size:
+                            type: integer
+                            minimum: 0
+                            maximum: 4294967295
+                            description: Proxy buffer size in bytes
+                          buffering_disable:
+                            type: boolean
+                            description: Disable proxy response buffering when true
+                          buffers_number:
+                            type: integer
+                            minimum: 1
+                            maximum: 4294967295
+                            description: Number of proxy buffers
+                          buffers_size:
+                            type: integer
+                            minimum: 1
+                            maximum: 4294967295
+                            description: Size of each proxy buffer in bytes
+                          busy_buffers_size:
+                            type: integer
+                            minimum: 0
+                            maximum: 4294967295
+                            description: Proxy busy buffers size in bytes
+                          connect_timeout:
+                            type: integer
+                            minimum: 0
+                            maximum: 4294967295
+                            description: Proxy connect timeout in milliseconds
+                        type: object
+                      read_timeout:
+                        $ref: '#/definitions/httpTimeout'
+                      send_timeout:
+                        $ref: '#/definitions/httpTimeout'
+                    type: object
+                  port:
+                    $ref: '#/definitions/portNumber'
+                  proto:
+                    enum:
+                      - TCP
+                      - UDP
+                      - tcp
+                      - udp
+                    type: string
+                  to:
+                    items:
+                      additionalProperties: false
+                      properties:
+                        global:
+                          type: boolean
+                        ip:
+                          minLength: 1
+                          type: string
+                        service:
+                          type: string
+                      allOf:
+                        - $ref: '#/definitions/exposeToWithIpEnforcesGlobal'
+                      type: object
+                    type: array
+                required:
+                  - port
+                type: object
+            - type: 'null'
+        image:
+          type: string
+          minLength: 1
+        params:
+          additionalProperties: false
+          properties:
+            storage:
+              additionalProperties:
+                additionalProperties: false
+                properties:
+                  mount:
+                    $ref: '#/definitions/absolutePath'
+                  readOnly:
+                    type: boolean
+                type: object
+              type: object
+            permissions:
+              additionalProperties: false
+              properties:
+                read:
+                  items:
+                    type: string
+                    enum:
+                      - deployment
+                      - logs
+                      - events
+                  type: array
+              type: object
+            tee:
+              type: string
+              enum:
+                - cpu
+                - cpu-gpu
+          type: object
+      required:
+        - image
+      type: object
+      additionalProperties: false
+    type: object
+
+  reclamation:
+    description: >-
+      Deployment-level reclamation requirements (optional).
+      When set, providers must offer a reclamation window meeting or exceeding
+      the specified minimum to bid on this deployment.
+    additionalProperties: false
+    properties:
+      min_window:
+        type: string
+        pattern: "^[1-9][0-9]*(s|m|h)$"
+        description: >-
+          Minimum reclamation window the tenant requires, as a whole number
+          followed by a unit (s, m, or h). E.g. "1h", "24h", "720h".
+    required:
+      - min_window
+    type: object
+
+  version:
+    description: SDL version
+    enum:
+      - '2.0'
+      - '2.1'
+    type: string
+
+required:
+  - version
+  - services
+  - profiles
+  - deployment
+title: Akash SDL Input Schema
+type: object

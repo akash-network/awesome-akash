@@ -1,0 +1,11 @@
+{
+  "name": "sdl-console-lint",
+  "private": true,
+  "type": "module",
+  "description": "Lint and rewrite Akash SDL YAML to the Console UI schema (validationSDLSchema / sdl-input.schema.yaml).",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "js-yaml": "^4.1.0",
+    "yaml": "^2.7.0"
+  }
+}

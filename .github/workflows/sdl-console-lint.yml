@@ -1,0 +1,30 @@
+name: Console SDL schema
+
+on:
+  pull_request:
+    paths:
+      - "**/deploy.yaml"
+      - "**/deploy.yml"
+      - "scripts/sdl-console-lint.mjs"
+      - "scripts/vendor/sdl-input.schema.yaml"
+      - "scripts/sdl-console-lint/**"
+      - ".github/workflows/sdl-console-lint.yml"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate changed deploy.yaml files against Console SDL schema
+        run: |
+          git fetch --depth=1 origin "${{ github.event.pull_request.base.sha }}"
+          files=$(git diff --name-only --diff-filter=ACMR "${{ github.event.pull_request.base.sha }}" | grep -E '(^|/)deploy\.ya?ml$' || true)
+          if [ -z "$files" ]; then
+            echo "No deploy.yaml changes"
+            exit 0
+          fi
+          # shellcheck disable=SC2086
+          node scripts/sdl-console-lint.mjs $files
